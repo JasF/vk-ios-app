@@ -1,0 +1,6 @@
+framework module EasyMapping {
+  umbrella header "EasyMapping.h"
+
+  export *
+  module * { export * }
+}

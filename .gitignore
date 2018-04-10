@@ -1,0 +1,9 @@
+app_packages.zip
+Frameworks/Python.framework
+*xcuserstate
+*xcuserdata*
+*xcshare*
+temp/
+Frameworks/python/libPython.a
+Podfile.lock
+Pods/*

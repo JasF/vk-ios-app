@@ -1,0 +1,21 @@
+//
+//  vk.pch
+//  vk
+//
+//  Created by Jasf on 09.04.2018.
+//  Copyright © 2018 Home. All rights reserved.
+//
+
+#ifdef __OBJC__
+#import <CocoaLumberjack/CocoaLumberjack.h>
+#import <Foundation/Foundation.h>
+#import "extobjc.h"
+#import <UIKit/UIKit.h>
+#import "NanoFrame.h"
+#if DEBUG
+static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
+#else
+static const DDLogLevel ddLogLevel = DDLogLevelWarning;
+#endif
+#import "Functions.h"
+#endif
