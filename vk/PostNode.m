@@ -184,7 +184,7 @@
         [self addSubnode:_optionsNode];
 
         for (ASDisplayNode *node in self.subnodes) {
-            node.layerBacked = YES;
+            //node.layerBacked = YES;
         }
     }
     return self;
