@@ -1,11 +1,18 @@
 //
 //  ASRangeController.h
-//  AsyncDisplayKit
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <Foundation/Foundation.h>
@@ -93,6 +100,11 @@ AS_SUBCLASSING_RESTRICTED
  */
 @property (nonatomic, weak) id<ASRangeControllerDelegate> delegate;
 
+/**
+ * Property that indicates whether the scroll view for this range controller has ever changed its contentOffset.
+ */
+@property (nonatomic, assign) BOOL contentHasBeenScrolled;
+
 @end
 
 
@@ -107,9 +119,9 @@ AS_SUBCLASSING_RESTRICTED
 /**
  * @param rangeController Sender.
  *
- * @return an array of elements corresponding to the data currently visible onscreen (i.e., the visible range).
+ * @return an table of elements corresponding to the data currently visible onscreen (i.e., the visible range).
  */
-- (NSArray<ASCollectionElement *> *)visibleElementsForRangeController:(ASRangeController *)rangeController;
+- (nullable NSHashTable<ASCollectionElement *> *)visibleElementsForRangeController:(ASRangeController *)rangeController;
 
 /**
  * @param rangeController Sender.
@@ -139,18 +151,17 @@ AS_SUBCLASSING_RESTRICTED
 @protocol ASRangeControllerDelegate <NSObject>
 
 /**
- * Called before updating with given change set.
+ * Called to update with given change set.
  *
  * @param changeSet The change set that includes all updates
- */
-- (void)rangeController:(ASRangeController *)rangeController willUpdateWithChangeSet:(_ASHierarchyChangeSet *)changeSet;
-
-/**
- * Called after updating with given change set.
  *
- * @param changeSet The change set that includes all updates
+ * @param updates The block that performs relevant data updates.
+ *
+ * @discussion The updates block must always be executed or the data controller will get into a bad state.
+ * It should be called at the time the backing view is ready to process the updates,
+ * i.e inside the updates block of `-[UICollectionView performBatchUpdates:completion:] or after calling `-[UITableView beginUpdates]`.
  */
-- (void)rangeController:(ASRangeController *)rangeController didUpdateWithChangeSet:(_ASHierarchyChangeSet *)changeSet;
+- (void)rangeController:(ASRangeController *)rangeController updateWithChangeSet:(_ASHierarchyChangeSet *)changeSet updates:(dispatch_block_t)updates;
 
 @end
 

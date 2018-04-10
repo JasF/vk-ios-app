@@ -1,11 +1,18 @@
 //
 //  ASCellNode.h
-//  AsyncDisplayKit
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <AsyncDisplayKit/ASDisplayNode.h>
@@ -13,6 +20,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class ASCellNode, ASTextNode;
+@protocol ASRangeManagingNode;
 
 typedef NSUInteger ASCellNodeAnimation;
 
@@ -79,8 +87,7 @@ typedef NS_ENUM(NSUInteger, ASCellNodeVisibilityEvent) {
  *
  * @return The supplementary element kind, or @c nil if this node does not represent a supplementary element.
  */
-//TODO change this to be a generic "kind" or "elementKind" that exposes `nil` for row kind
-@property (nonatomic, copy, readonly, nullable) NSString *supplementaryElementKind;
+@property (atomic, copy, readonly, nullable) NSString *supplementaryElementKind;
 
 /*
  * The layout attributes currently assigned to this node, if any.
@@ -106,10 +113,24 @@ typedef NS_ENUM(NSUInteger, ASCellNodeVisibilityEvent) {
 /**
  * The current index path of this cell node, or @c nil if this node is
  * not a valid item inside a table node or collection node.
- *
- * @note This property must be accessed on the main thread.
  */
-@property (nonatomic, readonly, nullable) NSIndexPath *indexPath;
+@property (atomic, readonly, nullable) NSIndexPath *indexPath;
+
+/**
+ * BETA: API is under development. We will attempt to provide an easy migration pathway for any changes.
+ *
+ * The view-model currently assigned to this node, if any.
+ *
+ * This property may be set off the main thread, but this method will never be invoked concurrently on the 
+ */
+@property (atomic, nullable) id nodeModel;
+
+/**
+ * Asks the node whether it can be updated to the given node model.
+ *
+ * The default implementation returns YES if the class matches that of the current view-model.
+ */
+- (BOOL)canUpdateToNodeModel:(id)nodeModel;
 
 /**
  * The backing view controller, or @c nil if the node wasn't initialized with backing view controller
@@ -119,10 +140,9 @@ typedef NS_ENUM(NSUInteger, ASCellNodeVisibilityEvent) {
 
 
 /**
- * The owning node (ASCollectionNode/ASTableNode) of this cell node, or @c nil if this node is
- * not a valid item inside a table node or collection node or if those nodes are nil.
+ * The table- or collection-node that this cell is a member of, if any.
  */
-@property (weak, nonatomic, readonly, nullable) ASDisplayNode *owningNode;
+@property (atomic, weak, readonly, nullable) id<ASRangeManagingNode> owningNode;
 
 /*
  * ASCellNode must forward touch events in order for UITableView and UICollectionView tap handling to work. Overriding
@@ -170,6 +190,12 @@ typedef NS_ENUM(NSUInteger, ASCellNodeVisibilityEvent) {
  */
 @property (nonatomic) UITableViewCellSelectionStyle selectionStyle;
 
+/* @abstract The focus style when a cell is focused
+ * @default UITableViewCellFocusStyleDefault
+ * ASTableView uses these properties when configuring UITableViewCells that host ASCellNodes.
+ */
+@property (nonatomic) UITableViewCellFocusStyle focusStyle;
+
 /* @abstract The view used as the background of the cell when it is selected.
  * ASTableView uses these properties when configuring UITableViewCells that host ASCellNodes.
  * ASCollectionView uses these properties when configuring UICollectionViewCells that host ASCellNodes.
@@ -195,7 +221,7 @@ typedef NS_ENUM(NSUInteger, ASCellNodeVisibilityEvent) {
 
 - (instancetype)initWithViewBlock:(ASDisplayNodeViewBlock)viewBlock didLoadBlock:(nullable ASDisplayNodeDidLoadBlock)didLoadBlock __unavailable;
 
-- (void)setLayerBacked:(BOOL)layerBacked AS_UNAVAILABLE("ASCellNode does not support layer-backing");
+- (void)setLayerBacked:(BOOL)layerBacked AS_UNAVAILABLE("ASCellNode does not support layer-backing, although subnodes may be layer-backed.");
 
 @end
 

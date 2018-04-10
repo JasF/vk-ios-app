@@ -1,11 +1,18 @@
 //
 //  ASDisplayNode+FrameworkPrivate.h
-//  AsyncDisplayKit
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 //
@@ -36,7 +43,7 @@ typedef NS_OPTIONS(NSUInteger, ASHierarchyState)
 {
   /** The node may or may not have a supernode, but no supernode has a special hierarchy-influencing option enabled. */
   ASHierarchyStateNormal                  = 0,
-  /** The node has a supernode with .shouldRasterizeDescendants = YES.
+  /** The node has a supernode with .rasterizesSubtree = YES.
       Note: the root node of the rasterized subtree (the one with the property set on it) will NOT have this state set. */
   ASHierarchyStateRasterized              = 1 << 0,
   /** The node or one of its supernodes is managed by a class like ASRangeController.  Most commonly, these nodes are
@@ -49,8 +56,6 @@ typedef NS_OPTIONS(NSUInteger, ASHierarchyState)
   /** One of the supernodes of this node is performing a transition.
       Any layout calculated during this state should not be applied immediately, but pending until later. */
   ASHierarchyStateLayoutPending           = 1 << 3,
-  ASHierarchyStateYogaLayoutEnabled       = 1 << 4,
-  ASHierarchyStateYogaLayoutMeasuring     = 1 << 5
 };
 
 ASDISPLAYNODE_INLINE BOOL ASHierarchyStateIncludesLayoutPending(ASHierarchyState hierarchyState)
@@ -61,16 +66,6 @@ ASDISPLAYNODE_INLINE BOOL ASHierarchyStateIncludesLayoutPending(ASHierarchyState
 ASDISPLAYNODE_INLINE BOOL ASHierarchyStateIncludesRangeManaged(ASHierarchyState hierarchyState)
 {
   return ((hierarchyState & ASHierarchyStateRangeManaged) == ASHierarchyStateRangeManaged);
-}
-
-ASDISPLAYNODE_INLINE BOOL ASHierarchyStateIncludesYogaLayoutMeasuring(ASHierarchyState hierarchyState)
-{
-  return ((hierarchyState & ASHierarchyStateYogaLayoutMeasuring) == ASHierarchyStateYogaLayoutMeasuring);
-}
-
-ASDISPLAYNODE_INLINE BOOL ASHierarchyStateIncludesYogaLayoutEnabled(ASHierarchyState hierarchyState)
-{
-  return ((hierarchyState & ASHierarchyStateYogaLayoutEnabled) == ASHierarchyStateYogaLayoutEnabled);
 }
 
 ASDISPLAYNODE_INLINE BOOL ASHierarchyStateIncludesRasterized(ASHierarchyState hierarchyState)
@@ -104,6 +99,29 @@ __unused static NSString * _Nonnull NSStringFromASHierarchyState(ASHierarchyStat
 	return [NSString stringWithFormat:@"{ %@ }", [states componentsJoinedByString:@" | "]];
 }
 
+#define HIERARCHY_STATE_DELTA(Name) ({ \
+  if ((oldState & ASHierarchyState##Name) != (newState & ASHierarchyState##Name)) { \
+    [changes appendFormat:@"%c%s ", (newState & ASHierarchyState##Name ? '+' : '-'), #Name]; \
+  } \
+})
+
+__unused static NSString * _Nonnull NSStringFromASHierarchyStateChange(ASHierarchyState oldState, ASHierarchyState newState)
+{
+  if (oldState == newState) {
+    return @"{ }";
+  }
+
+  NSMutableString *changes = [NSMutableString stringWithString:@"{ "];
+  HIERARCHY_STATE_DELTA(Rasterized);
+  HIERARCHY_STATE_DELTA(RangeManaged);
+  HIERARCHY_STATE_DELTA(TransitioningSupernodes);
+  HIERARCHY_STATE_DELTA(LayoutPending);
+  [changes appendString:@"}"];
+  return changes;
+}
+
+#undef HIERARCHY_STATE_DELTA
+
 @interface ASDisplayNode () <ASDescriptionProvider, ASDebugDescriptionProvider>
 {
 @protected
@@ -117,8 +135,15 @@ __unused static NSString * _Nonnull NSStringFromASHierarchyState(ASHierarchyStat
 // Thread safe way to access the bounds of the node
 @property (nonatomic, assign) CGRect threadSafeBounds;
 
+// Returns the bounds of the node without reaching the view or layer
+- (CGRect)_locked_threadSafeBounds;
+
 // delegate to inform of ASInterfaceState changes (used by ASNodeController)
 @property (nonatomic, weak) id<ASInterfaceStateDelegate> interfaceStateDelegate;
+
+// The -pendingInterfaceState holds the value that will be applied to -interfaceState by the
+// ASCATransactionQueue. If already applied, it matches -interfaceState. Thread-safe access.
+@property (nonatomic, readonly) ASInterfaceState pendingInterfaceState;
 
 // These methods are recursive, and either union or remove the provided interfaceState to all sub-elements.
 - (void)enterInterfaceState:(ASInterfaceState)interfaceState;
@@ -152,6 +177,8 @@ __unused static NSString * _Nonnull NSStringFromASHierarchyState(ASHierarchyStat
  * in the hierarchy we enable all ASInterfaceState types with `ASInterfaceStateInHierarchy`, otherwise `None`.
  */
 - (BOOL)supportsRangeManagedInterfaceState;
+
+- (BOOL)_locked_displaysAsynchronously;
 
 // The two methods below will eventually be exposed, but their names are subject to change.
 /**
@@ -207,12 +234,44 @@ __unused static NSString * _Nonnull NSStringFromASHierarchyState(ASHierarchyStat
  * ASNetworkImageNode and ASMultiplexImageNode set this to YES, because they load data from a database or server,
  * and are expected to support a placeholder state given that display is often blocked on slow data fetching.
  */
-@property (nonatomic, assign) BOOL shouldBypassEnsureDisplay;
+@property (atomic) BOOL shouldBypassEnsureDisplay;
 
 /**
  * @abstract Checks whether a node should be scheduled for display, considering its current and new interface states.
  */
 - (BOOL)shouldScheduleDisplayWithNewInterfaceState:(ASInterfaceState)newInterfaceState;
+
+/**
+ * @abstract safeAreaInsets will fallback to this value if the corresponding UIKit property is not available
+ * (due to an old iOS version).
+ *
+ * @discussion This should be set by the owning view controller based on it's layout guides.
+ * If this is not a view controllet's node the value will be calculated automatically by the parent node.
+ */
+@property (nonatomic, assign) UIEdgeInsets fallbackSafeAreaInsets;
+
+/**
+ * @abstract Indicates if this node is a view controller's root node. Defaults to NO.
+ *
+ * @discussion Set to YES in -[ASViewController initWithNode:].
+ *
+ * YES here only means that this node is used as an ASViewController node. It doesn't mean that this node is a root of
+ * ASDisplayNode hierarchy, e.g. when its view controller is parented by another ASViewController.
+ */
+@property (nonatomic, assign, getter=isViewControllerRoot) BOOL viewControllerRoot;
+
+@end
+
+
+@interface ASDisplayNode (ASLayoutInternal)
+
+/**
+ * @abstract Informs the root node that the intrinsic size of the receiver is no longer valid.
+ *
+ * @discussion The size of a root node is determined by each subnode. Calling invalidateSize will let the root node know
+ * that the intrinsic size of the receiver node is no longer valid and a resizing of the root node needs to happen.
+ */
+- (void)_u_setNeedsLayoutFromAbove;
 
 /**
  * @abstract Subclass hook for nodes that are acting as root nodes. This method is called if one of the subnodes
@@ -221,10 +280,41 @@ __unused static NSString * _Nonnull NSStringFromASHierarchyState(ASHierarchyStat
 - (void)_rootNodeDidInvalidateSize;
 
 /**
- * @abstract Subclass hook for nodes that are acting as root nodes. This method is called after measurement
- * finished in a layout transition but before the measurement completion handler is called
+ * This method will confirm that the layout is up to date (and update if needed).
+ * Importantly, it will also APPLY the layout to all of our subnodes if (unless parent is transitioning).
+ */
+- (void)_u_measureNodeWithBoundsIfNecessary:(CGRect)bounds;
+
+/**
+ * Layout all of the subnodes based on the sublayouts
+ */
+- (void)_layoutSublayouts;
+
+@end
+
+@interface ASDisplayNode (ASLayoutTransitionInternal)
+
+/**
+ * If one or multiple layout transitions are in flight this methods returns if the current layout transition that
+ * happens in in this particular thread was invalidated through another thread is starting a transition for this node
+ */
+- (BOOL)_isLayoutTransitionInvalid;
+
+/**
+ * Internal method that can be overriden by subclasses to add specific behavior after the measurement of a layout
+ * transition did finish.
  */
 - (void)_layoutTransitionMeasurementDidFinish;
+
+/**
+ * Informs the node that hte pending layout transition did complete
+ */
+- (void)_completePendingLayoutTransition;
+
+/**
+ * Called if the pending layout transition did complete
+ */
+- (void)_pendingLayoutTransitionDidComplete;
 
 @end
 

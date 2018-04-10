@@ -1,11 +1,18 @@
 //
 //  ASMultiplexImageNode.h
-//  AsyncDisplayKit
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <AsyncDisplayKit/ASImageNode.h>
@@ -124,14 +131,12 @@ typedef NS_ENUM(NSUInteger, ASMultiplexImageNodeErrorCode) {
  */
 @property (nonatomic, assign, readwrite) BOOL shouldRenderProgressImages;
 
-#if TARGET_OS_IOS
 /**
  * @abstract The image manager that this image node should use when requesting images from the Photos framework. If this is `nil` (the default), then `PHImageManager.defaultManager` is used.
  
  * @see `+[NSURL URLWithAssetLocalIdentifier:targetSize:contentMode:options:]` below.
  */
-@property (nullable, nonatomic, strong) PHImageManager *imageManager;
-#endif
+@property (nullable, nonatomic, strong) PHImageManager *imageManager API_AVAILABLE(ios(8.0), tvos(10.0));
 @end
 
 
@@ -238,7 +243,6 @@ didFinishDownloadingImageWithIdentifier:(ASImageIdentifier)imageIdentifier
  */
 - (nullable NSURL *)multiplexImageNode:(ASMultiplexImageNode *)imageNode URLForImageIdentifier:(ASImageIdentifier)imageIdentifier;
 
-#if TARGET_OS_IOS
 /**
  * @abstract A PHAsset for the specific asset local identifier
  * @param imageNode The sender.
@@ -249,12 +253,10 @@ didFinishDownloadingImageWithIdentifier:(ASImageIdentifier)imageIdentifier
  * @note This method may be called from any thread.
  * @return A PHAsset corresponding to `assetLocalIdentifier`, or nil if none is available.
  */
-- (nullable PHAsset *)multiplexImageNode:(ASMultiplexImageNode *)imageNode assetForLocalIdentifier:(NSString *)assetLocalIdentifier;
-#endif
+- (nullable PHAsset *)multiplexImageNode:(ASMultiplexImageNode *)imageNode assetForLocalIdentifier:(NSString *)assetLocalIdentifier API_AVAILABLE(ios(8.0), tvos(10.0));
 @end
 
-#pragma mark - 
-#if TARGET_OS_IOS
+#pragma mark -
 @interface NSURL (ASPhotosFrameworkURLs)
 
 /**
@@ -268,9 +270,8 @@ didFinishDownloadingImageWithIdentifier:(ASImageIdentifier)imageIdentifier
 + (NSURL *)URLWithAssetLocalIdentifier:(NSString *)assetLocalIdentifier
                             targetSize:(CGSize)targetSize
                            contentMode:(PHImageContentMode)contentMode
-                               options:(PHImageRequestOptions *)options AS_WARN_UNUSED_RESULT;
+                               options:(PHImageRequestOptions *)options NS_RETURNS_RETAINED AS_WARN_UNUSED_RESULT API_AVAILABLE(ios(8.0), tvos(10.0));
 
 @end
-#endif
 
 NS_ASSUME_NONNULL_END

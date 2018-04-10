@@ -1,11 +1,18 @@
 //
 //  ASBasicImageDownloader.mm
-//  AsyncDisplayKit
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <AsyncDisplayKit/ASBasicImageDownloader.h>
@@ -39,11 +46,12 @@ NSString * const kASBasicImageDownloaderContextCompletionBlock = @"kASBasicImage
 @implementation ASBasicImageDownloaderContext
 
 static NSMutableDictionary *currentRequests = nil;
-static ASDN::RecursiveMutex currentRequestsLock;
+// Allocate currentRequestsLock on the heap to prevent destruction at app exit (https://github.com/TextureGroup/Texture/issues/136)
+static ASDN::StaticMutex& currentRequestsLock = *new ASDN::StaticMutex;
 
 + (ASBasicImageDownloaderContext *)contextForURL:(NSURL *)URL
 {
-  ASDN::MutexLocker l(currentRequestsLock);
+  ASDN::StaticMutexLocker l(currentRequestsLock);
   if (!currentRequests) {
     currentRequests = [[NSMutableDictionary alloc] init];
   }
@@ -57,7 +65,7 @@ static ASDN::RecursiveMutex currentRequestsLock;
 
 + (void)cancelContextWithURL:(NSURL *)URL
 {
-  ASDN::MutexLocker l(currentRequestsLock);
+  ASDN::StaticMutexLocker l(currentRequestsLock);
   if (currentRequests) {
     [currentRequests removeObjectForKey:URL];
   }
@@ -122,7 +130,7 @@ static ASDN::RecursiveMutex currentRequestsLock;
 
     if (completionBlock) {
       dispatch_async(callbackQueue, ^{
-        completionBlock(image, error, nil);
+        completionBlock(image, error, nil, nil);
       });
     }
   }
@@ -198,7 +206,7 @@ static const char *kContextKey = NSStringFromClass(ASBasicImageDownloaderContext
 
 @implementation ASBasicImageDownloader
 
-+ (instancetype)sharedImageDownloader
++ (ASBasicImageDownloader *)sharedImageDownloader
 {
   static ASBasicImageDownloader *sharedImageDownloader = nil;
   static dispatch_once_t once = 0;
@@ -227,9 +235,9 @@ static const char *kContextKey = NSStringFromClass(ASBasicImageDownloaderContext
 #pragma mark ASImageDownloaderProtocol.
 
 - (id)downloadImageWithURL:(NSURL *)URL
-                      callbackQueue:(dispatch_queue_t)callbackQueue
-                   downloadProgress:(nullable ASImageDownloaderProgress)downloadProgress
-                         completion:(ASImageDownloaderCompletion)completion
+             callbackQueue:(dispatch_queue_t)callbackQueue
+          downloadProgress:(nullable ASImageDownloaderProgress)downloadProgress
+                completion:(ASImageDownloaderCompletion)completion
 {
   ASBasicImageDownloaderContext *context = [ASBasicImageDownloaderContext contextForURL:URL];
 

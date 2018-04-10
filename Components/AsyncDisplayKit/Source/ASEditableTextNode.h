@@ -1,11 +1,18 @@
 //
 //  ASEditableTextNode.h
-//  AsyncDisplayKit
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <AsyncDisplayKit/ASDisplayNode.h>
@@ -151,6 +158,13 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ASEditableTextNodeDelegate <NSObject>
 
 @optional
+/**
+ @abstract Asks the delegate if editing should begin for the text node.
+ @param editableTextNode An editable text node.
+ @discussion YES if editing should begin; NO if editing should not begin -- the default returns YES.
+ */
+- (BOOL)editableTextNodeShouldBeginEditing:(ASEditableTextNode *)editableTextNode;
+
 /**
   @abstract Indicates to the delegate that the text node began editing.
   @param editableTextNode An editable text node.

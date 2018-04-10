@@ -1,11 +1,18 @@
 //
 //  ASTableView.h
-//  AsyncDisplayKit
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <UIKit/UIKit.h>
@@ -24,13 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Asynchronous UITableView with Intelligent Preloading capabilities.
  *
- * @discussion ASTableView is a true subclass of UITableView, meaning it is pointer-compatible with code that
- * currently uses UITableView
- *
- * The main difference is that asyncDataSource expects -nodeForRowAtIndexPath, an ASCellNode, and
- * the heightForRowAtIndexPath: method is eliminated (as are the performance problems caused by it).
- * This is made possible because ASCellNodes can calculate their own size, and preload ahead of time.
- *
  * @note ASTableNode is strongly recommended over ASTableView.  This class is provided for adoption convenience.
  */
 @interface ASTableView : UITableView
@@ -42,29 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
  * Retrieves the node for the row at the given index path.
  */
 - (nullable ASCellNode *)nodeForRowAtIndexPath:(NSIndexPath *)indexPath AS_WARN_UNUSED_RESULT;
-
-/**
- * YES to automatically adjust the contentOffset when cells are inserted or deleted above
- * visible cells, maintaining the users' visible scroll position. 
- *
- * @note This is only applied to non-animated updates. For animated updates, there is no way to
- * synchronize or "cancel out" the appearance of a scroll due to UITableView API limitations.
- *
- * default is NO.
- */
-@property (nonatomic) BOOL automaticallyAdjustsContentOffset;
-
-/**
- * The number of screens left to scroll before the delegate -tableView:beginBatchFetchingWithContext: is called.
- *
- * Defaults to two screenfuls.
- */
-@property (nonatomic, assign) CGFloat leadingScreensForBatching;
-
-/*
- * A Boolean value that determines whether the nodes that the data source renders will be flipped.
- */
-@property (nonatomic, assign) BOOL inverted;
 
 @end
 
@@ -82,6 +59,45 @@ NS_ASSUME_NONNULL_BEGIN
  * @param style A constant that specifies the style of the table view. See UITableViewStyle for descriptions of valid constants.
  */
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style ASDISPLAYNODE_DEPRECATED_MSG("Please use ASTableNode instead of ASTableView.");
+
+/**
+ * The number of screens left to scroll before the delegate -tableView:beginBatchFetchingWithContext: is called.
+ *
+ * Defaults to two screenfuls.
+ */
+@property (nonatomic, assign) CGFloat leadingScreensForBatching ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode property instead.");
+
+/**
+ * The distance that the content view is inset from the table view edges. Defaults to UIEdgeInsetsZero.
+ */
+@property (nonatomic, assign) UIEdgeInsets contentInset ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode property instead");
+
+/**
+ * The offset of the content view's origin from the table node's origin. Defaults to CGPointZero.
+ */
+@property (nonatomic, assign) CGPoint contentOffset ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode property instead.");
+
+/**
+ * YES to automatically adjust the contentOffset when cells are inserted or deleted above
+ * visible cells, maintaining the users' visible scroll position.
+ *
+ * @note This is only applied to non-animated updates. For animated updates, there is no way to
+ * synchronize or "cancel out" the appearance of a scroll due to UITableView API limitations.
+ *
+ * default is NO.
+ */
+@property (nonatomic) BOOL automaticallyAdjustsContentOffset ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode property instead.");
+
+/*
+ * A Boolean value that determines whether the nodes that the data source renders will be flipped.
+ */
+@property (nonatomic, assign) BOOL inverted ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode property instead.");
+
+@property (nonatomic, readonly, nullable) NSIndexPath *indexPathForSelectedRow  ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode property instead.");
+
+@property (nonatomic, readonly, nullable) NSArray<NSIndexPath *> *indexPathsForSelectedRows ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode property instead.");
+
+@property (nonatomic, readonly, nullable) NSArray<NSIndexPath *> *indexPathsForVisibleRows ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode property instead.");
 
 /**
  * Tuning parameters for a range type in full mode.
@@ -137,12 +153,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode method instead.");
 
-@property (nonatomic, readonly, nullable) NSIndexPath *indexPathForSelectedRow  ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode property instead.");
-
-@property (nonatomic, readonly, nullable) NSArray<NSIndexPath *> *indexPathsForSelectedRows ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode property instead.");
-
-@property (nonatomic, readonly, nullable) NSArray<NSIndexPath *> *indexPathsForVisibleRows ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode property instead.");
-
 - (nullable NSIndexPath *)indexPathForRowAtPoint:(CGPoint)point ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode method instead.");
 
 - (nullable NSArray<NSIndexPath *> *)indexPathsForRowsInRect:(CGRect)rect ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode method instead.");
@@ -170,7 +180,7 @@ NS_ASSUME_NONNULL_BEGIN
  * the main thread.
  * @warning This method is substantially more expensive than UITableView's version.
  */
--(void)reloadDataWithCompletion:(void (^ _Nullable)())completion ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode method instead.");
+-(void)reloadDataWithCompletion:(void (^ _Nullable)(void))completion ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode method instead.");
 
 /**
  * Reload everything from scratch, destroying the working range and all cached nodes.
@@ -178,14 +188,6 @@ NS_ASSUME_NONNULL_BEGIN
  * @warning This method is substantially more expensive than UITableView's version.
  */
 - (void)reloadData ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode method instead.");
-
-/**
- * Reload everything from scratch entirely on the main thread, destroying the working range and all cached nodes.
- *
- * @warning This method is substantially more expensive than UITableView's version and will block the main thread while
- * all the cells load.
- */
-- (void)reloadDataImmediately ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode's reloadDataWithCompletion: followed by ASTableNode's -waitUntilAllUpdatesAreCommitted instead.");
 
 /**
  * Triggers a relayout of all nodes.
@@ -214,9 +216,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)endUpdatesAnimated:(BOOL)animated completion:(void (^ _Nullable)(BOOL completed))completion ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode's -performBatchUpdates:completion: instead.");
 
 /**
- *  Blocks execution of the main thread until all section and row updates are committed. This method must be called from the main thread.
+ * See ASTableNode.h for full documentation of these methods.
  */
-- (void)waitUntilAllUpdatesAreCommitted ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode method instead.");
+@property (nonatomic, readonly) BOOL isProcessingUpdates;
+- (void)onDidFinishProcessingUpdates:(void (^)(void))completion;
+- (void)waitUntilAllUpdatesAreCommitted ASDISPLAYNODE_DEPRECATED_MSG("Use -[ASTableNode waitUntilAllUpdatesAreProcessed] instead.");
 
 - (void)insertSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode method instead.");
 
@@ -234,11 +238,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)moveRowAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode method instead.");
 
-/// Deprecated in 2.0. You should not call this method.
-- (void)clearContents ASDISPLAYNODE_DEPRECATED_MSG("You should not call this method directly. Intead, rely on the Interstate State callback methods.");
-
-/// Deprecated in 2.0. You should not call this method.
-- (void)clearFetchedData ASDISPLAYNODE_DEPRECATED_MSG("You should not call this method directly. Intead, rely on the Interstate State callback methods.");
+- (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated ASDISPLAYNODE_DEPRECATED_MSG("Use ASTableNode method instead.");
 
 @end
 

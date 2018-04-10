@@ -1,16 +1,22 @@
 //
 //  UIImage+ASConvenience.m
-//  AsyncDisplayKit
-//
-//  Created by Hannah Troisi on 6/24/16.
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <AsyncDisplayKit/UIImage+ASConvenience.h>
+#import <AsyncDisplayKit/ASGraphicsContext.h>
 #import <AsyncDisplayKit/ASInternalHelpers.h>
 #import <AsyncDisplayKit/ASAssert.h>
 
@@ -18,7 +24,7 @@
 
 @implementation UIImage (ASDKFastImageNamed)
 
-UIImage *cachedImageNamed(NSString *imageName, UITraitCollection *traitCollection)
+UIImage *cachedImageNamed(NSString *imageName, UITraitCollection *traitCollection) NS_RETURNS_RETAINED
 {
   static NSCache *imageCache = nil;
   static dispatch_once_t onceToken;
@@ -49,12 +55,12 @@ UIImage *cachedImageNamed(NSString *imageName, UITraitCollection *traitCollectio
   return image;
 }
 
-+ (UIImage *)as_imageNamed:(NSString *)imageName
++ (UIImage *)as_imageNamed:(NSString *)imageName NS_RETURNS_RETAINED
 {
   return cachedImageNamed(imageName, nil);
 }
 
-+ (UIImage *)as_imageNamed:(NSString *)imageName compatibleWithTraitCollection:(UITraitCollection *)traitCollection
++ (UIImage *)as_imageNamed:(NSString *)imageName compatibleWithTraitCollection:(UITraitCollection *)traitCollection NS_RETURNS_RETAINED
 {
   return cachedImageNamed(imageName, traitCollection);
 }
@@ -67,7 +73,7 @@ UIImage *cachedImageNamed(NSString *imageName, UITraitCollection *traitCollectio
 
 + (UIImage *)as_resizableRoundedImageWithCornerRadius:(CGFloat)cornerRadius
                                           cornerColor:(UIColor *)cornerColor
-                                            fillColor:(UIColor *)fillColor
+                                            fillColor:(UIColor *)fillColor NS_RETURNS_RETAINED
 {
   return [self as_resizableRoundedImageWithCornerRadius:cornerRadius
                                             cornerColor:cornerColor
@@ -82,7 +88,7 @@ UIImage *cachedImageNamed(NSString *imageName, UITraitCollection *traitCollectio
                                           cornerColor:(UIColor *)cornerColor
                                             fillColor:(UIColor *)fillColor
                                           borderColor:(UIColor *)borderColor
-                                          borderWidth:(CGFloat)borderWidth
+                                          borderWidth:(CGFloat)borderWidth NS_RETURNS_RETAINED
 {
   return [self as_resizableRoundedImageWithCornerRadius:cornerRadius
                                             cornerColor:cornerColor
@@ -99,7 +105,7 @@ UIImage *cachedImageNamed(NSString *imageName, UITraitCollection *traitCollectio
                                           borderColor:(UIColor *)borderColor
                                           borderWidth:(CGFloat)borderWidth
                                        roundedCorners:(UIRectCorner)roundedCorners
-                                                scale:(CGFloat)scale
+                                                scale:(CGFloat)scale NS_RETURNS_RETAINED
 {
   static NSCache *__pathCache = nil;
   static dispatch_once_t onceToken;
@@ -133,7 +139,7 @@ UIImage *cachedImageNamed(NSString *imageName, UITraitCollection *traitCollectio
   
   // We should probably check if the background color has any alpha component but that
   // might be expensive due to needing to check mulitple color spaces.
-  UIGraphicsBeginImageContextWithOptions(bounds.size, cornerColor != nil, scale);
+  ASGraphicsBeginImageContextWithOptions(bounds.size, cornerColor != nil, scale);
   
   BOOL contextIsClean = YES;
   if (cornerColor) {
@@ -163,8 +169,7 @@ UIImage *cachedImageNamed(NSString *imageName, UITraitCollection *traitCollectio
     [strokePath strokeWithBlendMode:(canUseCopy ? kCGBlendModeCopy : kCGBlendModeNormal) alpha:1];
   }
   
-  UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
+  UIImage *result = ASGraphicsGetImageAndEndCurrentContext();
   
   UIEdgeInsets capInsets = UIEdgeInsetsMake(cornerRadius, cornerRadius, cornerRadius, cornerRadius);
   result = [result resizableImageWithCapInsets:capInsets resizingMode:UIImageResizingModeStretch];

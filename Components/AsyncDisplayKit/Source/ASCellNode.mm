@@ -1,11 +1,18 @@
 //
 //  ASCellNode.mm
-//  AsyncDisplayKit
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <AsyncDisplayKit/ASCellNode+Internal.h>
@@ -37,12 +44,6 @@
   ASDisplayNode *_viewControllerNode;
   UIViewController *_viewController;
   BOOL _suspendInteractionDelegate;
-
-  struct {
-    unsigned int isTableNode:1;
-    unsigned int isCollectionNode:1;
-  } _owningNodeType;
-
 }
 
 @end
@@ -57,6 +58,7 @@
 
   // Use UITableViewCell defaults
   _selectionStyle = UITableViewCellSelectionStyleDefault;
+  _focusStyle = UITableViewCellFocusStyleDefault;
   self.clipsToBounds = YES;
 
   return self;
@@ -86,7 +88,7 @@
     if ([_viewController isKindOfClass:[ASViewController class]]) {
       ASViewController *asViewController = (ASViewController *)_viewController;
       _viewControllerNode = asViewController.node;
-      [_viewController view];
+      [_viewController loadViewIfNeeded];
     } else {
       // Careful to avoid retain cycle
       UIViewController *viewController = _viewController;
@@ -110,13 +112,6 @@
 {
   [super layout];
   
-  _viewControllerNode.frame = self.bounds;
-}
-
-- (void)layoutDidFinish
-{
-  [super layoutDidFinish];
-
   _viewControllerNode.frame = self.bounds;
 }
 
@@ -158,19 +153,6 @@
   }
 }
 
-- (void)setOwningNode:(ASDisplayNode *)owningNode
-{
-  _owningNode = owningNode;
-
-  memset(&_owningNodeType, 0, sizeof(_owningNodeType));
-
-  if ([owningNode isKindOfClass:[ASTableNode class]]) {
-    _owningNodeType.isTableNode      = 1;
-  } else if ([owningNode isKindOfClass:[ASCollectionNode class]]) {
-    _owningNodeType.isCollectionNode = 1;
-  }
-}
-
 - (void)__setSelectedFromUIKit:(BOOL)selected;
 {
   if (selected != _selected) {
@@ -189,17 +171,14 @@
   }
 }
 
+- (BOOL)canUpdateToNodeModel:(id)nodeModel
+{
+  return [self.nodeModel class] == [nodeModel class];
+}
+
 - (NSIndexPath *)indexPath
 {
-  ASDisplayNodeAssertMainThread();
-
-  if (_owningNodeType.isTableNode) {
-    return [(ASTableNode *)self.owningNode indexPathForNode:self];
-  } else if (_owningNodeType.isCollectionNode) {
-    return [(ASCollectionNode *)self.owningNode indexPathForNode:self];
-  }
-
-  return nil;
+  return [self.owningNode indexPathForNode:self];
 }
 
 - (UIViewController *)viewController
@@ -337,13 +316,13 @@
     if (ip != nil) {
       [result addObject:@{ @"indexPath" : ip }];
     }
-    [result addObject:@{ @"collectionNode" : ASObjectDescriptionMakeTiny(owningNode) }];
+    [result addObject:@{ @"collectionNode" : owningNode }];
   } else if ([owningNode isKindOfClass:[ASTableNode class]]) {
     NSIndexPath *ip = [(ASTableNode *)owningNode indexPathForNode:self];
     if (ip != nil) {
       [result addObject:@{ @"indexPath" : ip }];
     }
-    [result addObject:@{ @"tableNode" : ASObjectDescriptionMakeTiny(owningNode) }];
+    [result addObject:@{ @"tableNode" : owningNode }];
   
   } else if ([scrollView isKindOfClass:[ASCollectionView class]]) {
     NSIndexPath *ip = [(ASCollectionView *)scrollView indexPathForNode:self];
@@ -366,6 +345,30 @@
 - (NSString *)supplementaryElementKind
 {
   return self.collectionElement.supplementaryElementKind;
+}
+
+- (BOOL)supportsLayerBacking
+{
+  return NO;
+}
+
+- (BOOL)shouldUseUIKitCell
+{
+  return NO;
+}
+
+@end
+
+
+#pragma mark -
+#pragma mark ASWrapperCellNode
+
+// TODO: Consider if other calls, such as willDisplayCell, should be bridged to this class.
+@implementation ASWrapperCellNode : ASCellNode
+
+- (BOOL)shouldUseUIKitCell
+{
+  return YES;
 }
 
 @end

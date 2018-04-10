@@ -1,17 +1,23 @@
 //
 //  AsyncDisplayKit+Debug.m
-//  AsyncDisplayKit
-//
-//  Created by Hannah Troisi on 3/7/16.
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit+Debug.h>
 #import <AsyncDisplayKit/ASAbstractLayoutController.h>
+#import <AsyncDisplayKit/ASGraphicsContext.h>
 #import <AsyncDisplayKit/ASLayout.h>
 #import <AsyncDisplayKit/ASWeakSet.h>
 #import <AsyncDisplayKit/UIImage+ASConvenience.h>
@@ -143,7 +149,7 @@ static BOOL __enableHitTestDebug = NO;
       UIColor *clipsBorderColor = [UIColor colorWithRed:30/255.0 green:90/255.0 blue:50/255.0 alpha:0.7];
       CGRect imgRect            = CGRectMake(0, 0, 2.0 * borderWidth + 1.0, 2.0 * borderWidth + 1.0);
       
-      UIGraphicsBeginImageContext(imgRect.size);
+      ASGraphicsBeginImageContextWithOptions(imgRect.size, NO, 1);
       
       [fillColor setFill];
       UIRectFill(imgRect);
@@ -151,8 +157,7 @@ static BOOL __enableHitTestDebug = NO;
       [self drawEdgeIfClippedWithEdges:clippedEdges color:clipsBorderColor borderWidth:borderWidth imgRect:imgRect];
       [self drawEdgeIfClippedWithEdges:clipsToBoundsClippedEdges color:borderColor borderWidth:borderWidth imgRect:imgRect];
       
-      UIImage *debugHighlightImage = UIGraphicsGetImageFromCurrentImageContext();
-      UIGraphicsEndImageContext();
+      UIImage *debugHighlightImage = ASGraphicsGetImageAndEndCurrentContext();
       
       UIEdgeInsets edgeInsets = UIEdgeInsetsMake(borderWidth, borderWidth, borderWidth, borderWidth);
       debugOverlay.image = [debugHighlightImage resizableImageWithCapInsets:edgeInsets resizingMode:UIImageResizingModeStretch];
@@ -208,7 +213,7 @@ static BOOL __enableHitTestDebug = NO;
 
 @interface _ASRangeDebugOverlayView : UIView
 
-+ (instancetype)sharedInstance;
++ (instancetype)sharedInstance NS_RETURNS_RETAINED;
 
 - (void)addRangeController:(ASRangeController *)rangeController;
 
@@ -306,7 +311,7 @@ static BOOL __shouldShowRangeDebugOverlay = NO;
   return [[NSClassFromString(@"UIApplication") sharedApplication] keyWindow];
 }
 
-+ (instancetype)sharedInstance
++ (_ASRangeDebugOverlayView *)sharedInstance NS_RETURNS_RETAINED
 {
   static _ASRangeDebugOverlayView *__rangeDebugOverlay = nil;
   
@@ -747,7 +752,7 @@ static BOOL __shouldShowRangeDebugOverlay = NO;
     return rangeBarImageNode;
 }
 
-+ (NSAttributedString *)whiteAttributedStringFromString:(NSString *)string withSize:(CGFloat)size
++ (NSAttributedString *)whiteAttributedStringFromString:(NSString *)string withSize:(CGFloat)size NS_RETURNS_RETAINED
 {
   NSDictionary *attributes = @{NSForegroundColorAttributeName : [UIColor whiteColor],
                                NSFontAttributeName            : [UIFont systemFontOfSize:size]};

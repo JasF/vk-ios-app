@@ -1,16 +1,19 @@
 //
 //  ASBaseDefines.h
-//  AsyncDisplayKit
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
 //
-
-#pragma once
-
-#import <AsyncDisplayKit/ASLog.h>
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
 
 // The C++ compiler mangles C function names. extern "C" { /* your C functions */ } prevents this.
 // You should wrap all C function prototypes declared in headers with ASDISPLAYNODE_EXTERN_C_BEGIN/END, even if
@@ -102,6 +105,10 @@
 # define ASDISPLAYNODE_NOTHROW __attribute__ ((nothrow))
 #else
 # define ASDISPLAYNODE_NOTHROW
+#endif
+
+#ifndef AS_ENABLE_TIPS
+#define AS_ENABLE_TIPS 0
 #endif
 
 /**
@@ -204,10 +211,48 @@
 #define AS_SUBCLASSING_RESTRICTED
 #endif
 
+#define ASCreateOnce(expr) ({ \
+  static dispatch_once_t onceToken; \
+  static __typeof__(expr) staticVar; \
+  dispatch_once(&onceToken, ^{ \
+    staticVar = expr; \
+  }); \
+  staticVar; \
+})
+
 /// Ensure that class is of certain kind
 #define ASDynamicCast(x, c) ({ \
   id __val = x;\
   ((c *) ([__val isKindOfClass:[c class]] ? __val : nil));\
+})
+
+/// Ensure that class is of certain kind, assuming it is subclass restricted
+#define ASDynamicCastStrict(x, c) ({ \
+  id __val = x;\
+  ((c *) ([__val class] == [c class] ? __val : nil));\
+})
+
+// Compare two primitives, assign if different. Returns whether the assignment happened.
+#define ASCompareAssign(lvalue, newValue) ({  \
+  BOOL result = (lvalue != newValue);         \
+  if (result) { lvalue = newValue; }          \
+  result;                                     \
+})
+
+#define ASCompareAssignObjects(lvalue, newValue) \
+  ASCompareAssignCustom(lvalue, newValue, ASObjectIsEqual)
+
+// e.g. ASCompareAssignCustom(_myInsets, insets, UIEdgeInsetsEqualToEdgeInsets)
+#define ASCompareAssignCustom(lvalue, newValue, isequal) ({  \
+  BOOL result = !(isequal(lvalue, newValue));                \
+  if (result) { lvalue = newValue; }                         \
+  result;                                                    \
+})
+
+#define ASCompareAssignCopy(lvalue, newValue) ({           \
+  BOOL result = !ASObjectIsEqual(lvalue, newValue);        \
+  if (result) { lvalue = [newValue copyWithZone:NULL]; }   \
+  result;                                                  \
 })
 
 /**
@@ -222,6 +267,20 @@
     } \
   } \
   s; \
+})
+
+/**
+ * Create a new ObjectPointerPersonality NSHashTable by mapping `collection` over `work`, ignoring nil.
+ */
+#define ASPointerTableByFlatMapping(collection, decl, work) ({ \
+  NSHashTable *t = [NSHashTable hashTableWithOptions:NSHashTableObjectPointerPersonality]; \
+  for (decl in collection) {\
+    id result = work; \
+    if (result != nil) { \
+      [t addObject:result]; \
+    } \
+  } \
+  t; \
 })
 
 /**

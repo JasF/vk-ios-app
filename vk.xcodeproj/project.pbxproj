@@ -887,6 +887,7 @@
 		C3617009207CA867007FD417 /* Photo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		C361700C207CA947007FD417 /* PostType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostType.h; sourceTree = "<group>"; };
 		C361700D207CA947007FD417 /* PostType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostType.m; sourceTree = "<group>"; };
+		C3CCF408207CFA08008FFD52 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		CC6F2ABE8383FAB21802C734 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		FCCC1AD413FCA8603156ED15 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -973,6 +974,7 @@
 			isa = PBXGroup;
 			children = (
 				C3616FE3207C98F6007FD417 /* app_packages.zip */,
+				C3CCF408207CFA08008FFD52 /* Podfile */,
 				3EEA4EFE1BECC4E8008A7F35 /* Default-568h@2x.png */,
 				3EEA4EFF1BECC4E8008A7F35 /* Default-667h@2x.png */,
 				3EEA4F001BECC4E8008A7F35 /* Default-736h@3x.png */,

@@ -1,13 +1,18 @@
 //
 //  UIImage+ASConvenience.h
-//  AsyncDisplayKit
-//
-//  Created by Hannah Troisi on 6/24/16.
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <UIKit/UIKit.h>
@@ -35,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param imageName The name of the image to load
  *  @return The loaded image or nil
  */
-+ (UIImage *)as_imageNamed:(NSString *)imageName;
++ (UIImage *)as_imageNamed:(NSString *)imageName NS_RETURNS_RETAINED;
 
 /**
  *  A version of imageNamed that caches results because loading an image is expensive.
@@ -46,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param traitCollection The traits associated with the intended environment for the image.
  *  @return The loaded image or nil
  */
-+ (UIImage *)as_imageNamed:(NSString *)imageName compatibleWithTraitCollection:(nullable UITraitCollection *)traitCollection;
++ (UIImage *)as_imageNamed:(NSString *)imageName compatibleWithTraitCollection:(nullable UITraitCollection *)traitCollection NS_RETURNS_RETAINED;
 
 @end
 
@@ -71,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIImage *)as_resizableRoundedImageWithCornerRadius:(CGFloat)cornerRadius
                                           cornerColor:(nullable UIColor *)cornerColor
-                                            fillColor:(UIColor *)fillColor AS_WARN_UNUSED_RESULT;
+                                            fillColor:(UIColor *)fillColor NS_RETURNS_RETAINED AS_WARN_UNUSED_RESULT;
 
 /**
  * This generates a flat-color, rounded-corner resizeable image with a border
@@ -86,7 +91,7 @@ NS_ASSUME_NONNULL_BEGIN
                                           cornerColor:(UIColor *)cornerColor
                                             fillColor:(UIColor *)fillColor
                                           borderColor:(nullable UIColor *)borderColor
-                                          borderWidth:(CGFloat)borderWidth AS_WARN_UNUSED_RESULT;
+                                          borderWidth:(CGFloat)borderWidth NS_RETURNS_RETAINED AS_WARN_UNUSED_RESULT;
 
 /**
  * This generates a flat-color, rounded-corner resizeable image with a border
@@ -105,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
                                           borderColor:(nullable UIColor *)borderColor
                                           borderWidth:(CGFloat)borderWidth
                                        roundedCorners:(UIRectCorner)roundedCorners
-                                                scale:(CGFloat)scale AS_WARN_UNUSED_RESULT;
+                                                scale:(CGFloat)scale NS_RETURNS_RETAINED AS_WARN_UNUSED_RESULT;
 
 @end
 

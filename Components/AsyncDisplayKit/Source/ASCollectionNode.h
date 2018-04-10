@@ -1,13 +1,18 @@
 //
 //  ASCollectionNode.h
-//  AsyncDisplayKit
-//
-//  Created by Scott Goodson on 9/5/15.
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <UIKit/UICollectionView.h>
@@ -15,6 +20,7 @@
 #import <AsyncDisplayKit/ASRangeControllerUpdateRangeProtocol+Beta.h>
 #import <AsyncDisplayKit/ASCollectionView.h>
 #import <AsyncDisplayKit/ASBlockTypes.h>
+#import <AsyncDisplayKit/ASRangeManagingNode.h>
 
 @protocol ASCollectionViewLayoutFacilitatorProtocol;
 @protocol ASCollectionDelegate;
@@ -27,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  * ASCollectionNode is a node based class that wraps an ASCollectionView. It can be used
  * as a subnode of another node, and provide room for many (great) features and improvements later on.
  */
-@interface ASCollectionNode : ASDisplayNode <ASRangeControllerUpdateRangeProtocol>
+@interface ASCollectionNode : ASDisplayNode <ASRangeControllerUpdateRangeProtocol, ASRangeManagingNode>
 
 - (instancetype)init NS_UNAVAILABLE;
 
@@ -77,6 +83,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (weak, nonatomic) id <ASCollectionDataSource> dataSource;
 
+/**
+ * The number of screens left to scroll before the delegate -collectionNode:beginBatchFetchingWithContext: is called.
+ *
+ * Defaults to two screenfuls.
+ */
+@property (nonatomic, assign) CGFloat leadingScreensForBatching;
+
 /*
  * A Boolean value that determines whether the collection node will be flipped.
  * If the value of this property is YES, the first cell node will be at the bottom of the collection node (as opposed to the top by default). This is useful for chat/messaging apps. The default value is NO.
@@ -97,11 +110,66 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL allowsMultipleSelection;
 
 /**
+ * A Boolean value that determines whether bouncing always occurs when vertical scrolling reaches the end of the content.
+ * The default value of this property is NO.
+ */
+@property (nonatomic, assign) BOOL alwaysBounceVertical;
+
+/**
+ * A Boolean value that determines whether bouncing always occurs when horizontal scrolling reaches the end of the content view.
+ * The default value of this property is NO.
+ */
+@property (nonatomic, assign) BOOL alwaysBounceHorizontal;
+
+/**
+ * A Boolean value that controls whether the vertical scroll indicator is visible.
+ * The default value of this property is YES.
+ */
+@property (nonatomic, assign) BOOL showsVerticalScrollIndicator;
+
+/**
+ * A Boolean value that controls whether the horizontal scroll indicator is visible.
+ * The default value of this property is NO.
+ */
+@property (nonatomic, assign) BOOL showsHorizontalScrollIndicator;
+
+/**
  * The layout used to organize the node's items.
  *
  * @discussion Assigning a new layout object to this property causes the new layout to be applied (without animations) to the node’s items.
  */
 @property (nonatomic, strong) UICollectionViewLayout *collectionViewLayout;
+
+/**
+ * Optional introspection object for the collection node's layout.
+ *
+ * @discussion Since supplementary and decoration nodes are controlled by the layout, this object
+ * is used as a bridge to provide information to the internal data controller about the existence of these views and
+ * their associated index paths. For collections using `UICollectionViewFlowLayout`, a default inspector
+ * implementation `ASCollectionViewFlowLayoutInspector` is created and set on this property by default. Custom
+ * collection layout subclasses will need to provide their own implementation of an inspector object for their
+ * supplementary elements to be compatible with `ASCollectionNode`'s supplementary node support.
+ */
+@property (nonatomic, weak) id<ASCollectionViewLayoutInspecting> layoutInspector;
+
+/**
+ * The distance that the content view is inset from the collection node edges. Defaults to UIEdgeInsetsZero.
+ */
+@property (nonatomic, assign) UIEdgeInsets contentInset;
+
+/**
+ * The offset of the content view's origin from the collection node's origin. Defaults to CGPointZero.
+ */
+@property (nonatomic, assign) CGPoint contentOffset;
+
+/**
+ * Sets the offset from the content node’s origin to the collection node’s origin.
+ *
+ * @param contentOffset The offset
+ *
+ * @param animated YES to animate to this new offset at a constant velocity, NO to not aniamte and immediately make the transition.
+ */
+- (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;
 
 /**
  * Tuning parameters for a range type in full mode.
@@ -162,6 +230,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)scrollToItemAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
 
+/**
+ * Determines collection node's current scroll direction. Supports 2-axis collection nodes.
+ *
+ * @return a bitmask of ASScrollDirection values.
+ */
+@property (nonatomic, readonly) ASScrollDirection scrollDirection;
+
+/**
+ * Determines collection node's scrollable directions.
+ *
+ * @return a bitmask of ASScrollDirection values.
+ */
+@property (nonatomic, readonly) ASScrollDirection scrollableDirections;
+
 #pragma mark - Editing
 
 /**
@@ -186,7 +268,7 @@ NS_ASSUME_NONNULL_BEGIN
  *                    Boolean parameter that contains the value YES if all of the related animations completed successfully or
  *                    NO if they were interrupted. This parameter may be nil. If supplied, the block is run on the main thread.
  */
-- (void)performBatchAnimated:(BOOL)animated updates:(nullable AS_NOESCAPE void (^)())updates completion:(nullable void (^)(BOOL finished))completion;
+- (void)performBatchAnimated:(BOOL)animated updates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable void (^)(BOOL finished))completion;
 
 /**
  *  Perform a batch of updates asynchronously, optionally disabling all animations in the batch. This method must be called from the main thread.
@@ -197,12 +279,41 @@ NS_ASSUME_NONNULL_BEGIN
  *                    Boolean parameter that contains the value YES if all of the related animations completed successfully or
  *                    NO if they were interrupted. This parameter may be nil. If supplied, the block is run on the main thread.
  */
-- (void)performBatchUpdates:(nullable AS_NOESCAPE void (^)())updates completion:(nullable void (^)(BOOL finished))completion;
+- (void)performBatchUpdates:(nullable AS_NOESCAPE void (^)(void))updates completion:(nullable void (^)(BOOL finished))completion;
+
+/**
+ *  Returns YES if the ASCollectionNode is still processing changes from performBatchUpdates:.
+ *  This is typically the concurrent allocation (calling nodeBlocks) and layout of newly inserted
+ *  ASCellNodes. If YES is returned, then calling -waitUntilAllUpdatesAreProcessed may take tens of
+ *  milliseconds to return as it blocks on these concurrent operations.
+ *
+ *  Returns NO if ASCollectionNode is fully synchronized with the underlying UICollectionView. This
+ *  means that until the next performBatchUpdates: is called, it is safe to compare UIKit values
+ *  (such as from UICollectionViewLayout) with your app's data source.
+ *
+ *  This method will always return NO if called immediately after -waitUntilAllUpdatesAreProcessed.
+ */
+@property (nonatomic, readonly) BOOL isProcessingUpdates;
+
+/**
+ *  Schedules a block to be performed (on the main thread) after processing of performBatchUpdates:
+ *  is finished (completely synchronized to UIKit). The blocks will be run at the moment that
+ *  -isProcessingUpdates changes from YES to NO;
+ *
+ *  When isProcessingUpdates == NO, the block is run block immediately (before the method returns).
+ *
+ *  Blocks scheduled by this mechanism are NOT guaranteed to run in the order they are scheduled.
+ *  They may also be delayed if performBatchUpdates continues to be called; the blocks will wait until
+ *  all running updates are finished.
+ *
+ *  Calling -waitUntilAllUpdatesAreProcessed is one way to flush any pending update completion blocks.
+ */
+- (void)onDidFinishProcessingUpdates:(void (^)(void))didFinishProcessingUpdates;
 
 /**
  *  Blocks execution of the main thread until all section and item updates are committed to the view. This method must be called from the main thread.
  */
-- (void)waitUntilAllUpdatesAreCommitted;
+- (void)waitUntilAllUpdatesAreProcessed;
 
 /**
  * Inserts one or more sections.
@@ -295,7 +406,7 @@ NS_ASSUME_NONNULL_BEGIN
  * the main thread.
  * @warning This method is substantially more expensive than UICollectionView's version.
  */
-- (void)reloadDataWithCompletion:(nullable void (^)())completion;
+- (void)reloadDataWithCompletion:(nullable void (^)(void))completion;
 
 
 /**
@@ -380,6 +491,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable __kindof ASCellNode *)nodeForItemAtIndexPath:(NSIndexPath *)indexPath AS_WARN_UNUSED_RESULT;
 
 /**
+ * Retrieves the node-model for the item at the given index path, if any.
+ *
+ * @param indexPath The index path of the requested item.
+ *
+ * @return The node-model for the given item, or @c nil if no item exists at the specified path or no node-model was provided.
+ *
+ * @warning This API is beta and subject to change. We'll try to provide an easy migration path.
+ */
+- (nullable id)nodeModelForItemAtIndexPath:(NSIndexPath *)indexPath AS_WARN_UNUSED_RESULT;
+
+/**
  * Retrieve the index path for the item with the given node.
  *
  * @param cellNode A node for an item in the collection node.
@@ -431,15 +553,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ASCollectionNode (Deprecated)
 
-/**
- * Reload everything from scratch, destroying the working range and all cached nodes.
- *
- * @warning This method is substantially more expensive than UICollectionView's version.
- *
- * @deprecated This method is deprecated in 2.0. Use @c reloadDataWithCompletion: and
- *   then @c waitUntilAllUpdatesAreCommitted instead.
- */
-- (void)reloadDataImmediately ASDISPLAYNODE_DEPRECATED_MSG("Use -reloadData / -reloadDataWithCompletion: followed by -waitUntilAllUpdatesAreCommitted instead.");
+- (void)waitUntilAllUpdatesAreCommitted ASDISPLAYNODE_DEPRECATED_MSG("This method has been renamed to -waitUntilAllUpdatesAreProcessed.");
 
 @end
 
@@ -463,6 +577,17 @@ NS_ASSUME_NONNULL_BEGIN
  * @see @c numberOfSectionsInCollectionView:
  */
 - (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode;
+
+/**
+ * --BETA--
+ * Asks the data source for a view-model for the item at the given index path.
+ *
+ * @param collectionNode The sender.
+ * @param indexPath The index path of the item.
+ *
+ * @return An object that contains all the data for this item.
+ */
+- (nullable id)collectionNode:(ASCollectionNode *)collectionNode nodeModelForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 /**
  * Similar to -collectionNode:nodeForItemAtIndexPath:
@@ -528,6 +653,32 @@ NS_ASSUME_NONNULL_BEGIN
  * @return The supplementary element kinds that exist in the given section, if any.
  */
 - (NSArray<NSString *> *)collectionNode:(ASCollectionNode *)collectionNode supplementaryElementKindsInSection:(NSInteger)section;
+
+/**
+ * Asks the data source if it's possible to move the specified item interactively.
+ *
+ * See @p -[UICollectionViewDataSource collectionView:canMoveItemAtIndexPath:] @c.
+ *
+ * @param collectionNode  The sender.
+ * @param node            The display node for the item that may be moved.
+ *
+ * @return Whether the item represented by @p node may be moved.
+ */
+- (BOOL)collectionNode:(ASCollectionNode *)collectionNode canMoveItemWithNode:(ASCellNode *)node;
+
+/**
+ * Called when the user has interactively moved an item. The data source
+ * should update its internal data store to reflect the move. Note that you
+ * should not call [collectionNode moveItemAtIndexPath:toIndexPath:] – the
+ * collection node's internal state will be updated automatically.
+ *
+ * * See @p -[UICollectionViewDataSource collectionView:moveItemAtIndexPath:toIndexPath:] @c.
+ *
+ * @param collectionNode        The sender.
+ * @param sourceIndexPath       The original item index path.
+ * @param destinationIndexPath  The new item index path.
+ */
+- (void)collectionNode:(ASCollectionNode *)collectionNode moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath;
 
 /**
  * Similar to -collectionView:cellForItemAtIndexPath:.
@@ -739,7 +890,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 4. Lastly, you must implement a method to provide the size for the cell. There are two ways this is done:
  * 4a. UICollectionViewFlowLayout (incl. ASPagerNode). Implement
  collectionNode:constrainedSizeForItemAtIndexPath:.
- * 4b. Custom collection layouts. Set .view.layoutInspector and have it implement
+ * 4b. Custom collection layouts. Set .layoutInspector and have it implement
  collectionView:constrainedSizeForNodeAtIndexPath:.
  *
  * For an example of using this method with all steps above (including a custom layout, 4b.),
@@ -774,6 +925,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath;
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingSupplementaryView:(UICollectionReusableView *)view forElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

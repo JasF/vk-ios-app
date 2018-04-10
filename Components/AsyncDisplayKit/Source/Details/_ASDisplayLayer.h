@@ -1,16 +1,25 @@
 //
 //  _ASDisplayLayer.h
-//  AsyncDisplayKit
+//  Texture
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the root directory of this source tree. An additional grant
-//  of patent rights can be found in the PATENTS file in the same directory.
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import <UIKit/UIKit.h>
 #import <AsyncDisplayKit/ASBaseDefines.h>
 #import <AsyncDisplayKit/ASBlockTypes.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class ASDisplayNode;
 @protocol _ASDisplayLayerDelegate;
@@ -21,7 +30,7 @@
  @discussion This property overrides the CALayer category method which implements this via associated objects.
  This should result in much better performance for _ASDisplayLayers.
  */
-@property (nonatomic, weak) ASDisplayNode *asyncdisplaykit_node;
+@property (nullable, nonatomic, weak) ASDisplayNode *asyncdisplaykit_node;
 
 /**
  @summary Set to YES to enable asynchronous display for the receiver.
@@ -46,11 +55,11 @@
 + (dispatch_queue_t)displayQueue;
 
 /**
- @summary Delegate for asynchronous display of the layer.
+ @summary Delegate for asynchronous display of the layer. This should be the node (default) unless you REALLY know what you're doing.
 
  @desc The asyncDelegate will have the opportunity to override the methods related to async display.
  */
-@property (nonatomic, weak) id<_ASDisplayLayerDelegate> asyncDelegate;
+@property (nullable, atomic, weak) id<_ASDisplayLayerDelegate> asyncDelegate;
 
 /**
  @summary Suspends both asynchronous and synchronous display of the receiver if YES.
@@ -102,7 +111,10 @@
  @param isCancelledBlock Execute this block to check whether the current drawing operation has been cancelled to avoid unnecessary work. A return value of YES means cancel drawing and return.
  @param isRasterizing YES if the layer is being rasterized into another layer, in which case drawRect: probably wants to avoid doing things like filling its bounds with a zero-alpha color to clear the backing store.
  */
-+ (void)drawRect:(CGRect)bounds withParameters:(id<NSObject>)parameters isCancelled:(AS_NOESCAPE asdisplaynode_iscancelled_block_t)isCancelledBlock isRasterizing:(BOOL)isRasterizing;
++ (void)drawRect:(CGRect)bounds
+  withParameters:(nullable id)parameters
+     isCancelled:(AS_NOESCAPE asdisplaynode_iscancelled_block_t)isCancelledBlock
+   isRasterizing:(BOOL)isRasterizing;
 
 /**
  @summary Delegate override to provide new layer contents as a UIImage.
@@ -110,19 +122,8 @@
  @param isCancelledBlock Execute this block to check whether the current drawing operation has been cancelled to avoid unnecessary work. A return value of YES means cancel drawing and return.
  @return A UIImage with contents that are ready to display on the main thread. Make sure that the image is already decoded before returning it here.
  */
-+ (UIImage *)displayWithParameters:(id<NSObject>)parameters isCancelled:(AS_NOESCAPE asdisplaynode_iscancelled_block_t)isCancelledBlock;
-
-/**
- * @abstract instance version of drawRect class method
- * @see drawRect:withParameters:isCancelled:isRasterizing class method
- */
-- (void)drawRect:(CGRect)bounds withParameters:(id <NSObject>)parameters isCancelled:(AS_NOESCAPE asdisplaynode_iscancelled_block_t)isCancelledBlock isRasterizing:(BOOL)isRasterizing;
-
-/**
- * @abstract instance version of display class method
- * @see displayWithParameters:isCancelled class method
- */
-- (UIImage *)displayWithParameters:(id <NSObject>)parameters isCancelled:(AS_NOESCAPE asdisplaynode_iscancelled_block_t)isCancelled;
++ (UIImage *)displayWithParameters:(nullable id<NSObject>)parameters
+                       isCancelled:(AS_NOESCAPE asdisplaynode_iscancelled_block_t)isCancelledBlock;
 
 // Called on the main thread only
 
@@ -152,3 +153,5 @@
 - (void)cancelDisplayAsyncLayer:(_ASDisplayLayer *)asyncLayer;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -1,36 +1,50 @@
 //
 //  _ASCollectionReusableView.m
-//  AsyncDisplayKit
+//  Texture
 //
-//  Created by Phil Larson on 4/10/17.
-//  Copyright © 2017 Facebook. All rights reserved.
+//  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
+//  This source code is licensed under the BSD-style license found in the
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  grant of patent rights can be found in the PATENTS file in the same directory.
+//
+//  Modifications to this file made after 4/13/2017 are: Copyright (c) 2017-present,
+//  Pinterest, Inc.  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 
 #import "_ASCollectionReusableView.h"
-#import "ASCellNode+Internal.h"
-#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import <AsyncDisplayKit/ASCellNode+Internal.h>
+#import <AsyncDisplayKit/ASCollectionElement.h>
 
 @implementation _ASCollectionReusableView
 
-- (void)setNode:(ASCellNode *)node
+- (ASCellNode *)node
+{
+  return self.element.node;
+}
+
+- (void)setElement:(ASCollectionElement *)element
 {
   ASDisplayNodeAssertMainThread();
-  node.layoutAttributes = _layoutAttributes;
-  _node = node;
+  element.node.layoutAttributes = _layoutAttributes;
+  _element = element;
 }
 
 - (void)setLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
 {
   _layoutAttributes = layoutAttributes;
-  _node.layoutAttributes = layoutAttributes;
+  self.node.layoutAttributes = layoutAttributes;
 }
 
 - (void)prepareForReuse
 {
   self.layoutAttributes = nil;
   
-  // Need to clear node pointer before UIKit calls setSelected:NO / setHighlighted:NO on its cells
-  self.node = nil;
+  // Need to clear element before UIKit calls setSelected:NO / setHighlighted:NO on its cells
+  self.element = nil;
   [super prepareForReuse];
 }
 
