@@ -37,7 +37,6 @@
 		3EEA4F3C1BECE99F008A7F35 /* icon_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEA4F391BECE99F008A7F35 /* icon_more.png */; };
 		3EEA4F3D1BECE99F008A7F35 /* icon_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEA4F3A1BECE99F008A7F35 /* icon_more@2x.png */; };
 		3EEA4F3E1BECE99F008A7F35 /* icon_more@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEA4F3B1BECE99F008A7F35 /* icon_more@3x.png */; };
-		BAB8BF1494FC87253310A29C /* libPods-vk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE5406FB68C4762E27C372F /* libPods-vk.a */; };
 		C3616D65207C94CB007FD417 /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3616D31207C94CB007FD417 /* libOpenSSL.a */; };
 		C3616D66207C94CB007FD417 /* PythonFramework.zip in Resources */ = {isa = PBXBuildFile; fileRef = C3616D32207C94CB007FD417 /* PythonFramework.zip */; };
 		C3616D67207C94CB007FD417 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3616D33207C94CB007FD417 /* libbz2.a */; };
@@ -195,11 +194,20 @@
 		C3616FDF207C98B0007FD417 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C3616FDE207C98B0007FD417 /* libsqlite3.tbd */; };
 		C3616FE0207C98C0007FD417 /* launcher.py in Resources */ = {isa = PBXBuildFile; fileRef = C3616CD2207C94C1007FD417 /* launcher.py */; };
 		C3616FE4207C98F6007FD417 /* app_packages.zip in Resources */ = {isa = PBXBuildFile; fileRef = C3616FE3207C98F6007FD417 /* app_packages.zip */; };
+		C3616FE9207CA140007FD417 /* WallPost.m in Sources */ = {isa = PBXBuildFile; fileRef = C3616FE8207CA140007FD417 /* WallPost.m */; };
+		C3616FED207CA2D8007FD417 /* Comments.m in Sources */ = {isa = PBXBuildFile; fileRef = C3616FEC207CA2D8007FD417 /* Comments.m */; };
+		C3616FF1207CA530007FD417 /* Likes.m in Sources */ = {isa = PBXBuildFile; fileRef = C3616FF0207CA530007FD417 /* Likes.m */; };
+		C3616FF5207CA58C007FD417 /* PostSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C3616FF4207CA58C007FD417 /* PostSource.m */; };
+		C3616FF9207CA6C8007FD417 /* Reposts.m in Sources */ = {isa = PBXBuildFile; fileRef = C3616FF8207CA6C8007FD417 /* Reposts.m */; };
+		C3616FFD207CA765007FD417 /* Views.m in Sources */ = {isa = PBXBuildFile; fileRef = C3616FFC207CA765007FD417 /* Views.m */; };
+		C3617001207CA7B4007FD417 /* CopyHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C3617000207CA7B4007FD417 /* CopyHistory.m */; };
+		C3617005207CA824007FD417 /* Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = C3617004207CA824007FD417 /* Attachments.m */; };
+		C361700A207CA867007FD417 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3617009207CA867007FD417 /* Photo.m */; };
+		C361700E207CA947007FD417 /* PostType.m in Sources */ = {isa = PBXBuildFile; fileRef = C361700D207CA947007FD417 /* PostType.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		032426AD6C3588F058B4894F /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
-		193CE60FE6429EFEBF6EA52B /* libPods-Sample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		385D88FACF192B86E6B230FC /* Pods-vk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.release.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.release.xcconfig"; sourceTree = "<group>"; };
 		3EEA4EE41BECC4A1008A7F35 /* vk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EEA4EE81BECC4A1008A7F35 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -240,7 +248,6 @@
 		3EEA4F391BECE99F008A7F35 /* icon_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_more.png; sourceTree = "<group>"; };
 		3EEA4F3A1BECE99F008A7F35 /* icon_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more@2x.png"; sourceTree = "<group>"; };
 		3EEA4F3B1BECE99F008A7F35 /* icon_more@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more@3x.png"; sourceTree = "<group>"; };
-		6AE5406FB68C4762E27C372F /* libPods-vk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3616C64207C934C007FD417 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		C3616C67207C94C1007FD417 /* subscriber.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = subscriber.py; sourceTree = "<group>"; };
 		C3616C68207C94C1007FD417 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
@@ -858,6 +865,26 @@
 		C3616FDC207C97C4007FD417 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C3616FDE207C98B0007FD417 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		C3616FE3207C98F6007FD417 /* app_packages.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = app_packages.zip; sourceTree = SOURCE_ROOT; };
+		C3616FE7207CA140007FD417 /* WallPost.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPost.h; sourceTree = "<group>"; };
+		C3616FE8207CA140007FD417 /* WallPost.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPost.m; sourceTree = "<group>"; };
+		C3616FEB207CA2D8007FD417 /* Comments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comments.h; sourceTree = "<group>"; };
+		C3616FEC207CA2D8007FD417 /* Comments.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comments.m; sourceTree = "<group>"; };
+		C3616FEF207CA530007FD417 /* Likes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Likes.h; sourceTree = "<group>"; };
+		C3616FF0207CA530007FD417 /* Likes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Likes.m; sourceTree = "<group>"; };
+		C3616FF3207CA58C007FD417 /* PostSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostSource.h; sourceTree = "<group>"; };
+		C3616FF4207CA58C007FD417 /* PostSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostSource.m; sourceTree = "<group>"; };
+		C3616FF7207CA6C8007FD417 /* Reposts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reposts.h; sourceTree = "<group>"; };
+		C3616FF8207CA6C8007FD417 /* Reposts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reposts.m; sourceTree = "<group>"; };
+		C3616FFB207CA765007FD417 /* Views.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Views.h; sourceTree = "<group>"; };
+		C3616FFC207CA765007FD417 /* Views.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Views.m; sourceTree = "<group>"; };
+		C3616FFF207CA7B4007FD417 /* CopyHistory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CopyHistory.h; sourceTree = "<group>"; };
+		C3617000207CA7B4007FD417 /* CopyHistory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CopyHistory.m; sourceTree = "<group>"; };
+		C3617003207CA824007FD417 /* Attachments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Attachments.h; sourceTree = "<group>"; };
+		C3617004207CA824007FD417 /* Attachments.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Attachments.m; sourceTree = "<group>"; };
+		C3617008207CA867007FD417 /* Photo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		C3617009207CA867007FD417 /* Photo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		C361700C207CA947007FD417 /* PostType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostType.h; sourceTree = "<group>"; };
+		C361700D207CA947007FD417 /* PostType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostType.m; sourceTree = "<group>"; };
 		CC6F2ABE8383FAB21802C734 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		FCCC1AD413FCA8603156ED15 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -881,7 +908,6 @@
 				C3616D7A207C94CB007FD417 /* JGProgressHUD.framework in Frameworks */,
 				C3616D68207C94CB007FD417 /* SSZipArchive.framework in Frameworks */,
 				C3616D67207C94CB007FD417 /* libbz2.a in Frameworks */,
-				BAB8BF1494FC87253310A29C /* libPods-vk.a in Frameworks */,
 				C3616D79207C94CB007FD417 /* CocoaLumberjack.framework in Frameworks */,
 				C3616D78207C94CB007FD417 /* EasyMapping.framework in Frameworks */,
 			);
@@ -900,7 +926,6 @@
 				3EEA4EE61BECC4A1008A7F35 /* vk */,
 				3EEA4EE51BECC4A1008A7F35 /* Products */,
 				842ADAFE88475D19B24183AC /* Pods */,
-				EED34FA6D8171DF44757C852 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -915,6 +940,7 @@
 		3EEA4EE61BECC4A1008A7F35 /* vk */ = {
 			isa = PBXGroup;
 			children = (
+				C3616FE5207CA124007FD417 /* models */,
 				C3616FAF207C9653007FD417 /* managers */,
 				C3616FC7207C9654007FD417 /* src */,
 				3EEA4F0D1BECDCA6008A7F35 /* Images */,
@@ -2381,13 +2407,111 @@
 			path = PythonBridgeHandler;
 			sourceTree = "<group>";
 		};
-		EED34FA6D8171DF44757C852 /* Frameworks */ = {
+		C3616FE5207CA124007FD417 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				193CE60FE6429EFEBF6EA52B /* libPods-Sample.a */,
-				6AE5406FB68C4762E27C372F /* libPods-vk.a */,
+				C361700B207CA93D007FD417 /* PostType */,
+				C3617006207CA859007FD417 /* Photo */,
+				C3617002207CA819007FD417 /* Attachments */,
+				C3616FFE207CA7A9007FD417 /* CopyHistory */,
+				C3616FFA207CA759007FD417 /* Views */,
+				C3616FF6207CA6BD007FD417 /* Reposts */,
+				C3616FF2207CA57F007FD417 /* PostSource */,
+				C3616FEE207CA527007FD417 /* Likes */,
+				C3616FEA207CA2CA007FD417 /* Comments */,
+				C3616FE6207CA137007FD417 /* WallPost */,
 			);
-			name = Frameworks;
+			path = models;
+			sourceTree = "<group>";
+		};
+		C3616FE6207CA137007FD417 /* WallPost */ = {
+			isa = PBXGroup;
+			children = (
+				C3616FE7207CA140007FD417 /* WallPost.h */,
+				C3616FE8207CA140007FD417 /* WallPost.m */,
+			);
+			path = WallPost;
+			sourceTree = "<group>";
+		};
+		C3616FEA207CA2CA007FD417 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				C3616FEB207CA2D8007FD417 /* Comments.h */,
+				C3616FEC207CA2D8007FD417 /* Comments.m */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		C3616FEE207CA527007FD417 /* Likes */ = {
+			isa = PBXGroup;
+			children = (
+				C3616FEF207CA530007FD417 /* Likes.h */,
+				C3616FF0207CA530007FD417 /* Likes.m */,
+			);
+			path = Likes;
+			sourceTree = "<group>";
+		};
+		C3616FF2207CA57F007FD417 /* PostSource */ = {
+			isa = PBXGroup;
+			children = (
+				C3616FF3207CA58C007FD417 /* PostSource.h */,
+				C3616FF4207CA58C007FD417 /* PostSource.m */,
+			);
+			path = PostSource;
+			sourceTree = "<group>";
+		};
+		C3616FF6207CA6BD007FD417 /* Reposts */ = {
+			isa = PBXGroup;
+			children = (
+				C3616FF7207CA6C8007FD417 /* Reposts.h */,
+				C3616FF8207CA6C8007FD417 /* Reposts.m */,
+			);
+			path = Reposts;
+			sourceTree = "<group>";
+		};
+		C3616FFA207CA759007FD417 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3616FFB207CA765007FD417 /* Views.h */,
+				C3616FFC207CA765007FD417 /* Views.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C3616FFE207CA7A9007FD417 /* CopyHistory */ = {
+			isa = PBXGroup;
+			children = (
+				C3616FFF207CA7B4007FD417 /* CopyHistory.h */,
+				C3617000207CA7B4007FD417 /* CopyHistory.m */,
+			);
+			path = CopyHistory;
+			sourceTree = "<group>";
+		};
+		C3617002207CA819007FD417 /* Attachments */ = {
+			isa = PBXGroup;
+			children = (
+				C3617003207CA824007FD417 /* Attachments.h */,
+				C3617004207CA824007FD417 /* Attachments.m */,
+			);
+			path = Attachments;
+			sourceTree = "<group>";
+		};
+		C3617006207CA859007FD417 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				C3617008207CA867007FD417 /* Photo.h */,
+				C3617009207CA867007FD417 /* Photo.m */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		C361700B207CA93D007FD417 /* PostType */ = {
+			isa = PBXGroup;
+			children = (
+				C361700C207CA947007FD417 /* PostType.h */,
+				C361700D207CA947007FD417 /* PostType.m */,
+			);
+			path = PostType;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2572,12 +2696,15 @@
 			files = (
 				C3616F43207C95BA007FD417 /* TyphoonFactoryDefinition.m in Sources */,
 				C3616D7E207C94CB007FD417 /* VKThemeAssembly.m in Sources */,
+				C3616FF5207CA58C007FD417 /* PostSource.m in Sources */,
 				C3616F5F207C95BA007FD417 /* TyphoonPreattachedComponentsRegisterer.m in Sources */,
 				C3616E0E207C957A007FD417 /* CALayer+Image.m in Sources */,
+				C361700E207CA947007FD417 /* PostType.m in Sources */,
 				C3616F3E207C95BA007FD417 /* TyphoonDefinition.m in Sources */,
 				C3616F8E207C95BA007FD417 /* TyphoonNSURLTypeConverter.m in Sources */,
 				C3616D6A207C94CB007FD417 /* EXTConcreteProtocol.m in Sources */,
 				C3616F46207C95BA007FD417 /* TyphoonBlockDefinition+InstanceBuilder.m in Sources */,
+				C3616FE9207CA140007FD417 /* WallPost.m in Sources */,
 				C3616F39207C95BA007FD417 /* TyphoonSwizzlerDefaultImpl.m in Sources */,
 				C3616F8C207C95BA007FD417 /* TyphoonPrimitiveTypeConverter.m in Sources */,
 				C3616F49207C95BA007FD417 /* TyphoonBlockDefinition.m in Sources */,
@@ -2590,6 +2717,7 @@
 				C3616FDB207C9654007FD417 /* PythonBridgeHandler.m in Sources */,
 				C3616FDA207C9654007FD417 /* Functions.m in Sources */,
 				C3616F57207C95BA007FD417 /* TyphoonInjectionByConfig.m in Sources */,
+				C361700A207CA867007FD417 /* Photo.m in Sources */,
 				C3616F98207C95BA007FD417 /* TyphoonViewHelpers.m in Sources */,
 				C3616F85207C95BA007FD417 /* TyphoonGlobalConfigCollector.m in Sources */,
 				C3616F77207C95BA007FD417 /* TyphoonStackElement.m in Sources */,
@@ -2612,6 +2740,7 @@
 				C3616F65207C95BA007FD417 /* TyphoonAssemblyBuilder+PlistProcessor.m in Sources */,
 				C3616F3F207C95BA007FD417 /* TyphoonDefinition+InstanceBuilder.m in Sources */,
 				C3616F44207C95BA007FD417 /* TyphoonBlockDefinitionController.m in Sources */,
+				C3616FED207CA2D8007FD417 /* Comments.m in Sources */,
 				C3616E0F207C957A007FD417 /* UIScreen+NanoFrame.m in Sources */,
 				C3616F82207C95BA007FD417 /* TyphoonPropertyStyleConfiguration.m in Sources */,
 				C3616FA3207C95BA007FD417 /* TyphoonStoryboardDefinition.m in Sources */,
@@ -2629,6 +2758,7 @@
 				C3616F9B207C95BA007FD417 /* TyphoonViewControllerFactory.m in Sources */,
 				C3616FD9207C9654007FD417 /* RunLoop.m in Sources */,
 				C3616FD1207C9654007FD417 /* ScreensManagerImpl.m in Sources */,
+				C3616FF9207CA6C8007FD417 /* Reposts.m in Sources */,
 				C3616F7F207C95BA007FD417 /* TyphoonDefinition+Option.m in Sources */,
 				C3616E0D207C957A007FD417 /* UIView+NanoFrame.m in Sources */,
 				3EEA4EEC1BECC4A1008A7F35 /* AppDelegate.m in Sources */,
@@ -2650,6 +2780,7 @@
 				C3616F6E207C95BA007FD417 /* TyphoonCircularDependencyTerminator.m in Sources */,
 				C3616F45207C95BA007FD417 /* Collections+CustomInjection.m in Sources */,
 				C3616F5C207C95BA007FD417 /* TyphoonPatcher.m in Sources */,
+				C3617005207CA824007FD417 /* Attachments.m in Sources */,
 				C3616D6E207C94CB007FD417 /* NSInvocation+EXT.m in Sources */,
 				C3616F52207C95BA007FD417 /* TyphoonAbstractInjection.m in Sources */,
 				C3616F40207C95BA007FD417 /* TyphoonReferenceDefinition.m in Sources */,
@@ -2674,6 +2805,7 @@
 				C3616F74207C95BA007FD417 /* TyphoonAssemblySelectorAdviser.m in Sources */,
 				C3616F93207C95BA007FD417 /* TyphoonViewControllerInjector.m in Sources */,
 				C3616F90207C95BA007FD417 /* TyphoonTypeConverterRegistry.m in Sources */,
+				C3616FFD207CA765007FD417 /* Views.m in Sources */,
 				C3616F7A207C95BA007FD417 /* TyphoonComponentFactory.m in Sources */,
 				C3616F61207C95BA007FD417 /* TyphoonAssemblyAccessor.m in Sources */,
 				3EEA4F381BECE775008A7F35 /* CommentsNode.m in Sources */,
@@ -2683,6 +2815,7 @@
 				C3616F68207C95BA007FD417 /* TyphoonAssemblyAdviser.m in Sources */,
 				C3616F5E207C95BA007FD417 /* TyphoonDefinitionRegisterer.m in Sources */,
 				C3616F38207C95BA007FD417 /* TyphoonSelector.m in Sources */,
+				C3616FF1207CA530007FD417 /* Likes.m in Sources */,
 				3EEA4F1D1BECE358008A7F35 /* LikesNode.m in Sources */,
 				C3616F96207C95BA007FD417 /* UIView+TyphoonOutletTransfer.m in Sources */,
 				C3616F9F207C95BA007FD417 /* TyphoonDefinition+Storyboard.m in Sources */,
@@ -2697,6 +2830,7 @@
 				C3616F4F207C95BA007FD417 /* TyphoonInjections.m in Sources */,
 				C3616F5D207C95BA007FD417 /* TyphoonTestUtils.m in Sources */,
 				C3616F51207C95BA007FD417 /* TyphoonInject.m in Sources */,
+				C3617001207CA7B4007FD417 /* CopyHistory.m in Sources */,
 				C3616E10207C957A007FD417 /* UIImage+NanoFrame.m in Sources */,
 				C3616F94207C95BA007FD417 /* TyphoonViewControllerNibResolver.m in Sources */,
 				C3616F7B207C95BA007FD417 /* TyphoonWeakComponentsPool.m in Sources */,
