@@ -192,6 +192,9 @@
 		C3616FDA207C9654007FD417 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3616FCC207C9654007FD417 /* Functions.m */; };
 		C3616FDB207C9654007FD417 /* PythonBridgeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C3616FD0207C9654007FD417 /* PythonBridgeHandler.m */; };
 		C3616FDD207C97C4007FD417 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C3616FDC207C97C4007FD417 /* libz.tbd */; };
+		C3616FDF207C98B0007FD417 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C3616FDE207C98B0007FD417 /* libsqlite3.tbd */; };
+		C3616FE0207C98C0007FD417 /* launcher.py in Resources */ = {isa = PBXBuildFile; fileRef = C3616CD2207C94C1007FD417 /* launcher.py */; };
+		C3616FE4207C98F6007FD417 /* app_packages.zip in Resources */ = {isa = PBXBuildFile; fileRef = C3616FE3207C98F6007FD417 /* app_packages.zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -853,6 +856,8 @@
 		C3616FCF207C9654007FD417 /* PythonBridgeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PythonBridgeHandler.h; sourceTree = "<group>"; };
 		C3616FD0207C9654007FD417 /* PythonBridgeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PythonBridgeHandler.m; sourceTree = "<group>"; };
 		C3616FDC207C97C4007FD417 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		C3616FDE207C98B0007FD417 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		C3616FE3207C98F6007FD417 /* app_packages.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = app_packages.zip; sourceTree = SOURCE_ROOT; };
 		CC6F2ABE8383FAB21802C734 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		FCCC1AD413FCA8603156ED15 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -862,6 +867,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3616FDF207C98B0007FD417 /* libsqlite3.tbd in Frameworks */,
 				C3616FDD207C97C4007FD417 /* libz.tbd in Frameworks */,
 				C3616FAC207C9607007FD417 /* MobileCoreServices.framework in Frameworks */,
 				C3616FAE207C960C007FD417 /* SafariServices.framework in Frameworks */,
@@ -937,6 +943,7 @@
 		3EEA4EE71BECC4A1008A7F35 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3616FE3207C98F6007FD417 /* app_packages.zip */,
 				3EEA4EFE1BECC4E8008A7F35 /* Default-568h@2x.png */,
 				3EEA4EFF1BECC4E8008A7F35 /* Default-667h@2x.png */,
 				3EEA4F001BECC4E8008A7F35 /* Default-736h@3x.png */,
@@ -1375,6 +1382,7 @@
 		C3616D30207C94CB007FD417 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3616FDE207C98B0007FD417 /* libsqlite3.tbd */,
 				C3616FDC207C97C4007FD417 /* libz.tbd */,
 				C3616FAD207C960C007FD417 /* SafariServices.framework */,
 				C3616FAB207C9607007FD417 /* MobileCoreServices.framework */,
@@ -2446,12 +2454,14 @@
 			files = (
 				3EEA4F2A1BECE440008A7F35 /* icon_liked.png in Resources */,
 				3EEA4F181BECDCD6008A7F35 /* icon_ios@2x.png in Resources */,
+				C3616FE4207C98F6007FD417 /* app_packages.zip in Resources */,
 				C3616F7C207C95BA007FD417 /* LICENSE in Resources */,
 				3EEA4F311BECE440008A7F35 /* icon_like@2x.png in Resources */,
 				3EEA4F3D1BECE99F008A7F35 /* icon_more@2x.png in Resources */,
 				3EEA4F141BECDCD6008A7F35 /* icon_android.png in Resources */,
 				3EEA4F3E1BECE99F008A7F35 /* icon_more@3x.png in Resources */,
 				3EEA4F2B1BECE440008A7F35 /* icon_liked@2x.png in Resources */,
+				C3616FE0207C98C0007FD417 /* launcher.py in Resources */,
 				3EEA4F351BECE440008A7F35 /* icon_comment.png in Resources */,
 				3EEA4EF41BECC4A1008A7F35 /* Assets.xcassets in Resources */,
 				3EEA4F171BECDCD6008A7F35 /* icon_ios.png in Resources */,

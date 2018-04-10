@@ -18,6 +18,8 @@
 #import "ViewController.h"
 #import "Post.h"
 #import "PostNode.h"
+#import "VKSdkManager.h"
+#import <VK-ios-sdk/VKSdk.h>
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import <AsyncDisplayKit/ASAssert.h>
@@ -47,7 +49,7 @@
         _tableNode.dataSource = self;
         _tableNode.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
       
-        self.title = @"Timeline";
+        self.title = @"VK Wall";
 
         [self createSocialAppDataSource];
     }
@@ -61,6 +63,22 @@
   
     // SocialAppNode has its own separator
     self.tableNode.view.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    
+    self.handler = [self.pythonBridge handlerWithProtocol:@protocol(AuthorizationHandlerProtocolDelegate)];
+    [_pythonBridge setClassHandler:self name:@"AuthorizationHandlerProtocol"];
+    [self initializeVkSdkManager];
+    dispatch_async(dispatch_get_main_queue(), ^{
+#ifdef DEBUG
+        VKAccessToken *token = [VKAccessToken tokenWithToken:@"6b8ce7524c7a5db6ab4d228da6c38ccccbb9ecda992cf077bd81279ef7e98c03cb67abc7b204dac67545b"
+                                                      secret:@""
+                                                      userId:@""];
+        self.vkManager.getTokenSuccess(token);
+#else
+        [self.vkManager authorize];
+#endif
+    });
+    
 }
 
 #pragma mark - Data Model
@@ -132,5 +150,28 @@
 {
     return self.socialAppDataSource.count;
 }
+
+
+#pragma mark - Private Methods
+- (void)initializeVkSdkManager {
+    _vkManager.viewController = self;
+    @weakify(self);
+    _vkManager.getTokenSuccess = ^(VKAccessToken *token) {
+        @strongify(self);
+        [self.handler accessTokenGathered:token.accessToken];
+    };
+    _vkManager.getTokenFailed = ^(NSError *error, BOOL cancelled) {
+        // @strongify(self);
+        
+    };
+}
+
+#pragma mark - AuthorizationHandlerProtocol
+- (NSString *)receivedWall:(NSDictionary *)wall {
+    NSString *str=  [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:wall options:0 error:nil] encoding:NSUTF8StringEncoding];
+    NSLog(@"received wall dictionary in objc");
+    return @"Hi!";
+}
+
 
 @end
