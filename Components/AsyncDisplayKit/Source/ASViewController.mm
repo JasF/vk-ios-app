@@ -57,6 +57,18 @@
   return self;
 }
 
+- (instancetype)initWithNode:(ASDisplayNode *)node coder:(NSCoder *)aDecoder {
+    
+    if (!(self = [super initWithCoder:aDecoder])) {
+        return nil;
+    }
+    
+    _node = node;
+    [self _initializeInstance];
+    
+    return self;
+}
+
 - (instancetype)initWithNode:(ASDisplayNode *)node
 {
   if (!(self = [super initWithNibName:nil bundle:nil])) {
@@ -67,17 +79,6 @@
   [self _initializeInstance];
 
   return self;
-}
-
-- (instancetype)initWithNode:(ASDisplayNode *)node coder:(NSCoder *)aDecoder {
-    if (!(self = [super initWithCoder:aDecoder])) {
-        return nil;
-    }
-    
-    _node = node;
-    [self _initializeInstance];
-    
-    return self;
 }
 
 - (void)_initializeInstance

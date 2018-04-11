@@ -74,6 +74,13 @@
 }
 
 - (UIViewController *)newsViewController {
+    
+    return [TyphoonDefinition withClass:[NewsViewController class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init)];
+                [definition injectProperty:@selector(pythonBridge) with:self.coreComponents.pythonBridge];
+            }];
+    /*
     return [TyphoonDefinition withFactory:[self storyboardWithName:@"NewsViewController"]
                                  selector:@selector(instantiateViewControllerWithIdentifier:)
                                parameters:^(TyphoonMethod *factoryMethod) {
@@ -82,6 +89,7 @@
                             configuration:^(TyphoonFactoryDefinition *definition) {
                                 [definition injectProperty:@selector(pythonBridge) with:self.coreComponents.pythonBridge];
                             }];
+     */
 }
 
 - (BaseNavigationController *)mainNavigationController {

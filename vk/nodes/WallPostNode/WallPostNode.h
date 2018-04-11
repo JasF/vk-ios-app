@@ -13,5 +13,6 @@
 @interface WallPostNode : ASCellNode
 
 - (instancetype)initWithPost:(WallPost *)post;
+- (instancetype)initWithIndexPath:(NSIndexPath *)indexPath;
 
 @end
