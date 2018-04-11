@@ -32,9 +32,19 @@
 @end
 
 
-@implementation WallPostNode
+@implementation WallPostNode {
+    NSIndexPath *_indexPath;
+}
 
 #pragma mark - Lifecycle
+
+- (instancetype)initWithIndexPath:(NSIndexPath *)indexPath {
+    self = [super init];
+    if (self) {
+        _indexPath = indexPath;
+    }
+    return self;
+}
 
 - (instancetype)initWithPost:(WallPost *)post
 {

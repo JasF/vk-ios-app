@@ -47,6 +47,7 @@ typedef ASTraitCollection * _Nonnull (^ASDisplayTraitsForTraitWindowSizeBlock)(C
 - (instancetype)initWithNode:(DisplayNodeType)node;
 - (instancetype)initWithNode:(DisplayNodeType)node coder:(NSCoder *)aDecoder;
 
+
 NS_ASSUME_NONNULL_END
 
 /**

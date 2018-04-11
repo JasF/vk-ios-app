@@ -39,6 +39,8 @@
 		3EEA4F3D1BECE99F008A7F35 /* icon_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEA4F3A1BECE99F008A7F35 /* icon_more@2x.png */; };
 		3EEA4F3E1BECE99F008A7F35 /* icon_more@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEA4F3B1BECE99F008A7F35 /* icon_more@3x.png */; };
 		C35BF27C207E2A26000F2773 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BF27B207E2A26000F2773 /* User.m */; };
+		C35BF282207E3A09000F2773 /* BlurbNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BF27F207E3A09000F2773 /* BlurbNode.m */; };
+		C35BF283207E3A09000F2773 /* LoadingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BF280207E3A09000F2773 /* LoadingNode.m */; };
 		C3616D65207C94CB007FD417 /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3616D31207C94CB007FD417 /* libOpenSSL.a */; };
 		C3616D66207C94CB007FD417 /* PythonFramework.zip in Resources */ = {isa = PBXBuildFile; fileRef = C3616D32207C94CB007FD417 /* PythonFramework.zip */; };
 		C3616D67207C94CB007FD417 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3616D33207C94CB007FD417 /* libbz2.a */; };
@@ -273,7 +275,12 @@
 		9CA41DF6912188792B5031B5 /* libPods-vk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C35BF27A207E2A26000F2773 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C35BF27B207E2A26000F2773 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		C3616C64207C934C007FD417 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C35BF27D207E375E000F2773 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		C35BF27E207E3A08000F2773 /* LoadingNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingNode.h; sourceTree = "<group>"; };
+		C35BF27F207E3A09000F2773 /* BlurbNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurbNode.m; sourceTree = "<group>"; };
+		C35BF280207E3A09000F2773 /* LoadingNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingNode.m; sourceTree = "<group>"; };
+		C35BF281207E3A09000F2773 /* BlurbNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurbNode.h; sourceTree = "<group>"; };
+		C3616C64207C934C007FD417 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		C3616C67207C94C1007FD417 /* subscriber.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = subscriber.py; sourceTree = "<group>"; };
 		C3616C68207C94C1007FD417 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C3616C69207C94C1007FD417 /* parser.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = parser.py; sourceTree = "<group>"; };
@@ -910,7 +917,6 @@
 		C3617009207CA867007FD417 /* Photo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		C361700C207CA947007FD417 /* PostType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostType.h; sourceTree = "<group>"; };
 		C361700D207CA947007FD417 /* PostType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostType.m; sourceTree = "<group>"; };
-		C3CCF408207CFA08008FFD52 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -1039,7 +1045,7 @@
 			children = (
 				C3DAE5DC207DDC7800418B02 /* vk.pch */,
 				C3616FE3207C98F6007FD417 /* app_packages.zip */,
-				C3CCF408207CFA08008FFD52 /* Podfile */,
+				C35BF27D207E375E000F2773 /* Podfile */,
 				3EEA4EFE1BECC4E8008A7F35 /* Default-568h@2x.png */,
 				3EEA4EFF1BECC4E8008A7F35 /* Default-667h@2x.png */,
 				3EEA4F001BECC4E8008A7F35 /* Default-736h@3x.png */,
@@ -2455,6 +2461,10 @@
 		C3616FC7207C9654007FD417 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C35BF281207E3A09000F2773 /* BlurbNode.h */,
+				C35BF27F207E3A09000F2773 /* BlurbNode.m */,
+				C35BF27E207E3A08000F2773 /* LoadingNode.h */,
+				C35BF280207E3A09000F2773 /* LoadingNode.m */,
 				C3DAE5EB207DE0FB00418B02 /* SimpleCell */,
 				C3DAE5DD207DDF3B00418B02 /* MaskingView */,
 				C3616FC8207C9654007FD417 /* RunLoop */,
@@ -2907,6 +2917,7 @@
 				C3616D7E207C94CB007FD417 /* VKThemeAssembly.m in Sources */,
 				C3616FF5207CA58C007FD417 /* PostSource.m in Sources */,
 				C3616F5F207C95BA007FD417 /* TyphoonPreattachedComponentsRegisterer.m in Sources */,
+				C35BF283207E3A09000F2773 /* LoadingNode.m in Sources */,
 				C3616E0E207C957A007FD417 /* CALayer+Image.m in Sources */,
 				C361700E207CA947007FD417 /* PostType.m in Sources */,
 				C3616F3E207C95BA007FD417 /* TyphoonDefinition.m in Sources */,
@@ -2966,6 +2977,7 @@
 				C3616F50207C95BA007FD417 /* TyphoonInjectionByComponentFactory.m in Sources */,
 				C3616F6F207C95BA007FD417 /* TyphoonCallStack.m in Sources */,
 				C3616F62207C95BA007FD417 /* TyphoonComponentFactory+InstanceBuilder.m in Sources */,
+				C35BF282207E3A09000F2773 /* BlurbNode.m in Sources */,
 				C3616D69207C94CB007FD417 /* EXTSelectorChecking.m in Sources */,
 				C3616F55207C95BA007FD417 /* TyphoonInjectionByFactoryReference.m in Sources */,
 				C3616F37207C95BA007FD417 /* NSArray+TyphoonManualEnumeration.m in Sources */,
@@ -3161,6 +3173,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 032426AD6C3588F058B4894F /* Pods-vk.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5892LD7JW5;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3178,6 +3191,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.AsyncDisplayKit.Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = Components/AsyncDisplayKit/Source;
 			};
 			name = Debug;
 		};
@@ -3185,6 +3199,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 385D88FACF192B86E6B230FC /* Pods-vk.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5892LD7JW5;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3202,6 +3217,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.AsyncDisplayKit.Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = Components/AsyncDisplayKit/Source;
 			};
 			name = Release;
 		};
