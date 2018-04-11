@@ -14,8 +14,8 @@
 #import "PostType.h"
 #import "Reposts.h"
 #import "Views.h"
+#import "CopyHistory.h"
 
-@class CopyHistory;
 @import EasyMapping;
 
 @interface WallPost : NSObject <EKMappingProtocol>

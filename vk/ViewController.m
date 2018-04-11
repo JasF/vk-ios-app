@@ -122,18 +122,6 @@
 
 #pragma mark - AuthorizationHandlerProtocol
 - (NSString *)receivedWall:(NSDictionary *)wall {
-    NSNumber *count = wall[@"count"];
-    NSArray *items = wall[@"items"];
-    if (![items isKindOfClass:[NSArray class]]) {
-        items = @[];
-    }
-    
-    NSArray *posts = [EKMapper arrayOfObjectsFromExternalRepresentation:items
-                                                            withMapping:[WallPost objectMapping]];
-    
-    
-    //NSString *str=  [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:wall options:0 error:nil] encoding:NSUTF8StringEncoding];
-    //NSLog(@"received wall dictionary in objc: %@", wall);
     return @"Done";
 }
 

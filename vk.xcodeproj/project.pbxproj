@@ -224,6 +224,7 @@
 		C3DAE5ED207DE0FB00418B02 /* SimpleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5EC207DE0FB00418B02 /* SimpleCell.xib */; };
 		C3DAE5EF207DE2BE00418B02 /* NewsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5EE207DE2BE00418B02 /* NewsViewController.storyboard */; };
 		C3DAE5F1207DE6BE00418B02 /* Common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5F0207DE6BE00418B02 /* Common.xcassets */; };
+		C3DAE5F6207DFE1400418B02 /* WallPostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5F5207DFE1400418B02 /* WallPostNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -941,6 +942,8 @@
 		C3DAE5EC207DE0FB00418B02 /* SimpleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleCell.xib; sourceTree = "<group>"; };
 		C3DAE5EE207DE2BE00418B02 /* NewsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsViewController.storyboard; sourceTree = "<group>"; };
 		C3DAE5F0207DE6BE00418B02 /* Common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Common.xcassets; sourceTree = "<group>"; };
+		C3DAE5F4207DFE1400418B02 /* WallPostNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostNode.h; sourceTree = "<group>"; };
+		C3DAE5F5207DFE1400418B02 /* WallPostNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPostNode.m; sourceTree = "<group>"; };
 		CC6F2ABE8383FAB21802C734 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		FCCC1AD413FCA8603156ED15 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -997,6 +1000,7 @@
 		3EEA4EE61BECC4A1008A7F35 /* vk */ = {
 			isa = PBXGroup;
 			children = (
+				C3DAE5F2207DFDE600418B02 /* nodes */,
 				C3DAE5B5207DD8E300418B02 /* ViewControllers */,
 				C3616FE5207CA124007FD417 /* models */,
 				C3616FAF207C9653007FD417 /* managers */,
@@ -2671,6 +2675,23 @@
 			path = SimpleCell;
 			sourceTree = "<group>";
 		};
+		C3DAE5F2207DFDE600418B02 /* nodes */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAE5F3207DFDF200418B02 /* WallPostNode */,
+			);
+			path = nodes;
+			sourceTree = "<group>";
+		};
+		C3DAE5F3207DFDF200418B02 /* WallPostNode */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAE5F4207DFE1400418B02 /* WallPostNode.h */,
+				C3DAE5F5207DFE1400418B02 /* WallPostNode.m */,
+			);
+			path = WallPostNode;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2999,6 +3020,7 @@
 				C3616E0C207C957A007FD417 /* UIColor+NanoFrame.m in Sources */,
 				C3616F48207C95BA007FD417 /* TyphoonInjectedObject.m in Sources */,
 				C3616F4D207C95BA007FD417 /* TyphoonInjectionByObjectInstance.m in Sources */,
+				C3DAE5F6207DFE1400418B02 /* WallPostNode.m in Sources */,
 				C3616F53207C95BA007FD417 /* TyphoonInjectionByDictionary.m in Sources */,
 				C3616F58207C95BA007FD417 /* TyphoonInjectionByCurrentRuntimeArguments.m in Sources */,
 				C3616F9A207C95BA007FD417 /* TyphoonComponentFactory+Storyboard.m in Sources */,
