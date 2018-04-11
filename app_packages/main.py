@@ -31,7 +31,7 @@ class NewsHandlerProtocol:
         except Exception as e:
             print('exception: ' + str(e))
             pass
-        ownerData = api.users.get(user_id=7162990)
+        ownerData = api.users.get(user_id=7162990, fields='photo_100')
         print('ownerData: ' + json.dumps(ownerData))
         return response
 
