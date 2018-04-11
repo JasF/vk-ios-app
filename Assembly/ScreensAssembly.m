@@ -80,6 +80,7 @@
                 [definition useInitializer:@selector(init)];
                 [definition injectProperty:@selector(pythonBridge) with:self.coreComponents.pythonBridge];
             }];
+    
     /*
     return [TyphoonDefinition withFactory:[self storyboardWithName:@"NewsViewController"]
                                  selector:@selector(instantiateViewControllerWithIdentifier:)

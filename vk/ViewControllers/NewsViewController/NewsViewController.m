@@ -37,6 +37,7 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
     NSMutableArray *_data;
 }
 
+//- (instancetype)initWithCoder:(NSCoder *)aDecoder {
 - (instancetype)init {
     //_tableNode = [[ASTableNode alloc] initWithStyle:UITableViewStylePlain];
     
@@ -89,6 +90,13 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
     [self fetchMorePostsWithCompletion:^(BOOL finished) {
         self.updating = NO;
     }];
+    
+    UIButton *button = [UIButton new];
+    [button addTarget:self action:@selector(menuTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [button setImage:[UIImage imageNamed:@"menuIcon.phg"] forState:UIControlStateNormal];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    [self.navigationItem setLeftBarButtonItem:backButton];
+    
     // Do any additional setup after loading the view.
 }
 
