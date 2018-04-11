@@ -5,20 +5,29 @@ import json
 from objc import managers
 from threading import Event
 
-class AuthorizationHandlerProtocol(BridgeBase):
+class AuthorizationHandlerProtocolDelegate(BridgeBase):
+    pass
+
+class NewsHandlerProtocolDelegate(BridgeBase):
+    pass
+
+class NewsHandlerProtocol:
     pass
 
 
-class AuthorizationHandlerProtocolDelegate:
+class AuthorizationHandlerProtocol:
     def accessTokenGathered(self, accessToken):
         print('accesstoken: ' + accessToken)
+        managers.shared().screensManager().showNewsViewController(handler=NewsHandlerProtocol())
+        '''
         session = vk.Session(access_token=accessToken)
         api = vk.API(session)
         api.session.method_default_args['v'] = '5.74'
         response = api.wall.get(access_token=accessToken)
         self.event = Event()
         result = AuthorizationHandlerProtocol().receivedWall_(handler=self, args=[response], withResult=True)
+        '''
 
 def launch():
-    screensManager = managers.shared().screensManager().showAuthorizationViewController(handler=AuthorizationHandlerProtocolDelegate())
+    managers.shared().screensManager().showAuthorizationViewController(handler=AuthorizationHandlerProtocol())
     pass

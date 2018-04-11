@@ -20,6 +20,7 @@
 @property float right;
 @property float bottom;
 @property CGSize viewSize;
+@property CGSize size;
 @property float width;
 @property float height;
 

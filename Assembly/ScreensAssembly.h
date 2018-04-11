@@ -18,4 +18,8 @@
 @property(nonatomic, strong, readonly) VKThemeAssembly *themeProvider;
 - (id<ScreensManager>)screensManager;
 - (UIViewController *)createViewController;
+- (UIViewController *)createMainViewController;
+- (UIViewController *)newsViewController;
+- (UIWindow *)window;
+- (UINavigationController *)rootNavigationController;
 @end

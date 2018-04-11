@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @protocol ScreensManager <NSObject>
-- (UIViewController *)rootViewController;
 - (void)createWindowIfNeeded;
 - (void)showAuthorizationViewController;
 @end

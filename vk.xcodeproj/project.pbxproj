@@ -205,6 +205,24 @@
 		C3617005207CA824007FD417 /* Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = C3617004207CA824007FD417 /* Attachments.m */; };
 		C361700A207CA867007FD417 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3617009207CA867007FD417 /* Photo.m */; };
 		C361700E207CA947007FD417 /* PostType.m in Sources */ = {isa = PBXBuildFile; fileRef = C361700D207CA947007FD417 /* PostType.m */; };
+		C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */; };
+		C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BB207DD91C00418B02 /* MainViewController.mm */; };
+		C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5BC207DD91C00418B02 /* Main.storyboard */; };
+		C3DAE5C1207DD91C00418B02 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BD207DD91C00418B02 /* LeftViewController.m */; };
+		C3DAE5C5207DDBBA00418B02 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5C4207DDBBA00418B02 /* NewsViewController.m */; };
+		C3DAE5D5207DDC2900418B02 /* LGSideMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5CC207DDC2900418B02 /* LGSideMenuHelper.m */; };
+		C3DAE5D6207DDC2900418B02 /* LGSideMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5CE207DDC2900418B02 /* LGSideMenuView.m */; };
+		C3DAE5D7207DDC2900418B02 /* LGSideMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5CF207DDC2900418B02 /* LGSideMenuSegue.m */; };
+		C3DAE5D8207DDC2900418B02 /* LGSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5D0207DDC2900418B02 /* LGSideMenuController.m */; };
+		C3DAE5D9207DDC2900418B02 /* LGSideMenuGesturesHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5D1207DDC2900418B02 /* LGSideMenuGesturesHandler.m */; };
+		C3DAE5DA207DDC2900418B02 /* UIViewController+LGSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5D2207DDC2900418B02 /* UIViewController+LGSideMenuController.m */; };
+		C3DAE5DB207DDC2900418B02 /* LGSideMenuBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5D4207DDC2900418B02 /* LGSideMenuBorderView.m */; };
+		C3DAE5E0207DDF3B00418B02 /* MaskingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5DF207DDF3B00418B02 /* MaskingView.m */; };
+		C3DAE5E8207DDF5400418B02 /* MenuViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5E2207DDF5400418B02 /* MenuViewController.storyboard */; };
+		C3DAE5E9207DDF5400418B02 /* MenuViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5E4207DDF5400418B02 /* MenuViewController.mm */; };
+		C3DAE5EA207DDF5400418B02 /* BaseNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5E6207DDF5400418B02 /* BaseNavigationController.mm */; };
+		C3DAE5ED207DE0FB00418B02 /* SimpleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5EC207DE0FB00418B02 /* SimpleCell.xib */; };
+		C3DAE5EF207DE2BE00418B02 /* NewsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5EE207DE2BE00418B02 /* NewsViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -250,7 +268,7 @@
 		3EEA4F3A1BECE99F008A7F35 /* icon_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more@2x.png"; sourceTree = "<group>"; };
 		3EEA4F3B1BECE99F008A7F35 /* icon_more@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more@3x.png"; sourceTree = "<group>"; };
 		9CA41DF6912188792B5031B5 /* libPods-vk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3616C64207C934C007FD417 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		C3616C64207C934C007FD417 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C3616C67207C94C1007FD417 /* subscriber.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = subscriber.py; sourceTree = "<group>"; };
 		C3616C68207C94C1007FD417 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C3616C69207C94C1007FD417 /* parser.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = parser.py; sourceTree = "<group>"; };
@@ -887,7 +905,40 @@
 		C3617009207CA867007FD417 /* Photo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		C361700C207CA947007FD417 /* PostType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostType.h; sourceTree = "<group>"; };
 		C361700D207CA947007FD417 /* PostType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostType.m; sourceTree = "<group>"; };
-		C3CCF408207CFA08008FFD52 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		C3CCF408207CFA08008FFD52 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
+		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
+		C3DAE5BA207DD91C00418B02 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C3DAE5BB207DD91C00418B02 /* MainViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainViewController.mm; sourceTree = "<group>"; };
+		C3DAE5BC207DD91C00418B02 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C3DAE5BD207DD91C00418B02 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
+		C3DAE5C3207DDBBA00418B02 /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		C3DAE5C4207DDBBA00418B02 /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		C3DAE5C7207DDC2900418B02 /* LGSideMenuSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSideMenuSegue.h; sourceTree = "<group>"; };
+		C3DAE5C8207DDC2900418B02 /* LGSideMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSideMenuView.h; sourceTree = "<group>"; };
+		C3DAE5C9207DDC2900418B02 /* LGSideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSideMenuController.h; sourceTree = "<group>"; };
+		C3DAE5CA207DDC2900418B02 /* LGSideMenuGesturesHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSideMenuGesturesHandler.h; sourceTree = "<group>"; };
+		C3DAE5CB207DDC2900418B02 /* LGSideMenuBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSideMenuBorderView.h; sourceTree = "<group>"; };
+		C3DAE5CC207DDC2900418B02 /* LGSideMenuHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSideMenuHelper.m; sourceTree = "<group>"; };
+		C3DAE5CD207DDC2900418B02 /* UIViewController+LGSideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LGSideMenuController.h"; sourceTree = "<group>"; };
+		C3DAE5CE207DDC2900418B02 /* LGSideMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSideMenuView.m; sourceTree = "<group>"; };
+		C3DAE5CF207DDC2900418B02 /* LGSideMenuSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSideMenuSegue.m; sourceTree = "<group>"; };
+		C3DAE5D0207DDC2900418B02 /* LGSideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSideMenuController.m; sourceTree = "<group>"; };
+		C3DAE5D1207DDC2900418B02 /* LGSideMenuGesturesHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSideMenuGesturesHandler.m; sourceTree = "<group>"; };
+		C3DAE5D2207DDC2900418B02 /* UIViewController+LGSideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LGSideMenuController.m"; sourceTree = "<group>"; };
+		C3DAE5D3207DDC2900418B02 /* LGSideMenuHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSideMenuHelper.h; sourceTree = "<group>"; };
+		C3DAE5D4207DDC2900418B02 /* LGSideMenuBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSideMenuBorderView.m; sourceTree = "<group>"; };
+		C3DAE5DC207DDC7800418B02 /* vk.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vk.pch; path = "Supporting Files/vk.pch"; sourceTree = "<group>"; };
+		C3DAE5DE207DDF3B00418B02 /* MaskingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaskingView.h; sourceTree = "<group>"; };
+		C3DAE5DF207DDF3B00418B02 /* MaskingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaskingView.m; sourceTree = "<group>"; };
+		C3DAE5E2207DDF5400418B02 /* MenuViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MenuViewController.storyboard; sourceTree = "<group>"; };
+		C3DAE5E3207DDF5400418B02 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		C3DAE5E4207DDF5400418B02 /* MenuViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MenuViewController.mm; sourceTree = "<group>"; };
+		C3DAE5E6207DDF5400418B02 /* BaseNavigationController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BaseNavigationController.mm; sourceTree = "<group>"; };
+		C3DAE5E7207DDF5400418B02 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		C3DAE5EC207DE0FB00418B02 /* SimpleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleCell.xib; sourceTree = "<group>"; };
+		C3DAE5EE207DE2BE00418B02 /* NewsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsViewController.storyboard; sourceTree = "<group>"; };
 		CC6F2ABE8383FAB21802C734 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		FCCC1AD413FCA8603156ED15 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -944,6 +995,7 @@
 		3EEA4EE61BECC4A1008A7F35 /* vk */ = {
 			isa = PBXGroup;
 			children = (
+				C3DAE5B5207DD8E300418B02 /* ViewControllers */,
 				C3616FE5207CA124007FD417 /* models */,
 				C3616FAF207C9653007FD417 /* managers */,
 				C3616FC7207C9654007FD417 /* src */,
@@ -973,6 +1025,7 @@
 		3EEA4EE71BECC4A1008A7F35 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3DAE5DC207DDC7800418B02 /* vk.pch */,
 				C3616FE3207C98F6007FD417 /* app_packages.zip */,
 				C3CCF408207CFA08008FFD52 /* Podfile */,
 				3EEA4EFE1BECC4E8008A7F35 /* Default-568h@2x.png */,
@@ -1499,6 +1552,7 @@
 		C3616D84207C957A007FD417 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C3DAE5C6207DDC2900418B02 /* LGSideMenuController */,
 				C3616E12207C958C007FD417 /* Typhoon */,
 				C3616D85207C957A007FD417 /* Python */,
 				C3616DF0207C957A007FD417 /* vk-ios-sdk */,
@@ -2379,6 +2433,8 @@
 		C3616FC7207C9654007FD417 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C3DAE5EB207DE0FB00418B02 /* SimpleCell */,
+				C3DAE5DD207DDF3B00418B02 /* MaskingView */,
 				C3616FC8207C9654007FD417 /* RunLoop */,
 				C3616FCB207C9654007FD417 /* Functions */,
 				C3616FCE207C9654007FD417 /* PythonBridgeHandler */,
@@ -2520,6 +2576,98 @@
 			path = PostType;
 			sourceTree = "<group>";
 		};
+		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAE5E5207DDF5400418B02 /* BaseNavigationController */,
+				C3DAE5E1207DDF5400418B02 /* MenuViewController */,
+				C3DAE5C2207DDB9400418B02 /* NewsViewController */,
+				C3DAE5B6207DD8F200418B02 /* MainViewController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C3DAE5B6207DD8F200418B02 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */,
+				C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */,
+				C3DAE5B8207DD91C00418B02 /* LeftViewController.h */,
+				C3DAE5BD207DD91C00418B02 /* LeftViewController.m */,
+				C3DAE5BC207DD91C00418B02 /* Main.storyboard */,
+				C3DAE5BA207DD91C00418B02 /* MainViewController.h */,
+				C3DAE5BB207DD91C00418B02 /* MainViewController.mm */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		C3DAE5C2207DDB9400418B02 /* NewsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAE5C3207DDBBA00418B02 /* NewsViewController.h */,
+				C3DAE5C4207DDBBA00418B02 /* NewsViewController.m */,
+				C3DAE5EE207DE2BE00418B02 /* NewsViewController.storyboard */,
+			);
+			path = NewsViewController;
+			sourceTree = "<group>";
+		};
+		C3DAE5C6207DDC2900418B02 /* LGSideMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAE5C7207DDC2900418B02 /* LGSideMenuSegue.h */,
+				C3DAE5C8207DDC2900418B02 /* LGSideMenuView.h */,
+				C3DAE5C9207DDC2900418B02 /* LGSideMenuController.h */,
+				C3DAE5CA207DDC2900418B02 /* LGSideMenuGesturesHandler.h */,
+				C3DAE5CB207DDC2900418B02 /* LGSideMenuBorderView.h */,
+				C3DAE5CC207DDC2900418B02 /* LGSideMenuHelper.m */,
+				C3DAE5CD207DDC2900418B02 /* UIViewController+LGSideMenuController.h */,
+				C3DAE5CE207DDC2900418B02 /* LGSideMenuView.m */,
+				C3DAE5CF207DDC2900418B02 /* LGSideMenuSegue.m */,
+				C3DAE5D0207DDC2900418B02 /* LGSideMenuController.m */,
+				C3DAE5D1207DDC2900418B02 /* LGSideMenuGesturesHandler.m */,
+				C3DAE5D2207DDC2900418B02 /* UIViewController+LGSideMenuController.m */,
+				C3DAE5D3207DDC2900418B02 /* LGSideMenuHelper.h */,
+				C3DAE5D4207DDC2900418B02 /* LGSideMenuBorderView.m */,
+			);
+			path = LGSideMenuController;
+			sourceTree = "<group>";
+		};
+		C3DAE5DD207DDF3B00418B02 /* MaskingView */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAE5DE207DDF3B00418B02 /* MaskingView.h */,
+				C3DAE5DF207DDF3B00418B02 /* MaskingView.m */,
+			);
+			path = MaskingView;
+			sourceTree = "<group>";
+		};
+		C3DAE5E1207DDF5400418B02 /* MenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAE5E2207DDF5400418B02 /* MenuViewController.storyboard */,
+				C3DAE5E3207DDF5400418B02 /* MenuViewController.h */,
+				C3DAE5E4207DDF5400418B02 /* MenuViewController.mm */,
+			);
+			path = MenuViewController;
+			sourceTree = "<group>";
+		};
+		C3DAE5E5207DDF5400418B02 /* BaseNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAE5E6207DDF5400418B02 /* BaseNavigationController.mm */,
+				C3DAE5E7207DDF5400418B02 /* BaseNavigationController.h */,
+			);
+			path = BaseNavigationController;
+			sourceTree = "<group>";
+		};
+		C3DAE5EB207DE0FB00418B02 /* SimpleCell */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAE5EC207DE0FB00418B02 /* SimpleCell.xib */,
+			);
+			path = SimpleCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2587,9 +2735,11 @@
 				C3616FE4207C98F6007FD417 /* app_packages.zip in Resources */,
 				C3616F7C207C95BA007FD417 /* LICENSE in Resources */,
 				3EEA4F311BECE440008A7F35 /* icon_like@2x.png in Resources */,
+				C3DAE5E8207DDF5400418B02 /* MenuViewController.storyboard in Resources */,
 				3EEA4F3D1BECE99F008A7F35 /* icon_more@2x.png in Resources */,
 				3EEA4F141BECDCD6008A7F35 /* icon_android.png in Resources */,
 				3EEA4F3E1BECE99F008A7F35 /* icon_more@3x.png in Resources */,
+				C3DAE5ED207DE0FB00418B02 /* SimpleCell.xib in Resources */,
 				3EEA4F2B1BECE440008A7F35 /* icon_liked@2x.png in Resources */,
 				C3616FE0207C98C0007FD417 /* launcher.py in Resources */,
 				3EEA4F351BECE440008A7F35 /* icon_comment.png in Resources */,
@@ -2603,8 +2753,10 @@
 				3EEA4F331BECE440008A7F35 /* icon_comment@3x.png in Resources */,
 				3EEA4F341BECE440008A7F35 /* icon_comment@2x.png in Resources */,
 				3EEA4F321BECE440008A7F35 /* icon_like.png in Resources */,
+				C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */,
 				3EEA4F151BECDCD6008A7F35 /* icon_android@2x.png in Resources */,
 				3EEA4F301BECE440008A7F35 /* icon_like@3x.png in Resources */,
+				C3DAE5EF207DE2BE00418B02 /* NewsViewController.storyboard in Resources */,
 				C3616E0B207C957A007FD417 /* LICENSE in Resources */,
 				3EEA4F2C1BECE440008A7F35 /* icon_liked@3x.png in Resources */,
 				3EEA4F011BECC4E8008A7F35 /* Default-568h@2x.png in Resources */,
@@ -2708,6 +2860,7 @@
 				C361700E207CA947007FD417 /* PostType.m in Sources */,
 				C3616F3E207C95BA007FD417 /* TyphoonDefinition.m in Sources */,
 				C3616F8E207C95BA007FD417 /* TyphoonNSURLTypeConverter.m in Sources */,
+				C3DAE5EA207DDF5400418B02 /* BaseNavigationController.mm in Sources */,
 				C3616D6A207C94CB007FD417 /* EXTConcreteProtocol.m in Sources */,
 				C3616F46207C95BA007FD417 /* TyphoonBlockDefinition+InstanceBuilder.m in Sources */,
 				C3616FE9207CA140007FD417 /* WallPost.m in Sources */,
@@ -2725,6 +2878,7 @@
 				C3616F57207C95BA007FD417 /* TyphoonInjectionByConfig.m in Sources */,
 				C361700A207CA867007FD417 /* Photo.m in Sources */,
 				C3616F98207C95BA007FD417 /* TyphoonViewHelpers.m in Sources */,
+				C3DAE5D6207DDC2900418B02 /* LGSideMenuView.m in Sources */,
 				C3616F85207C95BA007FD417 /* TyphoonGlobalConfigCollector.m in Sources */,
 				C3616F77207C95BA007FD417 /* TyphoonStackElement.m in Sources */,
 				C3616F3C207C95BA007FD417 /* NSObject+TyphoonIntrospectionUtils.m in Sources */,
@@ -2745,12 +2899,14 @@
 				C3616F92207C95BA007FD417 /* TyphoonColorConversionUtils.m in Sources */,
 				C3616F65207C95BA007FD417 /* TyphoonAssemblyBuilder+PlistProcessor.m in Sources */,
 				C3616F3F207C95BA007FD417 /* TyphoonDefinition+InstanceBuilder.m in Sources */,
+				C3DAE5E9207DDF5400418B02 /* MenuViewController.mm in Sources */,
 				C3616F44207C95BA007FD417 /* TyphoonBlockDefinitionController.m in Sources */,
 				C3616FED207CA2D8007FD417 /* Comments.m in Sources */,
 				C3616E0F207C957A007FD417 /* UIScreen+NanoFrame.m in Sources */,
 				C3616F82207C95BA007FD417 /* TyphoonPropertyStyleConfiguration.m in Sources */,
 				C3616FA3207C95BA007FD417 /* TyphoonStoryboardDefinition.m in Sources */,
 				C3616F76207C95BA007FD417 /* TyphoonRuntimeArguments.m in Sources */,
+				C3DAE5D7207DDC2900418B02 /* LGSideMenuSegue.m in Sources */,
 				C3616F81207C95BA007FD417 /* TyphoonJsonStyleConfiguration.m in Sources */,
 				C3616F47207C95BA007FD417 /* TyphoonFactoryAutoInjectionPostProcessor.m in Sources */,
 				C3616F99207C95BA007FD417 /* TyphoonStoryboard.m in Sources */,
@@ -2764,13 +2920,16 @@
 				C3616F9B207C95BA007FD417 /* TyphoonViewControllerFactory.m in Sources */,
 				C3616FD9207C9654007FD417 /* RunLoop.m in Sources */,
 				C3616FD1207C9654007FD417 /* ScreensManagerImpl.m in Sources */,
+				C3DAE5D8207DDC2900418B02 /* LGSideMenuController.m in Sources */,
 				C3616FF9207CA6C8007FD417 /* Reposts.m in Sources */,
 				C3616F7F207C95BA007FD417 /* TyphoonDefinition+Option.m in Sources */,
 				C3616E0D207C957A007FD417 /* UIView+NanoFrame.m in Sources */,
 				3EEA4EEC1BECC4A1008A7F35 /* AppDelegate.m in Sources */,
+				C3DAE5D9207DDC2900418B02 /* LGSideMenuGesturesHandler.m in Sources */,
 				C3616F4E207C95BA007FD417 /* TyphoonInjectionContext.m in Sources */,
 				C3616FA5207C95BA007FD417 /* TyphoonBundledImageTypeConverter.m in Sources */,
 				C3616FA1207C95BA007FD417 /* TyphoonLoadedView.m in Sources */,
+				C3DAE5C1207DD91C00418B02 /* LeftViewController.m in Sources */,
 				C3616F80207C95BA007FD417 /* TyphoonDefinition+Config.m in Sources */,
 				C3616F97207C95BA007FD417 /* UIResponder+TyphoonOutletTransfer.m in Sources */,
 				C3616F78207C95BA007FD417 /* TyphoonBlockComponentFactory.m in Sources */,
@@ -2790,11 +2949,14 @@
 				C3616D6E207C94CB007FD417 /* NSInvocation+EXT.m in Sources */,
 				C3616F52207C95BA007FD417 /* TyphoonAbstractInjection.m in Sources */,
 				C3616F40207C95BA007FD417 /* TyphoonReferenceDefinition.m in Sources */,
+				C3DAE5DA207DDC2900418B02 /* UIViewController+LGSideMenuController.m in Sources */,
 				C3616F8B207C95BA007FD417 /* TyphoonNSNumberTypeConverter.m in Sources */,
 				C3616F91207C95BA007FD417 /* TyphoonTypeConversionUtils.m in Sources */,
 				C3616FA4207C95BA007FD417 /* TyphoonStoryboardDefinitionContext.m in Sources */,
 				C3616F63207C95BA007FD417 /* TyphoonFactoryPropertyInjectionPostProcessor.m in Sources */,
 				3EEA4EE91BECC4A1008A7F35 /* main.m in Sources */,
+				C3DAE5DB207DDC2900418B02 /* LGSideMenuBorderView.m in Sources */,
+				C3DAE5D5207DDC2900418B02 /* LGSideMenuHelper.m in Sources */,
 				C3616D71207C94CB007FD417 /* EXTNil.m in Sources */,
 				C3616F4B207C95BA007FD417 /* TyphoonMethod+InstanceBuilder.m in Sources */,
 				C3616D6D207C94CB007FD417 /* EXTADT.m in Sources */,
@@ -2813,6 +2975,7 @@
 				C3616F90207C95BA007FD417 /* TyphoonTypeConverterRegistry.m in Sources */,
 				C3616FFD207CA765007FD417 /* Views.m in Sources */,
 				C3616F7A207C95BA007FD417 /* TyphoonComponentFactory.m in Sources */,
+				C3DAE5E0207DDF3B00418B02 /* MaskingView.m in Sources */,
 				C3616F61207C95BA007FD417 /* TyphoonAssemblyAccessor.m in Sources */,
 				3EEA4F381BECE775008A7F35 /* CommentsNode.m in Sources */,
 				C3616F71207C95BA007FD417 /* NSMethodSignature+TCFUnwrapValues.m in Sources */,
@@ -2821,6 +2984,8 @@
 				C3616F68207C95BA007FD417 /* TyphoonAssemblyAdviser.m in Sources */,
 				C3616F5E207C95BA007FD417 /* TyphoonDefinitionRegisterer.m in Sources */,
 				C3616F38207C95BA007FD417 /* TyphoonSelector.m in Sources */,
+				C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */,
+				C3DAE5C5207DDBBA00418B02 /* NewsViewController.m in Sources */,
 				C3616FF1207CA530007FD417 /* Likes.m in Sources */,
 				3EEA4F1D1BECE358008A7F35 /* LikesNode.m in Sources */,
 				C3616F96207C95BA007FD417 /* UIView+TyphoonOutletTransfer.m in Sources */,
@@ -2845,6 +3010,7 @@
 				C3616F6C207C95BA007FD417 /* TyphoonAssemblyBuilder.m in Sources */,
 				C3616FA6207C95BA007FD417 /* TyphoonUIColorTypeConverter.m in Sources */,
 				C3616F64207C95BA007FD417 /* NSInvocation+TCFWrapValues.m in Sources */,
+				C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */,
 				C3616F60207C95BA007FD417 /* TyphoonAssembly.m in Sources */,
 				C3616D6C207C94CB007FD417 /* EXTRuntimeExtensions.m in Sources */,
 				C3616D6B207C94CB007FD417 /* EXTScope.m in Sources */,
@@ -2894,7 +3060,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2931,7 +3097,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

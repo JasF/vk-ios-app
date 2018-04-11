@@ -7,11 +7,13 @@
 //
 
 #import "ScreensManagerImpl.h"
+#import "MainViewController.h"
 #import "ScreensAssembly.h"
 #import "ViewController.h"
+#import "NewsViewController.h"
+#import "BaseNavigationController.h"
 
 @interface ScreensManagerImpl ()
-@property (strong, nonatomic) UIViewController *rootViewController;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) id<VKSdkManager> vkSdkManager;
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -37,27 +39,37 @@
 }
 
 #pragma mark - overriden methods ScreensManager
-- (UIViewController *)rootViewController {
-    return _rootViewController;
-}
-    
 - (void)createWindowIfNeeded {
-    if (self.window) {
-        return;
+    if (!self.window.isKeyWindow) {
+        [self.window makeKeyAndVisible];
     }
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
-    _rootViewController = [UINavigationController new];
-    self.window.rootViewController = _rootViewController;
-    [self.window makeKeyAndVisible];
 }
 
 - (void)showAuthorizationViewController {
     dispatch_async(dispatch_get_main_queue(), ^{
         UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-        ViewController *viewController = [self.screensAssembly createViewController];
+        ViewController *viewController =(ViewController *)[self.screensAssembly createViewController];
         [navigationController pushViewController:viewController animated:YES];
     });
+}
+
+- (void)showNewsViewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[NewsViewController class]]) {
+            return;
+        }
+        NewsViewController *viewController = [_screensAssembly newsViewController];
+        [self pushViewController:viewController];
+    });
+}
+
+- (void)showMainViewController {
+    if ([self.window.rootViewController isEqual:_mainViewController]) {
+        return;
+    }
+    self.window.rootViewController = _mainViewController;
 }
 
 #pragma mark - Private Methods
@@ -68,6 +80,51 @@
     viewController.handler = [self.pythonBridge handlerWithProtocol:@protocol(AuthorizationHandlerProtocolDelegate)];
     viewController.pythonBridge = self.pythonBridge;
     return viewController;
+}
+
+- (BaseNavigationController *)navigationController {
+    return(BaseNavigationController *)_mainViewController.rootViewController;
+}
+
+- (void)closeMenu {
+    if (![self.mainViewController isLeftViewHidden]) {
+        [self.mainViewController hideLeftViewAnimated];
+    }
+}
+
+- (BOOL)canIgnorePushingViewController:(Class)cls {
+    if ([[self.navigationController.topViewController class] isEqual:cls]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)pushViewController:(UIViewController *)viewController {
+    [self pushViewController:viewController clean:YES];
+}
+
+- (void)pushViewController:(UIViewController *)viewController clean:(BOOL)clean {
+    if ([self allowReplaceWithViewController:viewController]) {
+        self.navigationController.viewControllers = @[viewController];
+    }
+    else {
+        [self.navigationController pushViewController:viewController animated:YES completion:^{
+            if (clean && self.navigationController.viewControllers.count > 1) {
+                self.navigationController.viewControllers = @[viewController];
+            }
+        }];
+    }
+}
+
+- (BOOL)allowReplaceWithViewController:(UIViewController *)viewController {
+    if (!self.navigationController.viewControllers.count) {
+        return YES;
+    }
+    if (self.navigationController.viewControllers.count == 1 &&
+        [self.navigationController.viewControllers.firstObject isKindOfClass:[ViewController class]]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

@@ -21,6 +21,6 @@
 
 @interface PostNode : ASCellNode
 
-- (instancetype)initWithPost:(Post *)post;
+- (instancetype)initWithPost:(Post *)post indexPath:(NSIndexPath *)indexPath;
 
 @end

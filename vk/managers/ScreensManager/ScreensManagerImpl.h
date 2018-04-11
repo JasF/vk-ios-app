@@ -11,8 +11,10 @@
 #import "PythonBridge.h"
 
 @class ScreensAssembly;
+@class MainViewController;
 
 @interface ScreensManagerImpl : NSObject <ScreensManager>
+@property (strong, nonatomic) MainViewController *mainViewController;
 - (id)init NS_UNAVAILABLE;
 + (id)new NS_UNAVAILABLE;
 - (id)initWithVKSdkManager:(id<VKSdkManager>)vkSdkManager

@@ -20,16 +20,16 @@
 #import "PythonBridge.h"
 
 @protocol AuthorizationHandlerProtocolDelegate <NSObject>
-- (void)accessTokenGathered:(NSString *)accessToken;
+- (NSString *)receivedWall:(NSDictionary *)wall;
 @end
 
 @protocol AuthorizationHandlerProtocol <NSObject>
-- (NSString *)receivedWall:(NSDictionary *)wall;
+- (void)accessTokenGathered:(NSString *)accessToken;
 @end
 
 
 @interface ViewController : ASViewController
-@property (strong, nonatomic) id<AuthorizationHandlerProtocolDelegate> handler;
+@property (strong, nonatomic) id<AuthorizationHandlerProtocol> handler;
 @property (strong, nonatomic) id<VKSdkManager> vkManager;
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
 @end

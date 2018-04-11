@@ -36,6 +36,11 @@
     return self.bounds.size;
 }
 
+-(CGSize)size
+{
+    return self.bounds.size;
+}
+
 -(void)setWidth:(float)width
 {
     CGRect r = self.bounds;

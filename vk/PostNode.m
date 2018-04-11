@@ -44,7 +44,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithPost:(Post *)post
+- (instancetype)initWithPost:(Post *)post indexPath:(NSIndexPath *)indexPath
 {
     self = [super init];
     if (self) {
