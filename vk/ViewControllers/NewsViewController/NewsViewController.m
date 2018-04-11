@@ -49,7 +49,7 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
         
         _collectionNode.dataSource = self;
         _collectionNode.delegate = self;
-        _collectionNode.backgroundColor = [UIColor grayColor];
+        _collectionNode.backgroundColor = [UIColor whiteColor];
         _collectionNode.accessibilityIdentifier = @"Cat deals list";
         
         ASRangeTuningParameters preloadTuning;
@@ -198,6 +198,7 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
     return nil;
 }
 
+/*
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat collectionViewWidth = CGRectGetWidth(self.view.frame) - 2 * kHorizontalSectionPadding;
@@ -211,7 +212,7 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
     CGSize itemSize = CGSizeMake(itemWidth, 250);
     return ASSizeRangeMake(itemSize, itemSize);
 }
-
+*/
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
 {
     return [_data count];
@@ -224,7 +225,9 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
 
 - (void)collectionNode:(ASCollectionNode *)collectionNode willBeginBatchFetchWithContext:(ASBatchContext *)context
 {
+    DDLogInfo(@"\n\n\nPre fetching$$$\n\n\n");
     [self fetchMorePostsWithCompletion:^(BOOL finished){
+        DDLogInfo(@"\n\n\nFetching completed!$$$\n\n\n");
         [context completeBatchFetching:YES];
     }];
 }
