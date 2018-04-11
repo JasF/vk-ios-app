@@ -22,7 +22,7 @@ class NewsHandlerProtocol:
     def menuTapped(self):
         managers.shared().screensManager().showMenu()
 
-    def getWall(self):
+    def getWall(self, offset):
         users = UsersDatabase()
         session = vk.Session(access_token=storage.accessToken)
         api = vk.API(session)
@@ -30,7 +30,7 @@ class NewsHandlerProtocol:
         response = None
         usersData = None
         try:
-            response = api.wall.get(access_token=storage.accessToken)
+            response = api.wall.get(access_token=storage.accessToken, offset=offset)
             l = response["items"]
             fromIds = [d['from_id'] for d in l]
             ownerIds = [d['owner_id'] for d in l]

@@ -29,7 +29,7 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
 @interface NewsViewController ()
 @property (strong, nonatomic) id<NewsHandlerProtocol> handler;
 @property (nonatomic, strong) ASTableNode *tableNode;
-@property (nonatomic, strong) NSMutableArray *socialAppDataSource;
+@property (assign, nonatomic) BOOL updating;
 @end
 
 @implementation NewsViewController {
@@ -85,7 +85,10 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
     _collectionNode.leadingScreensForBatching = 2;
     //self.tableNode.view.separatorStyle = UITableViewCellSeparatorStyleNone;
     _handler = [_pythonBridge handlerWithProtocol:@protocol(NewsHandlerProtocol)];
-    [self fetchMorePostsWithCompletion:nil];
+    self.updating = YES;
+    [self fetchMorePostsWithCompletion:^(BOOL finished) {
+        self.updating = NO;
+    }];
     // Do any additional setup after loading the view.
 }
 
@@ -122,7 +125,8 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
             NSArray *addedIndexPaths = [self indexPathsForObjects:posts];
             [_collectionNode insertItemsAtIndexPaths:addedIndexPaths];
         } completion:completion];
-    }];
+    }
+           offset:_data.count];
     /*
     NSArray *newData = [self getMoreData:numberOfNewItems];
      */
@@ -149,23 +153,6 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
 {
     [_collectionNode.view.collectionViewLayout invalidateLayout];
 }
-
-#pragma mark - ASTableNode
-
-/*
-- (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    WallPost *post = self.socialAppDataSource[indexPath.row];
-    return ^{
-        return [[WallPostNode alloc] initWithPost:post];
-    };
-}
-
-- (NSInteger)tableNode:(ASTableNode *)tableNode numberOfRowsInSection:(NSInteger)section
-{
-    return self.socialAppDataSource.count;
-}
-*/
 
 #pragma mark - Observers
 
@@ -226,9 +213,15 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
 - (void)collectionNode:(ASCollectionNode *)collectionNode willBeginBatchFetchWithContext:(ASBatchContext *)context
 {
     DDLogInfo(@"\n\n\nPre fetching$$$\n\n\n");
+    if (self.updating) {
+        [context completeBatchFetching:YES];
+        return;
+    }
+    self.updating = YES;
     [self fetchMorePostsWithCompletion:^(BOOL finished){
         DDLogInfo(@"\n\n\nFetching completed!$$$\n\n\n");
         [context completeBatchFetching:YES];
+        self.updating = NO;
     }];
 }
 
@@ -254,17 +247,21 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
 
 #pragma mark - Private
 - (void)getWall {
+    
+    self.updating = YES;
     [self getWall:^(NSArray *posts) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.socialAppDataSource = [posts mutableCopy];
-            [self.tableNode reloadData];
+            
+            self.updating = NO;
             NSLog(@"\n\n\n$$$$$ TABLE VIEW RELOADED $$$$$\n\n\n");
         });
-    }];
+    }
+           offset:0];
 }
 
-- (void)getWall:(void(^)(NSArray *posts))completion {
-    NSDictionary *wallData = [_handler getWall];
+- (void)getWall:(void(^)(NSArray *posts))completion
+         offset:(NSInteger)offset {
+    NSDictionary *wallData = [_handler getWall:@(offset)];
     [self processWallData:wallData
                completion:completion];
 }

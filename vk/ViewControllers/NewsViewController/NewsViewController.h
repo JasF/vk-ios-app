@@ -11,7 +11,7 @@
 
 @protocol NewsHandlerProtocol <NSObject>
 - (void)menuTapped;
-- (NSDictionary *)getWall;
+- (NSDictionary *)getWall:(NSNumber *)offset;
 @end
 
 @interface NewsViewController : ASViewController
