@@ -33,4 +33,8 @@
 @property Reposts *reposts;
 @property NSString *text;
 @property Views *views;
+
+@property NSString *firstName;
+@property NSString *lastName;
+@property NSString *avatarURLString;
 @end

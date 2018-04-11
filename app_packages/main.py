@@ -4,6 +4,7 @@ from vk import Session
 import json
 from objc import managers
 from threading import Event
+from caches.users import UsersDatabase
 
 class Storage():
     def __init__(self):
@@ -22,18 +23,34 @@ class NewsHandlerProtocol:
         managers.shared().screensManager().showMenu()
 
     def getWall(self):
+        users = UsersDatabase()
         session = vk.Session(access_token=storage.accessToken)
         api = vk.API(session)
         api.session.method_default_args['v'] = '5.74'
         response = None
+        usersData = None
         try:
             response = api.wall.get(access_token=storage.accessToken)
+            l = response["items"]
+            fromIds = [d['from_id'] for d in l]
+            ownerIds = [d['owner_id'] for d in l]
+            ids = set()
+            ids |= set(fromIds)
+            ids |= set(ownerIds)
+            usersData = users.getShortUsersByIds(ids)
+            #print('localdata: ' + str(usersData))
+            fetchedIds = set([d['id'] for d in usersData])
+            ids = ids - fetchedIds
+            if len(ids):
+                idsString = ', '.join(str(e) for e in ids)
+                freshUsersData = api.users.get(user_ids=idsString, fields='photo_100')
+                users.update(freshUsersData)
+                usersData.extend(freshUsersData)
         except Exception as e:
-            print('exception: ' + str(e))
-            pass
-        ownerData = api.users.get(user_id=7162990, fields='photo_100')
-        print('ownerData: ' + json.dumps(ownerData))
-        return response
+            print('wall.get exception: ' + str(e))
+        finally:
+            users.close()
+        return {'response':response, 'users':usersData}
 
 class MenuHandlerProtocol:
     def newsTapped(self):

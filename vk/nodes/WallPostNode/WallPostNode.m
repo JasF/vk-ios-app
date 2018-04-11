@@ -46,13 +46,13 @@
         
         // Name node
         _nameNode = [[ASTextNode alloc] init];
-        _nameNode.attributedText = [[NSAttributedString alloc] initWithString:@"name TBD" attributes:[TextStyles nameStyle]];
+        _nameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.firstName attributes:[TextStyles nameStyle]];
         _nameNode.maximumNumberOfLines = 1;
         [self addSubnode:_nameNode];
         
         // Username node
         _usernameNode = [[ASTextNode alloc] init];
-        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:@"username TBD" attributes:[TextStyles usernameStyle]];
+        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.lastName attributes:[TextStyles usernameStyle]];
         _usernameNode.style.flexShrink = 1.0; //if name and username don't fit to cell width, allow username shrink
         _usernameNode.truncationMode = NSLineBreakByTruncatingTail;
         _usernameNode.maximumNumberOfLines = 1;
@@ -61,9 +61,9 @@
         // Time node
         _timeNode = [[ASTextNode alloc] init];
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:_post.date];
-        NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:date
                                                               dateStyle:NSDateFormatterShortStyle
-                                                              timeStyle:NSDateFormatterFullStyle];
+                                                              timeStyle:NSDateFormatterShortStyle];
         _timeNode.attributedText = [[NSAttributedString alloc] initWithString:dateString attributes:[TextStyles timeStyle]];
         [self addSubnode:_timeNode];
         
@@ -139,7 +139,7 @@
         _avatarNode.style.width = ASDimensionMakeWithPoints(44);
         _avatarNode.style.height = ASDimensionMakeWithPoints(44);
         _avatarNode.cornerRadius = 22.0;
-        _avatarNode.URL = [NSURL URLWithString:@""];
+        _avatarNode.URL = [NSURL URLWithString:_post.avatarURLString];
         _avatarNode.imageModificationBlock = ^UIImage *(UIImage *image) {
             
             UIImage *modifiedImage;

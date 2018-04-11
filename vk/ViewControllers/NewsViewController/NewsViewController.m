@@ -13,6 +13,7 @@
 #import <VK-ios-sdk/VKSdk.h>
 #import "WallPost.h"
 #import "WallPostNode.h"
+#import "User.h"
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import <AsyncDisplayKit/ASAssert.h>
@@ -100,14 +101,38 @@
     if (![wallData isKindOfClass:[NSDictionary class]]) {
         return;
     }
+    NSDictionary *response = wallData[@"response"];
+    NSArray *users = wallData[@"users"];
     //NSNumber *count = wallData[@"count"];
-    NSArray *items = wallData[@"items"];
+    NSArray *items = response[@"items"];
     if (![items isKindOfClass:[NSArray class]]) {
         items = @[];
     }
     
     NSArray *posts = [EKMapper arrayOfObjectsFromExternalRepresentation:items
                                                             withMapping:[WallPost objectMapping]];
+    
+    NSArray *usersObjects = [EKMapper arrayOfObjectsFromExternalRepresentation:users
+                                                                   withMapping:[User objectMapping]];
+    
+    NSMutableDictionary *usersDictionary = [NSMutableDictionary new];
+    for (User *user in usersObjects) {
+        [usersDictionary setObject:user forKey:@(user.identifier)];
+    }
+    for (WallPost *post in posts) {
+        User *user = usersDictionary[@(post.fromId)];
+        if (user) {
+            post.firstName = user.first_name;
+            post.lastName = user.last_name;
+            post.avatarURLString = user.photo_100;
+        }
+        /*
+        user = usersDictionary[@(post.ownerId)];
+        if (user) {
+            
+        }
+        */
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         self.socialAppDataSource = [posts mutableCopy];
         [self.tableNode reloadData];

@@ -38,6 +38,7 @@
 		3EEA4F3C1BECE99F008A7F35 /* icon_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEA4F391BECE99F008A7F35 /* icon_more.png */; };
 		3EEA4F3D1BECE99F008A7F35 /* icon_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEA4F3A1BECE99F008A7F35 /* icon_more@2x.png */; };
 		3EEA4F3E1BECE99F008A7F35 /* icon_more@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEA4F3B1BECE99F008A7F35 /* icon_more@3x.png */; };
+		C35BF27C207E2A26000F2773 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BF27B207E2A26000F2773 /* User.m */; };
 		C3616D65207C94CB007FD417 /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3616D31207C94CB007FD417 /* libOpenSSL.a */; };
 		C3616D66207C94CB007FD417 /* PythonFramework.zip in Resources */ = {isa = PBXBuildFile; fileRef = C3616D32207C94CB007FD417 /* PythonFramework.zip */; };
 		C3616D67207C94CB007FD417 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3616D33207C94CB007FD417 /* libbz2.a */; };
@@ -270,6 +271,8 @@
 		3EEA4F3A1BECE99F008A7F35 /* icon_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more@2x.png"; sourceTree = "<group>"; };
 		3EEA4F3B1BECE99F008A7F35 /* icon_more@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more@3x.png"; sourceTree = "<group>"; };
 		9CA41DF6912188792B5031B5 /* libPods-vk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C35BF27A207E2A26000F2773 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		C35BF27B207E2A26000F2773 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C3616C64207C934C007FD417 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C3616C67207C94C1007FD417 /* subscriber.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = subscriber.py; sourceTree = "<group>"; };
 		C3616C68207C94C1007FD417 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
@@ -944,6 +947,8 @@
 		C3DAE5F0207DE6BE00418B02 /* Common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Common.xcassets; sourceTree = "<group>"; };
 		C3DAE5F4207DFE1400418B02 /* WallPostNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostNode.h; sourceTree = "<group>"; };
 		C3DAE5F5207DFE1400418B02 /* WallPostNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPostNode.m; sourceTree = "<group>"; };
+		C3DAE5F8207E0D0600418B02 /* __ini__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __ini__.py; sourceTree = "<group>"; };
+		C3DAE5F9207E0D1600418B02 /* users.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = users.py; sourceTree = "<group>"; };
 		CC6F2ABE8383FAB21802C734 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		FCCC1AD413FCA8603156ED15 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1079,9 +1084,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C35BF279207E2A1C000F2773 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				C35BF27A207E2A26000F2773 /* User.h */,
+				C35BF27B207E2A26000F2773 /* User.m */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		C3616C65207C94C1007FD417 /* app_packages */ = {
 			isa = PBXGroup;
 			children = (
+				C3DAE5F7207E0CEC00418B02 /* caches */,
 				C3616C66207C94C1007FD417 /* objcbridge */,
 				C3616C6A207C94C1007FD417 /* chardet */,
 				C3616C98207C94C1007FD417 /* idna */,
@@ -2479,6 +2494,7 @@
 		C3616FE5207CA124007FD417 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C35BF279207E2A1C000F2773 /* User */,
 				C361700B207CA93D007FD417 /* PostType */,
 				C3617006207CA859007FD417 /* Photo */,
 				C3617002207CA819007FD417 /* Attachments */,
@@ -2692,6 +2708,15 @@
 			path = WallPostNode;
 			sourceTree = "<group>";
 		};
+		C3DAE5F7207E0CEC00418B02 /* caches */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAE5F8207E0D0600418B02 /* __ini__.py */,
+				C3DAE5F9207E0D1600418B02 /* users.py */,
+			);
+			path = caches;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2885,6 +2910,7 @@
 				C361700E207CA947007FD417 /* PostType.m in Sources */,
 				C3616F3E207C95BA007FD417 /* TyphoonDefinition.m in Sources */,
 				C3616F8E207C95BA007FD417 /* TyphoonNSURLTypeConverter.m in Sources */,
+				C35BF27C207E2A26000F2773 /* User.m in Sources */,
 				C3DAE5EA207DDF5400418B02 /* BaseNavigationController.mm in Sources */,
 				C3616D6A207C94CB007FD417 /* EXTConcreteProtocol.m in Sources */,
 				C3616F46207C95BA007FD417 /* TyphoonBlockDefinition+InstanceBuilder.m in Sources */,
