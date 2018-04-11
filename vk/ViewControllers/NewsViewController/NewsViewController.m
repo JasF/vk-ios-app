@@ -136,6 +136,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.socialAppDataSource = [posts mutableCopy];
         [self.tableNode reloadData];
+        NSLog(@"\n\n\n$$$$$ TABLE VIEW RELOADED $$$$$\n\n\n");
     });
 }
 

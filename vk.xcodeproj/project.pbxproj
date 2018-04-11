@@ -2753,6 +2753,7 @@
 				TargetAttributes = {
 					3EEA4EE31BECC4A1008A7F35 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 5892LD7JW5;
 					};
 				};
 			};
@@ -3161,6 +3162,7 @@
 			baseConfigurationReference = 032426AD6C3588F058B4894F /* Pods-vk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5892LD7JW5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -3184,6 +3186,7 @@
 			baseConfigurationReference = 385D88FACF192B86E6B230FC /* Pods-vk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5892LD7JW5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",

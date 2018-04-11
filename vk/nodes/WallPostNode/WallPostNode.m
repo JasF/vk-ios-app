@@ -107,6 +107,7 @@
         // Media
         CopyHistory *history = _post.history.firstObject;
         Attachments *attachment = history.attachments.firstObject;
+        
         if (![attachment.photo.photo604 isEqualToString:@""]) {
             
             _mediaNode = [[ASNetworkImageNode alloc] init];
