@@ -60,7 +60,7 @@
         if ([self canIgnorePushingViewController:[NewsViewController class]]) {
             return;
         }
-        NewsViewController *viewController = [_screensAssembly newsViewController];
+        NewsViewController *viewController =(NewsViewController *)[_screensAssembly newsViewController];
         [self pushViewController:viewController];
     });
 }
@@ -70,6 +70,12 @@
         return;
     }
     self.window.rootViewController = _mainViewController;
+}
+
+- (void)showMenu {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.mainViewController showLeftViewAnimated:YES completionHandler:^{}];
+    });
 }
 
 #pragma mark - Private Methods

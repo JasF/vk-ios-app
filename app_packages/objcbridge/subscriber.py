@@ -1,6 +1,7 @@
 import threading
 import builtins as __builtin__
 from functools import partial
+import traceback
 
 def dprint(text):
     __builtin__.original_print(text)
@@ -42,7 +43,9 @@ class Subscriber():
     def processClassAction(self, object):
         withResult = object["withResult"]
         try:
-            handler = self.handlers[object["class"]]
+            handler = self.handlers.get(object["class"])
+            if not handler:
+                raise Exception('handler cannot be nil', object["class"])
             action = object["action"]
             args = object['args']
             if handler and action:
@@ -60,7 +63,7 @@ class Subscriber():
         except Exception as e:
             dprint('processClassAction exception: ' + str(e) + '; handlers: ' + str(self.handlers) + '; object: ' + str(object))
 
-    def setClassHandler(self, className, action, handler):
+    def setClassHandler(self, handler):
         if isinstance(handler, list):
             for h in handler:
                 self.handlers[h.__class__.__name__] = h

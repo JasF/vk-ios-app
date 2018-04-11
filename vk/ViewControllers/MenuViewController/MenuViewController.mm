@@ -8,16 +8,12 @@
 
 #import "LGSideMenuController.h"
 #import "MenuViewController.h"
+#import "AppDelegate.h"
 
 typedef NS_ENUM(NSInteger, MenuRows) {
-    HistoryRow,
-    SettingsRow,
-    FeedbackRow,
+    NewsRow,
     RowsCount
 };
-
-static CGFloat const kGenericOffset = 8.f;
-static CGFloat const kHoroscopeCellBottomOffset = 8.f;
 
 static CGFloat const kRowHeight = 40.f;
 static CGFloat const kHeaderViewHeight = 20.f;
@@ -35,14 +31,20 @@ static CGFloat const kSeparatorAlpha = 0.25f;
 }
 
 - (void)viewDidLoad {
+    // AV: Because MenuViewController initializes inside LGMenuViewController third-party component.
+    // AV: Typhoon storyboard initialization possible
     [super viewDidLoad];
-    self.handler = [self.pythonBridge handlerWithProtocol:@protocol(MenuHandlerProtocol)];
     self.tableView.separatorColor = [[UIColor whiteColor] colorWithAlphaComponent:kSeparatorAlpha];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidHide:) name:LGSideMenuDidHideLeftViewNotification object:nil];
     [self.tableView registerNib:[UINib nibWithNibName:@"SimpleCell" bundle:nil] forCellReuseIdentifier:@"SimpleCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    if (!self.handler) {
+        _pythonBridge = [AppDelegate shared].pythonBridge;
+        NSCParameterAssert(_pythonBridge);
+        self.handler = [self.pythonBridge handlerWithProtocol:@protocol(MenuHandlerProtocol)];
+    }
     [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
@@ -69,9 +71,7 @@ static CGFloat const kSeparatorAlpha = 0.25f;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleCell"];
     cell.textLabel.textColor = [UIColor whiteColor];
     switch (indexPath.row) {
-        case HistoryRow: cell.textLabel.text = L(@"History"); break;
-        case SettingsRow: cell.textLabel.text = L(@"Settings"); break;
-        case FeedbackRow: cell.textLabel.text = L(@"Feedback"); break;
+        case NewsRow: cell.textLabel.text = L(@"News"); break;
     }
     return cell;
 }
@@ -90,15 +90,8 @@ static CGFloat const kSeparatorAlpha = 0.25f;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
-        case HistoryRow: {
-            break;
-        }
-        case SettingsRow: {
-            [_handler settingsTapped];
-            break;
-        }
-        case FeedbackRow: {
-            //[[Managers shared].feedbackManager showFeedbackController:self];
+        case NewsRow: {
+            [_handler newsTapped];
             break;
         }
     }

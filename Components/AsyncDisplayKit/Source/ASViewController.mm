@@ -69,6 +69,17 @@
   return self;
 }
 
+- (instancetype)initWithNode:(ASDisplayNode *)node coder:(NSCoder *)aDecoder {
+    if (!(self = [super initWithCoder:aDecoder])) {
+        return nil;
+    }
+    
+    _node = node;
+    [self _initializeInstance];
+    
+    return self;
+}
+
 - (void)_initializeInstance
 {
   if (_node == nil) {

@@ -1,4 +1,4 @@
-from objcbridge import BridgeBase
+from objcbridge import BridgeBase, Subscriber
 import vk
 from vk import Session
 import json
@@ -12,8 +12,12 @@ class NewsHandlerProtocolDelegate(BridgeBase):
     pass
 
 class NewsHandlerProtocol:
-    pass
+    def menuTapped(self):
+        managers.shared().screensManager().showMenu()
 
+class MenuHandlerProtocol:
+    def newsTapped(self):
+        managers.shared().screensManager().showNewsViewController(handler=NewsHandlerProtocol())
 
 class AuthorizationHandlerProtocol:
     def accessTokenGathered(self, accessToken):
@@ -29,5 +33,6 @@ class AuthorizationHandlerProtocol:
         '''
 
 def launch():
+    Subscriber().setClassHandler(MenuHandlerProtocol())
     managers.shared().screensManager().showAuthorizationViewController(handler=AuthorizationHandlerProtocol())
     pass

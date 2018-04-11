@@ -11,4 +11,5 @@
 @protocol ScreensManager <NSObject>
 - (void)createWindowIfNeeded;
 - (void)showAuthorizationViewController;
+- (void)showMenu;
 @end

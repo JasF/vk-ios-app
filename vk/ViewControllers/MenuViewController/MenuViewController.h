@@ -10,7 +10,7 @@
 #import "PythonBridge.h"
 
 @protocol MenuHandlerProtocol <NSObject>
-- (void)settingsTapped;
+- (void)newsTapped;
 @end
 
 @interface MenuViewController : UIViewController;

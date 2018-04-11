@@ -223,6 +223,7 @@
 		C3DAE5EA207DDF5400418B02 /* BaseNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5E6207DDF5400418B02 /* BaseNavigationController.mm */; };
 		C3DAE5ED207DE0FB00418B02 /* SimpleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5EC207DE0FB00418B02 /* SimpleCell.xib */; };
 		C3DAE5EF207DE2BE00418B02 /* NewsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5EE207DE2BE00418B02 /* NewsViewController.storyboard */; };
+		C3DAE5F1207DE6BE00418B02 /* Common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5F0207DE6BE00418B02 /* Common.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -939,6 +940,7 @@
 		C3DAE5E7207DDF5400418B02 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		C3DAE5EC207DE0FB00418B02 /* SimpleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleCell.xib; sourceTree = "<group>"; };
 		C3DAE5EE207DE2BE00418B02 /* NewsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsViewController.storyboard; sourceTree = "<group>"; };
+		C3DAE5F0207DE6BE00418B02 /* Common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Common.xcassets; sourceTree = "<group>"; };
 		CC6F2ABE8383FAB21802C734 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		FCCC1AD413FCA8603156ED15 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1006,6 +1008,7 @@
 				3EEA4EED1BECC4A1008A7F35 /* ViewController.h */,
 				3EEA4EEE1BECC4A1008A7F35 /* ViewController.m */,
 				3EEA4EF31BECC4A1008A7F35 /* Assets.xcassets */,
+				C3DAE5F0207DE6BE00418B02 /* Common.xcassets */,
 				3EEA4EF81BECC4A1008A7F35 /* Info.plist */,
 				3EEA4EE71BECC4A1008A7F35 /* Supporting Files */,
 				3EEA4F041BECC6C9008A7F35 /* Post.h */,
@@ -2734,6 +2737,7 @@
 				3EEA4F181BECDCD6008A7F35 /* icon_ios@2x.png in Resources */,
 				C3616FE4207C98F6007FD417 /* app_packages.zip in Resources */,
 				C3616F7C207C95BA007FD417 /* LICENSE in Resources */,
+				C3DAE5F1207DE6BE00418B02 /* Common.xcassets in Resources */,
 				3EEA4F311BECE440008A7F35 /* icon_like@2x.png in Resources */,
 				C3DAE5E8207DDF5400418B02 /* MenuViewController.storyboard in Resources */,
 				3EEA4F3D1BECE99F008A7F35 /* icon_more@2x.png in Resources */,

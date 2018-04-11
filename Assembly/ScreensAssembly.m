@@ -74,11 +74,14 @@
 }
 
 - (UIViewController *)newsViewController {
-    return [TyphoonDefinition withClass:[NewsViewController class] configuration:^(TyphoonDefinition *definition)
-            {
-                [definition useInitializer:@selector(init)];
-                [definition injectProperty:@selector(pythonBridge) with:self.coreComponents.pythonBridge];
-            }];
+    return [TyphoonDefinition withFactory:[self storyboardWithName:@"NewsViewController"]
+                                 selector:@selector(instantiateViewControllerWithIdentifier:)
+                               parameters:^(TyphoonMethod *factoryMethod) {
+                                   [factoryMethod injectParameterWith:@"ViewController"];
+                               }
+                            configuration:^(TyphoonFactoryDefinition *definition) {
+                                [definition injectProperty:@selector(pythonBridge) with:self.coreComponents.pythonBridge];
+                            }];
 }
 
 - (BaseNavigationController *)mainNavigationController {
@@ -112,4 +115,13 @@
             }];
 }
 
+- (UIStoryboard *)storyboardWithName:(NSString *)storyboardName {
+    return [TyphoonDefinition withClass:[TyphoonStoryboard class] configuration:^(TyphoonDefinition* definition) {
+        [definition useInitializer:@selector(storyboardWithName:factory:bundle:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:storyboardName];
+            [initializer injectParameterWith:self];
+            [initializer injectParameterWith:[NSBundle mainBundle]];
+        }];
+    }];
+}
 @end

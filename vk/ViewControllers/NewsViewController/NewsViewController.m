@@ -16,7 +16,7 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import <AsyncDisplayKit/ASAssert.h>
 
-@interface NewsViewController ()
+@interface NewsViewController () <ASTableDelegate, ASTableDataSource>
 @property (strong, nonatomic) id<NewsHandlerProtocol> handler;
 @property (nonatomic, strong) ASTableNode *tableNode;
 @property (nonatomic, strong) NSMutableArray *socialAppDataSource;
@@ -24,11 +24,10 @@
 
 @implementation NewsViewController
 
-- (instancetype)init
-{
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     _tableNode = [[ASTableNode alloc] initWithStyle:UITableViewStylePlain];
     
-    self = [super initWithNode:_tableNode];
+    self = [super initWithNode:_tableNode coder:aDecoder];
     
     if (self) {
         
@@ -139,7 +138,11 @@
     return self.socialAppDataSource.count;
 }
 
+#pragma mark - Observers
 
+- (IBAction)menuTapped:(id)sender {
+    [_handler menuTapped];
+}
 /*
 #pragma mark - Navigation
 

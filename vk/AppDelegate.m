@@ -19,14 +19,16 @@
 #import "ViewController.h"
 #import <VK-ios-sdk/VKSdk.h>
 #import "ScreensManager.h"
-#import "PythonBridge.h"
 
 @interface AppDelegate ()
 @property (strong, nonatomic) id<ScreensManager> screensManager;
-@property (strong, nonatomic) id<PythonBridge> pythonBridge;
 @end
 
 @implementation AppDelegate
+
++ (instancetype)shared {
+    return(AppDelegate *)[UIApplication sharedApplication].delegate;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

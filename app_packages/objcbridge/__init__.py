@@ -71,7 +71,7 @@ def subscribe(command, handler):
     subscriber.subscribe(command, handler)
 
 def sendCommandWithHandler(className, action, handler, args=[], withResult=False):
-    subscriber.setClassHandler(className, action, handler)
+    subscriber.setClassHandler(handler)
     objectForSend = {'command': 'classAction', 'class': className, 'action':action, 'args':args}
     if withResult:
         event = Event()

@@ -16,9 +16,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PythonBridge.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+@property (strong, nonatomic) id<PythonBridge> pythonBridge;
 @property (strong, nonatomic) UIWindow *window;
-
++ (instancetype)shared;
 @end
