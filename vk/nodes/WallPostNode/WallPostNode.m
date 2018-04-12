@@ -83,9 +83,15 @@
         // Processing URLs in post
         NSString *kLinkAttributeName = @"TextLinkAttributeName";
         
-        if (![_post.text isEqualToString:@""]) {
+        NSString *text = _post.text;
+        if (!text.length) {
+            CopyHistory *history = _post.history.firstObject;
+            text = history.text;
+        }
+        if (text.length) {
             
-            NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:_post.text attributes:[TextStyles postStyle]];
+            
+            NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:text attributes:[TextStyles postStyle]];
             
             NSDataDetector *urlDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
             
@@ -115,8 +121,11 @@
         
         
         // Media
-        CopyHistory *history = _post.history.firstObject;
-        Attachments *attachment = history.attachments.firstObject;
+        Attachments *attachment = _post.attachments.firstObject;
+        if (!attachment) {
+            CopyHistory *history = _post.history.firstObject;
+            attachment = history.attachments.firstObject;
+        }
         
         if (![attachment.photo.photo604 isEqualToString:@""]) {
             
@@ -265,8 +274,11 @@
     [mainStackContent addObject:_postNode];
     
     
-    CopyHistory *history = _post.history.firstObject;
-    Attachments *attachment = history.attachments.firstObject;
+    Attachments *attachment = _post.attachments.firstObject;
+    if (!attachment) {
+        CopyHistory *history = _post.history.firstObject;
+        attachment = history.attachments.firstObject;
+    }
     if (![attachment.photo.photo604 isEqualToString:@""]) {
         
         // Only add the media node if an image is present

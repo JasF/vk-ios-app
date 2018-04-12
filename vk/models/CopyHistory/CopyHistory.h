@@ -14,7 +14,7 @@
 @import EasyMapping;
 
 @interface CopyHistory : NSObject <EKMappingProtocol>
-@property NSArray *attachments;
+@property NSArray<Attachments *> *attachments;
 @property NSInteger date;
 @property NSInteger fromId;
 @property NSInteger identifier;

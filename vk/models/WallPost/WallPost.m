@@ -30,6 +30,11 @@
             return history;
         }];
         
+        [mapping mapKeyPath:@"attachments" toProperty:@"attachments" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
+            return [EKMapper arrayOfObjectsFromExternalRepresentation:value
+                                                          withMapping:[Attachments objectMapping]];
+        }];
+        
         [mapping mapKeyPath:@"from_id" toProperty:@"fromId"];
         [mapping mapKeyPath:@"id" toProperty:@"identifier"];
         
