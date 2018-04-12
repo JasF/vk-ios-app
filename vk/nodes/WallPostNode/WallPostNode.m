@@ -29,6 +29,7 @@
 @property (strong, nonatomic) ASImageNode *optionsNode;
 
 @property (strong, nonatomic) ASDisplayNode *verticalLineNode;
+@property (strong, nonatomic) ASDisplayNode *verticalRightNode;
 @property (strong, nonatomic) ASDisplayNode *historyNode;
 @property (assign, nonatomic) BOOL embedded;
 @property (strong, nonatomic) id<NodeFactory> nodeFactory;
@@ -116,14 +117,22 @@
         
         [self addSubnode:_postNode];
         
+        _verticalRightNode = [ASDisplayNode new];
+        _verticalRightNode.style.preferredSize = CGSizeMake(2, 50);
+        _verticalRightNode.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.25f];
+        [self addSubnode:_verticalRightNode];
+        
         WallPost *history = _post.history.firstObject;
         if (history) {
             _historyNode = [_nodeFactory nodeForItem:history embedded:YES];
+            [self addSubnode:_historyNode];
+            
             _verticalLineNode = [ASDisplayNode new];
             _verticalLineNode.style.preferredSize = CGSizeMake(2, 50);
             _verticalLineNode.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.25f];
             [self addSubnode:_verticalLineNode];
-            [self addSubnode:_historyNode];
+            
+            
         }
         
         // Media
@@ -307,6 +316,7 @@
     if (_verticalLineNode && _historyNode) {
         ASInsetLayoutSpec *verticalLineSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_verticalLineNode];
         ASInsetLayoutSpec *historySpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_historyNode];
+        
         historySpec.style.flexShrink = 1.0;
         ASStackLayoutSpec *historyHorizontalSpec =
         [ASStackLayoutSpec
@@ -329,6 +339,10 @@
      children:mainStackContent];
     contentSpec.style.flexShrink = 1.0;
     
+    ASInsetLayoutSpec *rightSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_verticalRightNode];
+    
+    ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
+    spacer.style.flexGrow = 1.0;
     // Horizontal spec for avatar
     ASStackLayoutSpec *avatarContentSpec =
     [ASStackLayoutSpec
@@ -336,7 +350,7 @@
      spacing:8.0
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsStart
-     children:@[_avatarNode, nameVerticalStack]];
+     children:@[_avatarNode, nameVerticalStack, spacer, rightSpec]];
     
     NSMutableArray *verticalContentSpecArray = [@[avatarContentSpec, _postNode, contentSpec] mutableCopy];
     if (controlsStack) {
