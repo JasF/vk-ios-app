@@ -1,12 +1,12 @@
 //
-//  NewsViewController.m
+//  DialogsViewController.m
 //  vk
 //
-//  Created by Jasf on 11.04.2018.
+//  Created by Jasf on 12.04.2018.
 //  Copyright © 2018 Facebook. All rights reserved.
 //
 
-#import "NewsViewController.h"
+#import "DialogsViewController.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "Post.h"
 #import "PostNode.h"
@@ -18,17 +18,18 @@
 #import "BlurbNode.h"
 #import "LoadingNode.h"
 #import "AppDelegate.h"
+#import "Dialog.h"
 
 static const NSInteger kBatchSize = 20;
 
-@interface NewsViewController () <ASCollectionDelegate, ASCollectionDataSource>
-@property (strong, nonatomic) id<NewsHandlerProtocol> handler;
+@interface DialogsViewController () <ASCollectionDelegate, ASCollectionDataSource>
+@property (strong, nonatomic) id<DialogsHandlerProtocol> handler;
 @property (assign, nonatomic) BOOL updating;
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
 @property (strong, nonatomic) id<NodeFactory> nodeFactory;
 @end
 
-@implementation NewsViewController {
+@implementation DialogsViewController {
     ASCollectionNode *_collectionNode;
     NSMutableArray *_data;
 }
@@ -46,7 +47,7 @@ static const NSInteger kBatchSize = 20;
         _pythonBridge = pythonBridge;
         _nodeFactory = nodeFactory;
         _collectionNode.backgroundColor = [UIColor whiteColor];
-        _collectionNode.accessibilityIdentifier = @"NewsViewController";
+        _collectionNode.accessibilityIdentifier = @"DialogsViewController";
         
         ASRangeTuningParameters preloadTuning;
         preloadTuning.leadingBufferScreenfuls = 2;
@@ -62,7 +63,7 @@ static const NSInteger kBatchSize = 20;
         [_collectionNode registerSupplementaryNodeOfKind:UICollectionElementKindSectionFooter];
         
         _data = [[NSMutableArray alloc] init];
-        self.title = @"VK Wall";
+        self.title = @"VK Dialogs";
         _collectionNode.dataSource = self;
         _collectionNode.delegate = self;
     }
@@ -74,7 +75,7 @@ static const NSInteger kBatchSize = 20;
     NSCParameterAssert(_pythonBridge);
     [super viewDidLoad];
     _collectionNode.leadingScreensForBatching = 2;
-    _handler = [_pythonBridge handlerWithProtocol:@protocol(NewsHandlerProtocol)];
+    _handler = [_pythonBridge handlerWithProtocol:@protocol(DialogsHandlerProtocol)];
     self.updating = YES;
     [self fetchMorePostsWithCompletion:^(BOOL finished) {
         self.updating = NO;
@@ -95,14 +96,14 @@ static const NSInteger kBatchSize = 20;
 
 - (void)appendMoreItems:(NSInteger)numberOfNewItems completion:(void (^)(BOOL))completion
 {
-    [self getWall:^(NSArray *posts) {
+    [self getDialogs:^(NSArray *posts) {
         [_collectionNode performBatchAnimated:YES updates:^{
             [_data addObjectsFromArray:posts];
             NSArray *addedIndexPaths = [self indexPathsForObjects:posts];
             [_collectionNode insertItemsAtIndexPaths:addedIndexPaths];
         } completion:completion];
     }
-           offset:_data.count];
+              offset:_data.count];
 }
 
 - (NSArray *)indexPathsForObjects:(NSArray *)data
@@ -152,7 +153,7 @@ static const NSInteger kBatchSize = 20;
 - (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if ([kind isEqualToString:UICollectionElementKindSectionFooter] && indexPath.section == 0) {
-        return [[LoadingNode alloc] init];
+        return nil;//[[LoadingNode alloc] init];
     }
     return nil;
 }
@@ -211,28 +212,18 @@ static const NSInteger kBatchSize = 20;
 }
 
 #pragma mark - Private
-- (void)getWall:(void(^)(NSArray *posts))completion
-         offset:(NSInteger)offset {
-    NSDictionary *wallData = [_handler getWall:@(offset)];
-    [self processWallData:wallData
-               completion:completion];
+- (void)getDialogs:(void(^)(NSArray *dialogs))completion
+            offset:(NSInteger)offset {
+    NSDictionary *wallData = [_handler getDialogs:@(offset)];
+    [self processDialogsData:wallData
+                  completion:completion];
 }
 
-- (void)setHistoryFromArray:(NSMutableArray *)array toPost:(WallPost *)post {
-    WallPost *history = [array firstObject];
-    if (!history) {
-        return;
-    }
-    [array removeObjectAtIndex:0];
-    post.history = @[history];
-    [self setHistoryFromArray:array toPost:history];
-}
-
-- (void)processWallData:(NSDictionary *)wallData
-             completion:(void(^)(NSArray *posts))completion {
+- (void)processDialogsData:(NSDictionary *)dialogsData
+                completion:(void(^)(NSArray *posts))completion {
     dispatch_python(^{
-        NSCAssert([wallData isKindOfClass:[NSDictionary class]] || !wallData, @"wallData unknown type");
-        if (![wallData isKindOfClass:[NSDictionary class]]) {
+        NSCAssert([dialogsData isKindOfClass:[NSDictionary class]] || !dialogsData, @"wallData unknown type");
+        if (![dialogsData isKindOfClass:[NSDictionary class]]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (completion) {
                     completion(nil);
@@ -240,6 +231,28 @@ static const NSInteger kBatchSize = 20;
             });
             return;
         }
+        
+        NSDictionary *response = dialogsData[@"response"];
+        NSArray *users = dialogsData[@"users"];
+        NSArray *items = response[@"items"];
+        
+        NSArray *dialogs = [EKMapper arrayOfObjectsFromExternalRepresentation:items
+                                                                  withMapping:[Dialog objectMapping]];
+        
+        NSArray *usersObjects = [EKMapper arrayOfObjectsFromExternalRepresentation:users
+                                                                       withMapping:[User objectMapping]];
+        
+        NSMutableDictionary *usersDictionary = [NSMutableDictionary new];
+        for (User *user in usersObjects) {
+            [usersDictionary setObject:user forKey:@(user.identifier)];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(dialogs);
+            }
+        });
+        /*
         NSDictionary *response = wallData[@"response"];
         NSArray *users = wallData[@"users"];
         NSArray *items = response[@"items"];
@@ -273,11 +286,7 @@ static const NSInteger kBatchSize = 20;
             NSMutableArray *mutableHistory = [post.history mutableCopy];
             [self setHistoryFromArray:mutableHistory toPost:post];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (completion) {
-                completion(posts);
-            }
-        });
+         */
     });
 }
 

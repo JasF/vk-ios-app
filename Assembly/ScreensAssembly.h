@@ -22,6 +22,7 @@
 - (UIViewController *)createViewController;
 - (UIViewController *)createMainViewController;
 - (UIViewController *)newsViewController;
+- (UIViewController *)dialogsViewController;
 - (UIWindow *)window;
 - (UINavigationController *)rootNavigationController;
 @end

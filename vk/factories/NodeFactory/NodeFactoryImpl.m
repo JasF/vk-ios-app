@@ -9,6 +9,7 @@
 #import "NodeFactoryImpl.h"
 #import "NodesAssembly.h"
 #import "WallPost.h"
+#import "Dialog.h"
 
 @implementation NodeFactoryImpl {
     NodesAssembly *_assembly;
@@ -55,6 +56,9 @@
             return nil;
             NSCAssert(false, @"Unknown attachment type: %@", @(attachment.type));
         }
+    }
+    else if ([item isKindOfClass:[Dialog class]]) {
+        return [_assembly dialogNode:item];
     }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;

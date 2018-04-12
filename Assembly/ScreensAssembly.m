@@ -12,6 +12,7 @@
 #import "VKThemeAssembly.h"
 #import "ScreensManagerImpl.h"
 #import "NewsViewController.h"
+#import "DialogsViewController.h"
 #import "BaseNavigationController.h"
 #import "NodesAssembly.h"
 
@@ -76,6 +77,16 @@
 
 - (UIViewController *)newsViewController {
     return [TyphoonDefinition withClass:[NewsViewController class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithPythonBridge:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.coreComponents.pythonBridge];
+                    [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+                }];
+            }];
+}
+
+- (UIViewController *)dialogsViewController {
+    return [TyphoonDefinition withClass:[DialogsViewController class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithPythonBridge:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.coreComponents.pythonBridge];

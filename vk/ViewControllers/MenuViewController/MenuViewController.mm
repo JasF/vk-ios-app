@@ -12,6 +12,7 @@
 
 typedef NS_ENUM(NSInteger, MenuRows) {
     NewsRow,
+    DialogsRow,
     RowsCount
 };
 
@@ -71,7 +72,8 @@ static CGFloat const kSeparatorAlpha = 0.25f;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleCell"];
     cell.textLabel.textColor = [UIColor whiteColor];
     switch (indexPath.row) {
-        case NewsRow: cell.textLabel.text = L(@"News"); break;
+        case NewsRow: cell.textLabel.text = L(@"lenta"); break;
+        case DialogsRow: cell.textLabel.text = L(@"dialogs"); break;
     }
     return cell;
 }
@@ -92,6 +94,10 @@ static CGFloat const kSeparatorAlpha = 0.25f;
     switch (indexPath.row) {
         case NewsRow: {
             [_handler newsTapped];
+            break;
+        }
+        case DialogsRow: {
+            [_handler dialogsTapped];
             break;
         }
     }

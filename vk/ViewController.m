@@ -71,7 +71,7 @@
     [self initializeVkSdkManager];
     dispatch_async(dispatch_get_main_queue(), ^{
 #ifdef DEBUG
-        VKAccessToken *token = [VKAccessToken tokenWithToken:@"6b8ce7524c7a5db6ab4d228da6c38ccccbb9ecda992cf077bd81279ef7e98c03cb67abc7b204dac67545b"
+        VKAccessToken *token = [VKAccessToken tokenWithToken:@"5707d7a0a400d18395446787aa77fb32a37cfb8e33c153fad544f09979685055a9d4ffe6a488b72447f6e"
                                                       secret:@""
                                                       userId:@""];
         self.vkManager.getTokenSuccess(token);

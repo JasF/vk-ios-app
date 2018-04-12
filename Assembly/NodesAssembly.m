@@ -11,6 +11,7 @@
 #import "WallPostNode.h"
 #import "PostImagesNode.h"
 #import "PostVideoNode.h"
+#import "DialogNode.h"
 
 @implementation NodesAssembly
 
@@ -55,5 +56,16 @@
                  }];
             }];
 }
+
+- (ASDisplayNode *)dialogNode:(Dialog *)dialog {
+    return [TyphoonDefinition withClass:[DialogNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithDialog:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:dialog];
+                 }];
+            }];
+}
+
 
 @end

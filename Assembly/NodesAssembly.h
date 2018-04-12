@@ -11,6 +11,7 @@
 #import "ASDisplayNode.h"
 #import "NodeFactory.h"
 #import "Video.h"
+#import "Dialog.h"
 
 @class WallPostNode;
 
@@ -19,4 +20,5 @@
 - (ASDisplayNode *)wallPostNodeWithData:(id)data embedded:(NSNumber *)embedded;
 - (ASDisplayNode *)postImagesNodeWithAttachments:(NSArray *)attachments;
 - (ASDisplayNode *)postVideoNodeWithVideo:(Video *)video;
+- (ASDisplayNode *)dialogNode:(Dialog *)dialog;
 @end

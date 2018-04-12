@@ -11,6 +11,7 @@
 #import "ScreensAssembly.h"
 #import "ViewController.h"
 #import "NewsViewController.h"
+#import "DialogsViewController.h"
 #import "BaseNavigationController.h"
 
 @interface ScreensManagerImpl ()
@@ -61,6 +62,18 @@
             return;
         }
         NewsViewController *viewController =(NewsViewController *)[_screensAssembly newsViewController];
+        [self pushViewController:viewController];
+    });
+}
+
+- (void)showDialogsViewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[DialogsViewController class]]) {
+            return;
+        }
+        DialogsViewController *viewController =(DialogsViewController *)[_screensAssembly dialogsViewController];
         [self pushViewController:viewController];
     });
 }

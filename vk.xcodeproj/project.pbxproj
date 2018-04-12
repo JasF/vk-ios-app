@@ -213,6 +213,10 @@
 		C3954CD5207F77620010FA6C /* PostImagesNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CD4207F77620010FA6C /* PostImagesNode.m */; };
 		C3954CD9207F7E5E0010FA6C /* PostVideoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CD8207F7E5E0010FA6C /* PostVideoNode.m */; };
 		C3954CDE207F8C1D0010FA6C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3954CE0207F8C1D0010FA6C /* Localizable.strings */; };
+		C3954CE5207FA2DD0010FA6C /* DialogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CE4207FA2DD0010FA6C /* DialogsViewController.m */; };
+		C3954CEA207FA65A0010FA6C /* Dialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CE9207FA65A0010FA6C /* Dialog.m */; };
+		C3954CED207FA6620010FA6C /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CEC207FA6620010FA6C /* Message.m */; };
+		C3954CF1207FAB370010FA6C /* DialogNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CF0207FAB370010FA6C /* DialogNode.m */; };
 		C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */; };
 		C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BB207DD91C00418B02 /* MainViewController.mm */; };
 		C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5BC207DD91C00418B02 /* Main.storyboard */; };
@@ -230,7 +234,6 @@
 		C3DAE5E9207DDF5400418B02 /* MenuViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5E4207DDF5400418B02 /* MenuViewController.mm */; };
 		C3DAE5EA207DDF5400418B02 /* BaseNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5E6207DDF5400418B02 /* BaseNavigationController.mm */; };
 		C3DAE5ED207DE0FB00418B02 /* SimpleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5EC207DE0FB00418B02 /* SimpleCell.xib */; };
-		C3DAE5EF207DE2BE00418B02 /* NewsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5EE207DE2BE00418B02 /* NewsViewController.storyboard */; };
 		C3DAE5F1207DE6BE00418B02 /* Common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5F0207DE6BE00418B02 /* Common.xcassets */; };
 		C3DAE5F6207DFE1400418B02 /* WallPostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5F5207DFE1400418B02 /* WallPostNode.m */; };
 /* End PBXBuildFile section */
@@ -933,6 +936,14 @@
 		C3954CD8207F7E5E0010FA6C /* PostVideoNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostVideoNode.m; sourceTree = "<group>"; };
 		C3954CDF207F8C1D0010FA6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C3954CE1207F8C2B0010FA6C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C3954CE3207FA2DD0010FA6C /* DialogsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogsViewController.h; sourceTree = "<group>"; };
+		C3954CE4207FA2DD0010FA6C /* DialogsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogsViewController.m; sourceTree = "<group>"; };
+		C3954CE8207FA65A0010FA6C /* Dialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dialog.h; sourceTree = "<group>"; };
+		C3954CE9207FA65A0010FA6C /* Dialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dialog.m; sourceTree = "<group>"; };
+		C3954CEB207FA6620010FA6C /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		C3954CEC207FA6620010FA6C /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		C3954CEF207FAB370010FA6C /* DialogNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogNode.h; sourceTree = "<group>"; };
+		C3954CF0207FAB370010FA6C /* DialogNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogNode.m; sourceTree = "<group>"; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -965,7 +976,6 @@
 		C3DAE5E6207DDF5400418B02 /* BaseNavigationController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BaseNavigationController.mm; sourceTree = "<group>"; };
 		C3DAE5E7207DDF5400418B02 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		C3DAE5EC207DE0FB00418B02 /* SimpleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleCell.xib; sourceTree = "<group>"; };
-		C3DAE5EE207DE2BE00418B02 /* NewsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsViewController.storyboard; sourceTree = "<group>"; };
 		C3DAE5F0207DE6BE00418B02 /* Common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Common.xcassets; sourceTree = "<group>"; };
 		C3DAE5F4207DFE1400418B02 /* WallPostNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostNode.h; sourceTree = "<group>"; };
 		C3DAE5F5207DFE1400418B02 /* WallPostNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPostNode.m; sourceTree = "<group>"; };
@@ -2524,6 +2534,8 @@
 		C3616FE5207CA124007FD417 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C3954CE7207FA6480010FA6C /* Message */,
+				C3954CE6207FA6430010FA6C /* Dialog */,
 				C3954CC2207F67E00010FA6C /* Video */,
 				C35BF279207E2A1C000F2773 /* User */,
 				C361700B207CA93D007FD417 /* PostType */,
@@ -2681,9 +2693,46 @@
 			path = texts;
 			sourceTree = "<group>";
 		};
+		C3954CE2207FA2CF0010FA6C /* DialogsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CE3207FA2DD0010FA6C /* DialogsViewController.h */,
+				C3954CE4207FA2DD0010FA6C /* DialogsViewController.m */,
+			);
+			path = DialogsViewController;
+			sourceTree = "<group>";
+		};
+		C3954CE6207FA6430010FA6C /* Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CE8207FA65A0010FA6C /* Dialog.h */,
+				C3954CE9207FA65A0010FA6C /* Dialog.m */,
+			);
+			path = Dialog;
+			sourceTree = "<group>";
+		};
+		C3954CE7207FA6480010FA6C /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CEB207FA6620010FA6C /* Message.h */,
+				C3954CEC207FA6620010FA6C /* Message.m */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		C3954CEE207FAB2B0010FA6C /* DialogNode */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CEF207FAB370010FA6C /* DialogNode.h */,
+				C3954CF0207FAB370010FA6C /* DialogNode.m */,
+			);
+			path = DialogNode;
+			sourceTree = "<group>";
+		};
 		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3954CE2207FA2CF0010FA6C /* DialogsViewController */,
 				C3DAE5E5207DDF5400418B02 /* BaseNavigationController */,
 				C3DAE5E1207DDF5400418B02 /* MenuViewController */,
 				C3DAE5C2207DDB9400418B02 /* NewsViewController */,
@@ -2711,7 +2760,6 @@
 			children = (
 				C3DAE5C3207DDBBA00418B02 /* NewsViewController.h */,
 				C3DAE5C4207DDBBA00418B02 /* NewsViewController.m */,
-				C3DAE5EE207DE2BE00418B02 /* NewsViewController.storyboard */,
 			);
 			path = NewsViewController;
 			sourceTree = "<group>";
@@ -2776,6 +2824,7 @@
 		C3DAE5F2207DFDE600418B02 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C3954CEE207FAB2B0010FA6C /* DialogNode */,
 				C3954CD6207F7E4B0010FA6C /* PostVideoNode */,
 				C3954CD2207F77460010FA6C /* PostImagesNode */,
 				C3DAE5F3207DFDF200418B02 /* WallPostNode */,
@@ -2893,7 +2942,6 @@
 				C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */,
 				3EEA4F151BECDCD6008A7F35 /* icon_android@2x.png in Resources */,
 				3EEA4F301BECE440008A7F35 /* icon_like@3x.png in Resources */,
-				C3DAE5EF207DE2BE00418B02 /* NewsViewController.storyboard in Resources */,
 				C3616E0B207C957A007FD417 /* LICENSE in Resources */,
 				3EEA4F2C1BECE440008A7F35 /* icon_liked@3x.png in Resources */,
 				3EEA4F011BECC4E8008A7F35 /* Default-568h@2x.png in Resources */,
@@ -3008,8 +3056,10 @@
 				C3616F8C207C95BA007FD417 /* TyphoonPrimitiveTypeConverter.m in Sources */,
 				C3616F49207C95BA007FD417 /* TyphoonBlockDefinition.m in Sources */,
 				C3616F56207C95BA007FD417 /* TyphoonInjectionByRuntimeArgument.m in Sources */,
+				C3954CEA207FA65A0010FA6C /* Dialog.m in Sources */,
 				C3616F5B207C95BA007FD417 /* TyphoonInjectionByType.m in Sources */,
 				C3616F6B207C95BA007FD417 /* NSValue+TCFUnwrapValues.m in Sources */,
+				C3954CED207FA6620010FA6C /* Message.m in Sources */,
 				C3616F41207C95BA007FD417 /* NSDictionary+CustomInjection.m in Sources */,
 				C3616F59207C95BA007FD417 /* TyphoonInjectionByCollection.m in Sources */,
 				3EEA4EEF1BECC4A1008A7F35 /* ViewController.m in Sources */,
@@ -3024,6 +3074,7 @@
 				C3616F3C207C95BA007FD417 /* NSObject+TyphoonIntrospectionUtils.m in Sources */,
 				C3616F9D207C95BA007FD417 /* UIViewController+TyphoonStoryboardIntegration.m in Sources */,
 				C3616F79207C95BA007FD417 /* NSInvocation+TCFUnwrapValues.m in Sources */,
+				C3954CF1207FAB370010FA6C /* DialogNode.m in Sources */,
 				C3616D80207C94CB007FD417 /* ScreensAssembly.m in Sources */,
 				C3616F83207C95BA007FD417 /* TyphoonPlistStyleConfiguration.m in Sources */,
 				C3616D81207C94CB007FD417 /* VKCoreComponents.m in Sources */,
@@ -3086,6 +3137,7 @@
 				C3616F6D207C95BA007FD417 /* TyphoonCollaboratingAssemblyPropertyEnumerator.m in Sources */,
 				C3616F72207C95BA007FD417 /* TyphoonCollaboratingAssemblyProxy.m in Sources */,
 				C3616F6A207C95BA007FD417 /* TyphoonMemoryManagementUtils.m in Sources */,
+				C3954CE5207FA2DD0010FA6C /* DialogsViewController.m in Sources */,
 				C3616F6E207C95BA007FD417 /* TyphoonCircularDependencyTerminator.m in Sources */,
 				C3616F45207C95BA007FD417 /* Collections+CustomInjection.m in Sources */,
 				C3616F5C207C95BA007FD417 /* TyphoonPatcher.m in Sources */,

@@ -92,11 +92,42 @@ class MenuHandlerProtocol:
     def newsTapped(self):
         managers.shared().screensManager().showNewsViewController(handler=NewsHandlerProtocol())
 
+    def dialogsTapped(self):
+        managers.shared().screensManager().showDialogsViewController(handler=DialogsHandlerProtocol())
+
+class DialogsHandlerProtocol:
+    def menuTapped(self):
+        managers.shared().screensManager().showMenu()
+
+    def getDialogs(self, offset):
+        users = UsersDatabase()
+        session = vk.Session(access_token=storage.accessToken)
+        api = vk.API(session)
+        api.session.method_default_args['v'] = '5.74'
+        response = None
+        usersData = None
+        try:
+            response = api.messages.getDialogs(access_token=storage.accessToken, offset=offset)
+            l = response["items"]
+            print('response: ' + str(response))
+            userIds = set([d['message']['user_id'] for d in l])
+            usersData = users.getShortUsersByIds(ids)
+            fetchedIds = set([d['id'] for d in usersData])
+            ids = ids - fetchedIds
+            if len(ids):
+                idsString = ', '.join(str(e) for e in ids)
+                freshUsersData = api.users.get(user_ids=idsString, fields='photo_100')
+                users.update(freshUsersData)
+                usersData.extend(freshUsersData)
+        except Exception as e:
+            print('get dialogs exception: ' + str(e))
+        return {'response':response, 'users':usersData}
 
 class AuthorizationHandlerProtocol:
     def accessTokenGathered(self, aAccessToken):
         storage.accessToken = aAccessToken
-        managers.shared().screensManager().showNewsViewController(handler=NewsHandlerProtocol())
+        managers.shared().screensManager().showDialogsViewController(handler=DialogsHandlerProtocol())
+        #managers.shared().screensManager().showNewsViewController(handler=NewsHandlerProtocol())
 
 def launch():
     Subscriber().setClassHandler(MenuHandlerProtocol())

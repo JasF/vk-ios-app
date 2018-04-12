@@ -11,6 +11,7 @@
 
 @protocol MenuHandlerProtocol <NSObject>
 - (void)newsTapped;
+- (void)dialogsTapped;
 @end
 
 @interface MenuViewController : UIViewController;
