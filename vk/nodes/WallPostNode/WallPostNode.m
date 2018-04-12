@@ -29,6 +29,8 @@
 @property (strong, nonatomic) CommentsNode *commentsNode;
 @property (strong, nonatomic) ASImageNode *optionsNode;
 
+@property (strong, nonatomic) ASDisplayNode *verticalLineNode;
+
 @end
 
 
@@ -83,9 +85,9 @@
         // Processing URLs in post
         NSString *kLinkAttributeName = @"TextLinkAttributeName";
         
+        WallPost *history = _post.history.firstObject;
         NSString *text = _post.text;
         if (!text.length) {
-            WallPost *history = _post.history.firstObject;
             text = history.text;
         }
         if (text.length) {
@@ -119,6 +121,12 @@
         
         [self addSubnode:_postNode];
         
+        if (history) {
+            _verticalLineNode = [ASDisplayNode new];
+            _verticalLineNode.style.preferredSize = CGSizeMake(5, 100);
+            _verticalLineNode.backgroundColor = [UIColor blueColor];
+            [self addSubnode:_verticalLineNode];
+        }
         
         // Media
         Attachments *attachment = _post.attachments.firstObject;
@@ -270,9 +278,10 @@
     controlsStack.style.spacingBefore = 3.0;
     
     NSMutableArray *mainStackContent = [[NSMutableArray alloc] init];
+    /*
     [mainStackContent addObject:nameStack];
     [mainStackContent addObject:_postNode];
-    
+    */
     
     Attachments *attachment = _post.attachments.firstObject;
     if (!attachment) {
@@ -295,6 +304,7 @@
     }
     [mainStackContent addObject:controlsStack];
     
+    
     // Vertical spec of cell main content
     ASStackLayoutSpec *contentSpec =
     [ASStackLayoutSpec
@@ -305,6 +315,29 @@
      children:mainStackContent];
     contentSpec.style.flexShrink = 1.0;
     
+    if (_verticalLineNode) {
+        ASInsetLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_verticalLineNode];
+        ASStackLayoutSpec *horizontalSpec =
+        [ASStackLayoutSpec
+         stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+         spacing:8.0
+         justifyContent:ASStackLayoutJustifyContentStart
+         alignItems:ASStackLayoutAlignItemsStretch
+         children:@[spec, contentSpec]];
+        horizontalSpec.style.flexShrink = 1.0;
+        contentSpec = horizontalSpec;
+    }
+    
+    ASStackLayoutSpec *verticalContentSpec =
+    [ASStackLayoutSpec
+     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
+     spacing:8.0
+     justifyContent:ASStackLayoutJustifyContentStart
+     alignItems:ASStackLayoutAlignItemsStretch
+     children:@[nameStack, _postNode, contentSpec]];
+    verticalContentSpec.style.flexShrink = 1.0;
+    
+    
     // Horizontal spec for avatar
     ASStackLayoutSpec *avatarContentSpec =
     [ASStackLayoutSpec
@@ -312,7 +345,7 @@
      spacing:8.0
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsStart
-     children:@[_avatarNode, contentSpec]];
+     children:@[_avatarNode, verticalContentSpec]];
     
     return [ASInsetLayoutSpec
             insetLayoutSpecWithInsets:UIEdgeInsetsMake(10, 10, 10, 10)
