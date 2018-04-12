@@ -7,7 +7,6 @@
 //
 
 #import "WallPost.h"
-#import "CopyHistory.h"
 
 @implementation WallPost
 
@@ -26,7 +25,7 @@
         
         [mapping mapKeyPath:@"copy_history" toProperty:@"history" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
             NSArray *history = [EKMapper arrayOfObjectsFromExternalRepresentation:value
-                                                                      withMapping:[CopyHistory objectMapping]];
+                                                                      withMapping:[WallPost objectMapping]];
             return history;
         }];
         

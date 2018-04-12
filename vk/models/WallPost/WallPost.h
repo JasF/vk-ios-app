@@ -14,7 +14,6 @@
 #import "PostType.h"
 #import "Reposts.h"
 #import "Views.h"
-#import "CopyHistory.h"
 
 @import EasyMapping;
 
@@ -25,7 +24,7 @@
 @property NSInteger fromId;
 @property NSInteger identifier;
 @property Comments *comments;
-@property NSArray<CopyHistory *> *history;
+@property NSArray<WallPost *> *history;
 @property Likes *likes;
 @property NSInteger ownerId;
 @property PostSource *postSource;
@@ -34,6 +33,7 @@
 @property NSString *text;
 @property Views *views;
 @property NSArray<Attachments *> *attachments;
+
 
 @property NSString *firstName;
 @property NSString *lastName;

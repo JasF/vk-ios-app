@@ -85,7 +85,7 @@
         
         NSString *text = _post.text;
         if (!text.length) {
-            CopyHistory *history = _post.history.firstObject;
+            WallPost *history = _post.history.firstObject;
             text = history.text;
         }
         if (text.length) {
@@ -123,7 +123,7 @@
         // Media
         Attachments *attachment = _post.attachments.firstObject;
         if (!attachment) {
-            CopyHistory *history = _post.history.firstObject;
+            WallPost *history = _post.history.firstObject;
             attachment = history.attachments.firstObject;
         }
         
@@ -276,7 +276,7 @@
     
     Attachments *attachment = _post.attachments.firstObject;
     if (!attachment) {
-        CopyHistory *history = _post.history.firstObject;
+        WallPost *history = _post.history.firstObject;
         attachment = history.attachments.firstObject;
     }
     if (![attachment.photo.photo604 isEqualToString:@""]) {

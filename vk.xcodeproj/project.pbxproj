@@ -204,7 +204,6 @@
 		C3616FF5207CA58C007FD417 /* PostSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C3616FF4207CA58C007FD417 /* PostSource.m */; };
 		C3616FF9207CA6C8007FD417 /* Reposts.m in Sources */ = {isa = PBXBuildFile; fileRef = C3616FF8207CA6C8007FD417 /* Reposts.m */; };
 		C3616FFD207CA765007FD417 /* Views.m in Sources */ = {isa = PBXBuildFile; fileRef = C3616FFC207CA765007FD417 /* Views.m */; };
-		C3617001207CA7B4007FD417 /* CopyHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C3617000207CA7B4007FD417 /* CopyHistory.m */; };
 		C3617005207CA824007FD417 /* Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = C3617004207CA824007FD417 /* Attachments.m */; };
 		C361700A207CA867007FD417 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3617009207CA867007FD417 /* Photo.m */; };
 		C361700E207CA947007FD417 /* PostType.m in Sources */ = {isa = PBXBuildFile; fileRef = C361700D207CA947007FD417 /* PostType.m */; };
@@ -909,8 +908,6 @@
 		C3616FF8207CA6C8007FD417 /* Reposts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reposts.m; sourceTree = "<group>"; };
 		C3616FFB207CA765007FD417 /* Views.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Views.h; sourceTree = "<group>"; };
 		C3616FFC207CA765007FD417 /* Views.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Views.m; sourceTree = "<group>"; };
-		C3616FFF207CA7B4007FD417 /* CopyHistory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CopyHistory.h; sourceTree = "<group>"; };
-		C3617000207CA7B4007FD417 /* CopyHistory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CopyHistory.m; sourceTree = "<group>"; };
 		C3617003207CA824007FD417 /* Attachments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Attachments.h; sourceTree = "<group>"; };
 		C3617004207CA824007FD417 /* Attachments.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Attachments.m; sourceTree = "<group>"; };
 		C3617008207CA867007FD417 /* Photo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
@@ -2508,7 +2505,6 @@
 				C361700B207CA93D007FD417 /* PostType */,
 				C3617006207CA859007FD417 /* Photo */,
 				C3617002207CA819007FD417 /* Attachments */,
-				C3616FFE207CA7A9007FD417 /* CopyHistory */,
 				C3616FFA207CA759007FD417 /* Views */,
 				C3616FF6207CA6BD007FD417 /* Reposts */,
 				C3616FF2207CA57F007FD417 /* PostSource */,
@@ -2571,15 +2567,6 @@
 				C3616FFC207CA765007FD417 /* Views.m */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		C3616FFE207CA7A9007FD417 /* CopyHistory */ = {
-			isa = PBXGroup;
-			children = (
-				C3616FFF207CA7B4007FD417 /* CopyHistory.h */,
-				C3617000207CA7B4007FD417 /* CopyHistory.m */,
-			);
-			path = CopyHistory;
 			sourceTree = "<group>";
 		};
 		C3617002207CA819007FD417 /* Attachments */ = {
@@ -3066,7 +3053,6 @@
 				C3616F4F207C95BA007FD417 /* TyphoonInjections.m in Sources */,
 				C3616F5D207C95BA007FD417 /* TyphoonTestUtils.m in Sources */,
 				C3616F51207C95BA007FD417 /* TyphoonInject.m in Sources */,
-				C3617001207CA7B4007FD417 /* CopyHistory.m in Sources */,
 				C3616E10207C957A007FD417 /* UIImage+NanoFrame.m in Sources */,
 				C3616F94207C95BA007FD417 /* TyphoonViewControllerNibResolver.m in Sources */,
 				C3616F7B207C95BA007FD417 /* TyphoonWeakComponentsPool.m in Sources */,
