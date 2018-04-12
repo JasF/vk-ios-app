@@ -33,6 +33,8 @@ class NewsHandlerProtocol:
             response = api.wall.get(access_token=storage.accessToken, offset=offset)
             l = response["items"]
             
+            print('items is: ' + str(l))
+            
             fromIds = [d['from_id'] for d in l]
             ownerIds = [d['owner_id'] for d in l]
             

@@ -8,15 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Photo.h"
+#import "Video.h"
 
 @import EasyMapping;
 
 typedef NS_ENUM(NSInteger, AttachmentTypes) {
     AttachmentUnknown,
-    AttachmentPhoto
+    AttachmentPhoto,
+    AttachmentVideo
 };
 
 @interface Attachments : NSObject <EKMappingProtocol>
 @property AttachmentTypes type;
 @property Photo *photo;
+@property Video *video;
 @end

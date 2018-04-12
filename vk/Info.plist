@@ -8,6 +8,7 @@
 		<string>VKCoreComponents</string>
 		<string>VKThemeAssembly</string>
 		<string>ScreensAssembly</string>
+		<string>NodesAssembly</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

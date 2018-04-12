@@ -30,8 +30,9 @@
 @property (strong, nonatomic) ASImageNode *optionsNode;
 
 @property (strong, nonatomic) ASDisplayNode *verticalLineNode;
-@property (strong, nonatomic) WallPostNode *historyNode;
+@property (strong, nonatomic) ASDisplayNode *historyNode;
 @property (assign, nonatomic) BOOL embedded;
+@property (strong, nonatomic) id<NodeFactory> nodeFactory;
 
 @end
 
@@ -51,17 +52,15 @@
 }
 
 - (instancetype)initWithPost:(WallPost *)post
+                 nodeFactory:(id<NodeFactory>)nodeFactory
+                    embedded:(NSNumber *)embedded
 {
-    return [self initWithPost:post
-                     embedded:NO];
-}
-
-- (instancetype)initWithPost:(WallPost *)post
-                    embedded:(BOOL)embedded
-{
+    NSCParameterAssert(post);
+    NSCParameterAssert(nodeFactory);
     self = [super init];
     if (self) {
-        _embedded = embedded;
+        _nodeFactory = nodeFactory;
+        _embedded = embedded.boolValue;
         _post = post;
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -129,8 +128,7 @@
         
         WallPost *history = _post.history.firstObject;
         if (history) {
-            _historyNode = [[WallPostNode alloc] initWithPost:history
-                                                     embedded:YES];
+            _historyNode = [_nodeFactory nodeForItem:history embedded:YES];
             _verticalLineNode = [ASDisplayNode new];
             _verticalLineNode.style.preferredSize = CGSizeMake(2, 50);
             _verticalLineNode.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.25f];

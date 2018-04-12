@@ -13,6 +13,7 @@
 #import "ScreensManagerImpl.h"
 #import "NewsViewController.h"
 #import "BaseNavigationController.h"
+#import "NodesAssembly.h"
 
 @implementation ScreensAssembly
 
@@ -74,23 +75,13 @@
 }
 
 - (UIViewController *)newsViewController {
-    
     return [TyphoonDefinition withClass:[NewsViewController class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(init)];
-                [definition injectProperty:@selector(pythonBridge) with:self.coreComponents.pythonBridge];
+                [definition useInitializer:@selector(initWithPythonBridge:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.coreComponents.pythonBridge];
+                    [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+                }];
             }];
-    
-    /*
-    return [TyphoonDefinition withFactory:[self storyboardWithName:@"NewsViewController"]
-                                 selector:@selector(instantiateViewControllerWithIdentifier:)
-                               parameters:^(TyphoonMethod *factoryMethod) {
-                                   [factoryMethod injectParameterWith:@"ViewController"];
-                               }
-                            configuration:^(TyphoonFactoryDefinition *definition) {
-                                [definition injectProperty:@selector(pythonBridge) with:self.coreComponents.pythonBridge];
-                            }];
-     */
 }
 
 - (BaseNavigationController *)mainNavigationController {
@@ -133,4 +124,5 @@
         }];
     }];
 }
+
 @end

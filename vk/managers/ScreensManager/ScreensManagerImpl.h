@@ -9,6 +9,7 @@
 #import "ScreensManager.h"
 #import "VKSdkManager.h"
 #import "PythonBridge.h"
+#import "NodeFactory.h"
 
 @class ScreensAssembly;
 @class MainViewController;

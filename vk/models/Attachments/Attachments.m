@@ -17,13 +17,17 @@
             return [EKMapper objectFromExternalRepresentation:value
                                                   withMapping:[Photo objectMapping]];
         }];
-        
+        [mapping mapKeyPath:@"video" toProperty:@"video" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
+            return [EKMapper objectFromExternalRepresentation:value
+                                                  withMapping:[Video objectMapping]];
+        }];
         [mapping mapKeyPath:@"type" toProperty:@"typeString"];
     }];
 }
 
 - (void)setTypeString:(NSString *)typeString {
-    NSDictionary *dictionary = @{@"type":@(AttachmentPhoto)};
+    NSDictionary *dictionary = @{@"photo":@(AttachmentPhoto),
+                                 @"video":@(AttachmentVideo)};
     _type = [dictionary[typeString] integerValue];
 }
 

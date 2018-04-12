@@ -19,16 +19,13 @@
 #import "LoadingNode.h"
 #import "AppDelegate.h"
 
-
-static const NSTimeInterval kWebResponseDelay = 1.0;
-static const BOOL kSimulateWebResponse = YES;
 static const NSInteger kBatchSize = 20;
 
-static const CGFloat kHorizontalSectionPadding = 10.0f;
-
-@interface NewsViewController ()
+@interface NewsViewController () <ASCollectionDelegate, ASCollectionDataSource>
 @property (strong, nonatomic) id<NewsHandlerProtocol> handler;
 @property (assign, nonatomic) BOOL updating;
+@property (strong, nonatomic) id<PythonBridge> pythonBridge;
+@property (strong, nonatomic) id<NodeFactory> nodeFactory;
 @end
 
 @implementation NewsViewController {
@@ -36,17 +33,18 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
     NSMutableArray *_data;
 }
 
-- (instancetype)init {
-    
+- (instancetype)initWithPythonBridge:(id<PythonBridge>)pythonBridge
+                         nodeFactory:(id<NodeFactory>)nodeFactory {
+    NSCParameterAssert(pythonBridge);
+    NSCParameterAssert(nodeFactory);
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     _collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:layout];
     
     self = [super initWithNode:_collectionNode];
     
     if (self) {
-        
-        _collectionNode.dataSource = self;
-        _collectionNode.delegate = self;
+        _pythonBridge = pythonBridge;
+        _nodeFactory = nodeFactory;
         _collectionNode.backgroundColor = [UIColor whiteColor];
         _collectionNode.accessibilityIdentifier = @"Cat deals list";
         
@@ -65,13 +63,14 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
         
         _data = [[NSMutableArray alloc] init];
         self.title = @"VK Wall";
+        _collectionNode.dataSource = self;
+        _collectionNode.delegate = self;
     }
     
     return self;
 }
 
 - (void)viewDidLoad {
-    _pythonBridge = [AppDelegate shared].pythonBridge;
     NSCParameterAssert(_pythonBridge);
     [super viewDidLoad];
     _collectionNode.leadingScreensForBatching = 2;
@@ -140,7 +139,8 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
 {
     return ^{
         WallPost *post = _data[indexPath.row];
-        return [[WallPostNode alloc] initWithPost:post];
+        ASCellNode *node = (ASCellNode *)[_nodeFactory nodeForItem:post];
+        return node;
     };
 }
 
@@ -211,19 +211,6 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
 }
 
 #pragma mark - Private
-- (void)getWall {
-    
-    self.updating = YES;
-    [self getWall:^(NSArray *posts) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            self.updating = NO;
-            NSLog(@"\n\n\n$$$$$ TABLE VIEW RELOADED $$$$$\n\n\n");
-        });
-    }
-           offset:0];
-}
-
 - (void)getWall:(void(^)(NSArray *posts))completion
          offset:(NSInteger)offset {
     NSDictionary *wallData = [_handler getWall:@(offset)];
@@ -240,7 +227,6 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
         }
         NSDictionary *response = wallData[@"response"];
         NSArray *users = wallData[@"users"];
-        //NSNumber *count = wallData[@"count"];
         NSArray *items = response[@"items"];
         if (![items isKindOfClass:[NSArray class]]) {
             items = @[];
@@ -276,7 +262,6 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
             }
         });
     });
-    
 }
 
 @end

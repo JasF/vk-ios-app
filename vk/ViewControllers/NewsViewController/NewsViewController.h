@@ -8,6 +8,7 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "PythonBridge.h"
+#import "NodeFactory.h"
 
 @protocol NewsHandlerProtocol <NSObject>
 - (void)menuTapped;
@@ -15,5 +16,6 @@
 @end
 
 @interface NewsViewController : ASViewController
-@property (strong, nonatomic) id<PythonBridge> pythonBridge;
+- (instancetype)initWithPythonBridge:(id<PythonBridge>)pythonBridge
+                         nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

@@ -207,6 +207,9 @@
 		C3617005207CA824007FD417 /* Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = C3617004207CA824007FD417 /* Attachments.m */; };
 		C361700A207CA867007FD417 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3617009207CA867007FD417 /* Photo.m */; };
 		C361700E207CA947007FD417 /* PostType.m in Sources */ = {isa = PBXBuildFile; fileRef = C361700D207CA947007FD417 /* PostType.m */; };
+		C3954CC5207F67F60010FA6C /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CC4207F67F60010FA6C /* Video.m */; };
+		C3954CCD207F6CA10010FA6C /* NodeFactoryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CCC207F6CA10010FA6C /* NodeFactoryImpl.m */; };
+		C3954CD1207F6DC10010FA6C /* NodesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CD0207F6DC10010FA6C /* NodesAssembly.m */; };
 		C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */; };
 		C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BB207DD91C00418B02 /* MainViewController.mm */; };
 		C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5BC207DD91C00418B02 /* Main.storyboard */; };
@@ -914,6 +917,13 @@
 		C3617009207CA867007FD417 /* Photo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		C361700C207CA947007FD417 /* PostType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostType.h; sourceTree = "<group>"; };
 		C361700D207CA947007FD417 /* PostType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostType.m; sourceTree = "<group>"; };
+		C3954CC3207F67F60010FA6C /* Video.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		C3954CC4207F67F60010FA6C /* Video.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
+		C3954CCB207F6CA10010FA6C /* NodeFactoryImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodeFactoryImpl.h; sourceTree = "<group>"; };
+		C3954CCC207F6CA10010FA6C /* NodeFactoryImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NodeFactoryImpl.m; sourceTree = "<group>"; };
+		C3954CCE207F6CA90010FA6C /* NodeFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodeFactory.h; sourceTree = "<group>"; };
+		C3954CCF207F6DC10010FA6C /* NodesAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodesAssembly.h; sourceTree = "<group>"; };
+		C3954CD0207F6DC10010FA6C /* NodesAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NodesAssembly.m; sourceTree = "<group>"; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -1008,6 +1018,7 @@
 		3EEA4EE61BECC4A1008A7F35 /* vk */ = {
 			isa = PBXGroup;
 			children = (
+				C3954CC6207F6C790010FA6C /* factories */,
 				C3DAE5F2207DFDE600418B02 /* nodes */,
 				C3DAE5B5207DD8E300418B02 /* ViewControllers */,
 				C3616FE5207CA124007FD417 /* models */,
@@ -1562,14 +1573,16 @@
 		C3616D5C207C94CB007FD417 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				C3616D61207C94CB007FD417 /* VKThemeAssembly.h */,
 				C3616D5D207C94CB007FD417 /* VKThemeAssembly.m */,
+				C3616D64207C94CB007FD417 /* VKApplicationAssembly.h */,
 				C3616D5E207C94CB007FD417 /* VKApplicationAssembly.m */,
+				C3616D63207C94CB007FD417 /* ScreensAssembly.h */,
 				C3616D5F207C94CB007FD417 /* ScreensAssembly.m */,
 				C3616D60207C94CB007FD417 /* VKCoreComponents.h */,
-				C3616D61207C94CB007FD417 /* VKThemeAssembly.h */,
 				C3616D62207C94CB007FD417 /* VKCoreComponents.m */,
-				C3616D63207C94CB007FD417 /* ScreensAssembly.h */,
-				C3616D64207C94CB007FD417 /* VKApplicationAssembly.h */,
+				C3954CCF207F6DC10010FA6C /* NodesAssembly.h */,
+				C3954CD0207F6DC10010FA6C /* NodesAssembly.m */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -2501,6 +2514,7 @@
 		C3616FE5207CA124007FD417 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C3954CC2207F67E00010FA6C /* Video */,
 				C35BF279207E2A1C000F2773 /* User */,
 				C361700B207CA93D007FD417 /* PostType */,
 				C3617006207CA859007FD417 /* Photo */,
@@ -2594,6 +2608,33 @@
 				C361700D207CA947007FD417 /* PostType.m */,
 			);
 			path = PostType;
+			sourceTree = "<group>";
+		};
+		C3954CC2207F67E00010FA6C /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CC3207F67F60010FA6C /* Video.h */,
+				C3954CC4207F67F60010FA6C /* Video.m */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		C3954CC6207F6C790010FA6C /* factories */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CC7207F6C7F0010FA6C /* NodeFactory */,
+			);
+			path = factories;
+			sourceTree = "<group>";
+		};
+		C3954CC7207F6C7F0010FA6C /* NodeFactory */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CCB207F6CA10010FA6C /* NodeFactoryImpl.h */,
+				C3954CCC207F6CA10010FA6C /* NodeFactoryImpl.m */,
+				C3954CCE207F6CA90010FA6C /* NodeFactory.h */,
+			);
+			path = NodeFactory;
 			sourceTree = "<group>";
 		};
 		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {
@@ -2909,6 +2950,7 @@
 				C361700E207CA947007FD417 /* PostType.m in Sources */,
 				C3616F3E207C95BA007FD417 /* TyphoonDefinition.m in Sources */,
 				C3616F8E207C95BA007FD417 /* TyphoonNSURLTypeConverter.m in Sources */,
+				C3954CCD207F6CA10010FA6C /* NodeFactoryImpl.m in Sources */,
 				C35BF27C207E2A26000F2773 /* User.m in Sources */,
 				C3DAE5EA207DDF5400418B02 /* BaseNavigationController.mm in Sources */,
 				C3616D6A207C94CB007FD417 /* EXTConcreteProtocol.m in Sources */,
@@ -2953,6 +2995,7 @@
 				C3616F44207C95BA007FD417 /* TyphoonBlockDefinitionController.m in Sources */,
 				C3616FED207CA2D8007FD417 /* Comments.m in Sources */,
 				C3616E0F207C957A007FD417 /* UIScreen+NanoFrame.m in Sources */,
+				C3954CC5207F67F60010FA6C /* Video.m in Sources */,
 				C3616F82207C95BA007FD417 /* TyphoonPropertyStyleConfiguration.m in Sources */,
 				C3616FA3207C95BA007FD417 /* TyphoonStoryboardDefinition.m in Sources */,
 				C3616F76207C95BA007FD417 /* TyphoonRuntimeArguments.m in Sources */,
@@ -3029,6 +3072,7 @@
 				C3DAE5E0207DDF3B00418B02 /* MaskingView.m in Sources */,
 				C3616F61207C95BA007FD417 /* TyphoonAssemblyAccessor.m in Sources */,
 				3EEA4F381BECE775008A7F35 /* CommentsNode.m in Sources */,
+				C3954CD1207F6DC10010FA6C /* NodesAssembly.m in Sources */,
 				C3616F71207C95BA007FD417 /* NSMethodSignature+TCFUnwrapValues.m in Sources */,
 				C3616F42207C95BA007FD417 /* TyphoonInjectionDefinition.m in Sources */,
 				3EEA4F091BECC855008A7F35 /* PostNode.m in Sources */,

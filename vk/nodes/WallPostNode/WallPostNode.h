@@ -7,12 +7,12 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "NodeFactory.h"
 
 @class WallPost;
 
 @interface WallPostNode : ASCellNode
-
-- (instancetype)initWithPost:(WallPost *)post;
-- (instancetype)initWithPost:(WallPost *)post embedded:(BOOL)embedded;
-
+- (instancetype)initWithPost:(WallPost *)post
+                 nodeFactory:(id<NodeFactory>)nodeFactory
+                    embedded:(NSNumber *)embedded;
 @end
