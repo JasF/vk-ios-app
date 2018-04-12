@@ -71,8 +71,7 @@
                                       alignItems:ASStackLayoutAlignItemsStart
                                       children:specs];
     contentSpec.style.flexShrink = 1.0;
-    
-    return [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:contentSpec];
+    return contentSpec;
 }
 
 #pragma mark - ASNetworkImageNodeDelegate methods.

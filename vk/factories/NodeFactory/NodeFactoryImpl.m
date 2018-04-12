@@ -46,6 +46,16 @@
             NSCAssert(false, @"Unknown object type: %@", array.firstObject);
         }
     }
+    else if ([item isKindOfClass:[Attachments class]]) {
+        Attachments *attachment = (Attachments *)item;
+        if (attachment.type == AttachmentVideo) {
+            return [_assembly postVideoNodeWithVideo:attachment.video];
+        }
+        else {
+            return nil;
+            NSCAssert(false, @"Unknown attachment type: %@", @(attachment.type));
+        }
+    }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;
 }

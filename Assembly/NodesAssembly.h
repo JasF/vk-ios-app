@@ -10,6 +10,7 @@
 #import "TyphoonAssembly.h"
 #import "ASDisplayNode.h"
 #import "NodeFactory.h"
+#import "Video.h"
 
 @class WallPostNode;
 
@@ -17,4 +18,5 @@
 - (id<NodeFactory>)nodeFactory;
 - (ASDisplayNode *)wallPostNodeWithData:(id)data embedded:(NSNumber *)embedded;
 - (ASDisplayNode *)postImagesNodeWithAttachments:(NSArray *)attachments;
+- (ASDisplayNode *)postVideoNodeWithVideo:(Video *)video;
 @end

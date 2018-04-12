@@ -24,7 +24,6 @@
 @property (strong, nonatomic) ASTextNode *postNode;
 @property (strong, nonatomic) ASImageNode *viaNode;
 @property (strong, nonatomic) ASNetworkImageNode *avatarNode;
-@property (strong, nonatomic) ASDisplayNode *mediaNode;
 @property (strong, nonatomic) LikesNode *likesNode;
 @property (strong, nonatomic) CommentsNode *commentsNode;
 @property (strong, nonatomic) ASImageNode *optionsNode;
@@ -33,6 +32,7 @@
 @property (strong, nonatomic) ASDisplayNode *historyNode;
 @property (assign, nonatomic) BOOL embedded;
 @property (strong, nonatomic) id<NodeFactory> nodeFactory;
+@property (strong, nonatomic) NSMutableArray *mediaNodes;
 
 @end
 
@@ -43,14 +43,6 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithIndexPath:(NSIndexPath *)indexPath {
-    self = [super init];
-    if (self) {
-        _indexPath = indexPath;
-    }
-    return self;
-}
-
 - (instancetype)initWithPost:(WallPost *)post
                  nodeFactory:(id<NodeFactory>)nodeFactory
                     embedded:(NSNumber *)embedded
@@ -59,6 +51,7 @@
     NSCParameterAssert(nodeFactory);
     self = [super init];
     if (self) {
+        _mediaNodes = [NSMutableArray new];
         _nodeFactory = nodeFactory;
         _embedded = embedded.boolValue;
         _post = post;
@@ -138,8 +131,16 @@
         
         // Media
         if (_post.photoAttachments.count) {
-            _mediaNode = [_nodeFactory nodeForItem:_post.photoAttachments];
-            [self addSubnode:_mediaNode];
+            id node = [_nodeFactory nodeForItem:_post.photoAttachments];
+            [self addSubnode:node];
+            [_mediaNodes addObject:node];
+        }
+        for (Attachments *attachment in _post.attachments) {
+            id node = [_nodeFactory nodeForItem:attachment];
+            if (node) {
+                [self addSubnode:node];
+                [_mediaNodes addObject:node];
+            }
         }
         /*
         Attachments *attachment = _post.attachments.firstObject;
@@ -292,8 +293,11 @@
     
     NSMutableArray *mainStackContent = [[NSMutableArray alloc] init];
     
-    if (_mediaNode) {
-        [mainStackContent addObject:_mediaNode];
+    if (_mediaNodes.count == 1) {
+        [mainStackContent addObject:_mediaNodes.firstObject];
+    }
+    else {
+        
     }
     
     if (_verticalLineNode && _historyNode) {

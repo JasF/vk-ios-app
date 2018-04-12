@@ -211,6 +211,7 @@
 		C3954CCD207F6CA10010FA6C /* NodeFactoryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CCC207F6CA10010FA6C /* NodeFactoryImpl.m */; };
 		C3954CD1207F6DC10010FA6C /* NodesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CD0207F6DC10010FA6C /* NodesAssembly.m */; };
 		C3954CD5207F77620010FA6C /* PostImagesNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CD4207F77620010FA6C /* PostImagesNode.m */; };
+		C3954CD9207F7E5E0010FA6C /* PostVideoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CD8207F7E5E0010FA6C /* PostVideoNode.m */; };
 		C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */; };
 		C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BB207DD91C00418B02 /* MainViewController.mm */; };
 		C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5BC207DD91C00418B02 /* Main.storyboard */; };
@@ -927,6 +928,8 @@
 		C3954CD0207F6DC10010FA6C /* NodesAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NodesAssembly.m; sourceTree = "<group>"; };
 		C3954CD3207F77620010FA6C /* PostImagesNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostImagesNode.h; sourceTree = "<group>"; };
 		C3954CD4207F77620010FA6C /* PostImagesNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostImagesNode.m; sourceTree = "<group>"; };
+		C3954CD7207F7E5E0010FA6C /* PostVideoNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostVideoNode.h; sourceTree = "<group>"; };
+		C3954CD8207F7E5E0010FA6C /* PostVideoNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostVideoNode.m; sourceTree = "<group>"; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -2649,6 +2652,15 @@
 			path = PostImagesNode;
 			sourceTree = "<group>";
 		};
+		C3954CD6207F7E4B0010FA6C /* PostVideoNode */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CD7207F7E5E0010FA6C /* PostVideoNode.h */,
+				C3954CD8207F7E5E0010FA6C /* PostVideoNode.m */,
+			);
+			path = PostVideoNode;
+			sourceTree = "<group>";
+		};
 		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2744,6 +2756,7 @@
 		C3DAE5F2207DFDE600418B02 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C3954CD6207F7E4B0010FA6C /* PostVideoNode */,
 				C3954CD2207F77460010FA6C /* PostImagesNode */,
 				C3DAE5F3207DFDF200418B02 /* WallPostNode */,
 			);
@@ -3003,6 +3016,7 @@
 				C3616FA2207C95BA007FD417 /* NSLayoutConstraint+TyphoonOutletTransfer.m in Sources */,
 				C3616F92207C95BA007FD417 /* TyphoonColorConversionUtils.m in Sources */,
 				C3616F65207C95BA007FD417 /* TyphoonAssemblyBuilder+PlistProcessor.m in Sources */,
+				C3954CD9207F7E5E0010FA6C /* PostVideoNode.m in Sources */,
 				C3616F3F207C95BA007FD417 /* TyphoonDefinition+InstanceBuilder.m in Sources */,
 				C3DAE5E9207DDF5400418B02 /* MenuViewController.mm in Sources */,
 				C3616F44207C95BA007FD417 /* TyphoonBlockDefinitionController.m in Sources */,

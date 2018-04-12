@@ -10,6 +10,7 @@
 #import "NodeFactoryImpl.h"
 #import "WallPostNode.h"
 #import "PostImagesNode.h"
+#import "PostVideoNode.h"
 
 @implementation NodesAssembly
 
@@ -41,6 +42,16 @@
                 [definition useInitializer:@selector(initWithAttachments:) parameters:^(TyphoonMethod *initializer)
                  {
                      [initializer injectParameterWith:attachments];
+                 }];
+            }];
+}
+
+- (ASDisplayNode *)postVideoNodeWithVideo:(Video *)video {
+    return [TyphoonDefinition withClass:[PostVideoNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithVideo:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:video];
                  }];
             }];
 }
