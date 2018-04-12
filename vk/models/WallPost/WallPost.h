@@ -18,20 +18,21 @@
 @import EasyMapping;
 
 @interface WallPost : NSObject <EKMappingProtocol>
-@property BOOL canDelete;
-@property BOOL canPin;
+@property BOOL can_delete;
+@property BOOL can_pin;
 @property NSInteger date;
-@property NSInteger fromId;
+@property NSInteger from_id;
 @property NSInteger identifier;
 @property Comments *comments;
 @property NSArray<WallPost *> *history;
 @property Likes *likes;
-@property NSInteger ownerId;
+@property NSInteger owner_id;
 @property PostSource *postSource;
 @property PostType *postType;
 @property Reposts *reposts;
 @property NSString *text;
 @property Views *views;
+@property NSArray<Attachments *> *photoAttachments;
 @property NSArray<Attachments *> *attachments;
 
 

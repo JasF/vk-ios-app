@@ -8,15 +8,15 @@
 
 #import "WallPost.h"
 
-@implementation WallPost
+@implementation WallPost {
+    NSArray<Attachments *> *_attachments;
+}
 
 +(EKObjectMapping *)objectMapping
 {
     return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
-        [mapping mapPropertiesFromArray:@[@"date"]];
+        [mapping mapPropertiesFromArray:@[@"date", @"text", @"can_delete", @"can_pin", @"from_id", @"owner_id"]];
         
-        [mapping mapKeyPath:@"can_delete" toProperty:@"canDelete"];
-        [mapping mapKeyPath:@"can_pin" toProperty:@"canPin"];
         [mapping mapKeyPath:@"comments" toProperty:@"comments" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
             Comments *comments = [EKMapper objectFromExternalRepresentation:value
                                                                 withMapping:[Comments objectMapping]];
@@ -34,7 +34,6 @@
                                                           withMapping:[Attachments objectMapping]];
         }];
         
-        [mapping mapKeyPath:@"from_id" toProperty:@"fromId"];
         [mapping mapKeyPath:@"id" toProperty:@"identifier"];
         
         [mapping mapKeyPath:@"likes" toProperty:@"likes" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
@@ -42,8 +41,7 @@
                                                           withMapping:[Likes objectMapping]];
             return likes;
         }];
-        
-        [mapping mapKeyPath:@"owner_id" toProperty:@"ownerId"];
+    
         
         [mapping mapKeyPath:@"post_source" toProperty:@"postSource" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
             PostSource *postSource = [EKMapper objectFromExternalRepresentation:value
@@ -63,14 +61,35 @@
             return reposts;
         }];
         
-        [mapping mapKeyPath:@"text" toProperty:@"text"];
-        
         [mapping mapKeyPath:@"views" toProperty:@"views" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
             Views *views = [EKMapper objectFromExternalRepresentation:value
                                                           withMapping:[Views objectMapping]];
             return views;
         }];
     }];
+}
+
+- (NSArray<Attachments *> *)attachments {
+    return _attachments;
+}
+
+- (void)setAttachments:(NSArray<Attachments *> *)attachments {
+    NSMutableArray *photos = [NSMutableArray new];
+    for (Attachments *attachment in attachments) {
+        if (attachment.type == AttachmentPhoto) {
+            [photos addObject:attachment];
+        }
+    }
+    
+    if (photos.count) {
+        NSMutableArray *mutableArray = [attachments mutableCopy];
+        for (Attachments *attachment in photos) {
+            [mutableArray removeObject:attachment];
+        }
+        attachments = [mutableArray copy];
+        [self setPhotoAttachments:[photos copy]];
+    }
+    _attachments = attachments;
 }
 
 @end

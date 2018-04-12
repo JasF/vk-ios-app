@@ -244,7 +244,7 @@ static const NSInteger kBatchSize = 20;
         }
         
         void (^updatePostBlock)(WallPost *post) = ^void(WallPost *post) {
-            User *user = usersDictionary[@(ABS(post.fromId))];
+            User *user = usersDictionary[@(ABS(post.from_id))];
             if (user) {
                 post.firstName = [user nameString];
                 post.avatarURLString = user.photo_100;

@@ -210,6 +210,7 @@
 		C3954CC5207F67F60010FA6C /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CC4207F67F60010FA6C /* Video.m */; };
 		C3954CCD207F6CA10010FA6C /* NodeFactoryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CCC207F6CA10010FA6C /* NodeFactoryImpl.m */; };
 		C3954CD1207F6DC10010FA6C /* NodesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CD0207F6DC10010FA6C /* NodesAssembly.m */; };
+		C3954CD5207F77620010FA6C /* PostImagesNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CD4207F77620010FA6C /* PostImagesNode.m */; };
 		C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */; };
 		C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BB207DD91C00418B02 /* MainViewController.mm */; };
 		C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5BC207DD91C00418B02 /* Main.storyboard */; };
@@ -924,6 +925,8 @@
 		C3954CCE207F6CA90010FA6C /* NodeFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodeFactory.h; sourceTree = "<group>"; };
 		C3954CCF207F6DC10010FA6C /* NodesAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodesAssembly.h; sourceTree = "<group>"; };
 		C3954CD0207F6DC10010FA6C /* NodesAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NodesAssembly.m; sourceTree = "<group>"; };
+		C3954CD3207F77620010FA6C /* PostImagesNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostImagesNode.h; sourceTree = "<group>"; };
+		C3954CD4207F77620010FA6C /* PostImagesNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostImagesNode.m; sourceTree = "<group>"; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -2637,6 +2640,15 @@
 			path = NodeFactory;
 			sourceTree = "<group>";
 		};
+		C3954CD2207F77460010FA6C /* PostImagesNode */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CD3207F77620010FA6C /* PostImagesNode.h */,
+				C3954CD4207F77620010FA6C /* PostImagesNode.m */,
+			);
+			path = PostImagesNode;
+			sourceTree = "<group>";
+		};
 		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2732,6 +2744,7 @@
 		C3DAE5F2207DFDE600418B02 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C3954CD2207F77460010FA6C /* PostImagesNode */,
 				C3DAE5F3207DFDF200418B02 /* WallPostNode */,
 			);
 			path = nodes;
@@ -3005,6 +3018,7 @@
 				C3616F99207C95BA007FD417 /* TyphoonStoryboard.m in Sources */,
 				C3616F73207C95BA007FD417 /* TyphoonAssemblyDefinitionBuilder.m in Sources */,
 				C3616F50207C95BA007FD417 /* TyphoonInjectionByComponentFactory.m in Sources */,
+				C3954CD5207F77620010FA6C /* PostImagesNode.m in Sources */,
 				C3616F6F207C95BA007FD417 /* TyphoonCallStack.m in Sources */,
 				C3616F62207C95BA007FD417 /* TyphoonComponentFactory+InstanceBuilder.m in Sources */,
 				C35BF282207E3A09000F2773 /* BlurbNode.m in Sources */,

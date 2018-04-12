@@ -9,6 +9,7 @@
 #import "NodesAssembly.h"
 #import "NodeFactoryImpl.h"
 #import "WallPostNode.h"
+#import "PostImagesNode.h"
 
 @implementation NodesAssembly
 
@@ -30,6 +31,16 @@
                      [initializer injectParameterWith:data];
                      [initializer injectParameterWith:self.nodeFactory];
                      [initializer injectParameterWith:embedded];
+                 }];
+            }];
+}
+
+- (ASDisplayNode *)postImagesNodeWithAttachments:(NSArray *)attachments {
+    return [TyphoonDefinition withClass:[PostImagesNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithAttachments:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:attachments];
                  }];
             }];
 }

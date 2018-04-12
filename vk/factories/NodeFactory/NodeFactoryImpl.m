@@ -31,6 +31,21 @@
     if ([item isKindOfClass:[WallPost class]]) {
         return [_assembly wallPostNodeWithData:item embedded:@(embedded)];
     }
+    else if ([item isKindOfClass:[NSArray class]]) {
+        NSArray *array = (NSArray *)item;
+        if ([array.firstObject isKindOfClass:[Attachments class]]) {
+            Attachments *attachment = (Attachments *)array.firstObject;
+            if (attachment.type == AttachmentPhoto) {
+                return [_assembly postImagesNodeWithAttachments:array];
+            }
+            else {
+                NSCAssert(false, @"Unknown attachment type: %@", @(attachment.type));
+            }
+        }
+        else {
+            NSCAssert(false, @"Unknown object type: %@", array.firstObject);
+        }
+    }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;
 }

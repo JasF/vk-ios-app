@@ -16,4 +16,5 @@
 @interface NodesAssembly : TyphoonAssembly
 - (id<NodeFactory>)nodeFactory;
 - (ASDisplayNode *)wallPostNodeWithData:(id)data embedded:(NSNumber *)embedded;
+- (ASDisplayNode *)postImagesNodeWithAttachments:(NSArray *)attachments;
 @end

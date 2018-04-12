@@ -24,7 +24,7 @@
 @property (strong, nonatomic) ASTextNode *postNode;
 @property (strong, nonatomic) ASImageNode *viaNode;
 @property (strong, nonatomic) ASNetworkImageNode *avatarNode;
-@property (strong, nonatomic) ASNetworkImageNode *mediaNode;
+@property (strong, nonatomic) ASDisplayNode *mediaNode;
 @property (strong, nonatomic) LikesNode *likesNode;
 @property (strong, nonatomic) CommentsNode *commentsNode;
 @property (strong, nonatomic) ASImageNode *optionsNode;
@@ -137,6 +137,11 @@
         }
         
         // Media
+        if (_post.photoAttachments.count) {
+            _mediaNode = [_nodeFactory nodeForItem:_post.photoAttachments];
+            [self addSubnode:_mediaNode];
+        }
+        /*
         Attachments *attachment = _post.attachments.firstObject;
         if (![attachment.photo.photo604 isEqualToString:@""]) {
             
@@ -163,6 +168,7 @@
             };
             [self addSubnode:_mediaNode];
         }
+         */
         
         // User pic
         _avatarNode = [[ASNetworkImageNode alloc] init];
@@ -285,27 +291,10 @@
     }
     
     NSMutableArray *mainStackContent = [[NSMutableArray alloc] init];
-    /*
-    [mainStackContent addObject:nameStack];
-    [mainStackContent addObject:_postNode];
-    */
     
-    Attachments *attachment = _post.attachments.firstObject;
-    if (![attachment.photo.photo604 isEqualToString:@""]) {
-        
-        // Only add the media node if an image is present
-        if (_mediaNode.image != nil) {
-            ASRatioLayoutSpec *imagePlace =
-            [ASRatioLayoutSpec
-             ratioLayoutSpecWithRatio:0.5
-             child:_mediaNode];
-            imagePlace.style.spacingAfter = 3.0;
-            imagePlace.style.spacingBefore = 3.0;
-            
-            [mainStackContent addObject:imagePlace];
-        }
+    if (_mediaNode) {
+        [mainStackContent addObject:_mediaNode];
     }
-    //[mainStackContent addObject:controlsStack];
     
     if (_verticalLineNode && _historyNode) {
         ASInsetLayoutSpec *verticalLineSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_verticalLineNode];

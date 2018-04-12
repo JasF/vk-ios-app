@@ -33,7 +33,7 @@ class NewsHandlerProtocol:
             response = api.wall.get(access_token=storage.accessToken, offset=offset)
             l = response["items"]
             
-            print('items is: ' + str(l))
+            print('item is: ' + str(l[4]))
             
             fromIds = [d['from_id'] for d in l]
             ownerIds = [d['owner_id'] for d in l]
@@ -79,8 +79,6 @@ class NewsHandlerProtocol:
                 freshGroupsData = api.groups.getById(group_ids=idsString)
                 users.update(freshGroupsData)
                 usersData.extend(freshGroupsData)
-            
-            print('$$$$$ \n\nusersData:  ' + str(usersData) + ' \n\n $$$$$ \n\n' )
                 
         except Exception as e:
             print('wall.get exception: ' + str(e))
