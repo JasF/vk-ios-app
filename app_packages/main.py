@@ -32,22 +32,54 @@ class NewsHandlerProtocol:
         try:
             response = api.wall.get(access_token=storage.accessToken, offset=offset)
             l = response["items"]
-            print('first item is: ' + str(l[0]))
-            print('third item is: ' + str(l[2]))
+            
             fromIds = [d['from_id'] for d in l]
             ownerIds = [d['owner_id'] for d in l]
+            
+            def getId(object, key):
+                if isinstance(object, list):
+                    for d in object:
+                        return d.get(key)
+                return None
+            
+            historyFromIds = [getId(d.get('copy_history'), 'owner_id') for d in l if isinstance(getId(d.get('copy_history'), 'owner_id'), int)]
+            historyOwnerIds = [getId(d.get('copy_history'), 'from_id') for d in l if isinstance(getId(d.get('copy_history'), 'from_id'), int)]
+            
             ids = set()
             ids |= set(fromIds)
             ids |= set(ownerIds)
+            ids |= set(historyFromIds)
+            ids |= set(historyOwnerIds)
+            
+            groupIds = set([id for id in ids if id < 0])
+            ids -= groupIds
+            groupIds = set([abs(id) for id in groupIds])
+            
             usersData = users.getShortUsersByIds(ids)
-            #print('localdata: ' + str(usersData))
+            groupsData = users.getShortUsersByIds(groupIds)
+            
             fetchedIds = set([d['id'] for d in usersData])
             ids = ids - fetchedIds
+            
+            fetchedGroupIds = set([d['id'] for d in groupsData])
+            groupIds = groupIds - fetchedGroupIds
+            
+            usersData.extend(groupsData)
+            
             if len(ids):
                 idsString = ', '.join(str(e) for e in ids)
                 freshUsersData = api.users.get(user_ids=idsString, fields='photo_100')
                 users.update(freshUsersData)
                 usersData.extend(freshUsersData)
+            
+            if len(groupIds):
+                idsString = ', '.join(str(e) for e in groupIds)
+                freshGroupsData = api.groups.getById(group_ids=idsString)
+                users.update(freshGroupsData)
+                usersData.extend(freshGroupsData)
+            
+            print('$$$$$ \n\nusersData:  ' + str(usersData) + ' \n\n $$$$$ \n\n' )
+                
         except Exception as e:
             print('wall.get exception: ' + str(e))
         finally:

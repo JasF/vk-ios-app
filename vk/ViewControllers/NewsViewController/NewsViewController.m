@@ -256,19 +256,19 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
         for (User *user in usersObjects) {
             [usersDictionary setObject:user forKey:@(user.identifier)];
         }
-        for (WallPost *post in posts) {
-            User *user = usersDictionary[@(post.fromId)];
+        
+        void (^updatePostBlock)(WallPost *post) = ^void(WallPost *post) {
+            User *user = usersDictionary[@(ABS(post.fromId))];
             if (user) {
-                post.firstName = user.first_name;
-                post.lastName = user.last_name;
+                post.firstName = [user nameString];
                 post.avatarURLString = user.photo_100;
             }
-            /*
-            user = usersDictionary[@(post.ownerId)];
-            if (user) {
-             
+        };
+        for (WallPost *post in posts) {
+            updatePostBlock(post);
+            for (WallPost *history in post.history) {
+                updatePostBlock(history);
             }
-            */
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {

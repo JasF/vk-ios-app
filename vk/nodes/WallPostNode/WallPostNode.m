@@ -68,13 +68,13 @@
         
         // Name node
         _nameNode = [[ASTextNode alloc] init];
-        _nameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.firstName ?: @"TBD" attributes:[TextStyles nameStyle]];
+        _nameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.firstName ?: @"" attributes:[TextStyles nameStyle]];
         _nameNode.maximumNumberOfLines = 1;
         [self addSubnode:_nameNode];
         
         // Username node
         _usernameNode = [[ASTextNode alloc] init];
-        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.lastName ?: @"TBD" attributes:[TextStyles usernameStyle]];
+        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:[TextStyles usernameStyle]];
         _usernameNode.style.flexShrink = 1.0; //if name and username don't fit to cell width, allow username shrink
         _usernameNode.truncationMode = NSLineBreakByTruncatingTail;
         _usernameNode.maximumNumberOfLines = 1;
