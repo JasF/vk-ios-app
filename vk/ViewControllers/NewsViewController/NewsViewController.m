@@ -28,7 +28,6 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
 
 @interface NewsViewController ()
 @property (strong, nonatomic) id<NewsHandlerProtocol> handler;
-@property (nonatomic, strong) ASTableNode *tableNode;
 @property (assign, nonatomic) BOOL updating;
 @end
 
@@ -37,9 +36,7 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
     NSMutableArray *_data;
 }
 
-//- (instancetype)initWithCoder:(NSCoder *)aDecoder {
 - (instancetype)init {
-    //_tableNode = [[ASTableNode alloc] initWithStyle:UITableViewStylePlain];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     _collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:layout];
@@ -67,12 +64,6 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
         [_collectionNode registerSupplementaryNodeOfKind:UICollectionElementKindSectionFooter];
         
         _data = [[NSMutableArray alloc] init];
-        
-        /*
-        _tableNode.delegate = self;
-        _tableNode.dataSource = self;
-        _tableNode.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        */
         self.title = @"VK Wall";
     }
     
@@ -84,7 +75,6 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
     NSCParameterAssert(_pythonBridge);
     [super viewDidLoad];
     _collectionNode.leadingScreensForBatching = 2;
-    //self.tableNode.view.separatorStyle = UITableViewCellSeparatorStyleNone;
     _handler = [_pythonBridge handlerWithProtocol:@protocol(NewsHandlerProtocol)];
     self.updating = YES;
     [self fetchMorePostsWithCompletion:^(BOOL finished) {
@@ -96,32 +86,11 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
     [button setImage:[UIImage imageNamed:@"menuIcon.phg"] forState:UIControlStateNormal];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     [self.navigationItem setLeftBarButtonItem:backButton];
-    
-    // Do any additional setup after loading the view.
 }
 
 #pragma mark - Data Model
 - (void)fetchMorePostsWithCompletion:(void (^)(BOOL))completion
 {
-    /*
-    if (kSimulateWebResponse) {
-        __weak typeof(self) weakSelf = self;
-        void(^mockWebService)() = ^{
-            NSLog(@"ViewController \"got data from a web service\"");
-            ViewController *strongSelf = weakSelf;
-            if (strongSelf != nil)
-            {
-                [strongSelf appendMoreItems:kBatchSize completion:completion];
-            }
-            else {
-                NSLog(@"ViewController is nil - won't update collection");
-            }
-        };
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kWebResponseDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), mockWebService);
-    } else {
-    }
-    */
     [self appendMoreItems:kBatchSize completion:completion];
 }
 
@@ -135,9 +104,6 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
         } completion:completion];
     }
            offset:_data.count];
-    /*
-    NSArray *newData = [self getMoreData:numberOfNewItems];
-     */
 }
 
 - (NSArray *)indexPathsForObjects:(NSArray *)data
@@ -193,9 +159,14 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
     return nil;
 }
 
-/*
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    ASSizeRange result = ASSizeRangeUnconstrained;
+    result.min.width = self.view.width;
+    result.max.width = self.view.width;
+    return result;
+    /*
     CGFloat collectionViewWidth = CGRectGetWidth(self.view.frame) - 2 * kHorizontalSectionPadding;
     CGFloat oneItemWidth = self.view.width;
     NSInteger numColumns = floor(collectionViewWidth / oneItemWidth);
@@ -206,8 +177,10 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
     CGFloat itemWidth = ((collectionViewWidth - totalSpaceBetweenColumns) / numColumns);
     CGSize itemSize = CGSizeMake(itemWidth, 250);
     return ASSizeRangeMake(itemSize, itemSize);
+     */
+    
 }
-*/
+
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
 {
     return [_data count];
