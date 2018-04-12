@@ -33,19 +33,21 @@ class NewsHandlerProtocol:
             response = api.wall.get(access_token=storage.accessToken, offset=offset)
             l = response["items"]
             
-            print('item is: ' + str(l[4]))
+            print('item is: ' + str(l[0]))
             
             fromIds = [d['from_id'] for d in l]
             ownerIds = [d['owner_id'] for d in l]
             
             def getId(object, key):
                 if isinstance(object, list):
-                    for d in object:
-                        return d.get(key)
+                    return [d.get(key) for d in object]
                 return None
             
-            historyFromIds = [getId(d.get('copy_history'), 'owner_id') for d in l if isinstance(getId(d.get('copy_history'), 'owner_id'), int)]
-            historyOwnerIds = [getId(d.get('copy_history'), 'from_id') for d in l if isinstance(getId(d.get('copy_history'), 'from_id'), int)]
+            historyFromIds = [getId(d.get('copy_history'), 'owner_id') for d in l if getId(d.get('copy_history'), 'owner_id')]
+            historyOwnerIds = [getId(d.get('copy_history'), 'from_id') for d in l if getId(d.get('copy_history'), 'from_id')]
+            
+            historyFromIds = [item for sublist in historyFromIds for item in sublist]
+            historyOwnerIds = [item for sublist in historyOwnerIds for item in sublist]
             
             ids = set()
             ids |= set(fromIds)

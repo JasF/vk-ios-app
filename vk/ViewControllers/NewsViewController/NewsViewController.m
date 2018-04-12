@@ -218,6 +218,16 @@ static const NSInteger kBatchSize = 20;
                completion:completion];
 }
 
+- (void)setHistoryFromArray:(NSMutableArray *)array toPost:(WallPost *)post {
+    WallPost *history = [array firstObject];
+    if (!history) {
+        return;
+    }
+    [array removeObjectAtIndex:0];
+    post.history = @[history];
+    [self setHistoryFromArray:array toPost:history];
+}
+
 - (void)processWallData:(NSDictionary *)wallData
              completion:(void(^)(NSArray *posts))completion {
     dispatch_python(^{
@@ -255,6 +265,8 @@ static const NSInteger kBatchSize = 20;
             for (WallPost *history in post.history) {
                 updatePostBlock(history);
             }
+            NSMutableArray *mutableHistory = [post.history mutableCopy];
+            [self setHistoryFromArray:mutableHistory toPost:post];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
