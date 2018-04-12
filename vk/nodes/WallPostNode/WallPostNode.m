@@ -30,6 +30,7 @@
 @property (strong, nonatomic) ASImageNode *optionsNode;
 
 @property (strong, nonatomic) ASDisplayNode *verticalLineNode;
+@property (strong, nonatomic) WallPostNode *historyNode;
 
 @end
 
@@ -58,13 +59,13 @@
         
         // Name node
         _nameNode = [[ASTextNode alloc] init];
-        _nameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.firstName attributes:[TextStyles nameStyle]];
+        _nameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.firstName ?: @"TBD" attributes:[TextStyles nameStyle]];
         _nameNode.maximumNumberOfLines = 1;
         [self addSubnode:_nameNode];
         
         // Username node
         _usernameNode = [[ASTextNode alloc] init];
-        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.lastName attributes:[TextStyles usernameStyle]];
+        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.lastName ?: @"TBD" attributes:[TextStyles usernameStyle]];
         _usernameNode.style.flexShrink = 1.0; //if name and username don't fit to cell width, allow username shrink
         _usernameNode.truncationMode = NSLineBreakByTruncatingTail;
         _usernameNode.maximumNumberOfLines = 1;
@@ -85,11 +86,7 @@
         // Processing URLs in post
         NSString *kLinkAttributeName = @"TextLinkAttributeName";
         
-        WallPost *history = _post.history.firstObject;
         NSString *text = _post.text;
-        if (!text.length) {
-            text = history.text;
-        }
         if (text.length) {
             
             
@@ -121,20 +118,19 @@
         
         [self addSubnode:_postNode];
         
+        WallPost *history = _post.history.firstObject;
         if (history) {
+            _historyNode = [[WallPostNode alloc] initWithPost:history];
+            
             _verticalLineNode = [ASDisplayNode new];
             _verticalLineNode.style.preferredSize = CGSizeMake(5, 100);
             _verticalLineNode.backgroundColor = [UIColor blueColor];
             [self addSubnode:_verticalLineNode];
+            [self addSubnode:_historyNode];
         }
         
         // Media
         Attachments *attachment = _post.attachments.firstObject;
-        if (!attachment) {
-            WallPost *history = _post.history.firstObject;
-            attachment = history.attachments.firstObject;
-        }
-        
         if (![attachment.photo.photo604 isEqualToString:@""]) {
             
             _mediaNode = [[ASNetworkImageNode alloc] init];
@@ -284,10 +280,6 @@
     */
     
     Attachments *attachment = _post.attachments.firstObject;
-    if (!attachment) {
-        WallPost *history = _post.history.firstObject;
-        attachment = history.attachments.firstObject;
-    }
     if (![attachment.photo.photo604 isEqualToString:@""]) {
         
         // Only add the media node if an image is present
@@ -302,8 +294,22 @@
             [mainStackContent addObject:imagePlace];
         }
     }
-    [mainStackContent addObject:controlsStack];
+    //[mainStackContent addObject:controlsStack];
     
+    if (_verticalLineNode && _historyNode) {
+        ASInsetLayoutSpec *verticalLineSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_verticalLineNode];
+        ASInsetLayoutSpec *historySpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_historyNode];
+        historySpec.style.flexShrink = 1.0;
+        ASStackLayoutSpec *historyHorizontalSpec =
+        [ASStackLayoutSpec
+         stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+         spacing:8.0
+         justifyContent:ASStackLayoutJustifyContentStart
+         alignItems:ASStackLayoutAlignItemsStretch
+         children:@[verticalLineSpec, historySpec]];
+        historyHorizontalSpec.style.flexShrink = 1.0;
+        [mainStackContent addObject:historyHorizontalSpec];
+    }
     
     // Vertical spec of cell main content
     ASStackLayoutSpec *contentSpec =
@@ -315,18 +321,6 @@
      children:mainStackContent];
     contentSpec.style.flexShrink = 1.0;
     
-    if (_verticalLineNode) {
-        ASInsetLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_verticalLineNode];
-        ASStackLayoutSpec *horizontalSpec =
-        [ASStackLayoutSpec
-         stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-         spacing:8.0
-         justifyContent:ASStackLayoutJustifyContentStart
-         alignItems:ASStackLayoutAlignItemsStretch
-         children:@[spec, contentSpec]];
-        horizontalSpec.style.flexShrink = 1.0;
-        contentSpec = horizontalSpec;
-    }
     
     ASStackLayoutSpec *verticalContentSpec =
     [ASStackLayoutSpec
@@ -334,7 +328,7 @@
      spacing:8.0
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsStretch
-     children:@[nameStack, _postNode, contentSpec]];
+     children:@[nameStack, _postNode, contentSpec, controlsStack]];
     verticalContentSpec.style.flexShrink = 1.0;
     
     
