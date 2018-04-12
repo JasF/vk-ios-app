@@ -151,9 +151,7 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
 
 - (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader] && indexPath.section == 0) {
-        return [[BlurbNode alloc] init];
-    } else if ([kind isEqualToString:UICollectionElementKindSectionFooter] && indexPath.section == 0) {
+    if ([kind isEqualToString:UICollectionElementKindSectionFooter] && indexPath.section == 0) {
         return [[LoadingNode alloc] init];
     }
     return nil;
@@ -161,24 +159,10 @@ static const CGFloat kHorizontalSectionPadding = 10.0f;
 
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     ASSizeRange result = ASSizeRangeUnconstrained;
     result.min.width = self.view.width;
     result.max.width = self.view.width;
     return result;
-    /*
-    CGFloat collectionViewWidth = CGRectGetWidth(self.view.frame) - 2 * kHorizontalSectionPadding;
-    CGFloat oneItemWidth = self.view.width;
-    NSInteger numColumns = floor(collectionViewWidth / oneItemWidth);
-    // Number of columns should be at least 1
-    numColumns = MAX(1, numColumns);
-    
-    CGFloat totalSpaceBetweenColumns = (numColumns - 1) * kHorizontalSectionPadding;
-    CGFloat itemWidth = ((collectionViewWidth - totalSpaceBetweenColumns) / numColumns);
-    CGSize itemSize = CGSizeMake(itemWidth, 250);
-    return ASSizeRangeMake(itemSize, itemSize);
-     */
-    
 }
 
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
