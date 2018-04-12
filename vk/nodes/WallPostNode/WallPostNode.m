@@ -61,16 +61,8 @@
         // Name node
         _nameNode = [[ASTextNode alloc] init];
         _nameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.firstName ?: @"" attributes:[TextStyles nameStyle]];
-        _nameNode.maximumNumberOfLines = 1;
+        _nameNode.maximumNumberOfLines = 0;
         [self addSubnode:_nameNode];
-        
-        // Username node
-        _usernameNode = [[ASTextNode alloc] init];
-        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:[TextStyles usernameStyle]];
-        _usernameNode.style.flexShrink = 1.0; //if name and username don't fit to cell width, allow username shrink
-        _usernameNode.truncationMode = NSLineBreakByTruncatingTail;
-        _usernameNode.maximumNumberOfLines = 1;
-        [self addSubnode:_usernameNode];
         
         // Time node
         _timeNode = [[ASTextNode alloc] init];
@@ -83,6 +75,11 @@
         
         // Post node
         _postNode = [[ASTextNode alloc] init];
+        _postNode.maximumNumberOfLines = 12;
+        _postNode.truncationMode = NSLineBreakByTruncatingTail;
+        _postNode.truncationAttributedText = [[NSAttributedString alloc] initWithString:@"\n"];
+        _postNode.additionalTruncationMessage = [[NSAttributedString alloc] initWithString:L(@"show_fully")
+                                                                                attributes:[TextStyles truncationStyle]];
         
         // Processing URLs in post
         NSString *kLinkAttributeName = @"TextLinkAttributeName";
@@ -255,17 +252,18 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    // Flexible spacer between username and time
-    ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
-    spacer.style.flexGrow = 1.0;
-    
     // Horizontal stack for name, username, via icon and time
-    NSMutableArray *layoutSpecChildren = [@[_nameNode, _usernameNode, spacer] mutableCopy];
-    /*
-    if (_post.via != 0) {
-        [layoutSpecChildren addObject:_viaNode];
-    }
-     */
+    
+    ASStackLayoutSpec *nameVerticalStack =
+    [ASStackLayoutSpec
+     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
+     spacing:5.0
+     justifyContent:ASStackLayoutJustifyContentStart
+     alignItems:ASStackLayoutAlignItemsStart
+     children:@[_nameNode, _timeNode]];
+    nameVerticalStack.style.flexShrink = 1.0f;
+    
+    NSMutableArray *layoutSpecChildren = [@[_nameNode] mutableCopy];
     [layoutSpecChildren addObject:_timeNode];
     
     ASStackLayoutSpec *nameStack =
@@ -297,7 +295,13 @@
         [mainStackContent addObject:_mediaNodes.firstObject];
     }
     else {
-        
+        ASStackLayoutSpec *mediaSpec = [ASStackLayoutSpec
+                                          stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
+                                          spacing:8.0
+                                          justifyContent:ASStackLayoutJustifyContentStart
+                                          alignItems:ASStackLayoutAlignItemsStart
+                                          children:_mediaNodes];
+        [mainStackContent addObject:mediaSpec];
     }
     
     if (_verticalLineNode && _historyNode) {
@@ -332,7 +336,7 @@
      spacing:8.0
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsStart
-     children:@[_avatarNode, nameStack]];
+     children:@[_avatarNode, nameVerticalStack]];
     
     NSMutableArray *verticalContentSpecArray = [@[avatarContentSpec, _postNode, contentSpec] mutableCopy];
     if (controlsStack) {
@@ -390,6 +394,11 @@
 {
     // The node tapped a link, open it
     [[UIApplication sharedApplication] openURL:URL];
+}
+
+- (void)textNodeTappedTruncationToken:(ASTextNode *)textNode {
+    _postNode.maximumNumberOfLines = 0.f;
+    [self setNeedsLayout];
 }
 
 #pragma mark - ASNetworkImageNodeDelegate methods.

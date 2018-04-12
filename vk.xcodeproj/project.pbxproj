@@ -212,6 +212,7 @@
 		C3954CD1207F6DC10010FA6C /* NodesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CD0207F6DC10010FA6C /* NodesAssembly.m */; };
 		C3954CD5207F77620010FA6C /* PostImagesNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CD4207F77620010FA6C /* PostImagesNode.m */; };
 		C3954CD9207F7E5E0010FA6C /* PostVideoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CD8207F7E5E0010FA6C /* PostVideoNode.m */; };
+		C3954CDE207F8C1D0010FA6C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3954CE0207F8C1D0010FA6C /* Localizable.strings */; };
 		C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */; };
 		C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BB207DD91C00418B02 /* MainViewController.mm */; };
 		C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5BC207DD91C00418B02 /* Main.storyboard */; };
@@ -930,6 +931,8 @@
 		C3954CD4207F77620010FA6C /* PostImagesNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostImagesNode.m; sourceTree = "<group>"; };
 		C3954CD7207F7E5E0010FA6C /* PostVideoNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostVideoNode.h; sourceTree = "<group>"; };
 		C3954CD8207F7E5E0010FA6C /* PostVideoNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostVideoNode.m; sourceTree = "<group>"; };
+		C3954CDF207F8C1D0010FA6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C3954CE1207F8C2B0010FA6C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -1010,6 +1013,7 @@
 				3EEA4EE61BECC4A1008A7F35 /* vk */,
 				3EEA4EE51BECC4A1008A7F35 /* Products */,
 				842ADAFE88475D19B24183AC /* Pods */,
+				C3954CDA207F8BBD0010FA6C /* resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2661,6 +2665,22 @@
 			path = PostVideoNode;
 			sourceTree = "<group>";
 		};
+		C3954CDA207F8BBD0010FA6C /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CDB207F8BC90010FA6C /* texts */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		C3954CDB207F8BC90010FA6C /* texts */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CE0207F8C1D0010FA6C /* Localizable.strings */,
+			);
+			path = texts;
+			sourceTree = "<group>";
+		};
 		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2828,6 +2848,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 3EEA4EDB1BECC4A1008A7F35;
 			productRefGroup = 3EEA4EE51BECC4A1008A7F35 /* Products */;
@@ -2854,6 +2875,7 @@
 				3EEA4F3D1BECE99F008A7F35 /* icon_more@2x.png in Resources */,
 				3EEA4F141BECDCD6008A7F35 /* icon_android.png in Resources */,
 				3EEA4F3E1BECE99F008A7F35 /* icon_more@3x.png in Resources */,
+				C3954CDE207F8C1D0010FA6C /* Localizable.strings in Resources */,
 				C3DAE5ED207DE0FB00418B02 /* SimpleCell.xib in Resources */,
 				3EEA4F2B1BECE440008A7F35 /* icon_liked@2x.png in Resources */,
 				C3616FE0207C98C0007FD417 /* launcher.py in Resources */,
@@ -3146,11 +3168,24 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		C3954CE0207F8C1D0010FA6C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3954CDF207F8C1D0010FA6C /* en */,
+				C3954CE1207F8C2B0010FA6C /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		3EEA4EF91BECC4A1008A7F35 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -3194,6 +3229,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

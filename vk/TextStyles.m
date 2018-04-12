@@ -27,6 +27,20 @@
     };
 }
 
++ (NSDictionary *)titleStyle {
+    return @{
+             NSFontAttributeName : [UIFont systemFontOfSize:15.0],
+             NSForegroundColorAttributeName: [UIColor blackColor]
+             };
+}
+
++ (NSDictionary *)descriptionStyle {
+    return @{
+             NSFontAttributeName : [UIFont systemFontOfSize:12.0],
+                                    NSForegroundColorAttributeName:[[UIColor blackColor] colorWithAlphaComponent:0.5f]
+             };
+}
+
 + (NSDictionary *)usernameStyle
 {
     return @{
@@ -49,6 +63,13 @@
         NSFontAttributeName : [UIFont systemFontOfSize:15.0],
         NSForegroundColorAttributeName: [UIColor blackColor]
     };
+}
+
++ (NSDictionary *)truncationStyle {
+    return @{
+             NSFontAttributeName : [UIFont systemFontOfSize:15.0],
+             NSForegroundColorAttributeName: [UIColor blueColor]
+             };
 }
 
 + (NSDictionary *)postLinkStyle

@@ -21,9 +21,12 @@
 @interface TextStyles : NSObject
 
 + (NSDictionary *)nameStyle;
++ (NSDictionary *)titleStyle;
++ (NSDictionary *)descriptionStyle;
 + (NSDictionary *)usernameStyle;
 + (NSDictionary *)timeStyle;
 + (NSDictionary *)postStyle;
++ (NSDictionary *)truncationStyle;
 + (NSDictionary *)postLinkStyle;
 + (NSDictionary *)cellControlStyle;
 + (NSDictionary *)cellControlColoredStyle;
