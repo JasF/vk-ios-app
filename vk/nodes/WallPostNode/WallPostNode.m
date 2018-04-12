@@ -31,6 +31,7 @@
 
 @property (strong, nonatomic) ASDisplayNode *verticalLineNode;
 @property (strong, nonatomic) WallPostNode *historyNode;
+@property (assign, nonatomic) BOOL embedded;
 
 @end
 
@@ -51,8 +52,16 @@
 
 - (instancetype)initWithPost:(WallPost *)post
 {
+    return [self initWithPost:post
+                     embedded:NO];
+}
+
+- (instancetype)initWithPost:(WallPost *)post
+                    embedded:(BOOL)embedded
+{
     self = [super init];
     if (self) {
+        _embedded = embedded;
         _post = post;
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -120,11 +129,11 @@
         
         WallPost *history = _post.history.firstObject;
         if (history) {
-            _historyNode = [[WallPostNode alloc] initWithPost:history];
-            
+            _historyNode = [[WallPostNode alloc] initWithPost:history
+                                                     embedded:YES];
             _verticalLineNode = [ASDisplayNode new];
-            _verticalLineNode.style.preferredSize = CGSizeMake(5, 100);
-            _verticalLineNode.backgroundColor = [UIColor blueColor];
+            _verticalLineNode.style.preferredSize = CGSizeMake(2, 50);
+            _verticalLineNode.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.25f];
             [self addSubnode:_verticalLineNode];
             [self addSubnode:_historyNode];
         }
@@ -183,10 +192,11 @@
         [self addSubnode:_avatarNode];
         
         // Hairline cell separator
+        /*
         _divider = [[ASDisplayNode alloc] init];
         [self updateDividerColor];
         [self addSubnode:_divider];
-        
+        */
         /*
         // Via
         if (_post.via != 0) {
@@ -197,15 +207,17 @@
          */
         
         // Bottom controls
-        _likesNode = [[LikesNode alloc] initWithLikesCount:_post.likes.count];
-        [self addSubnode:_likesNode];
-        
-        _commentsNode = [[CommentsNode alloc] initWithCommentsCount:_post.comments.count];
-        [self addSubnode:_commentsNode];
-        
-        _optionsNode = [[ASImageNode alloc] init];
-        _optionsNode.image = [UIImage imageNamed:@"icon_more"];
-        [self addSubnode:_optionsNode];
+        if (!_embedded) {
+            _likesNode = [[LikesNode alloc] initWithLikesCount:_post.likes.count];
+            [self addSubnode:_likesNode];
+            
+            _commentsNode = [[CommentsNode alloc] initWithCommentsCount:_post.comments.count];
+            [self addSubnode:_commentsNode];
+            
+            _optionsNode = [[ASImageNode alloc] init];
+            _optionsNode.image = [UIImage imageNamed:@"icon_more"];
+            [self addSubnode:_optionsNode];
+        }
         
         for (ASDisplayNode *node in self.subnodes) {
             //node.layerBacked = YES;
@@ -261,17 +273,18 @@
     nameStack.style.alignSelf = ASStackLayoutAlignSelfStretch;
     
     // bottom controls horizontal stack
-    ASStackLayoutSpec *controlsStack =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:10
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsCenter
-     children:@[_likesNode, _commentsNode, _optionsNode]];
-    
-    // Add more gaps for control line
-    controlsStack.style.spacingAfter = 3.0;
-    controlsStack.style.spacingBefore = 3.0;
+    ASStackLayoutSpec *controlsStack = nil;
+    if (!_embedded) {
+        controlsStack = [ASStackLayoutSpec
+         stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+         spacing:10
+         justifyContent:ASStackLayoutJustifyContentStart
+         alignItems:ASStackLayoutAlignItemsCenter
+         children:@[_likesNode, _commentsNode, _optionsNode]];
+        // Add more gaps for control line
+        controlsStack.style.spacingAfter = 3.0;
+        controlsStack.style.spacingBefore = 3.0;
+    }
     
     NSMutableArray *mainStackContent = [[NSMutableArray alloc] init];
     /*
@@ -321,17 +334,6 @@
      children:mainStackContent];
     contentSpec.style.flexShrink = 1.0;
     
-    
-    ASStackLayoutSpec *verticalContentSpec =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-     spacing:8.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStretch
-     children:@[nameStack, _postNode, contentSpec, controlsStack]];
-    verticalContentSpec.style.flexShrink = 1.0;
-    
-    
     // Horizontal spec for avatar
     ASStackLayoutSpec *avatarContentSpec =
     [ASStackLayoutSpec
@@ -339,11 +341,24 @@
      spacing:8.0
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsStart
-     children:@[_avatarNode, verticalContentSpec]];
+     children:@[_avatarNode, nameStack]];
+    
+    NSMutableArray *verticalContentSpecArray = [@[avatarContentSpec, _postNode, contentSpec] mutableCopy];
+    if (controlsStack) {
+        [verticalContentSpecArray addObject:controlsStack];
+    }
+    ASStackLayoutSpec *verticalContentSpec =
+    [ASStackLayoutSpec
+     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
+     spacing:8.0
+     justifyContent:ASStackLayoutJustifyContentStart
+     alignItems:ASStackLayoutAlignItemsStretch
+     children:verticalContentSpecArray];
+    verticalContentSpec.style.flexShrink = 1.0;
     
     return [ASInsetLayoutSpec
             insetLayoutSpecWithInsets:UIEdgeInsetsMake(10, 10, 10, 10)
-            child:avatarContentSpec];
+            child:verticalContentSpec];
     
 }
 
