@@ -3,7 +3,7 @@
 //  vk
 //
 //  Created by Jasf on 13.04.2018.
-//  Copyright © 2018 Facebook. All rights reserved.
+//  Copyright © 2018 Freedom. All rights reserved.
 //
 
 #import "DialogsServiceImpl.h"
@@ -62,12 +62,19 @@
         [usersDictionary setObject:user forKey:@(user.identifier)];
     }
     
+    for (Dialog *dialog in dialogs) {
+        User *user = usersDictionary[@(ABS(dialog.message.user_id))];
+        if (user) {
+            dialog.username = [user nameString];
+            dialog.avatarURLString = user.photo_100;
+        }
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         if (completion) {
             completion(dialogs);
         }
     });
 }
-
 
 @end

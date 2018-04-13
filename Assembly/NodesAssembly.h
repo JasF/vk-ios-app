@@ -3,17 +3,17 @@
 //  vk
 //
 //  Created by Jasf on 12.04.2018.
-//  Copyright © 2018 Facebook. All rights reserved.
+//  Copyright © 2018 Freedom. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "TyphoonAssembly.h"
-#import "ASDisplayNode.h"
 #import "NodeFactory.h"
 #import "Video.h"
 #import "Dialog.h"
 
 @class WallPostNode;
+@class ASDisplayNode;
 
 @interface NodesAssembly : TyphoonAssembly
 - (id<NodeFactory>)nodeFactory;

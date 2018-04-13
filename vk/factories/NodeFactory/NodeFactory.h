@@ -3,10 +3,12 @@
 //  vk
 //
 //  Created by Jasf on 12.04.2018.
-//  Copyright © 2018 Facebook. All rights reserved.
+//  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "ASDisplayNode.h"
+#import <CoreFoundation/CoreFoundation.h>
+
+@class ASDisplayNode;
 
 @protocol NodeFactory <NSObject>
 - (ASDisplayNode *)nodeForItem:(id)item;

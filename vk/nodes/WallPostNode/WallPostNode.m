@@ -3,7 +3,7 @@
 //  vk
 //
 //  Created by Jasf on 11.04.2018.
-//  Copyright © 2018 Facebook. All rights reserved.
+//  Copyright © 2018 Freedom. All rights reserved.
 //
 
 #import "WallPostNode.h"
@@ -148,34 +148,6 @@
                 [_mediaNodes addObject:node];
             }
         }
-        /*
-        Attachments *attachment = _post.attachments.firstObject;
-        if (![attachment.photo.photo604 isEqualToString:@""]) {
-            
-            _mediaNode = [[ASNetworkImageNode alloc] init];
-            _mediaNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-            _mediaNode.cornerRadius = 4.0;
-            _mediaNode.URL = [NSURL URLWithString:attachment.photo.photo604];
-            _mediaNode.delegate = self;
-            _mediaNode.imageModificationBlock = ^UIImage *(UIImage *image) {
-                
-                UIImage *modifiedImage;
-                CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
-                
-                UIGraphicsBeginImageContextWithOptions(image.size, false, [[UIScreen mainScreen] scale]);
-                
-                [[UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:8.0] addClip];
-                [image drawInRect:rect];
-                modifiedImage = UIGraphicsGetImageFromCurrentImageContext();
-                
-                UIGraphicsEndImageContext();
-                
-                return modifiedImage;
-                
-            };
-            [self addSubnode:_mediaNode];
-        }
-         */
         
         // User pic
         _avatarNode = [[ASNetworkImageNode alloc] init];

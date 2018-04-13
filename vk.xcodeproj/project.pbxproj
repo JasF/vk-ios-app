@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		320D2134DCBE8F772B910210 /* libPods-vk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA41DF6912188792B5031B5 /* libPods-vk.a */; };
 		3EEA4EE91BECC4A1008A7F35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEA4EE81BECC4A1008A7F35 /* main.m */; };
 		3EEA4EEC1BECC4A1008A7F35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEA4EEB1BECC4A1008A7F35 /* AppDelegate.m */; };
 		3EEA4EEF1BECC4A1008A7F35 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEA4EEE1BECC4A1008A7F35 /* ViewController.m */; };
@@ -38,6 +37,7 @@
 		3EEA4F3C1BECE99F008A7F35 /* icon_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEA4F391BECE99F008A7F35 /* icon_more.png */; };
 		3EEA4F3D1BECE99F008A7F35 /* icon_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEA4F3A1BECE99F008A7F35 /* icon_more@2x.png */; };
 		3EEA4F3E1BECE99F008A7F35 /* icon_more@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEA4F3B1BECE99F008A7F35 /* icon_more@3x.png */; };
+		7C5156FAC06F603EB7CA617A /* Pods_vk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6601E62515D353B4DB8CB5AE /* Pods_vk.framework */; };
 		C35BF27C207E2A26000F2773 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BF27B207E2A26000F2773 /* User.m */; };
 		C35BF282207E3A09000F2773 /* BlurbNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BF27F207E3A09000F2773 /* BlurbNode.m */; };
 		C35BF283207E3A09000F2773 /* LoadingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C35BF280207E3A09000F2773 /* LoadingNode.m */; };
@@ -223,6 +223,7 @@
 		C3954D032080810E0010FA6C /* HandlersFactoryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954D022080810E0010FA6C /* HandlersFactoryImpl.m */; };
 		C3954D0B208089800010FA6C /* DialogsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954D0A208089800010FA6C /* DialogsServiceImpl.m */; };
 		C3B526FC20809C5500FCD639 /* EmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B526FB20809C5500FCD639 /* EmptyViewController.m */; };
+		C3B5270E2080C65B00FCD639 /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5270D2080C65B00FCD639 /* DialogViewController.swift */; };
 		C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */; };
 		C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BB207DD91C00418B02 /* MainViewController.mm */; };
 		C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5BC207DD91C00418B02 /* Main.storyboard */; };
@@ -286,15 +287,14 @@
 		3EEA4F391BECE99F008A7F35 /* icon_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_more.png; sourceTree = "<group>"; };
 		3EEA4F3A1BECE99F008A7F35 /* icon_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more@2x.png"; sourceTree = "<group>"; };
 		3EEA4F3B1BECE99F008A7F35 /* icon_more@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more@3x.png"; sourceTree = "<group>"; };
-		9CA41DF6912188792B5031B5 /* libPods-vk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6601E62515D353B4DB8CB5AE /* Pods_vk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C35BF27A207E2A26000F2773 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C35BF27B207E2A26000F2773 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		C35BF27D207E375E000F2773 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		C35BF27D207E375E000F2773 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C35BF27E207E3A08000F2773 /* LoadingNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingNode.h; sourceTree = "<group>"; };
 		C35BF27F207E3A09000F2773 /* BlurbNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurbNode.m; sourceTree = "<group>"; };
 		C35BF280207E3A09000F2773 /* LoadingNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingNode.m; sourceTree = "<group>"; };
 		C35BF281207E3A09000F2773 /* BlurbNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurbNode.h; sourceTree = "<group>"; };
-		C3616C64207C934C007FD417 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		C3616C67207C94C1007FD417 /* subscriber.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = subscriber.py; sourceTree = "<group>"; };
 		C3616C68207C94C1007FD417 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C3616C69207C94C1007FD417 /* parser.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = parser.py; sourceTree = "<group>"; };
@@ -974,6 +974,11 @@
 		C3B5270220809D8400FCD639 /* dialogsscreen.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogsscreen.py; sourceTree = "<group>"; };
 		C3B5270320809DF600FCD639 /* authorizationscreen.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = authorizationscreen.py; sourceTree = "<group>"; };
 		C3B527042080A09300FCD639 /* users.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = users.py; sourceTree = "<group>"; };
+		C3B527072080C39800FCD639 /* Texture.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = Texture.podspec; path = Components/AsyncDisplayKit/Texture.podspec; sourceTree = SOURCE_ROOT; };
+		C3B527082080C3A300FCD639 /* NMessenger.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = NMessenger.podspec; path = Components/NMessenger/NMessenger.podspec; sourceTree = SOURCE_ROOT; };
+		C3B527092080C3CF00FCD639 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile; path = "../../Downloads/NMessenger-master/examples/MessageGroups/Podfile"; sourceTree = "<group>"; };
+		C3B5270D2080C65B00FCD639 /* DialogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
+		C3B5270F2080C6E800FCD639 /* vk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "vk-Bridging-Header.h"; path = "Supporting Files/vk-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -1036,7 +1041,7 @@
 				C3616D67207C94CB007FD417 /* libbz2.a in Frameworks */,
 				C3616D79207C94CB007FD417 /* CocoaLumberjack.framework in Frameworks */,
 				C3616D78207C94CB007FD417 /* EasyMapping.framework in Frameworks */,
-				320D2134DCBE8F772B910210 /* libPods-vk.a in Frameworks */,
+				7C5156FAC06F603EB7CA617A /* Pods_vk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1077,7 +1082,6 @@
 				C3616FC7207C9654007FD417 /* src */,
 				3EEA4F0D1BECDCA6008A7F35 /* Images */,
 				3EEA4EEA1BECC4A1008A7F35 /* AppDelegate.h */,
-				C3616C64207C934C007FD417 /* Podfile */,
 				3EEA4EEB1BECC4A1008A7F35 /* AppDelegate.m */,
 				3EEA4EED1BECC4A1008A7F35 /* ViewController.h */,
 				3EEA4EEE1BECC4A1008A7F35 /* ViewController.m */,
@@ -1102,8 +1106,11 @@
 		3EEA4EE71BECC4A1008A7F35 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3B5270F2080C6E800FCD639 /* vk-Bridging-Header.h */,
 				C3DAE5DC207DDC7800418B02 /* vk.pch */,
 				C3616FE3207C98F6007FD417 /* app_packages.zip */,
+				C3B527082080C3A300FCD639 /* NMessenger.podspec */,
+				C3B527072080C39800FCD639 /* Texture.podspec */,
 				C35BF27D207E375E000F2773 /* Podfile */,
 				3EEA4EFE1BECC4E8008A7F35 /* Default-568h@2x.png */,
 				3EEA4EFF1BECC4E8008A7F35 /* Default-667h@2x.png */,
@@ -1116,6 +1123,7 @@
 		3EEA4F0D1BECDCA6008A7F35 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C3B527092080C3CF00FCD639 /* Podfile */,
 				3EEA4F391BECE99F008A7F35 /* icon_more.png */,
 				3EEA4F3A1BECE99F008A7F35 /* icon_more@2x.png */,
 				3EEA4F3B1BECE99F008A7F35 /* icon_more@3x.png */,
@@ -1574,7 +1582,7 @@
 				C3616D59207C94CB007FD417 /* libxz.a */,
 				C3616D5A207C94CB007FD417 /* VK-ios-sdk.framework */,
 				C3616D5B207C94CB007FD417 /* GCDWebServer.framework */,
-				9CA41DF6912188792B5031B5 /* libPods-vk.a */,
+				6601E62515D353B4DB8CB5AE /* Pods_vk.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -2845,9 +2853,18 @@
 			path = screens;
 			sourceTree = "<group>";
 		};
+		C3B527052080BA3A00FCD639 /* DialogViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3B5270D2080C65B00FCD639 /* DialogViewController.swift */,
+			);
+			path = DialogViewController;
+			sourceTree = "<group>";
+		};
 		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3B527052080BA3A00FCD639 /* DialogViewController */,
 				C3B526F920809C4600FCD639 /* EmptyViewController */,
 				C3954CF22080799A0010FA6C /* BaseCollectionViewController */,
 				C3954CE2207FA2CF0010FA6C /* DialogsViewController */,
@@ -3000,11 +3017,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0710;
-				ORGANIZATIONNAME = Facebook;
+				ORGANIZATIONNAME = Freedom;
 				TargetAttributes = {
 					3EEA4EE31BECC4A1008A7F35 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 5892LD7JW5;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -3093,9 +3111,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-vk/Pods-vk-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/NMessenger/NMessenger.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NMessenger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3277,6 +3306,7 @@
 				C3DAE5D5207DDC2900418B02 /* LGSideMenuHelper.m in Sources */,
 				C3616D71207C94CB007FD417 /* EXTNil.m in Sources */,
 				C3616F4B207C95BA007FD417 /* TyphoonMethod+InstanceBuilder.m in Sources */,
+				C3B5270E2080C65B00FCD639 /* DialogViewController.swift in Sources */,
 				C3616D6D207C94CB007FD417 /* EXTADT.m in Sources */,
 				3EEA4F061BECC6C9008A7F35 /* Post.m in Sources */,
 				C3616F9C207C95BA007FD417 /* UIView+TyphoonDefinitionKey.m in Sources */,
@@ -3445,6 +3475,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5892LD7JW5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3460,6 +3491,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.AsyncDisplayKit.Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "vk/Supporting Files/vk-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = Components/AsyncDisplayKit/Source;
 			};
@@ -3471,6 +3505,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5892LD7JW5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3486,6 +3521,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.AsyncDisplayKit.Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "vk/Supporting Files/vk-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = Components/AsyncDisplayKit/Source;
 			};

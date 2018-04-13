@@ -3,7 +3,7 @@
 //  vk
 //
 //  Created by Jasf on 12.04.2018.
-//  Copyright © 2018 Facebook. All rights reserved.
+//  Copyright © 2018 Freedom. All rights reserved.
 //
 
 #import "DialogsViewController.h"
@@ -20,7 +20,7 @@
 #import "AppDelegate.h"
 #import "Dialog.h"
 
-@interface DialogsViewController () <BaseCollectionViewControllerDataSource>
+@interface DialogsViewController () <BaseCollectionViewControllerDataSource, ASCollectionDelegate>
 @property (strong, nonatomic) id<DialogsHandlerProtocol> handler;
 @property (strong, nonatomic) id<NodeFactory> nodeFactory;
 @property (strong, nonatomic) id<DialogsService> dialogsService;
@@ -64,6 +64,15 @@
                 offset:(NSInteger)offset {
     [_dialogsService getDialogsWithOffset:offset
                                completion:completion];
+}
+
+#pragma mark - ASCollectionNodeDelegate
+- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    Dialog *item = [collectionNode nodeModelForItemAtIndexPath:indexPath];
+    if (!item) {
+        return;
+    }
+    [_handler tappedOnDialogWithUserId:@(item.message.user_id)];
 }
 
 @end

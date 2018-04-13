@@ -14,4 +14,5 @@
 - (void)showNewsViewController;
 - (void)showDialogsViewController;
 - (void)showMenu;
+- (void)showDialogViewController:(NSNumber *)userId;
 @end
