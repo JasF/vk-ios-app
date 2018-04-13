@@ -29,7 +29,7 @@ open class TypingIndicatorContent: ContentNode {
         
     }
     
-    open func visibilityDidChange(_ isVisible: Bool) {
+    open override func visibilityDidChange(_ isVisible: Bool) {
         if(isVisible){
             self.gifNode.removeFromSupernode();
             addIndicators()

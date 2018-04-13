@@ -5,4 +5,4 @@ class DialogsHandlerProtocol:
         managers.shared().screensManager().showMenu()
 
     def tappedOnDialogWithUserId(self, userId):
-        managers.shared().screensManager().showDialogViewController(userId)
+        managers.shared().screensManager().showDialogViewController_(args=[userId])

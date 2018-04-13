@@ -16,6 +16,7 @@
 #import "BaseNavigationController.h"
 #import "NodesAssembly.h"
 #import "ServicesAssembly.h"
+#import "vk-Swift.h"
 
 @implementation ScreensAssembly
 
@@ -85,6 +86,18 @@
                     [initializer injectParameterWith:self.servicesAssembly.wallService];
                 }];
                 definition.scope = TyphoonScopeSingleton;
+            }];
+}
+
+- (UIViewController *)dialogViewController:(NSNumber *)userId {
+    return [TyphoonDefinition withClass:[DialogViewController class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:nodeFactory:dialogService:userId:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.dialogService];
+                    [initializer injectParameterWith:userId];
+                }];
             }];
 }
 

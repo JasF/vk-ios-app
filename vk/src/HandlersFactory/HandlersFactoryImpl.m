@@ -11,6 +11,9 @@
 #import "NewsViewController.h"
 #import "DialogsViewController.h"
 #import "DialogsServiceImpl.h"
+#import "vk-Swift.h"
+#import "DialogServiceImpl.h"
+#import "DialogHandlerProtocol.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -40,6 +43,14 @@
 
 - (id<DialogsHandlerProtocol>)dialogsHandler {
     return [_pythonBridge handlerWithProtocol:@protocol(DialogsHandlerProtocol)];
+}
+
+- (id<DialogServiceHandlerProtocol>)dialogServiceHandler {
+    return [_pythonBridge handlerWithProtocol:@protocol(DialogServiceHandlerProtocol)];
+}
+
+- (id<DialogHandlerProtocol>)dialogHandler {
+    return [_pythonBridge handlerWithProtocol:@protocol(DialogHandlerProtocol)];
 }
 
 @end

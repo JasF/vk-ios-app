@@ -12,6 +12,7 @@
 
 #import "VKCoreComponents.h"
 #import "VKSdkManagerImpl.h"
+#import "PythonManagerImpl.h"
 #import "PythonBridgeImpl.h"
 #import "Typhoon.h"
 
@@ -29,4 +30,12 @@
                 definition.scope = TyphoonScopeSingleton;
             }];
 }
+
+- (id<PythonManager>)pythonManager {
+    return [TyphoonDefinition withClass:[PythonManagerImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                definition.scope = TyphoonScopeSingleton;
+            }];
+}
+
 @end

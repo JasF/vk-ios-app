@@ -8,7 +8,7 @@
 
 #import "LGSideMenuController.h"
 #import "MenuViewController.h"
-#import "AppDelegate.h"
+#import "vk-Swift.h"
 
 typedef NS_ENUM(NSInteger, MenuRows) {
     NewsRow,
@@ -42,7 +42,8 @@ static CGFloat const kSeparatorAlpha = 0.25f;
 
 - (void)viewWillAppear:(BOOL)animated {
     if (!self.handler) {
-        _pythonBridge = [AppDelegate shared].pythonBridge;
+        AppDelegate *delegate =(AppDelegate *)[[UIApplication sharedApplication] delegate];
+        _pythonBridge = delegate.pythonBridge;
         NSCParameterAssert(_pythonBridge);
         self.handler = [self.pythonBridge handlerWithProtocol:@protocol(MenuHandlerProtocol)];
     }

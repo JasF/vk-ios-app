@@ -54,7 +54,7 @@ static const NSInteger kBatchSize = 20;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _collectionNode.leadingScreensForBatching = 2;
+    //_collectionNode.leadingScreensForBatching = 2;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -12,9 +12,9 @@
 
 #import <Foundation/Foundation.h>
 #import "TyphoonAssembly.h"
+#import "VKCoreComponents.h"
 
 @class AppDelegate;
-@class VKCoreComponents;
 @class VKThemeAssembly;
 @class ScreensAssembly;
 

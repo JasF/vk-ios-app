@@ -17,7 +17,6 @@
 #import "User.h"
 #import "BlurbNode.h"
 #import "LoadingNode.h"
-#import "AppDelegate.h"
 
 @interface NewsViewController () <BaseCollectionViewControllerDataSource>
 @property (strong, nonatomic) id<NewsHandlerProtocol> handler;

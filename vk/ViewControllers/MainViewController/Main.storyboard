@@ -200,6 +200,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cyk-LC-dKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Messenger View Controller-->
+        <scene sceneID="Vn0-TK-L9F">
+            <objects>
+                <viewController storyboardIdentifier="MessengerViewController" id="Ngy-57-ceC" customClass="NMessengerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KSc-Qk-mzK"/>
+                        <viewControllerLayoutGuide type="bottom" id="ibM-Wn-NWi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BdN-3R-bBS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Sy0-nc-fOA"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tma-wb-ebd" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="Stars.png" width="16" height="16"/>

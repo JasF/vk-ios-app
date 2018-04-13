@@ -6,6 +6,7 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 typedef void (^ResultBlock)(id result);
 @protocol PythonBridge <NSObject>
 - (void)send:(NSDictionary *)object;

@@ -25,4 +25,8 @@ CF_INLINE bool IsFloatEqual(float a, float b) { return IsEqualFloat(a,b);}
 #define RGB(r,g,b) [UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:1.f]
 #define L(a) NSLocalizedString(a, nil)
 #define NL(a) a
+
+@interface NMessengerViewController : UIViewController
+@end
+
 #endif

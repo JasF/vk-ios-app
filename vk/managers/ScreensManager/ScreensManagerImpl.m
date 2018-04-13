@@ -13,6 +13,7 @@
 #import "NewsViewController.h"
 #import "DialogsViewController.h"
 #import "BaseNavigationController.h"
+#import "vk-Swift.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -80,15 +81,14 @@
 
 - (void)showDialogViewController:(NSNumber *)userId {
     dispatch_async(dispatch_get_main_queue(), ^{
-        /*
         [self showMainViewController];
         [self closeMenu];
         if ([self canIgnorePushingViewController:[DialogViewController class]]) {
             return;
         }
+        
         DialogViewController *viewController =(DialogViewController *)[_screensAssembly dialogViewController:userId];
         [self pushViewController:viewController];
-        */
     });
 }
 

@@ -17,7 +17,6 @@
 #import "User.h"
 #import "BlurbNode.h"
 #import "LoadingNode.h"
-#import "AppDelegate.h"
 #import "Dialog.h"
 
 @interface DialogsViewController () <BaseCollectionViewControllerDataSource, ASCollectionDelegate>
@@ -68,11 +67,11 @@
 
 #pragma mark - ASCollectionNodeDelegate
 - (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    Dialog *item = [collectionNode nodeModelForItemAtIndexPath:indexPath];
-    if (!item) {
-        return;
-    }
-    [_handler tappedOnDialogWithUserId:@(item.message.user_id)];
+  //  Dialog *item = [collectionNode nodeModelForItemAtIndexPath:indexPath];
+  //  if (!item) {
+  //      return;
+  //  }
+    [_handler tappedOnDialogWithUserId:@(0)];//@(item.message.user_id)];
 }
 
 @end
