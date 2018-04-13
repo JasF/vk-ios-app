@@ -222,6 +222,7 @@
 		C3954CFE20807E350010FA6C /* ServicesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CFD20807E350010FA6C /* ServicesAssembly.m */; };
 		C3954D032080810E0010FA6C /* HandlersFactoryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954D022080810E0010FA6C /* HandlersFactoryImpl.m */; };
 		C3954D0B208089800010FA6C /* DialogsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954D0A208089800010FA6C /* DialogsServiceImpl.m */; };
+		C3B526FC20809C5500FCD639 /* EmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B526FB20809C5500FCD639 /* EmptyViewController.m */; };
 		C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */; };
 		C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BB207DD91C00418B02 /* MainViewController.mm */; };
 		C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5BC207DD91C00418B02 /* Main.storyboard */; };
@@ -962,6 +963,11 @@
 		C3954D09208089800010FA6C /* DialogsServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogsServiceImpl.h; sourceTree = "<group>"; };
 		C3954D0A208089800010FA6C /* DialogsServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogsServiceImpl.m; sourceTree = "<group>"; };
 		C3954D0C208089880010FA6C /* DialogsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogsService.h; sourceTree = "<group>"; };
+		C3954D0E208099830010FA6C /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		C3954D10208099B60010FA6C /* wallservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = wallservice.py; sourceTree = "<group>"; };
+		C3B526F8208099D900FCD639 /* dialogsservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogsservice.py; sourceTree = "<group>"; };
+		C3B526FA20809C5500FCD639 /* EmptyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyViewController.h; sourceTree = "<group>"; };
+		C3B526FB20809C5500FCD639 /* EmptyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyViewController.m; sourceTree = "<group>"; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -1149,6 +1155,7 @@
 		C3616C65207C94C1007FD417 /* app_packages */ = {
 			isa = PBXGroup;
 			children = (
+				C3954D0D208099700010FA6C /* services */,
 				C3DAE5F7207E0CEC00418B02 /* caches */,
 				C3616C66207C94C1007FD417 /* objcbridge */,
 				C3616C6A207C94C1007FD417 /* chardet */,
@@ -2799,9 +2806,29 @@
 			path = DialogsService;
 			sourceTree = "<group>";
 		};
+		C3954D0D208099700010FA6C /* services */ = {
+			isa = PBXGroup;
+			children = (
+				C3954D0E208099830010FA6C /* __init__.py */,
+				C3954D10208099B60010FA6C /* wallservice.py */,
+				C3B526F8208099D900FCD639 /* dialogsservice.py */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		C3B526F920809C4600FCD639 /* EmptyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3B526FA20809C5500FCD639 /* EmptyViewController.h */,
+				C3B526FB20809C5500FCD639 /* EmptyViewController.m */,
+			);
+			path = EmptyViewController;
+			sourceTree = "<group>";
+		};
 		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3B526F920809C4600FCD639 /* EmptyViewController */,
 				C3954CF22080799A0010FA6C /* BaseCollectionViewController */,
 				C3954CE2207FA2CF0010FA6C /* DialogsViewController */,
 				C3DAE5E5207DDF5400418B02 /* BaseNavigationController */,
@@ -3146,6 +3173,7 @@
 				C3616F9D207C95BA007FD417 /* UIViewController+TyphoonStoryboardIntegration.m in Sources */,
 				C3616F79207C95BA007FD417 /* NSInvocation+TCFUnwrapValues.m in Sources */,
 				C3954D032080810E0010FA6C /* HandlersFactoryImpl.m in Sources */,
+				C3B526FC20809C5500FCD639 /* EmptyViewController.m in Sources */,
 				C3954CF1207FAB370010FA6C /* DialogNode.m in Sources */,
 				C3616D80207C94CB007FD417 /* ScreensAssembly.m in Sources */,
 				C3616F83207C95BA007FD417 /* TyphoonPlistStyleConfiguration.m in Sources */,
