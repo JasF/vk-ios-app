@@ -7,7 +7,7 @@
 //
 
 #import "BaseCollectionViewController.h"
-#import "PythonBridge.h"
+#import "HandlersFactory.h"
 #import "WallService.h"
 
 @protocol NewsHandlerProtocol <NSObject>
@@ -15,7 +15,7 @@
 @end
 
 @interface NewsViewController : BaseCollectionViewController
-- (instancetype)initWithPythonBridge:(id<PythonBridge>)pythonBridge
-                         nodeFactory:(id<NodeFactory>)nodeFactory
-                         wallService:(id<WallService>)wallService;
+- (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
+                            nodeFactory:(id<NodeFactory>)nodeFactory
+                            wallService:(id<WallService>)wallService;
 @end

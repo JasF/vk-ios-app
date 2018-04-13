@@ -8,6 +8,7 @@
 
 #import "HandlersFactoryImpl.h"
 #import "WallServiceImpl.h"
+#import "NewsViewController.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -25,6 +26,10 @@
 
 - (id<WallServiceHandlerProtocol>)wallServiceHandler {
     return [_pythonBridge handlerWithProtocol:@protocol(WallServiceHandlerProtocol)];
+}
+
+- (id<NewsHandlerProtocol>)newsHandler {
+    return [_pythonBridge handlerWithProtocol:@protocol(NewsHandlerProtocol)];
 }
 
 @end

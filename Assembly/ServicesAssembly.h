@@ -13,5 +13,6 @@
 
 @interface ServicesAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
+- (id<HandlersFactory>)handlersFactory;
 - (id<WallService>)wallService;
 @end

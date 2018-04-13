@@ -21,20 +21,19 @@
 
 @interface NewsViewController () <BaseCollectionViewControllerDataSource>
 @property (strong, nonatomic) id<NewsHandlerProtocol> handler;
-@property (strong, nonatomic) id<PythonBridge> pythonBridge;
 @property (strong, nonatomic) id<WallService> wallService;
 @end
 
 @implementation NewsViewController {
 }
 
-- (instancetype)initWithPythonBridge:(id<PythonBridge>)pythonBridge
-                         nodeFactory:(id<NodeFactory>)nodeFactory
-                         wallService:(id<WallService>)wallService {
-    NSCParameterAssert(pythonBridge);
+- (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
+                            nodeFactory:(id<NodeFactory>)nodeFactory
+                            wallService:(id<WallService>)wallService {
+    NSCParameterAssert(handlersFactory);
     NSCParameterAssert(nodeFactory);
     NSCParameterAssert(wallService);
-    _pythonBridge = pythonBridge;
+    _handler = [handlersFactory newsHandler];
     self.dataSource = self;
     _wallService = wallService;
     self = [super initWithNodeFactory:nodeFactory];
@@ -45,15 +44,11 @@
 }
 
 - (void)viewDidLoad {
-    NSCParameterAssert(_pythonBridge);
     [super viewDidLoad];
-    _handler = [_pythonBridge handlerWithProtocol:@protocol(NewsHandlerProtocol)];
     [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
 }
 
-
 #pragma mark - Observers
-
 - (IBAction)menuTapped:(id)sender {
     [_handler menuTapped];
 }
