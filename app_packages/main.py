@@ -22,6 +22,15 @@ class NewsHandlerProtocol:
     def menuTapped(self):
         managers.shared().screensManager().showMenu()
 
+
+class MenuHandlerProtocol:
+    def newsTapped(self):
+        managers.shared().screensManager().showNewsViewController(handler=NewsHandlerProtocol())
+
+    def dialogsTapped(self):
+        managers.shared().screensManager().showDialogsViewController(handler=DialogsHandlerProtocol())
+
+class WallServiceHandlerProtocol:
     def getWall(self, offset):
         users = UsersDatabase()
         session = vk.Session(access_token=storage.accessToken)
@@ -81,19 +90,13 @@ class NewsHandlerProtocol:
                 freshGroupsData = api.groups.getById(group_ids=idsString)
                 users.update(freshGroupsData)
                 usersData.extend(freshGroupsData)
-                
+        
         except Exception as e:
             print('wall.get exception: ' + str(e))
         finally:
             users.close()
         return {'response':response, 'users':usersData}
 
-class MenuHandlerProtocol:
-    def newsTapped(self):
-        managers.shared().screensManager().showNewsViewController(handler=NewsHandlerProtocol())
-
-    def dialogsTapped(self):
-        managers.shared().screensManager().showDialogsViewController(handler=DialogsHandlerProtocol())
 
 class DialogsHandlerProtocol:
     def menuTapped(self):
@@ -131,5 +134,6 @@ class AuthorizationHandlerProtocol:
 
 def launch():
     Subscriber().setClassHandler(MenuHandlerProtocol())
+    Subscriber().setClassHandler(WallServiceHandlerProtocol())
     managers.shared().screensManager().showAuthorizationViewController(handler=AuthorizationHandlerProtocol())
     pass

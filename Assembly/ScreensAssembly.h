@@ -9,15 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "TyphoonAssembly.h"
 #import "ScreensManager.h"
+#import "ServicesAssembly.h"
 
 @class VKCoreComponents;
 @class VKThemeAssembly;
 @class NodesAssembly;
 
 @interface ScreensAssembly : TyphoonAssembly
-@property(nonatomic, strong, readonly) VKCoreComponents *coreComponents;
-@property(nonatomic, strong, readonly) VKThemeAssembly *themeProvider;
-@property(nonatomic, strong, readonly) NodesAssembly *nodesAssembly;
+@property (nonatomic, strong, readonly) VKCoreComponents *coreComponents;
+@property (nonatomic, strong, readonly) VKThemeAssembly *themeProvider;
+@property (nonatomic, strong, readonly) NodesAssembly *nodesAssembly;
+@property (readonly) ServicesAssembly *servicesAssembly;
 - (id<ScreensManager>)screensManager;
 - (UIViewController *)createViewController;
 - (UIViewController *)createMainViewController;

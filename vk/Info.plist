@@ -9,6 +9,7 @@
 		<string>VKThemeAssembly</string>
 		<string>ScreensAssembly</string>
 		<string>NodesAssembly</string>
+		<string>ServicesAssembly</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

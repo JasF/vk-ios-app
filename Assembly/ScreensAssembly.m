@@ -15,6 +15,7 @@
 #import "DialogsViewController.h"
 #import "BaseNavigationController.h"
 #import "NodesAssembly.h"
+#import "ServicesAssembly.h"
 
 @implementation ScreensAssembly
 
@@ -78,9 +79,10 @@
 - (UIViewController *)newsViewController {
     return [TyphoonDefinition withClass:[NewsViewController class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithPythonBridge:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(initWithPythonBridge:nodeFactory:wallService:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.coreComponents.pythonBridge];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.wallService];
                 }];
             }];
 }

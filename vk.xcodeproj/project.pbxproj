@@ -218,6 +218,9 @@
 		C3954CED207FA6620010FA6C /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CEC207FA6620010FA6C /* Message.m */; };
 		C3954CF1207FAB370010FA6C /* DialogNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CF0207FAB370010FA6C /* DialogNode.m */; };
 		C3954CF5208079AD0010FA6C /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CF4208079AD0010FA6C /* BaseCollectionViewController.m */; };
+		C3954CFB20807E000010FA6C /* WallServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CFA20807E000010FA6C /* WallServiceImpl.m */; };
+		C3954CFE20807E350010FA6C /* ServicesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CFD20807E350010FA6C /* ServicesAssembly.m */; };
+		C3954D032080810E0010FA6C /* HandlersFactoryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954D022080810E0010FA6C /* HandlersFactoryImpl.m */; };
 		C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */; };
 		C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BB207DD91C00418B02 /* MainViewController.mm */; };
 		C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5BC207DD91C00418B02 /* Main.storyboard */; };
@@ -947,6 +950,14 @@
 		C3954CF0207FAB370010FA6C /* DialogNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogNode.m; sourceTree = "<group>"; };
 		C3954CF3208079AD0010FA6C /* BaseCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
 		C3954CF4208079AD0010FA6C /* BaseCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewController.m; sourceTree = "<group>"; };
+		C3954CF820807DF10010FA6C /* WallService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallService.h; sourceTree = "<group>"; };
+		C3954CF920807E000010FA6C /* WallServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallServiceImpl.h; sourceTree = "<group>"; };
+		C3954CFA20807E000010FA6C /* WallServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallServiceImpl.m; sourceTree = "<group>"; };
+		C3954CFC20807E350010FA6C /* ServicesAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServicesAssembly.h; sourceTree = "<group>"; };
+		C3954CFD20807E350010FA6C /* ServicesAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServicesAssembly.m; sourceTree = "<group>"; };
+		C3954D00208081050010FA6C /* HandlersFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HandlersFactory.h; sourceTree = "<group>"; };
+		C3954D012080810E0010FA6C /* HandlersFactoryImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HandlersFactoryImpl.h; sourceTree = "<group>"; };
+		C3954D022080810E0010FA6C /* HandlersFactoryImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HandlersFactoryImpl.m; sourceTree = "<group>"; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -1041,6 +1052,7 @@
 		3EEA4EE61BECC4A1008A7F35 /* vk */ = {
 			isa = PBXGroup;
 			children = (
+				C3954CF620807DA90010FA6C /* services */,
 				C3954CC6207F6C790010FA6C /* factories */,
 				C3DAE5F2207DFDE600418B02 /* nodes */,
 				C3DAE5B5207DD8E300418B02 /* ViewControllers */,
@@ -1606,6 +1618,8 @@
 				C3616D62207C94CB007FD417 /* VKCoreComponents.m */,
 				C3954CCF207F6DC10010FA6C /* NodesAssembly.h */,
 				C3954CD0207F6DC10010FA6C /* NodesAssembly.m */,
+				C3954CFC20807E350010FA6C /* ServicesAssembly.h */,
+				C3954CFD20807E350010FA6C /* ServicesAssembly.m */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -2494,6 +2508,7 @@
 		C3616FC7207C9654007FD417 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C3954CFF208080F30010FA6C /* HandlersFactory */,
 				C35BF281207E3A09000F2773 /* BlurbNode.h */,
 				C35BF27F207E3A09000F2773 /* BlurbNode.m */,
 				C35BF27E207E3A08000F2773 /* LoadingNode.h */,
@@ -2739,6 +2754,34 @@
 				C3954CF4208079AD0010FA6C /* BaseCollectionViewController.m */,
 			);
 			path = BaseCollectionViewController;
+			sourceTree = "<group>";
+		};
+		C3954CF620807DA90010FA6C /* services */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CF720807DC60010FA6C /* WallService */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		C3954CF720807DC60010FA6C /* WallService */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CF820807DF10010FA6C /* WallService.h */,
+				C3954CF920807E000010FA6C /* WallServiceImpl.h */,
+				C3954CFA20807E000010FA6C /* WallServiceImpl.m */,
+			);
+			path = WallService;
+			sourceTree = "<group>";
+		};
+		C3954CFF208080F30010FA6C /* HandlersFactory */ = {
+			isa = PBXGroup;
+			children = (
+				C3954D00208081050010FA6C /* HandlersFactory.h */,
+				C3954D012080810E0010FA6C /* HandlersFactoryImpl.h */,
+				C3954D022080810E0010FA6C /* HandlersFactoryImpl.m */,
+			);
+			path = HandlersFactory;
 			sourceTree = "<group>";
 		};
 		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {
@@ -3087,6 +3130,7 @@
 				C3616F3C207C95BA007FD417 /* NSObject+TyphoonIntrospectionUtils.m in Sources */,
 				C3616F9D207C95BA007FD417 /* UIViewController+TyphoonStoryboardIntegration.m in Sources */,
 				C3616F79207C95BA007FD417 /* NSInvocation+TCFUnwrapValues.m in Sources */,
+				C3954D032080810E0010FA6C /* HandlersFactoryImpl.m in Sources */,
 				C3954CF1207FAB370010FA6C /* DialogNode.m in Sources */,
 				C3616D80207C94CB007FD417 /* ScreensAssembly.m in Sources */,
 				C3616F83207C95BA007FD417 /* TyphoonPlistStyleConfiguration.m in Sources */,
@@ -3117,6 +3161,7 @@
 				C3616F47207C95BA007FD417 /* TyphoonFactoryAutoInjectionPostProcessor.m in Sources */,
 				C3616F99207C95BA007FD417 /* TyphoonStoryboard.m in Sources */,
 				C3616F73207C95BA007FD417 /* TyphoonAssemblyDefinitionBuilder.m in Sources */,
+				C3954CFB20807E000010FA6C /* WallServiceImpl.m in Sources */,
 				C3616F50207C95BA007FD417 /* TyphoonInjectionByComponentFactory.m in Sources */,
 				C3954CD5207F77620010FA6C /* PostImagesNode.m in Sources */,
 				C3616F6F207C95BA007FD417 /* TyphoonCallStack.m in Sources */,
@@ -3214,6 +3259,7 @@
 				C3616F51207C95BA007FD417 /* TyphoonInject.m in Sources */,
 				C3616E10207C957A007FD417 /* UIImage+NanoFrame.m in Sources */,
 				C3616F94207C95BA007FD417 /* TyphoonViewControllerNibResolver.m in Sources */,
+				C3954CFE20807E350010FA6C /* ServicesAssembly.m in Sources */,
 				C3616F7B207C95BA007FD417 /* TyphoonWeakComponentsPool.m in Sources */,
 				C3954CF5208079AD0010FA6C /* BaseCollectionViewController.m in Sources */,
 				C3616F70207C95BA007FD417 /* TyphoonAssemblyPropertyInjectionPostProcessor.m in Sources */,
