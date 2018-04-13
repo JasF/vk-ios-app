@@ -90,9 +90,10 @@
 - (UIViewController *)dialogsViewController {
     return [TyphoonDefinition withClass:[DialogsViewController class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithPythonBridge:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
-                    [initializer injectParameterWith:self.coreComponents.pythonBridge];
+                [definition useInitializer:@selector(initWithHandlersFactory:nodeFactory:dialogsService:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.dialogsService];
                 }];
             }];
 }

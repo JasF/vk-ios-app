@@ -8,11 +8,13 @@
 
 #import "TyphoonAssembly.h"
 #import "HandlersFactory.h"
-#import "WallService.h"
 #import "VKCoreComponents.h"
+#import "WallService.h"
+#import "DialogsService.h"
 
 @interface ServicesAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
 - (id<HandlersFactory>)handlersFactory;
 - (id<WallService>)wallService;
+- (id<DialogsService>)dialogsService;
 @end

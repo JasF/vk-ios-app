@@ -8,6 +8,7 @@
 
 #import "ServicesAssembly.h"
 #import "WallServiceImpl.h"
+#import "DialogsServiceImpl.h"
 #import "HandlersFactoryImpl.h"
 
 @implementation ServicesAssembly
@@ -25,6 +26,17 @@
 
 - (id<WallService>)wallService {
     return [TyphoonDefinition withClass:[WallServiceImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:self.handlersFactory];
+                 }];
+                definition.scope = TyphoonScopeSingleton;
+            }];
+}
+
+- (id<DialogsService>)dialogsService {
+    return [TyphoonDefinition withClass:[DialogsServiceImpl class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithHandlersFactory:) parameters:^(TyphoonMethod *initializer)
                  {

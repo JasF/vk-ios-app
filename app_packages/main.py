@@ -97,11 +97,7 @@ class WallServiceHandlerProtocol:
             users.close()
         return {'response':response, 'users':usersData}
 
-
-class DialogsHandlerProtocol:
-    def menuTapped(self):
-        managers.shared().screensManager().showMenu()
-
+class DialogsServiceHandlerProtocol:
     def getDialogs(self, offset):
         users = UsersDatabase()
         session = vk.Session(access_token=storage.accessToken)
@@ -126,6 +122,11 @@ class DialogsHandlerProtocol:
             print('get dialogs exception: ' + str(e))
         return {'response':response, 'users':usersData}
 
+class DialogsHandlerProtocol:
+    def menuTapped(self):
+        managers.shared().screensManager().showMenu()
+
+
 class AuthorizationHandlerProtocol:
     def accessTokenGathered(self, aAccessToken):
         storage.accessToken = aAccessToken
@@ -135,5 +136,6 @@ class AuthorizationHandlerProtocol:
 def launch():
     Subscriber().setClassHandler(MenuHandlerProtocol())
     Subscriber().setClassHandler(WallServiceHandlerProtocol())
+    Subscriber().setClassHandler(DialogsServiceHandlerProtocol())
     managers.shared().screensManager().showAuthorizationViewController(handler=AuthorizationHandlerProtocol())
     pass

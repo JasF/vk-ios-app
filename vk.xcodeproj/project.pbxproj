@@ -221,6 +221,7 @@
 		C3954CFB20807E000010FA6C /* WallServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CFA20807E000010FA6C /* WallServiceImpl.m */; };
 		C3954CFE20807E350010FA6C /* ServicesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CFD20807E350010FA6C /* ServicesAssembly.m */; };
 		C3954D032080810E0010FA6C /* HandlersFactoryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954D022080810E0010FA6C /* HandlersFactoryImpl.m */; };
+		C3954D0B208089800010FA6C /* DialogsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954D0A208089800010FA6C /* DialogsServiceImpl.m */; };
 		C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */; };
 		C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BB207DD91C00418B02 /* MainViewController.mm */; };
 		C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5BC207DD91C00418B02 /* Main.storyboard */; };
@@ -958,6 +959,9 @@
 		C3954D00208081050010FA6C /* HandlersFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HandlersFactory.h; sourceTree = "<group>"; };
 		C3954D012080810E0010FA6C /* HandlersFactoryImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HandlersFactoryImpl.h; sourceTree = "<group>"; };
 		C3954D022080810E0010FA6C /* HandlersFactoryImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HandlersFactoryImpl.m; sourceTree = "<group>"; };
+		C3954D09208089800010FA6C /* DialogsServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogsServiceImpl.h; sourceTree = "<group>"; };
+		C3954D0A208089800010FA6C /* DialogsServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogsServiceImpl.m; sourceTree = "<group>"; };
+		C3954D0C208089880010FA6C /* DialogsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogsService.h; sourceTree = "<group>"; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -2759,6 +2763,7 @@
 		C3954CF620807DA90010FA6C /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C3954D08208089690010FA6C /* DialogsService */,
 				C3954CF720807DC60010FA6C /* WallService */,
 			);
 			path = services;
@@ -2767,9 +2772,9 @@
 		C3954CF720807DC60010FA6C /* WallService */ = {
 			isa = PBXGroup;
 			children = (
-				C3954CF820807DF10010FA6C /* WallService.h */,
 				C3954CF920807E000010FA6C /* WallServiceImpl.h */,
 				C3954CFA20807E000010FA6C /* WallServiceImpl.m */,
+				C3954CF820807DF10010FA6C /* WallService.h */,
 			);
 			path = WallService;
 			sourceTree = "<group>";
@@ -2782,6 +2787,16 @@
 				C3954D022080810E0010FA6C /* HandlersFactoryImpl.m */,
 			);
 			path = HandlersFactory;
+			sourceTree = "<group>";
+		};
+		C3954D08208089690010FA6C /* DialogsService */ = {
+			isa = PBXGroup;
+			children = (
+				C3954D09208089800010FA6C /* DialogsServiceImpl.h */,
+				C3954D0A208089800010FA6C /* DialogsServiceImpl.m */,
+				C3954D0C208089880010FA6C /* DialogsService.h */,
+			);
+			path = DialogsService;
 			sourceTree = "<group>";
 		};
 		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {
@@ -3168,6 +3183,7 @@
 				C3616F62207C95BA007FD417 /* TyphoonComponentFactory+InstanceBuilder.m in Sources */,
 				C35BF282207E3A09000F2773 /* BlurbNode.m in Sources */,
 				C3616D69207C94CB007FD417 /* EXTSelectorChecking.m in Sources */,
+				C3954D0B208089800010FA6C /* DialogsServiceImpl.m in Sources */,
 				C3616F55207C95BA007FD417 /* TyphoonInjectionByFactoryReference.m in Sources */,
 				C3616F37207C95BA007FD417 /* NSArray+TyphoonManualEnumeration.m in Sources */,
 				C3616F9B207C95BA007FD417 /* TyphoonViewControllerFactory.m in Sources */,

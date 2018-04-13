@@ -9,13 +9,16 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "PythonBridge.h"
 #import "NodeFactory.h"
+#import "HandlersFactory.h"
+#import "DialogsService.h"
+#import "BaseCollectionViewController.h"
 
 @protocol DialogsHandlerProtocol <NSObject>
-- (NSDictionary *)getDialogs:(NSNumber *)offset;
 - (void)menuTapped;
 @end
 
-@interface DialogsViewController : ASViewController
-- (instancetype)initWithPythonBridge:(id<PythonBridge>)pythonBridge
-                         nodeFactory:(id<NodeFactory>)nodeFactory;
+@interface DialogsViewController : BaseCollectionViewController
+- (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
+                            nodeFactory:(id<NodeFactory>)nodeFactory
+                         dialogsService:(id<DialogsService>)dialogsService;
 @end
