@@ -6,16 +6,13 @@ from caches.users import UsersDatabase
 class Users():
     def __init__(self):
         self.api = None
-        self.session = None
     
     def initializeSession(self):
         if self.api:
             return
-        self.session = vk.Session(access_token=vk.token())
-        self.api = vk.API(self.session)
-        self.api.session.method_default_args['v'] = '5.74'
+        self.api = vk.api()
     
-    def getUsersByIds(self, ids):
+    def getShortUsersByIds(self, ids):
         users = UsersDatabase()
         groupIds = set([id for id in ids if id < 0])
         ids -= groupIds
@@ -45,10 +42,10 @@ class Users():
             freshGroupsData = self.api.groups.getById(group_ids=idsString)
             users.update(freshGroupsData)
             usersData.extend(freshGroupsData)
-
-        print('users.py usersData: ' + str(usersData))
+        
+        users.close()
         return usersData
 
-def getUsersByIds(ids):
+def getShortUsersByIds(ids):
     object = Users()
-    return object.getUsersByIds(ids)
+    return object.getShortUsersByIds(ids)
