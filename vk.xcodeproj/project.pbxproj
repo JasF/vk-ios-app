@@ -968,6 +968,12 @@
 		C3B526F8208099D900FCD639 /* dialogsservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogsservice.py; sourceTree = "<group>"; };
 		C3B526FA20809C5500FCD639 /* EmptyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyViewController.h; sourceTree = "<group>"; };
 		C3B526FB20809C5500FCD639 /* EmptyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyViewController.m; sourceTree = "<group>"; };
+		C3B526FE20809D4200FCD639 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		C3B526FF20809D5C00FCD639 /* menuscreen.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = menuscreen.py; sourceTree = "<group>"; };
+		C3B5270120809D7700FCD639 /* newsscreen.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = newsscreen.py; sourceTree = "<group>"; };
+		C3B5270220809D8400FCD639 /* dialogsscreen.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogsscreen.py; sourceTree = "<group>"; };
+		C3B5270320809DF600FCD639 /* authorizationscreen.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = authorizationscreen.py; sourceTree = "<group>"; };
+		C3B527042080A09300FCD639 /* users.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = users.py; sourceTree = "<group>"; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -1155,6 +1161,7 @@
 		C3616C65207C94C1007FD417 /* app_packages */ = {
 			isa = PBXGroup;
 			children = (
+				C3B526FD20809D3500FCD639 /* screens */,
 				C3954D0D208099700010FA6C /* services */,
 				C3DAE5F7207E0CEC00418B02 /* caches */,
 				C3616C66207C94C1007FD417 /* objcbridge */,
@@ -1312,6 +1319,7 @@
 				C3616CC6207C94C1007FD417 /* api.py */,
 				C3616CC7207C94C1007FD417 /* utils.py */,
 				C3616CC8207C94C1007FD417 /* exceptions.py */,
+				C3B527042080A09300FCD639 /* users.py */,
 			);
 			path = vk;
 			sourceTree = "<group>";
@@ -2823,6 +2831,18 @@
 				C3B526FB20809C5500FCD639 /* EmptyViewController.m */,
 			);
 			path = EmptyViewController;
+			sourceTree = "<group>";
+		};
+		C3B526FD20809D3500FCD639 /* screens */ = {
+			isa = PBXGroup;
+			children = (
+				C3B526FE20809D4200FCD639 /* __init__.py */,
+				C3B526FF20809D5C00FCD639 /* menuscreen.py */,
+				C3B5270120809D7700FCD639 /* newsscreen.py */,
+				C3B5270220809D8400FCD639 /* dialogsscreen.py */,
+				C3B5270320809DF600FCD639 /* authorizationscreen.py */,
+			);
+			path = screens;
 			sourceTree = "<group>";
 		};
 		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {

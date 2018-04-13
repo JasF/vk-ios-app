@@ -84,6 +84,7 @@
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
                     [initializer injectParameterWith:self.servicesAssembly.wallService];
                 }];
+                definition.scope = TyphoonScopeSingleton;
             }];
 }
 
@@ -95,6 +96,7 @@
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
                     [initializer injectParameterWith:self.servicesAssembly.dialogsService];
                 }];
+                definition.scope = TyphoonScopeSingleton;
             }];
 }
 

@@ -18,7 +18,9 @@ static const NSInteger kBatchSize = 20;
 @property (assign, nonatomic) BOOL updating;
 @end
 
-@implementation BaseCollectionViewController
+@implementation BaseCollectionViewController {
+    BOOL _initiallyUpdated;
+}
 
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(nodeFactory);
@@ -53,11 +55,17 @@ static const NSInteger kBatchSize = 20;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _collectionNode.leadingScreensForBatching = 2;
-    
-    self.updating = YES;
-    [self fetchMorePostsWithCompletion:^(BOOL finished) {
-        self.updating = NO;
-    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (!_initiallyUpdated) {
+        _initiallyUpdated = YES;
+        self.updating = YES;
+        [self fetchMorePostsWithCompletion:^(BOOL finished) {
+            self.updating = NO;
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
