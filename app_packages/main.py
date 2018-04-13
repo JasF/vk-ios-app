@@ -126,8 +126,8 @@ class DialogsHandlerProtocol:
 class AuthorizationHandlerProtocol:
     def accessTokenGathered(self, aAccessToken):
         storage.accessToken = aAccessToken
-        managers.shared().screensManager().showDialogsViewController(handler=DialogsHandlerProtocol())
-        #managers.shared().screensManager().showNewsViewController(handler=NewsHandlerProtocol())
+        #managers.shared().screensManager().showDialogsViewController(handler=DialogsHandlerProtocol())
+        managers.shared().screensManager().showNewsViewController(handler=NewsHandlerProtocol())
 
 def launch():
     Subscriber().setClassHandler(MenuHandlerProtocol())

@@ -6,16 +6,15 @@
 //  Copyright © 2018 Facebook. All rights reserved.
 //
 
-#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "BaseCollectionViewController.h"
 #import "PythonBridge.h"
-#import "NodeFactory.h"
 
 @protocol NewsHandlerProtocol <NSObject>
 - (void)menuTapped;
 - (NSDictionary *)getWall:(NSNumber *)offset;
 @end
 
-@interface NewsViewController : ASViewController
+@interface NewsViewController : BaseCollectionViewController
 - (instancetype)initWithPythonBridge:(id<PythonBridge>)pythonBridge
                          nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

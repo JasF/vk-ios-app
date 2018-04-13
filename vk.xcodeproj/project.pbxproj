@@ -217,6 +217,7 @@
 		C3954CEA207FA65A0010FA6C /* Dialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CE9207FA65A0010FA6C /* Dialog.m */; };
 		C3954CED207FA6620010FA6C /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CEC207FA6620010FA6C /* Message.m */; };
 		C3954CF1207FAB370010FA6C /* DialogNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CF0207FAB370010FA6C /* DialogNode.m */; };
+		C3954CF5208079AD0010FA6C /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3954CF4208079AD0010FA6C /* BaseCollectionViewController.m */; };
 		C3DAE5BE207DD91C00418B02 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */; };
 		C3DAE5BF207DD91C00418B02 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3DAE5BB207DD91C00418B02 /* MainViewController.mm */; };
 		C3DAE5C0207DD91C00418B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DAE5BC207DD91C00418B02 /* Main.storyboard */; };
@@ -944,6 +945,8 @@
 		C3954CEC207FA6620010FA6C /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		C3954CEF207FAB370010FA6C /* DialogNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogNode.h; sourceTree = "<group>"; };
 		C3954CF0207FAB370010FA6C /* DialogNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogNode.m; sourceTree = "<group>"; };
+		C3954CF3208079AD0010FA6C /* BaseCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
+		C3954CF4208079AD0010FA6C /* BaseCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewController.m; sourceTree = "<group>"; };
 		C3DAE5B7207DD91C00418B02 /* LeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewCell.m; sourceTree = "<group>"; };
 		C3DAE5B8207DD91C00418B02 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		C3DAE5B9207DD91C00418B02 /* LeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewCell.h; sourceTree = "<group>"; };
@@ -2729,9 +2732,19 @@
 			path = DialogNode;
 			sourceTree = "<group>";
 		};
+		C3954CF22080799A0010FA6C /* BaseCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3954CF3208079AD0010FA6C /* BaseCollectionViewController.h */,
+				C3954CF4208079AD0010FA6C /* BaseCollectionViewController.m */,
+			);
+			path = BaseCollectionViewController;
+			sourceTree = "<group>";
+		};
 		C3DAE5B5207DD8E300418B02 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3954CF22080799A0010FA6C /* BaseCollectionViewController */,
 				C3954CE2207FA2CF0010FA6C /* DialogsViewController */,
 				C3DAE5E5207DDF5400418B02 /* BaseNavigationController */,
 				C3DAE5E1207DDF5400418B02 /* MenuViewController */,
@@ -3202,6 +3215,7 @@
 				C3616E10207C957A007FD417 /* UIImage+NanoFrame.m in Sources */,
 				C3616F94207C95BA007FD417 /* TyphoonViewControllerNibResolver.m in Sources */,
 				C3616F7B207C95BA007FD417 /* TyphoonWeakComponentsPool.m in Sources */,
+				C3954CF5208079AD0010FA6C /* BaseCollectionViewController.m in Sources */,
 				C3616F70207C95BA007FD417 /* TyphoonAssemblyPropertyInjectionPostProcessor.m in Sources */,
 				C3616F67207C95BA007FD417 /* TyphoonParentReferenceHydratingPostProcessor.m in Sources */,
 				C3616F6C207C95BA007FD417 /* TyphoonAssemblyBuilder.m in Sources */,
