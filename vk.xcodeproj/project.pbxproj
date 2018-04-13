@@ -1221,6 +1221,8 @@
 		C32306EF2080E9D800CEC487 /* PythonManagerImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PythonManagerImpl.h; sourceTree = "<group>"; };
 		C32306F02080E9D800CEC487 /* PythonManagerImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PythonManagerImpl.m; sourceTree = "<group>"; };
 		C32306F52080F1C600CEC487 /* Pods_vk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_vk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C32306F92080F2D900CEC487 /* NMessenger.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = NMessenger.podspec; path = Components/nMessenger/NMessenger.podspec; sourceTree = SOURCE_ROOT; };
+		C32306FA2080F2DE00CEC487 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		C3B527062080BF4C00FCD639 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA13F2494D45D4FE5E319D6 /* Pods-MessageGroupsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2304,6 +2306,7 @@
 		C32304242080E57400CEC487 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				C32306F82080F29D00CEC487 /* old-sources */,
 				C32306F72080F23600CEC487 /* old */,
 				C32304252080E57400CEC487 /* texts */,
 			);
@@ -2321,34 +2324,19 @@
 		C32304292080E57400CEC487 /* vk */ = {
 			isa = PBXGroup;
 			children = (
-				C323042D2080E57400CEC487 /* Post.h */,
-				C32304302080E57400CEC487 /* LikesNode.m */,
-				C32304322080E57400CEC487 /* TextStyles.m */,
-				C32304332080E57400CEC487 /* PostNode.m */,
 				C32304372080E57400CEC487 /* nodes */,
-				C32304452080E57400CEC487 /* CommentsNode.m */,
 				C32304472080E57400CEC487 /* managers */,
 				C32304542080E57400CEC487 /* Assets.xcassets */,
 				C32304552080E57400CEC487 /* ViewController.m */,
 				C32304572080E57400CEC487 /* models */,
-				C32304822080E57400CEC487 /* LikesNode.h */,
-				C32304832080E57400CEC487 /* Post.m */,
 				C32304852080E57400CEC487 /* ViewControllers */,
 				C32304A42080E57400CEC487 /* Common.xcassets */,
 				C32304A62080E57400CEC487 /* main.m */,
 				C32304A72080E57400CEC487 /* Supporting Files */,
 				C32304AB2080E57400CEC487 /* factories */,
-				C32304B02080E57400CEC487 /* PostNode.h */,
-				C32304B12080E57400CEC487 /* icon_like.png */,
-				C32304B22080E57400CEC487 /* TextStyles.h */,
-				C32304B42080E57400CEC487 /* icon_like@2x.png */,
-				C32304B52080E57400CEC487 /* CommentsNode.h */,
-				C32304B62080E57400CEC487 /* icon_android.png */,
-				C32304B72080E57400CEC487 /* Default-667h@2x.png */,
 				C32304B82080E57400CEC487 /* Info.plist */,
 				C32304B92080E57400CEC487 /* services */,
 				C32304C62080E57400CEC487 /* ViewController.h */,
-				C32304C72080E57400CEC487 /* icon_like@3x.png */,
 				C32304C82080E57400CEC487 /* src */,
 			);
 			path = vk;
@@ -2675,6 +2663,8 @@
 		C32304A72080E57400CEC487 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C32306FA2080F2DE00CEC487 /* Podfile */,
+				C32306F92080F2D900CEC487 /* NMessenger.podspec */,
 				C32304A82080E57400CEC487 /* vk-Bridging-Header.h */,
 				C32304A92080E57400CEC487 /* vk.pch */,
 				C32304AA2080E57400CEC487 /* app_packages.zip */,
@@ -3261,6 +3251,11 @@
 				C32304442080E57400CEC487 /* icon_android@3x.png */,
 				C32304462080E57400CEC487 /* icon_liked@2x.png */,
 				C32304562080E57400CEC487 /* icon_liked@3x.png */,
+				C32304B12080E57400CEC487 /* icon_like.png */,
+				C32304B42080E57400CEC487 /* icon_like@2x.png */,
+				C32304B62080E57400CEC487 /* icon_android.png */,
+				C32304B72080E57400CEC487 /* Default-667h@2x.png */,
+				C32304C72080E57400CEC487 /* icon_like@3x.png */,
 				C323047F2080E57400CEC487 /* icon_ios.png */,
 				C32304812080E57400CEC487 /* icon_android@2x.png */,
 				C32304802080E57400CEC487 /* Default-736h@3x.png */,
@@ -3268,6 +3263,23 @@
 				C32304842080E57400CEC487 /* icon_liked.png */,
 			);
 			path = old;
+			sourceTree = "<group>";
+		};
+		C32306F82080F29D00CEC487 /* old-sources */ = {
+			isa = PBXGroup;
+			children = (
+				C32304302080E57400CEC487 /* LikesNode.m */,
+				C32304322080E57400CEC487 /* TextStyles.m */,
+				C32304332080E57400CEC487 /* PostNode.m */,
+				C32304452080E57400CEC487 /* CommentsNode.m */,
+				C32304822080E57400CEC487 /* LikesNode.h */,
+				C32304B02080E57400CEC487 /* PostNode.h */,
+				C32304B22080E57400CEC487 /* TextStyles.h */,
+				C32304B52080E57400CEC487 /* CommentsNode.h */,
+				C323042D2080E57400CEC487 /* Post.h */,
+				C32304832080E57400CEC487 /* Post.m */,
+			);
+			path = "old-sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
