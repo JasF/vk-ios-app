@@ -7,3 +7,5 @@ temp/
 Frameworks/python/libPython.a
 Podfile.lock
 Pods/*
+scripts/Texture*
+scripts/Tex_ture*
