@@ -65,14 +65,6 @@ open class NMessengerViewController: UIViewController, UITextViewDelegate, NMess
         self.addObservers()
     }
     
-    /*
-    public func batchFetchContent() {
-        let deadlineTime = DispatchTime.now() + .seconds(1)
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-            self.messengerView.endBatchFetchWithMessages([])
-        }
-        NSLog("hi batch fetch content");
-    }*/
     // MARK: Initialisers
     
     /**

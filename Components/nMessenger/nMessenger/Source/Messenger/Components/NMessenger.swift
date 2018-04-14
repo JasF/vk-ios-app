@@ -81,7 +81,7 @@ open class NMessenger: UIView {
     
     /**Delegate*/
     open weak var delegate: NMessengerDelegate?
-    /**Triggers the delegate batch fetch function when NMessenger determines a batch fetch is needed. Defaults to true. **Note** *batchFetchContent()* must also be implemented */
+    /**Triggers the delegate batch fetch function when NMessenger determines a batch fetch is needed. Defaults to true. **Note** * ()* must also be implemented */
     open var doesBatchFetch: Bool = true
     
     //MARK: Initializers
