@@ -10,7 +10,7 @@ class DialogServiceHandlerProtocol:
         response = None
         usersData = None
         try:
-            response = api.messages.getHistory(access_token=vk.token(), user_id=userId, offset=offset, count=9)
+            response = api.messages.getHistory(access_token=vk.token(), user_id=userId, offset=offset, count=20)
             l = response["items"]
             messages = MessagesDatabase()
             messages.update(l)
