@@ -28,9 +28,13 @@
                    completion:(void(^)(NSArray<Message *> *messages))completion {
     dispatch_python(^{
         NSDictionary *results = [_handler getMessages:@(0) userId:@(userId)];
+        NSDictionary *response = results[@"response"];
+        NSArray *items = response[@"items"];
+        NSArray *messages = [EKMapper arrayOfObjectsFromExternalRepresentation:items
+                                                                   withMapping:[Message objectMapping]];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
-                completion(results[@"items"]);
+                completion(messages);
             }
         });
     });

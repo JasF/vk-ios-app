@@ -35,8 +35,11 @@ open class DialogViewController: NMessengerViewController {
         super.viewWillAppear(animated)
         
         self.dialogService?.getMessagesWithOffset(0, userId: Int(self.userId!)) {messages in
-            for data in messages! as [AnyObject] {
-                //print(data);
+            if let array = messages! as NSArray as? [Message] {
+                for data in array.reversed() {
+                    self.sendText(data.body, isIncomingMessage: data.isOut == 0 ?true:false)
+                    //print(data);
+                }
             }
         }
     }

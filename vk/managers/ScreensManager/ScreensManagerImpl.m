@@ -88,7 +88,7 @@
         }
         
         DialogViewController *viewController =(DialogViewController *)[_screensAssembly dialogViewController:userId];
-        [self pushViewController:viewController];
+        [self pushViewController:viewController clean:NO];
     });
 }
 

@@ -21,5 +21,5 @@ class DialogServiceHandlerProtocol:
         
         except Exception as e:
             print('get messages exception: ' + str(e))
-        return response#{'response':response, 'users':usersData}
+        return {'response':response, 'users':usersData}
 

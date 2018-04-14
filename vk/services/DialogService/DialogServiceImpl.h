@@ -10,7 +10,7 @@
 #import "HandlersFactory.h"
 
 @protocol DialogServiceHandlerProtocol <NSObject>
-- (NSArray *)getMessages:(NSNumber *)offset userId:(NSNumber *)userId;
+- (NSDictionary *)getMessages:(NSNumber *)offset userId:(NSNumber *)userId;
 @end
 
 @interface DialogServiceImpl : NSObject <DialogService>
