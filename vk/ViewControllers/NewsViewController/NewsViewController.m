@@ -7,7 +7,7 @@
 //
 
 #import "NewsViewController.h"
-#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import <Async_DisplayKit/Async_DisplayKit.h>
 #import "Post.h"
 #import "PostNode.h"
 #import "VKSdkManager.h"

@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BD860CAB842324FDF0B3105C /* libPods-A_SDKListKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEACA22D54B3609C19BB4CE /* libPods-A_SDKListKitTests.a */; };
+		CC5532391E16F2A90011C01F /* A_SListTestSupplementarySource.m in Sources */ = {isa = PBXBuildFile; fileRef = CC55322D1E16F2A90011C01F /* A_SListTestSupplementarySource.m */; };
+		CC55323A1E16F2A90011C01F /* A_SListTestSupplementaryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CC55322F1E16F2A90011C01F /* A_SListTestSupplementaryNode.m */; };
+		CC55323B1E16F2A90011C01F /* A_SListKitTestAdapterDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5532311E16F2A90011C01F /* A_SListKitTestAdapterDataSource.m */; };
+		CC55323C1E16F2A90011C01F /* A_SListTestSection.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5532331E16F2A90011C01F /* A_SListTestSection.m */; };
+		CC55323D1E16F2A90011C01F /* A_SListTestCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5532351E16F2A90011C01F /* A_SListTestCellNode.m */; };
+		CC55323E1E16F2A90011C01F /* A_SListTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5532371E16F2A90011C01F /* A_SListTestObject.m */; };
+		CC55323F1E16F2A90011C01F /* A_SListKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5532381E16F2A90011C01F /* A_SListKitTests.m */; };
+		CCC31FAD1EF9B96600E41731 /* A_SDisplayNode+OCMock.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC31FA51EF9B96600E41731 /* A_SDisplayNode+OCMock.m */; };
+		CCC31FAE1EF9B96600E41731 /* A_STestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC31FA71EF9B96600E41731 /* A_STestCase.m */; };
+		CCC31FAF1EF9B96600E41731 /* NSInvocation+A_STestHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC31FAA1EF9B96600E41731 /* NSInvocation+A_STestHelpers.m */; };
+		CCC31FB01EF9B96600E41731 /* OCMockObject+A_SAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC31FAC1EF9B96600E41731 /* OCMockObject+A_SAdditions.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1FEACA22D54B3609C19BB4CE /* libPods-A_SDKListKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-A_SDKListKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1FDA57F88BB590E403D7BB8 /* Pods-A_SDKListKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-A_SDKListKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-A_SDKListKitTests/Pods-A_SDKListKitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CC5532231E16EB9D0011C01F /* A_SDKListKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = A_SDKListKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC5532281E16EB9D0011C01F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC55322C1E16F2A90011C01F /* A_SListTestSupplementarySource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_SListTestSupplementarySource.h; sourceTree = "<group>"; };
+		CC55322D1E16F2A90011C01F /* A_SListTestSupplementarySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_SListTestSupplementarySource.m; sourceTree = "<group>"; };
+		CC55322E1E16F2A90011C01F /* A_SListTestSupplementaryNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_SListTestSupplementaryNode.h; sourceTree = "<group>"; };
+		CC55322F1E16F2A90011C01F /* A_SListTestSupplementaryNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_SListTestSupplementaryNode.m; sourceTree = "<group>"; };
+		CC5532301E16F2A90011C01F /* A_SListKitTestAdapterDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_SListKitTestAdapterDataSource.h; sourceTree = "<group>"; };
+		CC5532311E16F2A90011C01F /* A_SListKitTestAdapterDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_SListKitTestAdapterDataSource.m; sourceTree = "<group>"; };
+		CC5532321E16F2A90011C01F /* A_SListTestSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_SListTestSection.h; sourceTree = "<group>"; };
+		CC5532331E16F2A90011C01F /* A_SListTestSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_SListTestSection.m; sourceTree = "<group>"; };
+		CC5532341E16F2A90011C01F /* A_SListTestCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_SListTestCellNode.h; sourceTree = "<group>"; };
+		CC5532351E16F2A90011C01F /* A_SListTestCellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_SListTestCellNode.m; sourceTree = "<group>"; };
+		CC5532361E16F2A90011C01F /* A_SListTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_SListTestObject.h; sourceTree = "<group>"; };
+		CC5532371E16F2A90011C01F /* A_SListTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_SListTestObject.m; sourceTree = "<group>"; };
+		CC5532381E16F2A90011C01F /* A_SListKitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_SListKitTests.m; sourceTree = "<group>"; };
+		CCC31FA51EF9B96600E41731 /* A_SDisplayNode+OCMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "A_SDisplayNode+OCMock.m"; sourceTree = "<group>"; };
+		CCC31FA61EF9B96600E41731 /* A_STestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_STestCase.h; sourceTree = "<group>"; };
+		CCC31FA71EF9B96600E41731 /* A_STestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_STestCase.m; sourceTree = "<group>"; };
+		CCC31FA81EF9B96600E41731 /* A_SXCTExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_SXCTExtensions.h; sourceTree = "<group>"; };
+		CCC31FA91EF9B96600E41731 /* NSInvocation+A_STestHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+A_STestHelpers.h"; sourceTree = "<group>"; };
+		CCC31FAA1EF9B96600E41731 /* NSInvocation+A_STestHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+A_STestHelpers.m"; sourceTree = "<group>"; };
+		CCC31FAB1EF9B96600E41731 /* OCMockObject+A_SAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCMockObject+A_SAdditions.h"; sourceTree = "<group>"; };
+		CCC31FAC1EF9B96600E41731 /* OCMockObject+A_SAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCMockObject+A_SAdditions.m"; sourceTree = "<group>"; };
+		D6BDED6F23A72F40F571EEF0 /* Pods-A_SDKListKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-A_SDKListKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-A_SDKListKitTests/Pods-A_SDKListKitTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC5532201E16EB9D0011C01F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD860CAB842324FDF0B3105C /* libPods-A_SDKListKitTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		72C6817154F7AC11E373624A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B1FDA57F88BB590E403D7BB8 /* Pods-A_SDKListKitTests.debug.xcconfig */,
+				D6BDED6F23A72F40F571EEF0 /* Pods-A_SDKListKitTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		74DAA5F5D522433F103348B7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1FEACA22D54B3609C19BB4CE /* libPods-A_SDKListKitTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CC5532181E16EB7A0011C01F = {
+			isa = PBXGroup;
+			children = (
+				CC5532251E16EB9D0011C01F /* A_SDKListKitTests */,
+				CC5532241E16EB9D0011C01F /* Products */,
+				72C6817154F7AC11E373624A /* Pods */,
+				74DAA5F5D522433F103348B7 /* Frameworks */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		CC5532241E16EB9D0011C01F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC5532231E16EB9D0011C01F /* A_SDKListKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC5532251E16EB9D0011C01F /* A_SDKListKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				CCC31FA41EF9B96600E41731 /* Common */,
+				CC55326E1E170A740011C01F /* ListKit Fixtures */,
+				CC5532381E16F2A90011C01F /* A_SListKitTests.m */,
+				CC5532281E16EB9D0011C01F /* Info.plist */,
+			);
+			path = A_SDKListKitTests;
+			sourceTree = "<group>";
+		};
+		CC55326E1E170A740011C01F /* ListKit Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				CC55322C1E16F2A90011C01F /* A_SListTestSupplementarySource.h */,
+				CC55322D1E16F2A90011C01F /* A_SListTestSupplementarySource.m */,
+				CC55322E1E16F2A90011C01F /* A_SListTestSupplementaryNode.h */,
+				CC55322F1E16F2A90011C01F /* A_SListTestSupplementaryNode.m */,
+				CC5532301E16F2A90011C01F /* A_SListKitTestAdapterDataSource.h */,
+				CC5532311E16F2A90011C01F /* A_SListKitTestAdapterDataSource.m */,
+				CC5532321E16F2A90011C01F /* A_SListTestSection.h */,
+				CC5532331E16F2A90011C01F /* A_SListTestSection.m */,
+				CC5532341E16F2A90011C01F /* A_SListTestCellNode.h */,
+				CC5532351E16F2A90011C01F /* A_SListTestCellNode.m */,
+				CC5532361E16F2A90011C01F /* A_SListTestObject.h */,
+				CC5532371E16F2A90011C01F /* A_SListTestObject.m */,
+			);
+			name = "ListKit Fixtures";
+			sourceTree = "<group>";
+		};
+		CCC31FA41EF9B96600E41731 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CCC31FA51EF9B96600E41731 /* A_SDisplayNode+OCMock.m */,
+				CCC31FA61EF9B96600E41731 /* A_STestCase.h */,
+				CCC31FA71EF9B96600E41731 /* A_STestCase.m */,
+				CCC31FA81EF9B96600E41731 /* A_SXCTExtensions.h */,
+				CCC31FA91EF9B96600E41731 /* NSInvocation+A_STestHelpers.h */,
+				CCC31FAA1EF9B96600E41731 /* NSInvocation+A_STestHelpers.m */,
+				CCC31FAB1EF9B96600E41731 /* OCMockObject+A_SAdditions.h */,
+				CCC31FAC1EF9B96600E41731 /* OCMockObject+A_SAdditions.m */,
+			);
+			name = Common;
+			path = ../../Tests/Common;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CC5532221E16EB9D0011C01F /* A_SDKListKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC5532291E16EB9D0011C01F /* Build configuration list for PBXNativeTarget "A_SDKListKitTests" */;
+			buildPhases = (
+				614B24BFF3DA58512D2E2147 /* [CP] Check Pods Manifest.lock */,
+				CC55321F1E16EB9D0011C01F /* Sources */,
+				CC5532201E16EB9D0011C01F /* Frameworks */,
+				CC5532211E16EB9D0011C01F /* Resources */,
+				989E6C194A1983B8B21AB82F /* [CP] Embed Pods Frameworks */,
+				876CE14CAF6A87E34577E157 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = A_SDKListKitTests;
+			productName = A_SDKListKitTests;
+			productReference = CC5532231E16EB9D0011C01F /* A_SDKListKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CC5532191E16EB7A0011C01F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				TargetAttributes = {
+					CC5532221E16EB9D0011C01F = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CC55321C1E16EB7A0011C01F /* Build configuration list for PBXProject "A_SDKListKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CC5532181E16EB7A0011C01F;
+			productRefGroup = CC5532241E16EB9D0011C01F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC5532221E16EB9D0011C01F /* A_SDKListKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CC5532211E16EB9D0011C01F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		614B24BFF3DA58512D2E2147 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		876CE14CAF6A87E34577E157 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-A_SDKListKitTests/Pods-A_SDKListKitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		989E6C194A1983B8B21AB82F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-A_SDKListKitTests/Pods-A_SDKListKitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC55321F1E16EB9D0011C01F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCC31FAD1EF9B96600E41731 /* A_SDisplayNode+OCMock.m in Sources */,
+				CC55323E1E16F2A90011C01F /* A_SListTestObject.m in Sources */,
+				CCC31FAF1EF9B96600E41731 /* NSInvocation+A_STestHelpers.m in Sources */,
+				CC5532391E16F2A90011C01F /* A_SListTestSupplementarySource.m in Sources */,
+				CCC31FB01EF9B96600E41731 /* OCMockObject+A_SAdditions.m in Sources */,
+				CC55323D1E16F2A90011C01F /* A_SListTestCellNode.m in Sources */,
+				CC55323B1E16F2A90011C01F /* A_SListKitTestAdapterDataSource.m in Sources */,
+				CCC31FAE1EF9B96600E41731 /* A_STestCase.m in Sources */,
+				CC55323C1E16F2A90011C01F /* A_SListTestSection.m in Sources */,
+				CC55323F1E16F2A90011C01F /* A_SListKitTests.m in Sources */,
+				CC55323A1E16F2A90011C01F /* A_SListTestSupplementaryNode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CC55321D1E16EB7A0011C01F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		CC55321E1E16EB7A0011C01F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		CC55322A1E16EB9D0011C01F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1FDA57F88BB590E403D7BB8 /* Pods-A_SDKListKitTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHA_SE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = A_SDKListKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = asyncdisplaykit.A_SDKListKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CC55322B1E16EB9D0011C01F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6BDED6F23A72F40F571EEF0 /* Pods-A_SDKListKitTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHA_SE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_A_SSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = A_SDKListKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = asyncdisplaykit.A_SDKListKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC55321C1E16EB7A0011C01F /* Build configuration list for PBXProject "A_SDKListKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC55321D1E16EB7A0011C01F /* Debug */,
+				CC55321E1E16EB7A0011C01F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC5532291E16EB9D0011C01F /* Build configuration list for PBXNativeTarget "A_SDKListKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC55322A1E16EB9D0011C01F /* Debug */,
+				CC55322B1E16EB9D0011C01F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CC5532191E16EB7A0011C01F /* Project object */;
+}

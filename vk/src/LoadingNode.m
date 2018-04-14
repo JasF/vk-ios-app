@@ -4,7 +4,7 @@
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
+//  LICENSE file in the /A_SDK-Licenses directory of this source tree. An additional
 //  grant of patent rights can be found in the PATENTS file in the same directory.
 //
 //  Modifications to this file made after 4/13/2017 are: Copyright (c) through the present,
@@ -17,20 +17,20 @@
 
 #import "LoadingNode.h"
 
-#import <AsyncDisplayKit/ASCenterLayoutSpec.h>
+#import <Async_DisplayKit/A_SCenterLayoutSpec.h>
 
 @implementation LoadingNode {
-  ASDisplayNode *_loadingSpinner;
+  A_SDisplayNode *_loadingSpinner;
 }
 
-#pragma mark - ASCellNode
+#pragma mark - A_SCellNode
 
 - (instancetype)init
 {
   if (!(self = [super init]))
     return nil;
   
-  _loadingSpinner = [[ASDisplayNode alloc] initWithViewBlock:^UIView * _Nonnull{
+  _loadingSpinner = [[A_SDisplayNode alloc] initWithViewBlock:^UIView * _Nonnull{
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [spinner startAnimating];
     return spinner;
@@ -43,11 +43,11 @@
   return self;
 }
 
-- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
+- (A_SLayoutSpec *)layoutSpecThatFits:(A_SSizeRange)constrainedSize
 {
-  ASCenterLayoutSpec *centerSpec = [[ASCenterLayoutSpec alloc] init];
-  centerSpec.centeringOptions = ASCenterLayoutSpecCenteringXY;
-  centerSpec.sizingOptions = ASCenterLayoutSpecSizingOptionDefault;
+  A_SCenterLayoutSpec *centerSpec = [[A_SCenterLayoutSpec alloc] init];
+  centerSpec.centeringOptions = A_SCenterLayoutSpecCenteringXY;
+  centerSpec.sizingOptions = A_SCenterLayoutSpecSizingOptionDefault;
   centerSpec.child = _loadingSpinner;
   return centerSpec;
 }

@@ -24,11 +24,11 @@
     return self;
 }
 
-- (ASDisplayNode *)nodeForItem:(id)item {
+- (A_SDisplayNode *)nodeForItem:(id)item {
     return [self nodeForItem:item embedded:NO];
 }
 
-- (ASDisplayNode *)nodeForItem:(id)item embedded:(BOOL)embedded {
+- (A_SDisplayNode *)nodeForItem:(id)item embedded:(BOOL)embedded {
     if ([item isKindOfClass:[WallPost class]]) {
         return [_assembly wallPostNodeWithData:item embedded:@(embedded)];
     }

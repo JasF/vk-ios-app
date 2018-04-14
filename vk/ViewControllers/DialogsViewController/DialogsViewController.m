@@ -7,7 +7,7 @@
 //
 
 #import "DialogsViewController.h"
-#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import <Async_DisplayKit/Async_DisplayKit.h>
 #import "Post.h"
 #import "PostNode.h"
 #import "VKSdkManager.h"
@@ -19,7 +19,7 @@
 #import "LoadingNode.h"
 #import "Dialog.h"
 
-@interface DialogsViewController () <BaseCollectionViewControllerDataSource, ASCollectionDelegate>
+@interface DialogsViewController () <BaseCollectionViewControllerDataSource, A_SCollectionDelegate>
 @property (strong, nonatomic) id<DialogsHandlerProtocol> handler;
 @property (strong, nonatomic) id<NodeFactory> nodeFactory;
 @property (strong, nonatomic) id<DialogsService> dialogsService;
@@ -65,13 +65,13 @@
                                completion:completion];
 }
 
-#pragma mark - ASCollectionNodeDelegate
-- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  //  Dialog *item = [collectionNode nodeModelForItemAtIndexPath:indexPath];
-  //  if (!item) {
-  //      return;
-  //  }
-    [_handler tappedOnDialogWithUserId:@(0)];//@(item.message.user_id)];
+#pragma mark - A_SCollectionNodeDelegate
+- (void)collectionNode:(A_SCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    Dialog *item = [collectionNode nodeModelForItemAtIndexPath:indexPath];
+    if (!item) {
+        return;
+    }
+    [_handler tappedOnDialogWithUserId:@(item.message.user_id)];
 }
 
 @end

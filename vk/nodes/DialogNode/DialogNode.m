@@ -11,10 +11,10 @@
 #import "TextStyles.h"
 
 @interface DialogNode ()
-@property ASTextNode *textNode;
-@property ASTextNode *usernameNode;
-@property ASTextNode *timeNode;
-@property ASNetworkImageNode *avatarNode;
+@property A_STextNode *textNode;
+@property A_STextNode *usernameNode;
+@property A_STextNode *timeNode;
+@property A_SNetworkImageNode *avatarNode;
 @end
 
 @implementation DialogNode
@@ -24,20 +24,20 @@
     NSCParameterAssert(dialog);
     self = [super init];
     if (self) {
-        _usernameNode = [[ASTextNode alloc] init];
+        _usernameNode = [[A_STextNode alloc] init];
         _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:dialog.username ?: @"" attributes:[TextStyles nameStyle]];
         _usernameNode.maximumNumberOfLines = 1;
         _usernameNode.truncationMode = NSLineBreakByTruncatingTail;
         [self addSubnode:_usernameNode];
         
-        _textNode = [[ASTextNode alloc] init];
+        _textNode = [[A_STextNode alloc] init];
         _textNode.attributedText = [[NSAttributedString alloc] initWithString:dialog.message.body ?: @"" attributes:[TextStyles titleStyle]];
         _textNode.maximumNumberOfLines = 1;
         _textNode.truncationMode = NSLineBreakByTruncatingTail;
         [self addSubnode:_textNode];
         
         
-        _timeNode = [[ASTextNode alloc] init];
+        _timeNode = [[A_STextNode alloc] init];
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:dialog.message.date];
         NSString *dateString = [NSDateFormatter localizedStringFromDate:date
                                                               dateStyle:NSDateFormatterShortStyle
@@ -45,10 +45,10 @@
         _timeNode.attributedText = [[NSAttributedString alloc] initWithString:dateString attributes:[TextStyles timeStyle]];
         [self addSubnode:_timeNode];
         
-        _avatarNode = [[ASNetworkImageNode alloc] init];
-        _avatarNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-        _avatarNode.style.width = ASDimensionMakeWithPoints(44);
-        _avatarNode.style.height = ASDimensionMakeWithPoints(44);
+        _avatarNode = [[A_SNetworkImageNode alloc] init];
+        _avatarNode.backgroundColor = A_SDisplayNodeDefaultPlaceholderColor();
+        _avatarNode.style.width = A_SDimensionMakeWithPoints(44);
+        _avatarNode.style.height = A_SDimensionMakeWithPoints(44);
         _avatarNode.cornerRadius = 22.0;
         _avatarNode.URL = [NSURL URLWithString:dialog.avatarURLString];
         [self addSubnode:_avatarNode];
@@ -56,37 +56,37 @@
     return self;
 }
 
-- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
+- (A_SLayoutSpec *)layoutSpecThatFits:(A_SSizeRange)constrainedSize
 {
-    ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
+    A_SLayoutSpec *spacer = [[A_SLayoutSpec alloc] init];
     spacer.style.flexGrow = 1.0;
     
-    ASStackLayoutSpec *topLineStack =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+    A_SStackLayoutSpec *topLineStack =
+    [A_SStackLayoutSpec
+     stackLayoutSpecWithDirection:A_SStackLayoutDirectionHorizontal
      spacing:5.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsCenter
+     justifyContent:A_SStackLayoutJustifyContentStart
+     alignItems:A_SStackLayoutAlignItemsCenter
      children:@[_usernameNode, spacer, _timeNode]];
-    topLineStack.style.alignSelf = ASStackLayoutAlignSelfStretch;
+    topLineStack.style.alignSelf = A_SStackLayoutAlignSelfStretch;
     
-    ASStackLayoutSpec *nameVerticalStack =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
+    A_SStackLayoutSpec *nameVerticalStack =
+    [A_SStackLayoutSpec
+     stackLayoutSpecWithDirection:A_SStackLayoutDirectionVertical
      spacing:5.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
+     justifyContent:A_SStackLayoutJustifyContentStart
+     alignItems:A_SStackLayoutAlignItemsStart
      children:@[topLineStack, _textNode]];
     
-    ASStackLayoutSpec *avatarContentSpec =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+    A_SStackLayoutSpec *avatarContentSpec =
+    [A_SStackLayoutSpec
+     stackLayoutSpecWithDirection:A_SStackLayoutDirectionHorizontal
      spacing:8.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
+     justifyContent:A_SStackLayoutJustifyContentStart
+     alignItems:A_SStackLayoutAlignItemsStart
      children:@[_avatarNode, nameVerticalStack]];
     
-    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
+    A_SLayoutSpec *spec = [A_SInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
     spec.style.flexShrink = 1.0f;
     return spec;
 }

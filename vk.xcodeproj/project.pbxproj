@@ -421,7 +421,7 @@
 		C32309242081AEB100CEC487 /* TyphoonCollaboratingAssemblyProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308822081AEB000CEC487 /* TyphoonCollaboratingAssemblyProxy.m */; };
 		C32309252081AEB100CEC487 /* TyphoonAssemblyDefinitionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308832081AEB000CEC487 /* TyphoonAssemblyDefinitionBuilder.m */; };
 		C32309262081AEB100CEC487 /* TyphoonAssemblySelectorAdviser.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308842081AEB000CEC487 /* TyphoonAssemblySelectorAdviser.m */; };
-		C32309272081AEB100CEC487 /* NSInvocation+TCFInstanceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308862081AEB000CEC487 /* NSInvocation+TCFInstanceBuilder.m */; };
+		C32309272081AEB100CEC487 /* NSInvocation+TCFInstanceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308862081AEB000CEC487 /* NSInvocation+TCFInstanceBuilder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C32309282081AEB100CEC487 /* TyphoonRuntimeArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308892081AEB000CEC487 /* TyphoonRuntimeArguments.m */; };
 		C32309292081AEB100CEC487 /* TyphoonStackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C323088B2081AEB000CEC487 /* TyphoonStackElement.m */; };
 		C323092A2081AEB100CEC487 /* TyphoonBlockComponentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = C323088E2081AEB000CEC487 /* TyphoonBlockComponentFactory.m */; };
@@ -437,6 +437,7 @@
 		C32309342081AEB100CEC487 /* UIScreen+NanoFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308B62081AEB000CEC487 /* UIScreen+NanoFrame.m */; };
 		C32309352081AEB100CEC487 /* UIImage+NanoFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308B72081AEB000CEC487 /* UIImage+NanoFrame.m */; };
 		C32309362081AEB100CEC487 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C32308B82081AEB000CEC487 /* README.md */; };
+		C323093C2081BB9C00CEC487 /* Tex_ture.podspec in Resources */ = {isa = PBXBuildFile; fileRef = C323093B2081BB9C00CEC487 /* Tex_ture.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -839,7 +840,7 @@
 		C32306F02080E9D800CEC487 /* PythonManagerImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PythonManagerImpl.m; sourceTree = "<group>"; };
 		C32306F52080F1C600CEC487 /* Pods_vk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_vk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32306F92080F2D900CEC487 /* NMessenger.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = NMessenger.podspec; path = Components/nMessenger/NMessenger.podspec; sourceTree = SOURCE_ROOT; };
-		C32306FA2080F2DE00CEC487 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		C32306FA2080F2DE00CEC487 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C32306FE2081AEB000CEC487 /* classobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classobject.h; sourceTree = "<group>"; };
 		C32306FF2081AEB000CEC487 /* cellobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cellobject.h; sourceTree = "<group>"; };
 		C32307002081AEB000CEC487 /* intrcheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = intrcheck.h; sourceTree = "<group>"; };
@@ -1224,7 +1225,9 @@
 		C32308B72081AEB000CEC487 /* UIImage+NanoFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NanoFrame.m"; sourceTree = "<group>"; };
 		C32308B82081AEB000CEC487 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C32309382081AED800CEC487 /* renametexture.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = renametexture.py; sourceTree = "<group>"; };
-		C3B527062080BF4C00FCD639 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		C323093B2081BB9C00CEC487 /* Tex_ture.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Tex_ture.podspec; path = Tex_ture/Tex_ture.podspec; sourceTree = "<group>"; };
+		C323093D2081BBE700CEC487 /* PINRemoteImage.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = PINRemoteImage.podspec; path = ../../Downloads/PINRemoteImage/PINRemoteImage.podspec; sourceTree = "<group>"; };
+		C323093E2081BDB500CEC487 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile; path = Tex_ture/examples/SocialAppLayout/Podfile; sourceTree = "<group>"; };
 		E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA13F2494D45D4FE5E319D6 /* Pods-MessageGroupsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0D613A92790A124CBD92B36 /* Pods-MessageGroups.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroups.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroups/Pods-MessageGroups.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1272,7 +1275,6 @@
 				C32303EB2080E57300CEC487 /* Frameworks */,
 				C32304242080E57400CEC487 /* resources */,
 				C32304292080E57400CEC487 /* vk */,
-				C3B527062080BF4C00FCD639 /* Podfile */,
 				197D8B0D1D64BA50004630AE /* MessageGroups */,
 				197D8B0C1D64BA50004630AE /* Products */,
 				8D7752F53CEA61DEAA10F22F /* Pods */,
@@ -3281,6 +3283,9 @@
 		C32309372081AEB900CEC487 /* scripts */ = {
 			isa = PBXGroup;
 			children = (
+				C323093E2081BDB500CEC487 /* Podfile */,
+				C323093D2081BBE700CEC487 /* PINRemoteImage.podspec */,
+				C323093B2081BB9C00CEC487 /* Tex_ture.podspec */,
 				C32309382081AED800CEC487 /* renametexture.py */,
 			);
 			path = scripts;
@@ -3417,6 +3422,7 @@
 				C32306CE2080E57500CEC487 /* makefile.py in Resources */,
 				C323069E2080E57500CEC487 /* wait.cpython-34.pyc in Resources */,
 				C323068B2080E57500CEC487 /* __init__.cpython-34.pyc in Resources */,
+				C323093C2081BB9C00CEC487 /* Tex_ture.podspec in Resources */,
 				C32306BE2080E57500CEC487 /* __init__.py in Resources */,
 				C32306BB2080E57500CEC487 /* socks.py in Resources */,
 				C32306292080E57500CEC487 /* parser.py in Resources */,
@@ -3631,20 +3637,30 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-vk/Pods-vk-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/LoremIpsum/LoremIpsum.framework",
 				"${BUILT_PRODUCTS_DIR}/NMessenger/NMessenger.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/PI_NCache/PI_NCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PI_NOperation/PI_NOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PI_NRemoteImage/PI_NRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Tex_ture/Async_DisplayKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoremIpsum.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NMessenger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PI_NCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PI_NOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PI_NRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Async_DisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

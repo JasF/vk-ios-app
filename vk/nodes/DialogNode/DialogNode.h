@@ -6,11 +6,11 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import <Async_DisplayKit/Async_DisplayKit.h>
 
 @class Dialog;
 
-@interface DialogNode : ASCellNode
+@interface DialogNode : A_SCellNode
 
 - (instancetype)initWithDialog:(Dialog *)dialog;
 

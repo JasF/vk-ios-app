@@ -7,7 +7,7 @@
 //  LICENSE file in the root directory of this source tree. An additional grant
 //  of patent rights can be found in the PATENTS file in the same directory.
 //
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  THE SOFTWARE IS PROVIDED "A_S IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 //  FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
@@ -22,14 +22,14 @@
 #import <VK-ios-sdk/VKSdk.h>
 #import "WallPost.h"
 
-#import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import <AsyncDisplayKit/ASAssert.h>
+#import <Async_DisplayKit/Async_DisplayKit.h>
+#import <Async_DisplayKit/A_SAssert.h>
 
 #include <stdlib.h>
 
-@interface ViewController () <ASTableDataSource, ASTableDelegate>
+@interface ViewController () <A_STableDataSource, A_STableDelegate>
 
-@property (nonatomic, strong) ASTableNode *tableNode;
+@property (nonatomic, strong) A_STableNode *tableNode;
 @property (nonatomic, strong) NSMutableArray *socialAppDataSource;
 
 @end
@@ -40,7 +40,7 @@
 
 - (instancetype)init
 {
-    _tableNode = [[ASTableNode alloc] initWithStyle:UITableViewStylePlain];
+    _tableNode = [[A_STableNode alloc] initWithStyle:UITableViewStylePlain];
   
     self = [super initWithNode:_tableNode];
   
@@ -89,10 +89,10 @@
     _socialAppDataSource = [[NSMutableArray alloc] init];
 }
 
-#pragma mark - ASTableNode
+#pragma mark - A_STableNode
 
 
-- (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath
+- (A_SCellNodeBlock)tableNode:(A_STableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Post *post = self.socialAppDataSource[indexPath.row];
     return ^{
@@ -100,7 +100,7 @@
     };
 }
 
-- (NSInteger)tableNode:(ASTableNode *)tableNode numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableNode:(A_STableNode *)tableNode numberOfRowsInSection:(NSInteger)section
 {
     return self.socialAppDataSource.count;
 }

@@ -6,12 +6,12 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import <Async_DisplayKit/Async_DisplayKit.h>
 #import "NodeFactory.h"
 
 @class WallPost;
 
-@interface WallPostNode : ASCellNode
+@interface WallPostNode : A_SCellNode
 - (instancetype)initWithPost:(WallPost *)post
                  nodeFactory:(id<NodeFactory>)nodeFactory
                     embedded:(NSNumber *)embedded;

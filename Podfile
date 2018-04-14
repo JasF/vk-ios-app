@@ -9,6 +9,10 @@ target 'vk' do
 
   # Pods for MessageGroups
   pod 'NMessenger', :path => 'Components/nMessenger'
+  pod 'PI_NOperation', :path => 'Components/Tex_ture/PI_NOperation'
+  pod 'PI_NCache', :path => 'Components/Tex_ture/PI_NCache'
+  pod 'PI_NRemoteImage', :path => 'Components/Tex_ture/PI_NRemoteImage'
+  pod 'Tex_ture', :path => 'Components/Tex_ture'
   pod 'LoremIpsum', '= 1.0.0'
 
 end

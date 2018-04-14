@@ -11,8 +11,8 @@
 
 static const NSInteger kBatchSize = 20;
 
-@interface BaseCollectionViewController () <ASCollectionDelegate, ASCollectionDataSource>
-@property ASCollectionNode *collectionNode;
+@interface BaseCollectionViewController () <A_SCollectionDelegate, A_SCollectionDataSource>
+@property A_SCollectionNode *collectionNode;
 @property NSMutableArray *data;
 @property id<NodeFactory> nodeFactory;
 @property (assign, nonatomic) BOOL updating;
@@ -25,22 +25,22 @@ static const NSInteger kBatchSize = 20;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(nodeFactory);
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    _collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:layout];
+    _collectionNode = [[A_SCollectionNode alloc] initWithCollectionViewLayout:layout];
     self = [super initWithNode:_collectionNode];
     if (self) {
         _nodeFactory = nodeFactory;
         _collectionNode.backgroundColor = [UIColor whiteColor];
         _collectionNode.accessibilityIdentifier = NSStringFromClass([self class]);
         
-        ASRangeTuningParameters preloadTuning;
+        A_SRangeTuningParameters preloadTuning;
         preloadTuning.leadingBufferScreenfuls = 2;
         preloadTuning.trailingBufferScreenfuls = 1;
-        [_collectionNode setTuningParameters:preloadTuning forRangeType:ASLayoutRangeTypePreload];
+        [_collectionNode setTuningParameters:preloadTuning forRangeType:A_SLayoutRangeTypePreload];
         
-        ASRangeTuningParameters displayTuning;
+        A_SRangeTuningParameters displayTuning;
         displayTuning.leadingBufferScreenfuls = 1;
         displayTuning.trailingBufferScreenfuls = 0.5;
-        [_collectionNode setTuningParameters:displayTuning forRangeType:ASLayoutRangeTypeDisplay];
+        [_collectionNode setTuningParameters:displayTuning forRangeType:A_SLayoutRangeTypeDisplay];
         
         [_collectionNode registerSupplementaryNodeOfKind:UICollectionElementKindSectionHeader];
         [_collectionNode registerSupplementaryNodeOfKind:UICollectionElementKindSectionFooter];
@@ -54,7 +54,7 @@ static const NSInteger kBatchSize = 20;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //_collectionNode.leadingScreensForBatching = 2;
+    _collectionNode.leadingScreensForBatching = 2;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -108,23 +108,23 @@ static const NSInteger kBatchSize = 20;
     return indexPaths;
 }
 
-#pragma mark - ASCollectionNodeDelegate / ASCollectionNodeDataSource
+#pragma mark - A_SCollectionNodeDelegate / A_SCollectionNodeDataSource
 
-- (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
+- (A_SCellNodeBlock)collectionNode:(A_SCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return ^{
         id object = _data[indexPath.row];
-        ASCellNode *node = (ASCellNode *)[_nodeFactory nodeForItem:object];
+        A_SCellNode *node = (A_SCellNode *)[_nodeFactory nodeForItem:object];
         return node;
     };
 }
 
-- (id)collectionNode:(ASCollectionNode *)collectionNode nodeModelForItemAtIndexPath:(NSIndexPath *)indexPath
+- (id)collectionNode:(A_SCollectionNode *)collectionNode nodeModelForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return _data[indexPath.item];
 }
 
-- (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+- (A_SCellNode *)collectionNode:(A_SCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if ([kind isEqualToString:UICollectionElementKindSectionFooter] && indexPath.section == 0) {
         return [[LoadingNode alloc] init];
@@ -132,25 +132,25 @@ static const NSInteger kBatchSize = 20;
     return nil;
 }
 
-- (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (A_SSizeRange)collectionNode:(A_SCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ASSizeRange result = ASSizeRangeUnconstrained;
+    A_SSizeRange result = A_SSizeRangeUnconstrained;
     result.min.width = self.view.width;
     result.max.width = self.view.width;
     return result;
 }
 
-- (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionNode:(A_SCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
 {
     return [_data count];
 }
 
-- (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode
+- (NSInteger)numberOfSectionsInCollectionNode:(A_SCollectionNode *)collectionNode
 {
     return 1;
 }
 
-- (void)collectionNode:(ASCollectionNode *)collectionNode willBeginBatchFetchWithContext:(ASBatchContext *)context
+- (void)collectionNode:(A_SCollectionNode *)collectionNode willBeginBatchFetchWithContext:(A_SBatchContext *)context
 {
     DDLogInfo(@"\n\n\nPre fetching$$$\n\n\n");
     if (self.updating) {
@@ -171,22 +171,22 @@ static const NSInteger kBatchSize = 20;
     [_collectionNode.view.collectionViewLayout invalidateLayout];
 }
 
-#pragma mark - ASCollectionDelegateFlowLayout
-- (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode sizeRangeForHeaderInSection:(NSInteger)section
+#pragma mark - A_SCollectionDelegateFlowLayout
+- (A_SSizeRange)collectionNode:(A_SCollectionNode *)collectionNode sizeRangeForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return ASSizeRangeUnconstrained;
+        return A_SSizeRangeUnconstrained;
     } else {
-        return ASSizeRangeZero;
+        return A_SSizeRangeZero;
     }
 }
 
-- (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode sizeRangeForFooterInSection:(NSInteger)section
+- (A_SSizeRange)collectionNode:(A_SCollectionNode *)collectionNode sizeRangeForFooterInSection:(NSInteger)section
 {
     if (section == 0) {
-        return ASSizeRangeUnconstrained;
+        return A_SSizeRangeUnconstrained;
     } else {
-        return ASSizeRangeZero;
+        return A_SSizeRangeZero;
     }
 }
 

@@ -11,8 +11,6 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
     var pythonBridge: PythonBridge?
     var screensManager: ScreensManager?
 
@@ -27,11 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pythonManager?.startupPython()
         self.screensManager?.createWindowIfNeeded()
         self.pythonBridge?.connect()
-        /*
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        window?.rootViewController = UINavigationController(rootViewController: EntryViewController())
-        */
+        
         return true
     }
 

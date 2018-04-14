@@ -6,8 +6,8 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import <Async_DisplayKit/Async_DisplayKit.h>
 
-@interface PostImagesNode : ASDisplayNode
+@interface PostImagesNode : A_SDisplayNode
 - (id)initWithAttachments:(NSArray *)attachments;
 @end
