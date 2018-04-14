@@ -126,7 +126,6 @@ class Session(object):
     def make_request(self, request, captcha_response=None):
 
         logger.debug('Prepare API Method request')
-        print('make request: ' + str(self.method_default_args))
 
         response = self.send_api_request(request, captcha_response=captcha_response)
         # todo Replace with something less exceptional
@@ -176,9 +175,6 @@ class Session(object):
         if captcha_response:
             method_args['captcha_sid'] = captcha_response['sid']
             method_args['captcha_key'] = captcha_response['key']
-        print('posting: ' + str(url) + '; method_args: ' + str(method_args))
-        print('self.method_default_args: ' + str(self.method_default_args))
-        print('request._method_args: ' + str(request._method_args))
         response = self.requests_session.post(url, method_args, timeout=self.timeout)
         return response
 

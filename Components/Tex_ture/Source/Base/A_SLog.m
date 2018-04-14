@@ -13,9 +13,10 @@
 #import <Async_DisplayKit/A_SLog.h>
 #import <stdatomic.h>
 
-static atomic_bool __A_SLogEnabled = ATOMIC_VAR_INIT(YES);
+static atomic_bool __A_SLogEnabled = ATOMIC_VAR_INIT(NO);
 
 void A_SDisableLogging() {
+    // AV: look at __A_SLogEnabled
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     atomic_store(&__A_SLogEnabled, NO);

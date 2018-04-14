@@ -19,5 +19,6 @@
 @property NSInteger read_state;
 @property NSString *title;
 @property NSInteger user_id;
+@property NSInteger from_id;
 
 @end

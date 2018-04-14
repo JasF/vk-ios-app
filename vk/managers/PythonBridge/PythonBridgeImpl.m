@@ -22,13 +22,14 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
 @property (strong, nonatomic) dispatch_queue_t queue;
 @property (strong, nonatomic) GCDWebServer *webServer;
 @property (strong, nonatomic) NSMutableArray *sendArray;
+@property (strong, nonatomic) NSMutableDictionary *resultBlocks;
 @end
 
 @implementation PythonBridgeImpl {
-    ResultBlock _resultBlock;
     BOOL _sessionStartedSended;
     dispatch_group_t _group;
     BOOL _groupWaiting;
+    NSInteger _currentRequestId;
 }
 
 + (instancetype)shared {
@@ -42,6 +43,7 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
 
 - (id)init {
     if (self = [super init]) {
+        _resultBlocks = [NSMutableDictionary new];
         _handlers = [NSMutableDictionary new];
         _queue = dispatch_queue_create("python.bridge.queue.serial", DISPATCH_QUEUE_SERIAL);
         _sendArray = [NSMutableArray new];
@@ -124,10 +126,21 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
     if (!action || !className) {
         return;
     }
-    if (resultBlock) {
-        _resultBlock = resultBlock;
+    @synchronized(self) {
+        if (resultBlock) {
+            _currentRequestId++;
+            [_resultBlocks setObject:resultBlock forKey:@(_currentRequestId)];
+        }
+        NSDictionary *dictionary = @{
+                                     @"command":@"classAction",
+                                     @"action":action,
+                                     @"class":className,
+                                     @"args":(arguments) ?: @[],
+                                     @"withResult":@(withResult),
+                                     @"requestId":@(_currentRequestId)
+                                    };
+        [self send:dictionary];
     }
-    [self send:@{@"command":@"classAction", @"action":action, @"class":className, @"args":(arguments) ?: @[], @"withResult":@(withResult)}];
 }
 
 NSArray *px_allProtocolMethods(Protocol *protocol)
@@ -187,11 +200,12 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
             if ([result isKindOfClass:[NSNull class]]) {
                 result = nil;
             }
-            NSCAssert(_resultBlock, @"received response but callback not achived!");
-            if (_resultBlock) {
-                ResultBlock block = _resultBlock;
-                _resultBlock = nil;
-                block(result);
+            NSInteger requestId = [object[@"request"][@"requestId"] integerValue];
+            ResultBlock resultBlock = _resultBlocks[@(requestId)];
+            NSCAssert(resultBlock, @"received response but callback not achived!");
+            if (resultBlock) {
+                [_resultBlocks removeObjectForKey:@(requestId)];
+                resultBlock(result);
             }
         }
         else {

@@ -14,7 +14,10 @@
 
 @implementation PythonManagerImpl
 
+void A_SDisableLogging(); // Look inside
+    
 - (void)startupPython {
+    //A_SDisableLogging();
     __block int ret = 0;
     dispatch_queue_t queue = dispatch_queue_create("queue.async.main", DISPATCH_QUEUE_SERIAL);
     __block int argc = 1;
@@ -99,13 +102,11 @@ int initializePython(int argc, char *argv[]) {
         
         // Set the home for the Python interpreter
         python_home = [NSString stringWithFormat:@"%@/Python.framework/Versions/3.6/Resources", documentsDirectory, nil];
-        NSLog(@"PythonHome is: %@", python_home);
         wpython_home = Py_DecodeLocale([python_home UTF8String], NULL);
         Py_SetPythonHome(wpython_home);
         
         // Set the PYTHONPATH
         python_path = [NSString stringWithFormat:@"PYTHONPATH=%@/sources/app:%@/sources/app_packages", documentsDirectory, documentsDirectory, nil];
-        NSLog(@"PYTHONPATH is: %@", python_path);
         putenv((char *)[python_path UTF8String]);
         
         // iOS provides a specific directory for temp files.

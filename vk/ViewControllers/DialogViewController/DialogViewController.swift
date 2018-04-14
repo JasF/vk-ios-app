@@ -30,4 +30,14 @@ open class DialogViewController: NMessengerViewController {
     override open func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override open func viewWillAppear(_ animated: Bool ) {
+        super.viewWillAppear(animated)
+        
+        self.dialogService?.getMessagesWithOffset(0, userId: Int(self.userId!)) {messages in
+            for data in messages! as [AnyObject] {
+                //print(data);
+            }
+        }
+    }
 }

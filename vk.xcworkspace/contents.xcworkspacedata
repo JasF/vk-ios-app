@@ -4,6 +4,13 @@
    <FileRef
       location = "group:vk.xcodeproj">
    </FileRef>
+   <Group
+      location = "group:/Users/jasf/vk/scripts"
+      name = "scripts">
+      <FileRef
+         location = "group:scripts/renametexture.py">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>

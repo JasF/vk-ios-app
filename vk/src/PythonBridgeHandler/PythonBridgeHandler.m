@@ -62,6 +62,9 @@
 - (id)methodWithResultAndOneArgument:(id)argument {
     return self.resultValue;
 }
+- (id)methodWithResultAndTwoArgument:(id)argument arg:(id)arg2 {
+    return self.resultValue;
+}
 
 -(void)forwardInvocation:(NSInvocation*)anInvocation
 {
@@ -97,6 +100,9 @@
     }
     else if (withResultValue && arguments.count == 1) {
         anInvocation.selector = @selector(methodWithResultAndOneArgument:);
+    }
+    else if (withResultValue && arguments.count == 2) {
+        anInvocation.selector = @selector(methodWithResultAndTwoArgument:arg:);
     }
     else if (withResultValue) {
         NSCParameterAssert(!arguments.count);

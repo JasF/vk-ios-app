@@ -51,7 +51,7 @@
  * ensure that logging is not accidentally left enabled by accident in release builds.
  */
 #ifndef LOGGING_ENABLED
-#	define LOGGING_ENABLED		1
+#	define LOGGING_ENABLED		0
 #endif
 
 /**

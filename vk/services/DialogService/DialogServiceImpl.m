@@ -24,8 +24,16 @@
 }
 
 - (void)getMessagesWithOffset:(NSInteger)offset
+                       userId:(NSInteger)userId
                    completion:(void(^)(NSArray<Message *> *messages))completion {
-    NSLog(@"!");
+    dispatch_python(^{
+        NSDictionary *results = [_handler getMessages:@(0) userId:@(userId)];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(results[@"items"]);
+            }
+        });
+    });
 }
 
 @end

@@ -13,7 +13,7 @@
 +(EKObjectMapping *)objectMapping
 {
     return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
-        [mapping mapPropertiesFromArray:@[@"body", @"date", @"random_id", @"read_state", @"title", @"user_id"]];
+        [mapping mapPropertiesFromArray:@[@"body", @"date", @"random_id", @"read_state", @"title", @"user_id", @"from_id"]];
         [mapping mapKeyPath:@"id" toProperty:@"identifier"];
         [mapping mapKeyPath:@"out" toProperty:@"isOut"];
     }];

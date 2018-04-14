@@ -15,7 +15,6 @@ class Subscriber():
     
     def subscribe(self, command, handler):
         self.handlers[command] = handler
-        dprint('Subscriber assign. handlers: ' + str(self.handlers))
 
     def performHandler(self, handler):
         try:

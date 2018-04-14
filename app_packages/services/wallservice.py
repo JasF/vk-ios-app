@@ -12,8 +12,6 @@ class WallServiceHandlerProtocol:
             response = api.wall.get(access_token=vk.token(), offset=offset)
             l = response["items"]
             
-            print('item is: ' + str(l[0]))
-            
             fromIds = [d['from_id'] for d in l]
             ownerIds = [d['owner_id'] for d in l]
             

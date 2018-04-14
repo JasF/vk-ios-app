@@ -11,6 +11,7 @@
 
 @protocol DialogService <NSObject>
 - (void)getMessagesWithOffset:(NSInteger)offset
+                       userId:(NSInteger)userId
                    completion:(void(^)(NSArray<Message *> *messages))completion;
 @end
 

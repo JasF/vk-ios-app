@@ -303,7 +303,7 @@
 		C32306DE2080E57500CEC487 /* wallservice.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305B42080E57500CEC487 /* wallservice.py */; };
 		C32306DF2080E57500CEC487 /* dialogsservice.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305B52080E57500CEC487 /* dialogsservice.py */; };
 		C32306E02080E57500CEC487 /* users.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305B72080E57500CEC487 /* users.py */; };
-		C32306E12080E57500CEC487 /* __ini__.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305B82080E57500CEC487 /* __ini__.py */; };
+		C32306E12080E57500CEC487 /* __init__.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305B82080E57500CEC487 /* __init__.py */; };
 		C32306E32080E63D00CEC487 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C32306E22080E63C00CEC487 /* libsqlite3.tbd */; };
 		C32306E52080E64400CEC487 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C32306E42080E64400CEC487 /* libz.tbd */; };
 		C32306E72080E64B00CEC487 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32306E62080E64B00CEC487 /* MobileCoreServices.framework */; };
@@ -437,7 +437,6 @@
 		C32309342081AEB100CEC487 /* UIScreen+NanoFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308B62081AEB000CEC487 /* UIScreen+NanoFrame.m */; };
 		C32309352081AEB100CEC487 /* UIImage+NanoFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308B72081AEB000CEC487 /* UIImage+NanoFrame.m */; };
 		C32309362081AEB100CEC487 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C32308B82081AEB000CEC487 /* README.md */; };
-		C323093C2081BB9C00CEC487 /* Tex_ture.podspec in Resources */ = {isa = PBXBuildFile; fileRef = C323093B2081BB9C00CEC487 /* Tex_ture.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -830,7 +829,7 @@
 		C32305B42080E57500CEC487 /* wallservice.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = wallservice.py; sourceTree = "<group>"; };
 		C32305B52080E57500CEC487 /* dialogsservice.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = dialogsservice.py; sourceTree = "<group>"; };
 		C32305B72080E57500CEC487 /* users.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = users.py; sourceTree = "<group>"; };
-		C32305B82080E57500CEC487 /* __ini__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __ini__.py; sourceTree = "<group>"; };
+		C32305B82080E57500CEC487 /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C32306E22080E63C00CEC487 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		C32306E42080E64400CEC487 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C32306E62080E64B00CEC487 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -1225,9 +1224,11 @@
 		C32308B72081AEB000CEC487 /* UIImage+NanoFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NanoFrame.m"; sourceTree = "<group>"; };
 		C32308B82081AEB000CEC487 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C32309382081AED800CEC487 /* renametexture.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = renametexture.py; sourceTree = "<group>"; };
-		C323093B2081BB9C00CEC487 /* Tex_ture.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Tex_ture.podspec; path = Tex_ture/Tex_ture.podspec; sourceTree = "<group>"; };
-		C323093D2081BBE700CEC487 /* PINRemoteImage.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = PINRemoteImage.podspec; path = ../../Downloads/PINRemoteImage/PINRemoteImage.podspec; sourceTree = "<group>"; };
-		C323093E2081BDB500CEC487 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile; path = Tex_ture/examples/SocialAppLayout/Podfile; sourceTree = "<group>"; };
+		C3372F8F2081D72E0080DA75 /* dialogscreen.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogscreen.py; sourceTree = "<group>"; };
+		C3372F902081D7480080DA75 /* dialogservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogservice.py; sourceTree = "<group>"; };
+		C3372F912081F68E0080DA75 /* basedatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = basedatabase.py; sourceTree = "<group>"; };
+		C3372F922081FAEA0080DA75 /* messages.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messages.py; sourceTree = "<group>"; };
+		C3372F932081FB330080DA75 /* gensqlkeys.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = gensqlkeys.py; sourceTree = "<group>"; };
 		E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA13F2494D45D4FE5E319D6 /* Pods-MessageGroupsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0D613A92790A124CBD92B36 /* Pods-MessageGroups.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroups.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroups/Pods-MessageGroups.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1267,7 +1268,6 @@
 		197D8B021D64BA50004630AE = {
 			isa = PBXGroup;
 			children = (
-				C32309372081AEB900CEC487 /* scripts */,
 				C32306FB2081AE8F00CEC487 /* Components */,
 				C32304E02080E57400CEC487 /* app_packages */,
 				C32304DF2080E57400CEC487 /* app_packages.zip */,
@@ -1277,6 +1277,7 @@
 				C32304292080E57400CEC487 /* vk */,
 				197D8B0D1D64BA50004630AE /* MessageGroups */,
 				197D8B0C1D64BA50004630AE /* Products */,
+				C32309372081AEB900CEC487 /* scripts */,
 				8D7752F53CEA61DEAA10F22F /* Pods */,
 				5E31EA5A896A9B46C9E8BCB9 /* Frameworks */,
 			);
@@ -1916,10 +1917,12 @@
 		C32304E02080E57400CEC487 /* app_packages */ = {
 			isa = PBXGroup;
 			children = (
+				C32305B22080E57500CEC487 /* services */,
+				C32305252080E57500CEC487 /* screens */,
+				C32305B62080E57500CEC487 /* caches */,
 				C32304E12080E57400CEC487 /* objcbridge */,
 				C32304E52080E57400CEC487 /* chardet */,
 				C32305132080E57400CEC487 /* idna */,
-				C32305252080E57500CEC487 /* screens */,
 				C323052B2080E57500CEC487 /* requests */,
 				C323053E2080E57500CEC487 /* vk */,
 				C323054B2080E57500CEC487 /* certifi */,
@@ -1927,8 +1930,6 @@
 				C32305552080E57500CEC487 /* urllib3 */,
 				C32305AB2080E57500CEC487 /* main.py */,
 				C32305AC2080E57500CEC487 /* objc */,
-				C32305B22080E57500CEC487 /* services */,
-				C32305B62080E57500CEC487 /* caches */,
 			);
 			path = app_packages;
 			sourceTree = "<group>";
@@ -2047,6 +2048,7 @@
 				C32305272080E57500CEC487 /* authorizationscreen.py */,
 				C32305282080E57500CEC487 /* menuscreen.py */,
 				C32305292080E57500CEC487 /* dialogsscreen.py */,
+				C3372F8F2081D72E0080DA75 /* dialogscreen.py */,
 				C323052A2080E57500CEC487 /* __init__.py */,
 			);
 			path = screens;
@@ -2323,9 +2325,10 @@
 		C32305B22080E57500CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
-				C32305B32080E57500CEC487 /* __init__.py */,
 				C32305B42080E57500CEC487 /* wallservice.py */,
 				C32305B52080E57500CEC487 /* dialogsservice.py */,
+				C3372F902081D7480080DA75 /* dialogservice.py */,
+				C32305B32080E57500CEC487 /* __init__.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -2334,7 +2337,9 @@
 			isa = PBXGroup;
 			children = (
 				C32305B72080E57500CEC487 /* users.py */,
-				C32305B82080E57500CEC487 /* __ini__.py */,
+				C32305B82080E57500CEC487 /* __init__.py */,
+				C3372F912081F68E0080DA75 /* basedatabase.py */,
+				C3372F922081FAEA0080DA75 /* messages.py */,
 			);
 			path = caches;
 			sourceTree = "<group>";
@@ -3283,10 +3288,8 @@
 		C32309372081AEB900CEC487 /* scripts */ = {
 			isa = PBXGroup;
 			children = (
-				C323093E2081BDB500CEC487 /* Podfile */,
-				C323093D2081BBE700CEC487 /* PINRemoteImage.podspec */,
-				C323093B2081BB9C00CEC487 /* Tex_ture.podspec */,
 				C32309382081AED800CEC487 /* renametexture.py */,
+				C3372F932081FB330080DA75 /* gensqlkeys.py */,
 			);
 			path = scripts;
 			sourceTree = "<group>";
@@ -3422,7 +3425,6 @@
 				C32306CE2080E57500CEC487 /* makefile.py in Resources */,
 				C323069E2080E57500CEC487 /* wait.cpython-34.pyc in Resources */,
 				C323068B2080E57500CEC487 /* __init__.cpython-34.pyc in Resources */,
-				C323093C2081BB9C00CEC487 /* Tex_ture.podspec in Resources */,
 				C32306BE2080E57500CEC487 /* __init__.py in Resources */,
 				C32306BB2080E57500CEC487 /* socks.py in Resources */,
 				C32306292080E57500CEC487 /* parser.py in Resources */,
@@ -3578,7 +3580,7 @@
 				C32306432080E57500CEC487 /* utf8prober.py in Resources */,
 				C32306D02080E57500CEC487 /* six.py in Resources */,
 				C32306A62080E57500CEC487 /* __init__.py in Resources */,
-				C32306E12080E57500CEC487 /* __ini__.py in Resources */,
+				C32306E12080E57500CEC487 /* __init__.py in Resources */,
 				C32306DD2080E57500CEC487 /* __init__.py in Resources */,
 				C32306782080E57500CEC487 /* exceptions.py in Resources */,
 			);
