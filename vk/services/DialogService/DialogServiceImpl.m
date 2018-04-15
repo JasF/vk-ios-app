@@ -55,6 +55,12 @@
 #pragma mark - Private Methods
 - (void)processResponse:(NSDictionary *)results
              completion:(void(^)(NSArray<Message *> *messages))completion {
+    if (![results isKindOfClass:[NSDictionary class]]) {
+        if (completion) {
+            completion(nil);
+        }
+        return;
+    }
     NSDictionary *response = results[@"response"];
     NSArray *items = response[@"items"];
     NSArray *messages = [EKMapper arrayOfObjectsFromExternalRepresentation:items
