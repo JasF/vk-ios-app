@@ -1,7 +1,0 @@
-target 'PI_NRemoteImage' do
-  pod "PI_NRemoteImage/OSX", :path => "../../"
-  pod "PI_NRemoteImage/WebP", :path => "../../"
-  pod "PI_NRemoteImage/PI_NCache", :path => "../../"
-  pod "PI_NCache"
-  pod "libwebp"
-end

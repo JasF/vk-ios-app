@@ -42,8 +42,6 @@ static CGFloat const kSeparatorAlpha = 0.25f;
 
 - (void)viewWillAppear:(BOOL)animated {
     if (!self.handler) {
-        AppDelegate *delegate =(AppDelegate *)[[UIApplication sharedApplication] delegate];
-        _pythonBridge = delegate.pythonBridge;
         NSCParameterAssert(_pythonBridge);
         self.handler = [self.pythonBridge handlerWithProtocol:@protocol(MenuHandlerProtocol)];
     }

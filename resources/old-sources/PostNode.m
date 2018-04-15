@@ -7,7 +7,7 @@
 //  LICENSE file in the root directory of this source tree. An additional grant
 //  of patent rights can be found in the PATENTS file in the same directory.
 //
-//  THE SOFTWARE IS PROVIDED "A_S IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 //  FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
@@ -23,20 +23,20 @@
 
 #define PostNodeDividerColor [UIColor lightGrayColor]
 
-@interface PostNode() <A_SNetworkImageNodeDelegate, A_STextNodeDelegate>
+@interface PostNode() <ASNetworkImageNodeDelegate, ASTextNodeDelegate>
 
 @property (strong, nonatomic) Post *post;
-@property (strong, nonatomic) A_SDisplayNode *divider;
-@property (strong, nonatomic) A_STextNode *nameNode;
-@property (strong, nonatomic) A_STextNode *usernameNode;
-@property (strong, nonatomic) A_STextNode *timeNode;
-@property (strong, nonatomic) A_STextNode *postNode;
-@property (strong, nonatomic) A_SImageNode *viaNode;
-@property (strong, nonatomic) A_SNetworkImageNode *avatarNode;
-@property (strong, nonatomic) A_SNetworkImageNode *mediaNode;
+@property (strong, nonatomic) ASDisplayNode *divider;
+@property (strong, nonatomic) ASTextNode *nameNode;
+@property (strong, nonatomic) ASTextNode *usernameNode;
+@property (strong, nonatomic) ASTextNode *timeNode;
+@property (strong, nonatomic) ASTextNode *postNode;
+@property (strong, nonatomic) ASImageNode *viaNode;
+@property (strong, nonatomic) ASNetworkImageNode *avatarNode;
+@property (strong, nonatomic) ASNetworkImageNode *mediaNode;
 @property (strong, nonatomic) LikesNode *likesNode;
 @property (strong, nonatomic) CommentsNode *commentsNode;
-@property (strong, nonatomic) A_SImageNode *optionsNode;
+@property (strong, nonatomic) ASImageNode *optionsNode;
 
 @end
 
@@ -53,13 +53,13 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         // Name node
-        _nameNode = [[A_STextNode alloc] init];
+        _nameNode = [[ASTextNode alloc] init];
         _nameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.name attributes:[TextStyles nameStyle]];
         _nameNode.maximumNumberOfLines = 1;
         [self addSubnode:_nameNode];
         
         // Username node
-        _usernameNode = [[A_STextNode alloc] init];
+        _usernameNode = [[ASTextNode alloc] init];
         _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.username attributes:[TextStyles usernameStyle]];
         _usernameNode.style.flexShrink = 1.0; //if name and username don't fit to cell width, allow username shrink
         _usernameNode.truncationMode = NSLineBreakByTruncatingTail;
@@ -67,12 +67,12 @@
         [self addSubnode:_usernameNode];
         
         // Time node
-        _timeNode = [[A_STextNode alloc] init];
+        _timeNode = [[ASTextNode alloc] init];
         _timeNode.attributedText = [[NSAttributedString alloc] initWithString:_post.time attributes:[TextStyles timeStyle]];
         [self addSubnode:_timeNode];
         
         // Post node
-        _postNode = [[A_STextNode alloc] init];
+        _postNode = [[ASTextNode alloc] init];
 
         // Processing URLs in post
         NSString *kLinkAttributeName = @"TextLinkAttributeName";
@@ -111,8 +111,8 @@
         // Media
         if (![_post.media isEqualToString:@""]) {
             
-            _mediaNode = [[A_SNetworkImageNode alloc] init];
-            _mediaNode.backgroundColor = A_SDisplayNodeDefaultPlaceholderColor();
+            _mediaNode = [[ASNetworkImageNode alloc] init];
+            _mediaNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
             _mediaNode.cornerRadius = 4.0;
             _mediaNode.URL = [NSURL URLWithString:_post.media];
             _mediaNode.delegate = self;
@@ -136,10 +136,10 @@
         }
         
         // User pic
-        _avatarNode = [[A_SNetworkImageNode alloc] init];
-        _avatarNode.backgroundColor = A_SDisplayNodeDefaultPlaceholderColor();
-        _avatarNode.style.width = A_SDimensionMakeWithPoints(44);
-        _avatarNode.style.height = A_SDimensionMakeWithPoints(44);
+        _avatarNode = [[ASNetworkImageNode alloc] init];
+        _avatarNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
+        _avatarNode.style.width = ASDimensionMakeWithPoints(44);
+        _avatarNode.style.height = ASDimensionMakeWithPoints(44);
         _avatarNode.cornerRadius = 22.0;
         _avatarNode.URL = [NSURL URLWithString:_post.photo];
         _avatarNode.imageModificationBlock = ^UIImage *(UIImage *image) {
@@ -161,13 +161,13 @@
         [self addSubnode:_avatarNode];
         
         // Hairline cell separator
-        _divider = [[A_SDisplayNode alloc] init];
+        _divider = [[ASDisplayNode alloc] init];
         [self updateDividerColor];
         [self addSubnode:_divider];
         
         // Via
         if (_post.via != 0) {
-            _viaNode = [[A_SImageNode alloc] init];
+            _viaNode = [[ASImageNode alloc] init];
             _viaNode.image = (_post.via == 1) ? [UIImage imageNamed:@"icon_ios.png"] : [UIImage imageNamed:@"icon_android.png"];
             [self addSubnode:_viaNode];
         }
@@ -179,11 +179,11 @@
         _commentsNode = [[CommentsNode alloc] initWithCommentsCount:_post.comments];
         [self addSubnode:_commentsNode];
         
-        _optionsNode = [[A_SImageNode alloc] init];
+        _optionsNode = [[ASImageNode alloc] init];
         _optionsNode.image = [UIImage imageNamed:@"icon_more"];
         [self addSubnode:_optionsNode];
 
-        for (A_SDisplayNode *node in self.subnodes) {
+        for (ASDisplayNode *node in self.subnodes) {
             //node.layerBacked = YES;
         }
     }
@@ -202,20 +202,20 @@
     _divider.backgroundColor = PostNodeDividerColor;
 }
 
-#pragma mark - A_SDisplayNode
+#pragma mark - ASDisplayNode
 
 - (void)didLoad
 {
-    // enable highlighting now that self.layer has loaded -- see A_SHighlightOverlayLayer.h
+    // enable highlighting now that self.layer has loaded -- see ASHighlightOverlayLayer.h
     self.layer.as_allowsHighlightDrawing = YES;
     
     [super didLoad];
 }
 
-- (A_SLayoutSpec *)layoutSpecThatFits:(A_SSizeRange)constrainedSize
+- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
     // Flexible spacer between username and time
-    A_SLayoutSpec *spacer = [[A_SLayoutSpec alloc] init];
+    ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
     spacer.style.flexGrow = 1.0;
   
     // Horizontal stack for name, username, via icon and time
@@ -225,22 +225,22 @@
     }
     [layoutSpecChildren addObject:_timeNode];
     
-    A_SStackLayoutSpec *nameStack =
-    [A_SStackLayoutSpec
-     stackLayoutSpecWithDirection:A_SStackLayoutDirectionHorizontal
+    ASStackLayoutSpec *nameStack =
+    [ASStackLayoutSpec
+     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
      spacing:5.0
-     justifyContent:A_SStackLayoutJustifyContentStart
-     alignItems:A_SStackLayoutAlignItemsCenter
+     justifyContent:ASStackLayoutJustifyContentStart
+     alignItems:ASStackLayoutAlignItemsCenter
      children:layoutSpecChildren];
-    nameStack.style.alignSelf = A_SStackLayoutAlignSelfStretch;
+    nameStack.style.alignSelf = ASStackLayoutAlignSelfStretch;
     
     // bottom controls horizontal stack
-    A_SStackLayoutSpec *controlsStack =
-    [A_SStackLayoutSpec
-     stackLayoutSpecWithDirection:A_SStackLayoutDirectionHorizontal
+    ASStackLayoutSpec *controlsStack =
+    [ASStackLayoutSpec
+     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
      spacing:10
-     justifyContent:A_SStackLayoutJustifyContentStart
-     alignItems:A_SStackLayoutAlignItemsCenter
+     justifyContent:ASStackLayoutJustifyContentStart
+     alignItems:ASStackLayoutAlignItemsCenter
      children:@[_likesNode, _commentsNode, _optionsNode]];
     
     // Add more gaps for control line
@@ -256,8 +256,8 @@
         
         // Only add the media node if an image is present
         if (_mediaNode.image != nil) {
-            A_SRatioLayoutSpec *imagePlace =
-            [A_SRatioLayoutSpec
+            ASRatioLayoutSpec *imagePlace =
+            [ASRatioLayoutSpec
              ratioLayoutSpecWithRatio:0.5
              child:_mediaNode];
             imagePlace.style.spacingAfter = 3.0;
@@ -269,25 +269,25 @@
     [mainStackContent addObject:controlsStack];
     
     // Vertical spec of cell main content
-    A_SStackLayoutSpec *contentSpec =
-    [A_SStackLayoutSpec
-     stackLayoutSpecWithDirection:A_SStackLayoutDirectionVertical
+    ASStackLayoutSpec *contentSpec =
+    [ASStackLayoutSpec
+     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
      spacing:8.0
-     justifyContent:A_SStackLayoutJustifyContentStart
-     alignItems:A_SStackLayoutAlignItemsStretch
+     justifyContent:ASStackLayoutJustifyContentStart
+     alignItems:ASStackLayoutAlignItemsStretch
      children:mainStackContent];
     contentSpec.style.flexShrink = 1.0;
     
     // Horizontal spec for avatar
-    A_SStackLayoutSpec *avatarContentSpec =
-    [A_SStackLayoutSpec
-     stackLayoutSpecWithDirection:A_SStackLayoutDirectionHorizontal
+    ASStackLayoutSpec *avatarContentSpec =
+    [ASStackLayoutSpec
+     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
      spacing:8.0
-     justifyContent:A_SStackLayoutJustifyContentStart
-     alignItems:A_SStackLayoutAlignItemsStart
+     justifyContent:ASStackLayoutJustifyContentStart
+     alignItems:ASStackLayoutAlignItemsStart
      children:@[_avatarNode, contentSpec]];
     
-    return [A_SInsetLayoutSpec
+    return [ASInsetLayoutSpec
             insetLayoutSpecWithInsets:UIEdgeInsetsMake(10, 10, 10, 10)
             child:avatarContentSpec];
     
@@ -302,7 +302,7 @@
     _divider.frame = CGRectMake(0.0f, 0.0f, self.calculatedSize.width, pixelHeight);
 }
 
-#pragma mark - A_SCellNode
+#pragma mark - ASCellNode
 
 - (void)setHighlighted:(BOOL)highlighted
 {
@@ -318,23 +318,23 @@
     [self updateDividerColor];
 }
 
-#pragma mark - <A_STextNodeDelegate>
+#pragma mark - <ASTextNodeDelegate>
 
-- (BOOL)textNode:(A_STextNode *)richTextNode shouldHighlightLinkAttribute:(NSString *)attribute value:(id)value atPoint:(CGPoint)point
+- (BOOL)textNode:(ASTextNode *)richTextNode shouldHighlightLinkAttribute:(NSString *)attribute value:(id)value atPoint:(CGPoint)point
 {
     // Opt into link highlighting -- tap and hold the link to try it!  must enable highlighting on a layer, see -didLoad
     return YES;
 }
 
-- (void)textNode:(A_STextNode *)richTextNode tappedLinkAttribute:(NSString *)attribute value:(NSURL *)URL atPoint:(CGPoint)point textRange:(NSRange)textRange
+- (void)textNode:(ASTextNode *)richTextNode tappedLinkAttribute:(NSString *)attribute value:(NSURL *)URL atPoint:(CGPoint)point textRange:(NSRange)textRange
 {
     // The node tapped a link, open it
     [[UIApplication sharedApplication] openURL:URL];
 }
 
-#pragma mark - A_SNetworkImageNodeDelegate methods.
+#pragma mark - ASNetworkImageNodeDelegate methods.
 
-- (void)imageNode:(A_SNetworkImageNode *)imageNode didLoadImage:(UIImage *)image
+- (void)imageNode:(ASNetworkImageNode *)imageNode didLoadImage:(UIImage *)image
 {
     [self setNeedsLayout];
 }

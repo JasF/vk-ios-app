@@ -1,8 +1,0 @@
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
-target 'Sample' do
-	pod 'Tex_ture', :path => '../..'
-    pod 'PI_NOperation', :path => '../../PI_NOperation'
-    pod 'PI_NCache', :path => '../../PI_NCache'
-    pod 'PI_NRemoteImage', :path => '../../PI_NRemoteImage'
-end

@@ -8,9 +8,9 @@
 
 #import <CoreFoundation/CoreFoundation.h>
 
-@class A_SDisplayNode;
+@class ASDisplayNode;
 
 @protocol NodeFactory <NSObject>
-- (A_SDisplayNode *)nodeForItem:(id)item;
-- (A_SDisplayNode *)nodeForItem:(id)item embedded:(BOOL)embedded;
+- (ASDisplayNode *)nodeForItem:(id)item;
+- (ASDisplayNode *)nodeForItem:(id)item embedded:(BOOL)embedded;
 @end

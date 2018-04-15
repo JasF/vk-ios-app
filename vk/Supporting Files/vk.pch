@@ -26,7 +26,7 @@ CF_INLINE bool IsFloatEqual(float a, float b) { return IsEqualFloat(a,b);}
 #define L(a) NSLocalizedString(a, nil)
 #define NL(a) a
 
-@interface NMessengerViewController : UIViewController
+@interface BaseChatViewController : UIViewController
 @end
 
 #endif

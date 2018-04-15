@@ -8,10 +8,10 @@
 
 #import "PostImagesNode.h"
 #import "Attachments.h"
-#import "A_SNetworkImageNode.h"
-#import "A_SDisplayNodeExtras.h"
+#import "ASNetworkImageNode.h"
+#import "ASDisplayNodeExtras.h"
 
-@interface PostImagesNode () <A_SNetworkImageNodeDelegate>
+@interface PostImagesNode () <ASNetworkImageNodeDelegate>
 @end
 
 @implementation PostImagesNode {
@@ -24,8 +24,8 @@
     if (self = [super init]) {
         _nodes = [NSMutableArray new];
         for (Attachments *attachment in attachments) {
-            A_SNetworkImageNode *node = [[A_SNetworkImageNode alloc] init];
-            node.backgroundColor = A_SDisplayNodeDefaultPlaceholderColor();
+            ASNetworkImageNode *node = [[ASNetworkImageNode alloc] init];
+            node.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
             node.cornerRadius = 4.0;
             node.URL = [NSURL URLWithString:attachment.photo.photo604];
             node.delegate = self;
@@ -52,30 +52,30 @@
     return self;
 }
 
-- (A_SLayoutSpec *)layoutSpecThatFits:(A_SSizeRange)constrainedSize
+- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
     NSMutableArray *specs = [NSMutableArray new];
-    for (A_SDisplayNode *node in _nodes) {
-        A_SRatioLayoutSpec *imagePlace =
-        [A_SRatioLayoutSpec
+    for (ASDisplayNode *node in _nodes) {
+        ASRatioLayoutSpec *imagePlace =
+        [ASRatioLayoutSpec
          ratioLayoutSpecWithRatio:0.5f
          child:node];
         imagePlace.style.spacingAfter = 3.0;
         imagePlace.style.spacingBefore = 3.0;
         [specs addObject:imagePlace];
     }
-    A_SStackLayoutSpec *contentSpec = [A_SStackLayoutSpec
-                                      stackLayoutSpecWithDirection:A_SStackLayoutDirectionVertical
+    ASStackLayoutSpec *contentSpec = [ASStackLayoutSpec
+                                      stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
                                       spacing:8.0
-                                      justifyContent:A_SStackLayoutJustifyContentStart
-                                      alignItems:A_SStackLayoutAlignItemsStart
+                                      justifyContent:ASStackLayoutJustifyContentStart
+                                      alignItems:ASStackLayoutAlignItemsStart
                                       children:specs];
     contentSpec.style.flexShrink = 1.0;
     return contentSpec;
 }
 
-#pragma mark - A_SNetworkImageNodeDelegate methods.
-- (void)imageNode:(A_SNetworkImageNode *)imageNode didLoadImage:(UIImage *)image
+#pragma mark - ASNetworkImageNodeDelegate methods.
+- (void)imageNode:(ASNetworkImageNode *)imageNode didLoadImage:(UIImage *)image
 {
     [self setNeedsLayout];
 }

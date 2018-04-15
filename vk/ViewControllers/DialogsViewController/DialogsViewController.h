@@ -6,7 +6,7 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import <Async_DisplayKit/Async_DisplayKit.h>
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "PythonBridge.h"
 #import "NodeFactory.h"
 #import "HandlersFactory.h"

@@ -1,6 +1,0 @@
-framework module Pods_nMessengerTests {
-  umbrella header "Pods-nMessengerTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

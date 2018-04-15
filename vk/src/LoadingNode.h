@@ -4,7 +4,7 @@
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the /A_SDK-Licenses directory of this source tree. An additional
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
 //  grant of patent rights can be found in the PATENTS file in the same directory.
 //
 //  Modifications to this file made after 4/13/2017 are: Copyright (c) through the present,
@@ -15,8 +15,8 @@
 //      http://www.apache.org/licenses/LICENSE-2.0
 //
 
-#import <Async_DisplayKit/Async_DisplayKit.h>
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
 
-@interface LoadingNode : A_SCellNode
+@interface LoadingNode : ASCellNode
 
 @end

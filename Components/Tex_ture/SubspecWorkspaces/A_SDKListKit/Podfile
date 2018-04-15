@@ -1,9 +1,0 @@
-source 'https://github.com/CocoaPods/Specs.git'
-
-platform :ios, '8.0'
-target 'A_SDKListKitTests' do
-  pod 'Tex_ture/IGListKit', :path => '../..'
-  pod 'OCMock', '~> 3.4'
-  pod 'JGMethodSwizzler', :git => 'https://github.com/JonasGessner/JGMethodSwizzler', :branch => 'master'
-end
-

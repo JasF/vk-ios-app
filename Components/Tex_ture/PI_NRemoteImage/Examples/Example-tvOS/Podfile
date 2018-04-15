@@ -1,5 +1,0 @@
-use_frameworks!
-
-target 'PI_NRemoteImage.tvOSExample' do
-  pod "PI_NRemoteImage/iOS", :path => "../../"
-end

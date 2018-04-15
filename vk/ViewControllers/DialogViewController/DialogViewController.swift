@@ -6,9 +6,9 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-import NMessenger
+import UIKit
 
-open class DialogViewController: NMessengerViewController {
+class DialogViewController: DemoChatViewController {
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -20,18 +20,30 @@ open class DialogViewController: NMessengerViewController {
     var handler: DialogHandlerProtocol?
     var messages: Array<Message>?
     
-    public init(handlersFactory:HandlersFactory?, nodeFactory:NodeFactory?, dialogService:DialogService?, userId:NSNumber?) {
+    @objc init(handlersFactory:HandlersFactory?, nodeFactory:NodeFactory?, dialogService:DialogService?, userId:NSNumber?) {
         super.init(nibName:nil, bundle:nil)
         self.nodeFactory = nodeFactory!
         self.dialogService = dialogService!
         self.userId = userId!
-        self.handler = handlersFactory!.dialogHandler()
     }
     
-    override open func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let button = UIBarButtonItem(
+            title: "Add message",
+            style: .plain,
+            target: self,
+            action: #selector(addRandomMessage)
+        )
+        self.navigationItem.rightBarButtonItem = button
     }
     
+    @objc
+    private func addRandomMessage() {
+        self.dataSource.addRandomIncomingMessage()
+    }
+    /*
     public func batchFetchContent() {
         let message = self.messages?.last
         if message != nil {
@@ -51,6 +63,7 @@ open class DialogViewController: NMessengerViewController {
         }
         NSLog("begin chat batch fetch content");
     }
+ */
     
     override open func viewWillAppear(_ animated: Bool ) {
         super.viewWillAppear(animated)
@@ -59,7 +72,7 @@ open class DialogViewController: NMessengerViewController {
             if let array = messages! as NSArray as? [Message] {
                 self.messages = array
                 for data in self.messages!.reversed() {
-                    self.sendText(data.body, isIncomingMessage: data.isOut == 0 ?true:false)
+                    //self.sendText(data.body, isIncomingMessage: data.isOut == 0 ?true:false)
                     //print(data);
                 }
             }

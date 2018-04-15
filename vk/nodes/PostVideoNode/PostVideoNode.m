@@ -9,10 +9,10 @@
 #import "PostVideoNode.h"
 #import "TextStyles.h"
 
-@interface PostVideoNode () <A_SNetworkImageNodeDelegate>
-@property (strong, nonatomic) A_SNetworkImageNode *mediaNode;
-@property (strong, nonatomic) A_STextNode *titleNode;
-@property (strong, nonatomic) A_STextNode *viewsNode;
+@interface PostVideoNode () <ASNetworkImageNodeDelegate>
+@property (strong, nonatomic) ASNetworkImageNode *mediaNode;
+@property (strong, nonatomic) ASTextNode *titleNode;
+@property (strong, nonatomic) ASTextNode *viewsNode;
 @end
 
 @implementation PostVideoNode
@@ -20,18 +20,18 @@
 - (id)initWithVideo:(Video *)video {
     if (self = [super init]) {
         
-        _titleNode = [[A_STextNode alloc] init];
+        _titleNode = [[ASTextNode alloc] init];
         _titleNode.attributedText = [[NSAttributedString alloc] initWithString:video.title ?: @"" attributes:[TextStyles titleStyle]];
         _titleNode.maximumNumberOfLines = 0;
         [self addSubnode:_titleNode];
         
-        _viewsNode = [[A_STextNode alloc] init];
+        _viewsNode = [[ASTextNode alloc] init];
         _viewsNode.attributedText = [[NSAttributedString alloc] initWithString:[self viewsStringWithCount:video.views] attributes:[TextStyles descriptionStyle]];
         _viewsNode.maximumNumberOfLines = 0;
         [self addSubnode:_viewsNode];
         
-        A_SNetworkImageNode *node = [[A_SNetworkImageNode alloc] init];
-        node.backgroundColor = A_SDisplayNodeDefaultPlaceholderColor();
+        ASNetworkImageNode *node = [[ASNetworkImageNode alloc] init];
+        node.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
         node.cornerRadius = 4.0;
         node.URL = [NSURL URLWithString:video.photo_640];
         node.delegate = self;
@@ -74,10 +74,10 @@
     return [NSString stringWithFormat:@"%@ %@", @(count), key];
 }
 
-- (A_SLayoutSpec *)layoutSpecThatFits:(A_SSizeRange)constrainedSize
+- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    A_SRatioLayoutSpec *imagePlace =
-    [A_SRatioLayoutSpec
+    ASRatioLayoutSpec *imagePlace =
+    [ASRatioLayoutSpec
      ratioLayoutSpecWithRatio:0.5f
      child:_mediaNode];
     imagePlace.style.spacingAfter = 8.0;
@@ -85,18 +85,18 @@
     
     _viewsNode.style.spacingAfter = 8.0;
     
-    A_SStackLayoutSpec *contentSpec = [A_SStackLayoutSpec
-                                      stackLayoutSpecWithDirection:A_SStackLayoutDirectionVertical
+    ASStackLayoutSpec *contentSpec = [ASStackLayoutSpec
+                                      stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
                                       spacing:0.0
-                                      justifyContent:A_SStackLayoutJustifyContentStart
-                                      alignItems:A_SStackLayoutAlignItemsStart
+                                      justifyContent:ASStackLayoutJustifyContentStart
+                                      alignItems:ASStackLayoutAlignItemsStart
                                       children:@[imagePlace, _titleNode, _viewsNode]];
     
     return contentSpec;
 }
 
-#pragma mark - A_SNetworkImageNodeDelegate methods.
-- (void)imageNode:(A_SNetworkImageNode *)imageNode didLoadImage:(UIImage *)image
+#pragma mark - ASNetworkImageNodeDelegate methods.
+- (void)imageNode:(ASNetworkImageNode *)imageNode didLoadImage:(UIImage *)image
 {
     [self setNeedsLayout];
 }

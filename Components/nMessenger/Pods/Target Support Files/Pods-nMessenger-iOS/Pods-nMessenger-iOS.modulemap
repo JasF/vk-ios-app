@@ -1,6 +1,0 @@
-framework module Pods_nMessenger_iOS {
-  umbrella header "Pods-nMessenger-iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

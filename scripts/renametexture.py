@@ -1,6 +1,6 @@
 import os, shutil
 
-dict = {'Texture':'Tex_ture', 'AsyncDisplayKit': 'Async_DisplayKit', 'AS':'A_S', 'NS_A_SSUME_NONNULL':'NS_ASSUME_NONNULL', 'OBJC_A_SSOCIATION': 'OBJC_ASSOCIATION', 'A_SSIGN': 'ASSIGN', 'A_SCII': 'ASCII', 'CLA_SS': 'CLASS', 'PIN': 'PI_N', 'ImageDetectors': 'ImageDe_tectors'}
+dict = {'Texture':'Tex_ture', 'AsyncDisplayKit': 'AsyncDisplayKit', 'AS':'A_S', 'NS_A_SSUME_NONNULL':'NS_ASSUME_NONNULL', 'OBJC_A_SSOCIATION': 'OBJC_ASSOCIATION', 'A_SSIGN': 'ASSIGN', 'A_SCII': 'ASCII', 'CLA_SS': 'CLASS', 'PIN': 'PI_N', 'ImageDetectors': 'ImageDe_tectors'}
 ignore = ['.DS_Store', '.png', 'TestResources', '.gif', '.jpg', '.ico', '.pdf', '.tracetemplate', '.mp4', '.xcuserstate', '1.0.docset/Contents/Info.plist', '/Tests/Info.plist', 'Tests.m', 'Operation/Source/Info.plist', 'Carthage', '.xml', '.docset']
 
 def patchFileContent(path):

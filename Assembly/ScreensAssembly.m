@@ -90,6 +90,12 @@
 }
 
 - (UIViewController *)dialogViewController:(NSNumber *)userId {
+    
+    return [TyphoonDefinition withClass:[AddRandomMessagesChatViewController class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init)];
+            }];
+    /*
     return [TyphoonDefinition withClass:[DialogViewController class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithHandlersFactory:nodeFactory:dialogService:userId:) parameters:^(TyphoonMethod *initializer) {
@@ -99,6 +105,7 @@
                     [initializer injectParameterWith:userId];
                 }];
             }];
+     */
 }
 
 - (UIViewController *)dialogsViewController {

@@ -14,10 +14,10 @@
 
 @implementation PythonManagerImpl
 
-void A_SDisableLogging(); // Look inside
+void ASDisableLogging(); // Look inside
     
 - (void)startupPython {
-    //A_SDisableLogging();
+    //ASDisableLogging();
     __block int ret = 0;
     dispatch_queue_t queue = dispatch_queue_create("queue.async.main", DISPATCH_QUEUE_SERIAL);
     __block int argc = 1;

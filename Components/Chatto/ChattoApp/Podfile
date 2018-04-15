@@ -1,0 +1,7 @@
+platform :ios, '8.0'
+use_frameworks!
+
+target 'ChattoApp' do
+	pod 'Chatto', :path => ".."
+	pod 'ChattoAdditions', :path => ".."
+end

@@ -4,7 +4,7 @@
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
 //  This source code is licensed under the BSD-style license found in the
-//  LICENSE file in the /A_SDK-Licenses directory of this source tree. An additional
+//  LICENSE file in the /ASDK-Licenses directory of this source tree. An additional
 //  grant of patent rights can be found in the PATENTS file in the same directory.
 //
 //  Modifications to this file made after 4/13/2017 are: Copyright (c) through the present,
@@ -17,17 +17,17 @@
 
 #import "BlurbNode.h"
 
-#import <Async_DisplayKit/A_SDisplayNode+Subclasses.h>
-#import <Async_DisplayKit/A_SHighlightOverlayLayer.h>
+#import <AsyncDisplayKit/ASDisplayNode+Subclasses.h>
+#import <AsyncDisplayKit/ASHighlightOverlayLayer.h>
 
-#import <Async_DisplayKit/A_SInsetLayoutSpec.h>
-#import <Async_DisplayKit/A_SCenterLayoutSpec.h>
+#import <AsyncDisplayKit/ASInsetLayoutSpec.h>
+#import <AsyncDisplayKit/ASCenterLayoutSpec.h>
 
 static CGFloat kTextPadding = 10.0f;
 
-@interface BlurbNode () <A_STextNodeDelegate>
+@interface BlurbNode () <ASTextNodeDelegate>
 {
-  A_STextNode *_textNode;
+  ASTextNode *_textNode;
 }
 
 @end
@@ -36,7 +36,7 @@ static CGFloat kTextPadding = 10.0f;
 @implementation BlurbNode
 
 #pragma mark -
-#pragma mark A_SCellNode.
+#pragma mark ASCellNode.
 
 - (instancetype)init
 {
@@ -45,7 +45,7 @@ static CGFloat kTextPadding = 10.0f;
 
   self.backgroundColor = [UIColor lightGrayColor];
   // create a text node
-  _textNode = [[A_STextNode alloc] init];
+  _textNode = [[ASTextNode alloc] init];
   _textNode.maximumNumberOfLines = 2;
 
   // configure the node to support tappable links
@@ -76,34 +76,34 @@ static CGFloat kTextPadding = 10.0f;
 
 - (void)didLoad
 {
-  // enable highlighting now that self.layer has loaded -- see A_SHighlightOverlayLayer.h
+  // enable highlighting now that self.layer has loaded -- see ASHighlightOverlayLayer.h
   self.layer.as_allowsHighlightDrawing = YES;
 
   [super didLoad];
 }
 
-- (A_SLayoutSpec *)layoutSpecThatFits:(A_SSizeRange)constrainedSize
+- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-  A_SCenterLayoutSpec *centerSpec = [[A_SCenterLayoutSpec alloc] init];
-  centerSpec.centeringOptions = A_SCenterLayoutSpecCenteringX;
-  centerSpec.sizingOptions = A_SCenterLayoutSpecSizingOptionMinimumY;
+  ASCenterLayoutSpec *centerSpec = [[ASCenterLayoutSpec alloc] init];
+  centerSpec.centeringOptions = ASCenterLayoutSpecCenteringX;
+  centerSpec.sizingOptions = ASCenterLayoutSpecSizingOptionMinimumY;
   centerSpec.child = _textNode;
   
   UIEdgeInsets padding = UIEdgeInsetsMake(kTextPadding, kTextPadding, kTextPadding, kTextPadding);
-  return [A_SInsetLayoutSpec insetLayoutSpecWithInsets:padding child:centerSpec];
+  return [ASInsetLayoutSpec insetLayoutSpecWithInsets:padding child:centerSpec];
 }
 
 
 #pragma mark -
-#pragma mark A_STextNodeDelegate methods.
+#pragma mark ASTextNodeDelegate methods.
 
-- (BOOL)textNode:(A_STextNode *)richTextNode shouldHighlightLinkAttribute:(NSString *)attribute value:(id)value atPoint:(CGPoint)point
+- (BOOL)textNode:(ASTextNode *)richTextNode shouldHighlightLinkAttribute:(NSString *)attribute value:(id)value atPoint:(CGPoint)point
 {
   // opt into link highlighting -- tap and hold the link to try it!  must enable highlighting on a layer, see -didLoad
   return YES;
 }
 
-- (void)textNode:(A_STextNode *)richTextNode tappedLinkAttribute:(NSString *)attribute value:(NSURL *)URL atPoint:(CGPoint)point textRange:(NSRange)textRange
+- (void)textNode:(ASTextNode *)richTextNode tappedLinkAttribute:(NSString *)attribute value:(NSURL *)URL atPoint:(CGPoint)point textRange:(NSRange)textRange
 {
   // the node tapped a link, open it
   [[UIApplication sharedApplication] openURL:URL];

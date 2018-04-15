@@ -11,8 +11,8 @@
 
 static const NSInteger kBatchSize = 20;
 
-@interface BaseCollectionViewController () <A_SCollectionDelegate, A_SCollectionDataSource>
-@property A_SCollectionNode *collectionNode;
+@interface BaseCollectionViewController () <ASCollectionDelegate, ASCollectionDataSource>
+@property ASCollectionNode *collectionNode;
 @property NSMutableArray *data;
 @property id<NodeFactory> nodeFactory;
 @property (assign, nonatomic) BOOL updating;
@@ -25,22 +25,22 @@ static const NSInteger kBatchSize = 20;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(nodeFactory);
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    _collectionNode = [[A_SCollectionNode alloc] initWithCollectionViewLayout:layout];
+    _collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:layout];
     self = [super initWithNode:_collectionNode];
     if (self) {
         _nodeFactory = nodeFactory;
         _collectionNode.backgroundColor = [UIColor whiteColor];
         _collectionNode.accessibilityIdentifier = NSStringFromClass([self class]);
         
-        A_SRangeTuningParameters preloadTuning;
+        ASRangeTuningParameters preloadTuning;
         preloadTuning.leadingBufferScreenfuls = 2;
         preloadTuning.trailingBufferScreenfuls = 1;
-        [_collectionNode setTuningParameters:preloadTuning forRangeType:A_SLayoutRangeTypePreload];
+        [_collectionNode setTuningParameters:preloadTuning forRangeType:ASLayoutRangeTypePreload];
         
-        A_SRangeTuningParameters displayTuning;
+        ASRangeTuningParameters displayTuning;
         displayTuning.leadingBufferScreenfuls = 1;
         displayTuning.trailingBufferScreenfuls = 0.5;
-        [_collectionNode setTuningParameters:displayTuning forRangeType:A_SLayoutRangeTypeDisplay];
+        [_collectionNode setTuningParameters:displayTuning forRangeType:ASLayoutRangeTypeDisplay];
         
         [_collectionNode registerSupplementaryNodeOfKind:UICollectionElementKindSectionHeader];
         [_collectionNode registerSupplementaryNodeOfKind:UICollectionElementKindSectionFooter];
@@ -108,23 +108,23 @@ static const NSInteger kBatchSize = 20;
     return indexPaths;
 }
 
-#pragma mark - A_SCollectionNodeDelegate / A_SCollectionNodeDataSource
+#pragma mark - ASCollectionNodeDelegate / ASCollectionNodeDataSource
 
-- (A_SCellNodeBlock)collectionNode:(A_SCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
+- (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return ^{
         id object = _data[indexPath.row];
-        A_SCellNode *node = (A_SCellNode *)[_nodeFactory nodeForItem:object];
+        ASCellNode *node = (ASCellNode *)[_nodeFactory nodeForItem:object];
         return node;
     };
 }
 
-- (id)collectionNode:(A_SCollectionNode *)collectionNode nodeModelForItemAtIndexPath:(NSIndexPath *)indexPath
+- (id)collectionNode:(ASCollectionNode *)collectionNode nodeModelForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return _data[indexPath.item];
 }
 
-- (A_SCellNode *)collectionNode:(A_SCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+- (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if ([kind isEqualToString:UICollectionElementKindSectionFooter] && indexPath.section == 0) {
         return [[LoadingNode alloc] init];
@@ -132,25 +132,25 @@ static const NSInteger kBatchSize = 20;
     return nil;
 }
 
-- (A_SSizeRange)collectionNode:(A_SCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    A_SSizeRange result = A_SSizeRangeUnconstrained;
+    ASSizeRange result = ASSizeRangeUnconstrained;
     result.min.width = self.view.width;
     result.max.width = self.view.width;
     return result;
 }
 
-- (NSInteger)collectionNode:(A_SCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
 {
     return [_data count];
 }
 
-- (NSInteger)numberOfSectionsInCollectionNode:(A_SCollectionNode *)collectionNode
+- (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode
 {
     return 1;
 }
 
-- (void)collectionNode:(A_SCollectionNode *)collectionNode willBeginBatchFetchWithContext:(A_SBatchContext *)context
+- (void)collectionNode:(ASCollectionNode *)collectionNode willBeginBatchFetchWithContext:(ASBatchContext *)context
 {
     DDLogInfo(@"\n\n\nPre fetching$$$\n\n\n");
     if (self.updating) {
@@ -171,22 +171,22 @@ static const NSInteger kBatchSize = 20;
     [_collectionNode.view.collectionViewLayout invalidateLayout];
 }
 
-#pragma mark - A_SCollectionDelegateFlowLayout
-- (A_SSizeRange)collectionNode:(A_SCollectionNode *)collectionNode sizeRangeForHeaderInSection:(NSInteger)section
+#pragma mark - ASCollectionDelegateFlowLayout
+- (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode sizeRangeForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return A_SSizeRangeUnconstrained;
+        return ASSizeRangeUnconstrained;
     } else {
-        return A_SSizeRangeZero;
+        return ASSizeRangeZero;
     }
 }
 
-- (A_SSizeRange)collectionNode:(A_SCollectionNode *)collectionNode sizeRangeForFooterInSection:(NSInteger)section
+- (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode sizeRangeForFooterInSection:(NSInteger)section
 {
     if (section == 0) {
-        return A_SSizeRangeUnconstrained;
+        return ASSizeRangeUnconstrained;
     } else {
-        return A_SSizeRangeZero;
+        return ASSizeRangeZero;
     }
 }
 

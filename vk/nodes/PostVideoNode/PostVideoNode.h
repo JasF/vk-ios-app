@@ -6,9 +6,9 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import <Async_DisplayKit/Async_DisplayKit.h>
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "Attachments.h"
 
-@interface PostVideoNode : A_SDisplayNode
+@interface PostVideoNode : ASDisplayNode
 - (id)initWithVideo:(Video *)video;
 @end

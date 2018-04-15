@@ -14,6 +14,7 @@
 #import "DialogsViewController.h"
 #import "BaseNavigationController.h"
 #import "vk-Swift.h"
+#import "MenuViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -78,7 +79,28 @@
         [self pushViewController:viewController];
     });
 }
-
+    void DumpObjcMethods(Class clz) {
+        
+        unsigned int methodCount = 0;
+        Method *methods = class_copyMethodList(clz, &methodCount);
+        
+        printf("Found %d methods on '%s'\n", methodCount, class_getName(clz));
+        
+        for (unsigned int i = 0; i < methodCount; i++) {
+            Method method = methods[i];
+            
+            printf("\t'%s' has method named '%s' of encoding '%s'\n",
+                   class_getName(clz),
+                   sel_getName(method_getName(method)),
+                   method_getTypeEncoding(method));
+            
+            /**
+             *  Or do whatever you need here...
+             */
+        }
+        
+        free(methods);
+    }
 - (void)showDialogViewController:(NSNumber *)userId {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
@@ -86,7 +108,7 @@
         if ([self canIgnorePushingViewController:[DialogViewController class]]) {
             return;
         }
-        
+        DumpObjcMethods([DialogViewController class]);
         DialogViewController *viewController =(DialogViewController *)[_screensAssembly dialogViewController:userId];
         [self pushViewController:viewController clean:NO];
     });
@@ -95,6 +117,11 @@
 - (void)showMainViewController {
     if ([self.window.rootViewController isEqual:_mainViewController]) {
         return;
+    }
+    MenuViewController *menuViewController = (MenuViewController *)_mainViewController.leftViewController;
+    NSCAssert([menuViewController isKindOfClass:[MenuViewController class]], @"menuViewController has unknown class: %@", menuViewController);
+    if ([menuViewController isKindOfClass:[menuViewController class]]) {
+        menuViewController.pythonBridge = self.pythonBridge;
     }
     self.window.rootViewController = _mainViewController;
 }
