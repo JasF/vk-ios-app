@@ -31,15 +31,21 @@ class DemoChatDataSource: ChatDataSourceProtocol {
 
     var slidingWindow: SlidingDataSource<ChatItemProtocol>!
     init(count: Int, pageSize: Int) {
-        self.slidingWindow = SlidingDataSource(count: count, pageSize: pageSize) { [weak self] () -> ChatItemProtocol in
-            guard let sSelf = self else { return DemoChatMessageFactory.makeRandomMessage("") }
+        self.slidingWindow = SlidingDataSource(count: count, pageSize: pageSize) { [weak self] (count:Int) -> [ChatItemProtocol] in
+            guard let sSelf = self else { return [DemoChatMessageFactory.makeRandomMessage("")] }
             defer { sSelf.nextMessageId += 1 }
-            return DemoChatMessageFactory.makeRandomMessage("\(sSelf.nextMessageId)")
+            var array = [ChatItemProtocol]()
+            for _ in 0...count {
+                array.append(DemoChatMessageFactory.makeRandomMessage("\(sSelf.nextMessageId)"))
+            }
+            return array
         }
     }
 
-    init(messages: [ChatItemProtocol], pageSize: Int) {
-        self.slidingWindow = SlidingDataSource(items: messages, pageSize: pageSize)
+    init(pageSize: Int, callback: ((_ count: Int) -> [ChatItemProtocol])?) {
+        self.slidingWindow = SlidingDataSource(count: 0, pageSize: pageSize) { [] (count:Int) -> [ChatItemProtocol] in
+            return callback!(count)
+        }
     }
 
     lazy var messageSender: DemoChatMessageSender = {
@@ -54,9 +60,16 @@ class DemoChatDataSource: ChatDataSourceProtocol {
     var hasMoreNext: Bool {
         return self.slidingWindow.hasMore()
     }
+    
+    private var batchFetchContentCallback: (() -> Void)?
+    open func setBatchFetchContent(callback: (() -> Void)?) {
+        self.batchFetchContentCallback = callback
+    }
 
     var hasMorePrevious: Bool {
-        return self.slidingWindow.hasPrevious()
+        let result = self.slidingWindow.hasPrevious()
+        self.batchFetchContentCallback?()
+        return result
     }
 
     var chatItems: [ChatItemProtocol] {
@@ -71,6 +84,12 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         self.delegate?.chatDataSourceDidUpdate(self, updateType: .pagination)
     }
 
+    func loadPrevious(count:Int) {
+        self.slidingWindow.loadPrevious(count:count)
+        self.slidingWindow.adjustWindow(focusPosition: 0, maxWindowSize: self.preferredMaxWindowSize)
+        self.delegate?.chatDataSourceDidUpdate(self, updateType: .pagination)
+    }
+    
     func loadPrevious() {
         self.slidingWindow.loadPrevious()
         self.slidingWindow.adjustWindow(focusPosition: 0, maxWindowSize: self.preferredMaxWindowSize)

@@ -460,7 +460,7 @@
 		C3372FCF2083356C0080DA75 /* TimeSeparatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB42083356C0080DA75 /* TimeSeparatorModel.swift */; };
 		C3372FD02083356C0080DA75 /* TimeSeparatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB52083356C0080DA75 /* TimeSeparatorPresenter.swift */; };
 		C3372FD12083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB62083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift */; };
-		C3372FD22083356C0080DA75 /* SlidingDatasSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB72083356C0080DA75 /* SlidingDatasSource.swift */; };
+		C3372FD22083356C0080DA75 /* SlidingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB72083356C0080DA75 /* SlidingDataSource.swift */; };
 		C3372FD32083356C0080DA75 /* ChatExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB82083356C0080DA75 /* ChatExamplesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -1276,7 +1276,7 @@
 		C3372FB42083356C0080DA75 /* TimeSeparatorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSeparatorModel.swift; sourceTree = "<group>"; };
 		C3372FB52083356C0080DA75 /* TimeSeparatorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSeparatorPresenter.swift; sourceTree = "<group>"; };
 		C3372FB62083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSeparatorCollectionViewCell.swift; sourceTree = "<group>"; };
-		C3372FB72083356C0080DA75 /* SlidingDatasSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingDatasSource.swift; sourceTree = "<group>"; };
+		C3372FB72083356C0080DA75 /* SlidingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingDataSource.swift; sourceTree = "<group>"; };
 		C3372FB82083356C0080DA75 /* ChatExamplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatExamplesViewController.swift; sourceTree = "<group>"; };
 		C3372FD4208335DD0080DA75 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile; path = Components/Chatto/ChattoApp/Podfile; sourceTree = SOURCE_ROOT; };
 		E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3353,7 +3353,7 @@
 				C3372FB82083356C0080DA75 /* ChatExamplesViewController.swift */,
 				C3372FA02083356B0080DA75 /* ChatWithTabBarExamplesViewController.swift */,
 				C3372F972083356B0080DA75 /* MessagesSelectorProtocol.swift */,
-				C3372FB72083356C0080DA75 /* SlidingDatasSource.swift */,
+				C3372FB72083356C0080DA75 /* SlidingDataSource.swift */,
 				C3372FB32083356C0080DA75 /* Time Separator */,
 			);
 			path = Chat;
@@ -3923,7 +3923,7 @@
 				C32305D42080E57500CEC487 /* VKApplicationAssembly.m in Sources */,
 				C32308D72081AEB100CEC487 /* TyphoonNibLoader.m in Sources */,
 				C323090A2081AEB100CEC487 /* NSNullTypeConverter.m in Sources */,
-				C3372FD22083356C0080DA75 /* SlidingDatasSource.swift in Sources */,
+				C3372FD22083356C0080DA75 /* SlidingDataSource.swift in Sources */,
 				C323061A2080E57500CEC487 /* WallServiceImpl.m in Sources */,
 				C3372FD32083356C0080DA75 /* ChatExamplesViewController.swift in Sources */,
 				C32305F92080E57500CEC487 /* WallPost.m in Sources */,

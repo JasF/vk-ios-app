@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Chatto
 
 class DialogViewController: DemoChatViewController {
     
@@ -19,6 +20,7 @@ class DialogViewController: DemoChatViewController {
     var userId: NSNumber?
     var handler: DialogHandlerProtocol?
     var messages: Array<Message>?
+    var secondMessages: Array<Message>?
     
     @objc init(handlersFactory:HandlersFactory?, nodeFactory:NodeFactory?, dialogService:DialogService?, userId:NSNumber?) {
         super.init(nibName:nil, bundle:nil)
@@ -27,7 +29,25 @@ class DialogViewController: DemoChatViewController {
         self.userId = userId!
     }
     
+    var mDataSource: DemoChatDataSource!
+    var nextMessageId: Int = 0
+    
     override func viewDidLoad() {
+        self.mDataSource = DemoChatDataSource(pageSize: 20) { [weak self] (count:Int) -> [ChatItemProtocol] in
+            guard let sSelf = self else { return [] }
+            var resultArray = [ChatItemProtocol]()
+            for message in sSelf.messages! {
+                sSelf.nextMessageId += 1
+                let item = DemoChatMessageFactory.makeTextMessage("\(sSelf.nextMessageId)", text: message.body!, isIncoming: message.isOut == 0 ?true:false)
+                resultArray.append(item)
+            }
+            sSelf.messages?.removeAll()
+            return resultArray
+        }
+        self.mDataSource.setBatchFetchContent() { () -> Void in
+            self.batchFetchContent()
+        }
+        self.dataSource = self.mDataSource
         super.viewDidLoad()
         
         let button = UIBarButtonItem(
@@ -43,37 +63,43 @@ class DialogViewController: DemoChatViewController {
     private func addRandomMessage() {
         self.dataSource.addRandomIncomingMessage()
     }
-    /*
+    
+    var updating: Bool?
     public func batchFetchContent() {
-        let message = self.messages?.last
+        if self.updating == true {
+            return
+        }
+        let message = self.secondMessages?.last
         if message != nil {
+            self.updating = true
             self.dialogService?.getMessagesWithOffset(0, userId: Int(self.userId!), startMessageId: Int(message!.identifier)) {messages in
                 print("hello response!")
+                self.updating = false
                 if let array = messages! as NSArray as? [Message] {
+                    self.secondMessages?.append(contentsOf: array)
                     self.messages?.append(contentsOf: array)
-                    var messagesArray = [GeneralMessengerCell]()
-                    for data in array.reversed() {
-                        let message = self.createTextMessage(data.body, isIncomingMessage: data.isOut == 0 ?true:false)
-                        messagesArray.append(message)
-                    }
-                    self.messengerView.endBatchFetchWithMessages(messagesArray)
                 }
-                
+                self.mDataSource.loadPrevious(count:self.messages!.count)
             }
         }
         NSLog("begin chat batch fetch content");
     }
- */
+ 
     
     override open func viewWillAppear(_ animated: Bool ) {
         super.viewWillAppear(animated)
         
         self.dialogService?.getMessagesWithOffset(0, userId: Int(self.userId!)) {messages in
+            if messages == nil {
+                return
+            }
             if let array = messages! as NSArray as? [Message] {
                 self.messages = array
-                for data in self.messages!.reversed() {
-                    //self.sendText(data.body, isIncomingMessage: data.isOut == 0 ?true:false)
-                    //print(data);
+                self.secondMessages = array
+                self.mDataSource.loadPrevious(count:array.count)
+                let deadlineTime = DispatchTime.now() + .milliseconds(500)
+                DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+                    self.scrollToBottom(animated: false)
                 }
             }
         }

@@ -26,8 +26,8 @@ import UIKit
 
 class AddRandomMessagesChatViewController: DemoChatViewController {
     override func viewDidLoad() {
-        let dataSource = DemoChatDataSource(messages: DemoChatMessageFactory.makeOverviewMessages(), pageSize: 50)
-        self.dataSource = dataSource
+        //let dataSource = nil//DemoChatDataSource(messages: [], pageSize: 20) // DemoChatMessageFactory.makeOverviewMessages()
+        //self.dataSource = dataSource
         super.viewDidLoad()
 
         let button = UIBarButtonItem(

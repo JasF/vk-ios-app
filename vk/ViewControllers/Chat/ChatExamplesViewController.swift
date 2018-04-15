@@ -44,9 +44,9 @@ class ChatExamplesViewController: CellsViewController {
     
     private func makeOverviewCellItem() -> CellItem {
         return CellItem(title: "Overview", action: { [weak self] in
-            let dataSource = DemoChatDataSource(messages: DemoChatMessageFactory.makeOverviewMessages(), pageSize: 50)
+           // let dataSource = DemoChatDataSource(messages: DemoChatMessageFactory.makeOverviewMessages(), pageSize: 50)
             let viewController = AddRandomMessagesChatViewController()
-            viewController.dataSource = dataSource
+           // viewController.dataSource = dataSource
             self?.navigationController?.pushViewController(viewController, animated: true)
         })
     }
@@ -63,9 +63,9 @@ class ChatExamplesViewController: CellsViewController {
     private func makeMessageSelectionCellItem() -> CellItem {
         return CellItem(title: "Chat with message selection", action: { [weak self] in
             let messages = DemoChatMessageFactory.makeMessagesSelectionMessages()
-            let dataSource = DemoChatDataSource(messages: messages, pageSize: 50)
+            //let dataSource = DemoChatDataSource(messages: messages, pageSize: 50)
             let viewController = MessagesSelectionChatViewController()
-            viewController.dataSource = dataSource
+            //viewController.dataSource = dataSource
             self?.navigationController?.pushViewController(viewController, animated: true)
         })
     }

@@ -34,7 +34,7 @@ public class SlidingDataSource<Element> {
     private var pageSize: Int
     private var windowOffset: Int
     private var windowCount: Int
-    private var itemGenerator: (() -> Element)?
+    private var itemGenerator: ((_ count: Int) -> [Element])?
     private var items = [Element]()
     private var itemsOffset: Int
     public var itemsInWindow: [Element] {
@@ -42,7 +42,7 @@ public class SlidingDataSource<Element> {
         return Array(items[offset..<offset+self.windowCount])
     }
 
-    public init(count: Int, pageSize: Int, itemGenerator: (() -> Element)?) {
+    public init(count: Int, pageSize: Int, itemGenerator: ((_ count: Int) -> [Element])?) {
         self.windowOffset = count
         self.itemsOffset = count
         self.windowCount = 0
@@ -63,9 +63,13 @@ public class SlidingDataSource<Element> {
         guard let itemGenerator = self.itemGenerator else {
             fatalError("Can't create messages without a generator")
         }
-        for _ in 0..<count {
-            self.insertItem(itemGenerator(), position: .top)
+        let items = itemGenerator(count)
+        for item in items {
+            self.insertItem(item, position: position)
         }
+        //for _ in 0..<count {
+        //     self.insertItem(itemGenerator(), position: position)
+        //}
     }
 
     public func insertItem(_ item: Element, position: InsertPosition) {
@@ -92,6 +96,11 @@ public class SlidingDataSource<Element> {
 
     public func hasMore() -> Bool {
         return self.windowOffset + self.windowCount < self.itemsOffset + self.items.count
+    }
+    
+    public func loadPrevious(count: Int) {
+        //loadPrevious()
+        self.generateItems(count, position: .top)
     }
 
     public func loadPrevious() {
