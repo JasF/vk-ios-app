@@ -13,7 +13,7 @@
 #import <AsyncDisplayKit/ASLog.h>
 #import <stdatomic.h>
 
-static atomic_bool __ASLogEnabled = ATOMIC_VAR_INIT(YES);
+static atomic_bool __ASLogEnabled = ATOMIC_VAR_INIT(NO);
 
 void ASDisableLogging() {
   static dispatch_once_t onceToken;

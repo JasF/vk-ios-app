@@ -175,6 +175,7 @@ class Session(object):
         if captcha_response:
             method_args['captcha_sid'] = captcha_response['sid']
             method_args['captcha_key'] = captcha_response['key']
+        #print('url: ' + str(url) + '; method_args: ' + str(method_args))
         response = self.requests_session.post(url, method_args, timeout=self.timeout)
         return response
 

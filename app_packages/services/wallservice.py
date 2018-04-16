@@ -9,7 +9,7 @@ class WallServiceHandlerProtocol:
         response = None
         usersData = None
         try:
-            response = api.wall.get(access_token=vk.token(), offset=offset)
+            response = api.wall.get(offset=offset)
             l = response["items"]
             
             fromIds = [d['from_id'] for d in l]

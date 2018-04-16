@@ -2,7 +2,9 @@
 
 from .api import API
 from .session import Session
+import vk.longpoll
 
+# API errors should process in try-catch blocks
 class Token:
     pass
 
@@ -10,14 +12,16 @@ tokenObject = Token()
 
 def setToken(token):
     tokenObject.token = token
+    longpoll.connect()
 
 def token():
     return tokenObject.token
 
 def api():
-    session = Session(access_token=token())
+    session = Session()
     api = API(session)
     api.session.method_default_args['v'] = '5.74'
+    api.session.method_default_args['access_token'] = token()
     return api
 
 __version__ = '2.2-a1'

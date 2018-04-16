@@ -1,5 +1,4 @@
 import vk
-from vk import Session
 import json
 from caches.users import UsersDatabase
 

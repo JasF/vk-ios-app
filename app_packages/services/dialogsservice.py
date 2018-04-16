@@ -8,7 +8,7 @@ class DialogsServiceHandlerProtocol:
         response = None
         usersData = None
         try:
-            response = api.messages.getDialogs(access_token=vk.token(), offset=offset)
+            response = api.messages.getDialogs(offset=offset)
             l = response["items"]
             #print('response dialogs: ' + str(response))
             ids = set([d['message']['user_id'] for d in l])

@@ -16,7 +16,7 @@ class BaseDatabase():
         except Exception as e:
             print('connect to database ' + path + ' error: ' + str(e))
             return
-        print('Database ' + self.tableName + '.sql opened!')
+        #print('Database ' + self.tableName + '.sql opened!')
 
     def params(self):
         print('call abstract method')
