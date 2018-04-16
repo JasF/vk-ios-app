@@ -9,7 +9,7 @@
 import UIKit
 import Chatto
 
-class DialogViewController: DemoChatViewController {
+class DialogViewController: DemoChatViewController, DialogHandlerProtocolDelegate {
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -19,14 +19,25 @@ class DialogViewController: DemoChatViewController {
     var dialogService: DialogService?
     var userId: NSNumber?
     var handler: DialogHandlerProtocol?
+    var pythonBridge: PythonBridge?
     var messages: Array<Message>?
     var secondMessages: Array<Message>?
     
-    @objc init(handlersFactory:HandlersFactory?, nodeFactory:NodeFactory?, dialogService:DialogService?, userId:NSNumber?) {
+    /*
+    @protocol AuthorizationHandlerProtocolDelegate <NSObject>
+    - (NSString *)receivedWall:(NSDictionary *)wall;
+    @end
+    
+    [_pythonBridge setClassHandler:self name:@"AuthorizationHandlerProtocol"];
+    */
+    
+    @objc init(handlersFactory:HandlersFactory?, nodeFactory:NodeFactory?, dialogService:DialogService?, userId:NSNumber?, pythonBridge:PythonBridge?) {
         super.init(nibName:nil, bundle:nil)
         self.nodeFactory = nodeFactory!
         self.dialogService = dialogService!
         self.userId = userId!
+        self.pythonBridge = pythonBridge!  
+        self.pythonBridge!.setClassHandler(self, name:"DialogHandlerProtocolDelegate")
     }
     
     var mDataSource: DemoChatDataSource!
@@ -102,6 +113,13 @@ class DialogViewController: DemoChatViewController {
                     self.scrollToBottom(animated: false)
                 }
             }
+        }
+    }
+    
+    func handleIncomingMessage(_ message: String?, userId: NSNumber?, timestamp: NSNumber?) {
+        NSLog("incoming!");
+        DispatchQueue.main.async {
+            self.mDataSource?.addIncomingTextMessage(message!)
         }
     }
 }

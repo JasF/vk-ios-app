@@ -96,6 +96,14 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         self.delegate?.chatDataSourceDidUpdate(self, updateType: .pagination)
     }
 
+    func addIncomingTextMessage(_ text: String) {
+        let uid = "\(self.nextMessageId)"
+        self.nextMessageId += 1
+        let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: true)
+        self.slidingWindow.insertItem(message, position: .bottom)
+        self.delegate?.chatDataSourceDidUpdate(self)
+    }
+    
     func addTextMessage(_ text: String) {
         let uid = "\(self.nextMessageId)"
         self.nextMessageId += 1

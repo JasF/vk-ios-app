@@ -1,6 +1,9 @@
 from objc import managers
 
 class DialogsHandlerProtocol:
+    def __init__(self):
+        pass
+    
     def menuTapped(self):
         managers.shared().screensManager().showMenu()
 

@@ -11,3 +11,4 @@
 #import "VKApplicationAssembly.h"
 #import "ScreensAssembly.h"
 #import "Message.h"
+#import "DialogHandlerProtocolDelegate.h"

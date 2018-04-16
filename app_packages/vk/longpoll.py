@@ -2,8 +2,11 @@ import vk
 import threading
 import requests
 from functools import partial
+import functools
 from enum import Enum
 import inspect
+
+
 
 class Event(Enum):
     MESSAGE_SET_FLAGS = 1
@@ -29,29 +32,85 @@ handlers = {}
 lp_version=3
 need_pts=1
 
-def connectToLongPollServer(key, server, ts, pts):
-    requests_session = requests.Session()
-    
-    while True:
-        url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=25&mode=2&version=2'
-        response = requests_session.get(url)
-        json = response.json()
-        #print('LongPoll response: ' + str(json))
-        newTs = json.get('ts')
-        updates = json.get('updates')
-        if newTs and newTs > 0:
-            ts = newTs
-        if isinstance(updates, list):
-            threading.Thread(target=partial(parseUpdates, updates)).start()
+class AddMessageProtocol(object):
+    def handleMessageAdd(self, userId, timestamp, body):
+        pass
+'''
+class LongPollProtocol():
+    def handleMessageSetFlags(self):
+        pass
+    def handleMessageAddFlags(self):
+        pass
+    def handleMessageClearFlags(self):
+        pass
+    def handleMessageAdd(self):
+        pass
+    def handleMessageEdit(self):
+        pass
+    def handleMessageInReaded(self):
+        pass
+    def handleMessageOutReaded(self):
+        pass
+    def handleUserOnline(self):
+        pass
+    def handleUserOffline(self):
+        pass
+    def handleClearFlags(self):
+        pass
+    def handleSetFlags(self):
+        pass
+    def handleAddFlags(self):
+        pass
+    def handleMessagesRemove(self):
+        pass
+    def handleMessagesRestore(self):
+        pass
+    def handleParameterChange(self):
+        pass
+    def handleDialogTyping(self):
+        pass
+    def handleChatTyping(self):
+        pass
+    def handleCall(self):
+        pass
+'''
 
-def doConnect():
-    api = vk.api()
-    response = api.messages.getLongPollServer(need_pts=need_pts, lp_version=lp_version)
-    connectToLongPollServer(response['key'], response['server'], response['ts'], response['pts'])
+class LongPoll:
+    def __new__(cls):
+        if not hasattr(cls, 'instance') or not cls.instance:
+            cls.instance = super().__new__(cls)
+            cls.addMessageDelegates = []
+        return cls.instance
 
-def connect():
-    threading.Thread(target=doConnect).start()
-    pass
+    def connectToLongPollServer(self, key, server, ts, pts):
+        requests_session = requests.Session()
+        
+        while True:
+            url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=25&mode=2&version=2'
+            response = requests_session.get(url)
+            json = response.json()
+            #print('LongPoll response: ' + str(json))
+            newTs = json.get('ts')
+            updates = json.get('updates')
+            if newTs and newTs > 0:
+                ts = newTs
+            if isinstance(updates, list):
+                threading.Thread(target=partial(parseUpdates, updates)).start()
+
+    def doConnect(self):
+        api = vk.api()
+        response = api.messages.getLongPollServer(need_pts=need_pts, lp_version=lp_version)
+        self.connectToLongPollServer(response['key'], response['server'], response['ts'], response['pts'])
+
+    def connect(self):
+        def performConnect():
+            self.doConnect()
+        threading.Thread(target=performConnect).start()
+
+    def addAddMessageDelegate(self, delegate):
+        self.addMessageDelegates.append(delegate)
+
+_lp = LongPoll()
 
 def parseUpdates(updates):
     #print('updates: ' + str(updates))
@@ -83,7 +142,17 @@ def parseMessageClearFlags(eventDescription):
     pass
 
 def parseMessageAdd(eventDescription):
-    pass
+    if len(eventDescription) < 5:
+        print('parseMessageAdd too short')
+        return
+    messageId = eventDescription[0]
+    flags = eventDescription[1]
+    peerId = eventDescription[2]
+    timestamp = eventDescription[3]
+    text = eventDescription[4]
+    
+    for d in _lp.addMessageDelegates:
+        d.handleMessageAdd(peerId, timestamp, text)
 
 def parseMessageEdit(eventDescription):
     pass

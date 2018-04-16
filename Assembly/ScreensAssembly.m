@@ -92,11 +92,12 @@
 - (UIViewController *)dialogViewController:(NSNumber *)userId {
     return [TyphoonDefinition withClass:[DialogViewController class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:nodeFactory:dialogService:userId:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(initWithHandlersFactory:nodeFactory:dialogService:userId:pythonBridge:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
                     [initializer injectParameterWith:self.servicesAssembly.dialogService];
                     [initializer injectParameterWith:userId];
+                    [initializer injectParameterWith:self.coreComponents.pythonBridge];
                 }];
             }];
 }

@@ -2,7 +2,7 @@
 
 from .api import API
 from .session import Session
-import vk.longpoll
+from .longpoll import LongPoll
 
 # API errors should process in try-catch blocks
 class Token:
@@ -12,7 +12,7 @@ tokenObject = Token()
 
 def setToken(token):
     tokenObject.token = token
-    longpoll.connect()
+    LongPoll().connect()
 
 def token():
     return tokenObject.token
