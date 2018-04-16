@@ -99,8 +99,8 @@ public class SlidingDataSource<Element> {
     }
     
     public func loadPrevious(count: Int) {
-        //loadPrevious()
-        /*
+        self.windowOffset += count
+        self.itemsOffset += count
         let previousWindowOffset = self.windowOffset
         let previousWindowCount = self.windowCount
         let nextWindowOffset = max(0, self.windowOffset - self.pageSize)
@@ -111,11 +111,6 @@ public class SlidingDataSource<Element> {
         let newItemsCount = previousWindowOffset - nextWindowOffset
         self.windowOffset = nextWindowOffset
         self.windowCount = previousWindowCount + newItemsCount
-        */
-        self.generateItems(count, position: .top)
-        self.windowOffset = 0
-        self.itemsOffset = 0
-        self.windowCount = self.items.count
     }
 
     public func loadPrevious() {

@@ -43,9 +43,22 @@ class DemoChatDataSource: ChatDataSourceProtocol {
     }
 
     init(pageSize: Int, callback: ((_ count: Int) -> [ChatItemProtocol])?) {
+        /*
+        self.slidingWindow = SlidingDataSource(count: 50, pageSize: pageSize) { [weak self] (count:Int) -> [ChatItemProtocol] in
+            guard let sSelf = self else { return [DemoChatMessageFactory.makeRandomMessage("")] }
+            defer { sSelf.nextMessageId += 1 }
+            var array = [ChatItemProtocol]()
+            for _ in 0...count {
+                array.append(DemoChatMessageFactory.makeRandomMessage("\(sSelf.nextMessageId)"))
+            }
+            return array
+        }
+        */
+        
         self.slidingWindow = SlidingDataSource(count: 0, pageSize: pageSize) { [] (count:Int) -> [ChatItemProtocol] in
             return callback!(count)
         }
+ 
     }
 
     lazy var messageSender: DemoChatMessageSender = {

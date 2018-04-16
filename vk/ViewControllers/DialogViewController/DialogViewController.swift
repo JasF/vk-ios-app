@@ -41,15 +41,14 @@ class DialogViewController: DemoChatViewController, DialogHandlerProtocolDelegat
     }
     
     var mDataSource: DemoChatDataSource!
-    var nextMessageId: Int = 0
     
     override func viewDidLoad() {
         self.mDataSource = DemoChatDataSource(pageSize: 20) { [weak self] (count:Int) -> [ChatItemProtocol] in
             guard let sSelf = self else { return [] }
             var resultArray = [ChatItemProtocol]()
             for message in sSelf.messages! {
-                sSelf.nextMessageId += 1
-                let item = DemoChatMessageFactory.makeTextMessage("\(sSelf.nextMessageId)", text: message.body!, isIncoming: message.isOut == 0 ?true:false)
+                sSelf.mDataSource?.nextMessageId += 1
+                let item = DemoChatMessageFactory.makeTextMessage("\(sSelf.mDataSource?.nextMessageId)", text: message.body!, isIncoming: message.isOut == 0 ?true:false)
                 resultArray.append(item)
             }
             sSelf.messages?.removeAll()
