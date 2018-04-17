@@ -1,53 +1,38 @@
 //
-//  DialogsServiceImpl.m
+//  ChatListServiceImpl.m
 //  vk
 //
 //  Created by Jasf on 13.04.2018.
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "DialogsServiceImpl.h"
+#import "ChatListServiceImpl.h"
 #import "User.h"
 
-@interface DialogsServiceImpl ()
-@property id<DialogsServiceHandlerProtocol> handler;
+@interface ChatListServiceImpl ()
 @end
 
-@implementation DialogsServiceImpl
+@implementation ChatListServiceImpl
 
 #pragma mark - Initialization
-- (id)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory {
-    NSCParameterAssert(handlersFactory);
-    if (self = [self init]) {
-        _handler = [handlersFactory dialogsServiceHandler];
+- (id)init {
+    if (self = [super init]) {
+        
     }
     return self;
 }
 
-#pragma mark - DialogsService
-- (void)getDialogsWithOffset:(NSInteger)offset
-                  completion:(void(^)(NSArray<Dialog *> *dialogs))completion {
-    dispatch_python(^{
-        NSDictionary *dialogsData = [self.handler getDialogs:@(offset)];
-        [self processDialogsData:dialogsData
-                      completion:completion];
-    });
-}
-
-#pragma mark - Private Methods
-- (void)processDialogsData:(NSDictionary *)dialogsData
-                completion:(void(^)(NSArray *posts))completion {
+#pragma mark - ChatListService
+- (NSArray<Dialog *> *)parse:(NSDictionary *)dialogsData {
     NSCAssert([dialogsData isKindOfClass:[NSDictionary class]] || !dialogsData, @"wallData unknown type");
     if (![dialogsData isKindOfClass:[NSDictionary class]]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (completion) {
-                completion(nil);
-            }
-        });
-        return;
+        return nil;
     }
     
     NSDictionary *response = dialogsData[@"response"];
+    if (![response isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
     NSArray *users = dialogsData[@"users"];
     NSArray *items = response[@"items"];
     
@@ -70,11 +55,7 @@
         }
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (completion) {
-            completion(dialogs);
-        }
-    });
+    return dialogs;
 }
 
 @end

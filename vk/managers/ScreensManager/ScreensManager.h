@@ -12,7 +12,7 @@
 - (void)createWindowIfNeeded;
 - (void)showAuthorizationViewController;
 - (void)showNewsViewController;
-- (void)showDialogsViewController;
+- (void)showChatListViewController;
 - (void)showMenu;
 - (void)showDialogViewController:(NSNumber *)userId;
 @end

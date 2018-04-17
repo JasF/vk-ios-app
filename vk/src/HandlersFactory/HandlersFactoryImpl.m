@@ -9,11 +9,12 @@
 #import "HandlersFactoryImpl.h"
 #import "WallServiceImpl.h"
 #import "NewsViewController.h"
-#import "DialogsViewController.h"
-#import "DialogsServiceImpl.h"
+#import "ChatListViewController.h"
+#import "ChatListServiceImpl.h"
 #import "vk-Swift.h"
 #import "DialogServiceImpl.h"
-#import "DialogHandlerProtocol.h"
+#import "ChatListScreenViewModelImpl.h"
+
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -37,20 +38,16 @@
     return [_pythonBridge handlerWithProtocol:@protocol(NewsHandlerProtocol)];
 }
 
-- (id<DialogsServiceHandlerProtocol>)dialogsServiceHandler {
-    return [_pythonBridge handlerWithProtocol:@protocol(DialogsServiceHandlerProtocol)];
+- (id<PyChatListService>)chatListServiceHandler {
+    return [_pythonBridge handlerWithProtocol:@protocol(PyChatListService)];
 }
 
-- (id<DialogsHandlerProtocol>)dialogsHandler {
-    return [_pythonBridge handlerWithProtocol:@protocol(DialogsHandlerProtocol)];
+- (id<PyChatListScreenViewModel>)chatListHandler {
+    return [_pythonBridge handlerWithProtocol:@protocol(PyChatListScreenViewModel)];
 }
 
 - (id<PyDialogService>)dialogServiceHandler {
     return [_pythonBridge handlerWithProtocol:@protocol(PyDialogService)];
-}
-
-- (id<DialogHandlerProtocol>)dialogHandler {
-    return [_pythonBridge handlerWithProtocol:@protocol(DialogHandlerProtocol)];
 }
 
 @end

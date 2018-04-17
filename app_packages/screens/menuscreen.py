@@ -5,4 +5,4 @@ class MenuHandlerProtocol:
         managers.shared().screensManager().showNewsViewController()
     
     def dialogsTapped(self):
-        managers.shared().screensManager().showDialogsViewController()
+        managers.shared().screensManager().showChatListViewController()

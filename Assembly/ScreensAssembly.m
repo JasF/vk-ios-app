@@ -12,7 +12,7 @@
 #import "VKThemeAssembly.h"
 #import "ScreensManagerImpl.h"
 #import "NewsViewController.h"
-#import "DialogsViewController.h"
+#import "ChatListViewController.h"
 #import "BaseNavigationController.h"
 #import "NodesAssembly.h"
 #import "ServicesAssembly.h"
@@ -100,13 +100,12 @@
             }];
 }
 
-- (UIViewController *)dialogsViewController {
-    return [TyphoonDefinition withClass:[DialogsViewController class] configuration:^(TyphoonDefinition *definition)
+- (UIViewController *)chatListViewController {
+    return [TyphoonDefinition withClass:[ChatListViewController class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:nodeFactory:dialogsService:) parameters:^(TyphoonMethod *initializer) {
-                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.viewModelsAssembly.chatListScreenViewModel];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
-                    [initializer injectParameterWith:self.servicesAssembly.dialogsService];
                 }];
                 definition.scope = TyphoonScopeSingleton;
             }];

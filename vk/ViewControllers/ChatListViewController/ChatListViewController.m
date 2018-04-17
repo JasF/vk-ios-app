@@ -1,12 +1,12 @@
 //
-//  DialogsViewController.m
+//  ChatListViewController.m
 //  vk
 //
 //  Created by Jasf on 12.04.2018.
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "DialogsViewController.h"
+#import "ChatListViewController.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "Post.h"
 #import "PostNode.h"
@@ -19,23 +19,19 @@
 #import "LoadingNode.h"
 #import "Dialog.h"
 
-@interface DialogsViewController () <BaseCollectionViewControllerDataSource, ASCollectionDelegate>
-@property (strong, nonatomic) id<DialogsHandlerProtocol> handler;
+@interface ChatListViewController () <BaseCollectionViewControllerDataSource, ASCollectionDelegate>
+@property (strong, nonatomic) id<ChatListScreenViewModel> viewModel;
 @property (strong, nonatomic) id<NodeFactory> nodeFactory;
-@property (strong, nonatomic) id<DialogsService> dialogsService;
 @end
 
-@implementation DialogsViewController
+@implementation ChatListViewController
 
-- (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
-                            nodeFactory:(id<NodeFactory>)nodeFactory
-                         dialogsService:(id<DialogsService>)dialogsService {
-    NSCParameterAssert(handlersFactory);
+- (instancetype)initWithViewModel:(id<ChatListScreenViewModel>)viewModel
+                      nodeFactory:(id<NodeFactory>)nodeFactory {
+    NSCParameterAssert(viewModel);
     NSCParameterAssert(nodeFactory);
-    NSCParameterAssert(dialogsService);
     _nodeFactory = nodeFactory;
-    _dialogsService = dialogsService;
-    _handler = [handlersFactory dialogsHandler];
+    _viewModel = viewModel;
     self.dataSource = self;
     
     self = [super initWithNodeFactory:nodeFactory];
@@ -48,20 +44,20 @@
 }
 
 - (void)viewDidLoad {
-    NSCParameterAssert(_handler);
+    NSCParameterAssert(_viewModel);
     [super viewDidLoad];
     [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
 }
 
 #pragma mark - Observers
 - (IBAction)menuTapped:(id)sender {
-    [_handler menuTapped];
+    [_viewModel menuTapped];
 }
 
 #pragma mark - BaseCollectionViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
-    [_dialogsService getDialogsWithOffset:offset
+    [_viewModel getDialogsWithOffset:offset
                                completion:completion];
 }
 
@@ -71,7 +67,7 @@
     if (!item) {
         return;
     }
-    [_handler tappedOnDialogWithUserId:@(item.message.user_id)];
+    [_viewModel tappedOnDialogWithUserId:item.message.user_id];
 }
 
 @end

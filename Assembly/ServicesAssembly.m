@@ -8,7 +8,7 @@
 
 #import "ServicesAssembly.h"
 #import "WallServiceImpl.h"
-#import "DialogsServiceImpl.h"
+#import "ChatListServiceImpl.h"
 #import "DialogServiceImpl.h"
 #import "HandlersFactoryImpl.h"
 
@@ -36,13 +36,10 @@
             }];
 }
 
-- (id<DialogsService>)dialogsService {
-    return [TyphoonDefinition withClass:[DialogsServiceImpl class] configuration:^(TyphoonDefinition *definition)
+- (id<ChatListService>)chatListService {
+    return [TyphoonDefinition withClass:[ChatListServiceImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:) parameters:^(TyphoonMethod *initializer)
-                 {
-                     [initializer injectParameterWith:self.handlersFactory];
-                 }];
+                [definition useInitializer:@selector(init)];
                 definition.scope = TyphoonScopeSingleton;
             }];
 }

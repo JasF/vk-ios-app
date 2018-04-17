@@ -13,8 +13,8 @@ class MessagesService(AddMessageProtocol):
         return cls.instance
 
     def addNewMessageSubscriber(self, subscriber):
-        print('new message subscriber is: ' + str(subscriber))
         self.newMessageSubscribers.append(subscriber)
+        print('new message subscriber is: ' + str(subscriber))
         pass
 
     def setLongPoll(self, longPoll):
@@ -25,4 +25,7 @@ class MessagesService(AddMessageProtocol):
     def handleMessageAdd(self, userId, timestamp, body):
         print('handleMessageAdd: ' + str(body))
         for d in self.newMessageSubscribers:
-            d.handleIncomingMessage(userId, timestamp, body)
+            try:
+                d.handleIncomingMessage(userId, timestamp, body)
+            except Exception as e:
+                print('notifying add message exception: ' + str(e))

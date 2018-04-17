@@ -11,7 +11,7 @@
 #import "ScreensAssembly.h"
 #import "ViewController.h"
 #import "NewsViewController.h"
-#import "DialogsViewController.h"
+#import "ChatListViewController.h"
 #import "BaseNavigationController.h"
 #import "vk-Swift.h"
 #import "MenuViewController.h"
@@ -68,14 +68,14 @@
     });
 }
 
-- (void)showDialogsViewController {
+- (void)showChatListViewController {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
-        if ([self canIgnorePushingViewController:[DialogsViewController class]]) {
+        if ([self canIgnorePushingViewController:[ChatListViewController class]]) {
             return;
         }
-        DialogsViewController *viewController =(DialogsViewController *)[_screensAssembly dialogsViewController];
+        ChatListViewController *viewController =(ChatListViewController *)[_screensAssembly chatListViewController];
         [self pushViewController:viewController];
     });
 }

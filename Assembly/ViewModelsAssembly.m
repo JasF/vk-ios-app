@@ -8,6 +8,7 @@
 
 #import "ViewModelsAssembly.h"
 #import "DialogScreenViewModelImpl.h"
+#import "ChatListScreenViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -18,6 +19,17 @@
                     [initializer injectParameterWith:self.servicesAssembly.dialogService];
                     [initializer injectParameterWith:userId];
                     [initializer injectParameterWith:self.coreComponents.pythonBridge];
+                }];
+            }];
+}
+
+- (id<ChatListScreenViewModel>)chatListScreenViewModel {
+    return [TyphoonDefinition withClass:[ChatListScreenViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:pythonBridge:chatListService:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.coreComponents.pythonBridge];
+                    [initializer injectParameterWith:self.servicesAssembly.chatListService];
                 }];
             }];
 }

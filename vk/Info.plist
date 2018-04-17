@@ -14,6 +14,7 @@
 		<string>ScreensAssembly</string>
 		<string>NodesAssembly</string>
 		<string>ServicesAssembly</string>
+		<string>ViewModelsAssembly</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

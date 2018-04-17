@@ -2,7 +2,7 @@ import vk
 import json
 from vk import users as users
 
-class DialogsServiceHandlerProtocol:
+class ChatListService:
     def getDialogs(self, offset):
         api = vk.api()
         response = None

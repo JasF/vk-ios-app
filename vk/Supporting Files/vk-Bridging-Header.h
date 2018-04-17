@@ -7,7 +7,6 @@
 #import "HandlersFactory.h"
 #import "NodeFactory.h"
 #import "DialogService.h"
-#import "DialogHandlerProtocol.h"
 #import "VKApplicationAssembly.h"
 #import "ScreensAssembly.h"
 #import "Message.h"
