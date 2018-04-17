@@ -22,6 +22,10 @@
     NSMethodSignature *_invokingMethodSignature;
 }
 
+- (void)dealloc {
+    NSCAssert(!_key, @"Must be implementing unsubscribing in python-side");
+}
+
 - (id)initWithPythonBridge:(id<PythonBridge>)bridge
                       name:(NSString *)name
                    actions:(NSDictionary *)actions {
@@ -95,8 +99,9 @@
             [self.runLoop exit:0];
         };
     }
+    NSString *className = _key.length ? _key : _name;
     [_bridge sendAction:selectorName
-              className:_name
+              className:className
               arguments:[arguments copy]
              withResult:withResultValue
             resultBlock:resultBlock];

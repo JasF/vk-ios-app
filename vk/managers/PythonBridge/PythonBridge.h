@@ -13,6 +13,7 @@ typedef void (^ResultBlock)(id result);
 - (void)connect;
 - (void)setClassHandler:(id)handler name:(NSString *)className;
 - (id)handlerWithProtocol:(Protocol *)protocol;
+- (id)instantiateHandlerWithProtocol:(Protocol *)protocol;
 - (void)sendAction:(NSString *)action
          className:(NSString *)className
          arguments:(NSArray *)arguments

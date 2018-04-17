@@ -10,6 +10,8 @@
 #import "PythonBridge.h"
 
 @interface PythonBridgeHandler : NSProxy
+@property (assign, nonatomic) NSInteger instanceId;
+@property (strong, nonatomic) NSString *key;
 - (id)initWithPythonBridge:(id<PythonBridge>)bridge
                       name:(NSString *)name
                    actions:(NSDictionary *)actions;

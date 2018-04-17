@@ -38,12 +38,8 @@
     return [_pythonBridge handlerWithProtocol:@protocol(NewsHandlerProtocol)];
 }
 
-- (id<PyChatListService>)chatListServiceHandler {
-    return [_pythonBridge handlerWithProtocol:@protocol(PyChatListService)];
-}
-
 - (id<PyChatListScreenViewModel>)chatListHandler {
-    return [_pythonBridge handlerWithProtocol:@protocol(PyChatListScreenViewModel)];
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyChatListScreenViewModel)];
 }
 
 - (id<PyDialogService>)dialogServiceHandler {

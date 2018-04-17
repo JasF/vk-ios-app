@@ -30,6 +30,7 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
     dispatch_group_t _group;
     BOOL _groupWaiting;
     NSInteger _currentRequestId;
+    NSInteger _instanceId;
 }
 
 + (instancetype)shared {
@@ -165,7 +166,6 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
 }
 
 - (id)handlerWithProtocol:(Protocol *)protocol {
-    const char *name = protocol_getName(protocol);
     NSCParameterAssert(protocol);
     NSArray *methods = px_allProtocolMethods(protocol);
     NSMutableDictionary *actions = [NSMutableDictionary new];
@@ -174,6 +174,23 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
                     forKey:dictionary[PXProtocolMethodListMethodNameKey]];
     }
     return [self handlerWithActions:[actions copy] name:NSStringFromProtocol(protocol)];
+}
+
+- (id)instantiateHandlerWithProtocol:(Protocol *)protocol {
+    const char *name = protocol_getName(protocol);
+    NSString *protocolName = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+    PythonBridgeHandler *handler = [self handlerWithProtocol:protocol];
+    @synchronized (self) {
+        handler.instanceId = ++_instanceId;
+        handler.key = [NSString stringWithFormat:@"%@_%@", protocolName, @(handler.instanceId)];
+    }
+    NSDictionary *dictionary = @{
+                                 @"command":@"instantiateHandler",
+                                 @"key":handler.key,
+                                 @"class":protocolName,
+                                 };
+    [self send:dictionary];
+    return handler;
 }
 
 - (void)handleIncomingPostData:(id)message {

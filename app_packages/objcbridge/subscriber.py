@@ -11,6 +11,7 @@ class Subscriber():
         if not hasattr(cls, 'instance') or not cls.instance:
             cls.instance = super().__new__(cls)
             cls.instance.handlers = {}
+            cls.instance.allocators = {}
         return cls.instance
     
     def subscribe(self, command, handler):
@@ -27,6 +28,8 @@ class Subscriber():
         if cmd == 'classAction':
             self.processClassAction(object)
             return
+        if cmd == 'instantiateHandler':
+            self.processInstantiateHandler(object)
         if cmd in self.handlers:
             handler = self.handlers[cmd]
             self.performHandler(handler)
@@ -62,6 +65,20 @@ class Subscriber():
         except Exception as e:
             dprint('processClassAction exception: ' + str(e) + '; handlers: ' + str(self.handlers) + '; object: ' + str(object))
 
+    def processInstantiateHandler(self, object):
+        try:
+            className = object["class"]
+            key = object["key"]
+            allocator = self.allocators[className]
+            handler = allocator()
+            print('\n\n\n$$$ Successfully allocated: ' + str(handler) + '\n\n\n')
+            self.handlers[key] = handler
+        except Exception as e:
+            dprint('instantiate handler exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))
+
+    def setClassAllocator(self, cls, func):
+        self.allocators[cls.__name__] = func
+    
     def setClassHandler(self, handler):
         if isinstance(handler, list):
             for h in handler:

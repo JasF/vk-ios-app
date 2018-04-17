@@ -5,4 +5,4 @@ from services.messagesservice import MessagesService
 from services.chatlistservice import ChatListService
 
 Subscriber().setClassHandler( PyDialogScreenViewModel(MessagesService()) )
-Subscriber().setClassHandler( PyChatListScreenViewModel(MessagesService(), ChatListService()) )
+Subscriber().setClassAllocator( PyChatListScreenViewModel, lambda: PyChatListScreenViewModel(MessagesService(), ChatListService()) )

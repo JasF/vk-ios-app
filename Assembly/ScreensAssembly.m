@@ -107,7 +107,6 @@
                     [initializer injectParameterWith:self.viewModelsAssembly.chatListScreenViewModel];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
                 }];
-                definition.scope = TyphoonScopeSingleton;
             }];
 }
 
