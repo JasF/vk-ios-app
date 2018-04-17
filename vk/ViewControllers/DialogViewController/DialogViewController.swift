@@ -48,7 +48,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         self.mDataSource.setBatchFetchContent() { () -> Void in
             self.batchFetchContent()
         }
-        //self.dataSource = self.mDataSource
+        self.dataSource = self.mDataSource
         super.viewDidLoad()
         
         let button = UIBarButtonItem(
