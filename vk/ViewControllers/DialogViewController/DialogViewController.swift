@@ -27,10 +27,6 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         self.viewModel!.delegate = self
     }
     
-    deinit {
-        NSLog("dialogvc deinit");
-    }
-    
     var mDataSource: DemoChatDataSource!
     
     override func viewDidLoad() {
@@ -45,8 +41,8 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
             sSelf.messages?.removeAll()
             return resultArray
         }
-        self.mDataSource.setBatchFetchContent() { () -> Void in
-            self.batchFetchContent()
+        self.mDataSource.setBatchFetchContent() { [weak self] () -> Void in
+            self?.batchFetchContent()
         }
         self.dataSource = self.mDataSource
         super.viewDidLoad()

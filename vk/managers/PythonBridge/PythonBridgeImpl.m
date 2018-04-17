@@ -231,6 +231,25 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     }
 }
 
+- (void)handlerWillRelease:(PythonBridgeHandler *)handler {
+    if (!handler.key) {
+        return;
+    }
+    NSDictionary *dictionary = @{
+                                 @"command":@"releaseHandler",
+                                 @"key":handler.key
+                                 };
+    dispatch_python(^{
+        [self send:dictionary];
+    });
+    /*
+    NSArray *keys = [_handlers allKeysForObject:[NSValue valueWithNonretainedObject:handler]];
+    for (NSString *key in keys) {
+        [_handlers removeObjectForKey:key];
+    }
+     */
+}
+
 #pragma mark - Private
 - (NSString *)loggingStringWithDictionary:(NSDictionary *)object {
     if ([object isKindOfClass:[NSDictionary class]]) {

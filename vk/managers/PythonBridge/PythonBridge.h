@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class PythonBridgeHandler;
 typedef void (^ResultBlock)(id result);
 @protocol PythonBridge <NSObject>
 - (void)send:(NSDictionary *)object;
@@ -19,5 +20,5 @@ typedef void (^ResultBlock)(id result);
          arguments:(NSArray *)arguments
         withResult:(BOOL)withResult
        resultBlock:(ResultBlock)resultBlock;
-
+- (void)handlerWillRelease:(PythonBridgeHandler *)handler;
 @end

@@ -30,6 +30,8 @@ class Subscriber():
             return
         if cmd == 'instantiateHandler':
             self.processInstantiateHandler(object)
+        if cmd == 'releaseHandler':
+            self.processReleaseHandler(object)
         if cmd in self.handlers:
             handler = self.handlers[cmd]
             self.performHandler(handler)
@@ -76,6 +78,13 @@ class Subscriber():
         except Exception as e:
             dprint('instantiate handler exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))
 
+    def processReleaseHandler(self, object):
+        try:
+            key = object["key"]
+            del self.handlers[key]
+            print('handler with key: ' + str(key) + ' successfully deleted')
+        except Exception as e:
+            dprint('releasing handler exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))
     def setClassAllocator(self, cls, func):
         self.allocators[cls.__name__] = func
     

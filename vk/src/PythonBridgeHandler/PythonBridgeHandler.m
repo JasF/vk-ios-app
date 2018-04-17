@@ -23,7 +23,7 @@
 }
 
 - (void)dealloc {
-    NSCAssert(!_key, @"Must be implementing unsubscribing in python-side");
+    [_bridge handlerWillRelease:self];
 }
 
 - (id)initWithPythonBridge:(id<PythonBridge>)bridge
