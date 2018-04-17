@@ -51,7 +51,12 @@
                    }];
     });
 }
-    
+
+- (void)sendTextMessage:(NSString *)text
+                 userId:(NSInteger)userId {
+    [_handler sendTextMessage:text userId:@(userId)];
+}
+
 #pragma mark - Private Methods
 - (void)processResponse:(NSDictionary *)results
              completion:(void(^)(NSArray<Message *> *messages))completion {
@@ -62,6 +67,12 @@
         return;
     }
     NSDictionary *response = results[@"response"];
+    if (![response isKindOfClass:[NSDictionary class]]) {
+        if (completion) {
+            completion(nil);
+        }
+        return;
+    }
     NSArray *items = response[@"items"];
     NSArray *messages = [EKMapper arrayOfObjectsFromExternalRepresentation:items
                                                                withMapping:[Message objectMapping]];

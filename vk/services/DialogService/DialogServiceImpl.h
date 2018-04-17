@@ -17,6 +17,8 @@
 - (NSDictionary *)getMessages:(NSNumber *)offset
                        userId:(NSNumber *)userId
                startMessageId:(NSNumber *)startMessageId;
+
+- (void)sendTextMessage:(NSString *)text userId:(NSNumber *)userId;
 @end
 
 @interface DialogServiceImpl : NSObject <DialogService>

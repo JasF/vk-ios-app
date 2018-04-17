@@ -59,6 +59,8 @@
 }
 - (void)voidMethodWithOneArgument:(id)argument {
 }
+- (void)voidMethodWithTwoArgument:(id)argument arg2:(id)arg2 {
+}
 - (id)methodWithResultAndOneArgument:(id)argument {
     return self.resultValue;
 }
@@ -100,6 +102,9 @@
             resultBlock:resultBlock];
     if (!withResultValue && arguments.count == 1) {
         anInvocation.selector = @selector(voidMethodWithOneArgument:);
+    }
+    else if (!withResultValue && arguments.count == 2) {
+        anInvocation.selector = @selector(voidMethodWithTwoArgument:arg2:);
     }
     else if (withResultValue && arguments.count == 1) {
         anInvocation.selector = @selector(methodWithResultAndOneArgument:);

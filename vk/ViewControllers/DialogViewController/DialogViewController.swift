@@ -104,6 +104,11 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         }
     }
     
+    override func willSendTextMessage(message: String?) {
+        NSLog("will send text message: \(String(describing: message))");
+        self.viewModel?.sendTextMessage(message)
+    }
+    
     func handleIncomingMessage(_ message: String?, userId: NSNumber?, timestamp: NSNumber?) {
         self.mDataSource?.addIncomingTextMessage(message!)
     }

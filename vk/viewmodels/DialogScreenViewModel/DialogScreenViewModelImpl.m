@@ -59,6 +59,11 @@
                                completion:completion];
 }
 
+- (void)sendTextMessage:(NSString *)text {
+    [_dialogService sendTextMessage:text
+                             userId:_userId.integerValue];
+}
+
 #pragma mark - PyDialogScreenViewModelDelegate
 - (void)handleIncomingMessage:(NSString *)message
                        userId:(NSNumber *)userId

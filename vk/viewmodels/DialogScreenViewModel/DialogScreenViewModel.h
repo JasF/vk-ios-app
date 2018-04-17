@@ -19,4 +19,5 @@
 - (void)getMessagesWithOffset:(NSInteger)offset
                startMessageId:(NSInteger)startMessageId
                    completion:(void(^)(NSArray<Message *> *messages))completion;
+- (void)sendTextMessage:(NSString *)text;
 @end

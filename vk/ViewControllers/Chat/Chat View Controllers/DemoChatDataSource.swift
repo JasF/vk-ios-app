@@ -118,6 +118,7 @@ class DemoChatDataSource: ChatDataSourceProtocol {
     }
     
     func addTextMessage(_ text: String) {
+        self.delegate?.willSendTextMessage(message: text)
         let uid = "\(self.nextMessageId)"
         self.nextMessageId += 1
         let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: false)

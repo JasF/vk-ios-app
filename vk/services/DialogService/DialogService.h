@@ -18,5 +18,8 @@
                        userId:(NSInteger)userId
                startMessageId:(NSInteger)startMessageId
                    completion:(void(^)(NSArray<Message *> *messages))completion;
+
+- (void)sendTextMessage:(NSString *)text
+                 userId:(NSInteger)userId;
 @end
 

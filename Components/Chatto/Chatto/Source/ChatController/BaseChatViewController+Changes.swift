@@ -34,6 +34,10 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         self.enqueueModelUpdate(updateType: .normal)
     }
 
+    @objc open func willSendTextMessage(message: String?) {
+        
+    }
+    
     public func enqueueModelUpdate(updateType: UpdateType) {
         let newItems = self.chatDataSource?.chatItems ?? []
 
