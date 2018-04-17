@@ -1,12 +1,12 @@
 //
-//  NewsViewController.m
+//  WallViewController.m
 //  vk
 //
 //  Created by Jasf on 11.04.2018.
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "NewsViewController.h"
+#import "WallViewController.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "Post.h"
 #import "PostNode.h"
@@ -18,11 +18,11 @@
 #import "BlurbNode.h"
 #import "LoadingNode.h"
 
-@interface NewsViewController () <BaseCollectionViewControllerDataSource>
+@interface WallViewController () <BaseCollectionViewControllerDataSource>
 @property (strong, nonatomic) id<WallScreenViewModel> viewModel;
 @end
 
-@implementation NewsViewController {
+@implementation WallViewController {
 }
 
 - (instancetype)initWithViewModel:(id<WallScreenViewModel>)viewModel

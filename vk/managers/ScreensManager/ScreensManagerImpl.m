@@ -10,7 +10,7 @@
 #import "MainViewController.h"
 #import "ScreensAssembly.h"
 #import "ViewController.h"
-#import "NewsViewController.h"
+#import "WallViewController.h"
 #import "ChatListViewController.h"
 #import "BaseNavigationController.h"
 #import "vk-Swift.h"
@@ -56,14 +56,14 @@
     });
 }
 
-- (void)showNewsViewController {
+- (void)showWallViewController {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
-        if ([self canIgnorePushingViewController:[NewsViewController class]]) {
+        if ([self canIgnorePushingViewController:[WallViewController class]]) {
             return;
         }
-        NewsViewController *viewController =(NewsViewController *)[_screensAssembly newsViewController];
+        WallViewController *viewController =(WallViewController *)[_screensAssembly wallViewController];
         [self pushViewController:viewController];
     });
 }

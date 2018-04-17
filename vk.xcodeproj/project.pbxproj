@@ -90,7 +90,7 @@
 		C32306072080E57500CEC487 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C323048F2080E57400CEC487 /* LeftViewController.m */; };
 		C32306082080E57500CEC487 /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32304932080E57400CEC487 /* DialogViewController.swift */; };
 		C32306092080E57500CEC487 /* EmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304952080E57400CEC487 /* EmptyViewController.m */; };
-		C323060A2080E57500CEC487 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304982080E57400CEC487 /* NewsViewController.m */; };
+		C323060A2080E57500CEC487 /* WallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304982080E57400CEC487 /* WallViewController.m */; };
 		C323060B2080E57500CEC487 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C323049B2080E57400CEC487 /* ChatListViewController.m */; };
 		C323060C2080E57500CEC487 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C323049F2080E57400CEC487 /* BaseCollectionViewController.m */; };
 		C323060D2080E57500CEC487 /* MenuViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C32304A12080E57400CEC487 /* MenuViewController.storyboard */; };
@@ -615,8 +615,8 @@
 		C32304932080E57400CEC487 /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
 		C32304952080E57400CEC487 /* EmptyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyViewController.m; sourceTree = "<group>"; };
 		C32304962080E57400CEC487 /* EmptyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyViewController.h; sourceTree = "<group>"; };
-		C32304982080E57400CEC487 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
-		C32304992080E57400CEC487 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		C32304982080E57400CEC487 /* WallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallViewController.m; sourceTree = "<group>"; };
+		C32304992080E57400CEC487 /* WallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallViewController.h; sourceTree = "<group>"; };
 		C323049B2080E57400CEC487 /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
 		C323049C2080E57400CEC487 /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
 		C323049E2080E57400CEC487 /* BaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
@@ -1758,7 +1758,7 @@
 				C32304892080E57400CEC487 /* MainViewController */,
 				C32304912080E57400CEC487 /* DialogViewController */,
 				C32304942080E57400CEC487 /* EmptyViewController */,
-				C32304972080E57400CEC487 /* NewsViewController */,
+				C32304972080E57400CEC487 /* WallViewController */,
 				C323049A2080E57400CEC487 /* ChatListViewController */,
 				C323049D2080E57400CEC487 /* BaseCollectionViewController */,
 				C32304A02080E57400CEC487 /* MenuViewController */,
@@ -1807,13 +1807,13 @@
 			path = EmptyViewController;
 			sourceTree = "<group>";
 		};
-		C32304972080E57400CEC487 /* NewsViewController */ = {
+		C32304972080E57400CEC487 /* WallViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C32304982080E57400CEC487 /* NewsViewController.m */,
-				C32304992080E57400CEC487 /* NewsViewController.h */,
+				C32304982080E57400CEC487 /* WallViewController.m */,
+				C32304992080E57400CEC487 /* WallViewController.h */,
 			);
-			path = NewsViewController;
+			path = WallViewController;
 			sourceTree = "<group>";
 		};
 		C323049A2080E57400CEC487 /* ChatListViewController */ = {
@@ -4083,7 +4083,7 @@
 				C32309252081AEB100CEC487 /* TyphoonAssemblyDefinitionBuilder.m in Sources */,
 				C3372FCB2083356C0080DA75 /* BaseMessageHandler.swift in Sources */,
 				C32308D02081AEB100CEC487 /* TyphoonSwizzlerDefaultImpl.m in Sources */,
-				C323060A2080E57500CEC487 /* NewsViewController.m in Sources */,
+				C323060A2080E57500CEC487 /* WallViewController.m in Sources */,
 				C32308DB2081AEB100CEC487 /* TyphoonStoryboard.m in Sources */,
 				C32308FD2081AEB100CEC487 /* TyphoonAbstractInjection.m in Sources */,
 				C32308E62081AEB100CEC487 /* TyphoonStoryboardDefinitionContext.m in Sources */,

@@ -5,4 +5,4 @@ class AuthorizationHandlerProtocol:
     def accessTokenGathered(self, aAccessToken):
         vk.setToken(aAccessToken)
         managers.shared().screensManager().showChatListViewController()
-        #managers.shared().screensManager().showNewsViewController()
+        #managers.shared().screensManager().showWallViewController()

@@ -8,7 +8,7 @@
 
 #import "HandlersFactoryImpl.h"
 #import "WallServiceImpl.h"
-#import "NewsViewController.h"
+#import "WallViewController.h"
 #import "ChatListViewController.h"
 #import "ChatListServiceImpl.h"
 #import "vk-Swift.h"

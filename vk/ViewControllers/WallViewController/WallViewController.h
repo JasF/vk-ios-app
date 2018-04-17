@@ -1,5 +1,5 @@
 //
-//  NewsViewController.h
+//  WallViewController.h
 //  vk
 //
 //  Created by Jasf on 11.04.2018.
@@ -11,7 +11,7 @@
 #import "WallService.h"
 #import "WallScreenViewModel.h"
 
-@interface NewsViewController : BaseCollectionViewController
+@interface WallViewController : BaseCollectionViewController
 - (instancetype)initWithViewModel:(id<WallScreenViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

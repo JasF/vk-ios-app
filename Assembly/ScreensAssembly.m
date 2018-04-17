@@ -11,7 +11,7 @@
 #import "VKCoreComponents.h"
 #import "VKThemeAssembly.h"
 #import "ScreensManagerImpl.h"
-#import "NewsViewController.h"
+#import "WallViewController.h"
 #import "ChatListViewController.h"
 #import "BaseNavigationController.h"
 #import "NodesAssembly.h"
@@ -78,8 +78,8 @@
                                }];
 }
 
-- (UIViewController *)newsViewController {
-    return [TyphoonDefinition withClass:[NewsViewController class] configuration:^(TyphoonDefinition *definition)
+- (UIViewController *)wallViewController {
+    return [TyphoonDefinition withClass:[WallViewController class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.viewModelsAssembly.wallScreenViewModel];
