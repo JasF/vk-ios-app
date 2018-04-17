@@ -45,8 +45,8 @@
     return [_pythonBridge handlerWithProtocol:@protocol(DialogsHandlerProtocol)];
 }
 
-- (id<DialogServiceHandlerProtocol>)dialogServiceHandler {
-    return [_pythonBridge handlerWithProtocol:@protocol(DialogServiceHandlerProtocol)];
+- (id<PyDialogService>)dialogServiceHandler {
+    return [_pythonBridge handlerWithProtocol:@protocol(PyDialogService)];
 }
 
 - (id<DialogHandlerProtocol>)dialogHandler {

@@ -1248,7 +1248,7 @@
 		C32308B72081AEB000CEC487 /* UIImage+NanoFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NanoFrame.m"; sourceTree = "<group>"; };
 		C32308B82081AEB000CEC487 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C32309382081AED800CEC487 /* renametexture.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = renametexture.py; sourceTree = "<group>"; };
-		C3372F902081D7480080DA75 /* dialogservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogservice.py; sourceTree = "<group>"; };
+		C3372F902081D7480080DA75 /* pydialogservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pydialogservice.py; sourceTree = "<group>"; };
 		C3372F912081F68E0080DA75 /* basedatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = basedatabase.py; sourceTree = "<group>"; };
 		C3372F922081FAEA0080DA75 /* messages.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messages.py; sourceTree = "<group>"; };
 		C3372F932081FB330080DA75 /* gensqlkeys.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = gensqlkeys.py; sourceTree = "<group>"; };
@@ -2389,7 +2389,7 @@
 			children = (
 				C32305B42080E57500CEC487 /* wallservice.py */,
 				C32305B52080E57500CEC487 /* dialogsservice.py */,
-				C3372F902081D7480080DA75 /* dialogservice.py */,
+				C3372F902081D7480080DA75 /* pydialogservice.py */,
 				C32305B32080E57500CEC487 /* __init__.py */,
 				C3A943FD2084BAAD0033355E /* messagesservice.py */,
 			);

@@ -9,7 +9,7 @@
 #import "DialogServiceImpl.h"
 
 @interface DialogServiceImpl ()
-@property id<DialogServiceHandlerProtocol> handler;
+@property id<PyDialogService> handler;
 @end
 
 @implementation DialogServiceImpl

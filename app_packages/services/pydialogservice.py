@@ -3,7 +3,7 @@ import json
 from vk import users as users
 from caches.messages import MessagesDatabase
 
-class DialogServiceHandlerProtocol:
+class PyDialogService:
     def getMessagesuserId(self, offset, userId):
         print('offset: ' + str(offset) + '; userId: ' + str(userId))
         api = vk.api()

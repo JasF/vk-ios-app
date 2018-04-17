@@ -10,7 +10,7 @@
 
 @protocol WallServiceHandlerProtocol;
 @protocol DialogsServiceHandlerProtocol;
-@protocol DialogServiceHandlerProtocol;
+@protocol PyDialogService;
 @protocol NewsHandlerProtocol;
 @protocol DialogsHandlerProtocol;
 @protocol DialogHandlerProtocol;
@@ -18,7 +18,7 @@
 @protocol HandlersFactory <NSObject>
 - (id<WallServiceHandlerProtocol>)wallServiceHandler;
 - (id<DialogsServiceHandlerProtocol>)dialogsServiceHandler;
-- (id<DialogServiceHandlerProtocol>)dialogServiceHandler;
+- (id<PyDialogService>)dialogServiceHandler;
 - (id<NewsHandlerProtocol>)newsHandler;
 - (id<DialogsHandlerProtocol>)dialogsHandler;
 - (id<DialogHandlerProtocol>)dialogHandler;
