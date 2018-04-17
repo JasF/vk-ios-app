@@ -39,7 +39,6 @@
 - (id<ChatListService>)chatListService {
     return [TyphoonDefinition withClass:[ChatListServiceImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(init)];
                 definition.scope = TyphoonScopeSingleton;
             }];
 }
@@ -47,10 +46,6 @@
 - (id<DialogService>)dialogService {
     return [TyphoonDefinition withClass:[DialogServiceImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:) parameters:^(TyphoonMethod *initializer)
-                 {
-                     [initializer injectParameterWith:self.handlersFactory];
-                 }];
                 definition.scope = TyphoonScopeSingleton;
             }];
 }

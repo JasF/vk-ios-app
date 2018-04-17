@@ -76,7 +76,12 @@
                                                       userId:@""];
         self.vkManager.getTokenSuccess(token);
 #else
-        [self.vkManager authorize];
+        
+        VKAccessToken *token = [VKAccessToken tokenWithToken:@"5707d7a0a400d18395446787aa77fb32a37cfb8e33c153fad544f09979685055a9d4ffe6a488b72447f6e"
+                                                      secret:@""
+                                                      userId:@""];
+        self.vkManager.getTokenSuccess(token);
+       // [self.vkManager authorize];
 #endif
     });
     
@@ -112,7 +117,9 @@
     @weakify(self);
     _vkManager.getTokenSuccess = ^(VKAccessToken *token) {
         @strongify(self);
-        [self.handler accessTokenGathered:token.accessToken];
+        dispatch_python(^{
+            [self.handler accessTokenGathered:token.accessToken];
+        });
     };
     _vkManager.getTokenFailed = ^(NSError *error, BOOL cancelled) {
         // @strongify(self);

@@ -32,7 +32,7 @@
     if (self = [self init]) {
         _pythonBridge = pythonBridge;
         _chatListService = chatListService;
-        _handler = [handlersFactory chatListHandler];
+        _handler = [handlersFactory chatListViewModelHandler];
         //[_pythonBridge setClassHandler:self name:@""];
     }
     return self;
@@ -44,7 +44,9 @@
 }
 
 - (void)tappedOnDialogWithUserId:(NSInteger)userId {
-    [_handler tappedOnDialogWithUserId:@(userId)];
+    dispatch_python(^{
+        [_handler tappedOnDialogWithUserId:@(userId)];
+    });
 }
 
 - (void)getDialogsWithOffset:(NSInteger)offset

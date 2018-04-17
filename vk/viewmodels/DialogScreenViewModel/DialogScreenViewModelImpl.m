@@ -16,6 +16,7 @@
 
 @interface DialogScreenViewModelImpl () <PyDialogScreenViewModelDelegate>
 @property (strong, nonatomic) id<DialogService> dialogService;
+@property (strong, nonatomic) id<PyDialogScreenViewModel> handler;
 @property (strong, nonatomic) NSNumber *userId;
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
 @end
@@ -26,13 +27,16 @@
 
 #pragma mark - Initialization
 - (instancetype)initWithDialogService:(id<DialogService>)dialogService
+                      handlersFactory:(id<HandlersFactory>)handlersFactory
                                userId:(NSNumber *)userId
                          pythonBridge:(id<PythonBridge>)pythonBridge {
     NSCParameterAssert(dialogService);
+    NSCParameterAssert(handlersFactory);
     NSCParameterAssert(userId);
     NSCParameterAssert(pythonBridge);
     if (self) {
         _dialogService = dialogService;
+        _handler = [handlersFactory dialogViewModelHandler];
         _userId = userId;
         _pythonBridge = pythonBridge;
         [_pythonBridge setClassHandler:self name:@"PyDialogScreenViewModelDelegate"];
@@ -40,28 +44,47 @@
     return self;
 }
 
+- (void)dealloc {
+    
+}
+
 #pragma mark - DialogScreenViewModel
 - (void)getMessagesWithOffset:(NSInteger)offset
                    completion:(void(^)(NSArray<Message *> *messages))completion {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_dialogService getMessagesWithOffset:offset
-                                       userId:_userId.integerValue
-                                   completion:completion];
+    dispatch_python(^{
+        NSDictionary *data = [self.handler getMessages:@(offset) userId:self.userId];
+        NSArray<Message *> *messages = [_dialogService parse:data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(messages);
+            }
+        });
     });
 }
 
 - (void)getMessagesWithOffset:(NSInteger)offset
                startMessageId:(NSInteger)startMessageId
                    completion:(void(^)(NSArray<Message *> *messages))completion {
-    [_dialogService getMessagesWithOffset:offset
-                                   userId:_userId.integerValue
-                           startMessageId:startMessageId
-                               completion:completion];
+    dispatch_python(^{
+        NSDictionary *data = [self.handler getMessages:@(offset) userId:self.userId startMessageId:@(startMessageId)];
+        NSArray<Message *> *messages = [_dialogService parse:data];
+        NSMutableArray *mutableMessages = [messages mutableCopy];
+        if (mutableMessages.count) {
+            [mutableMessages removeObjectAtIndex:0];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(mutableMessages);
+            }
+        });
+    });
 }
 
 - (void)sendTextMessage:(NSString *)text {
-    [_dialogService sendTextMessage:text
-                             userId:_userId.integerValue];
+    dispatch_python(^{
+        [self.handler sendTextMessage:text
+                               userId:_userId];
+    });
 }
 
 #pragma mark - PyDialogScreenViewModelDelegate

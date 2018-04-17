@@ -77,6 +77,7 @@
 
 -(void)forwardInvocation:(NSInvocation*)anInvocation
 {
+    NSCAssert(![NSThread isMainThread], @"Please perform in background thread");
     NSString *selectorName = NSStringFromSelector(anInvocation.selector);
     NSString *returnValueSignature = [[NSString alloc] initWithCString:anInvocation.methodSignature.methodReturnType encoding:NSUTF8StringEncoding];
     ResultBlock resultBlock = nil;

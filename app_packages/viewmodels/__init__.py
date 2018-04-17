@@ -3,6 +3,7 @@ from viewmodels.pydialogscreenviewmodel import PyDialogScreenViewModel
 from .pychatlistscreenviewmodel import PyChatListScreenViewModel
 from services.messagesservice import MessagesService
 from services.chatlistservice import ChatListService
+from services.dialogservice import DialogService
 
-Subscriber().setClassHandler( PyDialogScreenViewModel(MessagesService()) )
 Subscriber().setClassAllocator( PyChatListScreenViewModel, lambda: PyChatListScreenViewModel(MessagesService(), ChatListService()) )
+Subscriber().setClassAllocator( PyDialogScreenViewModel, lambda: PyDialogScreenViewModel(MessagesService(), DialogService()) )

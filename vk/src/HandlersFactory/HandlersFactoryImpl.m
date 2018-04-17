@@ -14,6 +14,7 @@
 #import "vk-Swift.h"
 #import "DialogServiceImpl.h"
 #import "ChatListScreenViewModelImpl.h"
+#import "DialogScreenViewModelImpl.h"
 
 
 @interface HandlersFactoryImpl ()
@@ -38,12 +39,12 @@
     return [_pythonBridge handlerWithProtocol:@protocol(NewsHandlerProtocol)];
 }
 
-- (id<PyChatListScreenViewModel>)chatListHandler {
+- (id<PyChatListScreenViewModel>)chatListViewModelHandler {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyChatListScreenViewModel)];
 }
 
-- (id<PyDialogService>)dialogServiceHandler {
-    return [_pythonBridge handlerWithProtocol:@protocol(PyDialogService)];
+- (id<PyDialogScreenViewModel>)dialogViewModelHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyDialogScreenViewModel)];
 }
 
 @end

@@ -3,7 +3,7 @@ import json
 from vk import users as users
 from caches.messages import MessagesDatabase
 
-class PyDialogService:
+class DialogService:
     def __init__(self):
         self.api = None
     

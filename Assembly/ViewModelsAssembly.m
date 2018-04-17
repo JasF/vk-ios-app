@@ -15,8 +15,9 @@
 - (id<DialogScreenViewModel>)dialogScreenViewModel:(NSNumber *)userId {
     return [TyphoonDefinition withClass:[DialogScreenViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithDialogService:userId:pythonBridge:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(initWithDialogService:handlersFactory:userId:pythonBridge:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.dialogService];
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:userId];
                     [initializer injectParameterWith:self.coreComponents.pythonBridge];
                 }];

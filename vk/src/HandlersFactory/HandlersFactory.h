@@ -9,14 +9,14 @@
 #import <CoreFoundation/CoreFoundation.h>
 
 @protocol WallServiceHandlerProtocol;
-@protocol PyDialogService;
 @protocol NewsHandlerProtocol;
 @protocol DialogsHandlerProtocol;
 @protocol PyChatListScreenViewModel;
+@protocol PyDialogScreenViewModel;
 
 @protocol HandlersFactory <NSObject>
 - (id<WallServiceHandlerProtocol>)wallServiceHandler;
-- (id<PyDialogService>)dialogServiceHandler;
 - (id<NewsHandlerProtocol>)newsHandler;
-- (id<PyChatListScreenViewModel>)chatListHandler;
+- (id<PyChatListScreenViewModel>)chatListViewModelHandler;
+- (id<PyDialogScreenViewModel>)dialogViewModelHandler;
 @end

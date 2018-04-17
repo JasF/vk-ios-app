@@ -252,7 +252,7 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     if (!action || !className) {
         return;
     }
-    id handler = _handlers[className];
+    id handler = [_handlers[className] nonretainedObjectValue];
     if (!handler) {
         NSLog(@"handler for protocol \"%@\" not registered", className);
         return;
@@ -351,7 +351,7 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
                    name:(NSString *)className {
     NSCParameterAssert(className);
     NSCParameterAssert(handler);
-    [_handlers setObject:handler forKey:className];
+    [_handlers setObject:[NSValue valueWithNonretainedObject:handler] forKey:className];
 }
 
 @end
