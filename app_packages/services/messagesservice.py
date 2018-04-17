@@ -23,5 +23,6 @@ class MessagesService(AddMessageProtocol):
 
     # AddMessageProtocol
     def handleMessageAdd(self, userId, timestamp, body):
+        print('handleMessageAdd: ' + str(body))
         for d in self.newMessageSubscribers:
             d.handleIncomingMessage(userId, timestamp, body)

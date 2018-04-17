@@ -14,12 +14,14 @@
 @class VKCoreComponents;
 @class VKThemeAssembly;
 @class NodesAssembly;
+@class ViewModelsAssembly;
 
 @interface ScreensAssembly : TyphoonAssembly
 @property (nonatomic, strong, readonly) VKCoreComponents *coreComponents;
 @property (nonatomic, strong, readonly) VKThemeAssembly *themeProvider;
 @property (nonatomic, strong, readonly) NodesAssembly *nodesAssembly;
 @property (readonly) ServicesAssembly *servicesAssembly;
+@property (readonly) ViewModelsAssembly *viewModelsAssembly;
 - (id<ScreensManager>)screensManager;
 - (UIViewController *)createViewController;
 - (UIViewController *)createMainViewController;

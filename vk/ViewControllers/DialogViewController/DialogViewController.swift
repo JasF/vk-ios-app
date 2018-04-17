@@ -9,35 +9,22 @@
 import UIKit
 import Chatto
 
-class DialogViewController: DemoChatViewController, DialogHandlerProtocolDelegate {
+class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegate {
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     var nodeFactory: NodeFactory?
-    var dialogService: DialogService?
-    var userId: NSNumber?
-    var handler: DialogHandlerProtocol?
-    var pythonBridge: PythonBridge?
+    var viewModel: DialogScreenViewModel?
     var messages: Array<Message>?
     var secondMessages: Array<Message>?
     
-    /*
-    @protocol AuthorizationHandlerProtocolDelegate <NSObject>
-    - (NSString *)receivedWall:(NSDictionary *)wall;
-    @end
-    
-    [_pythonBridge setClassHandler:self name:@"AuthorizationHandlerProtocol"];
-    */
-    
-    @objc init(handlersFactory:HandlersFactory?, nodeFactory:NodeFactory?, dialogService:DialogService?, userId:NSNumber?, pythonBridge:PythonBridge?) {
+    @objc init(viewModel:DialogScreenViewModel?, nodeFactory:NodeFactory?) {
         super.init(nibName:nil, bundle:nil)
+        self.viewModel = viewModel!
         self.nodeFactory = nodeFactory!
-        self.dialogService = dialogService!
-        self.userId = userId!
-        self.pythonBridge = pythonBridge!  
-        self.pythonBridge!.setClassHandler(self, name:"DialogHandlerProtocolDelegate")
+        self.viewModel!.delegate = self
     }
     
     var mDataSource: DemoChatDataSource!
@@ -82,7 +69,8 @@ class DialogViewController: DemoChatViewController, DialogHandlerProtocolDelegat
         let message = self.secondMessages?.last
         if message != nil {
             self.updating = true
-            self.dialogService?.getMessagesWithOffset(0, userId: Int(self.userId!), startMessageId: Int(message!.identifier)) {messages in
+            
+            self.viewModel?.getMessagesWithOffset(0, startMessageId: Int(message!.identifier)) {messages in
                 print("hello response!")
                 self.updating = false
                 if let array = messages! as NSArray as? [Message] {
@@ -91,6 +79,7 @@ class DialogViewController: DemoChatViewController, DialogHandlerProtocolDelegat
                 }
                 self.mDataSource.loadPrevious(count:self.messages!.count)
             }
+ 
         }
         NSLog("begin chat batch fetch content");
     }
@@ -99,7 +88,7 @@ class DialogViewController: DemoChatViewController, DialogHandlerProtocolDelegat
     override open func viewWillAppear(_ animated: Bool ) {
         super.viewWillAppear(animated)
         
-        self.dialogService?.getMessagesWithOffset(0, userId: Int(self.userId!)) {messages in
+        self.viewModel?.getMessagesWithOffset(0) {messages in
             if messages == nil {
                 return
             }
@@ -116,9 +105,6 @@ class DialogViewController: DemoChatViewController, DialogHandlerProtocolDelegat
     }
     
     func handleIncomingMessage(_ message: String?, userId: NSNumber?, timestamp: NSNumber?) {
-        NSLog("incoming!");
-        DispatchQueue.main.async {
-            self.mDataSource?.addIncomingTextMessage(message!)
-        }
+        self.mDataSource?.addIncomingTextMessage(message!)
     }
 }

@@ -462,6 +462,8 @@
 		C3372FD12083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB62083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift */; };
 		C3372FD22083356C0080DA75 /* SlidingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB72083356C0080DA75 /* SlidingDataSource.swift */; };
 		C3372FD32083356C0080DA75 /* ChatExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB82083356C0080DA75 /* ChatExamplesViewController.swift */; };
+		C3B225062085BA6800599E04 /* DialogScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225052085BA6800599E04 /* DialogScreenViewModelImpl.m */; };
+		C3B225092085BA8300599E04 /* ViewModelsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225082085BA8300599E04 /* ViewModelsAssembly.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1246,7 +1248,6 @@
 		C32308B72081AEB000CEC487 /* UIImage+NanoFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NanoFrame.m"; sourceTree = "<group>"; };
 		C32308B82081AEB000CEC487 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C32309382081AED800CEC487 /* renametexture.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = renametexture.py; sourceTree = "<group>"; };
-		C3372F8F2081D72E0080DA75 /* dialogscreen.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogscreen.py; sourceTree = "<group>"; };
 		C3372F902081D7480080DA75 /* dialogservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogservice.py; sourceTree = "<group>"; };
 		C3372F912081F68E0080DA75 /* basedatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = basedatabase.py; sourceTree = "<group>"; };
 		C3372F922081FAEA0080DA75 /* messages.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messages.py; sourceTree = "<group>"; };
@@ -1280,10 +1281,14 @@
 		C3372FB82083356C0080DA75 /* ChatExamplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatExamplesViewController.swift; sourceTree = "<group>"; };
 		C3372FD4208335DD0080DA75 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile; path = Components/Chatto/ChattoApp/Podfile; sourceTree = SOURCE_ROOT; };
 		C3A943D22084824F0033355E /* longpoll.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = longpoll.py; sourceTree = "<group>"; };
-		C3A943FB2084B8B20033355E /* dialogscreenviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogscreenviewmodel.py; sourceTree = "<group>"; };
+		C3A943FB2084B8B20033355E /* pydialogscreenviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pydialogscreenviewmodel.py; sourceTree = "<group>"; };
 		C3A943FC2084B9360033355E /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C3A943FD2084BAAD0033355E /* messagesservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messagesservice.py; sourceTree = "<group>"; };
-		C3A943FE2084C3AE0033355E /* DialogHandlerProtocolDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogHandlerProtocolDelegate.h; sourceTree = "<group>"; };
+		C3B225032085BA5C00599E04 /* DialogScreenViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogScreenViewModel.h; sourceTree = "<group>"; };
+		C3B225042085BA6800599E04 /* DialogScreenViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogScreenViewModelImpl.h; sourceTree = "<group>"; };
+		C3B225052085BA6800599E04 /* DialogScreenViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogScreenViewModelImpl.m; sourceTree = "<group>"; };
+		C3B225072085BA8300599E04 /* ViewModelsAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewModelsAssembly.h; sourceTree = "<group>"; };
+		C3B225082085BA8300599E04 /* ViewModelsAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewModelsAssembly.m; sourceTree = "<group>"; };
 		E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA13F2494D45D4FE5E319D6 /* Pods-MessageGroupsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0D613A92790A124CBD92B36 /* Pods-MessageGroups.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroups.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroups/Pods-MessageGroups.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1457,14 +1462,16 @@
 				C32304192080E57400CEC487 /* NodesAssembly.m */,
 				C323041A2080E57400CEC487 /* ServicesAssembly.h */,
 				C323041B2080E57400CEC487 /* VKApplicationAssembly.m */,
-				C323041C2080E57400CEC487 /* ScreensAssembly.m */,
 				C323041D2080E57400CEC487 /* VKCoreComponents.h */,
 				C323041E2080E57400CEC487 /* ServicesAssembly.m */,
 				C323041F2080E57400CEC487 /* NodesAssembly.h */,
 				C32304202080E57400CEC487 /* VKThemeAssembly.h */,
 				C32304212080E57400CEC487 /* VKCoreComponents.m */,
 				C32304222080E57400CEC487 /* ScreensAssembly.h */,
+				C323041C2080E57400CEC487 /* ScreensAssembly.m */,
 				C32304232080E57400CEC487 /* VKApplicationAssembly.h */,
+				C3B225072085BA8300599E04 /* ViewModelsAssembly.h */,
+				C3B225082085BA8300599E04 /* ViewModelsAssembly.m */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -1490,6 +1497,7 @@
 		C32304292080E57400CEC487 /* vk */ = {
 			isa = PBXGroup;
 			children = (
+				C3B225012085BA4000599E04 /* viewmodels */,
 				C32304372080E57400CEC487 /* nodes */,
 				C32304472080E57400CEC487 /* managers */,
 				C32304542080E57400CEC487 /* Assets.xcassets */,
@@ -1777,7 +1785,6 @@
 			children = (
 				C32304932080E57400CEC487 /* DialogViewController.swift */,
 				C32304922080E57400CEC487 /* DialogHandlerProtocol.h */,
-				C3A943FE2084C3AE0033355E /* DialogHandlerProtocolDelegate.h */,
 			);
 			path = DialogViewController;
 			sourceTree = "<group>";
@@ -2103,7 +2110,6 @@
 				C32305272080E57500CEC487 /* authorizationscreen.py */,
 				C32305282080E57500CEC487 /* menuscreen.py */,
 				C32305292080E57500CEC487 /* dialogsscreen.py */,
-				C3372F8F2081D72E0080DA75 /* dialogscreen.py */,
 				C323052A2080E57500CEC487 /* __init__.py */,
 			);
 			path = screens;
@@ -3445,10 +3451,28 @@
 		C3A943FA2084B89E0033355E /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
-				C3A943FB2084B8B20033355E /* dialogscreenviewmodel.py */,
+				C3A943FB2084B8B20033355E /* pydialogscreenviewmodel.py */,
 				C3A943FC2084B9360033355E /* __init__.py */,
 			);
 			path = viewmodels;
+			sourceTree = "<group>";
+		};
+		C3B225012085BA4000599E04 /* viewmodels */ = {
+			isa = PBXGroup;
+			children = (
+				C3B225022085BA4A00599E04 /* DialogScreenViewModel */,
+			);
+			path = viewmodels;
+			sourceTree = "<group>";
+		};
+		C3B225022085BA4A00599E04 /* DialogScreenViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3B225032085BA5C00599E04 /* DialogScreenViewModel.h */,
+				C3B225042085BA6800599E04 /* DialogScreenViewModelImpl.h */,
+				C3B225052085BA6800599E04 /* DialogScreenViewModelImpl.m */,
+			);
+			path = DialogScreenViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3995,6 +4019,7 @@
 				C32308F92081AEB100CEC487 /* TyphoonInjectionContext.m in Sources */,
 				C32309012081AEB100CEC487 /* TyphoonInjectionByRuntimeArgument.m in Sources */,
 				C3372FC22083356C0080DA75 /* DemoPhotoMessageViewModel.swift in Sources */,
+				C3B225092085BA8300599E04 /* ViewModelsAssembly.m in Sources */,
 				C3372FC12083356C0080DA75 /* ChatWithTabBarExamplesViewController.swift in Sources */,
 				C32308E22081AEB100CEC487 /* TyphoonStoryboardProvider.m in Sources */,
 				C32309262081AEB100CEC487 /* TyphoonAssemblySelectorAdviser.m in Sources */,
@@ -4033,6 +4058,7 @@
 				C32306242080E57500CEC487 /* Functions.m in Sources */,
 				C32308FF2081AEB100CEC487 /* TyphoonInjectionByObjectFromString.m in Sources */,
 				C32305E02080E57500CEC487 /* PostNode.m in Sources */,
+				C3B225062085BA6800599E04 /* DialogScreenViewModelImpl.m in Sources */,
 				C32306032080E57500CEC487 /* BaseNavigationController.mm in Sources */,
 				C32309292081AEB100CEC487 /* TyphoonStackElement.m in Sources */,
 				C32309192081AEB100CEC487 /* TyphoonParentReferenceHydratingPostProcessor.m in Sources */,

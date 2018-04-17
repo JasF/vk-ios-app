@@ -89,7 +89,7 @@ class LongPoll:
             url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=25&mode=2&version=2'
             response = requests_session.get(url)
             json = response.json()
-            #print('LongPoll response: ' + str(json))
+            print('LongPoll response: ' + str(json))
             newTs = json.get('ts')
             updates = json.get('updates')
             if newTs and newTs > 0:

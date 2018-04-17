@@ -16,6 +16,7 @@
 #import "BaseNavigationController.h"
 #import "NodesAssembly.h"
 #import "ServicesAssembly.h"
+#import "ViewModelsAssembly.h"
 #import "vk-Swift.h"
 
 @implementation ScreensAssembly
@@ -92,12 +93,9 @@
 - (UIViewController *)dialogViewController:(NSNumber *)userId {
     return [TyphoonDefinition withClass:[DialogViewController class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:nodeFactory:dialogService:userId:pythonBridge:) parameters:^(TyphoonMethod *initializer) {
-                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:[self.viewModelsAssembly dialogScreenViewModel:userId]];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
-                    [initializer injectParameterWith:self.servicesAssembly.dialogService];
-                    [initializer injectParameterWith:userId];
-                    [initializer injectParameterWith:self.coreComponents.pythonBridge];
                 }];
             }];
 }
