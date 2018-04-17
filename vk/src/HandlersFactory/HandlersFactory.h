@@ -11,9 +11,11 @@
 @protocol PyChatListScreenViewModel;
 @protocol PyDialogScreenViewModel;
 @protocol PyWallScreenViewModel;
+@protocol PyMenuScreenViewModel;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListScreenViewModel>)chatListViewModelHandler:(id)delegate;
 - (id<PyDialogScreenViewModel>)dialogViewModelHandler:(id)delegate;
 - (id<PyWallScreenViewModel>)wallViewModelHandler;
+- (id<PyMenuScreenViewModel>)menuViewModelHandler;
 @end

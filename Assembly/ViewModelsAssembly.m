@@ -10,6 +10,7 @@
 #import "DialogScreenViewModelImpl.h"
 #import "ChatListScreenViewModelImpl.h"
 #import "WallScreenViewModelImpl.h"
+#import "MenuScreenViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -42,6 +43,15 @@
                 [definition useInitializer:@selector(initWithHandlersFactory:wallService:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.wallService];
+                }];
+            }];
+}
+
+- (id<MenuScreenViewModel>)menuScreenViewModel {
+    return [TyphoonDefinition withClass:[MenuScreenViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                 }];
             }];
 }

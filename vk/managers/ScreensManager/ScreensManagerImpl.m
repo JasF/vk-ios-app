@@ -15,6 +15,7 @@
 #import "BaseNavigationController.h"
 #import "vk-Swift.h"
 #import "MenuViewController.h"
+#import "ViewModelsAssembly.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -98,8 +99,8 @@
     }
     MenuViewController *menuViewController = (MenuViewController *)_mainViewController.leftViewController;
     NSCAssert([menuViewController isKindOfClass:[MenuViewController class]], @"menuViewController has unknown class: %@", menuViewController);
-    if ([menuViewController isKindOfClass:[menuViewController class]]) {
-        menuViewController.pythonBridge = self.pythonBridge;
+    if ([menuViewController isKindOfClass:[MenuViewController class]]) {
+        menuViewController.viewModel = [_screensAssembly.viewModelsAssembly menuScreenViewModel];
     }
     self.window.rootViewController = _mainViewController;
 }

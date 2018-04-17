@@ -7,13 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PythonBridge.h"
+#import "MenuScreenViewModel.h"
 
-@protocol MenuHandlerProtocol <NSObject>
-- (void)newsTapped;
-- (void)dialogsTapped;
-@end
-
-@interface MenuViewController : UIViewController;
-@property (strong, nonatomic) id<PythonBridge> pythonBridge;
+@interface MenuViewController : UIViewController
+@property (strong, nonatomic) id<MenuScreenViewModel> viewModel;
 @end

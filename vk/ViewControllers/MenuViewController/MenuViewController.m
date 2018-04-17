@@ -22,7 +22,6 @@ static CGFloat const kSeparatorAlpha = 0.25f;
 
 @interface MenuViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) id<MenuHandlerProtocol> handler;
 @end
 
 @implementation MenuViewController
@@ -32,8 +31,6 @@ static CGFloat const kSeparatorAlpha = 0.25f;
 }
 
 - (void)viewDidLoad {
-    // AV: Because MenuViewController initializes inside LGMenuViewController third-party component.
-    // AV: Typhoon storyboard initialization possible
     [super viewDidLoad];
     self.tableView.separatorColor = [[UIColor whiteColor] colorWithAlphaComponent:kSeparatorAlpha];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidHide:) name:LGSideMenuDidHideLeftViewNotification object:nil];
@@ -41,10 +38,6 @@ static CGFloat const kSeparatorAlpha = 0.25f;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (!self.handler) {
-        NSCParameterAssert(_pythonBridge);
-        self.handler = [self.pythonBridge handlerWithProtocol:@protocol(MenuHandlerProtocol)];
-    }
     [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
@@ -92,22 +85,14 @@ static CGFloat const kSeparatorAlpha = 0.25f;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case NewsRow: {
-            dispatch_python(^{
-                [_handler newsTapped];
-            });
+            [_viewModel newsTapped];
             break;
         }
         case DialogsRow: {
-            dispatch_python(^{
-                [_handler dialogsTapped];
-            });
+            [_viewModel dialogsTapped];
             break;
         }
     }
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
 }
 
 #pragma mark - Observers

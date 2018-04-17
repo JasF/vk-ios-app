@@ -16,6 +16,7 @@
 #import "ChatListScreenViewModelImpl.h"
 #import "DialogScreenViewModelImpl.h"
 #import "WallScreenViewModelImpl.h"
+#import "MenuScreenViewModelImpl.h"
 
 
 @interface HandlersFactoryImpl ()
@@ -42,6 +43,10 @@
 
 - (id<PyWallScreenViewModel>)wallViewModelHandler {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyWallScreenViewModel)];
+}
+
+- (id<PyMenuScreenViewModel>)menuViewModelHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyMenuScreenViewModel)];
 }
 
 @end
