@@ -3,7 +3,7 @@ import json
 from vk import users
 import traceback
 
-class WallServiceHandlerProtocol:
+class WallService:
     def getWall(self, offset):
         api = vk.api()
         response = None

@@ -7,7 +7,8 @@ def dprint(text):
     __builtin__.original_print(text)
 
 class ObjCBridgeProtocol():
-    def release():
+    def release(self):
+        print('called "release" without overriding')
         pass
 
 class Subscriber():

@@ -178,10 +178,8 @@
 		C32306622080E57500CEC487 /* __init__.cpython-34.pyc in Resources */ = {isa = PBXBuildFile; fileRef = C32305222080E57500CEC487 /* __init__.cpython-34.pyc */; };
 		C32306632080E57500CEC487 /* codec.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305232080E57500CEC487 /* codec.py */; };
 		C32306642080E57500CEC487 /* uts46data.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305242080E57500CEC487 /* uts46data.py */; };
-		C32306652080E57500CEC487 /* newsscreen.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305262080E57500CEC487 /* newsscreen.py */; };
 		C32306662080E57500CEC487 /* authorizationscreen.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305272080E57500CEC487 /* authorizationscreen.py */; };
 		C32306672080E57500CEC487 /* menuscreen.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305282080E57500CEC487 /* menuscreen.py */; };
-		C32306682080E57500CEC487 /* dialogsscreen.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305292080E57500CEC487 /* dialogsscreen.py */; };
 		C32306692080E57500CEC487 /* __init__.py in Resources */ = {isa = PBXBuildFile; fileRef = C323052A2080E57500CEC487 /* __init__.py */; };
 		C323066A2080E57500CEC487 /* cookies.py in Resources */ = {isa = PBXBuildFile; fileRef = C323052C2080E57500CEC487 /* cookies.py */; };
 		C323066B2080E57500CEC487 /* auth.py in Resources */ = {isa = PBXBuildFile; fileRef = C323052D2080E57500CEC487 /* auth.py */; };
@@ -466,6 +464,7 @@
 		C3B225092085BA8300599E04 /* ViewModelsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225082085BA8300599E04 /* ViewModelsAssembly.m */; };
 		C3B225102085D7DC00599E04 /* ChatListScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2250F2085D7DC00599E04 /* ChatListScreenViewModelImpl.m */; };
 		C3B2251520860BE400599E04 /* DeallocSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2251420860BE400599E04 /* DeallocSubscriber.m */; };
+		C3B2251B20861F5F00599E04 /* WallScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2251A20861F5F00599E04 /* WallScreenViewModelImpl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -732,10 +731,8 @@
 		C32305222080E57500CEC487 /* __init__.cpython-34.pyc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "__init__.cpython-34.pyc"; sourceTree = "<group>"; };
 		C32305232080E57500CEC487 /* codec.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = codec.py; sourceTree = "<group>"; };
 		C32305242080E57500CEC487 /* uts46data.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = uts46data.py; sourceTree = "<group>"; };
-		C32305262080E57500CEC487 /* newsscreen.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = newsscreen.py; sourceTree = "<group>"; };
 		C32305272080E57500CEC487 /* authorizationscreen.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = authorizationscreen.py; sourceTree = "<group>"; };
 		C32305282080E57500CEC487 /* menuscreen.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = menuscreen.py; sourceTree = "<group>"; };
-		C32305292080E57500CEC487 /* dialogsscreen.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = dialogsscreen.py; sourceTree = "<group>"; };
 		C323052A2080E57500CEC487 /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C323052C2080E57500CEC487 /* cookies.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = cookies.py; sourceTree = "<group>"; };
 		C323052D2080E57500CEC487 /* auth.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = auth.py; sourceTree = "<group>"; };
@@ -1297,6 +1294,10 @@
 		C3B225112085D7E600599E04 /* ChatListScreenViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatListScreenViewModel.h; sourceTree = "<group>"; };
 		C3B2251320860BE400599E04 /* DeallocSubscriber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeallocSubscriber.h; sourceTree = "<group>"; };
 		C3B2251420860BE400599E04 /* DeallocSubscriber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeallocSubscriber.m; sourceTree = "<group>"; };
+		C3B2251820861F4800599E04 /* WallScreenViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallScreenViewModel.h; sourceTree = "<group>"; };
+		C3B2251920861F5F00599E04 /* WallScreenViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallScreenViewModelImpl.h; sourceTree = "<group>"; };
+		C3B2251A20861F5F00599E04 /* WallScreenViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallScreenViewModelImpl.m; sourceTree = "<group>"; };
+		C3B2251C208623CF00599E04 /* pywallscreenviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pywallscreenviewmodel.py; sourceTree = "<group>"; };
 		E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA13F2494D45D4FE5E319D6 /* Pods-MessageGroupsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0D613A92790A124CBD92B36 /* Pods-MessageGroups.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroups.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroups/Pods-MessageGroups.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2115,10 +2116,8 @@
 		C32305252080E57500CEC487 /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				C32305262080E57500CEC487 /* newsscreen.py */,
 				C32305272080E57500CEC487 /* authorizationscreen.py */,
 				C32305282080E57500CEC487 /* menuscreen.py */,
-				C32305292080E57500CEC487 /* dialogsscreen.py */,
 				C323052A2080E57500CEC487 /* __init__.py */,
 			);
 			path = screens;
@@ -2396,10 +2395,10 @@
 		C32305B22080E57500CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C32305B32080E57500CEC487 /* __init__.py */,
 				C32305B42080E57500CEC487 /* wallservice.py */,
 				C32305B52080E57500CEC487 /* chatlistservice.py */,
 				C3372F902081D7480080DA75 /* dialogservice.py */,
-				C32305B32080E57500CEC487 /* __init__.py */,
 				C3A943FD2084BAAD0033355E /* messagesservice.py */,
 			);
 			path = services;
@@ -3463,6 +3462,7 @@
 				C3A943FC2084B9360033355E /* __init__.py */,
 				C3A943FB2084B8B20033355E /* pydialogscreenviewmodel.py */,
 				C3B2250A2085D70600599E04 /* pychatlistscreenviewmodel.py */,
+				C3B2251C208623CF00599E04 /* pywallscreenviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -3470,6 +3470,7 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C3B2251720861F3A00599E04 /* WallScreenViewModel */,
 				C3B2250D2085D7BF00599E04 /* ChatListScreenViewModel */,
 				C3B225022085BA4A00599E04 /* DialogScreenViewModel */,
 			);
@@ -3503,6 +3504,16 @@
 				C3B2251420860BE400599E04 /* DeallocSubscriber.m */,
 			);
 			path = DeallocSubscriber;
+			sourceTree = "<group>";
+		};
+		C3B2251720861F3A00599E04 /* WallScreenViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3B2251820861F4800599E04 /* WallScreenViewModel.h */,
+				C3B2251920861F5F00599E04 /* WallScreenViewModelImpl.h */,
+				C3B2251A20861F5F00599E04 /* WallScreenViewModelImpl.m */,
+			);
+			path = WallScreenViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3674,7 +3685,6 @@
 				C32306222080E57500CEC487 /* SimpleCell.xib in Resources */,
 				C32306992080E57500CEC487 /* timeout.cpython-34.pyc in Resources */,
 				C32306762080E57500CEC487 /* _internal_utils.py in Resources */,
-				C32306682080E57500CEC487 /* dialogsscreen.py in Resources */,
 				C32306B32080E57500CEC487 /* securetransport.py in Resources */,
 				C32306892080E57500CEC487 /* __main__.cpython-34.pyc in Resources */,
 				C323067F2080E57500CEC487 /* exceptions.cpython-36.pyc in Resources */,
@@ -3685,7 +3695,6 @@
 				C323066A2080E57500CEC487 /* cookies.py in Resources */,
 				C32306172080E57500CEC487 /* icon_android.png in Resources */,
 				C32305DA2080E57500CEC487 /* icon_comment@3x.png in Resources */,
-				C32306652080E57500CEC487 /* newsscreen.py in Resources */,
 				C32306CB2080E57500CEC487 /* __init__.py in Resources */,
 				C323060D2080E57500CEC487 /* MenuViewController.storyboard in Resources */,
 				C323069F2080E57500CEC487 /* ssl_.cpython-34.pyc in Resources */,
@@ -4009,6 +4018,7 @@
 				C32305D62080E57500CEC487 /* ServicesAssembly.m in Sources */,
 				C323061E2080E57500CEC487 /* BlurbNode.m in Sources */,
 				C32308F12081AEB100CEC487 /* TyphoonBlockDefinition+InstanceBuilder.m in Sources */,
+				C3B2251B20861F5F00599E04 /* WallScreenViewModelImpl.m in Sources */,
 				C32306F12080E9D800CEC487 /* PythonManagerImpl.m in Sources */,
 				C32305FD2080E57500CEC487 /* PostType.m in Sources */,
 				C323090F2081AEB100CEC487 /* TyphoonColorConversionUtils.m in Sources */,

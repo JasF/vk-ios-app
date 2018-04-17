@@ -10,30 +10,7 @@
 #import "WallPost.h"
 #import "User.h"
 
-@interface WallServiceImpl ()
-@property id<WallServiceHandlerProtocol> handler;
-@end
-
 @implementation WallServiceImpl
-
-#pragma mark - Initialization
-- (id)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory {
-    NSCParameterAssert(handlersFactory);
-    if (self = [self init]) {
-        _handler = [handlersFactory wallServiceHandler];
-    }
-    return self;
-}
-
-#pragma mark - WallService
-- (void)getWallPostsWithOffset:(NSInteger)offset
-                    completion:(void(^)(NSArray *posts))completion {
-    dispatch_python(^{
-        NSDictionary *wallData = [self.handler getWall:@(offset)];
-        [self processWallData:wallData
-                   completion:completion];
-    });
-}
 
 #pragma mark - Private Methods
 - (void)setHistoryFromArray:(NSMutableArray *)array toPost:(WallPost *)post {
@@ -46,18 +23,16 @@
     [self setHistoryFromArray:array toPost:history];
 }
 
-- (void)processWallData:(NSDictionary *)wallData
-             completion:(void(^)(NSArray *posts))completion {
+#pragma mark - WallService
+- (NSArray<WallPost *> *)parse:(NSDictionary *)wallData {
     NSCAssert([wallData isKindOfClass:[NSDictionary class]] || !wallData, @"wallData unknown type");
     if (![wallData isKindOfClass:[NSDictionary class]]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (completion) {
-                completion(nil);
-            }
-        });
-        return;
+        return nil;
     }
     NSDictionary *response = wallData[@"response"];
+    if (![response isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
     NSArray *users = wallData[@"users"];
     NSArray *items = response[@"items"];
     if (![items isKindOfClass:[NSArray class]]) {
@@ -90,12 +65,7 @@
         NSMutableArray *mutableHistory = [post.history mutableCopy];
         [self setHistoryFromArray:mutableHistory toPost:post];
     }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (completion) {
-            completion(posts);
-        }
-    });
+    return posts;
 }
-
 
 @end

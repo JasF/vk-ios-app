@@ -7,8 +7,8 @@
 //
 
 #import <CoreFoundation/CoreFoundation.h>
+#import "WallPost.h"
 
 @protocol WallService <NSObject>
-- (void)getWallPostsWithOffset:(NSInteger)offset
-                    completion:(void(^)(NSArray *posts))completion;
+- (NSArray<WallPost *> *)parse:(NSDictionary *)data;
 @end

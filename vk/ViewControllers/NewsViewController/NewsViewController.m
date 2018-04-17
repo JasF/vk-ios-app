@@ -19,22 +19,18 @@
 #import "LoadingNode.h"
 
 @interface NewsViewController () <BaseCollectionViewControllerDataSource>
-@property (strong, nonatomic) id<NewsHandlerProtocol> handler;
-@property (strong, nonatomic) id<WallService> wallService;
+@property (strong, nonatomic) id<WallScreenViewModel> viewModel;
 @end
 
 @implementation NewsViewController {
 }
 
-- (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
-                            nodeFactory:(id<NodeFactory>)nodeFactory
-                            wallService:(id<WallService>)wallService {
-    NSCParameterAssert(handlersFactory);
+- (instancetype)initWithViewModel:(id<WallScreenViewModel>)viewModel
+                      nodeFactory:(id<NodeFactory>)nodeFactory {
+    NSCParameterAssert(viewModel);
     NSCParameterAssert(nodeFactory);
-    NSCParameterAssert(wallService);
-    _handler = [handlersFactory newsHandler];
     self.dataSource = self;
-    _wallService = wallService;
+    _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
         self.title = @"VK Wall";
@@ -49,13 +45,13 @@
 
 #pragma mark - Observers
 - (IBAction)menuTapped:(id)sender {
-    [_handler menuTapped];
+    [_viewModel menuTapped];
 }
 
 #pragma mark - BaseCollectionViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
-    [_wallService getWallPostsWithOffset:offset
+    [_viewModel getWallPostsWithOffset:offset
                               completion:completion];
 }
 

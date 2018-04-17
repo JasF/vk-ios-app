@@ -15,6 +15,7 @@
 #import "DialogServiceImpl.h"
 #import "ChatListScreenViewModelImpl.h"
 #import "DialogScreenViewModelImpl.h"
+#import "WallScreenViewModelImpl.h"
 
 
 @interface HandlersFactoryImpl ()
@@ -31,20 +32,16 @@
     return self;
 }
 
-- (id<WallServiceHandlerProtocol>)wallServiceHandler {
-    return [_pythonBridge handlerWithProtocol:@protocol(WallServiceHandlerProtocol)];
-}
-
-- (id<NewsHandlerProtocol>)newsHandler {
-    return [_pythonBridge handlerWithProtocol:@protocol(NewsHandlerProtocol)];
-}
-
 - (id<PyChatListScreenViewModel>)chatListViewModelHandler:(id)delegate {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyChatListScreenViewModel) delegate:delegate];
 }
 
 - (id<PyDialogScreenViewModel>)dialogViewModelHandler:(id)delegate {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyDialogScreenViewModel) delegate:delegate];
+}
+
+- (id<PyWallScreenViewModel>)wallViewModelHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyWallScreenViewModel)];
 }
 
 @end

@@ -9,13 +9,9 @@
 #import "BaseCollectionViewController.h"
 #import "HandlersFactory.h"
 #import "WallService.h"
-
-@protocol NewsHandlerProtocol <NSObject>
-- (void)menuTapped;
-@end
+#import "WallScreenViewModel.h"
 
 @interface NewsViewController : BaseCollectionViewController
-- (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
-                            nodeFactory:(id<NodeFactory>)nodeFactory
-                            wallService:(id<WallService>)wallService;
+- (instancetype)initWithViewModel:(id<WallScreenViewModel>)viewModel
+                      nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

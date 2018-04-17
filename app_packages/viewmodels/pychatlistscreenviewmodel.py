@@ -21,6 +21,12 @@ class PyChatListScreenViewModel(NewMessageProtocol):
 
     def getDialogs(self, offset):
         return self.chatListService.getDialogs(offset)
+
+    # ObjCBridgeProtocol
+    def release(self):
+        self.messagesService.removeNewMessageSubscriber(self)
+        pass
+
     # NewMessageProtocol
     def handleIncomingMessage(self, timestamp, userId, body):
         print('chatlist msg: ' + str(body) + '; delegate: ' + str(self.guiDelegate))

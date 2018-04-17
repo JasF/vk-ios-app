@@ -12,6 +12,7 @@
 #import "ScreensAssembly.h"
 #import "DialogScreenViewModel.h"
 #import "ChatListScreenViewModel.h"
+#import "WallScreenViewModel.h"
 
 @interface ViewModelsAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -19,4 +20,5 @@
 @property (readonly) ScreensAssembly *screensAssembly;
 - (id<DialogScreenViewModel>)dialogScreenViewModel:(NSNumber *)userId;
 - (id<ChatListScreenViewModel>)chatListScreenViewModel;
+- (id<WallScreenViewModel>)wallScreenViewModel;
 @end

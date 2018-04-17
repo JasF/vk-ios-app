@@ -92,11 +92,15 @@ static CGFloat const kSeparatorAlpha = 0.25f;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case NewsRow: {
-            [_handler newsTapped];
+            dispatch_python(^{
+                [_handler newsTapped];
+            });
             break;
         }
         case DialogsRow: {
-            [_handler dialogsTapped];
+            dispatch_python(^{
+                [_handler dialogsTapped];
+            });
             break;
         }
     }

@@ -39,7 +39,9 @@
 
 #pragma mark - ChatListScreenViewModel
 - (void)menuTapped {
-    [_handler menuTapped];
+    dispatch_python(^{
+        [_handler menuTapped];
+    });
 }
 
 - (void)tappedOnDialogWithUserId:(NSInteger)userId {

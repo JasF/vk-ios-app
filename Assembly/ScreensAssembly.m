@@ -81,12 +81,10 @@
 - (UIViewController *)newsViewController {
     return [TyphoonDefinition withClass:[NewsViewController class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:nodeFactory:wallService:) parameters:^(TyphoonMethod *initializer) {
-                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.viewModelsAssembly.wallScreenViewModel];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
-                    [initializer injectParameterWith:self.servicesAssembly.wallService];
                 }];
-                definition.scope = TyphoonScopeSingleton;
             }];
 }
 

@@ -11,11 +11,6 @@
 #import "BaseCollectionViewController.h"
 #import "ChatListScreenViewModel.h"
 
-@protocol DialogsHandlerProtocol <NSObject>
-- (void)menuTapped;
-- (void)tappedOnDialogWithUserId:(NSNumber *)userId;
-@end
-
 @interface ChatListViewController : BaseCollectionViewController
 - (instancetype)initWithViewModel:(id<ChatListScreenViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;

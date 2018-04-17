@@ -7,12 +7,6 @@
 //
 
 #import "WallService.h"
-#import "HandlersFactory.h"
-
-@protocol WallServiceHandlerProtocol <NSObject>
-- (NSDictionary *)getWall:(NSNumber *)offset;
-@end
 
 @interface WallServiceImpl : NSObject <WallService>
-- (id)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory;
 @end

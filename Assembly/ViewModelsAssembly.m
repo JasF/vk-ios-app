@@ -9,6 +9,7 @@
 #import "ViewModelsAssembly.h"
 #import "DialogScreenViewModelImpl.h"
 #import "ChatListScreenViewModelImpl.h"
+#import "WallScreenViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -31,6 +32,16 @@
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.coreComponents.pythonBridge];
                     [initializer injectParameterWith:self.servicesAssembly.chatListService];
+                }];
+            }];
+}
+
+- (id<WallScreenViewModel>)wallScreenViewModel {
+    return [TyphoonDefinition withClass:[WallScreenViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:wallService:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.wallService];
                 }];
             }];
 }

@@ -28,10 +28,6 @@
 - (id<WallService>)wallService {
     return [TyphoonDefinition withClass:[WallServiceImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:) parameters:^(TyphoonMethod *initializer)
-                 {
-                     [initializer injectParameterWith:self.handlersFactory];
-                 }];
                 definition.scope = TyphoonScopeSingleton;
             }];
 }
