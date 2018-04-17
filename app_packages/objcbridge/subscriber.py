@@ -16,6 +16,7 @@ class Subscriber():
             cls.instance = super().__new__(cls)
             cls.instance.handlers = {}
             cls.instance.allocators = {}
+            cls.instance.allocatorsWithDelegate = {}
         return cls.instance
     
     def subscribe(self, command, handler):
@@ -34,6 +35,8 @@ class Subscriber():
             return
         if cmd == 'instantiateHandler':
             self.processInstantiateHandler(object)
+        if cmd == 'instantiateHandlerWithDelegate':
+            self.processInstantiateHandlerWithDelegate(object)
         if cmd == 'releaseHandler':
             self.processReleaseHandler(object)
         if cmd in self.handlers:
@@ -82,6 +85,20 @@ class Subscriber():
         except Exception as e:
             dprint('instantiate handler exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))
 
+
+    def processInstantiateHandlerWithDelegate(self, object):
+        try:
+            className = object["class"]
+            key = object["key"]
+            delegateId = object["delegateId"]
+            allocator = self.allocatorsWithDelegate[className]
+            handler = allocator(delegateId)
+            print('\n\n\n$$$ Successfully allocated with delegate: ' + str(handler) + '\n\n\n')
+            self.handlers[key] = handler
+        except Exception as e:
+            dprint('instantiate handler WITH DELEGATE exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))
+
+
     def processReleaseHandler(self, object):
         try:
             key = object["key"]
@@ -101,6 +118,9 @@ class Subscriber():
             dprint('releasing handler exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))
     def setClassAllocator(self, cls, func):
         self.allocators[cls.__name__] = func
+    
+    def setClassAllocatorWithDelegate(self, cls, func):
+        self.allocatorsWithDelegate[cls.__name__] = func
     
     def setClassHandler(self, handler):
         if isinstance(handler, list):

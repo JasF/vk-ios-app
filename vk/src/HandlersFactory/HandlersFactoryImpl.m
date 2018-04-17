@@ -39,8 +39,8 @@
     return [_pythonBridge handlerWithProtocol:@protocol(NewsHandlerProtocol)];
 }
 
-- (id<PyChatListScreenViewModel>)chatListViewModelHandler {
-    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyChatListScreenViewModel)];
+- (id<PyChatListScreenViewModel>)chatListViewModelHandler:(id)delegate {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyChatListScreenViewModel) delegate:delegate];
 }
 
 - (id<PyDialogScreenViewModel>)dialogViewModelHandler {

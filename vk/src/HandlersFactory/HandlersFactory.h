@@ -17,6 +17,6 @@
 @protocol HandlersFactory <NSObject>
 - (id<WallServiceHandlerProtocol>)wallServiceHandler;
 - (id<NewsHandlerProtocol>)newsHandler;
-- (id<PyChatListScreenViewModel>)chatListViewModelHandler;
+- (id<PyChatListScreenViewModel>)chatListViewModelHandler:(id)delegate;
 - (id<PyDialogScreenViewModel>)dialogViewModelHandler;
 @end

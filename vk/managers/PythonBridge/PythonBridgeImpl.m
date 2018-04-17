@@ -194,6 +194,25 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     return handler;
 }
 
+- (id)instantiateHandlerWithProtocol:(Protocol *)protocol delegate:(id)delegate {
+    const char *name = protocol_getName(protocol);
+    NSString *protocolName = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+    PythonBridgeHandler *handler = [self handlerWithProtocol:protocol];
+    @synchronized (self) {
+        handler.instanceId = ++_instanceId;
+    }
+    handler.key = [NSString stringWithFormat:@"%@_%@", protocolName, @(handler.instanceId)];
+    [self setClassHandler:delegate name:[NSString stringWithFormat:@"%@Delegate_%@", protocolName, @(handler.instanceId)]];
+    NSDictionary *dictionary = @{
+                                 @"command":@"instantiateHandlerWithDelegate",
+                                 @"delegateId": @(handler.instanceId),
+                                 @"key":handler.key,
+                                 @"class":protocolName,
+                                 };
+    [self send:dictionary];
+    return handler;
+}
+
 - (void)handleIncomingPostData:(id)message {
     if ([message isKindOfClass:[NSString class]]) {
         message = [message dataUsingEncoding:NSUTF8StringEncoding];
@@ -211,7 +230,7 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
             if (![args isKindOfClass:[NSArray class]]) {
                 args = @[];
             }
-            [self performAction:object[@"action"] className:object[@"class"] args:args];
+            [self performAction:object[@"action"] className:object[@"class"] args:args delegateId:object[@"delegateId"]];
         }
         else if ([command isEqualToString:@"response"]) {
             id result = object[@"result"];
@@ -266,11 +285,15 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
 
 - (void)performAction:(NSString *)action
             className:(NSString *)className
-                 args:(NSArray *)args {
+                 args:(NSArray *)args
+           delegateId:(NSNumber *)delegateId {
     NSCParameterAssert(action);
     NSCParameterAssert(className);
     if (!action || !className) {
         return;
+    }
+    if (delegateId) {
+        className = [className stringByAppendingFormat:@"_%@", delegateId];
     }
     id handler = [_handlers[className] nonretainedObjectValue];
     if (!handler) {

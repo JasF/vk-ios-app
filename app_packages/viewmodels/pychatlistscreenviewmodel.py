@@ -6,11 +6,11 @@ class PyChatListScreenViewModelDelegate(BridgeBase):
     pass
 
 class PyChatListScreenViewModel(NewMessageProtocol):
-    def __init__(self, messagesService, chatListService):
+    def __init__(self, delegateId, messagesService, chatListService):
         self.messagesService = messagesService
         self.chatListService = chatListService
         self.messagesService.addNewMessageSubscriber(self)
-        self.guiDelegate = PyChatListScreenViewModelDelegate()
+        self.guiDelegate = PyChatListScreenViewModelDelegate(delegateId)
 
     # protocol methods implementation
     def menuTapped(self):

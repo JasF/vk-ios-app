@@ -32,8 +32,7 @@
     if (self = [self init]) {
         _pythonBridge = pythonBridge;
         _chatListService = chatListService;
-        _handler = [handlersFactory chatListViewModelHandler];
-        //[_pythonBridge setClassHandler:self name:@""];
+        _handler = [handlersFactory chatListViewModelHandler:self];
     }
     return self;
 }

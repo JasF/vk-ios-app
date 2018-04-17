@@ -71,9 +71,11 @@ def main():
 def subscribe(command, handler):
     subscriber.subscribe(command, handler)
 
-def sendCommandWithHandler(className, action, handler, args=[], withResult=False):
+def sendCommandWithHandler(className, action, handler, args=[], withResult=False, delegateId=0):
     subscriber.setClassHandler(handler)
     objectForSend = {'command': 'classAction', 'class': className, 'action':action, 'args':args}
+    if delegateId > 0:
+        objectForSend['delegateId'] = delegateId
     if withResult:
         event = Event()
         key = className + action
@@ -101,13 +103,14 @@ subscriber.setEvent = setEvent
 
 
 class BridgeRequest(object):
-    __slots__ = ('_api', '_method_name', '_method_args', '_class_name')
+    __slots__ = ('_api', '_method_name', '_method_args', '_class_name', '_delegate_id')
     
-    def __init__(self, api, method_name, class_name):
+    def __init__(self, api, method_name, class_name, delegateId):
         self._api = api
         self._class_name = class_name
         self._method_name = method_name.replace('_', ':')
         self._method_args = {}
+        self._delegate_id = delegateId
     
     def __getattr__(self, method_name):
         return BridgeRequest(self._api, self._method_name + '.' + method_name)
@@ -117,15 +120,17 @@ class BridgeRequest(object):
         handler = method_args.get('handler')
         args = method_args.get('args')
         withResult = method_args.get('withResult')
-        result = sendCommandWithHandler(self._class_name, self._method_name, handler, args=args, withResult=withResult)
+        result = sendCommandWithHandler(self._class_name, self._method_name, handler, args=args, withResult=withResult, delegateId=self._delegate_id)
         return result
 
 class BridgeBase(object):
     def __init__(self, *args, **kwargs):
-        pass
+        self.delegateId = 0
+        if len(args):
+            self.delegateId = args[0]
     
     def __getattr__(self, method_name):
-        return BridgeRequest(self, method_name, type(self).__name__)
+        return BridgeRequest(self, method_name, type(self).__name__, self.delegateId)
     
     def __call__(self, method_name, **method_kwargs):
         return getattr(self, method_name)(**method_kwargs)
