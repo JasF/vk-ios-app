@@ -72,6 +72,9 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
             
             self.viewModel?.getMessagesWithOffset(0, startMessageId: Int(message!.identifier)) {messages in
                 print("hello response!")
+                if messages == nil {
+                    return
+                }
                 self.updating = false
                 if let array = messages! as NSArray as? [Message] {
                     self.secondMessages?.append(contentsOf: array)
