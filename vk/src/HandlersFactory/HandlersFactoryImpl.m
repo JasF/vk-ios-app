@@ -43,8 +43,8 @@
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyChatListScreenViewModel) delegate:delegate];
 }
 
-- (id<PyDialogScreenViewModel>)dialogViewModelHandler {
-    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyDialogScreenViewModel)];
+- (id<PyDialogScreenViewModel>)dialogViewModelHandler:(id)delegate {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyDialogScreenViewModel) delegate:delegate];
 }
 
 @end

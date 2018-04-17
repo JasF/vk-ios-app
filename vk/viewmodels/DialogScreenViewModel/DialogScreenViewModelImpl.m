@@ -36,10 +36,9 @@
     NSCParameterAssert(pythonBridge);
     if (self) {
         _dialogService = dialogService;
-        _handler = [handlersFactory dialogViewModelHandler];
+        _handler = [handlersFactory dialogViewModelHandler:self];
         _userId = userId;
         _pythonBridge = pythonBridge;
-        [_pythonBridge setClassHandler:self name:@"PyDialogScreenViewModelDelegate"];
     }
     return self;
 }

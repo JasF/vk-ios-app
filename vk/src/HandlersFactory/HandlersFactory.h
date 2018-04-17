@@ -18,5 +18,5 @@
 - (id<WallServiceHandlerProtocol>)wallServiceHandler;
 - (id<NewsHandlerProtocol>)newsHandler;
 - (id<PyChatListScreenViewModel>)chatListViewModelHandler:(id)delegate;
-- (id<PyDialogScreenViewModel>)dialogViewModelHandler;
+- (id<PyDialogScreenViewModel>)dialogViewModelHandler:(id)delegate;
 @end

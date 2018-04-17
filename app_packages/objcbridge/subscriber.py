@@ -80,7 +80,6 @@ class Subscriber():
             key = object["key"]
             allocator = self.allocators[className]
             handler = allocator()
-            print('\n\n\n$$$ Successfully allocated: ' + str(handler) + '\n\n\n')
             self.handlers[key] = handler
         except Exception as e:
             dprint('instantiate handler exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))
@@ -93,7 +92,6 @@ class Subscriber():
             delegateId = object["delegateId"]
             allocator = self.allocatorsWithDelegate[className]
             handler = allocator(delegateId)
-            print('\n\n\n$$$ Successfully allocated with delegate: ' + str(handler) + '\n\n\n')
             self.handlers[key] = handler
         except Exception as e:
             dprint('instantiate handler WITH DELEGATE exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))

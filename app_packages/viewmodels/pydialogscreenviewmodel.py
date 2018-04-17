@@ -5,11 +5,11 @@ class PyDialogScreenViewModelDelegate(BridgeBase):
     pass
 
 class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
-    def __init__(self, messagesService, dialogService):
+    def __init__(self, delegateId, messagesService, dialogService):
         self.dialogService = dialogService
         self.messagesService = messagesService
         self.messagesService.addNewMessageSubscriber(self)
-        self.guiDelegate = PyDialogScreenViewModelDelegate()
+        self.guiDelegate = PyDialogScreenViewModelDelegate(delegateId)
     
     # protocol methods from objc
     def getMessagesuserId(self, offset, userId):
