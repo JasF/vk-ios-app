@@ -16,6 +16,9 @@ class MessagesService(AddMessageProtocol):
         self.newMessageSubscribers.append(subscriber)
         print('new message subscriber is: ' + str(subscriber))
         pass
+    
+    def removeNewMessageSubscriber(self, subscriber):
+        self.newMessageSubscribers.remove(subscriber)
 
     def setLongPoll(self, longPoll):
         self.longPoll = longPoll

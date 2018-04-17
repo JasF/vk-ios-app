@@ -6,6 +6,10 @@ import traceback
 def dprint(text):
     __builtin__.original_print(text)
 
+class ObjCBridgeProtocol():
+    def release():
+        pass
+
 class Subscriber():
     def __new__(cls):
         if not hasattr(cls, 'instance') or not cls.instance:
@@ -81,8 +85,18 @@ class Subscriber():
     def processReleaseHandler(self, object):
         try:
             key = object["key"]
-            del self.handlers[key]
-            print('handler with key: ' + str(key) + ' successfully deleted')
+            handler = self.handlers.get(key)
+            if handler:
+                del self.handlers[key]
+                print('handler with key: ' + str(key) + ' successfully deleted')
+                try:
+                    release = handler.release
+                except:
+                    print('release not found in handler: ' + str(handler))
+                else:
+                    handler.release()
+            else:
+                print('trying release unixestent handler for key: ' + str(key))
         except Exception as e:
             dprint('releasing handler exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))
     def setClassAllocator(self, cls, func):

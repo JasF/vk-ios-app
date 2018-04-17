@@ -91,11 +91,11 @@
 - (void)handleIncomingMessage:(NSString *)message
                        userId:(NSNumber *)userId
                     timestamp:(NSNumber *)timestamp {
-    if ([_delegate respondsToSelector:@selector(handleIncomingMessage:userId:timestamp:)]) {
+    dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate handleIncomingMessage:message
                                   userId:userId
                                timestamp:timestamp];
-    }
+    });
 }
 
 @end

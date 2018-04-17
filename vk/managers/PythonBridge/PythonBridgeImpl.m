@@ -11,6 +11,7 @@
 #import <objc/runtime.h>
 #import <GCDWebServer/GCDWebServerDataResponse.h>
 #import <GCDWebServer/GCDWebServerDataRequest.h>
+#import "DeallocSubscriber.h"
 
 @import GCDWebServer;
 
@@ -370,7 +371,20 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
                    name:(NSString *)className {
     NSCParameterAssert(className);
     NSCParameterAssert(handler);
-    [_handlers setObject:[NSValue valueWithNonretainedObject:handler] forKey:className];
+    NSValue *value = [NSValue valueWithNonretainedObject:handler];
+    @synchronized(self) {
+        [_handlers setObject:value forKey:className];
+    }
+    @weakify(self);
+    [DeallocSubscriber subscribe:handler releasingBlock:^{
+        @strongify(self);
+        @synchronized(self) {
+            NSArray *keys = [self.handlers allKeysForObject:value];
+            for (NSString *key in keys) {
+                [self.handlers removeObjectForKey:key];
+            }
+        }
+    }];
 }
 
 @end

@@ -1,10 +1,10 @@
-from objcbridge import BridgeBase
+from objcbridge import BridgeBase, ObjCBridgeProtocol
 from services.messagesservice import NewMessageProtocol
 
 class PyDialogScreenViewModelDelegate(BridgeBase):
     pass
 
-class PyDialogScreenViewModel(NewMessageProtocol):
+class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     def __init__(self, messagesService, dialogService):
         self.dialogService = dialogService
         self.messagesService = messagesService
@@ -26,4 +26,9 @@ class PyDialogScreenViewModel(NewMessageProtocol):
         print('msg: ' + str(body) + '; guiDelegate: ' + str(self.guiDelegate))
         if self.guiDelegate:
             self.guiDelegate.handleIncomingMessage_userId_timestamp_(args=[body,userId,timestamp])
+        pass
+
+    # ObjCBridgeProtocol
+    def release(self):
+        self.messagesService.removeNewMessageSubscriber(self)
         pass

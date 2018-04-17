@@ -2,6 +2,7 @@ import asyncio
 import builtins as __builtin__
 from .parser import parse
 from .subscriber import Subscriber
+from .subscriber import ObjCBridgeProtocol
 import json
 import threading
 from threading import Event
