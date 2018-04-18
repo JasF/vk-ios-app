@@ -12,6 +12,7 @@ import Chatto
 class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegate {
     
     public required init?(coder aDecoder: NSCoder) {
+        self.scrollToBottom = false
         super.init(coder: aDecoder)
     }
     
@@ -19,8 +20,10 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     var viewModel: DialogScreenViewModel?
     var messages: Array<Message>?
     var secondMessages: Array<Message>?
+    var scrollToBottom: Bool
     
     @objc init(viewModel:DialogScreenViewModel?, nodeFactory:NodeFactory?) {
+        self.scrollToBottom = false
         super.init(nibName:nil, bundle:nil)
         self.viewModel = viewModel!
         self.nodeFactory = nodeFactory!
@@ -98,18 +101,24 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
             if let array = messages! as NSArray as? [Message] {
                 self.messages = array
                 self.secondMessages = array
+                self.scrollToBottom = true
                 self.mDataSource.loadPrevious(count:array.count)
-                let deadlineTime = DispatchTime.now() + .milliseconds(500)
-                DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-                    self.scrollToBottom(animated: false)
-                }
             }
         }
     }
     
     override func willSendTextMessage(message: String?) {
         NSLog("will send text message: \(String(describing: message))");
+        self.scrollToBottom(animated: true)
         self.viewModel?.sendTextMessage(message)
+    }
+    
+    override func needsScrollToBottom() -> Bool {
+        if self.scrollToBottom == true {
+            self.scrollToBottom = false
+            return true
+        }
+        return false
     }
     
     func handleIncomingMessage(_ message: String?, userId: NSNumber?, timestamp: NSNumber?) {

@@ -11,6 +11,7 @@
 #import "TextStyles.h"
 #import "LikesNode.h"
 #import "CommentsNode.h"
+#import "AvatarNode.h"
 
 #define PostNodeDividerColor [UIColor lightGrayColor]
 
@@ -23,7 +24,7 @@
 @property (strong, nonatomic) ASTextNode *timeNode;
 @property (strong, nonatomic) ASTextNode *postNode;
 @property (strong, nonatomic) ASImageNode *viaNode;
-@property (strong, nonatomic) ASNetworkImageNode *avatarNode;
+@property (strong, nonatomic) AvatarNode *avatarNode;
 @property (strong, nonatomic) LikesNode *likesNode;
 @property (strong, nonatomic) CommentsNode *commentsNode;
 @property (strong, nonatomic) ASImageNode *optionsNode;
@@ -61,7 +62,7 @@
         
         // Name node
         _nameNode = [[ASTextNode alloc] init];
-        _nameNode.attributedText = [[NSAttributedString alloc] initWithString:_post.firstName ?: @"" attributes:[TextStyles nameStyle]];
+        _nameNode.attributedText = [[NSAttributedString alloc] initWithString:[_post.user nameString] ?: @"" attributes:[TextStyles nameStyle]];
         _nameNode.maximumNumberOfLines = 0;
         [self addSubnode:_nameNode];
         
@@ -150,28 +151,7 @@
         }
         
         // User pic
-        _avatarNode = [[ASNetworkImageNode alloc] init];
-        _avatarNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-        _avatarNode.style.width = ASDimensionMakeWithPoints(44);
-        _avatarNode.style.height = ASDimensionMakeWithPoints(44);
-        _avatarNode.cornerRadius = 22.0;
-        _avatarNode.URL = [NSURL URLWithString:_post.avatarURLString];
-        _avatarNode.imageModificationBlock = ^UIImage *(UIImage *image) {
-            
-            UIImage *modifiedImage;
-            CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
-            
-            UIGraphicsBeginImageContextWithOptions(image.size, false, [[UIScreen mainScreen] scale]);
-            
-            [[UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:44.0] addClip];
-            [image drawInRect:rect];
-            modifiedImage = UIGraphicsGetImageFromCurrentImageContext();
-            
-            UIGraphicsEndImageContext();
-            
-            return modifiedImage;
-            
-        };
+        _avatarNode = [[AvatarNode alloc] initWithUser:_post.user];
         [self addSubnode:_avatarNode];
         
         // Hairline cell separator

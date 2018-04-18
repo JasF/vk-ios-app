@@ -30,4 +30,25 @@
     }
     return _last_name;
 }
+
+- (NSString *)avatarURLString {
+    NSString *result = _photo_100;
+    if (!result.length) {
+        result = _photo_200;
+    }
+    if (!result.length) {
+        result = _photo_400_orig;
+    }
+    if (!result.length) {
+        result = _photo_50;
+    }
+    if (!result.length) {
+        result = _photo_max;
+    }
+    if (!result.length) {
+        result = _photo_max_orig;
+    }
+    return result;
+}
+
 @end

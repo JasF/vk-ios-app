@@ -51,11 +51,7 @@
     }
     
     void (^updatePostBlock)(WallPost *post) = ^void(WallPost *post) {
-        User *user = usersDictionary[@(ABS(post.from_id))];
-        if (user) {
-            post.firstName = [user nameString];
-            post.avatarURLString = user.photo_100;
-        }
+        post.user = usersDictionary[@(ABS(post.from_id))];
     };
     for (WallPost *post in posts) {
         updatePostBlock(post);

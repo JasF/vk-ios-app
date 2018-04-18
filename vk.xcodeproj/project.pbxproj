@@ -460,6 +460,7 @@
 		C3372FD12083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB62083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift */; };
 		C3372FD22083356C0080DA75 /* SlidingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB72083356C0080DA75 /* SlidingDataSource.swift */; };
 		C3372FD32083356C0080DA75 /* ChatExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB82083356C0080DA75 /* ChatExamplesViewController.swift */; };
+		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
 		C3B225062085BA6800599E04 /* DialogScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225052085BA6800599E04 /* DialogScreenViewModelImpl.m */; };
 		C3B225092085BA8300599E04 /* ViewModelsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225082085BA8300599E04 /* ViewModelsAssembly.m */; };
 		C3B225102085D7DC00599E04 /* ChatListScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2250F2085D7DC00599E04 /* ChatListScreenViewModelImpl.m */; };
@@ -627,7 +628,6 @@
 		C32304A32080E57400CEC487 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		C32304A42080E57400CEC487 /* Common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Common.xcassets; sourceTree = "<group>"; };
 		C32304A52080E57400CEC487 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		C32304A62080E57400CEC487 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C32304A82080E57400CEC487 /* vk-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vk-Bridging-Header.h"; sourceTree = "<group>"; };
 		C32304A92080E57400CEC487 /* vk.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vk.pch; sourceTree = "<group>"; };
 		C32304AA2080E57400CEC487 /* app_packages.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = app_packages.zip; sourceTree = "<group>"; };
@@ -1280,6 +1280,8 @@
 		C3372FB72083356C0080DA75 /* SlidingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingDataSource.swift; sourceTree = "<group>"; };
 		C3372FB82083356C0080DA75 /* ChatExamplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatExamplesViewController.swift; sourceTree = "<group>"; };
 		C3372FD4208335DD0080DA75 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile; path = Components/Chatto/ChattoApp/Podfile; sourceTree = SOURCE_ROOT; };
+		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
+		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
 		C3A943D22084824F0033355E /* longpoll.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = longpoll.py; sourceTree = "<group>"; };
 		C3A943FB2084B8B20033355E /* pydialogscreenviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pydialogscreenviewmodel.py; sourceTree = "<group>"; };
 		C3A943FC2084B9360033355E /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
@@ -1493,6 +1495,8 @@
 		C32304242080E57400CEC487 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				C32304542080E57400CEC487 /* Assets.xcassets */,
+				C32304A42080E57400CEC487 /* Common.xcassets */,
 				C32306F82080F29D00CEC487 /* old-sources */,
 				C32306F72080F23600CEC487 /* old */,
 				C32304252080E57400CEC487 /* texts */,
@@ -1514,12 +1518,9 @@
 				C3B225012085BA4000599E04 /* viewmodels */,
 				C32304372080E57400CEC487 /* nodes */,
 				C32304472080E57400CEC487 /* managers */,
-				C32304542080E57400CEC487 /* Assets.xcassets */,
 				C32304552080E57400CEC487 /* ViewController.m */,
 				C32304572080E57400CEC487 /* models */,
 				C32304852080E57400CEC487 /* ViewControllers */,
-				C32304A42080E57400CEC487 /* Common.xcassets */,
-				C32304A62080E57400CEC487 /* main.m */,
 				C32304A72080E57400CEC487 /* Supporting Files */,
 				C32304AB2080E57400CEC487 /* factories */,
 				C32304B82080E57400CEC487 /* Info.plist */,
@@ -1533,6 +1534,7 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C37C0BF92086F7E60086A875 /* AvatarNode */,
 				C32304382080E57400CEC487 /* DialogNode */,
 				C323043B2080E57400CEC487 /* PostVideoNode */,
 				C323043E2080E57400CEC487 /* PostImagesNode */,
@@ -3461,6 +3463,15 @@
 			path = "Time Separator";
 			sourceTree = "<group>";
 		};
+		C37C0BF92086F7E60086A875 /* AvatarNode */ = {
+			isa = PBXGroup;
+			children = (
+				C37C0BFA2086F8140086A875 /* AvatarNode.h */,
+				C37C0BFB2086F8140086A875 /* AvatarNode.m */,
+			);
+			path = AvatarNode;
+			sourceTree = "<group>";
+		};
 		C3A943FA2084B89E0033355E /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
@@ -3957,6 +3968,7 @@
 				C323092A2081AEB100CEC487 /* TyphoonBlockComponentFactory.m in Sources */,
 				C32305E62080E57500CEC487 /* PostImagesNode.m in Sources */,
 				C32309342081AEB100CEC487 /* UIScreen+NanoFrame.m in Sources */,
+				C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */,
 				C32305BF2080E57500CEC487 /* EXTScope.m in Sources */,
 				C32308C02081AEB100CEC487 /* TyphoonOptionMatcher.m in Sources */,
 				C32308C42081AEB100CEC487 /* TyphoonPropertyStyleConfiguration.m in Sources */,

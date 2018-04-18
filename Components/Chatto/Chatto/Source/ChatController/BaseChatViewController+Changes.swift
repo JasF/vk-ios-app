@@ -38,6 +38,10 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         
     }
     
+    @objc open func needsScrollToBottom() -> Bool {
+        return false
+    }
+    
     public func enqueueModelUpdate(updateType: UpdateType) {
         let newItems = self.chatDataSource?.chatItems ?? []
 
@@ -164,7 +168,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
             usesBatchUpdates = !wantsReloadData && !mustDoReloadData
         }
 
-        let scrollAction: ScrollAction
+        var scrollAction: ScrollAction
         do { // Scroll action
             if updateType != .pagination && self.isScrolledAtBottom() {
                 scrollAction = .scrollToBottom
@@ -173,6 +177,9 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
                 let oldRect = self.rectAtIndexPath(oldReferenceIndexPath)
                 scrollAction = .preservePosition(rectForReferenceIndexPathBeforeUpdate: oldRect, referenceIndexPathAfterUpdate: newReferenceIndexPath)
             }
+        }
+        if self.needsScrollToBottom() == true {
+            scrollAction = .scrollToBottom
         }
 
         let myCompletion: () -> Void

@@ -14,6 +14,7 @@
 #import "PostType.h"
 #import "Reposts.h"
 #import "Views.h"
+#import "User.h"
 
 @import EasyMapping;
 
@@ -35,7 +36,5 @@
 @property NSArray<Attachments *> *photoAttachments;
 @property NSArray<Attachments *> *attachments;
 
-
-@property NSString *firstName;
-@property NSString *avatarURLString;
+@property User *user;
 @end

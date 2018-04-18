@@ -24,4 +24,5 @@
 @property (strong, nonatomic) NSString *photo_max_orig;
 
 - (NSString *)nameString;
+- (NSString *)avatarURLString;
 @end

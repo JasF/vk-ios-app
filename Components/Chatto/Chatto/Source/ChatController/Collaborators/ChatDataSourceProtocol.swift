@@ -36,6 +36,7 @@ public protocol ChatDataSourceDelegateProtocol: class {
     func chatDataSourceDidUpdate(_ chatDataSource: ChatDataSourceProtocol)
     func chatDataSourceDidUpdate(_ chatDataSource: ChatDataSourceProtocol, updateType: UpdateType)
     func willSendTextMessage(message: String?)
+    func needsScrollToBottom() -> Bool
 }
 
 public protocol ChatDataSourceProtocol: class {
