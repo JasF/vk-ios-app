@@ -22,6 +22,8 @@
 
 @implementation ChatListScreenViewModelImpl
 
+@synthesize delegate = _delegate;
+
 #pragma mark - Initialization
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
                            pythonBridge:(id<PythonBridge>)pythonBridge
@@ -67,7 +69,9 @@
 - (void)handleIncomingMessage:(NSString *)message
                        userId:(NSNumber *)userId
                     timestamp:(NSNumber *)timestamp {
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate reloadData];
+    });
 }
 
 @end

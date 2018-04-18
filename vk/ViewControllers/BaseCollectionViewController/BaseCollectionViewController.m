@@ -81,18 +81,38 @@ static const NSInteger kBatchSize = 20;
 
 - (void)appendMoreItems:(NSInteger)numberOfNewItems completion:(void (^)(BOOL))completion
 {
+    [self appendMoreItems:numberOfNewItems
+                   offset:self.data.count
+               withReload:NO
+               completion:completion];
+}
+
+- (void)appendMoreItems:(NSInteger)numberOfNewItems
+                 offset:(NSInteger)offset
+             withReload:(BOOL)withReload
+             completion:(void (^)(BOOL))completion {
     if ([_dataSource respondsToSelector:@selector(getModelObjets:offset:)]) {
         @weakify(self);
         [_dataSource getModelObjets:^(NSArray *objects) {
             @strongify(self);
-            [self.collectionNode performBatchAnimated:YES updates:^{
-                @strongify(self);
+            if (withReload) {
+                [self.data removeAllObjects];
                 [self.data addObjectsFromArray:objects];
-                NSArray *addedIndexPaths = [self indexPathsForObjects:objects];
-                [self.collectionNode insertItemsAtIndexPaths:addedIndexPaths];
-            } completion:completion];
+                [self.collectionNode reloadData];
+                if (completion) {
+                    completion(YES);
+                }
+            }
+            else {
+                [self.collectionNode performBatchAnimated:YES updates:^{
+                    @strongify(self);
+                    [self.data addObjectsFromArray:objects];
+                    NSArray *addedIndexPaths = [self indexPathsForObjects:objects];
+                    [self.collectionNode insertItemsAtIndexPaths:addedIndexPaths];
+                } completion:completion];
+            }
         }
-                             offset:self.data.count];
+                             offset:offset];
     }
 }
 
@@ -197,6 +217,16 @@ static const NSInteger kBatchSize = 20;
     [button setImage:[UIImage imageNamed:@"menuIcon.phg"] forState:UIControlStateNormal];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     [self.navigationItem setLeftBarButtonItem:backButton];
+}
+
+- (void)reloadData {
+    self.updating = YES;
+    [self appendMoreItems:self.data.count
+                   offset:0
+               withReload:YES
+               completion:^(BOOL finished) {
+                   self.updating = NO;
+               }];
 }
 
 @end
