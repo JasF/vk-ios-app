@@ -195,6 +195,14 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
 }
 
 - (id)instantiateHandlerWithProtocol:(Protocol *)protocol delegate:(id)delegate {
+    return [self instantiateHandlerWithProtocol:protocol
+                                       delegate:delegate
+                                     parameters:nil];
+}
+
+- (id)instantiateHandlerWithProtocol:(Protocol *)protocol
+                            delegate:(id)delegate
+                          parameters:(NSDictionary *)parameters {
     const char *name = protocol_getName(protocol);
     NSString *protocolName = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
     PythonBridgeHandler *handler = [self handlerWithProtocol:protocol];
@@ -203,12 +211,15 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     }
     handler.key = [NSString stringWithFormat:@"%@_%@", protocolName, @(handler.instanceId)];
     [self setClassHandler:delegate name:[NSString stringWithFormat:@"%@Delegate_%@", protocolName, @(handler.instanceId)]];
-    NSDictionary *dictionary = @{
+    NSMutableDictionary *dictionary = [@{
                                  @"command":@"instantiateHandlerWithDelegate",
                                  @"delegateId": @(handler.instanceId),
                                  @"key":handler.key,
                                  @"class":protocolName,
-                                 };
+                                 } mutableCopy];
+    if (parameters) {
+        [dictionary setObject:parameters forKey:@"parameters"];
+    }
     [self send:dictionary];
     return handler;
 }

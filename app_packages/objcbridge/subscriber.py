@@ -88,11 +88,15 @@ class Subscriber():
 
     def processInstantiateHandlerWithDelegate(self, object):
         try:
-            className = object["class"]
-            key = object["key"]
-            delegateId = object["delegateId"]
+            className = object['class']
+            key = object['key']
+            delegateId = object['delegateId']
             allocator = self.allocatorsWithDelegate[className]
-            handler = allocator(delegateId)
+            parameters = object.get('parameters')
+            if parameters:
+                handler = allocator(delegateId, parameters)
+            else:
+                handler = allocator(delegateId)
             self.handlers[key] = handler
         except Exception as e:
             dprint('instantiate handler WITH DELEGATE exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))

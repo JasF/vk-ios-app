@@ -28,7 +28,7 @@ class PyChatListScreenViewModel(NewMessageProtocol):
         pass
 
     # NewMessageProtocol
-    def handleIncomingMessage(self, timestamp, userId, body):
+    def handleIncomingMessage(self, messageId, flags, userId, timestamp, body):
         print('chatlist msg: ' + str(body) + '; delegate: ' + str(self.guiDelegate))
         if self.guiDelegate:
             self.guiDelegate.handleIncomingMessage_userId_timestamp_(args=[body,userId,timestamp])

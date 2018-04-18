@@ -36,7 +36,7 @@
     NSCParameterAssert(pythonBridge);
     if (self) {
         _dialogService = dialogService;
-        _handler = [handlersFactory dialogViewModelHandler:self];
+        _handler = [handlersFactory dialogViewModelHandler:self parameters:@{@"userId":userId}];
         _userId = userId;
         _pythonBridge = pythonBridge;
     }

@@ -15,7 +15,11 @@ typedef void (^ResultBlock)(id result);
 - (void)setClassHandler:(id)handler name:(NSString *)className;
 - (id)handlerWithProtocol:(Protocol *)protocol;
 - (id)instantiateHandlerWithProtocol:(Protocol *)protocol;
-- (id)instantiateHandlerWithProtocol:(Protocol *)protocol delegate:(id)delegate;
+- (id)instantiateHandlerWithProtocol:(Protocol *)protocol
+                            delegate:(id)delegate;
+- (id)instantiateHandlerWithProtocol:(Protocol *)protocol
+                            delegate:(id)delegate
+                          parameters:(NSDictionary *)parameters;
 - (void)sendAction:(NSString *)action
          className:(NSString *)className
          arguments:(NSArray *)arguments

@@ -1,12 +1,13 @@
 from objcbridge import BridgeBase, ObjCBridgeProtocol
-from services.messagesservice import NewMessageProtocol
+from services.messagesservice import NewMessageProtocol, MessageFlags
 
 class PyDialogScreenViewModelDelegate(BridgeBase):
     pass
 
 class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
-    def __init__(self, delegateId, messagesService, dialogService):
+    def __init__(self, delegateId, parameters, messagesService, dialogService):
         self.dialogService = dialogService
+        self.userId = parameters['userId']
         self.messagesService = messagesService
         self.messagesService.addNewMessageSubscriber(self)
         self.guiDelegate = PyDialogScreenViewModelDelegate(delegateId)
@@ -22,10 +23,14 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         return self.dialogService.sendTextMessageuserId(text, userId)
     
     # NewMessageProtocol
-    def handleIncomingMessage(self, timestamp, userId, body):
-        print('msg: ' + str(body) + '; guiDelegate: ' + str(self.guiDelegate))
+    def handleIncomingMessage(self, messageId, nFlags, userId, timestamp, text):
+        flags = MessageFlags(nFlags)
+        if flags.OUTBOX:
+            print('skipping due to outgoing message')
+            return
+        print('msg: ' + str(text) + '; self.userId:' + str(self.userId) + '; incomingUserId: ' + str(userId))
         if self.guiDelegate:
-            self.guiDelegate.handleIncomingMessage_userId_timestamp_(args=[body,userId,timestamp])
+            self.guiDelegate.handleIncomingMessage_userId_timestamp_(args=[text,userId,timestamp])
         pass
 
     # ObjCBridgeProtocol

@@ -37,8 +37,10 @@
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyChatListScreenViewModel) delegate:delegate];
 }
 
-- (id<PyDialogScreenViewModel>)dialogViewModelHandler:(id)delegate {
-    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyDialogScreenViewModel) delegate:delegate];
+- (id<PyDialogScreenViewModel>)dialogViewModelHandler:(id)delegate parameters:(NSDictionary *)parameters {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyDialogScreenViewModel)
+                                                delegate:delegate
+                                              parameters:parameters];
 }
 
 - (id<PyWallScreenViewModel>)wallViewModelHandler {

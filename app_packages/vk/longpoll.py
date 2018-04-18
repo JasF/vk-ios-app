@@ -33,7 +33,7 @@ lp_version=3
 need_pts=1
 
 class AddMessageProtocol(object):
-    def handleMessageAdd(self, userId, timestamp, body):
+    def handleMessageAdd(self, messageId, flags, peerId, timestamp, text):
         pass
 '''
 class LongPollProtocol():
@@ -42,8 +42,6 @@ class LongPollProtocol():
     def handleMessageAddFlags(self):
         pass
     def handleMessageClearFlags(self):
-        pass
-    def handleMessageAdd(self):
         pass
     def handleMessageEdit(self):
         pass
@@ -152,7 +150,7 @@ def parseMessageAdd(eventDescription):
     text = eventDescription[4]
     
     for d in _lp.addMessageDelegates:
-        d.handleMessageAdd(peerId, timestamp, text)
+        d.handleMessageAdd(messageId, flags, peerId, timestamp, text)
 
 def parseMessageEdit(eventDescription):
     pass

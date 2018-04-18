@@ -1,8 +1,23 @@
 from vk import LongPoll
 from vk.longpoll import AddMessageProtocol
+from enum import Flag, auto
+
+class MessageFlags(Flag):
+    UNREAD = auto()
+    OUTBOX = auto()
+    REPLIED = auto()
+    IMPORTANT = auto()
+    CHAT = auto()
+    FRIENDS = auto()
+    SPAM = auto()
+    DELETED = auto()
+    FIXED = auto()
+    MEDIA = auto()
+    HIDDEN = 65536
+    DELETED_FOR_ALL = 131072
 
 class NewMessageProtocol():
-    def handleIncomingMessage(self, userId, body):
+    def handleIncomingMessage(self, messageId, flags, peerId, timestamp, text):
         pass
 
 class MessagesService(AddMessageProtocol):
@@ -25,10 +40,10 @@ class MessagesService(AddMessageProtocol):
         self.longPoll.addAddMessageDelegate(self)
 
     # AddMessageProtocol
-    def handleMessageAdd(self, userId, timestamp, body):
-        print('handleMessageAdd: ' + str(body))
+    def handleMessageAdd(self, messageId, flags, peerId, timestamp, text):
+        print('handleMessageAdd: ' + str(text))
         for d in self.newMessageSubscribers:
             try:
-                d.handleIncomingMessage(userId, timestamp, body)
+                d.handleIncomingMessage(messageId, flags, peerId, timestamp, text)
             except Exception as e:
                 print('notifying add message exception: ' + str(e))

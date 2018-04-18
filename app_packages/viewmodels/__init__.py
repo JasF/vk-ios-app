@@ -10,8 +10,7 @@ from services.dialogservice import DialogService
 from services.wallservice import WallService
 
 Subscriber().setClassAllocatorWithDelegate( PyChatListScreenViewModel, lambda delegateId: PyChatListScreenViewModel(delegateId, MessagesService(), ChatListService()) )
-Subscriber().setClassAllocatorWithDelegate( PyDialogScreenViewModel, lambda delegateId: PyDialogScreenViewModel(delegateId, MessagesService(), DialogService()) )
-Subscriber().setClassAllocatorWithDelegate( PyDialogScreenViewModel, lambda delegateId: PyDialogScreenViewModel(delegateId, MessagesService(), DialogService()) )
+Subscriber().setClassAllocatorWithDelegate( PyDialogScreenViewModel, lambda delegateId, parameters: PyDialogScreenViewModel(delegateId, parameters, MessagesService(), DialogService()) )
 Subscriber().setClassAllocator( PyWallScreenViewModel, lambda: PyWallScreenViewModel(WallService()) )
 Subscriber().setClassAllocator( PyMenuScreenViewModel, lambda: PyMenuScreenViewModel() )
 
