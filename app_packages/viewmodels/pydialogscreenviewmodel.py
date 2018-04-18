@@ -25,7 +25,7 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     # NewMessageProtocol
     def handleIncomingMessage(self, messageId, nFlags, userId, timestamp, text):
         flags = MessageFlags(nFlags)
-        if flags.OUTBOX:
+        if flags & MessageFlags.OUTBOX:
             print('skipping due to outgoing message')
             return
         print('msg: ' + str(text) + '; self.userId:' + str(self.userId) + '; incomingUserId: ' + str(userId))
