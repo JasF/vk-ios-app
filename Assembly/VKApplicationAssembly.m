@@ -13,6 +13,7 @@
 #import "VKCoreComponents.h"
 #import "VKThemeAssembly.h"
 #import "ScreensAssembly.h"
+#import "vk-Swift.h"
 
 
 @implementation VKApplicationAssembly
@@ -20,6 +21,16 @@
 //-------------------------------------------------------------------------------------------
 #pragma mark - Bootstrapping
 //-------------------------------------------------------------------------------------------
+
+- (AppDelegate *)appDelegate
+{
+    return [TyphoonDefinition withClass:[AppDelegate class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition injectProperty:@selector(screensManager) with:[self.screensAssembly screensManager]];
+                [definition injectProperty:@selector(pythonBridge) with:[self.coreComponents pythonBridge]];
+                [definition injectProperty:@selector(pythonManager) with:[self.coreComponents pythonManager]];
+            }];
+}
 
 - (UIWindow *)mainWindow
 {

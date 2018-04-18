@@ -11,18 +11,13 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var pythonBridge: PythonBridge?
-    var screensManager: ScreensManager?
+    @objc dynamic var pythonBridge: PythonBridge?
+    @objc dynamic var screensManager: ScreensManager?
+    @objc dynamic var pythonManager: PythonManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        let assembly = VKApplicationAssembly.init().activated()
-        self.screensManager = assembly.screensAssembly.screensManager()
-        self.pythonBridge = assembly.coreComponents.pythonBridge()
-        let pythonManager = assembly.coreComponents.pythonManager()
-        
-        pythonManager?.startupPython()
+        self.pythonManager?.startupPython()
         self.screensManager?.createWindowIfNeeded()
         self.pythonBridge?.connect()
         
