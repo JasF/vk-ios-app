@@ -34,6 +34,7 @@
         _textNode.attributedText = [[NSAttributedString alloc] initWithString:dialog.message.body ?: @"" attributes:[TextStyles titleStyle]];
         _textNode.maximumNumberOfLines = 1;
         _textNode.truncationMode = NSLineBreakByTruncatingTail;
+        _textNode.backgroundColor = (dialog.message.read_state == 0) ? [[UIColor grayColor] colorWithAlphaComponent:0.1f] : [UIColor clearColor];
         [self addSubnode:_textNode];
         
         

@@ -24,7 +24,7 @@
 @end
 
 @protocol AuthorizationHandlerProtocol <NSObject>
-- (void)accessTokenGathered:(NSString *)accessToken;
+- (void)accessTokenGathered:(NSString *)accessToken userId:(NSNumber *)userId;
 @end
 
 

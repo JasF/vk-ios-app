@@ -8,8 +8,9 @@
 
 @protocol DialogScreenViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(NSString *)message
-                       userId:(NSNumber *)userId
-                    timestamp:(NSNumber *)timestamp;
+                       userId:(NSInteger)userId
+                    timestamp:(NSNumber *)timestamp
+                        isOut:(BOOL)isOut;
 @end
 
 @protocol DialogScreenViewModel <NSObject>
@@ -19,5 +20,6 @@
 - (void)getMessagesWithOffset:(NSInteger)offset
                startMessageId:(NSInteger)startMessageId
                    completion:(void(^)(NSArray<Message *> *messages))completion;
-- (void)sendTextMessage:(NSString *)text;
+- (void)sendTextMessage:(NSString *)text
+             completion:(void(^)(NSInteger messageId))completion;
 @end

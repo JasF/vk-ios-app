@@ -109,18 +109,18 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         self.delegate?.chatDataSourceDidUpdate(self, updateType: .pagination)
     }
 
-    func addIncomingTextMessage(_ text: String) {
-        let uid = "\(self.nextMessageId)"
+    func addIncomingTextMessage(_ text: String, isOut: Bool) {
         self.nextMessageId += 1
-        let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: true)
+        let uid = "\(self.nextMessageId)"
+        let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: !isOut)
         self.slidingWindow.insertItem(message, position: .bottom)
         self.delegate?.chatDataSourceDidUpdate(self)
     }
     
     func addTextMessage(_ text: String) {
+        self.nextMessageId += 1
         self.delegate?.willSendTextMessage(message: text)
         let uid = "\(self.nextMessageId)"
-        self.nextMessageId += 1
         let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: false)
         self.messageSender.sendMessage(message)
         self.slidingWindow.insertItem(message, position: .bottom)
@@ -128,8 +128,8 @@ class DemoChatDataSource: ChatDataSourceProtocol {
     }
 
     func addPhotoMessage(_ image: UIImage) {
-        let uid = "\(self.nextMessageId)"
         self.nextMessageId += 1
+        let uid = "\(self.nextMessageId)"
         let message = DemoChatMessageFactory.makePhotoMessage(uid, image: image, size: image.size, isIncoming: false)
         self.messageSender.sendMessage(message)
         self.slidingWindow.insertItem(message, position: .bottom)
@@ -137,8 +137,8 @@ class DemoChatDataSource: ChatDataSourceProtocol {
     }
 
     func addRandomIncomingMessage() {
-        let message = DemoChatMessageFactory.makeRandomMessage("\(self.nextMessageId)", isIncoming: true)
         self.nextMessageId += 1
+        let message = DemoChatMessageFactory.makeRandomMessage("\(self.nextMessageId)", isIncoming: true)
         self.slidingWindow.insertItem(message, position: .bottom)
         self.delegate?.chatDataSourceDidUpdate(self)
     }

@@ -332,6 +332,9 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     else if (args.count == 3) {
         returnValue = [self performSelector:selector onHandler:handler hasReturnValue:hasReturnValue arg1:args[0] arg2:args[1] arg3:args[2]];
     }
+    else if (args.count == 4) {
+        returnValue = [self performSelector:selector onHandler:handler hasReturnValue:hasReturnValue arg1:args[0] arg2:args[1] arg3:args[2] arg4:args[3]];
+    }
     else {
         NSCAssert(false, @"Unimplemented python -> objc bridge call");
     }
@@ -398,6 +401,21 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     }
     void (*func)(id, SEL, id, id, id) = (void *)imp;
     func(handler, selector, arg1, arg2, arg3);
+    return nil;
+}
+
+- (id)performSelector:(SEL)selector onHandler:(id)handler hasReturnValue:(BOOL)hasReturnValue arg1:(id)arg1 arg2:(id)arg2 arg3:(id)arg3 arg4:(id)arg4 {
+    NSCParameterAssert(handler);
+    if (!handler) {
+        return nil;
+    }
+    IMP imp = [handler methodForSelector:selector];
+    if (hasReturnValue) {
+        id (*func)(id, SEL, id, id, id, id) = (void *)imp;
+        return func(handler, selector, arg1, arg2, arg3, arg4);
+    }
+    void (*func)(id, SEL, id, id, id, id) = (void *)imp;
+    func(handler, selector, arg1, arg2, arg3, arg4);
     return nil;
 }
 

@@ -148,6 +148,8 @@ def parseMessageAdd(eventDescription):
     peerId = eventDescription[2]
     timestamp = eventDescription[3]
     text = eventDescription[4]
+
+    #print('msg add desc: ' + str(eventDescription))
     
     for d in _lp.addMessageDelegates:
         d.handleMessageAdd(messageId, flags, peerId, timestamp, text)

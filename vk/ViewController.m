@@ -69,19 +69,20 @@
     self.handler = [self.pythonBridge handlerWithProtocol:@protocol(AuthorizationHandlerProtocol)];
     [_pythonBridge setClassHandler:self name:@"AuthorizationHandlerProtocol"];
     [self initializeVkSdkManager];
+    dispatch_block_t simulateBlock = ^{
+        VKAccessToken *token = [VKAccessToken tokenWithToken:@"5707d7a0a400d18395446787aa77fb32a37cfb8e33c153fad544f09979685055a9d4ffe6a488b72447f6e"
+                                                      secret:@""
+                                                      userId:@"7162990"];
+        self.vkManager.getTokenSuccess(token);
+    };
     dispatch_async(dispatch_get_main_queue(), ^{
 #ifdef DEBUG
-        VKAccessToken *token = [VKAccessToken tokenWithToken:@"5707d7a0a400d18395446787aa77fb32a37cfb8e33c153fad544f09979685055a9d4ffe6a488b72447f6e"
-                                                      secret:@""
-                                                      userId:@""];
-        self.vkManager.getTokenSuccess(token);
+        simulateBlock();
+        //[self.vkManager authorize];
 #else
         
-        VKAccessToken *token = [VKAccessToken tokenWithToken:@"5707d7a0a400d18395446787aa77fb32a37cfb8e33c153fad544f09979685055a9d4ffe6a488b72447f6e"
-                                                      secret:@""
-                                                      userId:@""];
-        self.vkManager.getTokenSuccess(token);
-       // [self.vkManager authorize];
+        // simulateBlock();
+        [self.vkManager authorize];
 #endif
     });
     
@@ -118,7 +119,8 @@
     _vkManager.getTokenSuccess = ^(VKAccessToken *token) {
         @strongify(self);
         dispatch_python(^{
-            [self.handler accessTokenGathered:token.accessToken];
+            [self.handler accessTokenGathered:token.accessToken
+                                       userId:[NSNumberFormatter.new numberFromString:token.userId]];
         });
     };
     _vkManager.getTokenFailed = ^(NSError *error, BOOL cancelled) {

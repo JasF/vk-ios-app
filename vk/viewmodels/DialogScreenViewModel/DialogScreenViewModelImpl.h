@@ -20,7 +20,7 @@
                        userId:(NSNumber *)userId
                startMessageId:(NSNumber *)startMessageId;
 
-- (void)sendTextMessage:(NSString *)text userId:(NSNumber *)userId;
+- (NSNumber *)sendTextMessage:(NSString *)text userId:(NSNumber *)userId;
 @end
 
 @interface DialogScreenViewModelImpl : NSObject <DialogScreenViewModel>

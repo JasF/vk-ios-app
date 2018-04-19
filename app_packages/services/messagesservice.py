@@ -1,5 +1,7 @@
 from vk import LongPoll
+import vk
 from vk.longpoll import AddMessageProtocol
+from caches.messages import MessagesDatabase
 from enum import Flag, auto
 
 class MessageFlags(Flag):
@@ -39,11 +41,29 @@ class MessagesService(AddMessageProtocol):
         self.longPoll = longPoll
         self.longPoll.addAddMessageDelegate(self)
 
+    def saveMessageToCache(self, messageId, isOut, userId, fromId, timestamp, text):
+        dict = {'id':messageId, 'user_id': userId, 'from_id': fromId, 'date': timestamp, 'read_state': 0, 'out': isOut, 'body': text}
+        print('updating dict: ' + str(dict))
+        messages = MessagesDatabase()
+        messages.update([dict])
+        messages.close()
+    
+    def messageWithId(sekf, messageId):
+        database = MessagesDatabase()
+        result = database.messageWithId(messageId)
+        database.close()
+        return result
+
     # AddMessageProtocol
     def handleMessageAdd(self, messageId, flags, peerId, timestamp, text):
-        print('handleMessageAdd: ' + str(text))
+        isOut = 1 if MessageFlags(flags) & MessageFlags.OUTBOX else 0
+        fromId = vk.userId() if isOut == True else peerId
+        print('handle incoming message: peerId: ' + str(peerId) + '; fromId: ' + str(fromId))
+        
         for d in self.newMessageSubscribers:
             try:
                 d.handleIncomingMessage(messageId, flags, peerId, timestamp, text)
             except Exception as e:
                 print('notifying add message exception: ' + str(e))
+
+        self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text)

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class VKAccessToken;
+@class VKAccessToken, VKUser;
 @protocol VKSdkManager <NSObject>
 @property (nonatomic, copy) void (^getTokenSuccess)(VKAccessToken *token);
 @property (nonatomic, copy) void (^getTokenFailed)(NSError *error, BOOL cancelled);

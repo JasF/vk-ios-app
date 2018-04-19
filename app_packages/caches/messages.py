@@ -8,17 +8,20 @@ class MessagesDatabase(BaseDatabase):
     def params(self):
         return {'body': 'text', 'user_id': 'integer', 'from_id': 'integer', 'date': 'integer', 'read_state': 'integer', 'out': 'integer'}
 
-    def getLatest(self, user_id):
-        script = 'SELECT * FROM messages WHERE user_id = ' + str(user_id) + ' ORDER BY id DESC LIMIT 2 OFFSET 2;'
-            #'SELECT * FROM messages WHERE user_id = ' + str(user_id) + ' ORDER BY user_id ASC LIMIT 2'
-        print('getLatest script is: ' + str(script))
+    def getFromMessageId(self, user_id, startMessageId, batchSize):
+        script = 'SELECT * FROM messages WHERE user_id = ' + str(user_id) + ' AND id <= ' + str(startMessageId) + ' ORDER BY id DESC LIMIT ' + str(batchSize) + ';'
         self.cursor.execute(script)
         results = self.cursor.fetchall()
-        print('results is: ' + str(results))
-        '''
-            def selectIds(self, ids, keys):
-            script = 'SELECT ' + keys + ' FROM ' + self.tableName + ' WHERE id IN (' + ','.join(str(id) for id in ids) + ')'
-            self.cursor.execute(script)
-            result = self.cursor.fetchall()
-            return result
-        '''
+        return results
+
+    def getLatest(self, user_id, batchSize):
+        script = 'SELECT * FROM messages WHERE user_id = ' + str(user_id) + ' ORDER BY id DESC LIMIT ' + str(batchSize) + ';'
+        self.cursor.execute(script)
+        results = self.cursor.fetchall()
+        return results
+
+    def messageWithId(self, messageId):
+        script = 'SELECT * FROM messages WHERE id = ' + str(messageId) + ';'
+        self.cursor.execute(script)
+        result = self.cursor.fetchone()
+        return result

@@ -110,7 +110,10 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     override func willSendTextMessage(message: String?) {
         NSLog("will send text message: \(String(describing: message))");
         self.scrollToBottom(animated: true)
-        self.viewModel?.sendTextMessage(message)
+        self.viewModel?.sendTextMessage(message) { messageId in
+            NSLog("messageId is: \(messageId)");
+            NSLog("!");
+        }
     }
     
     override func needsScrollToBottom() -> Bool {
@@ -121,7 +124,8 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         return false
     }
     
-    func handleIncomingMessage(_ message: String?, userId: NSNumber?, timestamp: NSNumber?) {
-        self.mDataSource?.addIncomingTextMessage(message!)
+    //pragma mark - DialogScreenViewModelDelegate
+    func handleIncomingMessage(_ message: String?, userId: Int, timestamp: NSNumber?, isOut: Bool) {
+        self.mDataSource?.addIncomingTextMessage(message!, isOut: isOut)
     }
 }

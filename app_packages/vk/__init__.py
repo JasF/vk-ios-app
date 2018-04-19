@@ -6,7 +6,9 @@ from .longpoll import LongPoll
 
 # API errors should process in try-catch blocks
 class Token:
-    pass
+    def __init__(self):
+        self.token = None
+        self.userId = None
 
 tokenObject = Token()
 
@@ -14,8 +16,14 @@ def setToken(token):
     tokenObject.token = token
     LongPoll().connect()
 
+def setUserId(userId):
+    tokenObject.userId = userId
+
 def token():
     return tokenObject.token
+
+def userId():
+    return tokenObject.userId
 
 def api():
     session = Session()

@@ -11,3 +11,4 @@
 #import "ScreensAssembly.h"
 #import "Message.h"
 #import "DialogScreenViewModel.h"
+#import <VK-ios-sdk/VKSdk.h>

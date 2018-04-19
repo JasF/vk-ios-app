@@ -11,7 +11,8 @@
 @protocol PyDialogScreenViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(NSString *)message
                        userId:(NSNumber *)userId
-                    timestamp:(NSNumber *)timestamp;
+                    timestamp:(NSNumber *)timestamp
+                        isOut:(NSNumber *)isOut;
 @end
 
 @interface DialogScreenViewModelImpl () <PyDialogScreenViewModelDelegate>
@@ -19,6 +20,7 @@
 @property (strong, nonatomic) id<PyDialogScreenViewModel> handler;
 @property (strong, nonatomic) NSNumber *userId;
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
+@property (assign, nonatomic) BOOL allMessagesLoaded;
 @end
 
 @implementation DialogScreenViewModelImpl
@@ -64,12 +66,22 @@
 - (void)getMessagesWithOffset:(NSInteger)offset
                startMessageId:(NSInteger)startMessageId
                    completion:(void(^)(NSArray<Message *> *messages))completion {
+    if (self.allMessagesLoaded) {
+        if (completion) {
+            completion(nil);
+        }
+        return;
+    }
     dispatch_python(^{
         NSDictionary *data = [self.handler getMessages:@(offset) userId:self.userId startMessageId:@(startMessageId)];
         NSArray<Message *> *messages = [_dialogService parse:data];
         NSMutableArray *mutableMessages = [messages mutableCopy];
         if (mutableMessages.count) {
             [mutableMessages removeObjectAtIndex:0];
+        }
+        if (messages.count == 1) {
+            // AV: нет более старых сообщений
+            self.allMessagesLoaded = YES;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
@@ -79,21 +91,27 @@
     });
 }
 
-- (void)sendTextMessage:(NSString *)text {
+- (void)sendTextMessage:(NSString *)text
+             completion:(void(^)(NSInteger messageId))completion {
     dispatch_python(^{
-        [self.handler sendTextMessage:text
-                               userId:_userId];
+        NSNumber *identifier = [self.handler sendTextMessage:text
+                                                      userId:_userId];
+        if (completion) {
+            completion(identifier.integerValue);
+        }
     });
 }
 
 #pragma mark - PyDialogScreenViewModelDelegate
 - (void)handleIncomingMessage:(NSString *)message
                        userId:(NSNumber *)userId
-                    timestamp:(NSNumber *)timestamp {
+                    timestamp:(NSNumber *)timestamp
+                        isOut:(NSNumber *)isOut {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate handleIncomingMessage:message
-                                  userId:userId
-                               timestamp:timestamp];
+                                  userId:userId.integerValue
+                               timestamp:timestamp
+                                   isOut:isOut.boolValue];
     });
 }
 

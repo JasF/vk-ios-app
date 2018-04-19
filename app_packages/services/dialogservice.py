@@ -5,6 +5,7 @@ from caches.messages import MessagesDatabase
 
 class DialogService:
     def __init__(self):
+        self.batchSize = 20
         self.api = None
     
     def initializeIfNeeded(self):
@@ -13,14 +14,16 @@ class DialogService:
     
     def getMessagesuserId(self, offset, userId):
         self.initializeIfNeeded()
-        print('offset: ' + str(offset) + '; userId: ' + str(userId))
         response = None
         usersData = None
         try:
             messages = MessagesDatabase()
-            localcache = messages.getLatest(userId)
+            localcache = messages.getLatest(userId, self.batchSize)
+            if len(localcache):
+                print('fetched ' + str(len(localcache)) + ' messages from cache. Network request skipping.')
+                return {'response':{'items':localcache}}
             
-            response = self.api.messages.getHistory(user_id=userId, offset=offset, count=20)
+            response = self.api.messages.getHistory(user_id=userId, offset=offset, count=self.batchSize)
             l = response["items"]
             messages.update(l)
             messages.close()
@@ -36,6 +39,10 @@ class DialogService:
         usersData = None
         try:
             messages = MessagesDatabase()
+            localcache = messages.getFromMessageId(userId, startMessageId, self.batchSize)
+            if len(localcache) > 1:
+                print('fetched ' + str(len(localcache)) + ' messages startMessageId: ' + str(startMessageId) + ' from cache. Network request skipping.')
+                return {'response':{'items':localcache}}
             
             
             response = self.api.messages.getHistory(user_id=userId, offset=offset, count=20, start_message_id=startMessageId)
@@ -45,8 +52,7 @@ class DialogService:
         except Exception as e:
             print('get messages exception: ' + str(e))
         return {'response':response, 'users':usersData}
-
+    
     def sendTextMessageuserId(self, text, userId):
         self.initializeIfNeeded()
-        print('sending text:' + str(text) + '; userId: ' + str(userId))
-        self.api.messages.send(user_id=userId, peer_id=userId, message=text)
+        return self.api.messages.send(user_id=userId, peer_id=userId, message=text)
