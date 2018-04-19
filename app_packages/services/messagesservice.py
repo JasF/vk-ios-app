@@ -29,7 +29,7 @@ class MessagesService(AddMessageProtocol):
 
     def addNewMessageSubscriber(self, subscriber):
         self.newMessageSubscribers.append(subscriber)
-        print('new message subscriber is: ' + str(subscriber))
+        #print('new message subscriber is: ' + str(subscriber))
         pass
     
     def removeNewMessageSubscriber(self, subscriber):

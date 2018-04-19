@@ -1,8 +1,18 @@
 import os, sys, sqlite3
 
 class BaseDatabase():
-    def __init__(self, tableName):
-        self.tableName = tableName
+    @staticmethod
+    def deleteDatabaseFile(self):
+        path = sys.argv[1] + '/databases/' + self.filename() + '.sql'
+        try:
+            os.remove(path)
+        except:
+            #print('remove path: ' + path + ' error')
+            pass
+
+    
+    def __init__(self):
+        self.tableName = self.__class__.filename()
         self.conn = None
         path = sys.argv[1] + '/databases'
         os.makedirs(path, exist_ok=True)
@@ -16,7 +26,6 @@ class BaseDatabase():
         except Exception as e:
             print('connect to database ' + path + ' error: ' + str(e))
             return
-        #print('Database ' + self.tableName + '.sql opened!')
 
     def params(self):
         print('call abstract method')
@@ -57,7 +66,8 @@ class BaseDatabase():
         except Exception as e:
             print('update ' + self.tableName + ' database exception: ' + str(e))
         else:
-            print('update ' + self.tableName + ' finished successfully')
+            pass
+            #print('update ' + self.tableName + ' finished successfully')
         pass
     
     def selectIds(self, ids, keys):

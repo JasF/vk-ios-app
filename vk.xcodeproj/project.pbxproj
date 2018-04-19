@@ -2415,9 +2415,9 @@
 			isa = PBXGroup;
 			children = (
 				C32305B72080E57500CEC487 /* users.py */,
-				C32305B82080E57500CEC487 /* __init__.py */,
 				C3372F912081F68E0080DA75 /* basedatabase.py */,
 				C3372F922081FAEA0080DA75 /* messages.py */,
+				C32305B82080E57500CEC487 /* __init__.py */,
 			);
 			path = caches;
 			sourceTree = "<group>";

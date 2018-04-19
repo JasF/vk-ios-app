@@ -38,7 +38,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
             var resultArray = [ChatItemProtocol]()
             for message in sSelf.messages! {
                 sSelf.mDataSource?.nextMessageId += 1
-                let item = DemoChatMessageFactory.makeTextMessage("\(sSelf.mDataSource?.nextMessageId)", text: message.body!, isIncoming: message.isOut == 0 ?true:false)
+                let item = DemoChatMessageFactory.makeTextMessage("\(sSelf.mDataSource?.nextMessageId)", text: "\(message.identifier): \(message.body!)", isIncoming: message.isOut == 0 ?true:false)
                 resultArray.append(item)
             }
             sSelf.messages?.removeAll()

@@ -17,9 +17,11 @@ class DialogService:
         response = None
         usersData = None
         try:
+            messages = MessagesDatabase()
+            localcache = messages.getLatest(userId)
+            
             response = self.api.messages.getHistory(user_id=userId, offset=offset, count=20)
             l = response["items"]
-            messages = MessagesDatabase()
             messages.update(l)
             messages.close()
         except Exception as e:
@@ -33,9 +35,11 @@ class DialogService:
         response = None
         usersData = None
         try:
+            messages = MessagesDatabase()
+            
+            
             response = self.api.messages.getHistory(user_id=userId, offset=offset, count=20, start_message_id=startMessageId)
             l = response["items"]
-            messages = MessagesDatabase()
             messages.update(l)
             messages.close()
         except Exception as e:
