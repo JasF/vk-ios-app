@@ -26,6 +26,10 @@ import Foundation
 
 // Handles messages that aren't supported so they appear as invisible
 class DummyChatItemPresenter: ChatItemPresenterProtocol {
+    func getMessageModel() -> Any? {
+        return nil
+    }
+    
 
     class func registerCells(_ collectionView: UICollectionView) {
         collectionView.register(DummyCollectionViewCell.self, forCellWithReuseIdentifier: "cell-id-unhandled-message")

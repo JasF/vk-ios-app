@@ -31,6 +31,10 @@ public enum ChatItemVisibility {
 }
 
 open class BaseChatItemPresenter<CellT: UICollectionViewCell>: ChatItemPresenterProtocol {
+    open func getMessageModel() -> Any? {
+        return nil
+    }
+    
     public final weak var cell: CellT?
 
     public init() {}

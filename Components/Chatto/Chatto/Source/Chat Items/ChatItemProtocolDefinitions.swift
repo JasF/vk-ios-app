@@ -45,6 +45,7 @@ public protocol ChatItemPresenterProtocol: class {
     func shouldShowMenu() -> Bool // optional. Default is false
     func canPerformMenuControllerAction(_ action: Selector) -> Bool // optional. Default is false
     func performMenuControllerAction(_ action: Selector) // optional
+    func getMessageModel() -> Any?
 }
 
 public extension ChatItemPresenterProtocol { // Optionals

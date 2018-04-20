@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSNumber *userId;
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
 @property (assign, nonatomic) BOOL allMessagesLoaded;
+@property (strong, nonatomic) NSMutableArray *markAsReadIds;
 @end
 
 @implementation DialogScreenViewModelImpl
@@ -39,6 +40,7 @@
         _handler = [handlersFactory dialogViewModelHandler:self parameters:@{@"userId":userId}];
         _userId = userId;
         _pythonBridge = pythonBridge;
+        _markAsReadIds = [NSMutableArray new];
     }
     return self;
 }
@@ -54,7 +56,7 @@
         NSDictionary *data = [self.handler getMessages:@(offset) userId:self.userId];
         NSArray<Message *> *messages = [_dialogService parse:data];
         if (!offset && messages.count) {
-            [self markAsRead:messages.firstObject];
+            // [self markAsRead:messages.firstObject];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
@@ -124,7 +126,32 @@
 - (void)markAsRead:(Message *)message {
     NSCParameterAssert(message);
     dispatch_python(^{
-        NSNumber *result = [self.handler markAsRead:@(self.user_id) messageId:@(message.identifier)];
+        [self markAsReadMessageWithIdentifier:message.identifier];
+    });
+}
+
+- (void)markAsReadMessageWithIdentifier:(NSInteger)identifier {
+    @synchronized (self) {
+        if ([self.markAsReadIds containsObject:@(identifier)]) {
+            return;
+        }
+        [self.markAsReadIds addObject:@(identifier)];
+    }
+    NSNumber *result = [self.handler markAsRead:self.userId messageId:@(identifier)];
+    if (![result isEqual:@(1)]) {
+        @synchronized (self) {
+            [self.markAsReadIds removeObject:@(identifier)];
+        }
+    }
+}
+
+- (void)willDisplayUnreadedMessageWithIdentifier:(NSInteger)identifier
+                                           isOut:(NSInteger)isOut {
+    if (isOut) {
+        return;
+    }
+    dispatch_python(^{
+        [self markAsReadMessageWithIdentifier:identifier];
     });
 }
 

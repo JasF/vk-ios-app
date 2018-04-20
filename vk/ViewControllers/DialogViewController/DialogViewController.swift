@@ -8,6 +8,7 @@
 
 import UIKit
 import Chatto
+import ChattoAdditions
 
 class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegate {
     public required init?(coder aDecoder: NSCoder) {
@@ -89,6 +90,21 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         NSLog("begin chat batch fetch content");
     }
  
+    @objc(collectionView:willDisplayCell:forItemAtIndexPath:)
+    override open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        // Here indexPath should always referer to updated data source.
+        NSLog("willDsiplay: \(indexPath)")
+        let presenter = self.presenterForIndexPath(indexPath)
+        let messageModel = presenter.getMessageModel() as! MessageModelProtocol?
+        if messageModel != nil {
+            if messageModel?.readState == 0 {
+                let identifier = messageModel?.externalId
+                let isIncoming = messageModel?.isIncoming
+                self.viewModel?.willDisplayUnreadedMessage(withIdentifier: identifier!, isOut: isIncoming! ? 0 : 1)
+            }
+        }
+        super.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
+    }
     
     override open func viewWillAppear(_ animated: Bool ) {
         super.viewWillAppear(animated)

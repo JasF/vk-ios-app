@@ -32,7 +32,9 @@ open class TextMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
     InteractionHandlerT.ViewModelT == ViewModelBuilderT.ViewModelT {
     public typealias ModelT = ViewModelBuilderT.ModelT
     public typealias ViewModelT = ViewModelBuilderT.ViewModelT
-
+    override open func getMessageModel() -> Any? {
+        return self.messageModel
+    }
     public init (
         messageModel: ModelT,
         viewModelBuilder: ViewModelBuilderT,

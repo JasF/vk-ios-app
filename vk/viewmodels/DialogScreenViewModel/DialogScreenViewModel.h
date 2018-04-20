@@ -20,4 +20,6 @@
                    completion:(void(^)(NSArray<Message *> *messages))completion;
 - (void)sendTextMessage:(NSString *)text
              completion:(void(^)(NSInteger messageId))completion;
+- (void)willDisplayUnreadedMessageWithIdentifier:(NSInteger)identifier
+                                           isOut:(NSInteger)isOut;
 @end

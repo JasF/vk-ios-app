@@ -104,7 +104,7 @@ extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
         self.presenterForIndexPath(indexPath).performMenuControllerAction(action)
     }
 
-    func presenterForIndexPath(_ indexPath: IndexPath) -> ChatItemPresenterProtocol {
+    open func presenterForIndexPath(_ indexPath: IndexPath) -> ChatItemPresenterProtocol {
         return self.presenterForIndex(indexPath.item, chatItemCompanionCollection: self.chatItemCompanionCollection)
     }
 

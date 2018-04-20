@@ -43,6 +43,10 @@ public class TimeSeparatorPresenterBuilder: ChatItemPresenterBuilderProtocol {
 }
 
 class TimeSeparatorPresenter: ChatItemPresenterProtocol {
+    func getMessageModel() -> Any? {
+        return nil
+    }
+    
 
     let timeSeparatorModel: TimeSeparatorModel
     init (timeSeparatorModel: TimeSeparatorModel) {

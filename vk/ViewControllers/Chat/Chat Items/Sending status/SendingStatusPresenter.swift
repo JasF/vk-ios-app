@@ -63,6 +63,10 @@ public class SendingStatusPresenterBuilder: ChatItemPresenterBuilderProtocol {
 }
 
 class SendingStatusPresenter: ChatItemPresenterProtocol {
+    func getMessageModel() -> Any? {
+        return nil
+    }
+    
 
     let statusModel: SendingStatusModel
     init (statusModel: SendingStatusModel) {

@@ -34,7 +34,7 @@ class DialogService:
     def markAsRead(self, peerId, messageId):
         self.initializeIfNeeded()
         try:
-            response = self.api.messages.markAsRead(peer_id=peerId, start_message_id=messageId)
+            response = self.api.messages.markAsRead(peer_id=peerId, message_ids=messageId)
         except Exception as e:
             print('markAsRead exception: ' + str(e))
         return response
