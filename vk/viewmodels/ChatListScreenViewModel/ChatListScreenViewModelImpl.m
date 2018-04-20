@@ -9,10 +9,8 @@
 #import "ChatListScreenViewModelImpl.h"
 
 @protocol PyChatListScreenViewModelDelegate <NSObject>
-- (void)handleIncomingMessage:(NSString *)message
-                       userId:(NSNumber *)userId
-                    timestamp:(NSNumber *)timestamp;
-- (void)handleMessageFlagsChanged:(NSNumber *)messageId;
+- (void)handleIncomingMessage:(NSDictionary *)messageDictionary;
+- (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary;
 @end
 
 @interface ChatListScreenViewModelImpl () <PyChatListScreenViewModelDelegate>
@@ -67,15 +65,13 @@
 }
 
 #pragma mark - PyChatListScreenViewModelDelegate
-- (void)handleIncomingMessage:(NSString *)message
-                       userId:(NSNumber *)userId
-                    timestamp:(NSNumber *)timestamp {
+- (void)handleIncomingMessage:(NSString *)messageDictionary {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate reloadData];
     });
 }
 
-- (void)handleMessageFlagsChanged:(NSNumber *)messageId {
+- (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate reloadData];
     });

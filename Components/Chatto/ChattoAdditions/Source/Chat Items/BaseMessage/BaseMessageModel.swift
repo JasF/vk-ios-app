@@ -38,6 +38,8 @@ public protocol MessageModelProtocol: ChatItemProtocol {
     var status: MessageStatus { get }
     var readState: Int { get }
     var externalId: Int { get }
+    func setExternalId(_ id: Int)
+    func setReadState(_ id: Int)
 }
 
 public protocol DecoratedMessageModelProtocol: MessageModelProtocol {
@@ -71,6 +73,14 @@ public extension DecoratedMessageModelProtocol {
 }
 
 open class MessageModel: MessageModelProtocol {
+    public func setExternalId(_ id: Int) {
+        self.externalId = id
+    }
+    
+    public func setReadState(_ id: Int) {
+        self.readState = id
+    }
+    
     open var uid: String
     open var senderId: String
     open var type: String

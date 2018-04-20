@@ -24,4 +24,13 @@
 
     return messages;
 }
+- (Message *)parseOne:(NSDictionary *)messageDictionary {
+    if (![messageDictionary isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    Message *message = [EKMapper objectFromExternalRepresentation:messageDictionary
+                                                      withMapping:[Message objectMapping]];
+    return message;
+}
+
 @end

@@ -28,11 +28,11 @@ class PyChatListScreenViewModel(NewMessageProtocol):
         pass
 
     # NewMessageProtocol
-    def handleIncomingMessage(self, messageId, flags, userId, timestamp, body):
-        print('chatlist msg: ' + str(body) + '; delegate: ' + str(self.guiDelegate))
+    def handleIncomingMessage(self, message):
+        print('chatlist msg: ' + str(message) + '; delegate: ' + str(self.guiDelegate))
         if self.guiDelegate:
-            self.guiDelegate.handleIncomingMessage_userId_timestamp_(args=[body,userId,timestamp])
+            self.guiDelegate.handleIncomingMessage_(args=[message])
 
-    def handleMessageFlagsChanged(self, messageId):
+    def handleMessageFlagsChanged(self, message):
         if self.guiDelegate:
-            self.guiDelegate.handleMessageFlagsChanged_(args=[messageId])
+            self.guiDelegate.handleMessageFlagsChanged_(args=[message])

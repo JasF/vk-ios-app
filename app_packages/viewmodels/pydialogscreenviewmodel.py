@@ -25,28 +25,26 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     def sendTextMessageuserId(self, text, userId):
         messageId = self.dialogService.sendTextMessageuserId(text, userId)
         timestamp = int(time.time())
-        self.messagesService.saveMessageToCache(messageId, 1, vk.userId(), vk.userId(), timestamp, text)
+        self.messagesService.saveMessageToCache(messageId, 1, vk.userId(), vk.userId(), timestamp, text, 0)
         return messageId
     
     # NewMessageProtocol
-    def handleIncomingMessage(self, messageId, nFlags, userId, timestamp, text):
-        isOut = True if MessageFlags(nFlags) & MessageFlags.OUTBOX else False
-        unread = True if MessageFlags(nFlags) & MessageFlags.UNREAD else False
+    def handleIncomingMessage(self, message):
+        isOut = message.get('out')
+        id = message.get('id')
         if isOut:
-            msg = self.messagesService.messageWithId(messageId)
+            msg = self.messagesService.messageWithId(id)
             if msg:
                 print('msg already exists!')
                 return
-            #print('skipping due to outgoing message')
-            #return
         if self.guiDelegate:
-            self.guiDelegate.handleIncomingMessage_userId_timestamp_isOut_unread_(args=[text,userId,timestamp,isOut,unread])
+            self.guiDelegate.handleIncomingMessage_(args=[message])
         pass
                 
     
-    def handleMessageFlagsChanged(self, messageId):
-        print('message flag changed TBD in dialog')
-        pass
+    def handleMessageFlagsChanged(self, message):
+        if self.guiDelegate:
+            self.guiDelegate.handleMessageFlagsChanged_(args=[message])
 
     # ObjCBridgeProtocol
     def release(self):

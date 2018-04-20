@@ -57,6 +57,10 @@ public class SlidingDataSource<Element> {
             self.insertItem(item, position: .bottom)
         }
     }
+    
+    public func getItems() -> [Element] {
+        return self.items
+    }
 
     private func generateItems(_ count: Int, position: InsertPosition) {
         guard count > 0 else { return }
@@ -71,7 +75,7 @@ public class SlidingDataSource<Element> {
         //     self.insertItem(itemGenerator(), position: position)
         //}
     }
-
+    
     public func insertItem(_ item: Element, position: InsertPosition) {
         if position == .top {
             self.items.insert(item, at: 0)

@@ -33,6 +33,14 @@ open class TextMessageModel<MessageModelT: MessageModelProtocol>: TextMessageMod
         return self.messageModel.readState
     }
     
+    public func setExternalId(_ id: Int) {
+        self.messageModel.setExternalId(id)
+    }
+    
+    public func setReadState(_ id: Int) {
+        self.messageModel.setReadState(id)
+    }
+    
     public var externalId: Int {
         return self.messageModel.externalId
     }

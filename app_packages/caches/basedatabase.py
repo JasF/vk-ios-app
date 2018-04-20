@@ -62,8 +62,9 @@ class BaseDatabase():
                 script += ');\nUPDATE ' + self.tableName + ' SET '
                 script += ', '.join(k + ' = ' + vtostr(d[k]) for k in keys if self.allowed(k) and k != 'id')
                 script += ' WHERE id=' + str(d['id']) + ';\n'
-            print('updating script is: ' + str(script))
+            #print('updating script is: ' + str(script))
             self.cursor.executescript(script)
+            self.conn.commit()
         except Exception as e:
             print('update ' + self.tableName + ' database exception: ' + str(e))
         else:

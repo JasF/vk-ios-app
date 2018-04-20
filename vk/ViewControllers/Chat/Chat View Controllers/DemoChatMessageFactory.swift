@@ -48,6 +48,11 @@ class DemoChatMessageFactory {
         let textMessageModel = DemoTextMessageModel(messageModel: messageModel, text: text)
         return textMessageModel
     }
+    
+    class func makeTextMessage(_ uid: String, message: Message?) -> DemoTextMessageModel {
+        let incoming = message?.isOut == 0 ? true : false
+        return self.makeTextMessage(uid, text:(message?.body)!, isIncoming:incoming, readState:(message?.read_state)!, externalId:(message?.identifier)!)
+    }
 
     class func makePhotoMessage(_ uid: String, image: UIImage, size: CGSize, isIncoming: Bool) -> DemoPhotoMessageModel {
         let messageModel = self.makeMessageModel(uid, isIncoming: isIncoming, type: PhotoMessageModel<MessageModel>.chatItemType, readState: 0, externalId: 0)

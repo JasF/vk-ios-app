@@ -9,11 +9,8 @@
 #import "DialogScreenViewModelImpl.h"
 
 @protocol PyDialogScreenViewModelDelegate <NSObject>
-- (void)handleIncomingMessage:(NSString *)message
-                       userId:(NSNumber *)userId
-                    timestamp:(NSNumber *)timestamp
-                        isOut:(NSNumber *)isOut
-                       unread:(NSNumber *)unread;
+- (void)handleIncomingMessage:(NSDictionary *)message;
+- (void)handleMessageFlagsChanged:(NSDictionary *)message;
 @end
 
 @interface DialogScreenViewModelImpl () <PyDialogScreenViewModelDelegate>
@@ -104,18 +101,20 @@
 }
 
 #pragma mark - PyDialogScreenViewModelDelegate
-- (void)handleIncomingMessage:(NSString *)message
-                       userId:(NSNumber *)userId
-                    timestamp:(NSNumber *)timestamp
-                        isOut:(NSNumber *)isOut
-                       unread:(NSNumber *)unread {
+- (void)handleIncomingMessage:(NSDictionary *)messageDictionary {
+    Message *message = [_dialogService parseOne:messageDictionary];
+    NSCParameterAssert(message);
+    if (!message) {
+        return;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_delegate handleIncomingMessage:message
-                                  userId:userId.integerValue
-                               timestamp:timestamp
-                                   isOut:isOut.boolValue
-                                  unread:unread.boolValue];
+        [_delegate handleIncomingMessage:message];
     });
+}
+
+- (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary {
+    Message *message = [_dialogService parseOne:messageDictionary];
+    [self.delegate handleMessageFlagsChanged:message];
 }
 
 @end

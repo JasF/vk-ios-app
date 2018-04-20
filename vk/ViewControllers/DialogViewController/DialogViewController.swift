@@ -10,7 +10,6 @@ import UIKit
 import Chatto
 
 class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegate {
-    
     public required init?(coder aDecoder: NSCoder) {
         self.scrollToBottom = false
         super.init(coder: aDecoder)
@@ -38,7 +37,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
             var resultArray = [ChatItemProtocol]()
             for message in sSelf.messages! {
                 sSelf.mDataSource?.nextMessageId += 1
-                let item = DemoChatMessageFactory.makeTextMessage("\(sSelf.mDataSource?.nextMessageId)", text: "\(message.identifier): \(message.body!)", isIncoming: message.isOut == 0 ?true:false, readState:message.read_state, externalId: message.identifier)
+                let item = DemoChatMessageFactory.makeTextMessage("\(sSelf.mDataSource?.nextMessageId)", message: message)
                 resultArray.append(item)
             }
             sSelf.messages?.removeAll()
@@ -107,11 +106,13 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         }
     }
     
-    override func willSendTextMessage(message: String?, uid: String?) {
-        NSLog("will send text message: \(String(describing: message))");
+    override func willSendTextMessage(text: String?, uid: String?, message: Any?) {
+        NSLog("will send text message: \(String(describing: text))");
+        let msg = message as! DemoMessageModelProtocol?
         self.scrollToBottom(animated: true)
-        self.viewModel?.sendTextMessage(message) { messageId in
+        self.viewModel?.sendTextMessage(text) { messageId in
             NSLog("messageId is: \(messageId)");
+            msg?.setExternalId(messageId)
             NSLog("!");
         }
     }
@@ -125,7 +126,12 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     }
     
     //pragma mark - DialogScreenViewModelDelegate
-    func handleIncomingMessage(_ message: String?, userId: Int, timestamp: NSNumber?, isOut: Bool, unread: Bool) {
-        self.mDataSource?.addIncomingTextMessage(message!, isOut: isOut, unread: unread)
+    func handleIncomingMessage(_ message: Message?) {
+        self.mDataSource?.addIncomingTextMessage(message)
     }
+    
+    func handleMessageFlagsChanged(_ message: Message!) {
+        self.mDataSource?.handleMessageFlagsChanged(message)
+    }
+    
 }

@@ -109,19 +109,34 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         self.delegate?.chatDataSourceDidUpdate(self, updateType: .pagination)
     }
 
-    func addIncomingTextMessage(_ text: String, isOut: Bool, unread: Bool) {
+    public func handleMessageFlagsChanged(_ message: Message!) {
+        let items = self.slidingWindow.getItems()
+        for item in items as! [DemoMessageModelProtocol] {
+            if item.externalId == message.identifier {
+                NSLog("found needed item \(item.externalId) text \(message.body)")
+                item.setReadState(message.read_state)
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.delegate?.chatDataSourceDidUpdate(self, updateType: .normal)
+                })
+                break
+            }
+        }
+    }
+    
+    
+    func addIncomingTextMessage(_ message: Message?) {
         self.nextMessageId += 1
         let uid = "\(self.nextMessageId)"
-        let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: !isOut, readState: unread ? 0 : 1, externalId: 0)
-        self.slidingWindow.insertItem(message, position: .bottom)
+        let model = DemoChatMessageFactory.makeTextMessage(uid, message: message)
+        self.slidingWindow.insertItem(model, position: .bottom)
         self.delegate?.chatDataSourceDidUpdate(self)
     }
     
     func addTextMessage(_ text: String) {
         self.nextMessageId += 1
         let uid = "\(self.nextMessageId)"
-        self.delegate?.willSendTextMessage(message: text, uid:uid)
         let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: false, readState: 0, externalId: 0)
+        self.delegate?.willSendTextMessage(text: text, uid:uid, message: message)
         self.messageSender.sendMessage(message)
         self.slidingWindow.insertItem(message, position: .bottom)
         self.delegate?.chatDataSourceDidUpdate(self)

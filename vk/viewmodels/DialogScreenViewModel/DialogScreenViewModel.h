@@ -7,11 +7,8 @@
 //
 
 @protocol DialogScreenViewModelDelegate <NSObject>
-- (void)handleIncomingMessage:(NSString *)message
-                       userId:(NSInteger)userId
-                    timestamp:(NSNumber *)timestamp
-                        isOut:(BOOL)isOut
-                       unread:(BOOL)unread;
+- (void)handleIncomingMessage:(Message *)message;
+- (void)handleMessageFlagsChanged:(Message *)message;
 @end
 
 @protocol DialogScreenViewModel <NSObject>
