@@ -125,7 +125,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     }
     
     //pragma mark - DialogScreenViewModelDelegate
-    func handleIncomingMessage(_ message: String?, userId: Int, timestamp: NSNumber?, isOut: Bool) {
-        self.mDataSource?.addIncomingTextMessage(message!, isOut: isOut)
+    func handleIncomingMessage(_ message: String?, userId: Int, timestamp: NSNumber?, isOut: Bool, unread: Bool) {
+        self.mDataSource?.addIncomingTextMessage(message!, isOut: isOut, unread: unread)
     }
 }

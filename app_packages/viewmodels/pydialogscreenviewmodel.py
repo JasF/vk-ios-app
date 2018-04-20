@@ -31,6 +31,7 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     # NewMessageProtocol
     def handleIncomingMessage(self, messageId, nFlags, userId, timestamp, text):
         isOut = True if MessageFlags(nFlags) & MessageFlags.OUTBOX else False
+        unread = True if MessageFlags(nFlags) & MessageFlags.UNREAD else False
         if isOut:
             msg = self.messagesService.messageWithId(messageId)
             if msg:
@@ -39,7 +40,7 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
             #print('skipping due to outgoing message')
             #return
         if self.guiDelegate:
-            self.guiDelegate.handleIncomingMessage_userId_timestamp_isOut_(args=[text,userId,timestamp,isOut])
+            self.guiDelegate.handleIncomingMessage_userId_timestamp_isOut_unread_(args=[text,userId,timestamp,isOut,unread])
         pass
 
     # ObjCBridgeProtocol

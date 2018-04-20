@@ -10,7 +10,8 @@
 - (void)handleIncomingMessage:(NSString *)message
                        userId:(NSInteger)userId
                     timestamp:(NSNumber *)timestamp
-                        isOut:(BOOL)isOut;
+                        isOut:(BOOL)isOut
+                       unread:(BOOL)unread;
 @end
 
 @protocol DialogScreenViewModel <NSObject>

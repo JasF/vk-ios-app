@@ -12,7 +12,8 @@
 - (void)handleIncomingMessage:(NSString *)message
                        userId:(NSNumber *)userId
                     timestamp:(NSNumber *)timestamp
-                        isOut:(NSNumber *)isOut;
+                        isOut:(NSNumber *)isOut
+                       unread:(NSNumber *)unread;
 @end
 
 @interface DialogScreenViewModelImpl () <PyDialogScreenViewModelDelegate>
@@ -106,12 +107,14 @@
 - (void)handleIncomingMessage:(NSString *)message
                        userId:(NSNumber *)userId
                     timestamp:(NSNumber *)timestamp
-                        isOut:(NSNumber *)isOut {
+                        isOut:(NSNumber *)isOut
+                       unread:(NSNumber *)unread {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate handleIncomingMessage:message
                                   userId:userId.integerValue
                                timestamp:timestamp
-                                   isOut:isOut.boolValue];
+                                   isOut:isOut.boolValue
+                                  unread:unread.boolValue];
     });
 }
 
