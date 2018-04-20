@@ -31,7 +31,14 @@ class DialogService:
             print('get messages exception: ' + str(e))
         return {'response':response, 'users':usersData}
 
-
+    def markAsRead(self, peerId, messageId):
+        self.initializeIfNeeded()
+        try:
+            response = self.api.messages.markAsRead(peer_id=peerId, start_message_id=messageId)
+        except Exception as e:
+            print('markAsRead exception: ' + str(e))
+        return response
+            
     def getMessagesuserIdstartMessageId(self, offset, userId, startMessageId):
         self.initializeIfNeeded()
         print('offset: ' + str(offset) + '; userId: ' + str(userId) + '; startMessageId: ' + str(startMessageId))

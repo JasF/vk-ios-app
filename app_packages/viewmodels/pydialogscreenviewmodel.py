@@ -28,6 +28,9 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         self.messagesService.saveMessageToCache(messageId, 1, vk.userId(), vk.userId(), timestamp, text, 0)
         return messageId
     
+    def markAsReadmessageId(self, userId, readedMessageId):
+        return self.dialogService.markAsRead(userId, readedMessageId)
+    
     # NewMessageProtocol
     def handleIncomingMessage(self, message):
         isOut = message.get('out')

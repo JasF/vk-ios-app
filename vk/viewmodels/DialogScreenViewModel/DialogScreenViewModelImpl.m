@@ -53,6 +53,9 @@
     dispatch_python(^{
         NSDictionary *data = [self.handler getMessages:@(offset) userId:self.userId];
         NSArray<Message *> *messages = [_dialogService parse:data];
+        if (!offset && messages.count) {
+            [self markAsRead:messages.firstObject];
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
                 completion(messages);
@@ -115,6 +118,14 @@
 - (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary {
     Message *message = [_dialogService parseOne:messageDictionary];
     [self.delegate handleMessageFlagsChanged:message];
+}
+
+#pragma mark - Private Methods
+- (void)markAsRead:(Message *)message {
+    NSCParameterAssert(message);
+    dispatch_python(^{
+        NSNumber *result = [self.handler markAsRead:@(self.user_id) messageId:@(message.identifier)];
+    });
 }
 
 @end

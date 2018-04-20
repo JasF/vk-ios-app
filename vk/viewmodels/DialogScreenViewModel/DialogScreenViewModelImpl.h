@@ -21,6 +21,7 @@
                startMessageId:(NSNumber *)startMessageId;
 
 - (NSNumber *)sendTextMessage:(NSString *)text userId:(NSNumber *)userId;
+- (NSNumber *)markAsRead:(NSNumber *)userId messageId:(NSNumber *)messageId;
 @end
 
 @interface DialogScreenViewModelImpl : NSObject <DialogScreenViewModel>
