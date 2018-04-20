@@ -34,6 +34,8 @@ public protocol BaseMessageCollectionViewCellStyleProtocol {
     func selectionIndicatorIcon(for viewModel: MessageViewModelProtocol) -> UIImage
     func attributedStringForDate(_ date: String) -> NSAttributedString
     func layoutConstants(viewModel: MessageViewModelProtocol) -> BaseMessageCollectionViewCellLayoutConstants
+    var unreadBackgroundColor: UIColor { get }
+    var readedBackgroundColor: UIColor { get }
 }
 
 public struct BaseMessageCollectionViewCellLayoutConstants {
@@ -213,6 +215,12 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: UICollectionViewCell, 
             self.failedButton.alpha = 1
         } else {
             self.failedButton.alpha = 0
+        }
+        if self.messageViewModel.readState == 0 {
+            self.backgroundColor = style.unreadBackgroundColor
+        }
+        else {
+            self.backgroundColor = style.readedBackgroundColor
         }
         self.accessoryTimestampView.attributedText = style.attributedStringForDate(viewModel.date)
         self.updateAvatarView(from: viewModel, with: style)

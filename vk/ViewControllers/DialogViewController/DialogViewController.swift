@@ -38,7 +38,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
             var resultArray = [ChatItemProtocol]()
             for message in sSelf.messages! {
                 sSelf.mDataSource?.nextMessageId += 1
-                let item = DemoChatMessageFactory.makeTextMessage("\(sSelf.mDataSource?.nextMessageId)", text: "\(message.identifier): \(message.body!)", isIncoming: message.isOut == 0 ?true:false)
+                let item = DemoChatMessageFactory.makeTextMessage("\(sSelf.mDataSource?.nextMessageId)", text: "\(message.identifier): \(message.body!)", isIncoming: message.isOut == 0 ?true:false, readState:message.read_state, externalId: message.identifier)
                 resultArray.append(item)
             }
             sSelf.messages?.removeAll()
@@ -107,7 +107,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         }
     }
     
-    override func willSendTextMessage(message: String?) {
+    override func willSendTextMessage(message: String?, uid: String?) {
         NSLog("will send text message: \(String(describing: message))");
         self.scrollToBottom(animated: true)
         self.viewModel?.sendTextMessage(message) { messageId in

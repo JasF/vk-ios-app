@@ -112,16 +112,16 @@ class DemoChatDataSource: ChatDataSourceProtocol {
     func addIncomingTextMessage(_ text: String, isOut: Bool) {
         self.nextMessageId += 1
         let uid = "\(self.nextMessageId)"
-        let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: !isOut)
+        let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: !isOut, readState: 1, externalId: 0)
         self.slidingWindow.insertItem(message, position: .bottom)
         self.delegate?.chatDataSourceDidUpdate(self)
     }
     
     func addTextMessage(_ text: String) {
         self.nextMessageId += 1
-        self.delegate?.willSendTextMessage(message: text)
         let uid = "\(self.nextMessageId)"
-        let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: false)
+        self.delegate?.willSendTextMessage(message: text, uid:uid)
+        let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: false, readState: 0, externalId: 0)
         self.messageSender.sendMessage(message)
         self.slidingWindow.insertItem(message, position: .bottom)
         self.delegate?.chatDataSourceDidUpdate(self)

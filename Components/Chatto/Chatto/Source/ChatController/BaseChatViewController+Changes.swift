@@ -34,7 +34,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         self.enqueueModelUpdate(updateType: .normal)
     }
 
-    @objc open func willSendTextMessage(message: String?) {
+    @objc open func willSendTextMessage(message: String?, uid: String?) {
         
     }
     

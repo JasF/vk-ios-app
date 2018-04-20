@@ -49,6 +49,8 @@ public protocol MessageViewModelProtocol: class { // why class? https://gist.git
     var isUserInteractionEnabled: Bool { get set }
     var isShowingFailedIcon: Bool { get }
     var date: String { get }
+    var readState: Int { get }
+    var externalId: Int { get }
     var status: MessageViewModelStatus { get }
     var avatarImage: Observable<UIImage?> { get set }
     func willBeShown() // Optional
@@ -111,6 +113,14 @@ extension DecoratedMessageViewModelProtocol {
 }
 
 open class MessageViewModel: MessageViewModelProtocol {
+    open var readState: Int {
+        return self.messageModel.readState
+    }
+    
+    open var externalId: Int {
+        return self.messageModel.externalId
+    }
+    
     open var isIncoming: Bool {
         return self.messageModel.isIncoming
     }

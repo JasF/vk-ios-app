@@ -36,6 +36,8 @@ public protocol MessageModelProtocol: ChatItemProtocol {
     var isIncoming: Bool { get }
     var date: Date { get }
     var status: MessageStatus { get }
+    var readState: Int { get }
+    var externalId: Int { get }
 }
 
 public protocol DecoratedMessageModelProtocol: MessageModelProtocol {
@@ -75,13 +77,17 @@ open class MessageModel: MessageModelProtocol {
     open var isIncoming: Bool
     open var date: Date
     open var status: MessageStatus
+    open var readState: Int
+    open var externalId: Int
 
-    public init(uid: String, senderId: String, type: String, isIncoming: Bool, date: Date, status: MessageStatus) {
+    public init(uid: String, senderId: String, type: String, isIncoming: Bool, date: Date, status: MessageStatus, readState: Int, externalId: Int) {
         self.uid = uid
         self.senderId = senderId
         self.type = type
         self.isIncoming = isIncoming
         self.date = date
         self.status = status
+        self.readState = readState
+        self.externalId = externalId
     }
 }

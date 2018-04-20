@@ -30,6 +30,14 @@ public protocol PhotoMessageModelProtocol: DecoratedMessageModelProtocol {
 }
 
 open class PhotoMessageModel<MessageModelT: MessageModelProtocol>: PhotoMessageModelProtocol {
+    public var readState: Int {
+        return self.messageModel.readState
+    }
+    
+    public var externalId: Int {
+        return self.messageModel.externalId
+    }
+    
     public var messageModel: MessageModelProtocol {
         return self._messageModel
     }

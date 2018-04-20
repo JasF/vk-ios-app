@@ -29,6 +29,14 @@ public protocol TextMessageViewModelProtocol: DecoratedMessageViewModelProtocol 
 }
 
 open class TextMessageViewModel<TextMessageModelT: TextMessageModelProtocol>: TextMessageViewModelProtocol {
+    open var readState: Int {
+        return self.messageViewModel.readState
+    }
+    
+    open var externalId: Int {
+        return self.messageViewModel.externalId
+    }
+    
     open var text: String {
         return self.textMessage.text
     }
