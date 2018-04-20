@@ -12,6 +12,7 @@
 - (void)handleIncomingMessage:(NSString *)message
                        userId:(NSNumber *)userId
                     timestamp:(NSNumber *)timestamp;
+- (void)handleMessageFlagsChanged:(NSNumber *)messageId;
 @end
 
 @interface ChatListScreenViewModelImpl () <PyChatListScreenViewModelDelegate>
@@ -69,6 +70,12 @@
 - (void)handleIncomingMessage:(NSString *)message
                        userId:(NSNumber *)userId
                     timestamp:(NSNumber *)timestamp {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate reloadData];
+    });
+}
+
+- (void)handleMessageFlagsChanged:(NSNumber *)messageId {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate reloadData];
     });

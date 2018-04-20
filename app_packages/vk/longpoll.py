@@ -6,8 +6,6 @@ import functools
 from enum import Enum
 import inspect
 
-
-
 class Event(Enum):
     MESSAGE_SET_FLAGS = 1
     MESSAGE_ADD_FLAGS = 2
@@ -35,43 +33,8 @@ need_pts=1
 class AddMessageProtocol(object):
     def handleMessageAdd(self, messageId, flags, peerId, timestamp, text):
         pass
-'''
-class LongPollProtocol():
-    def handleMessageSetFlags(self):
+    def handleMessageClearFlags(self, messageId, flags):
         pass
-    def handleMessageAddFlags(self):
-        pass
-    def handleMessageClearFlags(self):
-        pass
-    def handleMessageEdit(self):
-        pass
-    def handleMessageInReaded(self):
-        pass
-    def handleMessageOutReaded(self):
-        pass
-    def handleUserOnline(self):
-        pass
-    def handleUserOffline(self):
-        pass
-    def handleClearFlags(self):
-        pass
-    def handleSetFlags(self):
-        pass
-    def handleAddFlags(self):
-        pass
-    def handleMessagesRemove(self):
-        pass
-    def handleMessagesRestore(self):
-        pass
-    def handleParameterChange(self):
-        pass
-    def handleDialogTyping(self):
-        pass
-    def handleChatTyping(self):
-        pass
-    def handleCall(self):
-        pass
-'''
 
 class LongPoll:
     def __new__(cls):
@@ -137,7 +100,13 @@ def parseMessageAddFlags(eventDescription):
     pass
 
 def parseMessageClearFlags(eventDescription):
-    pass
+    if len(eventDescription) < 2:
+        print('parseMessageClearFlags too short')
+        return
+    messageId = eventDescription[0]
+    flags = eventDescription[1]
+    for d in _lp.addMessageDelegates:
+        d.handleMessageClearFlags(messageId, flags)
 
 def parseMessageAdd(eventDescription):
     if len(eventDescription) < 5:

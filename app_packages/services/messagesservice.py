@@ -21,6 +21,8 @@ class MessageFlags(Flag):
 class NewMessageProtocol():
     def handleIncomingMessage(self, messageId, flags, peerId, timestamp, text):
         pass
+    def handleMessageFlagsChanged(self, messageId):
+        pass
 
 class MessagesService(AddMessageProtocol):
     def __new__(cls):
@@ -41,8 +43,8 @@ class MessagesService(AddMessageProtocol):
         self.longPoll = longPoll
         self.longPoll.addAddMessageDelegate(self)
 
-    def saveMessageToCache(self, messageId, isOut, userId, fromId, timestamp, text):
-        dict = {'id':messageId, 'user_id': userId, 'from_id': fromId, 'date': timestamp, 'read_state': 0, 'out': isOut, 'body': text}
+    def saveMessageToCache(self, messageId, isOut, userId, fromId, timestamp, text, read_state):
+        dict = {'id':messageId, 'user_id': userId, 'from_id': fromId, 'date': timestamp, 'read_state': read_state, 'out': isOut, 'body': text}
         print('updating dict: ' + str(dict))
         messages = MessagesDatabase()
         messages.update([dict])
@@ -57,13 +59,28 @@ class MessagesService(AddMessageProtocol):
     # AddMessageProtocol
     def handleMessageAdd(self, messageId, flags, peerId, timestamp, text):
         isOut = 1 if MessageFlags(flags) & MessageFlags.OUTBOX else 0
+        read_state = 0 if MessageFlags(flags) & MessageFlags.UNREAD else 1
         fromId = vk.userId() if isOut == True else peerId
         print('handle incoming message: peerId: ' + str(peerId) + '; fromId: ' + str(fromId))
-        
         for d in self.newMessageSubscribers:
             try:
                 d.handleIncomingMessage(messageId, flags, peerId, timestamp, text)
             except Exception as e:
                 print('notifying add message exception: ' + str(e))
+        self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state)
 
-        self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text)
+    def handleMessageClearFlags(self, messageId, flags):
+        if not MessageFlags(flags) & MessageFlags.UNREAD:
+            print('clearing unknown flags: ' + str(MessageFlags(flags)) + ' for msgid: ' + str(messageId))
+        
+        read_state = 0 if MessageFlags(flags) & MessageFlags.UNREAD else 1
+        dict = {'id':messageId, 'read_state': read_state}
+        messages = MessagesDatabase()
+        messages.update([dict])
+        messages.close()
+        for d in self.newMessageSubscribers:
+            try:
+                d.handleMessageFlagsChanged(messageId)
+            except Exception as e:
+                print('notifying handleMessageClearFlags exception: ' + str(e))
+        pass

@@ -42,6 +42,11 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         if self.guiDelegate:
             self.guiDelegate.handleIncomingMessage_userId_timestamp_isOut_unread_(args=[text,userId,timestamp,isOut,unread])
         pass
+                
+    
+    def handleMessageFlagsChanged(self, messageId):
+        print('message flag changed TBD in dialog')
+        pass
 
     # ObjCBridgeProtocol
     def release(self):
