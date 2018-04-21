@@ -2,13 +2,18 @@ from objcbridge import BridgeBase, ObjCBridgeProtocol
 import vk
 from services.messagesservice import NewMessageProtocol, MessageFlags
 from random import randint
-import time
+import sched, time
+
+kTypingInterval = 8
 
 class PyDialogScreenViewModelDelegate(BridgeBase):
     pass
 
 class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     def __init__(self, delegateId, parameters, messagesService, dialogService):
+        self.scheduler = sched.scheduler(time.time, time.sleep)
+        self.typingEvent = None
+        self.typingUserId = None
         self.dialogService = dialogService
         self.messagesService = messagesService
         self.messagesService.addNewMessageSubscriber(self)
@@ -48,6 +53,32 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     def handleMessageFlagsChanged(self, message):
         if self.guiDelegate:
             self.guiDelegate.handleMessageFlagsChanged_(args=[message])
+
+
+    def handleTypingInDialog(self, userId, flags):
+        if self.userId != userId:
+            print('unknown userId: ' + str(userId) + '; current is: ' + str(self.userId))
+            return
+        if self.guiDelegate:
+            self.guiDelegate.handleTypingInDialog_flags_end_(args=[userId,flags,False])
+        
+        if self.typingEvent:
+            try:
+                self.scheduler.cancel(self.typingEvent)
+            except:
+                print('scheduler.cancel(self.typingEvent) exception')
+                pass
+            self.typingEvent = None
+
+        def cancelTyping(self):
+            print('cancel typing. self: ' + str(self))
+            self.typingEvent = None
+            if self.guiDelegate:
+                self.guiDelegate.handleTypingInDialog_flags_end_(args=[self.typingUserId,1,True])
+        
+        self.typingUserId = userId
+        self.typingEvent = self.scheduler.enterabs(time.time() + kTypingInterval, 1, cancelTyping, (self,))
+        self.scheduler.run()
 
     # ObjCBridgeProtocol
     def release(self):

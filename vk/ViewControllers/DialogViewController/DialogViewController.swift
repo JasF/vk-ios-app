@@ -61,7 +61,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     
     @objc
     private func showTypingCell() {
-        self.dataSource.showTypingCell()
+        NSLog("Deprecated");
     }
     
     var updating: Bool?
@@ -143,6 +143,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     
     //pragma mark - DialogScreenViewModelDelegate
     func handleIncomingMessage(_ message: Message?) {
+        self.setTypingCellEnabled(false)
         self.mDataSource?.addIncomingTextMessage(message)
     }
     
@@ -150,4 +151,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         self.mDataSource?.handleMessageFlagsChanged(message)
     }
     
+    func handleTyping(_ userId: Int, end: Bool) {
+        self.setTypingCellEnabled(!end)
+    }
 }

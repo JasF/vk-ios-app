@@ -9,6 +9,7 @@
 @protocol DialogScreenViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(Message *)message;
 - (void)handleMessageFlagsChanged:(Message *)message;
+- (void)handleTyping:(NSInteger)userId end:(BOOL)end;
 @end
 
 @protocol DialogScreenViewModel <NSObject>

@@ -11,6 +11,7 @@
 @protocol PyChatListScreenViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(NSDictionary *)messageDictionary;
 - (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary;
+- (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags;
 @end
 
 @interface ChatListScreenViewModelImpl () <PyChatListScreenViewModelDelegate>
@@ -75,6 +76,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate reloadData];
     });
+}
+
+- (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags {
+    NSLog(@"TBD");
 }
 
 @end

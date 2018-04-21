@@ -23,6 +23,8 @@ class NewMessageProtocol():
         pass
     def handleMessageFlagsChanged(self, message):
         pass
+    def handleTypingInDialog(self, userId, flags):
+        pass
 
 class MessagesService(AddMessageProtocol):
     def __new__(cls):
@@ -68,10 +70,7 @@ class MessagesService(AddMessageProtocol):
         print('handle incoming message: peerId: ' + str(peerId) + '; fromId: ' + str(fromId))
         msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state)
         for d in self.newMessageSubscribers:
-            try:
-                d.handleIncomingMessage(msg)
-            except Exception as e:
-                print('notifying add message exception: ' + str(e))
+            d.handleIncomingMessage(msg)
         self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state)
 
     def handleMessageClearFlags(self, messageId, flags):
@@ -85,8 +84,8 @@ class MessagesService(AddMessageProtocol):
         msg = messages.messageWithId(messageId)
         messages.close()
         for d in self.newMessageSubscribers:
-            try:
-                d.handleMessageFlagsChanged(msg)
-            except Exception as e:
-                print('notifying handleMessageClearFlags exception: ' + str(e))
-        pass
+            d.handleMessageFlagsChanged(msg)
+
+    def handleTyping(self, userId, flags):
+        for d in self.newMessageSubscribers:
+            d.handleTypingInDialog(userId, flags)

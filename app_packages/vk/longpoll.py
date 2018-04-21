@@ -6,7 +6,7 @@ import functools
 from enum import Enum
 import inspect
 
-class Event(Enum):
+class Event(Enum): # https://vk.com/dev/using_longpoll?f=3.%20Структура%20событий
     MESSAGE_SET_FLAGS = 1
     MESSAGE_ADD_FLAGS = 2
     MESSAGE_CLEAR_FLAGS = 3
@@ -34,6 +34,8 @@ class AddMessageProtocol(object):
     def handleMessageAdd(self, messageId, flags, peerId, timestamp, text):
         pass
     def handleMessageClearFlags(self, messageId, flags):
+        pass
+    def handleTyping(self, userId, flags):
         pass
 
 class LongPoll:
@@ -157,6 +159,10 @@ def parseParameterChange(eventDescription):
     pass
 
 def parseDialogTyping(eventDescription):
+    userId = eventDescription[0]
+    flags = eventDescription[1]
+    for d in _lp.addMessageDelegates:
+        d.handleTyping(userId, flags)
     pass
 
 def parseChatTyping(eventDescription):

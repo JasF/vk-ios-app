@@ -36,3 +36,7 @@ class PyChatListScreenViewModel(NewMessageProtocol):
     def handleMessageFlagsChanged(self, message):
         if self.guiDelegate:
             self.guiDelegate.handleMessageFlagsChanged_(args=[message])
+
+    def handleTypingInDialog(self, userId, flags):
+        if self.guiDelegate:
+            self.guiDelegate.handleTypingInDialog_flags_(args=[userId,flags])

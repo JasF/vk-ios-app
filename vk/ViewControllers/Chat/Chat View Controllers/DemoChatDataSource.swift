@@ -123,7 +123,6 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         }
     }
     
-    
     func addIncomingTextMessage(_ message: Message?) {
         self.nextMessageId += 1
         let uid = "\(self.nextMessageId)"
@@ -149,15 +148,6 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         self.messageSender.sendMessage(message)
         self.slidingWindow.insertItem(message, position: .bottom)
         self.delegate?.chatDataSourceDidUpdate(self)
-    }
-
-    func showTypingCell() {
-        /*
-        self.nextMessageId += 1
-        let message = DemoChatMessageFactory.makeRandomMessage("\(self.nextMessageId)", isIncoming: true)
-        self.slidingWindow.insertItem(message, position: .bottom)
-        self.delegate?.chatDataSourceDidUpdate(self)
-         */
     }
 
     func adjustNumberOfMessages(preferredMaxCount: Int?, focusPosition: Double, completion:(_ didAdjust: Bool) -> Void) {

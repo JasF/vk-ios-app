@@ -27,6 +27,11 @@ import Chatto
 import ChattoAdditions
 
 final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
+    var typingCellEnabled: Bool = false
+    func setTypingCellEnabled(_ enabled: Bool) {
+        self.typingCellEnabled = enabled
+    }
+    
     private struct Constants {
         static let shortSeparation: CGFloat = 3
         static let normalSeparation: CGFloat = 10
@@ -100,8 +105,10 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
             decoratedChatItems.append(contentsOf: additionalItems)
         }
 
-        let typing = DecoratedChatItem(chatItem: TypingModel(uid: "typing-cell"), decorationAttributes: nil)
-        decoratedChatItems.append(typing)
+        if self.typingCellEnabled == true {
+            let typing = DecoratedChatItem(chatItem: TypingModel(uid: "typing-cell"), decorationAttributes: nil)
+            decoratedChatItems.append(typing)
+        }
         return decoratedChatItems
     }
 

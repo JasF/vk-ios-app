@@ -11,6 +11,7 @@
 @protocol PyDialogScreenViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(NSDictionary *)message;
 - (void)handleMessageFlagsChanged:(NSDictionary *)message;
+- (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end;
 @end
 
 @interface DialogScreenViewModelImpl () <PyDialogScreenViewModelDelegate>
@@ -120,6 +121,12 @@
 - (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary {
     Message *message = [_dialogService parseOne:messageDictionary];
     [self.delegate handleMessageFlagsChanged:message];
+}
+
+- (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_delegate handleTyping:userId.integerValue end:end.boolValue];
+    });
 }
 
 #pragma mark - Private Methods

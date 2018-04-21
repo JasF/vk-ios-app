@@ -50,6 +50,12 @@ class DemoChatViewController: BaseChatViewController {
         self.chatItemsDecorator = DemoChatItemsDecorator(messagesSelector: self.messagesSelector)
     }
 
+    func setTypingCellEnabled(_ enabled: Bool) {
+        self.chatItemsDecorator?.setTypingCellEnabled(enabled)
+        self.chatDataSourceDidUpdate(self.dataSource)
+    }
+    
+    
     var chatInputPresenter: BasicChatInputBarPresenter!
     override func createChatInputView() -> UIView {
         let chatInputView = ChatInputBar.loadNib()

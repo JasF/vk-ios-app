@@ -26,6 +26,7 @@ import Foundation
 
 public protocol ChatItemsDecoratorProtocol {
     func decorateItems(_ chatItems: [ChatItemProtocol]) -> [DecoratedChatItem]
+    func setTypingCellEnabled(_ enabled: Bool)
 }
 
 public struct DecoratedChatItem: UniqueIdentificable {
