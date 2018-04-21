@@ -79,7 +79,8 @@ class DemoChatViewController: BaseChatViewController {
             DemoTextMessageModel.chatItemType: [textMessagePresenter],
             DemoPhotoMessageModel.chatItemType: [photoMessagePresenter],
             SendingStatusModel.chatItemType: [SendingStatusPresenterBuilder()],
-            TimeSeparatorModel.chatItemType: [TimeSeparatorPresenterBuilder()]
+            TimeSeparatorModel.chatItemType: [TimeSeparatorPresenterBuilder()],
+            TypingModel.chatItemType: [TypingPresenterBuilder()]
         ]
     }
 

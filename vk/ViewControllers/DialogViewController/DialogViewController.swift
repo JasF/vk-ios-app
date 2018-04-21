@@ -51,17 +51,17 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         super.viewDidLoad()
         
         let button = UIBarButtonItem(
-            title: "Add message",
+            title: "Show typing",
             style: .plain,
             target: self,
-            action: #selector(addRandomMessage)
+            action: #selector(showTypingCell)
         )
         self.navigationItem.rightBarButtonItem = button
     }
     
     @objc
-    private func addRandomMessage() {
-        self.dataSource.addRandomIncomingMessage()
+    private func showTypingCell() {
+        self.dataSource.showTypingCell()
     }
     
     var updating: Bool?

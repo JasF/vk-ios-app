@@ -100,6 +100,8 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
             decoratedChatItems.append(contentsOf: additionalItems)
         }
 
+        let typing = DecoratedChatItem(chatItem: TypingModel(uid: "typing-cell"), decorationAttributes: nil)
+        decoratedChatItems.append(typing)
         return decoratedChatItems
     }
 

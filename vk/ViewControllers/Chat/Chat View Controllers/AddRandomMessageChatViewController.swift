@@ -41,6 +41,5 @@ class AddRandomMessagesChatViewController: DemoChatViewController {
 
     @objc
     private func addRandomMessage() {
-        self.dataSource.addRandomIncomingMessage()
     }
 }

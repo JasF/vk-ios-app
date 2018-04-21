@@ -460,7 +460,131 @@
 		C3372FD12083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB62083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift */; };
 		C3372FD22083356C0080DA75 /* SlidingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB72083356C0080DA75 /* SlidingDataSource.swift */; };
 		C3372FD32083356C0080DA75 /* ChatExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB82083356C0080DA75 /* ChatExamplesViewController.swift */; };
+		C35B737B208B11E3001C8067 /* TypingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35B737A208B11E3001C8067 /* TypingPresenter.swift */; };
+		C35B737D208B1203001C8067 /* TypingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35B737C208B1203001C8067 /* TypingModel.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
+		C3B0EE52208B12B1008802BB /* TypingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B0EE51208B12B1008802BB /* TypingCell.swift */; };
+		C3B0EECF208B14E8008802BB /* loadBubble_0019_Layer-20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE55208B14E8008802BB /* loadBubble_0019_Layer-20@2x.png */; };
+		C3B0EED0208B14E8008802BB /* loadBubble_0031_Layer-8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE56208B14E8008802BB /* loadBubble_0031_Layer-8@2x.png */; };
+		C3B0EED1208B14E8008802BB /* loadBubble_0014_Layer-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE57208B14E8008802BB /* loadBubble_0014_Layer-25@2x.png */; };
+		C3B0EED2208B14E8008802BB /* loadBubble_0026_Layer-13@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE58208B14E8008802BB /* loadBubble_0026_Layer-13@2x.png */; };
+		C3B0EED3208B14E8008802BB /* loadBubble_0023_Layer-16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE59208B14E8008802BB /* loadBubble_0023_Layer-16@2x.png */; };
+		C3B0EED4208B14E8008802BB /* loadBubble_0001_Layer-38@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE5A208B14E8008802BB /* loadBubble_0001_Layer-38@2x.png */; };
+		C3B0EED5208B14E8008802BB /* loadBubble_0020_Layer-19@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE5B208B14E8008802BB /* loadBubble_0020_Layer-19@2x.png */; };
+		C3B0EED6208B14E8008802BB /* loadBubble_0002_Layer-37@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE5C208B14E8008802BB /* loadBubble_0002_Layer-37@2x.png */; };
+		C3B0EED7208B14E8008802BB /* loadBubble_0007_Layer-32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE5D208B14E8008802BB /* loadBubble_0007_Layer-32@2x.png */; };
+		C3B0EED8208B14E8008802BB /* loadBubble_0012_Layer-27@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE5E208B14E8008802BB /* loadBubble_0012_Layer-27@2x.png */; };
+		C3B0EED9208B14E8008802BB /* loadBubble_0017_Layer-22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE5F208B14E8008802BB /* loadBubble_0017_Layer-22@2x.png */; };
+		C3B0EEDA208B14E8008802BB /* loadBubble_0011_Layer-28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE60208B14E8008802BB /* loadBubble_0011_Layer-28@2x.png */; };
+		C3B0EEDB208B14E8008802BB /* loadBubble_0035_Layer-4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE61208B14E8008802BB /* loadBubble_0035_Layer-4@2x.png */; };
+		C3B0EEDC208B14E8008802BB /* loadBubble_0033_Layer-6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE62208B14E8008802BB /* loadBubble_0033_Layer-6@2x.png */; };
+		C3B0EEDD208B14E8008802BB /* loadBubble_0004_Layer-35@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE63208B14E8008802BB /* loadBubble_0004_Layer-35@2x.png */; };
+		C3B0EEDE208B14E8008802BB /* loadBubble_0025_Layer-14@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE64208B14E8008802BB /* loadBubble_0025_Layer-14@2x.png */; };
+		C3B0EEDF208B14E8008802BB /* loadBubble_0037_Layer-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE65208B14E8008802BB /* loadBubble_0037_Layer-2@2x.png */; };
+		C3B0EEE0208B14E8008802BB /* loadBubble_0028_Layer-11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE66208B14E8008802BB /* loadBubble_0028_Layer-11@2x.png */; };
+		C3B0EEE1208B14E8008802BB /* loadBubble_0009_Layer-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE67208B14E8008802BB /* loadBubble_0009_Layer-30@2x.png */; };
+		C3B0EEE2208B14E8008802BB /* loadBubble_0008_Layer-31@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE68208B14E8008802BB /* loadBubble_0008_Layer-31@2x.png */; };
+		C3B0EEE3208B14E8008802BB /* loadBubble_0029_Layer-10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE69208B14E8008802BB /* loadBubble_0029_Layer-10@2x.png */; };
+		C3B0EEE4208B14E8008802BB /* loadBubble_0024_Layer-15@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE6A208B14E8008802BB /* loadBubble_0024_Layer-15@2x.png */; };
+		C3B0EEE5208B14E8008802BB /* loadBubble_0005_Layer-34@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE6B208B14E8008802BB /* loadBubble_0005_Layer-34@2x.png */; };
+		C3B0EEE6208B14E8008802BB /* loadBubble_0030_Layer-9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE6C208B14E8008802BB /* loadBubble_0030_Layer-9@2x.png */; };
+		C3B0EEE7208B14E8008802BB /* loadBubble_0010_Layer-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE6D208B14E8008802BB /* loadBubble_0010_Layer-29@2x.png */; };
+		C3B0EEE8208B14E8008802BB /* loadBubble_0016_Layer-23@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE6E208B14E8008802BB /* loadBubble_0016_Layer-23@2x.png */; };
+		C3B0EEE9208B14E8008802BB /* loadBubble_0013_Layer-26@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE6F208B14E8008802BB /* loadBubble_0013_Layer-26@2x.png */; };
+		C3B0EEEA208B14E8008802BB /* loadBubble_0006_Layer-33@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE70208B14E8008802BB /* loadBubble_0006_Layer-33@2x.png */; };
+		C3B0EEEB208B14E8008802BB /* loadBubble_0003_Layer-36@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE71208B14E8008802BB /* loadBubble_0003_Layer-36@2x.png */; };
+		C3B0EEEC208B14E8008802BB /* loadBubble_0021_Layer-18@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE72208B14E8008802BB /* loadBubble_0021_Layer-18@2x.png */; };
+		C3B0EEED208B14E8008802BB /* loadBubble_0036_Layer-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE73208B14E8008802BB /* loadBubble_0036_Layer-3@2x.png */; };
+		C3B0EEEE208B14E8008802BB /* loadBubble_0000_Layer-39@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE74208B14E8008802BB /* loadBubble_0000_Layer-39@2x.png */; };
+		C3B0EEEF208B14E8008802BB /* loadBubble_0022_Layer-17@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE75208B14E8008802BB /* loadBubble_0022_Layer-17@2x.png */; };
+		C3B0EEF0208B14E8008802BB /* loadBubble_0027_Layer-12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE76208B14E8008802BB /* loadBubble_0027_Layer-12@2x.png */; };
+		C3B0EEF1208B14E8008802BB /* loadBubble_0015_Layer-24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE77208B14E8008802BB /* loadBubble_0015_Layer-24@2x.png */; };
+		C3B0EEF2208B14E8008802BB /* loadBubble_0038_Layer-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE78208B14E8008802BB /* loadBubble_0038_Layer-1@2x.png */; };
+		C3B0EEF3208B14E8008802BB /* loadBubble_0034_Layer-5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE79208B14E8008802BB /* loadBubble_0034_Layer-5@2x.png */; };
+		C3B0EEF4208B14E8008802BB /* loadBubble_0032_Layer-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE7A208B14E8008802BB /* loadBubble_0032_Layer-7@2x.png */; };
+		C3B0EEF5208B14E8008802BB /* loadBubble_0018_Layer-21@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE7B208B14E8008802BB /* loadBubble_0018_Layer-21@2x.png */; };
+		C3B0EEF6208B14E8008802BB /* loadBubble_0032_Layer-7@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE7D208B14E8008802BB /* loadBubble_0032_Layer-7@1x.png */; };
+		C3B0EEF7208B14E8008802BB /* loadBubble_0018_Layer-21@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE7E208B14E8008802BB /* loadBubble_0018_Layer-21@1x.png */; };
+		C3B0EEF8208B14E8008802BB /* loadBubble_0034_Layer-5@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE7F208B14E8008802BB /* loadBubble_0034_Layer-5@1x.png */; };
+		C3B0EEF9208B14E8008802BB /* loadBubble_0015_Layer-24@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE80208B14E8008802BB /* loadBubble_0015_Layer-24@1x.png */; };
+		C3B0EEFA208B14E8008802BB /* loadBubble_0038_Layer-1@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE81208B14E8008802BB /* loadBubble_0038_Layer-1@1x.png */; };
+		C3B0EEFB208B14E8008802BB /* loadBubble_0003_Layer-36@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE82208B14E8008802BB /* loadBubble_0003_Layer-36@1x.png */; };
+		C3B0EEFC208B14E8008802BB /* loadBubble_0006_Layer-33@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE83208B14E8008802BB /* loadBubble_0006_Layer-33@1x.png */; };
+		C3B0EEFD208B14E8008802BB /* loadBubble_0021_Layer-18@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE84208B14E8008802BB /* loadBubble_0021_Layer-18@1x.png */; };
+		C3B0EEFE208B14E8008802BB /* loadBubble_0036_Layer-3@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE85208B14E8008802BB /* loadBubble_0036_Layer-3@1x.png */; };
+		C3B0EEFF208B14E8008802BB /* loadBubble_0000_Layer-39@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE86208B14E8008802BB /* loadBubble_0000_Layer-39@1x.png */; };
+		C3B0EF00208B14E8008802BB /* loadBubble_0027_Layer-12@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE87208B14E8008802BB /* loadBubble_0027_Layer-12@1x.png */; };
+		C3B0EF01208B14E8008802BB /* loadBubble_0022_Layer-17@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE88208B14E8008802BB /* loadBubble_0022_Layer-17@1x.png */; };
+		C3B0EF02208B14E8008802BB /* loadBubble_0030_Layer-9@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE89208B14E8008802BB /* loadBubble_0030_Layer-9@1x.png */; };
+		C3B0EF03208B14E8008802BB /* loadBubble_0010_Layer-29@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE8A208B14E8008802BB /* loadBubble_0010_Layer-29@1x.png */; };
+		C3B0EF04208B14E8008802BB /* loadBubble_0013_Layer-26@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE8B208B14E8008802BB /* loadBubble_0013_Layer-26@1x.png */; };
+		C3B0EF05208B14E8008802BB /* loadBubble_0016_Layer-23@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE8C208B14E8008802BB /* loadBubble_0016_Layer-23@1x.png */; };
+		C3B0EF06208B14E8008802BB /* loadBubble_0024_Layer-15@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE8D208B14E8008802BB /* loadBubble_0024_Layer-15@1x.png */; };
+		C3B0EF07208B14E8008802BB /* loadBubble_0005_Layer-34@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE8E208B14E8008802BB /* loadBubble_0005_Layer-34@1x.png */; };
+		C3B0EF08208B14E8008802BB /* loadBubble_0008_Layer-31@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE8F208B14E8008802BB /* loadBubble_0008_Layer-31@1x.png */; };
+		C3B0EF09208B14E8008802BB /* loadBubble_0029_Layer-10@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE90208B14E8008802BB /* loadBubble_0029_Layer-10@1x.png */; };
+		C3B0EF0A208B14E8008802BB /* loadBubble_0028_Layer-11@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE91208B14E8008802BB /* loadBubble_0028_Layer-11@1x.png */; };
+		C3B0EF0B208B14E8008802BB /* loadBubble_0009_Layer-30@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE92208B14E8008802BB /* loadBubble_0009_Layer-30@1x.png */; };
+		C3B0EF0C208B14E8008802BB /* loadBubble_0037_Layer-2@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE93208B14E8008802BB /* loadBubble_0037_Layer-2@1x.png */; };
+		C3B0EF0D208B14E8008802BB /* loadBubble_0033_Layer-6@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE94208B14E8008802BB /* loadBubble_0033_Layer-6@1x.png */; };
+		C3B0EF0E208B14E8008802BB /* loadBubble_0004_Layer-35@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE95208B14E8008802BB /* loadBubble_0004_Layer-35@1x.png */; };
+		C3B0EF0F208B14E8008802BB /* loadBubble_0025_Layer-14@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE96208B14E8008802BB /* loadBubble_0025_Layer-14@1x.png */; };
+		C3B0EF10208B14E8008802BB /* loadBubble_0017_Layer-22@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE97208B14E8008802BB /* loadBubble_0017_Layer-22@1x.png */; };
+		C3B0EF11208B14E8008802BB /* loadBubble_0012_Layer-27@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE98208B14E8008802BB /* loadBubble_0012_Layer-27@1x.png */; };
+		C3B0EF12208B14E8008802BB /* loadBubble_0011_Layer-28@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE99208B14E8008802BB /* loadBubble_0011_Layer-28@1x.png */; };
+		C3B0EF13208B14E8008802BB /* loadBubble_0035_Layer-4@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE9A208B14E8008802BB /* loadBubble_0035_Layer-4@1x.png */; };
+		C3B0EF14208B14E8008802BB /* loadBubble_0023_Layer-16@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE9B208B14E8008802BB /* loadBubble_0023_Layer-16@1x.png */; };
+		C3B0EF15208B14E8008802BB /* loadBubble_0026_Layer-13@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE9C208B14E8008802BB /* loadBubble_0026_Layer-13@1x.png */; };
+		C3B0EF16208B14E8008802BB /* loadBubble_0001_Layer-38@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE9D208B14E8008802BB /* loadBubble_0001_Layer-38@1x.png */; };
+		C3B0EF17208B14E8008802BB /* loadBubble_0020_Layer-19@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE9E208B14E8008802BB /* loadBubble_0020_Layer-19@1x.png */; };
+		C3B0EF18208B14E8008802BB /* loadBubble_0007_Layer-32@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE9F208B14E8008802BB /* loadBubble_0007_Layer-32@1x.png */; };
+		C3B0EF19208B14E8008802BB /* loadBubble_0002_Layer-37@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEA0208B14E8008802BB /* loadBubble_0002_Layer-37@1x.png */; };
+		C3B0EF1A208B14E8008802BB /* loadBubble_0014_Layer-25@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEA1208B14E8008802BB /* loadBubble_0014_Layer-25@1x.png */; };
+		C3B0EF1B208B14E8008802BB /* loadBubble_0031_Layer-8@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEA2208B14E8008802BB /* loadBubble_0031_Layer-8@1x.png */; };
+		C3B0EF1C208B14E8008802BB /* loadBubble_0019_Layer-20@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEA3208B14E8008802BB /* loadBubble_0019_Layer-20@1x.png */; };
+		C3B0EF1D208B14E8008802BB /* loadBubble@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEA4208B14E8008802BB /* loadBubble@3x.gif */; };
+		C3B0EF1E208B14E8008802BB /* loadBubble@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEA5208B14E8008802BB /* loadBubble@2x.gif */; };
+		C3B0EF1F208B14E8008802BB /* loadBubble@1x.gif in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEA6208B14E8008802BB /* loadBubble@1x.gif */; };
+		C3B0EF20208B14E8008802BB /* loadBubble_0002_Layer-37@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEA8208B14E8008802BB /* loadBubble_0002_Layer-37@3x.png */; };
+		C3B0EF21208B14E8008802BB /* loadBubble_0007_Layer-32@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEA9208B14E8008802BB /* loadBubble_0007_Layer-32@3x.png */; };
+		C3B0EF22208B14E8008802BB /* loadBubble_0020_Layer-19@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEAA208B14E8008802BB /* loadBubble_0020_Layer-19@3x.png */; };
+		C3B0EF23208B14E8008802BB /* loadBubble_0001_Layer-38@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEAB208B14E8008802BB /* loadBubble_0001_Layer-38@3x.png */; };
+		C3B0EF24208B14E8008802BB /* loadBubble_0026_Layer-13@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEAC208B14E8008802BB /* loadBubble_0026_Layer-13@3x.png */; };
+		C3B0EF25208B14E8008802BB /* loadBubble_0023_Layer-16@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEAD208B14E8008802BB /* loadBubble_0023_Layer-16@3x.png */; };
+		C3B0EF26208B14E8008802BB /* loadBubble_0014_Layer-25@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEAE208B14E8008802BB /* loadBubble_0014_Layer-25@3x.png */; };
+		C3B0EF27208B14E8008802BB /* loadBubble_0031_Layer-8@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEAF208B14E8008802BB /* loadBubble_0031_Layer-8@3x.png */; };
+		C3B0EF28208B14E8008802BB /* loadBubble_0019_Layer-20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEB0208B14E8008802BB /* loadBubble_0019_Layer-20@3x.png */; };
+		C3B0EF29208B14E8008802BB /* loadBubble_0009_Layer-30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEB1208B14E8008802BB /* loadBubble_0009_Layer-30@3x.png */; };
+		C3B0EF2A208B14E8008802BB /* loadBubble_0028_Layer-11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEB2208B14E8008802BB /* loadBubble_0028_Layer-11@3x.png */; };
+		C3B0EF2B208B14E8008802BB /* loadBubble_0037_Layer-2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEB3208B14E8008802BB /* loadBubble_0037_Layer-2@3x.png */; };
+		C3B0EF2C208B14E8008802BB /* loadBubble_0025_Layer-14@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEB4208B14E8008802BB /* loadBubble_0025_Layer-14@3x.png */; };
+		C3B0EF2D208B14E8008802BB /* loadBubble_0004_Layer-35@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEB5208B14E8008802BB /* loadBubble_0004_Layer-35@3x.png */; };
+		C3B0EF2E208B14E8008802BB /* loadBubble_0033_Layer-6@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEB6208B14E8008802BB /* loadBubble_0033_Layer-6@3x.png */; };
+		C3B0EF2F208B14E8008802BB /* loadBubble_0035_Layer-4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEB7208B14E8008802BB /* loadBubble_0035_Layer-4@3x.png */; };
+		C3B0EF30208B14E8008802BB /* loadBubble_0011_Layer-28@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEB8208B14E8008802BB /* loadBubble_0011_Layer-28@3x.png */; };
+		C3B0EF31208B14E8008802BB /* loadBubble_0012_Layer-27@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEB9208B14E8008802BB /* loadBubble_0012_Layer-27@3x.png */; };
+		C3B0EF32208B14E8008802BB /* loadBubble_0017_Layer-22@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEBA208B14E8008802BB /* loadBubble_0017_Layer-22@3x.png */; };
+		C3B0EF33208B14E8008802BB /* loadBubble_0016_Layer-23@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEBB208B14E8008802BB /* loadBubble_0016_Layer-23@3x.png */; };
+		C3B0EF34208B14E8008802BB /* loadBubble_0013_Layer-26@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEBC208B14E8008802BB /* loadBubble_0013_Layer-26@3x.png */; };
+		C3B0EF35208B14E8008802BB /* loadBubble_0010_Layer-29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEBD208B14E8008802BB /* loadBubble_0010_Layer-29@3x.png */; };
+		C3B0EF36208B14E8008802BB /* loadBubble_0030_Layer-9@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEBE208B14E8008802BB /* loadBubble_0030_Layer-9@3x.png */; };
+		C3B0EF37208B14E8008802BB /* loadBubble_0005_Layer-34@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEBF208B14E8008802BB /* loadBubble_0005_Layer-34@3x.png */; };
+		C3B0EF38208B14E8008802BB /* loadBubble_0024_Layer-15@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEC0208B14E8008802BB /* loadBubble_0024_Layer-15@3x.png */; };
+		C3B0EF39208B14E8008802BB /* loadBubble_0029_Layer-10@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEC1208B14E8008802BB /* loadBubble_0029_Layer-10@3x.png */; };
+		C3B0EF3A208B14E8008802BB /* loadBubble_0008_Layer-31@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEC2208B14E8008802BB /* loadBubble_0008_Layer-31@3x.png */; };
+		C3B0EF3B208B14E8008802BB /* loadBubble_0018_Layer-21@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEC3208B14E8008802BB /* loadBubble_0018_Layer-21@3x.png */; };
+		C3B0EF3C208B14E8008802BB /* loadBubble_0032_Layer-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEC4208B14E8008802BB /* loadBubble_0032_Layer-7@3x.png */; };
+		C3B0EF3D208B14E8008802BB /* loadBubble_0034_Layer-5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEC5208B14E8008802BB /* loadBubble_0034_Layer-5@3x.png */; };
+		C3B0EF3E208B14E8008802BB /* loadBubble_0038_Layer-1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEC6208B14E8008802BB /* loadBubble_0038_Layer-1@3x.png */; };
+		C3B0EF3F208B14E9008802BB /* loadBubble_0015_Layer-24@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEC7208B14E8008802BB /* loadBubble_0015_Layer-24@3x.png */; };
+		C3B0EF40208B14E9008802BB /* loadBubble_0022_Layer-17@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEC8208B14E8008802BB /* loadBubble_0022_Layer-17@3x.png */; };
+		C3B0EF41208B14E9008802BB /* loadBubble_0027_Layer-12@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EEC9208B14E8008802BB /* loadBubble_0027_Layer-12@3x.png */; };
+		C3B0EF42208B14E9008802BB /* loadBubble_0000_Layer-39@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EECA208B14E8008802BB /* loadBubble_0000_Layer-39@3x.png */; };
+		C3B0EF43208B14E9008802BB /* loadBubble_0036_Layer-3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EECB208B14E8008802BB /* loadBubble_0036_Layer-3@3x.png */; };
+		C3B0EF44208B14E9008802BB /* loadBubble_0021_Layer-18@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EECC208B14E8008802BB /* loadBubble_0021_Layer-18@3x.png */; };
+		C3B0EF45208B14E9008802BB /* loadBubble_0006_Layer-33@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EECD208B14E8008802BB /* loadBubble_0006_Layer-33@3x.png */; };
+		C3B0EF46208B14E9008802BB /* loadBubble_0003_Layer-36@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EECE208B14E8008802BB /* loadBubble_0003_Layer-36@3x.png */; };
+		C3B0EF48208B15E6008802BB /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B0EF47208B15E6008802BB /* iOSDevCenters+GIF.swift */; };
 		C3B225062085BA6800599E04 /* DialogScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225052085BA6800599E04 /* DialogScreenViewModelImpl.m */; };
 		C3B225092085BA8300599E04 /* ViewModelsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225082085BA8300599E04 /* ViewModelsAssembly.m */; };
 		C3B225102085D7DC00599E04 /* ChatListScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2250F2085D7DC00599E04 /* ChatListScreenViewModelImpl.m */; };
@@ -1280,12 +1404,136 @@
 		C3372FB72083356C0080DA75 /* SlidingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingDataSource.swift; sourceTree = "<group>"; };
 		C3372FB82083356C0080DA75 /* ChatExamplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatExamplesViewController.swift; sourceTree = "<group>"; };
 		C3372FD4208335DD0080DA75 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile; path = Components/Chatto/ChattoApp/Podfile; sourceTree = SOURCE_ROOT; };
+		C35B737A208B11E3001C8067 /* TypingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingPresenter.swift; sourceTree = "<group>"; };
+		C35B737C208B1203001C8067 /* TypingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingModel.swift; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
 		C3A943D22084824F0033355E /* longpoll.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = longpoll.py; sourceTree = "<group>"; };
 		C3A943FB2084B8B20033355E /* pydialogscreenviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pydialogscreenviewmodel.py; sourceTree = "<group>"; };
 		C3A943FC2084B9360033355E /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C3A943FD2084BAAD0033355E /* messagesservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messagesservice.py; sourceTree = "<group>"; };
+		C3B0EE51208B12B1008802BB /* TypingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingCell.swift; sourceTree = "<group>"; };
+		C3B0EE55208B14E8008802BB /* loadBubble_0019_Layer-20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0019_Layer-20@2x.png"; sourceTree = "<group>"; };
+		C3B0EE56208B14E8008802BB /* loadBubble_0031_Layer-8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0031_Layer-8@2x.png"; sourceTree = "<group>"; };
+		C3B0EE57208B14E8008802BB /* loadBubble_0014_Layer-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0014_Layer-25@2x.png"; sourceTree = "<group>"; };
+		C3B0EE58208B14E8008802BB /* loadBubble_0026_Layer-13@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0026_Layer-13@2x.png"; sourceTree = "<group>"; };
+		C3B0EE59208B14E8008802BB /* loadBubble_0023_Layer-16@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0023_Layer-16@2x.png"; sourceTree = "<group>"; };
+		C3B0EE5A208B14E8008802BB /* loadBubble_0001_Layer-38@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0001_Layer-38@2x.png"; sourceTree = "<group>"; };
+		C3B0EE5B208B14E8008802BB /* loadBubble_0020_Layer-19@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0020_Layer-19@2x.png"; sourceTree = "<group>"; };
+		C3B0EE5C208B14E8008802BB /* loadBubble_0002_Layer-37@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0002_Layer-37@2x.png"; sourceTree = "<group>"; };
+		C3B0EE5D208B14E8008802BB /* loadBubble_0007_Layer-32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0007_Layer-32@2x.png"; sourceTree = "<group>"; };
+		C3B0EE5E208B14E8008802BB /* loadBubble_0012_Layer-27@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0012_Layer-27@2x.png"; sourceTree = "<group>"; };
+		C3B0EE5F208B14E8008802BB /* loadBubble_0017_Layer-22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0017_Layer-22@2x.png"; sourceTree = "<group>"; };
+		C3B0EE60208B14E8008802BB /* loadBubble_0011_Layer-28@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0011_Layer-28@2x.png"; sourceTree = "<group>"; };
+		C3B0EE61208B14E8008802BB /* loadBubble_0035_Layer-4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0035_Layer-4@2x.png"; sourceTree = "<group>"; };
+		C3B0EE62208B14E8008802BB /* loadBubble_0033_Layer-6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0033_Layer-6@2x.png"; sourceTree = "<group>"; };
+		C3B0EE63208B14E8008802BB /* loadBubble_0004_Layer-35@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0004_Layer-35@2x.png"; sourceTree = "<group>"; };
+		C3B0EE64208B14E8008802BB /* loadBubble_0025_Layer-14@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0025_Layer-14@2x.png"; sourceTree = "<group>"; };
+		C3B0EE65208B14E8008802BB /* loadBubble_0037_Layer-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0037_Layer-2@2x.png"; sourceTree = "<group>"; };
+		C3B0EE66208B14E8008802BB /* loadBubble_0028_Layer-11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0028_Layer-11@2x.png"; sourceTree = "<group>"; };
+		C3B0EE67208B14E8008802BB /* loadBubble_0009_Layer-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0009_Layer-30@2x.png"; sourceTree = "<group>"; };
+		C3B0EE68208B14E8008802BB /* loadBubble_0008_Layer-31@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0008_Layer-31@2x.png"; sourceTree = "<group>"; };
+		C3B0EE69208B14E8008802BB /* loadBubble_0029_Layer-10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0029_Layer-10@2x.png"; sourceTree = "<group>"; };
+		C3B0EE6A208B14E8008802BB /* loadBubble_0024_Layer-15@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0024_Layer-15@2x.png"; sourceTree = "<group>"; };
+		C3B0EE6B208B14E8008802BB /* loadBubble_0005_Layer-34@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0005_Layer-34@2x.png"; sourceTree = "<group>"; };
+		C3B0EE6C208B14E8008802BB /* loadBubble_0030_Layer-9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0030_Layer-9@2x.png"; sourceTree = "<group>"; };
+		C3B0EE6D208B14E8008802BB /* loadBubble_0010_Layer-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0010_Layer-29@2x.png"; sourceTree = "<group>"; };
+		C3B0EE6E208B14E8008802BB /* loadBubble_0016_Layer-23@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0016_Layer-23@2x.png"; sourceTree = "<group>"; };
+		C3B0EE6F208B14E8008802BB /* loadBubble_0013_Layer-26@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0013_Layer-26@2x.png"; sourceTree = "<group>"; };
+		C3B0EE70208B14E8008802BB /* loadBubble_0006_Layer-33@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0006_Layer-33@2x.png"; sourceTree = "<group>"; };
+		C3B0EE71208B14E8008802BB /* loadBubble_0003_Layer-36@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0003_Layer-36@2x.png"; sourceTree = "<group>"; };
+		C3B0EE72208B14E8008802BB /* loadBubble_0021_Layer-18@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0021_Layer-18@2x.png"; sourceTree = "<group>"; };
+		C3B0EE73208B14E8008802BB /* loadBubble_0036_Layer-3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0036_Layer-3@2x.png"; sourceTree = "<group>"; };
+		C3B0EE74208B14E8008802BB /* loadBubble_0000_Layer-39@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0000_Layer-39@2x.png"; sourceTree = "<group>"; };
+		C3B0EE75208B14E8008802BB /* loadBubble_0022_Layer-17@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0022_Layer-17@2x.png"; sourceTree = "<group>"; };
+		C3B0EE76208B14E8008802BB /* loadBubble_0027_Layer-12@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0027_Layer-12@2x.png"; sourceTree = "<group>"; };
+		C3B0EE77208B14E8008802BB /* loadBubble_0015_Layer-24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0015_Layer-24@2x.png"; sourceTree = "<group>"; };
+		C3B0EE78208B14E8008802BB /* loadBubble_0038_Layer-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0038_Layer-1@2x.png"; sourceTree = "<group>"; };
+		C3B0EE79208B14E8008802BB /* loadBubble_0034_Layer-5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0034_Layer-5@2x.png"; sourceTree = "<group>"; };
+		C3B0EE7A208B14E8008802BB /* loadBubble_0032_Layer-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0032_Layer-7@2x.png"; sourceTree = "<group>"; };
+		C3B0EE7B208B14E8008802BB /* loadBubble_0018_Layer-21@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0018_Layer-21@2x.png"; sourceTree = "<group>"; };
+		C3B0EE7D208B14E8008802BB /* loadBubble_0032_Layer-7@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0032_Layer-7@1x.png"; sourceTree = "<group>"; };
+		C3B0EE7E208B14E8008802BB /* loadBubble_0018_Layer-21@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0018_Layer-21@1x.png"; sourceTree = "<group>"; };
+		C3B0EE7F208B14E8008802BB /* loadBubble_0034_Layer-5@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0034_Layer-5@1x.png"; sourceTree = "<group>"; };
+		C3B0EE80208B14E8008802BB /* loadBubble_0015_Layer-24@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0015_Layer-24@1x.png"; sourceTree = "<group>"; };
+		C3B0EE81208B14E8008802BB /* loadBubble_0038_Layer-1@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0038_Layer-1@1x.png"; sourceTree = "<group>"; };
+		C3B0EE82208B14E8008802BB /* loadBubble_0003_Layer-36@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0003_Layer-36@1x.png"; sourceTree = "<group>"; };
+		C3B0EE83208B14E8008802BB /* loadBubble_0006_Layer-33@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0006_Layer-33@1x.png"; sourceTree = "<group>"; };
+		C3B0EE84208B14E8008802BB /* loadBubble_0021_Layer-18@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0021_Layer-18@1x.png"; sourceTree = "<group>"; };
+		C3B0EE85208B14E8008802BB /* loadBubble_0036_Layer-3@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0036_Layer-3@1x.png"; sourceTree = "<group>"; };
+		C3B0EE86208B14E8008802BB /* loadBubble_0000_Layer-39@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0000_Layer-39@1x.png"; sourceTree = "<group>"; };
+		C3B0EE87208B14E8008802BB /* loadBubble_0027_Layer-12@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0027_Layer-12@1x.png"; sourceTree = "<group>"; };
+		C3B0EE88208B14E8008802BB /* loadBubble_0022_Layer-17@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0022_Layer-17@1x.png"; sourceTree = "<group>"; };
+		C3B0EE89208B14E8008802BB /* loadBubble_0030_Layer-9@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0030_Layer-9@1x.png"; sourceTree = "<group>"; };
+		C3B0EE8A208B14E8008802BB /* loadBubble_0010_Layer-29@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0010_Layer-29@1x.png"; sourceTree = "<group>"; };
+		C3B0EE8B208B14E8008802BB /* loadBubble_0013_Layer-26@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0013_Layer-26@1x.png"; sourceTree = "<group>"; };
+		C3B0EE8C208B14E8008802BB /* loadBubble_0016_Layer-23@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0016_Layer-23@1x.png"; sourceTree = "<group>"; };
+		C3B0EE8D208B14E8008802BB /* loadBubble_0024_Layer-15@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0024_Layer-15@1x.png"; sourceTree = "<group>"; };
+		C3B0EE8E208B14E8008802BB /* loadBubble_0005_Layer-34@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0005_Layer-34@1x.png"; sourceTree = "<group>"; };
+		C3B0EE8F208B14E8008802BB /* loadBubble_0008_Layer-31@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0008_Layer-31@1x.png"; sourceTree = "<group>"; };
+		C3B0EE90208B14E8008802BB /* loadBubble_0029_Layer-10@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0029_Layer-10@1x.png"; sourceTree = "<group>"; };
+		C3B0EE91208B14E8008802BB /* loadBubble_0028_Layer-11@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0028_Layer-11@1x.png"; sourceTree = "<group>"; };
+		C3B0EE92208B14E8008802BB /* loadBubble_0009_Layer-30@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0009_Layer-30@1x.png"; sourceTree = "<group>"; };
+		C3B0EE93208B14E8008802BB /* loadBubble_0037_Layer-2@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0037_Layer-2@1x.png"; sourceTree = "<group>"; };
+		C3B0EE94208B14E8008802BB /* loadBubble_0033_Layer-6@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0033_Layer-6@1x.png"; sourceTree = "<group>"; };
+		C3B0EE95208B14E8008802BB /* loadBubble_0004_Layer-35@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0004_Layer-35@1x.png"; sourceTree = "<group>"; };
+		C3B0EE96208B14E8008802BB /* loadBubble_0025_Layer-14@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0025_Layer-14@1x.png"; sourceTree = "<group>"; };
+		C3B0EE97208B14E8008802BB /* loadBubble_0017_Layer-22@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0017_Layer-22@1x.png"; sourceTree = "<group>"; };
+		C3B0EE98208B14E8008802BB /* loadBubble_0012_Layer-27@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0012_Layer-27@1x.png"; sourceTree = "<group>"; };
+		C3B0EE99208B14E8008802BB /* loadBubble_0011_Layer-28@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0011_Layer-28@1x.png"; sourceTree = "<group>"; };
+		C3B0EE9A208B14E8008802BB /* loadBubble_0035_Layer-4@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0035_Layer-4@1x.png"; sourceTree = "<group>"; };
+		C3B0EE9B208B14E8008802BB /* loadBubble_0023_Layer-16@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0023_Layer-16@1x.png"; sourceTree = "<group>"; };
+		C3B0EE9C208B14E8008802BB /* loadBubble_0026_Layer-13@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0026_Layer-13@1x.png"; sourceTree = "<group>"; };
+		C3B0EE9D208B14E8008802BB /* loadBubble_0001_Layer-38@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0001_Layer-38@1x.png"; sourceTree = "<group>"; };
+		C3B0EE9E208B14E8008802BB /* loadBubble_0020_Layer-19@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0020_Layer-19@1x.png"; sourceTree = "<group>"; };
+		C3B0EE9F208B14E8008802BB /* loadBubble_0007_Layer-32@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0007_Layer-32@1x.png"; sourceTree = "<group>"; };
+		C3B0EEA0208B14E8008802BB /* loadBubble_0002_Layer-37@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0002_Layer-37@1x.png"; sourceTree = "<group>"; };
+		C3B0EEA1208B14E8008802BB /* loadBubble_0014_Layer-25@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0014_Layer-25@1x.png"; sourceTree = "<group>"; };
+		C3B0EEA2208B14E8008802BB /* loadBubble_0031_Layer-8@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0031_Layer-8@1x.png"; sourceTree = "<group>"; };
+		C3B0EEA3208B14E8008802BB /* loadBubble_0019_Layer-20@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0019_Layer-20@1x.png"; sourceTree = "<group>"; };
+		C3B0EEA4208B14E8008802BB /* loadBubble@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loadBubble@3x.gif"; sourceTree = "<group>"; };
+		C3B0EEA5208B14E8008802BB /* loadBubble@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loadBubble@2x.gif"; sourceTree = "<group>"; };
+		C3B0EEA6208B14E8008802BB /* loadBubble@1x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loadBubble@1x.gif"; sourceTree = "<group>"; };
+		C3B0EEA8208B14E8008802BB /* loadBubble_0002_Layer-37@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0002_Layer-37@3x.png"; sourceTree = "<group>"; };
+		C3B0EEA9208B14E8008802BB /* loadBubble_0007_Layer-32@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0007_Layer-32@3x.png"; sourceTree = "<group>"; };
+		C3B0EEAA208B14E8008802BB /* loadBubble_0020_Layer-19@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0020_Layer-19@3x.png"; sourceTree = "<group>"; };
+		C3B0EEAB208B14E8008802BB /* loadBubble_0001_Layer-38@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0001_Layer-38@3x.png"; sourceTree = "<group>"; };
+		C3B0EEAC208B14E8008802BB /* loadBubble_0026_Layer-13@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0026_Layer-13@3x.png"; sourceTree = "<group>"; };
+		C3B0EEAD208B14E8008802BB /* loadBubble_0023_Layer-16@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0023_Layer-16@3x.png"; sourceTree = "<group>"; };
+		C3B0EEAE208B14E8008802BB /* loadBubble_0014_Layer-25@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0014_Layer-25@3x.png"; sourceTree = "<group>"; };
+		C3B0EEAF208B14E8008802BB /* loadBubble_0031_Layer-8@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0031_Layer-8@3x.png"; sourceTree = "<group>"; };
+		C3B0EEB0208B14E8008802BB /* loadBubble_0019_Layer-20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0019_Layer-20@3x.png"; sourceTree = "<group>"; };
+		C3B0EEB1208B14E8008802BB /* loadBubble_0009_Layer-30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0009_Layer-30@3x.png"; sourceTree = "<group>"; };
+		C3B0EEB2208B14E8008802BB /* loadBubble_0028_Layer-11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0028_Layer-11@3x.png"; sourceTree = "<group>"; };
+		C3B0EEB3208B14E8008802BB /* loadBubble_0037_Layer-2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0037_Layer-2@3x.png"; sourceTree = "<group>"; };
+		C3B0EEB4208B14E8008802BB /* loadBubble_0025_Layer-14@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0025_Layer-14@3x.png"; sourceTree = "<group>"; };
+		C3B0EEB5208B14E8008802BB /* loadBubble_0004_Layer-35@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0004_Layer-35@3x.png"; sourceTree = "<group>"; };
+		C3B0EEB6208B14E8008802BB /* loadBubble_0033_Layer-6@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0033_Layer-6@3x.png"; sourceTree = "<group>"; };
+		C3B0EEB7208B14E8008802BB /* loadBubble_0035_Layer-4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0035_Layer-4@3x.png"; sourceTree = "<group>"; };
+		C3B0EEB8208B14E8008802BB /* loadBubble_0011_Layer-28@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0011_Layer-28@3x.png"; sourceTree = "<group>"; };
+		C3B0EEB9208B14E8008802BB /* loadBubble_0012_Layer-27@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0012_Layer-27@3x.png"; sourceTree = "<group>"; };
+		C3B0EEBA208B14E8008802BB /* loadBubble_0017_Layer-22@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0017_Layer-22@3x.png"; sourceTree = "<group>"; };
+		C3B0EEBB208B14E8008802BB /* loadBubble_0016_Layer-23@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0016_Layer-23@3x.png"; sourceTree = "<group>"; };
+		C3B0EEBC208B14E8008802BB /* loadBubble_0013_Layer-26@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0013_Layer-26@3x.png"; sourceTree = "<group>"; };
+		C3B0EEBD208B14E8008802BB /* loadBubble_0010_Layer-29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0010_Layer-29@3x.png"; sourceTree = "<group>"; };
+		C3B0EEBE208B14E8008802BB /* loadBubble_0030_Layer-9@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0030_Layer-9@3x.png"; sourceTree = "<group>"; };
+		C3B0EEBF208B14E8008802BB /* loadBubble_0005_Layer-34@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0005_Layer-34@3x.png"; sourceTree = "<group>"; };
+		C3B0EEC0208B14E8008802BB /* loadBubble_0024_Layer-15@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0024_Layer-15@3x.png"; sourceTree = "<group>"; };
+		C3B0EEC1208B14E8008802BB /* loadBubble_0029_Layer-10@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0029_Layer-10@3x.png"; sourceTree = "<group>"; };
+		C3B0EEC2208B14E8008802BB /* loadBubble_0008_Layer-31@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0008_Layer-31@3x.png"; sourceTree = "<group>"; };
+		C3B0EEC3208B14E8008802BB /* loadBubble_0018_Layer-21@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0018_Layer-21@3x.png"; sourceTree = "<group>"; };
+		C3B0EEC4208B14E8008802BB /* loadBubble_0032_Layer-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0032_Layer-7@3x.png"; sourceTree = "<group>"; };
+		C3B0EEC5208B14E8008802BB /* loadBubble_0034_Layer-5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0034_Layer-5@3x.png"; sourceTree = "<group>"; };
+		C3B0EEC6208B14E8008802BB /* loadBubble_0038_Layer-1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0038_Layer-1@3x.png"; sourceTree = "<group>"; };
+		C3B0EEC7208B14E8008802BB /* loadBubble_0015_Layer-24@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0015_Layer-24@3x.png"; sourceTree = "<group>"; };
+		C3B0EEC8208B14E8008802BB /* loadBubble_0022_Layer-17@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0022_Layer-17@3x.png"; sourceTree = "<group>"; };
+		C3B0EEC9208B14E8008802BB /* loadBubble_0027_Layer-12@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0027_Layer-12@3x.png"; sourceTree = "<group>"; };
+		C3B0EECA208B14E8008802BB /* loadBubble_0000_Layer-39@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0000_Layer-39@3x.png"; sourceTree = "<group>"; };
+		C3B0EECB208B14E8008802BB /* loadBubble_0036_Layer-3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0036_Layer-3@3x.png"; sourceTree = "<group>"; };
+		C3B0EECC208B14E8008802BB /* loadBubble_0021_Layer-18@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0021_Layer-18@3x.png"; sourceTree = "<group>"; };
+		C3B0EECD208B14E8008802BB /* loadBubble_0006_Layer-33@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0006_Layer-33@3x.png"; sourceTree = "<group>"; };
+		C3B0EECE208B14E8008802BB /* loadBubble_0003_Layer-36@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0003_Layer-36@3x.png"; sourceTree = "<group>"; };
+		C3B0EF47208B15E6008802BB /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		C3B225032085BA5C00599E04 /* DialogScreenViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogScreenViewModel.h; sourceTree = "<group>"; };
 		C3B225042085BA6800599E04 /* DialogScreenViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogScreenViewModelImpl.h; sourceTree = "<group>"; };
 		C3B225052085BA6800599E04 /* DialogScreenViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogScreenViewModelImpl.m; sourceTree = "<group>"; };
@@ -1495,6 +1743,7 @@
 		C32304242080E57400CEC487 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				C3B0EE53208B14E8008802BB /* loadBubble-iOS */,
 				C32304542080E57400CEC487 /* Assets.xcassets */,
 				C32304A42080E57400CEC487 /* Common.xcassets */,
 				C32306F82080F29D00CEC487 /* old-sources */,
@@ -3406,6 +3655,7 @@
 		C3372FA12083356C0080DA75 /* Chat Items */ = {
 			isa = PBXGroup;
 			children = (
+				C35B7379208B11CF001C8067 /* Typing */,
 				C3372FA22083356C0080DA75 /* Photo Messages */,
 				C3372FA62083356C0080DA75 /* Sending status */,
 				C3372FAA2083356C0080DA75 /* Text Messages */,
@@ -3463,6 +3713,17 @@
 			path = "Time Separator";
 			sourceTree = "<group>";
 		};
+		C35B7379208B11CF001C8067 /* Typing */ = {
+			isa = PBXGroup;
+			children = (
+				C35B737A208B11E3001C8067 /* TypingPresenter.swift */,
+				C35B737C208B1203001C8067 /* TypingModel.swift */,
+				C3B0EE51208B12B1008802BB /* TypingCell.swift */,
+				C3B0EF47208B15E6008802BB /* iOSDevCenters+GIF.swift */,
+			);
+			path = Typing;
+			sourceTree = "<group>";
+		};
 		C37C0BF92086F7E60086A875 /* AvatarNode */ = {
 			isa = PBXGroup;
 			children = (
@@ -3482,6 +3743,157 @@
 				C3B2252220862B7600599E04 /* pymenuscreenviewmodel.py */,
 			);
 			path = viewmodels;
+			sourceTree = "<group>";
+		};
+		C3B0EE53208B14E8008802BB /* loadBubble-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C3B0EE54208B14E8008802BB /* loadBubble_2x */,
+				C3B0EE7C208B14E8008802BB /* loadBubble_1x */,
+				C3B0EEA4208B14E8008802BB /* loadBubble@3x.gif */,
+				C3B0EEA5208B14E8008802BB /* loadBubble@2x.gif */,
+				C3B0EEA6208B14E8008802BB /* loadBubble@1x.gif */,
+				C3B0EEA7208B14E8008802BB /* loadBubble_3x */,
+			);
+			path = "loadBubble-iOS";
+			sourceTree = "<group>";
+		};
+		C3B0EE54208B14E8008802BB /* loadBubble_2x */ = {
+			isa = PBXGroup;
+			children = (
+				C3B0EE55208B14E8008802BB /* loadBubble_0019_Layer-20@2x.png */,
+				C3B0EE56208B14E8008802BB /* loadBubble_0031_Layer-8@2x.png */,
+				C3B0EE57208B14E8008802BB /* loadBubble_0014_Layer-25@2x.png */,
+				C3B0EE58208B14E8008802BB /* loadBubble_0026_Layer-13@2x.png */,
+				C3B0EE59208B14E8008802BB /* loadBubble_0023_Layer-16@2x.png */,
+				C3B0EE5A208B14E8008802BB /* loadBubble_0001_Layer-38@2x.png */,
+				C3B0EE5B208B14E8008802BB /* loadBubble_0020_Layer-19@2x.png */,
+				C3B0EE5C208B14E8008802BB /* loadBubble_0002_Layer-37@2x.png */,
+				C3B0EE5D208B14E8008802BB /* loadBubble_0007_Layer-32@2x.png */,
+				C3B0EE5E208B14E8008802BB /* loadBubble_0012_Layer-27@2x.png */,
+				C3B0EE5F208B14E8008802BB /* loadBubble_0017_Layer-22@2x.png */,
+				C3B0EE60208B14E8008802BB /* loadBubble_0011_Layer-28@2x.png */,
+				C3B0EE61208B14E8008802BB /* loadBubble_0035_Layer-4@2x.png */,
+				C3B0EE62208B14E8008802BB /* loadBubble_0033_Layer-6@2x.png */,
+				C3B0EE63208B14E8008802BB /* loadBubble_0004_Layer-35@2x.png */,
+				C3B0EE64208B14E8008802BB /* loadBubble_0025_Layer-14@2x.png */,
+				C3B0EE65208B14E8008802BB /* loadBubble_0037_Layer-2@2x.png */,
+				C3B0EE66208B14E8008802BB /* loadBubble_0028_Layer-11@2x.png */,
+				C3B0EE67208B14E8008802BB /* loadBubble_0009_Layer-30@2x.png */,
+				C3B0EE68208B14E8008802BB /* loadBubble_0008_Layer-31@2x.png */,
+				C3B0EE69208B14E8008802BB /* loadBubble_0029_Layer-10@2x.png */,
+				C3B0EE6A208B14E8008802BB /* loadBubble_0024_Layer-15@2x.png */,
+				C3B0EE6B208B14E8008802BB /* loadBubble_0005_Layer-34@2x.png */,
+				C3B0EE6C208B14E8008802BB /* loadBubble_0030_Layer-9@2x.png */,
+				C3B0EE6D208B14E8008802BB /* loadBubble_0010_Layer-29@2x.png */,
+				C3B0EE6E208B14E8008802BB /* loadBubble_0016_Layer-23@2x.png */,
+				C3B0EE6F208B14E8008802BB /* loadBubble_0013_Layer-26@2x.png */,
+				C3B0EE70208B14E8008802BB /* loadBubble_0006_Layer-33@2x.png */,
+				C3B0EE71208B14E8008802BB /* loadBubble_0003_Layer-36@2x.png */,
+				C3B0EE72208B14E8008802BB /* loadBubble_0021_Layer-18@2x.png */,
+				C3B0EE73208B14E8008802BB /* loadBubble_0036_Layer-3@2x.png */,
+				C3B0EE74208B14E8008802BB /* loadBubble_0000_Layer-39@2x.png */,
+				C3B0EE75208B14E8008802BB /* loadBubble_0022_Layer-17@2x.png */,
+				C3B0EE76208B14E8008802BB /* loadBubble_0027_Layer-12@2x.png */,
+				C3B0EE77208B14E8008802BB /* loadBubble_0015_Layer-24@2x.png */,
+				C3B0EE78208B14E8008802BB /* loadBubble_0038_Layer-1@2x.png */,
+				C3B0EE79208B14E8008802BB /* loadBubble_0034_Layer-5@2x.png */,
+				C3B0EE7A208B14E8008802BB /* loadBubble_0032_Layer-7@2x.png */,
+				C3B0EE7B208B14E8008802BB /* loadBubble_0018_Layer-21@2x.png */,
+			);
+			path = loadBubble_2x;
+			sourceTree = "<group>";
+		};
+		C3B0EE7C208B14E8008802BB /* loadBubble_1x */ = {
+			isa = PBXGroup;
+			children = (
+				C3B0EE7D208B14E8008802BB /* loadBubble_0032_Layer-7@1x.png */,
+				C3B0EE7E208B14E8008802BB /* loadBubble_0018_Layer-21@1x.png */,
+				C3B0EE7F208B14E8008802BB /* loadBubble_0034_Layer-5@1x.png */,
+				C3B0EE80208B14E8008802BB /* loadBubble_0015_Layer-24@1x.png */,
+				C3B0EE81208B14E8008802BB /* loadBubble_0038_Layer-1@1x.png */,
+				C3B0EE82208B14E8008802BB /* loadBubble_0003_Layer-36@1x.png */,
+				C3B0EE83208B14E8008802BB /* loadBubble_0006_Layer-33@1x.png */,
+				C3B0EE84208B14E8008802BB /* loadBubble_0021_Layer-18@1x.png */,
+				C3B0EE85208B14E8008802BB /* loadBubble_0036_Layer-3@1x.png */,
+				C3B0EE86208B14E8008802BB /* loadBubble_0000_Layer-39@1x.png */,
+				C3B0EE87208B14E8008802BB /* loadBubble_0027_Layer-12@1x.png */,
+				C3B0EE88208B14E8008802BB /* loadBubble_0022_Layer-17@1x.png */,
+				C3B0EE89208B14E8008802BB /* loadBubble_0030_Layer-9@1x.png */,
+				C3B0EE8A208B14E8008802BB /* loadBubble_0010_Layer-29@1x.png */,
+				C3B0EE8B208B14E8008802BB /* loadBubble_0013_Layer-26@1x.png */,
+				C3B0EE8C208B14E8008802BB /* loadBubble_0016_Layer-23@1x.png */,
+				C3B0EE8D208B14E8008802BB /* loadBubble_0024_Layer-15@1x.png */,
+				C3B0EE8E208B14E8008802BB /* loadBubble_0005_Layer-34@1x.png */,
+				C3B0EE8F208B14E8008802BB /* loadBubble_0008_Layer-31@1x.png */,
+				C3B0EE90208B14E8008802BB /* loadBubble_0029_Layer-10@1x.png */,
+				C3B0EE91208B14E8008802BB /* loadBubble_0028_Layer-11@1x.png */,
+				C3B0EE92208B14E8008802BB /* loadBubble_0009_Layer-30@1x.png */,
+				C3B0EE93208B14E8008802BB /* loadBubble_0037_Layer-2@1x.png */,
+				C3B0EE94208B14E8008802BB /* loadBubble_0033_Layer-6@1x.png */,
+				C3B0EE95208B14E8008802BB /* loadBubble_0004_Layer-35@1x.png */,
+				C3B0EE96208B14E8008802BB /* loadBubble_0025_Layer-14@1x.png */,
+				C3B0EE97208B14E8008802BB /* loadBubble_0017_Layer-22@1x.png */,
+				C3B0EE98208B14E8008802BB /* loadBubble_0012_Layer-27@1x.png */,
+				C3B0EE99208B14E8008802BB /* loadBubble_0011_Layer-28@1x.png */,
+				C3B0EE9A208B14E8008802BB /* loadBubble_0035_Layer-4@1x.png */,
+				C3B0EE9B208B14E8008802BB /* loadBubble_0023_Layer-16@1x.png */,
+				C3B0EE9C208B14E8008802BB /* loadBubble_0026_Layer-13@1x.png */,
+				C3B0EE9D208B14E8008802BB /* loadBubble_0001_Layer-38@1x.png */,
+				C3B0EE9E208B14E8008802BB /* loadBubble_0020_Layer-19@1x.png */,
+				C3B0EE9F208B14E8008802BB /* loadBubble_0007_Layer-32@1x.png */,
+				C3B0EEA0208B14E8008802BB /* loadBubble_0002_Layer-37@1x.png */,
+				C3B0EEA1208B14E8008802BB /* loadBubble_0014_Layer-25@1x.png */,
+				C3B0EEA2208B14E8008802BB /* loadBubble_0031_Layer-8@1x.png */,
+				C3B0EEA3208B14E8008802BB /* loadBubble_0019_Layer-20@1x.png */,
+			);
+			path = loadBubble_1x;
+			sourceTree = "<group>";
+		};
+		C3B0EEA7208B14E8008802BB /* loadBubble_3x */ = {
+			isa = PBXGroup;
+			children = (
+				C3B0EEA8208B14E8008802BB /* loadBubble_0002_Layer-37@3x.png */,
+				C3B0EEA9208B14E8008802BB /* loadBubble_0007_Layer-32@3x.png */,
+				C3B0EEAA208B14E8008802BB /* loadBubble_0020_Layer-19@3x.png */,
+				C3B0EEAB208B14E8008802BB /* loadBubble_0001_Layer-38@3x.png */,
+				C3B0EEAC208B14E8008802BB /* loadBubble_0026_Layer-13@3x.png */,
+				C3B0EEAD208B14E8008802BB /* loadBubble_0023_Layer-16@3x.png */,
+				C3B0EEAE208B14E8008802BB /* loadBubble_0014_Layer-25@3x.png */,
+				C3B0EEAF208B14E8008802BB /* loadBubble_0031_Layer-8@3x.png */,
+				C3B0EEB0208B14E8008802BB /* loadBubble_0019_Layer-20@3x.png */,
+				C3B0EEB1208B14E8008802BB /* loadBubble_0009_Layer-30@3x.png */,
+				C3B0EEB2208B14E8008802BB /* loadBubble_0028_Layer-11@3x.png */,
+				C3B0EEB3208B14E8008802BB /* loadBubble_0037_Layer-2@3x.png */,
+				C3B0EEB4208B14E8008802BB /* loadBubble_0025_Layer-14@3x.png */,
+				C3B0EEB5208B14E8008802BB /* loadBubble_0004_Layer-35@3x.png */,
+				C3B0EEB6208B14E8008802BB /* loadBubble_0033_Layer-6@3x.png */,
+				C3B0EEB7208B14E8008802BB /* loadBubble_0035_Layer-4@3x.png */,
+				C3B0EEB8208B14E8008802BB /* loadBubble_0011_Layer-28@3x.png */,
+				C3B0EEB9208B14E8008802BB /* loadBubble_0012_Layer-27@3x.png */,
+				C3B0EEBA208B14E8008802BB /* loadBubble_0017_Layer-22@3x.png */,
+				C3B0EEBB208B14E8008802BB /* loadBubble_0016_Layer-23@3x.png */,
+				C3B0EEBC208B14E8008802BB /* loadBubble_0013_Layer-26@3x.png */,
+				C3B0EEBD208B14E8008802BB /* loadBubble_0010_Layer-29@3x.png */,
+				C3B0EEBE208B14E8008802BB /* loadBubble_0030_Layer-9@3x.png */,
+				C3B0EEBF208B14E8008802BB /* loadBubble_0005_Layer-34@3x.png */,
+				C3B0EEC0208B14E8008802BB /* loadBubble_0024_Layer-15@3x.png */,
+				C3B0EEC1208B14E8008802BB /* loadBubble_0029_Layer-10@3x.png */,
+				C3B0EEC2208B14E8008802BB /* loadBubble_0008_Layer-31@3x.png */,
+				C3B0EEC3208B14E8008802BB /* loadBubble_0018_Layer-21@3x.png */,
+				C3B0EEC4208B14E8008802BB /* loadBubble_0032_Layer-7@3x.png */,
+				C3B0EEC5208B14E8008802BB /* loadBubble_0034_Layer-5@3x.png */,
+				C3B0EEC6208B14E8008802BB /* loadBubble_0038_Layer-1@3x.png */,
+				C3B0EEC7208B14E8008802BB /* loadBubble_0015_Layer-24@3x.png */,
+				C3B0EEC8208B14E8008802BB /* loadBubble_0022_Layer-17@3x.png */,
+				C3B0EEC9208B14E8008802BB /* loadBubble_0027_Layer-12@3x.png */,
+				C3B0EECA208B14E8008802BB /* loadBubble_0000_Layer-39@3x.png */,
+				C3B0EECB208B14E8008802BB /* loadBubble_0036_Layer-3@3x.png */,
+				C3B0EECC208B14E8008802BB /* loadBubble_0021_Layer-18@3x.png */,
+				C3B0EECD208B14E8008802BB /* loadBubble_0006_Layer-33@3x.png */,
+				C3B0EECE208B14E8008802BB /* loadBubble_0003_Layer-36@3x.png */,
+			);
+			path = loadBubble_3x;
 			sourceTree = "<group>";
 		};
 		C3B225012085BA4000599E04 /* viewmodels */ = {
@@ -3611,52 +4023,78 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3B0EF04208B14E8008802BB /* loadBubble_0013_Layer-26@1x.png in Resources */,
 				C32306A22080E57500CEC487 /* retry.py in Resources */,
+				C3B0EEF6208B14E8008802BB /* loadBubble_0032_Layer-7@1x.png in Resources */,
 				C323062B2080E57500CEC487 /* langhungarianmodel.py in Resources */,
+				C3B0EEE4208B14E8008802BB /* loadBubble_0024_Layer-15@2x.png in Resources */,
 				C323063B2080E57500CEC487 /* charsetprober.py in Resources */,
+				C3B0EEF8208B14E8008802BB /* loadBubble_0034_Layer-5@1x.png in Resources */,
 				C32306712080E57500CEC487 /* __init__.py in Resources */,
+				C3B0EEE3208B14E8008802BB /* loadBubble_0029_Layer-10@2x.png in Resources */,
 				C323064A2080E57500CEC487 /* langturkishmodel.py in Resources */,
+				C3B0EEED208B14E8008802BB /* loadBubble_0036_Layer-3@2x.png in Resources */,
 				C323064D2080E57500CEC487 /* euckrfreq.py in Resources */,
 				C32305F02080E57500CEC487 /* icon_liked@3x.png in Resources */,
 				C323062C2080E57500CEC487 /* mbcssm.py in Resources */,
 				C32306AC2080E57500CEC487 /* request.cpython-34.pyc in Resources */,
 				C32306282080E57500CEC487 /* __init__.py in Resources */,
+				C3B0EF1F208B14E8008802BB /* loadBubble@1x.gif in Resources */,
 				C32306AD2080E57500CEC487 /* filepost.cpython-34.pyc in Resources */,
 				C32306A12080E57500CEC487 /* __init__.cpython-34.pyc in Resources */,
+				C3B0EEE1208B14E8008802BB /* loadBubble_0009_Layer-30@2x.png in Resources */,
+				C3B0EF12208B14E8008802BB /* loadBubble_0011_Layer-28@1x.png in Resources */,
 				C32306792080E57500CEC487 /* structures.py in Resources */,
 				C32306372080E57500CEC487 /* __init__.py in Resources */,
 				C323062D2080E57500CEC487 /* langthaimodel.py in Resources */,
+				C3B0EEE8208B14E8008802BB /* loadBubble_0016_Layer-23@2x.png in Resources */,
+				C3B0EF10208B14E8008802BB /* loadBubble_0017_Layer-22@1x.png in Resources */,
+				C3B0EF07208B14E8008802BB /* loadBubble_0005_Layer-34@1x.png in Resources */,
 				C323068D2080E57500CEC487 /* __main__.py in Resources */,
 				C323062A2080E57500CEC487 /* enums.py in Resources */,
 				C32306472080E57500CEC487 /* eucjpprober.py in Resources */,
 				C32306422080E57500CEC487 /* universaldetector.py in Resources */,
 				C32306492080E57500CEC487 /* escsm.py in Resources */,
 				C32306062080E57500CEC487 /* Main.storyboard in Resources */,
+				C3B0EF3E208B14E8008802BB /* loadBubble_0038_Layer-1@3x.png in Resources */,
 				C32306482080E57500CEC487 /* jisfreq.py in Resources */,
 				C32306302080E57500CEC487 /* langbulgarianmodel.py in Resources */,
 				C32306B02080E57500CEC487 /* _collections.cpython-34.pyc in Resources */,
+				C3B0EEEC208B14E8008802BB /* loadBubble_0021_Layer-18@2x.png in Resources */,
 				C32306122080E57500CEC487 /* app_packages.zip in Resources */,
 				C32306672080E57500CEC487 /* menuscreen.py in Resources */,
 				C323063C2080E57500CEC487 /* gb2312prober.py in Resources */,
 				C32306352080E57500CEC487 /* euctwfreq.py in Resources */,
+				C3B0EF2E208B14E8008802BB /* loadBubble_0033_Layer-6@3x.png in Resources */,
 				C32306312080E57500CEC487 /* euckrprober.py in Resources */,
+				C3B0EF03208B14E8008802BB /* loadBubble_0010_Layer-29@1x.png in Resources */,
 				C32306262080E57500CEC487 /* app_packages.zip in Resources */,
+				C3B0EECF208B14E8008802BB /* loadBubble_0019_Layer-20@2x.png in Resources */,
+				C3B0EF3A208B14E8008802BB /* loadBubble_0008_Layer-31@3x.png in Resources */,
+				C3B0EF0A208B14E8008802BB /* loadBubble_0028_Layer-11@1x.png in Resources */,
 				C323065E2080E57500CEC487 /* core.cpython-34.pyc in Resources */,
 				C323060F2080E57500CEC487 /* Common.xcassets in Resources */,
 				C323062F2080E57500CEC487 /* compat.py in Resources */,
+				C3B0EF3B208B14E8008802BB /* loadBubble_0018_Layer-21@3x.png in Resources */,
 				C32306342080E57500CEC487 /* __init__.py in Resources */,
+				C3B0EF01208B14E8008802BB /* loadBubble_0022_Layer-17@1x.png in Resources */,
 				C32306922080E57500CEC487 /* request.py in Resources */,
 				C32306572080E57500CEC487 /* compat.py in Resources */,
 				C32305D92080E57500CEC487 /* icon_ios@3x.png in Resources */,
 				C32306022080E57500CEC487 /* icon_liked.png in Resources */,
+				C3B0EF09208B14E8008802BB /* loadBubble_0029_Layer-10@1x.png in Resources */,
 				C32306512080E57500CEC487 /* languages.py in Resources */,
 				C32306582080E57500CEC487 /* idnadata.py in Resources */,
+				C3B0EEDC208B14E8008802BB /* loadBubble_0033_Layer-6@2x.png in Resources */,
 				C32306102080E57500CEC487 /* Default-568h@2x.png in Resources */,
+				C3B0EF1E208B14E8008802BB /* loadBubble@2x.gif in Resources */,
+				C3B0EF2F208B14E8008802BB /* loadBubble_0035_Layer-4@3x.png in Resources */,
 				C32305E12080E57500CEC487 /* icon_more@3x.png in Resources */,
 				C32306942080E57500CEC487 /* __init__.py in Resources */,
 				C32306562080E57500CEC487 /* package_data.py in Resources */,
 				C32306C92080E57500CEC487 /* ordered_dict.cpython-34.pyc in Resources */,
 				C32306702080E57500CEC487 /* certs.py in Resources */,
+				C3B0EEE9208B14E8008802BB /* loadBubble_0013_Layer-26@2x.png in Resources */,
 				C32305FF2080E57500CEC487 /* Default-736h@3x.png in Resources */,
 				C323067E2080E57500CEC487 /* __init__.py in Resources */,
 				C323064B2080E57500CEC487 /* sbcharsetprober.py in Resources */,
@@ -3666,16 +4104,31 @@
 				C32306382080E57500CEC487 /* chardetect.py in Resources */,
 				C32306C02080E57500CEC487 /* bindings.cpython-34.pyc in Resources */,
 				C323092E2081AEB100CEC487 /* LICENSE in Resources */,
+				C3B0EF27208B14E8008802BB /* loadBubble_0031_Layer-8@3x.png in Resources */,
 				C32306642080E57500CEC487 /* uts46data.py in Resources */,
+				C3B0EF19208B14E8008802BB /* loadBubble_0002_Layer-37@1x.png in Resources */,
 				C32306402080E57500CEC487 /* codingstatemachine.py in Resources */,
+				C3B0EF18208B14E8008802BB /* loadBubble_0007_Layer-32@1x.png in Resources */,
 				C32306C42080E57500CEC487 /* ntlmpool.py in Resources */,
 				C323067C2080E57500CEC487 /* users.py in Resources */,
+				C3B0EEE6208B14E8008802BB /* loadBubble_0030_Layer-9@2x.png in Resources */,
+				C3B0EF00208B14E8008802BB /* loadBubble_0027_Layer-12@1x.png in Resources */,
+				C3B0EF1C208B14E8008802BB /* loadBubble_0019_Layer-20@1x.png in Resources */,
+				C3B0EED4208B14E8008802BB /* loadBubble_0001_Layer-38@2x.png in Resources */,
+				C3B0EED1208B14E8008802BB /* loadBubble_0014_Layer-25@2x.png in Resources */,
+				C3B0EED2208B14E8008802BB /* loadBubble_0026_Layer-13@2x.png in Resources */,
 				C32306D92080E57500CEC487 /* __init__.py in Resources */,
 				C32306A82080E57500CEC487 /* response.py in Resources */,
+				C3B0EF32208B14E8008802BB /* loadBubble_0017_Layer-22@3x.png in Resources */,
+				C3B0EF0E208B14E8008802BB /* loadBubble_0004_Layer-35@1x.png in Resources */,
 				C32306CE2080E57500CEC487 /* makefile.py in Resources */,
 				C323069E2080E57500CEC487 /* wait.cpython-34.pyc in Resources */,
 				C323068B2080E57500CEC487 /* __init__.cpython-34.pyc in Resources */,
 				C32306BE2080E57500CEC487 /* __init__.py in Resources */,
+				C3B0EEEB208B14E8008802BB /* loadBubble_0003_Layer-36@2x.png in Resources */,
+				C3B0EF2D208B14E8008802BB /* loadBubble_0004_Layer-35@3x.png in Resources */,
+				C3B0EF20208B14E8008802BB /* loadBubble_0002_Layer-37@3x.png in Resources */,
+				C3B0EF3F208B14E9008802BB /* loadBubble_0015_Layer-24@3x.png in Resources */,
 				C32306BB2080E57500CEC487 /* socks.py in Resources */,
 				C32306292080E57500CEC487 /* parser.py in Resources */,
 				C32305EE2080E57500CEC487 /* Assets.xcassets in Resources */,
@@ -3692,21 +4145,35 @@
 				C32306BA2080E57500CEC487 /* __init__.cpython-34.pyc in Resources */,
 				C32306DA2080E57500CEC487 /* printpatch.py in Resources */,
 				C323066E2080E57500CEC487 /* compat.py in Resources */,
+				C3B0EF2C208B14E8008802BB /* loadBubble_0025_Layer-14@3x.png in Resources */,
 				C32306D22080E57500CEC487 /* _implementation.cpython-34.pyc in Resources */,
+				C3B0EEE0208B14E8008802BB /* loadBubble_0028_Layer-11@2x.png in Resources */,
+				C3B0EEFB208B14E8008802BB /* loadBubble_0003_Layer-36@1x.png in Resources */,
+				C3B0EF3D208B14E8008802BB /* loadBubble_0034_Layer-5@3x.png in Resources */,
+				C3B0EEFE208B14E8008802BB /* loadBubble_0036_Layer-3@1x.png in Resources */,
 				C32306AF2080E57500CEC487 /* connectionpool.cpython-34.pyc in Resources */,
 				C32306CD2080E57500CEC487 /* __init__.cpython-34.pyc in Resources */,
 				C32306552080E57500CEC487 /* intranges.py in Resources */,
+				C3B0EF31208B14E8008802BB /* loadBubble_0012_Layer-27@3x.png in Resources */,
 				C32306592080E57500CEC487 /* __init__.py in Resources */,
 				C32306BF2080E57500CEC487 /* low_level.cpython-34.pyc in Resources */,
+				C3B0EF1B208B14E8008802BB /* loadBubble_0031_Layer-8@1x.png in Resources */,
 				C32306662080E57500CEC487 /* authorizationscreen.py in Resources */,
 				C32306972080E57500CEC487 /* ssl_.py in Resources */,
+				C3B0EF21208B14E8008802BB /* loadBubble_0007_Layer-32@3x.png in Resources */,
 				C32306732080E57500CEC487 /* packages.py in Resources */,
 				C32306B72080E57500CEC487 /* appengine.cpython-34.pyc in Resources */,
+				C3B0EF43208B14E9008802BB /* loadBubble_0036_Layer-3@3x.png in Resources */,
+				C3B0EEDD208B14E8008802BB /* loadBubble_0004_Layer-35@2x.png in Resources */,
+				C3B0EF05208B14E8008802BB /* loadBubble_0016_Layer-23@1x.png in Resources */,
 				C32306DE2080E57500CEC487 /* wallservice.py in Resources */,
+				C3B0EEF5208B14E8008802BB /* loadBubble_0018_Layer-21@2x.png in Resources */,
+				C3B0EF1A208B14E8008802BB /* loadBubble_0014_Layer-25@1x.png in Resources */,
 				C32306D32080E57500CEC487 /* __init__.cpython-34.pyc in Resources */,
 				C32306532080E57500CEC487 /* sbcsgroupprober.py in Resources */,
 				C32306272080E57500CEC487 /* subscriber.py in Resources */,
 				C323065D2080E57500CEC487 /* idnadata.cpython-34.pyc in Resources */,
+				C3B0EED0208B14E8008802BB /* loadBubble_0031_Layer-8@2x.png in Resources */,
 				C32306982080E57500CEC487 /* response.cpython-34.pyc in Resources */,
 				C32306CF2080E57500CEC487 /* ordered_dict.py in Resources */,
 				C323069B2080E57500CEC487 /* url.cpython-34.pyc in Resources */,
@@ -3717,36 +4184,57 @@
 				C32306892080E57500CEC487 /* __main__.cpython-34.pyc in Resources */,
 				C323067F2080E57500CEC487 /* exceptions.cpython-36.pyc in Resources */,
 				C32306632080E57500CEC487 /* codec.py in Resources */,
+				C3B0EF45208B14E9008802BB /* loadBubble_0006_Layer-33@3x.png in Resources */,
 				C32306722080E57500CEC487 /* status_codes.py in Resources */,
+				C3B0EEF1208B14E8008802BB /* loadBubble_0015_Layer-24@2x.png in Resources */,
 				C32306962080E57500CEC487 /* response.py in Resources */,
 				C32306832080E57500CEC487 /* api.cpython-36.pyc in Resources */,
 				C323066A2080E57500CEC487 /* cookies.py in Resources */,
+				C3B0EEF9208B14E8008802BB /* loadBubble_0015_Layer-24@1x.png in Resources */,
+				C3B0EF40208B14E9008802BB /* loadBubble_0022_Layer-17@3x.png in Resources */,
 				C32306172080E57500CEC487 /* icon_android.png in Resources */,
 				C32305DA2080E57500CEC487 /* icon_comment@3x.png in Resources */,
 				C32306CB2080E57500CEC487 /* __init__.py in Resources */,
+				C3B0EF23208B14E8008802BB /* loadBubble_0001_Layer-38@3x.png in Resources */,
 				C323060D2080E57500CEC487 /* MenuViewController.storyboard in Resources */,
 				C323069F2080E57500CEC487 /* ssl_.cpython-34.pyc in Resources */,
 				C323068C2080E57500CEC487 /* cacert.pem in Resources */,
 				C323066F2080E57500CEC487 /* models.py in Resources */,
+				C3B0EF3C208B14E8008802BB /* loadBubble_0032_Layer-7@3x.png in Resources */,
+				C3B0EF34208B14E8008802BB /* loadBubble_0013_Layer-26@3x.png in Resources */,
+				C3B0EED6208B14E8008802BB /* loadBubble_0002_Layer-37@2x.png in Resources */,
+				C3B0EEF0208B14E8008802BB /* loadBubble_0027_Layer-12@2x.png in Resources */,
+				C3B0EF0C208B14E8008802BB /* loadBubble_0037_Layer-2@1x.png in Resources */,
 				C32306A32080E57500CEC487 /* url.py in Resources */,
 				C323068E2080E57500CEC487 /* launcher.py in Resources */,
 				C32306A92080E57500CEC487 /* response.cpython-34.pyc in Resources */,
+				C3B0EF08208B14E8008802BB /* loadBubble_0008_Layer-31@1x.png in Resources */,
 				C32306D52080E57500CEC487 /* exceptions.py in Resources */,
+				C3B0EEDA208B14E8008802BB /* loadBubble_0011_Layer-28@2x.png in Resources */,
+				C3B0EF14208B14E8008802BB /* loadBubble_0023_Layer-16@1x.png in Resources */,
 				C3372FC72083356C0080DA75 /* SendingStatusCollectionViewCell.xib in Resources */,
 				C32306C82080E57500CEC487 /* six.cpython-34.pyc in Resources */,
+				C3B0EF2A208B14E8008802BB /* loadBubble_0028_Layer-11@3x.png in Resources */,
 				C323066B2080E57500CEC487 /* auth.py in Resources */,
+				C3B0EEFC208B14E8008802BB /* loadBubble_0006_Layer-33@1x.png in Resources */,
 				C323068F2080E57500CEC487 /* filepost.py in Resources */,
+				C3B0EF24208B14E8008802BB /* loadBubble_0026_Layer-13@3x.png in Resources */,
 				C32306D82080E57500CEC487 /* screensmanager.py in Resources */,
 				C32306C32080E57500CEC487 /* bindings.py in Resources */,
 				C323065A2080E57500CEC487 /* core.py in Resources */,
+				C3B0EEDB208B14E8008802BB /* loadBubble_0035_Layer-4@2x.png in Resources */,
+				C3B0EEEE208B14E8008802BB /* loadBubble_0000_Layer-39@2x.png in Resources */,
 				C32306A52080E57500CEC487 /* request.py in Resources */,
 				C32306B52080E57500CEC487 /* ntlmpool.cpython-34.pyc in Resources */,
 				C32306C22080E57500CEC487 /* low_level.py in Resources */,
+				C3B0EEFA208B14E8008802BB /* loadBubble_0038_Layer-1@1x.png in Resources */,
 				C32306442080E57500CEC487 /* gb2312freq.py in Resources */,
+				C3B0EED7208B14E8008802BB /* loadBubble_0007_Layer-32@2x.png in Resources */,
 				C32306B12080E57500CEC487 /* fields.cpython-34.pyc in Resources */,
 				C32306C62080E57500CEC487 /* _collections.py in Resources */,
 				C323063A2080E57500CEC487 /* latin1prober.py in Resources */,
 				C32306462080E57500CEC487 /* langgreekmodel.py in Resources */,
+				C3B0EEFD208B14E8008802BB /* loadBubble_0021_Layer-18@1x.png in Resources */,
 				C32306452080E57500CEC487 /* mbcsgroupprober.py in Resources */,
 				C323061D2080E57500CEC487 /* icon_like@3x.png in Resources */,
 				C32306692080E57500CEC487 /* __init__.py in Resources */,
@@ -3755,29 +4243,43 @@
 				C32306BD2080E57500CEC487 /* appengine.py in Resources */,
 				C32306C72080E57500CEC487 /* __init__.py in Resources */,
 				C32305E82080E57500CEC487 /* icon_android@3x.png in Resources */,
+				C3B0EF1D208B14E8008802BB /* loadBubble@3x.gif in Resources */,
 				C32306A72080E57500CEC487 /* poolmanager.py in Resources */,
 				C32305FE2080E57500CEC487 /* icon_ios.png in Resources */,
 				C32306182080E57500CEC487 /* Default-667h@2x.png in Resources */,
+				C3B0EF0D208B14E8008802BB /* loadBubble_0033_Layer-6@1x.png in Resources */,
 				C323065F2080E57500CEC487 /* intranges.cpython-34.pyc in Resources */,
+				C3B0EEF4208B14E8008802BB /* loadBubble_0032_Layer-7@2x.png in Resources */,
 				C323092F2081AEB100CEC487 /* README.md in Resources */,
 				C32306392080E57500CEC487 /* chardistribution.py in Resources */,
 				C32306A42080E57500CEC487 /* connection.py in Resources */,
 				197D8B141D64BA50004630AE /* Main.storyboard in Resources */,
+				C3B0EF25208B14E8008802BB /* loadBubble_0023_Layer-16@3x.png in Resources */,
+				C3B0EF44208B14E9008802BB /* loadBubble_0021_Layer-18@3x.png in Resources */,
 				C32306932080E57500CEC487 /* timeout.py in Resources */,
 				C32306C12080E57500CEC487 /* __init__.cpython-34.pyc in Resources */,
 				C32306AB2080E57500CEC487 /* exceptions.cpython-34.pyc in Resources */,
 				C32306B82080E57500CEC487 /* socks.cpython-34.pyc in Resources */,
+				C3B0EEE7208B14E8008802BB /* loadBubble_0010_Layer-29@2x.png in Resources */,
+				C3B0EEFF208B14E8008802BB /* loadBubble_0000_Layer-39@1x.png in Resources */,
+				C3B0EF39208B14E8008802BB /* loadBubble_0029_Layer-10@3x.png in Resources */,
 				C32309302081AEB100CEC487 /* LICENSE in Resources */,
+				C3B0EEE5208B14E8008802BB /* loadBubble_0005_Layer-34@2x.png in Resources */,
 				C32306912080E57500CEC487 /* wait.py in Resources */,
 				C32306B62080E57500CEC487 /* securetransport.cpython-34.pyc in Resources */,
 				C32305D82080E57500CEC487 /* Localizable.strings in Resources */,
 				C323067A2080E57500CEC487 /* help.py in Resources */,
 				C323069C2080E57500CEC487 /* connection.cpython-34.pyc in Resources */,
+				C3B0EF33208B14E8008802BB /* loadBubble_0016_Layer-23@3x.png in Resources */,
+				C3B0EF37208B14E8008802BB /* loadBubble_0005_Layer-34@3x.png in Resources */,
+				C3B0EEDE208B14E8008802BB /* loadBubble_0025_Layer-14@2x.png in Resources */,
 				C32306812080E57500CEC487 /* session.cpython-36.pyc in Resources */,
+				C3B0EF0F208B14E8008802BB /* loadBubble_0025_Layer-14@1x.png in Resources */,
 				C32306542080E57500CEC487 /* jpcntx.py in Resources */,
 				C32306502080E57500CEC487 /* __init__.py in Resources */,
 				C32306902080E57500CEC487 /* fields.py in Resources */,
 				C32306742080E57500CEC487 /* __version__.py in Resources */,
+				C3B0EF41208B14E9008802BB /* loadBubble_0027_Layer-12@3x.png in Resources */,
 				C32306C52080E57500CEC487 /* connection.py in Resources */,
 				C32306DB2080E57500CEC487 /* runloop.py in Resources */,
 				C32306DF2080E57500CEC487 /* chatlistservice.py in Resources */,
@@ -3785,16 +4287,25 @@
 				C32306852080E57500CEC487 /* utils.py in Resources */,
 				C32306772080E57500CEC487 /* utils.py in Resources */,
 				C32306822080E57500CEC487 /* __init__.cpython-36.pyc in Resources */,
+				C3B0EEF2208B14E8008802BB /* loadBubble_0038_Layer-1@2x.png in Resources */,
+				C3B0EF30208B14E8008802BB /* loadBubble_0011_Layer-28@3x.png in Resources */,
+				C3B0EF2B208B14E8008802BB /* loadBubble_0037_Layer-2@3x.png in Resources */,
 				C32306752080E57500CEC487 /* api.py in Resources */,
 				C32306322080E57500CEC487 /* sjisprober.py in Resources */,
 				C323069D2080E57500CEC487 /* selectors.cpython-34.pyc in Resources */,
 				C32306CC2080E57500CEC487 /* makefile.cpython-34.pyc in Resources */,
 				C32306622080E57500CEC487 /* __init__.cpython-34.pyc in Resources */,
+				C3B0EEEF208B14E8008802BB /* loadBubble_0022_Layer-17@2x.png in Resources */,
+				C3B0EF42208B14E9008802BB /* loadBubble_0000_Layer-39@3x.png in Resources */,
+				C3B0EF28208B14E8008802BB /* loadBubble_0019_Layer-20@3x.png in Resources */,
 				C32306162080E57500CEC487 /* icon_like@2x.png in Resources */,
+				C3B0EF0B208B14E8008802BB /* loadBubble_0009_Layer-30@1x.png in Resources */,
 				C32305DC2080E57500CEC487 /* icon_comment.png in Resources */,
+				C3B0EED9208B14E8008802BB /* loadBubble_0017_Layer-22@2x.png in Resources */,
 				C323063F2080E57500CEC487 /* langrussianmodel.py in Resources */,
 				C32306D72080E57500CEC487 /* main.py in Resources */,
 				C32306522080E57500CEC487 /* charsetgroupprober.py in Resources */,
+				C3B0EEEA208B14E8008802BB /* loadBubble_0006_Layer-33@2x.png in Resources */,
 				C32306B42080E57500CEC487 /* __init__.py in Resources */,
 				C32306842080E57500CEC487 /* api.py in Resources */,
 				C32306BC2080E57500CEC487 /* pyopenssl.py in Resources */,
@@ -3803,20 +4314,38 @@
 				C323063D2080E57500CEC487 /* mbcharsetprober.py in Resources */,
 				C32306872080E57500CEC487 /* __init__.py in Resources */,
 				C323064C2080E57500CEC487 /* big5freq.py in Resources */,
+				C3B0EF15208B14E8008802BB /* loadBubble_0026_Layer-13@1x.png in Resources */,
 				C32306CA2080E57500CEC487 /* __init__.cpython-34.pyc in Resources */,
+				C3B0EF38208B14E8008802BB /* loadBubble_0024_Layer-15@3x.png in Resources */,
+				C3B0EF02208B14E8008802BB /* loadBubble_0030_Layer-9@1x.png in Resources */,
+				C3B0EF26208B14E8008802BB /* loadBubble_0014_Layer-25@3x.png in Resources */,
 				C323064F2080E57500CEC487 /* hebrewprober.py in Resources */,
+				C3B0EED8208B14E8008802BB /* loadBubble_0012_Layer-27@2x.png in Resources */,
 				C323067D2080E57500CEC487 /* session.py in Resources */,
 				C32306A02080E57500CEC487 /* retry.cpython-34.pyc in Resources */,
+				C3B0EF06208B14E8008802BB /* loadBubble_0024_Layer-15@1x.png in Resources */,
+				C3B0EEF7208B14E8008802BB /* loadBubble_0018_Layer-21@1x.png in Resources */,
 				C32305DD2080E57500CEC487 /* icon_more.png in Resources */,
+				C3B0EF29208B14E8008802BB /* loadBubble_0009_Layer-30@3x.png in Resources */,
+				C3B0EF36208B14E8008802BB /* loadBubble_0030_Layer-9@3x.png in Resources */,
 				C32306142080E57500CEC487 /* icon_like.png in Resources */,
 				C32306B22080E57500CEC487 /* __init__.cpython-34.pyc in Resources */,
+				C3B0EEF3208B14E8008802BB /* loadBubble_0034_Layer-5@2x.png in Resources */,
 				C323065B2080E57500CEC487 /* codec.cpython-34.pyc in Resources */,
+				C3B0EF17208B14E8008802BB /* loadBubble_0020_Layer-19@1x.png in Resources */,
+				C3B0EEE2208B14E8008802BB /* loadBubble_0008_Layer-31@2x.png in Resources */,
 				C32306802080E57500CEC487 /* utils.cpython-36.pyc in Resources */,
+				C3B0EF22208B14E8008802BB /* loadBubble_0020_Layer-19@3x.png in Resources */,
+				C3B0EF35208B14E8008802BB /* loadBubble_0010_Layer-29@3x.png in Resources */,
 				C32306DC2080E57500CEC487 /* managers.py in Resources */,
+				C3B0EF13208B14E8008802BB /* loadBubble_0035_Layer-4@1x.png in Resources */,
+				C3B0EF16208B14E8008802BB /* loadBubble_0001_Layer-38@1x.png in Resources */,
+				C3B0EED3208B14E8008802BB /* loadBubble_0023_Layer-16@2x.png in Resources */,
 				C32305BA2080E57500CEC487 /* PythonFramework.zip in Resources */,
 				C32305EA2080E57500CEC487 /* icon_liked@2x.png in Resources */,
 				C32305E22080E57500CEC487 /* icon_comment@2x.png in Resources */,
 				C323068A2080E57500CEC487 /* core.cpython-34.pyc in Resources */,
+				C3B0EED5208B14E8008802BB /* loadBubble_0020_Layer-19@2x.png in Resources */,
 				C32306612080E57500CEC487 /* uts46data.cpython-34.pyc in Resources */,
 				C32306862080E57500CEC487 /* exceptions.py in Resources */,
 				C32306D42080E57500CEC487 /* _implementation.py in Resources */,
@@ -3824,10 +4353,13 @@
 				C323064E2080E57500CEC487 /* big5prober.py in Resources */,
 				C32305E32080E57500CEC487 /* icon_ios@2x.png in Resources */,
 				C32306E02080E57500CEC487 /* users.py in Resources */,
+				C3B0EEDF208B14E8008802BB /* loadBubble_0037_Layer-2@2x.png in Resources */,
 				C323063E2080E57500CEC487 /* euctwprober.py in Resources */,
 				C323065C2080E57500CEC487 /* compat.cpython-34.pyc in Resources */,
 				C32306432080E57500CEC487 /* utf8prober.py in Resources */,
 				C32306D02080E57500CEC487 /* six.py in Resources */,
+				C3B0EF46208B14E9008802BB /* loadBubble_0003_Layer-36@3x.png in Resources */,
+				C3B0EF11208B14E8008802BB /* loadBubble_0012_Layer-27@1x.png in Resources */,
 				C32306A62080E57500CEC487 /* __init__.py in Resources */,
 				C32306E12080E57500CEC487 /* __init__.py in Resources */,
 				C32306DD2080E57500CEC487 /* __init__.py in Resources */,
@@ -3952,6 +4484,7 @@
 				C3372FC52083356C0080DA75 /* SendingStatusPresenter.swift in Sources */,
 				C3372FCA2083356C0080DA75 /* DemoTextMessageViewModel.swift in Sources */,
 				C3372FD12083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift in Sources */,
+				C3B0EF48208B15E6008802BB /* iOSDevCenters+GIF.swift in Sources */,
 				C32308DA2081AEB100CEC487 /* TyphoonViewHelpers.m in Sources */,
 				C32309082081AEB100CEC487 /* TyphoonNSNumberTypeConverter.m in Sources */,
 				C32306042080E57500CEC487 /* LeftViewCell.m in Sources */,
@@ -4023,6 +4556,7 @@
 				C32308F42081AEB100CEC487 /* TyphoonBlockDefinition.m in Sources */,
 				C32308BD2081AEB100CEC487 /* LGSideMenuGesturesHandler.m in Sources */,
 				C323090D2081AEB100CEC487 /* TyphoonTypeConverterRegistry.m in Sources */,
+				C35B737B208B11E3001C8067 /* TypingPresenter.swift in Sources */,
 				C32308DD2081AEB100CEC487 /* TyphoonViewControllerFactory.m in Sources */,
 				C32308BA2081AEB100CEC487 /* LGSideMenuView.m in Sources */,
 				C32305C22080E57500CEC487 /* NSInvocation+EXT.m in Sources */,
@@ -4031,6 +4565,7 @@
 				C32308F22081AEB100CEC487 /* TyphoonFactoryAutoInjectionPostProcessor.m in Sources */,
 				C3372FC42083356C0080DA75 /* DemoPhotoMessageHandler.swift in Sources */,
 				C32305F72080E57500CEC487 /* Dialog.m in Sources */,
+				C3B0EE52208B12B1008802BB /* TypingCell.swift in Sources */,
 				C32308FA2081AEB100CEC487 /* TyphoonInjections.m in Sources */,
 				C32305D42080E57500CEC487 /* VKApplicationAssembly.m in Sources */,
 				C32308D72081AEB100CEC487 /* TyphoonNibLoader.m in Sources */,
@@ -4126,6 +4661,7 @@
 				C32305ED2080E57500CEC487 /* VKSdkManagerImpl.m in Sources */,
 				C323091A2081AEB100CEC487 /* TyphoonAssemblyAdviser.m in Sources */,
 				C32305EB2080E57500CEC487 /* ScreensManagerImpl.m in Sources */,
+				C35B737D208B1203001C8067 /* TypingModel.swift in Sources */,
 				C32309072081AEB100CEC487 /* TyphoonTypeDescriptor.m in Sources */,
 				C32306242080E57500CEC487 /* Functions.m in Sources */,
 				C32308FF2081AEB100CEC487 /* TyphoonInjectionByObjectFromString.m in Sources */,
