@@ -211,12 +211,20 @@ static const NSInteger kBatchSize = 20;
 }
 
 #pragma mark - Public Methods
+- (NSArray *)objectsArray {
+    return _data;
+}
+
 - (void)addMenuIconWithTarget:(id)target action:(SEL)action {
     UIButton *button = [UIButton new];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     [button setImage:[UIImage imageNamed:@"menuIcon.phg"] forState:UIControlStateNormal];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     [self.navigationItem setLeftBarButtonItem:backButton];
+}
+
+- (void)simpleReloadCollectionView {
+    [self.collectionNode reloadData];
 }
 
 - (void)reloadData {

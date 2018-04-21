@@ -11,7 +11,7 @@
 @protocol PyChatListScreenViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(NSDictionary *)messageDictionary;
 - (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary;
-- (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags;
+- (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end;
 @end
 
 @interface ChatListScreenViewModelImpl () <PyChatListScreenViewModelDelegate>
@@ -78,8 +78,10 @@
     });
 }
 
-- (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags {
-    NSLog(@"TBD");
+- (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_delegate setTypingEnabled:!end.boolValue userId:userId.integerValue];
+    });
 }
 
 @end

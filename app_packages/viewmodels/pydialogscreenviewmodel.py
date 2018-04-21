@@ -4,7 +4,7 @@ from services.messagesservice import NewMessageProtocol, MessageFlags
 from random import randint
 import sched, time
 
-kTypingInterval = 8
+kTypingInterval = 5
 
 class PyDialogScreenViewModelDelegate(BridgeBase):
     pass

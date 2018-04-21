@@ -10,6 +10,7 @@
 
 @protocol ChatListScreenViewModelDelegate <NSObject>
 - (void)reloadData;
+- (void)setTypingEnabled:(BOOL)enabled userId:(NSInteger)userId;
 @end
 
 @protocol ChatListScreenViewModel <NSObject>

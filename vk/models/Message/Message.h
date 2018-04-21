@@ -20,5 +20,6 @@
 @property NSString *title;
 @property NSInteger user_id;
 @property NSInteger from_id;
+@property BOOL isTyping;
 
 @end

@@ -16,7 +16,9 @@
 
 @interface BaseCollectionViewController : ASViewController
 @property (weak, nonatomic) id<BaseCollectionViewControllerDataSource> dataSource;
+- (NSArray *)objectsArray;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory;
 - (void)addMenuIconWithTarget:(id)target action:(SEL)action;
 - (void)reloadData;
+- (void)simpleReloadCollectionView;
 @end

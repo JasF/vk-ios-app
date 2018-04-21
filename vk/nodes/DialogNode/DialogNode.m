@@ -31,7 +31,11 @@
         [self addSubnode:_usernameNode];
         
         _textNode = [[ASTextNode alloc] init];
-        _textNode.attributedText = [[NSAttributedString alloc] initWithString:dialog.message.body ?: @"" attributes:[TextStyles titleStyle]];
+        NSString *body = dialog.message.body ?: @"";
+        if (dialog.message.isTyping) {
+            body = [NSString stringWithFormat:@"%@: %@", L(@"typing"), body];
+        }
+        _textNode.attributedText = [[NSAttributedString alloc] initWithString:body attributes:[TextStyles titleStyle]];
         _textNode.maximumNumberOfLines = 1;
         _textNode.truncationMode = NSLineBreakByTruncatingTail;
         _textNode.backgroundColor = (dialog.message.read_state == 0) ? [[UIColor grayColor] colorWithAlphaComponent:0.1f] : [UIColor clearColor];
