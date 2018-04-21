@@ -22,6 +22,7 @@
 
 - (NSNumber *)sendTextMessage:(NSString *)text userId:(NSNumber *)userId;
 - (NSNumber *)markAsRead:(NSNumber *)userId messageId:(NSNumber *)messageId;
+- (void)handleTypingActivity;
 @end
 
 @interface DialogScreenViewModelImpl : NSObject <DialogScreenViewModel>

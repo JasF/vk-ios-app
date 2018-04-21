@@ -45,6 +45,10 @@ open class ChatInputBar: ReusableXibView {
     public var shouldEnableSendButton = { (inputBar: ChatInputBar) -> Bool in
         return !inputBar.textView.text.isEmpty
     }
+    
+    public func text() -> String {
+        return self.textView.text
+    }
 
     @IBOutlet weak var scrollView: HorizontalStackScrollView!
     @IBOutlet weak var textView: ExpandableTextView!

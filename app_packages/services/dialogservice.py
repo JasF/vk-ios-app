@@ -38,6 +38,13 @@ class DialogService:
         except Exception as e:
             print('markAsRead exception: ' + str(e))
         return response
+    
+    def sendTyping(self, userId):
+        try:
+            response = self.api.messages.setActivity(user_id=userId, type='typing')
+        except Exception as e:
+            print('sendTyping exception: ' + str(e))
+        return response
             
     def getMessagesuserIdstartMessageId(self, offset, userId, startMessageId):
         self.initializeIfNeeded()

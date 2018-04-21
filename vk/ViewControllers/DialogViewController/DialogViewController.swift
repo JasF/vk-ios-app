@@ -152,6 +152,12 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     }
     
     func handleTyping(_ userId: Int, end: Bool) {
+        NSLog("typing: \(userId)");
         self.setTypingCellEnabled(!end)
+    }
+    
+    // ChatInputBarDelegate
+    override func inputBarDidChangeText(_ inputBar: ChatInputBar) {
+        self.viewModel?.inputBarDidChangeText(inputBar.text())
     }
 }

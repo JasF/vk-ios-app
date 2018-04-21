@@ -36,6 +36,9 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     def markAsReadmessageId(self, userId, readedMessageId):
         return self.dialogService.markAsRead(userId, readedMessageId)
     
+    def handleTypingActivity(self):
+        self.dialogService.sendTyping(self.userId)
+    
     # NewMessageProtocol
     def handleIncomingMessage(self, message):
         isOut = message.get('out')

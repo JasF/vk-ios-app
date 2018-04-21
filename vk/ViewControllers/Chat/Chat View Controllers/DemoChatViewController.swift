@@ -27,7 +27,7 @@ import Chatto
 import ChattoAdditions
 
 class DemoChatViewController: BaseChatViewController {
-
+    
     var messageSender: DemoChatMessageSender!
     let messagesSelector = BaseMessagesSelector()
 
@@ -59,6 +59,7 @@ class DemoChatViewController: BaseChatViewController {
     var chatInputPresenter: BasicChatInputBarPresenter!
     override func createChatInputView() -> UIView {
         let chatInputView = ChatInputBar.loadNib()
+        chatInputView.delegate = self
         var appearance = ChatInputBarAppearance()
         appearance.sendButtonAppearance.title = NSLocalizedString("Send", comment: "")
         appearance.textInputAppearance.placeholderText = NSLocalizedString("Type a message", comment: "")

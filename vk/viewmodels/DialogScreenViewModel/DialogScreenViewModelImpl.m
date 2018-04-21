@@ -8,6 +8,8 @@
 
 #import "DialogScreenViewModelImpl.h"
 
+static CGFloat const kTypingNotifierInterval = 5.f;
+
 @protocol PyDialogScreenViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(NSDictionary *)message;
 - (void)handleMessageFlagsChanged:(NSDictionary *)message;
@@ -21,6 +23,7 @@
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
 @property (assign, nonatomic) BOOL allMessagesLoaded;
 @property (strong, nonatomic) NSMutableArray *markAsReadIds;
+@property (strong, nonatomic) NSTimer *typingNotifier;
 @end
 
 @implementation DialogScreenViewModelImpl
@@ -104,6 +107,21 @@
             completion(identifier.integerValue);
         }
     });
+}
+
+- (void)inputBarDidChangeText:(NSString *)text {
+    if (_typingNotifier) {
+        return;
+    }
+    _typingNotifier = [NSTimer scheduledTimerWithTimeInterval:kTypingNotifierInterval target:self selector:@selector(resumeTypingNotifications) userInfo:nil repeats:NO];
+    dispatch_python(^{
+        [_handler handleTypingActivity];
+    });
+}
+    
+- (void)resumeTypingNotifications {
+    [_typingNotifier invalidate];
+    _typingNotifier = nil;
 }
 
 #pragma mark - PyDialogScreenViewModelDelegate

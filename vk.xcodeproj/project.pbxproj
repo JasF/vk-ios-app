@@ -585,6 +585,7 @@
 		C3B0EF45208B14E9008802BB /* loadBubble_0006_Layer-33@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EECD208B14E8008802BB /* loadBubble_0006_Layer-33@3x.png */; };
 		C3B0EF46208B14E9008802BB /* loadBubble_0003_Layer-36@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EECE208B14E8008802BB /* loadBubble_0003_Layer-36@3x.png */; };
 		C3B0EF48208B15E6008802BB /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B0EF47208B15E6008802BB /* iOSDevCenters+GIF.swift */; };
+		C3B0EF4A208B2FF9008802BB /* DemoChatViewController+ChatInputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B0EF49208B2FF9008802BB /* DemoChatViewController+ChatInputDelegate.swift */; };
 		C3B225062085BA6800599E04 /* DialogScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225052085BA6800599E04 /* DialogScreenViewModelImpl.m */; };
 		C3B225092085BA8300599E04 /* ViewModelsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225082085BA8300599E04 /* ViewModelsAssembly.m */; };
 		C3B225102085D7DC00599E04 /* ChatListScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2250F2085D7DC00599E04 /* ChatListScreenViewModelImpl.m */; };
@@ -1534,6 +1535,7 @@
 		C3B0EECD208B14E8008802BB /* loadBubble_0006_Layer-33@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0006_Layer-33@3x.png"; sourceTree = "<group>"; };
 		C3B0EECE208B14E8008802BB /* loadBubble_0003_Layer-36@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadBubble_0003_Layer-36@3x.png"; sourceTree = "<group>"; };
 		C3B0EF47208B15E6008802BB /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
+		C3B0EF49208B2FF9008802BB /* DemoChatViewController+ChatInputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DemoChatViewController+ChatInputDelegate.swift"; sourceTree = "<group>"; };
 		C3B225032085BA5C00599E04 /* DialogScreenViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogScreenViewModel.h; sourceTree = "<group>"; };
 		C3B225042085BA6800599E04 /* DialogScreenViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogScreenViewModelImpl.h; sourceTree = "<group>"; };
 		C3B225052085BA6800599E04 /* DialogScreenViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogScreenViewModelImpl.m; sourceTree = "<group>"; };
@@ -3648,6 +3650,7 @@
 				C3372F9D2083356B0080DA75 /* DemoChatDataSource.swift */,
 				C3372F9E2083356B0080DA75 /* DemoChatMessageFactory.swift */,
 				C3372F9F2083356B0080DA75 /* MessagesSelectionChatViewController.swift */,
+				C3B0EF49208B2FF9008802BB /* DemoChatViewController+ChatInputDelegate.swift */,
 			);
 			path = "Chat View Controllers";
 			sourceTree = "<group>";
@@ -4471,6 +4474,7 @@
 				C323092C2081AEB100CEC487 /* TyphoonComponentFactory.m in Sources */,
 				C3372FBA2083356C0080DA75 /* AddRandomMessageChatViewController.swift in Sources */,
 				C32305BE2080E57500CEC487 /* EXTConcreteProtocol.m in Sources */,
+				C3B0EF4A208B2FF9008802BB /* DemoChatViewController+ChatInputDelegate.swift in Sources */,
 				C32308C82081AEB100CEC487 /* TyphoonAbstractDetachableComponentFactoryPostProcessor.m in Sources */,
 				C32308F72081AEB100CEC487 /* TyphoonDefinitionNamespace.m in Sources */,
 				C32308FE2081AEB100CEC487 /* TyphoonInjectionByDictionary.m in Sources */,

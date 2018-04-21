@@ -23,4 +23,5 @@
              completion:(void(^)(NSInteger messageId))completion;
 - (void)willDisplayUnreadedMessageWithIdentifier:(NSInteger)identifier
                                            isOut:(NSInteger)isOut;
+- (void)inputBarDidChangeText:(NSString *)text;
 @end
