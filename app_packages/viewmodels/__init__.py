@@ -4,6 +4,7 @@ from .pychatlistviewmodel import PyChatListViewModel
 from .pywallviewmodel import PyWallViewModel
 from .pymenuviewmodel import PyMenuViewModel
 from .pyfriendsviewmodel import PyFriendsViewModel
+from .pywallpostviewmodel import PyWallPostViewModel
 
 from services.messagesservice import MessagesService
 from services.chatlistservice import ChatListService
@@ -16,5 +17,4 @@ Subscriber().setClassAllocatorWithDelegate( PyDialogScreenViewModel, lambda dele
 Subscriber().setClassAllocatorWithDelegate( PyWallViewModel, lambda delegateId, parameters: PyWallViewModel(WallService(parameters), parameters) )
 Subscriber().setClassAllocator( PyMenuViewModel, lambda: PyMenuViewModel() )
 Subscriber().setClassAllocator( PyFriendsViewModel, lambda: PyFriendsViewModel(FriendsService()) )
-
-
+Subscriber().setClassAllocatorWithDelegate( PyWallPostViewModel, lambda delegateId, parameters: PyWallPostViewModel(WallService(parameters), parameters) )

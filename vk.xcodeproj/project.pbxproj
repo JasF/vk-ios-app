@@ -16,6 +16,8 @@
 		C313DD54208C99C70005E29B /* WallUserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD53208C99C70005E29B /* WallUserNode.m */; };
 		C313DD59208CA7950005E29B /* WriteCommentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD58208CA7950005E29B /* WriteCommentNode.m */; };
 		C313DD5C208CA7A10005E29B /* CommentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD5B208CA7A10005E29B /* CommentNode.m */; };
+		C313DD60208CAF150005E29B /* WallPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD5F208CAF150005E29B /* WallPostViewController.m */; };
+		C313DD66208CB14A0005E29B /* WallPostViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD65208CB14A0005E29B /* WallPostViewModelImpl.m */; };
 		C32305B92080E57500CEC487 /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EC2080E57300CEC487 /* libOpenSSL.a */; };
 		C32305BA2080E57500CEC487 /* PythonFramework.zip in Resources */ = {isa = PBXBuildFile; fileRef = C32303ED2080E57300CEC487 /* PythonFramework.zip */; };
 		C32305BB2080E57500CEC487 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EE2080E57300CEC487 /* libbz2.a */; };
@@ -632,6 +634,13 @@
 		C313DD58208CA7950005E29B /* WriteCommentNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WriteCommentNode.m; sourceTree = "<group>"; };
 		C313DD5A208CA7A10005E29B /* CommentNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentNode.h; sourceTree = "<group>"; };
 		C313DD5B208CA7A10005E29B /* CommentNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentNode.m; sourceTree = "<group>"; };
+		C313DD5E208CAF150005E29B /* WallPostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostViewController.h; sourceTree = "<group>"; };
+		C313DD5F208CAF150005E29B /* WallPostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPostViewController.m; sourceTree = "<group>"; };
+		C313DD61208CAFA00005E29B /* pywallpostviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pywallpostviewmodel.py; sourceTree = "<group>"; };
+		C313DD62208CB0210005E29B /* wallpostservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = wallpostservice.py; sourceTree = "<group>"; };
+		C313DD64208CB14A0005E29B /* WallPostViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostViewModelImpl.h; sourceTree = "<group>"; };
+		C313DD65208CB14A0005E29B /* WallPostViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPostViewModelImpl.m; sourceTree = "<group>"; };
+		C313DD67208CB1570005E29B /* WallPostViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostViewModel.h; sourceTree = "<group>"; };
 		C32303EC2080E57300CEC487 /* libOpenSSL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenSSL.a; sourceTree = "<group>"; };
 		C32303ED2080E57300CEC487 /* PythonFramework.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = PythonFramework.zip; sourceTree = "<group>"; };
 		C32303EE2080E57300CEC487 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbz2.a; sourceTree = "<group>"; };
@@ -1741,6 +1750,25 @@
 			path = WriteCommentNode;
 			sourceTree = "<group>";
 		};
+		C313DD5D208CAEFB0005E29B /* WallPostViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C313DD5E208CAF150005E29B /* WallPostViewController.h */,
+				C313DD5F208CAF150005E29B /* WallPostViewController.m */,
+			);
+			path = WallPostViewController;
+			sourceTree = "<group>";
+		};
+		C313DD63208CB1360005E29B /* WallPostViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C313DD64208CB14A0005E29B /* WallPostViewModelImpl.h */,
+				C313DD65208CB14A0005E29B /* WallPostViewModelImpl.m */,
+				C313DD67208CB1570005E29B /* WallPostViewModel.h */,
+			);
+			path = WallPostViewModel;
+			sourceTree = "<group>";
+		};
 		C32303EB2080E57300CEC487 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2104,6 +2132,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C313DD5D208CAEFB0005E29B /* WallPostViewController */,
 				C313DD39208C53C50005E29B /* FriendsViewController */,
 				C3372F96208335440080DA75 /* Chat */,
 				C32304862080E57400CEC487 /* BaseNavigationController */,
@@ -2162,8 +2191,8 @@
 		C32304972080E57400CEC487 /* WallViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C32304982080E57400CEC487 /* WallViewController.m */,
 				C32304992080E57400CEC487 /* WallViewController.h */,
+				C32304982080E57400CEC487 /* WallViewController.m */,
 			);
 			path = WallViewController;
 			sourceTree = "<group>";
@@ -2753,6 +2782,7 @@
 				C3372F902081D7480080DA75 /* dialogservice.py */,
 				C3A943FD2084BAAD0033355E /* messagesservice.py */,
 				C313DD47208C5B830005E29B /* friendsservice.py */,
+				C313DD62208CB0210005E29B /* wallpostservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -3841,6 +3871,7 @@
 				C3B2251C208623CF00599E04 /* pywallviewmodel.py */,
 				C3B2252220862B7600599E04 /* pymenuviewmodel.py */,
 				C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */,
+				C313DD61208CAFA00005E29B /* pywallpostviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -3999,6 +4030,7 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C313DD63208CB1360005E29B /* WallPostViewModel */,
 				C313DD3D208C541F0005E29B /* FriendsViewModel */,
 				C3B2251D2086270100599E04 /* MenuViewModel */,
 				C3B2251720861F3A00599E04 /* WallViewModel */,
@@ -4722,6 +4754,7 @@
 				C32308F62081AEB100CEC487 /* TyphoonMethod+InstanceBuilder.m in Sources */,
 				C32308D82081AEB100CEC487 /* UIView+TyphoonOutletTransfer.m in Sources */,
 				C32308EF2081AEB100CEC487 /* TyphoonBlockDefinitionController.m in Sources */,
+				C313DD66208CB14A0005E29B /* WallPostViewModelImpl.m in Sources */,
 				C32305EC2080E57500CEC487 /* PythonBridgeImpl.m in Sources */,
 				C32308E02081AEB100CEC487 /* TyphoonStoryboardResolver.m in Sources */,
 				C32305FC2080E57500CEC487 /* Photo.m in Sources */,
@@ -4736,6 +4769,7 @@
 				C3B225092085BA8300599E04 /* ViewModelsAssembly.m in Sources */,
 				C3372FC12083356C0080DA75 /* ChatWithTabBarExamplesViewController.swift in Sources */,
 				C32308E22081AEB100CEC487 /* TyphoonStoryboardProvider.m in Sources */,
+				C313DD60208CAF150005E29B /* WallPostViewController.m in Sources */,
 				C32309262081AEB100CEC487 /* TyphoonAssemblySelectorAdviser.m in Sources */,
 				C32309122081AEB100CEC487 /* TyphoonAssembly.m in Sources */,
 				C32309322081AEB100CEC487 /* UIView+NanoFrame.m in Sources */,
