@@ -52,3 +52,12 @@
 }
 
 @end
+
+@implementation WallUser
+- (id)initWithUser:(User *)user {
+    if (self = [super init]) {
+        _user = user;
+    }
+    return self;
+}
+@end

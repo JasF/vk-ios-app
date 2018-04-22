@@ -1,19 +1,21 @@
 //
-//  WallScreenViewModelImpl.m
+//  WallViewModelImpl.m
 //  vk
 //
 //  Created by Jasf on 17.04.2018.
 //  Copyright © 2018 Ebay Inc. All rights reserved.
 //
 
-#import "WallScreenViewModelImpl.h"
+#import "WallViewModelImpl.h"
 
-@interface WallScreenViewModelImpl ()
-@property (strong) id<PyWallScreenViewModel> handler;
+@interface WallViewModelImpl ()
+@property (strong) id<PyWallViewModel> handler;
 @property (strong) id<WallService> wallService;
 @end
 
-@implementation WallScreenViewModelImpl
+@implementation WallViewModelImpl
+
+@synthesize currentUser = _currentUser;
 
 #pragma mark - Initialization
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
@@ -27,11 +29,18 @@
     return self;
 }
 
-#pragma mark - WallScreenViewModel
+#pragma mark - WallViewModel
 - (void)getWallPostsWithOffset:(NSInteger)offset
                     completion:(void(^)(NSArray *posts))completion {
     dispatch_python(^{
         NSDictionary *data = [self.handler getWall:@(offset)];
+        if (!offset && !self.currentUser) {
+            NSDictionary *currentUserData = [self.handler getUserInfo];
+            User *user = [self.wallService parseUserInfo:currentUserData];
+            if (user) {
+                self.currentUser = user;
+            }
+        }
         NSArray<WallPost *> *posts = [self.wallService parse:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {

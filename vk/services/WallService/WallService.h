@@ -11,4 +11,5 @@
 
 @protocol WallService <NSObject>
 - (NSArray<WallPost *> *)parse:(NSDictionary *)data;
+- (User *)parseUserInfo:(NSDictionary *)data;
 @end

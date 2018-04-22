@@ -1,8 +1,8 @@
 from objcbridge import BridgeBase, Subscriber
 from viewmodels.pydialogscreenviewmodel import PyDialogScreenViewModel
 from .pychatlistviewmodel import PyChatListViewModel
-from .pywallscreenviewmodel import PyWallScreenViewModel
-from .pymenuscreenviewmodel import PyMenuScreenViewModel
+from .pywallviewmodel import PyWallViewModel
+from .pymenuviewmodel import PyMenuViewModel
 from .pyfriendsviewmodel import PyFriendsViewModel
 
 from services.messagesservice import MessagesService
@@ -13,8 +13,8 @@ from services.friendsservice import FriendsService
 
 Subscriber().setClassAllocatorWithDelegate( PyChatListViewModel, lambda delegateId: PyChatListViewModel(delegateId, MessagesService(), ChatListService()) )
 Subscriber().setClassAllocatorWithDelegate( PyDialogScreenViewModel, lambda delegateId, parameters: PyDialogScreenViewModel(delegateId, parameters, MessagesService(), DialogService()) )
-Subscriber().setClassAllocator( PyWallScreenViewModel, lambda: PyWallScreenViewModel(WallService()) )
-Subscriber().setClassAllocator( PyMenuScreenViewModel, lambda: PyMenuScreenViewModel() )
+Subscriber().setClassAllocator( PyWallViewModel, lambda: PyWallViewModel(WallService()) )
+Subscriber().setClassAllocator( PyMenuViewModel, lambda: PyMenuViewModel() )
 Subscriber().setClassAllocator( PyFriendsViewModel, lambda: PyFriendsViewModel(FriendsService()) )
 
 

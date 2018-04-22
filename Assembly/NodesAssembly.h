@@ -23,4 +23,5 @@
 - (ASDisplayNode *)postVideoNodeWithVideo:(Video *)video;
 - (ASDisplayNode *)dialogNode:(Dialog *)dialog;
 - (ASDisplayNode *)userNode:(User *)user;
+- (ASDisplayNode *)wallUserNode:(WallUser *)user;
 @end

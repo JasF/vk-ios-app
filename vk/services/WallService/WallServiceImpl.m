@@ -64,4 +64,12 @@
     return posts;
 }
 
+- (User *)parseUserInfo:(NSDictionary *)data {
+    if (![data isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    return [EKMapper objectFromExternalRepresentation:data
+                                          withMapping:[User objectMapping]];
+}
+
 @end

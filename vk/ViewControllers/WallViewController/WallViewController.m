@@ -19,13 +19,13 @@
 #import "LoadingNode.h"
 
 @interface WallViewController () <BaseCollectionViewControllerDataSource>
-@property (strong, nonatomic) id<WallScreenViewModel> viewModel;
+@property (strong, nonatomic) id<WallViewModel> viewModel;
 @end
 
 @implementation WallViewController {
 }
 
-- (instancetype)initWithViewModel:(id<WallScreenViewModel>)viewModel
+- (instancetype)initWithViewModel:(id<WallViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(viewModel);
     NSCParameterAssert(nodeFactory);
@@ -52,7 +52,16 @@
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getWallPostsWithOffset:offset
-                              completion:completion];
+                            completion:^(NSArray *objects) {
+                                if (!offset) {
+                                    NSMutableArray *array = [objects mutableCopy];
+                                    [array insertObject:[[WallUser alloc] initWithUser:self.viewModel.currentUser] atIndex:0];
+                                    objects = array;
+                                }
+                                if (completion) {
+                                    completion(objects);
+                                }
+                            }];
 }
 
 @end

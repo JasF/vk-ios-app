@@ -10,8 +10,8 @@
 #import "DialogScreenViewModelImpl.h"
 #import "ChatListViewModelImpl.h"
 #import "FriendsViewModelImpl.h"
-#import "WallScreenViewModelImpl.h"
-#import "MenuScreenViewModelImpl.h"
+#import "WallViewModelImpl.h"
+#import "MenuViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -48,8 +48,8 @@
             }];
 }
 
-- (id<WallScreenViewModel>)wallScreenViewModel {
-    return [TyphoonDefinition withClass:[WallScreenViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+- (id<WallViewModel>)wallScreenViewModel {
+    return [TyphoonDefinition withClass:[WallViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithHandlersFactory:wallService:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
@@ -58,8 +58,8 @@
             }];
 }
 
-- (id<MenuScreenViewModel>)menuScreenViewModel {
-    return [TyphoonDefinition withClass:[MenuScreenViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+- (id<MenuViewModel>)menuScreenViewModel {
+    return [TyphoonDefinition withClass:[MenuViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithHandlersFactory:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];

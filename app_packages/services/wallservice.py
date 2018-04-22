@@ -2,8 +2,12 @@ import vk
 import json
 from vk import users
 import traceback
+from vk import users as users
 
 class WallService:
+    def __init__(self):
+        self.userInfo = None
+    
     def getWall(self, offset):
         api = vk.api()
         response = None
@@ -36,4 +40,14 @@ class WallService:
         
         except Exception as e:
             print('wall.get exception: ' + str(e))
-        return {'response':response, 'users':usersData}
+        results = {'response':response, 'users':usersData}
+        return results
+    
+    # private
+    def getUserInfo(self):
+        if self.userInfo == None:
+            usersInfo = users.getShortUsersByIds(set([vk.userId()]))
+            if len(usersInfo) > 0:
+                print('set userInfo may be slowly on poor connection and startup breaking')
+                self.userInfo = usersInfo[0]
+        return self.userInfo

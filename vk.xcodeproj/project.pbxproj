@@ -13,6 +13,7 @@
 		C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD40208C54430005E29B /* FriendsViewModelImpl.m */; };
 		C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD45208C578B0005E29B /* FriendsServiceImpl.m */; };
 		C313DD4C208C7BCF0005E29B /* UserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD4B208C7BCF0005E29B /* UserNode.m */; };
+		C313DD54208C99C70005E29B /* WallUserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD53208C99C70005E29B /* WallUserNode.m */; };
 		C32305B92080E57500CEC487 /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EC2080E57300CEC487 /* libOpenSSL.a */; };
 		C32305BA2080E57500CEC487 /* PythonFramework.zip in Resources */ = {isa = PBXBuildFile; fileRef = C32303ED2080E57300CEC487 /* PythonFramework.zip */; };
 		C32305BB2080E57500CEC487 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EE2080E57300CEC487 /* libbz2.a */; };
@@ -183,7 +184,6 @@
 		C32306632080E57500CEC487 /* codec.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305232080E57500CEC487 /* codec.py */; };
 		C32306642080E57500CEC487 /* uts46data.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305242080E57500CEC487 /* uts46data.py */; };
 		C32306662080E57500CEC487 /* authorizationscreen.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305272080E57500CEC487 /* authorizationscreen.py */; };
-		C32306672080E57500CEC487 /* menuscreen.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305282080E57500CEC487 /* menuscreen.py */; };
 		C32306692080E57500CEC487 /* __init__.py in Resources */ = {isa = PBXBuildFile; fileRef = C323052A2080E57500CEC487 /* __init__.py */; };
 		C323066A2080E57500CEC487 /* cookies.py in Resources */ = {isa = PBXBuildFile; fileRef = C323052C2080E57500CEC487 /* cookies.py */; };
 		C323066B2080E57500CEC487 /* auth.py in Resources */ = {isa = PBXBuildFile; fileRef = C323052D2080E57500CEC487 /* auth.py */; };
@@ -594,8 +594,8 @@
 		C3B225092085BA8300599E04 /* ViewModelsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225082085BA8300599E04 /* ViewModelsAssembly.m */; };
 		C3B225102085D7DC00599E04 /* ChatListViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2250F2085D7DC00599E04 /* ChatListViewModelImpl.m */; };
 		C3B2251520860BE400599E04 /* DeallocSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2251420860BE400599E04 /* DeallocSubscriber.m */; };
-		C3B2251B20861F5F00599E04 /* WallScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2251A20861F5F00599E04 /* WallScreenViewModelImpl.m */; };
-		C3B225212086298400599E04 /* MenuScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225202086298400599E04 /* MenuScreenViewModelImpl.m */; };
+		C3B2251B20861F5F00599E04 /* WallViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2251A20861F5F00599E04 /* WallViewModelImpl.m */; };
+		C3B225212086298400599E04 /* MenuViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225202086298400599E04 /* MenuViewModelImpl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -624,6 +624,8 @@
 		C313DD48208C6C9F0005E29B /* friendsdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = friendsdatabase.py; sourceTree = "<group>"; };
 		C313DD4A208C7BCF0005E29B /* UserNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserNode.h; sourceTree = "<group>"; };
 		C313DD4B208C7BCF0005E29B /* UserNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserNode.m; sourceTree = "<group>"; };
+		C313DD52208C99C70005E29B /* WallUserNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallUserNode.h; sourceTree = "<group>"; };
+		C313DD53208C99C70005E29B /* WallUserNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallUserNode.m; sourceTree = "<group>"; };
 		C32303EC2080E57300CEC487 /* libOpenSSL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenSSL.a; sourceTree = "<group>"; };
 		C32303ED2080E57300CEC487 /* PythonFramework.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = PythonFramework.zip; sourceTree = "<group>"; };
 		C32303EE2080E57300CEC487 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbz2.a; sourceTree = "<group>"; };
@@ -875,7 +877,6 @@
 		C32305232080E57500CEC487 /* codec.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = codec.py; sourceTree = "<group>"; };
 		C32305242080E57500CEC487 /* uts46data.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = uts46data.py; sourceTree = "<group>"; };
 		C32305272080E57500CEC487 /* authorizationscreen.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = authorizationscreen.py; sourceTree = "<group>"; };
-		C32305282080E57500CEC487 /* menuscreen.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = menuscreen.py; sourceTree = "<group>"; };
 		C323052A2080E57500CEC487 /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C323052C2080E57500CEC487 /* cookies.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = cookies.py; sourceTree = "<group>"; };
 		C323052D2080E57500CEC487 /* auth.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = auth.py; sourceTree = "<group>"; };
@@ -1564,14 +1565,14 @@
 		C3B225112085D7E600599E04 /* ChatListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatListViewModel.h; sourceTree = "<group>"; };
 		C3B2251320860BE400599E04 /* DeallocSubscriber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeallocSubscriber.h; sourceTree = "<group>"; };
 		C3B2251420860BE400599E04 /* DeallocSubscriber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeallocSubscriber.m; sourceTree = "<group>"; };
-		C3B2251820861F4800599E04 /* WallScreenViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallScreenViewModel.h; sourceTree = "<group>"; };
-		C3B2251920861F5F00599E04 /* WallScreenViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallScreenViewModelImpl.h; sourceTree = "<group>"; };
-		C3B2251A20861F5F00599E04 /* WallScreenViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallScreenViewModelImpl.m; sourceTree = "<group>"; };
-		C3B2251C208623CF00599E04 /* pywallscreenviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pywallscreenviewmodel.py; sourceTree = "<group>"; };
-		C3B2251E2086275700599E04 /* MenuScreenViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuScreenViewModel.h; sourceTree = "<group>"; };
-		C3B2251F2086298400599E04 /* MenuScreenViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuScreenViewModelImpl.h; sourceTree = "<group>"; };
-		C3B225202086298400599E04 /* MenuScreenViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuScreenViewModelImpl.m; sourceTree = "<group>"; };
-		C3B2252220862B7600599E04 /* pymenuscreenviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pymenuscreenviewmodel.py; sourceTree = "<group>"; };
+		C3B2251820861F4800599E04 /* WallViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallViewModel.h; sourceTree = "<group>"; };
+		C3B2251920861F5F00599E04 /* WallViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallViewModelImpl.h; sourceTree = "<group>"; };
+		C3B2251A20861F5F00599E04 /* WallViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallViewModelImpl.m; sourceTree = "<group>"; };
+		C3B2251C208623CF00599E04 /* pywallviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pywallviewmodel.py; sourceTree = "<group>"; };
+		C3B2251E2086275700599E04 /* MenuViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewModel.h; sourceTree = "<group>"; };
+		C3B2251F2086298400599E04 /* MenuViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewModelImpl.h; sourceTree = "<group>"; };
+		C3B225202086298400599E04 /* MenuViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewModelImpl.m; sourceTree = "<group>"; };
+		C3B2252220862B7600599E04 /* pymenuviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pymenuviewmodel.py; sourceTree = "<group>"; };
 		E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA13F2494D45D4FE5E319D6 /* Pods-MessageGroupsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0D613A92790A124CBD92B36 /* Pods-MessageGroups.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroups.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroups/Pods-MessageGroups.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1707,6 +1708,15 @@
 			path = UserNode;
 			sourceTree = "<group>";
 		};
+		C313DD51208C99B90005E29B /* WallUserNode */ = {
+			isa = PBXGroup;
+			children = (
+				C313DD52208C99C70005E29B /* WallUserNode.h */,
+				C313DD53208C99C70005E29B /* WallUserNode.m */,
+			);
+			path = WallUserNode;
+			sourceTree = "<group>";
+		};
 		C32303EB2080E57300CEC487 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1840,6 +1850,7 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C313DD51208C99B90005E29B /* WallUserNode */,
 				C313DD49208C7BB80005E29B /* UserNode */,
 				C37C0BF92086F7E60086A875 /* AvatarNode */,
 				C32304382080E57400CEC487 /* DialogNode */,
@@ -1853,8 +1864,8 @@
 		C32304382080E57400CEC487 /* DialogNode */ = {
 			isa = PBXGroup;
 			children = (
-				C32304392080E57400CEC487 /* DialogNode.m */,
 				C323043A2080E57400CEC487 /* DialogNode.h */,
+				C32304392080E57400CEC487 /* DialogNode.m */,
 			);
 			path = DialogNode;
 			sourceTree = "<group>";
@@ -2433,7 +2444,6 @@
 			isa = PBXGroup;
 			children = (
 				C32305272080E57500CEC487 /* authorizationscreen.py */,
-				C32305282080E57500CEC487 /* menuscreen.py */,
 				C323052A2080E57500CEC487 /* __init__.py */,
 			);
 			path = screens;
@@ -3802,8 +3812,8 @@
 				C3A943FC2084B9360033355E /* __init__.py */,
 				C3A943FB2084B8B20033355E /* pydialogscreenviewmodel.py */,
 				C3B2250A2085D70600599E04 /* pychatlistviewmodel.py */,
-				C3B2251C208623CF00599E04 /* pywallscreenviewmodel.py */,
-				C3B2252220862B7600599E04 /* pymenuscreenviewmodel.py */,
+				C3B2251C208623CF00599E04 /* pywallviewmodel.py */,
+				C3B2252220862B7600599E04 /* pymenuviewmodel.py */,
 				C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */,
 			);
 			path = viewmodels;
@@ -3964,8 +3974,8 @@
 			isa = PBXGroup;
 			children = (
 				C313DD3D208C541F0005E29B /* FriendsViewModel */,
-				C3B2251D2086270100599E04 /* MenuScreenViewModel */,
-				C3B2251720861F3A00599E04 /* WallScreenViewModel */,
+				C3B2251D2086270100599E04 /* MenuViewModel */,
+				C3B2251720861F3A00599E04 /* WallViewModel */,
 				C3B2250D2085D7BF00599E04 /* ChatListViewModel */,
 				C3B225022085BA4A00599E04 /* DialogScreenViewModel */,
 			);
@@ -4001,24 +4011,24 @@
 			path = DeallocSubscriber;
 			sourceTree = "<group>";
 		};
-		C3B2251720861F3A00599E04 /* WallScreenViewModel */ = {
+		C3B2251720861F3A00599E04 /* WallViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C3B2251820861F4800599E04 /* WallScreenViewModel.h */,
-				C3B2251920861F5F00599E04 /* WallScreenViewModelImpl.h */,
-				C3B2251A20861F5F00599E04 /* WallScreenViewModelImpl.m */,
+				C3B2251820861F4800599E04 /* WallViewModel.h */,
+				C3B2251920861F5F00599E04 /* WallViewModelImpl.h */,
+				C3B2251A20861F5F00599E04 /* WallViewModelImpl.m */,
 			);
-			path = WallScreenViewModel;
+			path = WallViewModel;
 			sourceTree = "<group>";
 		};
-		C3B2251D2086270100599E04 /* MenuScreenViewModel */ = {
+		C3B2251D2086270100599E04 /* MenuViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C3B2251E2086275700599E04 /* MenuScreenViewModel.h */,
-				C3B2251F2086298400599E04 /* MenuScreenViewModelImpl.h */,
-				C3B225202086298400599E04 /* MenuScreenViewModelImpl.m */,
+				C3B2251E2086275700599E04 /* MenuViewModel.h */,
+				C3B2251F2086298400599E04 /* MenuViewModelImpl.h */,
+				C3B225202086298400599E04 /* MenuViewModelImpl.m */,
 			);
-			path = MenuScreenViewModel;
+			path = MenuViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4127,7 +4137,6 @@
 				C32306B02080E57500CEC487 /* _collections.cpython-34.pyc in Resources */,
 				C3B0EEEC208B14E8008802BB /* loadBubble_0021_Layer-18@2x.png in Resources */,
 				C32306122080E57500CEC487 /* app_packages.zip in Resources */,
-				C32306672080E57500CEC487 /* menuscreen.py in Resources */,
 				C323063C2080E57500CEC487 /* gb2312prober.py in Resources */,
 				C32306352080E57500CEC487 /* euctwfreq.py in Resources */,
 				C3B0EF2E208B14E8008802BB /* loadBubble_0033_Layer-6@3x.png in Resources */,
@@ -4558,6 +4567,7 @@
 				C32308C32081AEB100CEC487 /* TyphoonJsonStyleConfiguration.m in Sources */,
 				C323061C2080E57500CEC487 /* ChatListServiceImpl.m in Sources */,
 				C32309022081AEB100CEC487 /* TyphoonInjectionByConfig.m in Sources */,
+				C313DD54208C99C70005E29B /* WallUserNode.m in Sources */,
 				C3B2251520860BE400599E04 /* DeallocSubscriber.m in Sources */,
 				C32309282081AEB100CEC487 /* TyphoonRuntimeArguments.m in Sources */,
 				C3372FBE2083356C0080DA75 /* DemoChatDataSource.swift in Sources */,
@@ -4651,7 +4661,7 @@
 				C32305D62080E57500CEC487 /* ServicesAssembly.m in Sources */,
 				C323061E2080E57500CEC487 /* BlurbNode.m in Sources */,
 				C32308F12081AEB100CEC487 /* TyphoonBlockDefinition+InstanceBuilder.m in Sources */,
-				C3B2251B20861F5F00599E04 /* WallScreenViewModelImpl.m in Sources */,
+				C3B2251B20861F5F00599E04 /* WallViewModelImpl.m in Sources */,
 				C32306F12080E9D800CEC487 /* PythonManagerImpl.m in Sources */,
 				C32305FD2080E57500CEC487 /* PostType.m in Sources */,
 				C323090F2081AEB100CEC487 /* TyphoonColorConversionUtils.m in Sources */,
@@ -4709,7 +4719,7 @@
 				C3372FC92083356C0080DA75 /* DemoTextMessageHandler.swift in Sources */,
 				C323060B2080E57500CEC487 /* ChatListViewController.m in Sources */,
 				C32308EA2081AEB100CEC487 /* TyphoonDefinition+InstanceBuilder.m in Sources */,
-				C3B225212086298400599E04 /* MenuScreenViewModelImpl.m in Sources */,
+				C3B225212086298400599E04 /* MenuViewModelImpl.m in Sources */,
 				C3372FBB2083356C0080DA75 /* DemoChatMessageSender.swift in Sources */,
 				C32309032081AEB100CEC487 /* TyphoonInjectionByCurrentRuntimeArguments.m in Sources */,
 				C32309312081AEB100CEC487 /* UIColor+NanoFrame.m in Sources */,

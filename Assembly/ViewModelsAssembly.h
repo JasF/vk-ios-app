@@ -12,8 +12,8 @@
 #import "ScreensAssembly.h"
 #import "DialogScreenViewModel.h"
 #import "ChatListViewModel.h"
-#import "WallScreenViewModel.h"
-#import "MenuScreenViewModel.h"
+#import "WallViewModel.h"
+#import "MenuViewModel.h"
 #import "FriendsViewModel.h"
 
 @interface ViewModelsAssembly : TyphoonAssembly
@@ -22,7 +22,7 @@
 @property (readonly) ScreensAssembly *screensAssembly;
 - (id<DialogScreenViewModel>)dialogScreenViewModel:(NSNumber *)userId;
 - (id<ChatListViewModel>)chatListScreenViewModel;
-- (id<WallScreenViewModel>)wallScreenViewModel;
-- (id<MenuScreenViewModel>)menuScreenViewModel;
+- (id<WallViewModel>)wallScreenViewModel;
+- (id<MenuViewModel>)menuScreenViewModel;
 - (id<FriendsViewModel>)friendsViewModel;
 @end

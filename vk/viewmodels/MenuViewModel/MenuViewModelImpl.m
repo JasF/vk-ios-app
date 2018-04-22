@@ -1,18 +1,18 @@
 //
-//  MenuScreenViewModelImpl.m
+//  MenuViewModelImpl.m
 //  vk
 //
 //  Created by Jasf on 17.04.2018.
 //  Copyright © 2018 Ebay Inc. All rights reserved.
 //
 
-#import "MenuScreenViewModelImpl.h"
+#import "MenuViewModelImpl.h"
 
-@interface MenuScreenViewModelImpl ()
-@property (strong, nonatomic) id<PyMenuScreenViewModel> handler;
+@interface MenuViewModelImpl ()
+@property (strong, nonatomic) id<PyMenuViewModel> handler;
 @end
 
-@implementation MenuScreenViewModelImpl
+@implementation MenuViewModelImpl
 
 - (id)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory {
     NSCParameterAssert(handlersFactory);

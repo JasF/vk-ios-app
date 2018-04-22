@@ -13,6 +13,7 @@
 #import "PostVideoNode.h"
 #import "DialogNode.h"
 #import "UserNode.h"
+#import "WallUserNode.h"
 
 @implementation NodesAssembly
 
@@ -78,4 +79,13 @@
             }];
 }
 
+- (ASDisplayNode *)wallUserNode:(WallUser *)user {
+    return [TyphoonDefinition withClass:[WallUserNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithWallUser:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:user];
+                 }];
+            }];
+}
 @end

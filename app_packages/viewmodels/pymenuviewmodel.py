@@ -1,6 +1,6 @@
 from objc import managers
 
-class PyMenuScreenViewModel():
+class PyMenuViewModel():
     def newsTapped(self):
         managers.shared().screensManager().showWallViewController()
     

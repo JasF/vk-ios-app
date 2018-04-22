@@ -15,8 +15,8 @@
 #import "DialogServiceImpl.h"
 #import "ChatListViewModelImpl.h"
 #import "DialogScreenViewModelImpl.h"
-#import "WallScreenViewModelImpl.h"
-#import "MenuScreenViewModelImpl.h"
+#import "WallViewModelImpl.h"
+#import "MenuViewModelImpl.h"
 #import "FriendsViewModelImpl.h"
 
 
@@ -44,12 +44,12 @@
                                               parameters:parameters];
 }
 
-- (id<PyWallScreenViewModel>)wallViewModelHandler {
-    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyWallScreenViewModel)];
+- (id<PyWallViewModel>)wallViewModelHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyWallViewModel)];
 }
 
-- (id<PyMenuScreenViewModel>)menuViewModelHandler {
-    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyMenuScreenViewModel)];
+- (id<PyMenuViewModel>)menuViewModelHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyMenuViewModel)];
 }
 
 - (id<PyFriendsViewModel>)friendsViewModelHandler {

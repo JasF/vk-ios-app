@@ -1,21 +1,22 @@
 //
-//  WallScreenViewModelImpl.h
+//  WallViewModelImpl.h
 //  vk
 //
 //  Created by Jasf on 17.04.2018.
 //  Copyright © 2018 Ebay Inc. All rights reserved.
 //
 
-#import "WallScreenViewModel.h"
+#import "WallViewModel.h"
 #import "HandlersFactory.h"
 #import "WallService.h"
 
-@protocol PyWallScreenViewModel <NSObject>
+@protocol PyWallViewModel <NSObject>
 - (NSDictionary *)getWall:(NSNumber *)offset;
 - (void)menuTapped;
+- (NSDictionary *)getUserInfo;
 @end
 
-@interface WallScreenViewModelImpl : NSObject <WallScreenViewModel>
+@interface WallViewModelImpl : NSObject <WallViewModel>
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
                             wallService:(id<WallService>)wallService;
 @end

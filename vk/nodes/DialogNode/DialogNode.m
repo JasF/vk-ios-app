@@ -20,7 +20,7 @@
 @implementation DialogNode
 
 - (instancetype)initWithDialog:(Dialog *)dialog
-{
+{   
     NSCParameterAssert(dialog);
     self = [super init];
     if (self) {

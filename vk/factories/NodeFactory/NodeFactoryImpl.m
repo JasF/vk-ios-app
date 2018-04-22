@@ -63,6 +63,9 @@
     else if ([item isKindOfClass:[User class]]) {
         return [_assembly userNode:item];
     }
+    else if ([item isKindOfClass:[WallUser class]]) {
+        return [_assembly wallUserNode:item];
+    }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;
 }

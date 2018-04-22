@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MenuScreenViewModel.h"
+#import "MenuViewModel.h"
 
 @interface MenuViewController : UIViewController
-@property (strong, nonatomic) id<MenuScreenViewModel> viewModel;
+@property (strong, nonatomic) id<MenuViewModel> viewModel;
 @end

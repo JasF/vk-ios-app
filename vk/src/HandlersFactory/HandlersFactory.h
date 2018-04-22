@@ -10,14 +10,14 @@
 
 @protocol PyChatListViewModel;
 @protocol PyDialogScreenViewModel;
-@protocol PyWallScreenViewModel;
-@protocol PyMenuScreenViewModel;
+@protocol PyWallViewModel;
+@protocol PyMenuViewModel;
 @protocol PyFriendsViewModel;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
 - (id<PyDialogScreenViewModel>)dialogViewModelHandler:(id)delegate parameters:(NSDictionary *)parameters;
-- (id<PyWallScreenViewModel>)wallViewModelHandler;
-- (id<PyMenuScreenViewModel>)menuViewModelHandler;
+- (id<PyWallViewModel>)wallViewModelHandler;
+- (id<PyMenuViewModel>)menuViewModelHandler;
 - (id<PyFriendsViewModel>)friendsViewModelHandler;
 @end

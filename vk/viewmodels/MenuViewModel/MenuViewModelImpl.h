@@ -1,5 +1,5 @@
 //
-//  MenuScreenViewModelImpl.h
+//  MenuViewModelImpl.h
 //  vk
 //
 //  Created by Jasf on 17.04.2018.
@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MenuScreenViewModel.h"
+#import "MenuViewModel.h"
 #import "HandlersFactory.h"
 
-@protocol PyMenuScreenViewModel
+@protocol PyMenuViewModel
 - (void)newsTapped;
 - (void)dialogsTapped;
 - (void)friendsTapped;
 @end
 
-@interface MenuScreenViewModelImpl : NSObject <MenuScreenViewModel>
+@interface MenuViewModelImpl : NSObject <MenuViewModel>
 - (id)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory;
 @end

@@ -26,3 +26,8 @@
 - (NSString *)nameString;
 - (NSString *)avatarURLString;
 @end
+
+@interface WallUser : NSObject
+@property User *user;
+- (id)initWithUser:(User *)user;
+@end

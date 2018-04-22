@@ -9,9 +9,9 @@
 #import "BaseCollectionViewController.h"
 #import "HandlersFactory.h"
 #import "WallService.h"
-#import "WallScreenViewModel.h"
+#import "WallViewModel.h"
 
 @interface WallViewController : BaseCollectionViewController
-- (instancetype)initWithViewModel:(id<WallScreenViewModel>)viewModel
+- (instancetype)initWithViewModel:(id<WallViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end
