@@ -6,14 +6,8 @@
 //  Copyright © 2018 Ebay Inc. All rights reserved.
 //
 
-#ifndef WallPostViewModel_h
-#define WallPostViewModel_h
-
-
 #import "WallPost.h"
 
 @protocol WallPostViewModel <NSObject>
-- (WallPost *)getWallPost;
+- (void)getWallPostWithCompletion:(void(^)(WallPost *post))completion;
 @end
-
-#endif /* WallPostViewModel_h */

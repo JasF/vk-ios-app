@@ -44,6 +44,24 @@ ASCollectionDelegate, ASCollectionDataSource>
     [super viewDidLoad];
 }
 
+#pragma mark - BaseCollectionViewControllerDataSource
+- (void)getModelObjets:(void(^)(NSArray *objects))completion
+                offset:(NSInteger)offset {
+    if (offset) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(@[]);
+            }
+        });
+        return;
+    }
+    [_viewModel getWallPostWithCompletion:^(WallPost *post) {
+        if (post && completion) {
+            completion(@[post]);
+        }
+    }];
+}
+
 /*
 #pragma mark - Navigation
 

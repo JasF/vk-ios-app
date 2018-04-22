@@ -30,7 +30,16 @@
     return self;
 }
 
-- (WallPost *)getWallPost {
-    return nil;
+- (void)getWallPostWithCompletion:(void(^)(WallPost *post))completion {
+    dispatch_python(^{
+        NSDictionary *data = [self.handler getPostData];
+        WallPost *post = [self.wallPostService parseOne:data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(post);
+            }
+        });
+    });
 }
+
 @end

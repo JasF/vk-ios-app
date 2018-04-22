@@ -5,16 +5,15 @@ import vk
 
 class PyWallPostViewModel():
     def __init__(self, wallPostService, postId):
+        self.wallPostService = wallPostService
         self.postId = postId
-        print('postId is: ' + str(postId))
-        '''
-        self.userId = parameters.get('userId')
-        if self.userId == None or self.userId == 0:
-            self.userId = vk.userId()
-        '''
+        self.postData = self.wallPostService.getPostById(postId)
+    
     # protocol methods implementation
     def getPostData(self):
-        return None#self.wallService.getWall(offset, self.userId)
+        if not self.postData:
+            self.postData = self.wallPostService.getPostById(postId)
+        return self.postData
     
     # ObjCBridgeProtocol
     def release(self):

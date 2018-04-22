@@ -12,7 +12,7 @@
 #import "WallPostService.h"
 
 @protocol PyWallPostViewModel <NSObject>
-- (void)hello;
+- (NSDictionary *)getPostData;
 @end
 
 @interface WallPostViewModelImpl : NSObject <WallPostViewModel>

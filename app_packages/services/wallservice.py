@@ -21,6 +21,12 @@ class WallService:
             response = api.wall.get(offset=offset, owner_id=userId)
             l = response["items"]
             
+            cache = PostsDatabase()
+            cache.update(l)
+            cache.close()
+            
+            #print('first is: ' + json.dumps(l[1]))
+            
             fromIds = [d['from_id'] for d in l]
             ownerIds = [d['owner_id'] for d in l]
             
