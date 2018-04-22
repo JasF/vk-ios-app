@@ -13,7 +13,7 @@ class BaseDatabase():
     def row_factory(self):
         def decodeIfNeeded(v,k):
             if k in self.objects():
-                print('deconing  $$ ' + str(k) + ' for + ' + str(v))
+                #print('decoding $$ ' + str(k) + ' for + ' + str(v))
                 if not v:
                     return None
                 return json.loads(v)
