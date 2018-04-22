@@ -1,8 +1,9 @@
 from objc import managers
+from objcbridge import BridgeBase, ObjCBridgeProtocol
 from services.wallservice import WallService
 import vk
 
-class PyWallViewModel():
+class PyWallViewModel(ObjCBridgeProtocol):
     def __init__(self, wallService, parameters):
         self.wallService = wallService
         self.userId = parameters.get('userId')
@@ -11,7 +12,8 @@ class PyWallViewModel():
     
     # protocol methods implementation
     def getWall(self, offset):
-        return self.wallService.getWall(offset, self.userId)
+        response = self.wallService.getWall(offset, self.userId)
+        return response
     
     def getUserInfo(self):
         return self.wallService.getUserInfo()
@@ -19,3 +21,9 @@ class PyWallViewModel():
     def menuTapped(self):
         managers.shared().screensManager().showMenu()
 
+    def tappedOnPostWithId(self, identifier):
+        managers.shared().screensManager().showWallPostViewController_(args=[identifier])
+
+    # ObjCBridgeProtocol
+    def release(self):
+        pass

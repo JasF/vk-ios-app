@@ -13,6 +13,7 @@
 #import "ChatListService.h"
 #import "DialogService.h"
 #import "FriendsService.h"
+#import "WallPostService.h"
 
 @interface ServicesAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -21,4 +22,5 @@
 - (id<ChatListService>)chatListService;
 - (id<DialogService>)dialogService;
 - (id<FriendsService>)friendsService;
+- (id<WallPostService>)wallPostService;
 @end

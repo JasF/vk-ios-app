@@ -18,6 +18,7 @@
 		C313DD5C208CA7A10005E29B /* CommentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD5B208CA7A10005E29B /* CommentNode.m */; };
 		C313DD60208CAF150005E29B /* WallPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD5F208CAF150005E29B /* WallPostViewController.m */; };
 		C313DD66208CB14A0005E29B /* WallPostViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD65208CB14A0005E29B /* WallPostViewModelImpl.m */; };
+		C313DD6D208CBA460005E29B /* WallPostServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD6C208CBA460005E29B /* WallPostServiceImpl.m */; };
 		C32305B92080E57500CEC487 /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EC2080E57300CEC487 /* libOpenSSL.a */; };
 		C32305BA2080E57500CEC487 /* PythonFramework.zip in Resources */ = {isa = PBXBuildFile; fileRef = C32303ED2080E57300CEC487 /* PythonFramework.zip */; };
 		C32305BB2080E57500CEC487 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EE2080E57300CEC487 /* libbz2.a */; };
@@ -641,6 +642,10 @@
 		C313DD64208CB14A0005E29B /* WallPostViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostViewModelImpl.h; sourceTree = "<group>"; };
 		C313DD65208CB14A0005E29B /* WallPostViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPostViewModelImpl.m; sourceTree = "<group>"; };
 		C313DD67208CB1570005E29B /* WallPostViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostViewModel.h; sourceTree = "<group>"; };
+		C313DD68208CB47F0005E29B /* postsdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = postsdatabase.py; sourceTree = "<group>"; };
+		C313DD6B208CBA460005E29B /* WallPostServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostServiceImpl.h; sourceTree = "<group>"; };
+		C313DD6C208CBA460005E29B /* WallPostServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPostServiceImpl.m; sourceTree = "<group>"; };
+		C313DD6E208CBA4D0005E29B /* WallPostService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostService.h; sourceTree = "<group>"; };
 		C32303EC2080E57300CEC487 /* libOpenSSL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenSSL.a; sourceTree = "<group>"; };
 		C32303ED2080E57300CEC487 /* PythonFramework.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = PythonFramework.zip; sourceTree = "<group>"; };
 		C32303EE2080E57300CEC487 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbz2.a; sourceTree = "<group>"; };
@@ -1769,6 +1774,16 @@
 			path = WallPostViewModel;
 			sourceTree = "<group>";
 		};
+		C313DD6A208CBA330005E29B /* WallPostService */ = {
+			isa = PBXGroup;
+			children = (
+				C313DD6B208CBA460005E29B /* WallPostServiceImpl.h */,
+				C313DD6C208CBA460005E29B /* WallPostServiceImpl.m */,
+				C313DD6E208CBA4D0005E29B /* WallPostService.h */,
+			);
+			path = WallPostService;
+			sourceTree = "<group>";
+		};
 		C32303EB2080E57300CEC487 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2257,6 +2272,7 @@
 		C32304B92080E57400CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C313DD6A208CBA330005E29B /* WallPostService */,
 				C313DD42208C57260005E29B /* FriendsService */,
 				C32304BA2080E57400CEC487 /* WallService */,
 				C32304BE2080E57400CEC487 /* DialogService */,
@@ -2790,11 +2806,12 @@
 		C32305B62080E57500CEC487 /* caches */ = {
 			isa = PBXGroup;
 			children = (
+				C32305B82080E57500CEC487 /* __init__.py */,
 				C32305B72080E57500CEC487 /* usersdatabase.py */,
 				C3372F912081F68E0080DA75 /* basedatabase.py */,
 				C3372F922081FAEA0080DA75 /* messagesdatabase.py */,
-				C32305B82080E57500CEC487 /* __init__.py */,
 				C313DD48208C6C9F0005E29B /* friendsdatabase.py */,
+				C313DD68208CB47F0005E29B /* postsdatabase.py */,
 			);
 			path = caches;
 			sourceTree = "<group>";
@@ -4797,6 +4814,7 @@
 				C32308F32081AEB100CEC487 /* TyphoonInjectedObject.m in Sources */,
 				C32308D42081AEB100CEC487 /* NSObject+DeallocNotification.m in Sources */,
 				C3372FCF2083356C0080DA75 /* TimeSeparatorModel.swift in Sources */,
+				C313DD6D208CBA460005E29B /* WallPostServiceImpl.m in Sources */,
 				C323060E2080E57500CEC487 /* MenuViewController.m in Sources */,
 				C32306092080E57500CEC487 /* EmptyViewController.m in Sources */,
 				C32308C22081AEB100CEC487 /* TyphoonDefinition+Config.m in Sources */,

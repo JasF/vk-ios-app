@@ -12,6 +12,7 @@
 #import "DialogServiceImpl.h"
 #import "HandlersFactoryImpl.h"
 #import "FriendsServiceImpl.h"
+#import "WallPostServiceImpl.h"
 
 @implementation ServicesAssembly
 
@@ -49,6 +50,10 @@
 
 - (id<FriendsService>)friendsService {
     return [TyphoonDefinition withClass:[FriendsServiceImpl class]];
+}
+
+- (id<WallPostService>)wallPostService {
+    return [TyphoonDefinition withClass:[WallPostServiceImpl class]];
 }
 
 @end

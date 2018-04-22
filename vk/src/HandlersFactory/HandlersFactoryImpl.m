@@ -18,7 +18,7 @@
 #import "WallViewModelImpl.h"
 #import "MenuViewModelImpl.h"
 #import "FriendsViewModelImpl.h"
-
+#import "WallPostViewModelImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -46,6 +46,12 @@
 
 - (id<PyWallViewModel>)wallViewModelHandlerWithDelegate:(id)delegate parameters:(NSDictionary *)parameters {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyWallViewModel)
+                                                delegate:delegate
+                                              parameters:parameters];
+}
+
+- (id<PyWallPostViewModel>)wallPostViewModelHandlerWithDelegate:(id)delegate parameters:(NSDictionary *)parameters {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyWallPostViewModel)
                                                 delegate:delegate
                                               parameters:parameters];
 }

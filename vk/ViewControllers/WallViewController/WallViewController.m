@@ -109,4 +109,15 @@ ASCollectionDelegate, ASCollectionDataSource>
     [super performBatchAnimated:animated];
 }
 
+#pragma mark - ASCollectionNodeDelegate
+- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *objects = [self objectsArray];
+    NSCAssert(indexPath.row < objects.count, @"index out of bounds: %@ %@", indexPath, objects);
+    if (indexPath.row >= objects.count) {
+        return;
+    }
+    
+    [_viewModel tappedOnPost:objects[indexPath.row]];
+}
+
 @end

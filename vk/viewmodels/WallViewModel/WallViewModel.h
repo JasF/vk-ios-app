@@ -7,10 +7,12 @@
 //
 
 #import "User.h"
+#import "WallPost.h"
 
 @protocol WallViewModel <NSObject>
 @property User *currentUser;
 - (void)getWallPostsWithOffset:(NSInteger)offset
                     completion:(void(^)(NSArray *posts))completion;
 - (void)menuTapped;
+- (void)tappedOnPost:(WallPost *)post;
 @end

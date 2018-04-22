@@ -14,6 +14,7 @@
 - (NSDictionary *)getWall:(NSNumber *)offset;
 - (void)menuTapped;
 - (NSDictionary *)getUserInfo;
+- (void)tappedOnPostWithId:(NSNumber *)identifier;
 @end
 
 @interface WallViewModelImpl : NSObject <WallViewModel>

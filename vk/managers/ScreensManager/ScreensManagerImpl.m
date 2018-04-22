@@ -17,6 +17,7 @@
 #import "MenuViewController.h"
 #import "ViewModelsAssembly.h"
 #import "FriendsViewController.h"
+#import "WallPostViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -68,6 +69,15 @@
         [self closeMenu];
         WallViewController *viewController =(WallViewController *)[_screensAssembly wallViewController:userId];
         [self pushViewController:viewController];
+    });
+}
+
+- (void)showWallPostViewController:(NSNumber *)postId {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        WallPostViewController *viewController =(WallPostViewController *)[_screensAssembly wallPostViewController:postId];
+        [self pushViewController:viewController clean:NO];
     });
 }
 

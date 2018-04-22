@@ -8,11 +8,7 @@
 
 #import "WallViewModelImpl.h"
 
-@protocol WallViewModelDelegate <NSObject>
-- (void)pass;
-@end
-
-@interface WallViewModelImpl () <WallViewModelDelegate>
+@interface WallViewModelImpl ()
 @property (strong) id<PyWallViewModel> handler;
 @property (strong) id<WallService> wallService;
 @end
@@ -62,9 +58,10 @@
     });
 }
 
-#pragma mark - WallViewModelDelegate
-- (void)pass {
-    
+- (void)tappedOnPost:(WallPost *)post {
+    dispatch_python(^{
+        [_handler tappedOnPostWithId:@(post.identifier)];
+    });
 }
 
 @end

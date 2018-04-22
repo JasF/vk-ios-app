@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "WallPostViewModel.h"
-
+#import "HandlersFactory.h"
+#import "WallPostService.h"
 
 @protocol PyWallPostViewModel <NSObject>
+- (void)hello;
 @end
 
 @interface WallPostViewModelImpl : NSObject <WallPostViewModel>
-
+- (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
+                        wallPostService:(id<WallPostService>)wallPostService
+                                 userId:(NSNumber *)userId;
 @end

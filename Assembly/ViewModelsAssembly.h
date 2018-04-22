@@ -15,6 +15,7 @@
 #import "WallViewModel.h"
 #import "MenuViewModel.h"
 #import "FriendsViewModel.h"
+#import "WallPostViewModel.h"
 
 @interface ViewModelsAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -25,4 +26,5 @@
 - (id<WallViewModel>)wallScreenViewModel:(NSNumber *)userId;
 - (id<MenuViewModel>)menuScreenViewModel;
 - (id<FriendsViewModel>)friendsViewModel;
+- (id<WallPostViewModel>)wallPostViewModel:(NSNumber *)postId;
 @end

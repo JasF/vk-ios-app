@@ -19,6 +19,7 @@
 #import "ViewModelsAssembly.h"
 #import "FriendsViewController.h"
 #import "vk-Swift.h"
+#import "WallPostViewController.h"
 
 @implementation ScreensAssembly
 
@@ -84,6 +85,16 @@
             {
                 [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:[self.viewModelsAssembly wallScreenViewModel:userId]];
+                    [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+                }];
+            }];
+}
+
+- (UIViewController *)wallPostViewController:(NSNumber *)userId {
+    return [TyphoonDefinition withClass:[WallPostViewController class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:[self.viewModelsAssembly wallPostViewModel:userId]];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
                 }];
             }];

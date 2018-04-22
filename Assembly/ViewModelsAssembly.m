@@ -11,6 +11,7 @@
 #import "ChatListViewModelImpl.h"
 #import "FriendsViewModelImpl.h"
 #import "WallViewModelImpl.h"
+#import "WallPostViewModelImpl.h"
 #import "MenuViewModelImpl.h"
 
 @implementation ViewModelsAssembly
@@ -55,6 +56,17 @@
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.wallService];
                     [initializer injectParameterWith:userId];
+                }];
+            }];
+}
+
+- (id<WallPostViewModel>)wallPostViewModel:(NSNumber *)postId {
+    return [TyphoonDefinition withClass:[WallPostViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:wallPostService:userId:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.wallPostService];
+                    [initializer injectParameterWith:postId];
                 }];
             }];
 }

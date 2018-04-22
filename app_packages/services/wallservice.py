@@ -3,6 +3,7 @@ import json
 from vk import users
 import traceback
 from vk import users as users
+from caches.postsdatabase import PostsDatabase
 
 class WallService:
     def __init__(self, parameters):
