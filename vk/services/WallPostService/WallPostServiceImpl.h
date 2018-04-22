@@ -7,6 +7,8 @@
 //
 
 #import "WallPostService.h"
+#import "WallService.h"
 
 @interface WallPostServiceImpl : NSObject <WallPostService>
+- (id)initWithWallService:(id<WallService>)wallService;
 @end

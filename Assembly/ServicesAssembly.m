@@ -53,7 +53,12 @@
 }
 
 - (id<WallPostService>)wallPostService {
-    return [TyphoonDefinition withClass:[WallPostServiceImpl class]];
+    return [TyphoonDefinition withClass:[WallPostServiceImpl class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithWallService:) parameters:^(TyphoonMethod *initializer)
+         {
+             [initializer injectParameterWith:self.wallService];
+         }];
+    }];
 }
 
 @end

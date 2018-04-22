@@ -1,23 +1,23 @@
 import vk
 import json
-from vk import users
 import traceback
 from vk import users as users
 from caches.postsdatabase import PostsDatabase
 
 class WallService:
-    def __init__(self, parameters):
+    def __init__(self, parameters, usersDecorator):
         self.userInfo = None
+        self.usersDecorator = usersDecorator
         print('WallService parameters: ' + str(parameters))
         self.userId = parameters.get('userId')
         if self.userId == None or self.userId == 0:
             self.userId = vk.userId()
     
     def getWall(self, offset, userId):
-        api = vk.api()
         response = None
         usersData = None
         try:
+            api = vk.api()
             response = api.wall.get(offset=offset, owner_id=userId)
             l = response["items"]
             
@@ -25,30 +25,8 @@ class WallService:
             cache.update(l)
             cache.close()
             
-            #print('first is: ' + json.dumps(l[1]))
+            usersData = self.usersDecorator.usersDataFromPosts(l)
             
-            fromIds = [d['from_id'] for d in l]
-            ownerIds = [d['owner_id'] for d in l]
-            
-            def getId(object, key):
-                if isinstance(object, list):
-                    return [d.get(key) for d in object]
-                return None
-            
-            historyFromIds = [getId(d.get('copy_history'), 'owner_id') for d in l if getId(d.get('copy_history'), 'owner_id')]
-            historyOwnerIds = [getId(d.get('copy_history'), 'from_id') for d in l if getId(d.get('copy_history'), 'from_id')]
-            
-            historyFromIds = [item for sublist in historyFromIds for item in sublist]
-            historyOwnerIds = [item for sublist in historyOwnerIds for item in sublist]
-            
-            ids = set()
-            ids |= set(fromIds)
-            ids |= set(ownerIds)
-            ids |= set(historyFromIds)
-            ids |= set(historyOwnerIds)
-            
-            usersData = users.getShortUsersByIds(ids)
-        
         except Exception as e:
             print('wall.get exception: ' + str(e))
         results = {'response':response, 'users':usersData}

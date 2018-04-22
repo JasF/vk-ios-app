@@ -8,11 +8,20 @@
 
 #import "WallPostServiceImpl.h"
 
-@implementation WallPostServiceImpl
+@implementation WallPostServiceImpl {
+    id<WallService> _wallService;
+}
+
+- (id)initWithWallService:(id<WallService>)wallService {
+    NSCParameterAssert(wallService);
+    if (self = [super init]) {
+        _wallService = wallService;
+    }
+    return self;
+}
 
 - (WallPost *)parseOne:(NSDictionary *)postData {
-    WallPost *post = [EKMapper objectFromExternalRepresentation:postData
-                                                    withMapping:[WallPost objectMapping]];
+    WallPost *post = [_wallService parse:postData].firstObject;
     return post;
 }
 

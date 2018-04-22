@@ -646,6 +646,7 @@
 		C313DD6B208CBA460005E29B /* WallPostServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostServiceImpl.h; sourceTree = "<group>"; };
 		C313DD6C208CBA460005E29B /* WallPostServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPostServiceImpl.m; sourceTree = "<group>"; };
 		C313DD6E208CBA4D0005E29B /* WallPostService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostService.h; sourceTree = "<group>"; };
+		C313DD6F208CD4F00005E29B /* usersdecorator.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = usersdecorator.py; sourceTree = "<group>"; };
 		C32303EC2080E57300CEC487 /* libOpenSSL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenSSL.a; sourceTree = "<group>"; };
 		C32303ED2080E57300CEC487 /* PythonFramework.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = PythonFramework.zip; sourceTree = "<group>"; };
 		C32303EE2080E57300CEC487 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbz2.a; sourceTree = "<group>"; };
@@ -2799,6 +2800,7 @@
 				C3A943FD2084BAAD0033355E /* messagesservice.py */,
 				C313DD47208C5B830005E29B /* friendsservice.py */,
 				C313DD62208CB0210005E29B /* wallpostservice.py */,
+				C313DD6F208CD4F00005E29B /* usersdecorator.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
