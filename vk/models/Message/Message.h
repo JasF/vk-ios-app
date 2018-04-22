@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Attachments.h"
 
 @import EasyMapping;
 
@@ -21,5 +22,7 @@
 @property NSInteger user_id;
 @property NSInteger from_id;
 @property BOOL isTyping;
+@property NSArray<Attachments *> *photoAttachments;
+@property NSArray<Attachments *> *attachments;
 
 @end

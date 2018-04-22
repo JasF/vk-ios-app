@@ -19,14 +19,14 @@
 #import "LoadingNode.h"
 #import "Dialog.h"
 
-@interface ChatListViewController () <BaseCollectionViewControllerDataSource, ASCollectionDelegate, ChatListScreenViewModelDelegate>
-@property (strong, nonatomic) id<ChatListScreenViewModel> viewModel;
+@interface ChatListViewController () <BaseCollectionViewControllerDataSource, ASCollectionDelegate, ChatListViewModelDelegate>
+@property (strong, nonatomic) id<ChatListViewModel> viewModel;
 @property (strong, nonatomic) id<NodeFactory> nodeFactory;
 @end
 
 @implementation ChatListViewController
 
-- (instancetype)initWithViewModel:(id<ChatListScreenViewModel>)viewModel
+- (instancetype)initWithViewModel:(id<ChatListViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(viewModel);
     NSCParameterAssert(nodeFactory);
@@ -71,7 +71,7 @@
     [_viewModel tappedOnDialogWithUserId:item.message.user_id];
 }
 
-#pragma mark - ChatListScreenViewModelDelegate
+#pragma mark - ChatListViewModelDelegate
 - (void)reloadData {
     [super reloadData];
 }

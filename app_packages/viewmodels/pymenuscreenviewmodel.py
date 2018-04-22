@@ -7,3 +7,5 @@ class PyMenuScreenViewModel():
     def dialogsTapped(self):
         managers.shared().screensManager().showChatListViewController()
 
+    def friendsTapped(self):
+        managers.shared().screensManager().showFriendsViewController()

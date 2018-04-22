@@ -27,6 +27,7 @@
 - (UIViewController *)createMainViewController;
 - (UIViewController *)wallViewController;
 - (UIViewController *)chatListViewController;
+- (UIViewController *)friendsViewController;
 - (UIViewController *)dialogViewController:(NSNumber *)userId;
 - (UIWindow *)window;
 - (UINavigationController *)rootNavigationController;

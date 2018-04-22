@@ -1,45 +1,41 @@
 //
-//  ChatListScreenViewModelImpl.m
+//  ChatListViewModelImpl.m
 //  vk
 //
 //  Created by Jasf on 17.04.2018.
 //  Copyright © 2018 Ebay Inc. All rights reserved.
 //
 
-#import "ChatListScreenViewModelImpl.h"
+#import "ChatListViewModelImpl.h"
 
-@protocol PyChatListScreenViewModelDelegate <NSObject>
+@protocol PyChatListViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(NSDictionary *)messageDictionary;
 - (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary;
 - (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end;
 @end
 
-@interface ChatListScreenViewModelImpl () <PyChatListScreenViewModelDelegate>
-@property (strong, nonatomic) id<PyChatListScreenViewModel> handler;
-@property (strong, nonatomic) id<PythonBridge> pythonBridge;
+@interface ChatListViewModelImpl () <PyChatListViewModelDelegate>
+@property (strong, nonatomic) id<PyChatListViewModel> handler;
 @property (strong, nonatomic) id<ChatListService> chatListService;
 @end
 
-@implementation ChatListScreenViewModelImpl
+@implementation ChatListViewModelImpl
 
 @synthesize delegate = _delegate;
 
 #pragma mark - Initialization
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
-                           pythonBridge:(id<PythonBridge>)pythonBridge
                         chatListService:(id<ChatListService>)chatListService {
     NSCParameterAssert(handlersFactory);
-    NSCParameterAssert(pythonBridge);
     NSCParameterAssert(chatListService);
     if (self = [self init]) {
-        _pythonBridge = pythonBridge;
         _chatListService = chatListService;
         _handler = [handlersFactory chatListViewModelHandler:self];
     }
     return self;
 }
 
-#pragma mark - ChatListScreenViewModel
+#pragma mark - ChatListViewModel
 - (void)menuTapped {
     dispatch_python(^{
         [_handler menuTapped];
@@ -65,7 +61,7 @@
     });
 }
 
-#pragma mark - PyChatListScreenViewModelDelegate
+#pragma mark - PyChatListViewModelDelegate
 - (void)handleIncomingMessage:(NSString *)messageDictionary {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate reloadData];

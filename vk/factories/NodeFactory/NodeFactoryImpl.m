@@ -60,6 +60,9 @@
     else if ([item isKindOfClass:[Dialog class]]) {
         return [_assembly dialogNode:item];
     }
+    else if ([item isKindOfClass:[User class]]) {
+        return [_assembly userNode:item];
+    }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;
 }

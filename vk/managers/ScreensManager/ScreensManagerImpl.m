@@ -16,6 +16,7 @@
 #import "vk-Swift.h"
 #import "MenuViewController.h"
 #import "ViewModelsAssembly.h"
+#import "FriendsViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -77,6 +78,18 @@
             return;
         }
         ChatListViewController *viewController =(ChatListViewController *)[_screensAssembly chatListViewController];
+        [self pushViewController:viewController];
+    });
+}
+
+- (void)showFriendsViewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[FriendsViewController class]]) {
+            return;
+        }
+        FriendsViewController *viewController =(FriendsViewController *)[_screensAssembly friendsViewController];
         [self pushViewController:viewController];
     });
 }

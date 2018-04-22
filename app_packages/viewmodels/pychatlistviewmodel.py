@@ -1,14 +1,14 @@
-from objcbridge import BridgeBase
+from objcbridge import BridgeBase, ObjCBridgeProtocol
 from objc import managers
 from services.messagesservice import NewMessageProtocol
 import sched, time
 
 kTypingInterval = 5
 
-class PyChatListScreenViewModelDelegate(BridgeBase):
+class PyChatListViewModelDelegate(BridgeBase):
     pass
 
-class PyChatListScreenViewModel(NewMessageProtocol):
+class PyChatListViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     def __init__(self, delegateId, messagesService, chatListService):
         self.scheduler = sched.scheduler(time.time, time.sleep)
         self.messagesService = messagesService
@@ -16,7 +16,7 @@ class PyChatListScreenViewModel(NewMessageProtocol):
         self.typingEvent = None
         self.typingUserId = None
         self.messagesService.addNewMessageSubscriber(self)
-        self.guiDelegate = PyChatListScreenViewModelDelegate(delegateId)
+        self.guiDelegate = PyChatListViewModelDelegate(delegateId)
 
     # protocol methods implementation
     def menuTapped(self):

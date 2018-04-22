@@ -1,0 +1,21 @@
+//
+//  FriendsViewModelImpl.h
+//  vk
+//
+//  Created by Jasf on 22.04.2018.
+//  Copyright © 2018 Ebay Inc. All rights reserved.
+//
+
+#import "FriendsViewModel.h"
+#import "HandlersFactory.h"
+#import "FriendsService.h"
+
+@protocol PyFriendsViewModel <NSObject>
+- (NSDictionary *)getFriends:(NSNumber *)offset;
+- (void)menuTapped;
+@end
+
+@interface FriendsViewModelImpl : NSObject<FriendsViewModel>
+- (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
+                         friendsService:(id<FriendsService>)friendsService;
+@end

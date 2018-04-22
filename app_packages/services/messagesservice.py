@@ -1,7 +1,7 @@
 from vk import LongPoll
 import vk
 from vk.longpoll import AddMessageProtocol
-from caches.messages import MessagesDatabase
+from caches.messagesdatabase import MessagesDatabase
 from enum import Flag, auto
 
 class MessageFlags(Flag):

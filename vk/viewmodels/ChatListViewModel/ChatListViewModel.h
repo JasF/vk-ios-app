@@ -1,5 +1,5 @@
 //
-//  ChatListScreenViewModel.h
+//  ChatListViewModel.h
 //  vk
 //
 //  Created by Jasf on 17.04.2018.
@@ -8,13 +8,13 @@
 
 @class Dialog;
 
-@protocol ChatListScreenViewModelDelegate <NSObject>
+@protocol ChatListViewModelDelegate <NSObject>
 - (void)reloadData;
 - (void)setTypingEnabled:(BOOL)enabled userId:(NSInteger)userId;
 @end
 
-@protocol ChatListScreenViewModel <NSObject>
-@property (weak) id<ChatListScreenViewModelDelegate> delegate;
+@protocol ChatListViewModel <NSObject>
+@property (weak) id<ChatListViewModelDelegate> delegate;
 - (void)menuTapped;
 - (void)tappedOnDialogWithUserId:(NSInteger)userId;
 - (void)getDialogsWithOffset:(NSInteger)offset

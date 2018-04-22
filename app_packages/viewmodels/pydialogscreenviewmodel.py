@@ -22,7 +22,8 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     
     # protocol methods from objc
     def getMessagesuserId(self, offset, userId):
-        return self.dialogService.getMessagesuserId(offset, userId)
+        results = self.dialogService.getMessagesuserId(offset, userId)
+        return results
     
     def getMessagesuserIdstartMessageId(self, offset, userId, startMessageId):
         return self.dialogService.getMessagesuserIdstartMessageId(offset, userId, startMessageId)

@@ -13,10 +13,11 @@
 #import "ChatListServiceImpl.h"
 #import "vk-Swift.h"
 #import "DialogServiceImpl.h"
-#import "ChatListScreenViewModelImpl.h"
+#import "ChatListViewModelImpl.h"
 #import "DialogScreenViewModelImpl.h"
 #import "WallScreenViewModelImpl.h"
 #import "MenuScreenViewModelImpl.h"
+#import "FriendsViewModelImpl.h"
 
 
 @interface HandlersFactoryImpl ()
@@ -33,8 +34,8 @@
     return self;
 }
 
-- (id<PyChatListScreenViewModel>)chatListViewModelHandler:(id)delegate {
-    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyChatListScreenViewModel) delegate:delegate];
+- (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyChatListViewModel) delegate:delegate];
 }
 
 - (id<PyDialogScreenViewModel>)dialogViewModelHandler:(id)delegate parameters:(NSDictionary *)parameters {
@@ -49,6 +50,10 @@
 
 - (id<PyMenuScreenViewModel>)menuViewModelHandler {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyMenuScreenViewModel)];
+}
+
+- (id<PyFriendsViewModel>)friendsViewModelHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyFriendsViewModel)];
 }
 
 @end

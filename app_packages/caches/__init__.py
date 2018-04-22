@@ -1,5 +1,7 @@
-from .messages import MessagesDatabase
-from .users import UsersDatabase
+from .messagesdatabase import MessagesDatabase
+from .usersdatabase import UsersDatabase
+from .friendsdatabase import FriendsDatabase
 
 MessagesDatabase.deleteDatabaseFile(MessagesDatabase)
 UsersDatabase.deleteDatabaseFile(UsersDatabase)
+FriendsDatabase.deleteDatabaseFile(FriendsDatabase)

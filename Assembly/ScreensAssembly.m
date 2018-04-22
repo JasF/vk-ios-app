@@ -17,6 +17,7 @@
 #import "NodesAssembly.h"
 #import "ServicesAssembly.h"
 #import "ViewModelsAssembly.h"
+#import "FriendsViewController.h"
 #import "vk-Swift.h"
 
 @implementation ScreensAssembly
@@ -106,6 +107,15 @@
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
                 }];
             }];
+}
+
+- (UIViewController *)friendsViewController {
+    return [TyphoonDefinition withClass:[FriendsViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:self.viewModelsAssembly.friendsViewModel];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+        }];
+    }];
 }
 
 - (BaseNavigationController *)mainNavigationController {

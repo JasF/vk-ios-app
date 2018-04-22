@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		197D8B0F1D64BA50004630AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197D8B0E1D64BA50004630AE /* AppDelegate.swift */; };
 		197D8B141D64BA50004630AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197D8B121D64BA50004630AE /* Main.storyboard */; };
+		C313DD3C208C53E50005E29B /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD3B208C53E50005E29B /* FriendsViewController.m */; };
+		C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD40208C54430005E29B /* FriendsViewModelImpl.m */; };
+		C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD45208C578B0005E29B /* FriendsServiceImpl.m */; };
+		C313DD4C208C7BCF0005E29B /* UserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD4B208C7BCF0005E29B /* UserNode.m */; };
 		C32305B92080E57500CEC487 /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EC2080E57300CEC487 /* libOpenSSL.a */; };
 		C32305BA2080E57500CEC487 /* PythonFramework.zip in Resources */ = {isa = PBXBuildFile; fileRef = C32303ED2080E57300CEC487 /* PythonFramework.zip */; };
 		C32305BB2080E57500CEC487 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EE2080E57300CEC487 /* libbz2.a */; };
@@ -299,7 +303,7 @@
 		C32306DD2080E57500CEC487 /* __init__.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305B32080E57500CEC487 /* __init__.py */; };
 		C32306DE2080E57500CEC487 /* wallservice.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305B42080E57500CEC487 /* wallservice.py */; };
 		C32306DF2080E57500CEC487 /* chatlistservice.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305B52080E57500CEC487 /* chatlistservice.py */; };
-		C32306E02080E57500CEC487 /* users.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305B72080E57500CEC487 /* users.py */; };
+		C32306E02080E57500CEC487 /* usersdatabase.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305B72080E57500CEC487 /* usersdatabase.py */; };
 		C32306E12080E57500CEC487 /* __init__.py in Resources */ = {isa = PBXBuildFile; fileRef = C32305B82080E57500CEC487 /* __init__.py */; };
 		C32306E32080E63D00CEC487 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C32306E22080E63C00CEC487 /* libsqlite3.tbd */; };
 		C32306E52080E64400CEC487 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C32306E42080E64400CEC487 /* libz.tbd */; };
@@ -588,7 +592,7 @@
 		C3B0EF4A208B2FF9008802BB /* DemoChatViewController+ChatInputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B0EF49208B2FF9008802BB /* DemoChatViewController+ChatInputDelegate.swift */; };
 		C3B225062085BA6800599E04 /* DialogScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225052085BA6800599E04 /* DialogScreenViewModelImpl.m */; };
 		C3B225092085BA8300599E04 /* ViewModelsAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225082085BA8300599E04 /* ViewModelsAssembly.m */; };
-		C3B225102085D7DC00599E04 /* ChatListScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2250F2085D7DC00599E04 /* ChatListScreenViewModelImpl.m */; };
+		C3B225102085D7DC00599E04 /* ChatListViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2250F2085D7DC00599E04 /* ChatListViewModelImpl.m */; };
 		C3B2251520860BE400599E04 /* DeallocSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2251420860BE400599E04 /* DeallocSubscriber.m */; };
 		C3B2251B20861F5F00599E04 /* WallScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2251A20861F5F00599E04 /* WallScreenViewModelImpl.m */; };
 		C3B225212086298400599E04 /* MenuScreenViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225202086298400599E04 /* MenuScreenViewModelImpl.m */; };
@@ -607,6 +611,19 @@
 		A3EFD1DB3DB35D26BD34A97F /* Pods_MessageGroupsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageGroupsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA69975BD27688EB85F70A6A /* Pods-MessageGroupsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B52498E6A69599165C997DF8 /* Pods_MessageGroupsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageGroupsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyfriendsviewmodel.py; sourceTree = "<group>"; };
+		C313DD3A208C53E50005E29B /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		C313DD3B208C53E50005E29B /* FriendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		C313DD3E208C542C0005E29B /* FriendsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewModel.h; sourceTree = "<group>"; };
+		C313DD3F208C54430005E29B /* FriendsViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewModelImpl.h; sourceTree = "<group>"; };
+		C313DD40208C54430005E29B /* FriendsViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsViewModelImpl.m; sourceTree = "<group>"; };
+		C313DD43208C573C0005E29B /* FriendsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsService.h; sourceTree = "<group>"; };
+		C313DD44208C578B0005E29B /* FriendsServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsServiceImpl.h; sourceTree = "<group>"; };
+		C313DD45208C578B0005E29B /* FriendsServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsServiceImpl.m; sourceTree = "<group>"; };
+		C313DD47208C5B830005E29B /* friendsservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = friendsservice.py; sourceTree = "<group>"; };
+		C313DD48208C6C9F0005E29B /* friendsdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = friendsdatabase.py; sourceTree = "<group>"; };
+		C313DD4A208C7BCF0005E29B /* UserNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserNode.h; sourceTree = "<group>"; };
+		C313DD4B208C7BCF0005E29B /* UserNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserNode.m; sourceTree = "<group>"; };
 		C32303EC2080E57300CEC487 /* libOpenSSL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenSSL.a; sourceTree = "<group>"; };
 		C32303ED2080E57300CEC487 /* PythonFramework.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = PythonFramework.zip; sourceTree = "<group>"; };
 		C32303EE2080E57300CEC487 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbz2.a; sourceTree = "<group>"; };
@@ -978,7 +995,7 @@
 		C32305B32080E57500CEC487 /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C32305B42080E57500CEC487 /* wallservice.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = wallservice.py; sourceTree = "<group>"; };
 		C32305B52080E57500CEC487 /* chatlistservice.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = chatlistservice.py; sourceTree = "<group>"; };
-		C32305B72080E57500CEC487 /* users.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = users.py; sourceTree = "<group>"; };
+		C32305B72080E57500CEC487 /* usersdatabase.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = usersdatabase.py; sourceTree = "<group>"; };
 		C32305B82080E57500CEC487 /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C32306E22080E63C00CEC487 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		C32306E42080E64400CEC487 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -1375,7 +1392,7 @@
 		C32309382081AED800CEC487 /* renametexture.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = renametexture.py; sourceTree = "<group>"; };
 		C3372F902081D7480080DA75 /* dialogservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogservice.py; sourceTree = "<group>"; };
 		C3372F912081F68E0080DA75 /* basedatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = basedatabase.py; sourceTree = "<group>"; };
-		C3372F922081FAEA0080DA75 /* messages.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messages.py; sourceTree = "<group>"; };
+		C3372F922081FAEA0080DA75 /* messagesdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messagesdatabase.py; sourceTree = "<group>"; };
 		C3372F932081FB330080DA75 /* gensqlkeys.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = gensqlkeys.py; sourceTree = "<group>"; };
 		C3372F972083356B0080DA75 /* MessagesSelectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesSelectorProtocol.swift; sourceTree = "<group>"; };
 		C3372F992083356B0080DA75 /* AddRandomMessageChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRandomMessageChatViewController.swift; sourceTree = "<group>"; };
@@ -1541,10 +1558,10 @@
 		C3B225052085BA6800599E04 /* DialogScreenViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogScreenViewModelImpl.m; sourceTree = "<group>"; };
 		C3B225072085BA8300599E04 /* ViewModelsAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewModelsAssembly.h; sourceTree = "<group>"; };
 		C3B225082085BA8300599E04 /* ViewModelsAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewModelsAssembly.m; sourceTree = "<group>"; };
-		C3B2250A2085D70600599E04 /* pychatlistscreenviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pychatlistscreenviewmodel.py; sourceTree = "<group>"; };
-		C3B2250E2085D7DC00599E04 /* ChatListScreenViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatListScreenViewModelImpl.h; sourceTree = "<group>"; };
-		C3B2250F2085D7DC00599E04 /* ChatListScreenViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatListScreenViewModelImpl.m; sourceTree = "<group>"; };
-		C3B225112085D7E600599E04 /* ChatListScreenViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatListScreenViewModel.h; sourceTree = "<group>"; };
+		C3B2250A2085D70600599E04 /* pychatlistviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pychatlistviewmodel.py; sourceTree = "<group>"; };
+		C3B2250E2085D7DC00599E04 /* ChatListViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatListViewModelImpl.h; sourceTree = "<group>"; };
+		C3B2250F2085D7DC00599E04 /* ChatListViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatListViewModelImpl.m; sourceTree = "<group>"; };
+		C3B225112085D7E600599E04 /* ChatListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatListViewModel.h; sourceTree = "<group>"; };
 		C3B2251320860BE400599E04 /* DeallocSubscriber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeallocSubscriber.h; sourceTree = "<group>"; };
 		C3B2251420860BE400599E04 /* DeallocSubscriber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeallocSubscriber.m; sourceTree = "<group>"; };
 		C3B2251820861F4800599E04 /* WallScreenViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallScreenViewModel.h; sourceTree = "<group>"; };
@@ -1650,6 +1667,44 @@
 				39C2FA56395FE4C8F46CEEF9 /* Pods-vk.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C313DD39208C53C50005E29B /* FriendsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C313DD3A208C53E50005E29B /* FriendsViewController.h */,
+				C313DD3B208C53E50005E29B /* FriendsViewController.m */,
+			);
+			path = FriendsViewController;
+			sourceTree = "<group>";
+		};
+		C313DD3D208C541F0005E29B /* FriendsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C313DD3E208C542C0005E29B /* FriendsViewModel.h */,
+				C313DD3F208C54430005E29B /* FriendsViewModelImpl.h */,
+				C313DD40208C54430005E29B /* FriendsViewModelImpl.m */,
+			);
+			path = FriendsViewModel;
+			sourceTree = "<group>";
+		};
+		C313DD42208C57260005E29B /* FriendsService */ = {
+			isa = PBXGroup;
+			children = (
+				C313DD43208C573C0005E29B /* FriendsService.h */,
+				C313DD44208C578B0005E29B /* FriendsServiceImpl.h */,
+				C313DD45208C578B0005E29B /* FriendsServiceImpl.m */,
+			);
+			path = FriendsService;
+			sourceTree = "<group>";
+		};
+		C313DD49208C7BB80005E29B /* UserNode */ = {
+			isa = PBXGroup;
+			children = (
+				C313DD4A208C7BCF0005E29B /* UserNode.h */,
+				C313DD4B208C7BCF0005E29B /* UserNode.m */,
+			);
+			path = UserNode;
 			sourceTree = "<group>";
 		};
 		C32303EB2080E57300CEC487 /* Frameworks */ = {
@@ -1766,6 +1821,7 @@
 		C32304292080E57400CEC487 /* vk */ = {
 			isa = PBXGroup;
 			children = (
+				C32304B92080E57400CEC487 /* services */,
 				C3B225012085BA4000599E04 /* viewmodels */,
 				C32304372080E57400CEC487 /* nodes */,
 				C32304472080E57400CEC487 /* managers */,
@@ -1775,7 +1831,6 @@
 				C32304A72080E57400CEC487 /* Supporting Files */,
 				C32304AB2080E57400CEC487 /* factories */,
 				C32304B82080E57400CEC487 /* Info.plist */,
-				C32304B92080E57400CEC487 /* services */,
 				C32304C62080E57400CEC487 /* ViewController.h */,
 				C32304C82080E57400CEC487 /* src */,
 			);
@@ -1785,6 +1840,7 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C313DD49208C7BB80005E29B /* UserNode */,
 				C37C0BF92086F7E60086A875 /* AvatarNode */,
 				C32304382080E57400CEC487 /* DialogNode */,
 				C323043B2080E57400CEC487 /* PostVideoNode */,
@@ -2011,6 +2067,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C313DD39208C53C50005E29B /* FriendsViewController */,
 				C3372F96208335440080DA75 /* Chat */,
 				C32304862080E57400CEC487 /* BaseNavigationController */,
 				C32304892080E57400CEC487 /* MainViewController */,
@@ -2134,6 +2191,7 @@
 		C32304B92080E57400CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C313DD42208C57260005E29B /* FriendsService */,
 				C32304BA2080E57400CEC487 /* WallService */,
 				C32304BE2080E57400CEC487 /* DialogService */,
 				C32304C22080E57400CEC487 /* ChatListService */,
@@ -2658,6 +2716,7 @@
 				C32305B52080E57500CEC487 /* chatlistservice.py */,
 				C3372F902081D7480080DA75 /* dialogservice.py */,
 				C3A943FD2084BAAD0033355E /* messagesservice.py */,
+				C313DD47208C5B830005E29B /* friendsservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -2665,10 +2724,11 @@
 		C32305B62080E57500CEC487 /* caches */ = {
 			isa = PBXGroup;
 			children = (
-				C32305B72080E57500CEC487 /* users.py */,
+				C32305B72080E57500CEC487 /* usersdatabase.py */,
 				C3372F912081F68E0080DA75 /* basedatabase.py */,
-				C3372F922081FAEA0080DA75 /* messages.py */,
+				C3372F922081FAEA0080DA75 /* messagesdatabase.py */,
 				C32305B82080E57500CEC487 /* __init__.py */,
+				C313DD48208C6C9F0005E29B /* friendsdatabase.py */,
 			);
 			path = caches;
 			sourceTree = "<group>";
@@ -3741,9 +3801,10 @@
 			children = (
 				C3A943FC2084B9360033355E /* __init__.py */,
 				C3A943FB2084B8B20033355E /* pydialogscreenviewmodel.py */,
-				C3B2250A2085D70600599E04 /* pychatlistscreenviewmodel.py */,
+				C3B2250A2085D70600599E04 /* pychatlistviewmodel.py */,
 				C3B2251C208623CF00599E04 /* pywallscreenviewmodel.py */,
 				C3B2252220862B7600599E04 /* pymenuscreenviewmodel.py */,
+				C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -3902,9 +3963,10 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C313DD3D208C541F0005E29B /* FriendsViewModel */,
 				C3B2251D2086270100599E04 /* MenuScreenViewModel */,
 				C3B2251720861F3A00599E04 /* WallScreenViewModel */,
-				C3B2250D2085D7BF00599E04 /* ChatListScreenViewModel */,
+				C3B2250D2085D7BF00599E04 /* ChatListViewModel */,
 				C3B225022085BA4A00599E04 /* DialogScreenViewModel */,
 			);
 			path = viewmodels;
@@ -3920,14 +3982,14 @@
 			path = DialogScreenViewModel;
 			sourceTree = "<group>";
 		};
-		C3B2250D2085D7BF00599E04 /* ChatListScreenViewModel */ = {
+		C3B2250D2085D7BF00599E04 /* ChatListViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C3B2250E2085D7DC00599E04 /* ChatListScreenViewModelImpl.h */,
-				C3B2250F2085D7DC00599E04 /* ChatListScreenViewModelImpl.m */,
-				C3B225112085D7E600599E04 /* ChatListScreenViewModel.h */,
+				C3B2250E2085D7DC00599E04 /* ChatListViewModelImpl.h */,
+				C3B2250F2085D7DC00599E04 /* ChatListViewModelImpl.m */,
+				C3B225112085D7E600599E04 /* ChatListViewModel.h */,
 			);
-			path = ChatListScreenViewModel;
+			path = ChatListViewModel;
 			sourceTree = "<group>";
 		};
 		C3B2251220860BD300599E04 /* DeallocSubscriber */ = {
@@ -4355,7 +4417,7 @@
 				C323062E2080E57500CEC487 /* version.py in Resources */,
 				C323064E2080E57500CEC487 /* big5prober.py in Resources */,
 				C32305E32080E57500CEC487 /* icon_ios@2x.png in Resources */,
-				C32306E02080E57500CEC487 /* users.py in Resources */,
+				C32306E02080E57500CEC487 /* usersdatabase.py in Resources */,
 				C3B0EEDF208B14E8008802BB /* loadBubble_0037_Layer-2@2x.png in Resources */,
 				C323063E2080E57500CEC487 /* euctwprober.py in Resources */,
 				C323065C2080E57500CEC487 /* compat.cpython-34.pyc in Resources */,
@@ -4491,6 +4553,7 @@
 				C3B0EF48208B15E6008802BB /* iOSDevCenters+GIF.swift in Sources */,
 				C32308DA2081AEB100CEC487 /* TyphoonViewHelpers.m in Sources */,
 				C32309082081AEB100CEC487 /* TyphoonNSNumberTypeConverter.m in Sources */,
+				C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */,
 				C32306042080E57500CEC487 /* LeftViewCell.m in Sources */,
 				C32308C32081AEB100CEC487 /* TyphoonJsonStyleConfiguration.m in Sources */,
 				C323061C2080E57500CEC487 /* ChatListServiceImpl.m in Sources */,
@@ -4501,6 +4564,7 @@
 				C32308E32081AEB100CEC487 /* TyphoonLoadedView.m in Sources */,
 				C32308F82081AEB100CEC487 /* TyphoonInjectionByObjectInstance.m in Sources */,
 				C3372FD02083356C0080DA75 /* TimeSeparatorPresenter.swift in Sources */,
+				C313DD3C208C53E50005E29B /* FriendsViewController.m in Sources */,
 				C32309052081AEB100CEC487 /* TyphoonInjectionByReference.m in Sources */,
 				C323092A2081AEB100CEC487 /* TyphoonBlockComponentFactory.m in Sources */,
 				C32305E62080E57500CEC487 /* PostImagesNode.m in Sources */,
@@ -4511,7 +4575,7 @@
 				C32308C42081AEB100CEC487 /* TyphoonPropertyStyleConfiguration.m in Sources */,
 				C32309242081AEB100CEC487 /* TyphoonCollaboratingAssemblyProxy.m in Sources */,
 				C3372FC32083356C0080DA75 /* DemoPhotoMessageModel.swift in Sources */,
-				C3B225102085D7DC00599E04 /* ChatListScreenViewModelImpl.m in Sources */,
+				C3B225102085D7DC00599E04 /* ChatListViewModelImpl.m in Sources */,
 				C32308ED2081AEB100CEC487 /* TyphoonInjectionDefinition.m in Sources */,
 				C3372FB92083356C0080DA75 /* MessagesSelectorProtocol.swift in Sources */,
 				C3372FCC2083356C0080DA75 /* BaseMessageCollectionViewCellAvatarStyle.swift in Sources */,
@@ -4527,6 +4591,7 @@
 				C32309092081AEB100CEC487 /* TyphoonPrimitiveTypeConverter.m in Sources */,
 				C32309002081AEB100CEC487 /* TyphoonInjectionByFactoryReference.m in Sources */,
 				C32308E52081AEB100CEC487 /* TyphoonStoryboardDefinition.m in Sources */,
+				C313DD4C208C7BCF0005E29B /* UserNode.m in Sources */,
 				C32305F42080E57500CEC487 /* Reposts.m in Sources */,
 				C32309272081AEB100CEC487 /* NSInvocation+TCFInstanceBuilder.m in Sources */,
 				C32305BD2080E57500CEC487 /* EXTSelectorChecking.m in Sources */,
@@ -4613,6 +4678,7 @@
 				C32305C42080E57500CEC487 /* NSMethodSignature+EXT.m in Sources */,
 				C32309352081AEB100CEC487 /* UIImage+NanoFrame.m in Sources */,
 				C32308DE2081AEB100CEC487 /* UIView+TyphoonDefinitionKey.m in Sources */,
+				C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */,
 				C323091C2081AEB100CEC487 /* TyphoonMemoryManagementUtils.m in Sources */,
 				C32305F32080E57500CEC487 /* Likes.m in Sources */,
 				C32308F62081AEB100CEC487 /* TyphoonMethod+InstanceBuilder.m in Sources */,

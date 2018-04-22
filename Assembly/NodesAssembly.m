@@ -12,6 +12,7 @@
 #import "PostImagesNode.h"
 #import "PostVideoNode.h"
 #import "DialogNode.h"
+#import "UserNode.h"
 
 @implementation NodesAssembly
 
@@ -67,5 +68,14 @@
             }];
 }
 
+- (ASDisplayNode *)userNode:(User *)user {
+    return [TyphoonDefinition withClass:[UserNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithUser:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:user];
+                 }];
+            }];
+}
 
 @end

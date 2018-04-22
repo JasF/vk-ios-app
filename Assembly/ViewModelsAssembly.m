@@ -8,7 +8,8 @@
 
 #import "ViewModelsAssembly.h"
 #import "DialogScreenViewModelImpl.h"
-#import "ChatListScreenViewModelImpl.h"
+#import "ChatListViewModelImpl.h"
+#import "FriendsViewModelImpl.h"
 #import "WallScreenViewModelImpl.h"
 #import "MenuScreenViewModelImpl.h"
 
@@ -26,13 +27,23 @@
             }];
 }
 
-- (id<ChatListScreenViewModel>)chatListScreenViewModel {
-    return [TyphoonDefinition withClass:[ChatListScreenViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+- (id<ChatListViewModel>)chatListScreenViewModel {
+    return [TyphoonDefinition withClass:[ChatListViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:pythonBridge:chatListService:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(initWithHandlersFactory:chatListService:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
-                    [initializer injectParameterWith:self.coreComponents.pythonBridge];
                     [initializer injectParameterWith:self.servicesAssembly.chatListService];
+                }];
+            }];
+}
+
+
+- (id<FriendsViewModel>)friendsViewModel {
+    return [TyphoonDefinition withClass:[FriendsViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:friendsService:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.friendsService];
                 }];
             }];
 }

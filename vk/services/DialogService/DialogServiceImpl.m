@@ -11,6 +11,7 @@
 @implementation DialogServiceImpl
 #pragma mark - Private Methods
 - (NSArray<Message *> *)parse:(NSDictionary *)results {
+
     if (![results isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
@@ -24,6 +25,7 @@
 
     return messages;
 }
+
 - (Message *)parseOne:(NSDictionary *)messageDictionary {
     if (![messageDictionary isKindOfClass:[NSDictionary class]]) {
         return nil;

@@ -1,6 +1,6 @@
 import vk
 import json
-from caches.users import UsersDatabase
+from caches.usersdatabase import UsersDatabase
 
 class Users():
     def __init__(self):

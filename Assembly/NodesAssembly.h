@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "TyphoonAssembly.h"
 #import "NodeFactory.h"
-#import "Video.h"
 #import "Dialog.h"
+#import "Video.h"
+#import "User.h"
 
 @class WallPostNode;
 @class ASDisplayNode;
@@ -21,4 +22,5 @@
 - (ASDisplayNode *)postImagesNodeWithAttachments:(NSArray *)attachments;
 - (ASDisplayNode *)postVideoNodeWithVideo:(Video *)video;
 - (ASDisplayNode *)dialogNode:(Dialog *)dialog;
+- (ASDisplayNode *)userNode:(User *)user;
 @end

@@ -9,9 +9,9 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "NodeFactory.h"
 #import "BaseCollectionViewController.h"
-#import "ChatListScreenViewModel.h"
+#import "ChatListViewModel.h"
 
 @interface ChatListViewController : BaseCollectionViewController
-- (instancetype)initWithViewModel:(id<ChatListScreenViewModel>)viewModel
+- (instancetype)initWithViewModel:(id<ChatListViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

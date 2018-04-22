@@ -1,7 +1,7 @@
 import vk
 import json
 from vk import users as users
-from caches.messages import MessagesDatabase
+from caches.messagesdatabase import MessagesDatabase
 
 class DialogService:
     def __init__(self):

@@ -8,14 +8,16 @@
 
 #import <CoreFoundation/CoreFoundation.h>
 
-@protocol PyChatListScreenViewModel;
+@protocol PyChatListViewModel;
 @protocol PyDialogScreenViewModel;
 @protocol PyWallScreenViewModel;
 @protocol PyMenuScreenViewModel;
+@protocol PyFriendsViewModel;
 
 @protocol HandlersFactory <NSObject>
-- (id<PyChatListScreenViewModel>)chatListViewModelHandler:(id)delegate;
+- (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
 - (id<PyDialogScreenViewModel>)dialogViewModelHandler:(id)delegate parameters:(NSDictionary *)parameters;
 - (id<PyWallScreenViewModel>)wallViewModelHandler;
 - (id<PyMenuScreenViewModel>)menuViewModelHandler;
+- (id<PyFriendsViewModel>)friendsViewModelHandler;
 @end

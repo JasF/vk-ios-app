@@ -34,4 +34,10 @@
     });
 }
 
+- (void)friendsTapped {
+    dispatch_python(^{
+        [self.handler friendsTapped];
+    });
+}
+
 @end

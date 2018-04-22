@@ -11,6 +11,7 @@
 #import "ChatListServiceImpl.h"
 #import "DialogServiceImpl.h"
 #import "HandlersFactoryImpl.h"
+#import "FriendsServiceImpl.h"
 
 @implementation ServicesAssembly
 
@@ -44,6 +45,10 @@
             {
                 definition.scope = TyphoonScopeSingleton;
             }];
+}
+
+- (id<FriendsService>)friendsService {
+    return [TyphoonDefinition withClass:[FriendsServiceImpl class]];
 }
 
 @end

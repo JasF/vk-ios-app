@@ -13,6 +13,7 @@
 @protocol PyMenuScreenViewModel
 - (void)newsTapped;
 - (void)dialogsTapped;
+- (void)friendsTapped;
 @end
 
 @interface MenuScreenViewModelImpl : NSObject <MenuScreenViewModel>

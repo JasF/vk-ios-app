@@ -13,6 +13,7 @@
 - (void)showAuthorizationViewController;
 - (void)showWallViewController;
 - (void)showChatListViewController;
+- (void)showFriendsViewController;
 - (void)showMenu;
 - (void)showDialogViewController:(NSNumber *)userId;
 @end

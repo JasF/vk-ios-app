@@ -9,4 +9,5 @@
 @protocol MenuScreenViewModel <NSObject>
 - (void)newsTapped;
 - (void)dialogsTapped;
+- (void)friendsTapped;
 @end
