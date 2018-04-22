@@ -5,15 +5,19 @@ import traceback
 from vk import users as users
 
 class WallService:
-    def __init__(self):
+    def __init__(self, parameters):
         self.userInfo = None
+        print('WallService parameters: ' + str(parameters))
+        self.userId = parameters.get('userId')
+        if self.userId == None or self.userId == 0:
+            self.userId = vk.userId()
     
-    def getWall(self, offset):
+    def getWall(self, offset, userId):
         api = vk.api()
         response = None
         usersData = None
         try:
-            response = api.wall.get(offset=offset)
+            response = api.wall.get(offset=offset, owner_id=userId)
             l = response["items"]
             
             fromIds = [d['from_id'] for d in l]
@@ -46,7 +50,7 @@ class WallService:
     # private
     def getUserInfo(self):
         if self.userInfo == None:
-            usersInfo = users.getShortUsersByIds(set([vk.userId()]))
+            usersInfo = users.getShortUsersByIds(set([self.userId]))
             if len(usersInfo) > 0:
                 print('set userInfo may be slowly on poor connection and startup breaking')
                 self.userInfo = usersInfo[0]

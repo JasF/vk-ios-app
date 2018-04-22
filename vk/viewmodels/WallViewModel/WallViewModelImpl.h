@@ -18,5 +18,6 @@
 
 @interface WallViewModelImpl : NSObject <WallViewModel>
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
-                            wallService:(id<WallService>)wallService;
+                            wallService:(id<WallService>)wallService
+                                 userId:(NSNumber *)userId;
 @end

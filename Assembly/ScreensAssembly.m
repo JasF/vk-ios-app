@@ -79,11 +79,11 @@
                                }];
 }
 
-- (UIViewController *)wallViewController {
+- (UIViewController *)wallViewController:(NSNumber *)userId {
     return [TyphoonDefinition withClass:[WallViewController class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
-                    [initializer injectParameterWith:self.viewModelsAssembly.wallScreenViewModel];
+                    [initializer injectParameterWith:[self.viewModelsAssembly wallScreenViewModel:userId]];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
                 }];
             }];

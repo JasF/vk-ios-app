@@ -111,7 +111,6 @@
     return self.socialAppDataSource.count;
 }
 
-
 #pragma mark - Private Methods
 - (void)initializeVkSdkManager {
     _vkManager.viewController = self;

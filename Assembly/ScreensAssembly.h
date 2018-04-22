@@ -25,7 +25,7 @@
 - (id<ScreensManager>)screensManager;
 - (UIViewController *)createViewController;
 - (UIViewController *)createMainViewController;
-- (UIViewController *)wallViewController;
+- (UIViewController *)wallViewController:(NSNumber *)userId;
 - (UIViewController *)chatListViewController;
 - (UIViewController *)friendsViewController;
 - (UIViewController *)dialogViewController:(NSNumber *)userId;

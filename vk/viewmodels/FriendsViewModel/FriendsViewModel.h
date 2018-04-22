@@ -16,6 +16,7 @@
 - (void)menuTapped;
 - (void)getFriendsWithOffset:(NSInteger)offset
                   completion:(void(^)(NSArray<User *> *users))completion;
+- (void)tappedOnUserWithId:(NSInteger)userId;
 @end
 
 

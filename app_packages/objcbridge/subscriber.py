@@ -79,7 +79,10 @@ class Subscriber():
         try:
             className = object["class"]
             key = object["key"]
-            allocator = self.allocators[className]
+            try:
+                allocator = self.allocators[className]
+            except:
+                raise ValueError('self.allocators does not have: ' + str(className))
             handler = allocator()
             self.handlers[key] = handler
         except Exception as e:
@@ -91,7 +94,10 @@ class Subscriber():
             className = object['class']
             key = object['key']
             delegateId = object['delegateId']
-            allocator = self.allocatorsWithDelegate[className]
+            try:
+                allocator = self.allocatorsWithDelegate[className]
+            except:
+                raise ValueError('self.allocatorsWithDelegate does not have: ' + str(className))
             parameters = object.get('parameters')
             if parameters:
                 handler = allocator(delegateId, parameters)

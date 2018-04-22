@@ -12,6 +12,7 @@
 - (void)createWindowIfNeeded;
 - (void)showAuthorizationViewController;
 - (void)showWallViewController;
+- (void)showWallViewController:(NSNumber *)userId;
 - (void)showChatListViewController;
 - (void)showFriendsViewController;
 - (void)showMenu;

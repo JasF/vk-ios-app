@@ -13,6 +13,7 @@
 @protocol PyFriendsViewModel <NSObject>
 - (NSDictionary *)getFriends:(NSNumber *)offset;
 - (void)menuTapped;
+- (void)tappedOnUserWithId:(NSNumber *)userId;
 @end
 
 @interface FriendsViewModelImpl : NSObject<FriendsViewModel>

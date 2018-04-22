@@ -8,7 +8,11 @@
 
 #import "WallViewModelImpl.h"
 
-@interface WallViewModelImpl ()
+@protocol WallViewModelDelegate <NSObject>
+- (void)pass;
+@end
+
+@interface WallViewModelImpl () <WallViewModelDelegate>
 @property (strong) id<PyWallViewModel> handler;
 @property (strong) id<WallService> wallService;
 @end
@@ -19,11 +23,13 @@
 
 #pragma mark - Initialization
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
-                            wallService:(id<WallService>)wallService {
+                            wallService:(id<WallService>)wallService
+                                 userId:(NSNumber *)userId {
     NSCParameterAssert(handlersFactory);
     NSCParameterAssert(wallService);
+    NSCParameterAssert(userId);
     if (self) {
-        _handler = [handlersFactory wallViewModelHandler];
+        _handler = [handlersFactory wallViewModelHandlerWithDelegate:self parameters:@{@"userId": userId}];
         _wallService = wallService;
     }
     return self;
@@ -54,6 +60,11 @@
     dispatch_python(^{
         [_handler menuTapped];
     });
+}
+
+#pragma mark - WallViewModelDelegate
+- (void)pass {
+    
 }
 
 @end

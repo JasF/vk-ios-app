@@ -11,6 +11,9 @@ class PyFriendsViewModel(ObjCBridgeProtocol):
     def getFriends(self, offset):
         return self.friendsService.getFriends(offset)
 
+    def tappedOnUserWithId(self, userId):
+        managers.shared().screensManager().showWallViewController_(args=[userId])
+    
     # ObjCBridgeProtocol
     def release(self):
         print('PyFriendsViewModel release')

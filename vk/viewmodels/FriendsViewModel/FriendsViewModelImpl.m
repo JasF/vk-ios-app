@@ -46,5 +46,11 @@
     });
 }
 
+- (void)tappedOnUserWithId:(NSInteger)userId {
+    dispatch_python(^{
+        [_handler tappedOnUserWithId:@(userId)];
+    });
+}
+
 @end
     

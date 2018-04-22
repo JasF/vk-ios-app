@@ -44,8 +44,10 @@
                                               parameters:parameters];
 }
 
-- (id<PyWallViewModel>)wallViewModelHandler {
-    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyWallViewModel)];
+- (id<PyWallViewModel>)wallViewModelHandlerWithDelegate:(id)delegate parameters:(NSDictionary *)parameters {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyWallViewModel)
+                                                delegate:delegate
+                                              parameters:parameters];
 }
 
 - (id<PyMenuViewModel>)menuViewModelHandler {

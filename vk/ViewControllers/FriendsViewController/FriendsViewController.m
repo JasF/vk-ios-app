@@ -53,11 +53,11 @@
 
 #pragma mark - ASCollectionNodeDelegate
 - (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    Dialog *item = [collectionNode nodeModelForItemAtIndexPath:indexPath];
-    if (!item) {
+    User *user = [collectionNode nodeModelForItemAtIndexPath:indexPath];
+    if (!user) {
         return;
     }
-    //[_viewModel tappedOnDialogWithUserId:item.message.user_id];
+    [_viewModel tappedOnUserWithId:user.identifier];
 }
 
 #pragma mark - FriendsViewModelDelegate

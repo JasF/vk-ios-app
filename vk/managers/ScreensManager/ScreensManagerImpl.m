@@ -59,13 +59,17 @@
 }
 
 - (void)showWallViewController {
+    [self showWallViewController:@(0)];
+}
+
+- (void)showWallViewController:(NSNumber *)userId {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
         if ([self canIgnorePushingViewController:[WallViewController class]]) {
             return;
         }
-        WallViewController *viewController =(WallViewController *)[_screensAssembly wallViewController];
+        WallViewController *viewController =(WallViewController *)[_screensAssembly wallViewController:userId];
         [self pushViewController:viewController];
     });
 }

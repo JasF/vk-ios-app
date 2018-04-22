@@ -48,12 +48,13 @@
             }];
 }
 
-- (id<WallViewModel>)wallScreenViewModel {
+- (id<WallViewModel>)wallScreenViewModel:(NSNumber *)userId {
     return [TyphoonDefinition withClass:[WallViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:wallService:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(initWithHandlersFactory:wallService:userId:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.wallService];
+                    [initializer injectParameterWith:userId];
                 }];
             }];
 }

@@ -22,7 +22,7 @@
 @property (readonly) ScreensAssembly *screensAssembly;
 - (id<DialogScreenViewModel>)dialogScreenViewModel:(NSNumber *)userId;
 - (id<ChatListViewModel>)chatListScreenViewModel;
-- (id<WallViewModel>)wallScreenViewModel;
+- (id<WallViewModel>)wallScreenViewModel:(NSNumber *)userId;
 - (id<MenuViewModel>)menuScreenViewModel;
 - (id<FriendsViewModel>)friendsViewModel;
 @end
