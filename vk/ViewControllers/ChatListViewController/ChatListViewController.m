@@ -21,7 +21,6 @@
 
 @interface ChatListViewController () <BaseCollectionViewControllerDataSource, ASCollectionDelegate, ChatListViewModelDelegate>
 @property (strong, nonatomic) id<ChatListViewModel> viewModel;
-@property (strong, nonatomic) id<NodeFactory> nodeFactory;
 @end
 
 @implementation ChatListViewController
@@ -29,8 +28,6 @@
 - (instancetype)initWithViewModel:(id<ChatListViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(viewModel);
-    NSCParameterAssert(nodeFactory);
-    _nodeFactory = nodeFactory;
     _viewModel = viewModel;
     _viewModel.delegate = self;
     self.dataSource = self;

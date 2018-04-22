@@ -11,10 +11,8 @@
 
 static const NSInteger kBatchSize = 20;
 
-@interface BaseCollectionViewController () <ASCollectionDelegate, ASCollectionDataSource>
-@property ASCollectionNode *collectionNode;
+@interface BaseCollectionViewController ()
 @property NSMutableArray *data;
-@property id<NodeFactory> nodeFactory;
 @property (assign, nonatomic) BOOL updating;
 @end
 
@@ -106,6 +104,7 @@ static const NSInteger kBatchSize = 20;
             else {
                 [self.collectionNode performBatchAnimated:YES updates:^{
                     @strongify(self);
+                    [self performBatchAnimated:YES];
                     [self.data addObjectsFromArray:objects];
                     NSArray *addedIndexPaths = [self indexPathsForObjects:objects];
                     [self.collectionNode insertItemsAtIndexPaths:addedIndexPaths];
@@ -116,10 +115,13 @@ static const NSInteger kBatchSize = 20;
     }
 }
 
+- (void)performBatchAnimated:(BOOL)animated {
+}
+
 - (NSArray *)indexPathsForObjects:(NSArray *)data
 {
     NSMutableArray *indexPaths = [NSMutableArray array];
-    NSInteger section = 0;
+    NSInteger section = [self numberOfSectionsInCollectionNode:self.collectionNode] - 1;
     for (id viewModel in data) {
         NSInteger item = [_data indexOfObject:viewModel];
         NSAssert(item < [_data count] && item != NSNotFound, @"Item should be in _data");
@@ -128,13 +130,15 @@ static const NSInteger kBatchSize = 20;
     return indexPaths;
 }
 
-#pragma mark - ASCollectionNodeDelegate / ASCollectionNodeDataSource
+#pragma mark - ASCollectionDelegate, ASCollectionDataSource
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    @weakify(self);
     return ^{
-        id object = _data[indexPath.row];
-        ASCellNode *node = (ASCellNode *)[_nodeFactory nodeForItem:object];
+        @strongify(self);
+        id object = self.data[indexPath.row];
+        ASCellNode *node = (ASCellNode *)[self.nodeFactory nodeForItem:object];
         return node;
     };
 }
@@ -146,7 +150,7 @@ static const NSInteger kBatchSize = 20;
 
 - (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    if ([kind isEqualToString:UICollectionElementKindSectionFooter] && indexPath.section == 0) {
+    if ([kind isEqualToString:UICollectionElementKindSectionFooter] && indexPath.section == ([self numberOfSectionsInCollectionNode:self.collectionNode] > -1)) {
         return [[LoadingNode alloc] init];
     }
     return nil;

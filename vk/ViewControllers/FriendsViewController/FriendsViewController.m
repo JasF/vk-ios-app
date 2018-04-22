@@ -10,7 +10,6 @@
 
 @interface FriendsViewController () <BaseCollectionViewControllerDataSource>
 @property (strong, nonatomic) id<FriendsViewModel> viewModel;
-@property (strong, nonatomic) id<NodeFactory> nodeFactory;
 @end
 
 @implementation FriendsViewController
@@ -18,8 +17,6 @@
 - (instancetype)initWithViewModel:(id<FriendsViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(viewModel);
-    NSCParameterAssert(nodeFactory);
-    _nodeFactory = nodeFactory;
     _viewModel = viewModel;
     //_viewModel.delegate = self;
     self.dataSource = self;

@@ -18,11 +18,13 @@
 #import "BlurbNode.h"
 #import "LoadingNode.h"
 
-@interface WallViewController () <BaseCollectionViewControllerDataSource>
+@interface WallViewController () <BaseCollectionViewControllerDataSource,
+ASCollectionDelegate, ASCollectionDataSource>
 @property (strong, nonatomic) id<WallViewModel> viewModel;
 @end
 
 @implementation WallViewController {
+    BOOL _hasHeaderSection;
 }
 
 - (instancetype)initWithViewModel:(id<WallViewModel>)viewModel
@@ -48,20 +50,63 @@
     [_viewModel menuTapped];
 }
 
+#pragma mark - ASCollectionDelegate, ASCollectionDataSource
+- (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode
+{
+    if (_hasHeaderSection) {
+        return 2;
+    }
+    return 1;
+}
+
+- (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_hasHeaderSection && !indexPath.section) {
+        return ^{
+            WallUser *wallPost = [[WallUser alloc] initWithUser:self.viewModel.currentUser];
+            ASCellNode *node = (ASCellNode *)[self.nodeFactory nodeForItem:wallPost];
+            return node;
+        };
+    }
+    return [super collectionNode:collectionNode nodeBlockForItemAtIndexPath:indexPath];
+}
+
+- (id)collectionNode:(ASCollectionNode *)collectionNode nodeModelForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_hasHeaderSection && !indexPath.section) {
+        return self.viewModel.currentUser;
+    }
+    return [super collectionNode:collectionNode nodeBlockForItemAtIndexPath:indexPath];
+}
+
+- (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
+{
+    if (_hasHeaderSection && !section) {
+        return 1;
+    }
+    return [super collectionNode:collectionNode numberOfItemsInSection:section];
+}
+
 #pragma mark - BaseCollectionViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getWallPostsWithOffset:offset
                             completion:^(NSArray *objects) {
-                                if (!offset) {
-                                    NSMutableArray *array = [objects mutableCopy];
-                                    [array insertObject:[[WallUser alloc] initWithUser:self.viewModel.currentUser] atIndex:0];
-                                    objects = array;
-                                }
                                 if (completion) {
                                     completion(objects);
                                 }
                             }];
+}
+
+- (void)performBatchAnimated:(BOOL)animated {
+    if (!_hasHeaderSection) {
+        _hasHeaderSection = (self.viewModel.currentUser != nil) ? YES : NO;
+        if (_hasHeaderSection) {
+            [self.collectionNode insertSections:[NSIndexSet indexSetWithIndex:0]];
+            [self.collectionNode insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]]];
+        }
+    }
+    [super performBatchAnimated:animated];
 }
 
 @end

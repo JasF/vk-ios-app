@@ -66,9 +66,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
-        if ([self canIgnorePushingViewController:[WallViewController class]]) {
-            return;
-        }
         WallViewController *viewController =(WallViewController *)[_screensAssembly wallViewController:userId];
         [self pushViewController:viewController];
     });

@@ -14,6 +14,8 @@
 		C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD45208C578B0005E29B /* FriendsServiceImpl.m */; };
 		C313DD4C208C7BCF0005E29B /* UserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD4B208C7BCF0005E29B /* UserNode.m */; };
 		C313DD54208C99C70005E29B /* WallUserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD53208C99C70005E29B /* WallUserNode.m */; };
+		C313DD59208CA7950005E29B /* WriteCommentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD58208CA7950005E29B /* WriteCommentNode.m */; };
+		C313DD5C208CA7A10005E29B /* CommentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD5B208CA7A10005E29B /* CommentNode.m */; };
 		C32305B92080E57500CEC487 /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EC2080E57300CEC487 /* libOpenSSL.a */; };
 		C32305BA2080E57500CEC487 /* PythonFramework.zip in Resources */ = {isa = PBXBuildFile; fileRef = C32303ED2080E57300CEC487 /* PythonFramework.zip */; };
 		C32305BB2080E57500CEC487 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EE2080E57300CEC487 /* libbz2.a */; };
@@ -626,6 +628,10 @@
 		C313DD4B208C7BCF0005E29B /* UserNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserNode.m; sourceTree = "<group>"; };
 		C313DD52208C99C70005E29B /* WallUserNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallUserNode.h; sourceTree = "<group>"; };
 		C313DD53208C99C70005E29B /* WallUserNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallUserNode.m; sourceTree = "<group>"; };
+		C313DD57208CA7950005E29B /* WriteCommentNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WriteCommentNode.h; sourceTree = "<group>"; };
+		C313DD58208CA7950005E29B /* WriteCommentNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WriteCommentNode.m; sourceTree = "<group>"; };
+		C313DD5A208CA7A10005E29B /* CommentNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentNode.h; sourceTree = "<group>"; };
+		C313DD5B208CA7A10005E29B /* CommentNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentNode.m; sourceTree = "<group>"; };
 		C32303EC2080E57300CEC487 /* libOpenSSL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenSSL.a; sourceTree = "<group>"; };
 		C32303ED2080E57300CEC487 /* PythonFramework.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = PythonFramework.zip; sourceTree = "<group>"; };
 		C32303EE2080E57300CEC487 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbz2.a; sourceTree = "<group>"; };
@@ -1717,6 +1723,24 @@
 			path = WallUserNode;
 			sourceTree = "<group>";
 		};
+		C313DD55208CA7740005E29B /* CommentNode */ = {
+			isa = PBXGroup;
+			children = (
+				C313DD5A208CA7A10005E29B /* CommentNode.h */,
+				C313DD5B208CA7A10005E29B /* CommentNode.m */,
+			);
+			path = CommentNode;
+			sourceTree = "<group>";
+		};
+		C313DD56208CA7830005E29B /* WriteCommentNode */ = {
+			isa = PBXGroup;
+			children = (
+				C313DD57208CA7950005E29B /* WriteCommentNode.h */,
+				C313DD58208CA7950005E29B /* WriteCommentNode.m */,
+			);
+			path = WriteCommentNode;
+			sourceTree = "<group>";
+		};
 		C32303EB2080E57300CEC487 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1850,6 +1874,8 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C313DD56208CA7830005E29B /* WriteCommentNode */,
+				C313DD55208CA7740005E29B /* CommentNode */,
 				C313DD51208C99B90005E29B /* WallUserNode */,
 				C313DD49208C7BB80005E29B /* UserNode */,
 				C37C0BF92086F7E60086A875 /* AvatarNode */,
@@ -4564,6 +4590,7 @@
 				C32309082081AEB100CEC487 /* TyphoonNSNumberTypeConverter.m in Sources */,
 				C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */,
 				C32306042080E57500CEC487 /* LeftViewCell.m in Sources */,
+				C313DD5C208CA7A10005E29B /* CommentNode.m in Sources */,
 				C32308C32081AEB100CEC487 /* TyphoonJsonStyleConfiguration.m in Sources */,
 				C323061C2080E57500CEC487 /* ChatListServiceImpl.m in Sources */,
 				C32309022081AEB100CEC487 /* TyphoonInjectionByConfig.m in Sources */,
@@ -4617,6 +4644,7 @@
 				C32305D22080E57500CEC487 /* VKThemeAssembly.m in Sources */,
 				C32306012080E57500CEC487 /* Post.m in Sources */,
 				C32305F62080E57500CEC487 /* User.m in Sources */,
+				C313DD59208CA7950005E29B /* WriteCommentNode.m in Sources */,
 				C32305F22080E57500CEC487 /* Video.m in Sources */,
 				C32308FB2081AEB100CEC487 /* TyphoonInjectionByComponentFactory.m in Sources */,
 				C32305C52080E57500CEC487 /* EXTNil.m in Sources */,

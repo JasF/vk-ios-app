@@ -14,11 +14,14 @@
                 offset:(NSInteger)offset;
 @end
 
-@interface BaseCollectionViewController : ASViewController
+@interface BaseCollectionViewController : ASViewController <ASCollectionDelegate, ASCollectionDataSource>
 @property (weak, nonatomic) id<BaseCollectionViewControllerDataSource> dataSource;
+@property id<NodeFactory> nodeFactory;
+@property ASCollectionNode *collectionNode;
 - (NSArray *)objectsArray;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory;
 - (void)addMenuIconWithTarget:(id)target action:(SEL)action;
 - (void)reloadData;
 - (void)simpleReloadCollectionView;
+- (void)performBatchAnimated:(BOOL)animated;
 @end
