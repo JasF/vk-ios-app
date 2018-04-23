@@ -2,8 +2,10 @@ from .messagesdatabase import MessagesDatabase
 from .usersdatabase import UsersDatabase
 from .friendsdatabase import FriendsDatabase
 from .postsdatabase import PostsDatabase
+from .commentsdatabase import CommentsDatabase
 
 MessagesDatabase.deleteDatabaseFile(MessagesDatabase)
 UsersDatabase.deleteDatabaseFile(UsersDatabase)
 FriendsDatabase.deleteDatabaseFile(FriendsDatabase)
 PostsDatabase.deleteDatabaseFile(PostsDatabase)
+CommentsDatabase.deleteDatabaseFile(CommentsDatabase)

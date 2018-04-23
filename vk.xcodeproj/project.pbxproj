@@ -619,6 +619,7 @@
 		B52498E6A69599165C997DF8 /* Pods_MessageGroupsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageGroupsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3036C09208DC99A005F086E /* SectionsCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectionsCollectionViewController.h; sourceTree = "<group>"; };
 		C3036C0A208DC99A005F086E /* SectionsCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionsCollectionViewController.m; sourceTree = "<group>"; };
+		C3036C0C208DDCEC005F086E /* commentsdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = commentsdatabase.py; sourceTree = "<group>"; };
 		C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyfriendsviewmodel.py; sourceTree = "<group>"; };
 		C313DD3A208C53E50005E29B /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		C313DD3B208C53E50005E29B /* FriendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
@@ -2827,6 +2828,7 @@
 				C3372F922081FAEA0080DA75 /* messagesdatabase.py */,
 				C313DD48208C6C9F0005E29B /* friendsdatabase.py */,
 				C313DD68208CB47F0005E29B /* postsdatabase.py */,
+				C3036C0C208DDCEC005F086E /* commentsdatabase.py */,
 			);
 			path = caches;
 			sourceTree = "<group>";

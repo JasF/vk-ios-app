@@ -4,7 +4,9 @@ from vk import users
 import traceback
 from vk import users as users
 from caches.postsdatabase import PostsDatabase
+from caches.commentsdatabase import CommentsDatabase
 
+g_count = 40
 
 class WallPostService:
     def __init__(self, usersDecorator):
@@ -29,4 +31,17 @@ class WallPostService:
         results = {'response':{'items':l}, 'users':usersData}
         return results
         
+        return result
+
+    def getComments(self, ownerId, postId, offset):
+        api = vk.api()
+        try:
+            result = api.wall.getComments(owner_id=ownerId, post_id=postId, offset=offset, count=g_count)
+            l = result['items']
+            cache = CommentsDatabase()
+            cache.update(l)
+            cache.close()
+        
+        except Exception as e:
+            print('get comments exception: ' + str(e))
         return result

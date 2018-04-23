@@ -12,7 +12,7 @@
 #import "WallPostService.h"
 
 @protocol PyWallPostViewModel <NSObject>
-- (NSDictionary *)getPostData;
+- (NSDictionary *)getPostData:(NSNumber *)offset;
 @end
 
 @interface WallPostViewModelImpl : NSObject <WallPostViewModel>

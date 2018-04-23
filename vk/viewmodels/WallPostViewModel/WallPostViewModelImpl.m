@@ -32,9 +32,9 @@
     return self;
 }
 
-- (void)getWallPostWithCompletion:(void(^)(WallPost *post))completion {
+- (void)getWallPostWithCommentsOffset:(NSInteger)offset completion:(void(^)(WallPost *post))completion {
     dispatch_python(^{
-        NSDictionary *data = [self.handler getPostData];
+        NSDictionary *data = [self.handler getPostData:@(offset)];
         WallPost *post = [self.wallPostService parseOne:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {

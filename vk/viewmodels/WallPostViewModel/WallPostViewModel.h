@@ -9,5 +9,5 @@
 #import "WallPost.h"
 
 @protocol WallPostViewModel <NSObject>
-- (void)getWallPostWithCompletion:(void(^)(WallPost *post))completion;
+- (void)getWallPostWithCommentsOffset:(NSInteger)offset completion:(void(^)(WallPost *post))completion;
 @end

@@ -64,7 +64,7 @@ ASCollectionDelegate, ASCollectionDataSource>
         });
         return;
     }
-    [_viewModel getWallPostWithCompletion:^(WallPost *post) {
+    [_viewModel getWallPostWithCommentsOffset:offset completion:^(WallPost *post) {
         if (!self.post) {
             self.post = post;
         }
