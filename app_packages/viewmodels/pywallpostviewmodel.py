@@ -3,6 +3,7 @@ from services.wallservice import WallService
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 import vk, json
 
+# https://vk.com/dev/wall.getComments
 class PyWallPostViewModel():
     def __init__(self, wallPostService, ownerId, postId):
         self.wallPostService = wallPostService
