@@ -6,10 +6,10 @@
 //  Copyright © 2018 Ebay Inc. All rights reserved.
 //
 
-#import "BaseCollectionViewController.h"
+#import "SectionsCollectionViewController.h"
 #import "WallPostViewModel.h"
 
-@interface WallPostViewController : BaseCollectionViewController
+@interface WallPostViewController : SectionsCollectionViewController
 - (instancetype)initWithViewModel:(id<WallPostViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

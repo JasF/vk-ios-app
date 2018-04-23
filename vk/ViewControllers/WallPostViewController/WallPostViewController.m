@@ -21,6 +21,7 @@
 @interface WallPostViewController () <BaseCollectionViewControllerDataSource,
 ASCollectionDelegate, ASCollectionDataSource>
 @property (strong, nonatomic) id<WallPostViewModel> viewModel;
+@property WallPost *post;
 @end
 
 @implementation WallPostViewController {
@@ -35,7 +36,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
-        self.title = @"VK Wall";
+        self.title = @"VK Post & Comments";
     }
     return self;
 }
@@ -55,21 +56,30 @@ ASCollectionDelegate, ASCollectionDataSource>
         });
         return;
     }
+    if (self.sectionsArray.count) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(@[]);
+            }
+        });
+        return;
+    }
     [_viewModel getWallPostWithCompletion:^(WallPost *post) {
-        if (post && completion) {
-            completion(@[post]);
+        if (!self.post) {
+            self.post = post;
+        }
+        if (completion) {
+            completion(@[]);
         }
     }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)performBatchAnimated:(BOOL)animated {
+    if (!self.sectionsArray && self.post) {
+        self.sectionsArray = @[@[self.post]];
+        [self.collectionNode insertSections:[NSIndexSet indexSetWithIndex:0]];
+        [self.collectionNode insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]];
+    }
+    [super performBatchAnimated:animated];
 }
-*/
-
 @end

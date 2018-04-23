@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		197D8B0F1D64BA50004630AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197D8B0E1D64BA50004630AE /* AppDelegate.swift */; };
 		197D8B141D64BA50004630AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197D8B121D64BA50004630AE /* Main.storyboard */; };
+		C3036C0B208DC99A005F086E /* SectionsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C0A208DC99A005F086E /* SectionsCollectionViewController.m */; };
 		C313DD3C208C53E50005E29B /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD3B208C53E50005E29B /* FriendsViewController.m */; };
 		C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD40208C54430005E29B /* FriendsViewModelImpl.m */; };
 		C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD45208C578B0005E29B /* FriendsServiceImpl.m */; };
@@ -616,6 +617,8 @@
 		A3EFD1DB3DB35D26BD34A97F /* Pods_MessageGroupsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageGroupsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA69975BD27688EB85F70A6A /* Pods-MessageGroupsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B52498E6A69599165C997DF8 /* Pods_MessageGroupsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageGroupsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3036C09208DC99A005F086E /* SectionsCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectionsCollectionViewController.h; sourceTree = "<group>"; };
+		C3036C0A208DC99A005F086E /* SectionsCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionsCollectionViewController.m; sourceTree = "<group>"; };
 		C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyfriendsviewmodel.py; sourceTree = "<group>"; };
 		C313DD3A208C53E50005E29B /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		C313DD3B208C53E50005E29B /* FriendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
@@ -1691,6 +1694,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C3036C08208DC94B005F086E /* SectionsCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3036C09208DC99A005F086E /* SectionsCollectionViewController.h */,
+				C3036C0A208DC99A005F086E /* SectionsCollectionViewController.m */,
+			);
+			path = SectionsCollectionViewController;
+			sourceTree = "<group>";
+		};
 		C313DD39208C53C50005E29B /* FriendsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2148,6 +2160,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3036C08208DC94B005F086E /* SectionsCollectionViewController */,
 				C313DD5D208CAEFB0005E29B /* WallPostViewController */,
 				C313DD39208C53C50005E29B /* FriendsViewController */,
 				C3372F96208335440080DA75 /* Chat */,
@@ -4772,6 +4785,7 @@
 				C32305F32080E57500CEC487 /* Likes.m in Sources */,
 				C32308F62081AEB100CEC487 /* TyphoonMethod+InstanceBuilder.m in Sources */,
 				C32308D82081AEB100CEC487 /* UIView+TyphoonOutletTransfer.m in Sources */,
+				C3036C0B208DC99A005F086E /* SectionsCollectionViewController.m in Sources */,
 				C32308EF2081AEB100CEC487 /* TyphoonBlockDefinitionController.m in Sources */,
 				C313DD66208CB14A0005E29B /* WallPostViewModelImpl.m in Sources */,
 				C32305EC2080E57500CEC487 /* PythonBridgeImpl.m in Sources */,
