@@ -14,12 +14,8 @@ class PyWallPostViewModel():
     # protocol methods implementation
     def getPostData(self, offset):
         if not self.postData:
-            print('get1')
             self.postData = self.wallPostService.getPostById(self.postId)
-            print('get2')
             comments = self.wallPostService.getComments(self.ownerId, self.postId, offset)
-            print('get3')
-            print('comments is: ' + json.dumps(comments))
         return self.postData
     
     # ObjCBridgeProtocol

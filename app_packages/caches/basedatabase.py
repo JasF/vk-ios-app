@@ -59,9 +59,9 @@ class BaseDatabase():
             script = ''
             def vtostr(v,k):
                 if k in self.objects():
-                    return "'" + json.dumps(v) + "'"
+                    return json.dumps(v)
                 if isinstance(v, str):
-                    return "'" + v + "'"
+                    return v
                 elif isinstance(v, int):
                     return str(v)
                 else:
@@ -69,16 +69,20 @@ class BaseDatabase():
                 return ''
             
             for d in dictionariesList:
-                script += 'INSERT OR IGNORE INTO ' + self.tableName + ' ('
+                script = 'INSERT OR IGNORE INTO ' + self.tableName + ' ('
                 keys = d.keys()
                 script += ','.join(k for k in keys if self.allowed(k))
                 script += ') VALUES('
-                script += ','.join(vtostr(d[k],k) for k in keys if self.allowed(k))
-                script += ');\nUPDATE ' + self.tableName + ' SET '
-                script += ', '.join(k + ' = ' + vtostr(d[k],k) for k in keys if self.allowed(k) and k != 'id')
-                script += ' WHERE id=' + str(d['id']) + ';\n'
-            print('update script is: ' + str(script))
-            self.cursor.executescript(script)
+                script += ','.join('?' for k in keys if self.allowed(k)) + ')'
+                parameters = [vtostr(d[k],k) for k in keys if self.allowed(k)]
+                #print('update script 1 is: ' + str(script) + '; parameters: ' + str(parameters))
+                self.cursor.execute(script, parameters)
+                script = 'UPDATE ' + self.tableName + ' SET '
+                script += ', '.join(k + ' = ?' for k in keys if self.allowed(k) and k != 'id')
+                script += ' WHERE id=' + str(d['id']) + ';'
+                parameters = [vtostr(d[k],k) for k in keys if self.allowed(k) and k != 'id']
+                #print('update script 2 is: ' + str(script) + '; parameters: ' + str(parameters))
+                self.cursor.execute(script, parameters)
             self.conn.commit()
         except Exception as e:
             print('update ' + self.tableName + ' database exception: ' + str(e))
