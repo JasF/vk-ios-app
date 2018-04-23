@@ -72,11 +72,11 @@
     });
 }
 
-- (void)showWallPostViewController:(NSNumber *)postId {
+- (void)showWallPostViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
-        WallPostViewController *viewController =(WallPostViewController *)[_screensAssembly wallPostViewController:postId];
+        WallPostViewController *viewController =(WallPostViewController *)[_screensAssembly wallPostViewControllerWithOwnerId:ownerId postId:postId];
         [self pushViewController:viewController clean:NO];
     });
 }

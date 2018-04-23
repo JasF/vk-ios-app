@@ -26,7 +26,7 @@
 - (UIViewController *)createViewController;
 - (UIViewController *)createMainViewController;
 - (UIViewController *)wallViewController:(NSNumber *)userId;
-- (UIViewController *)wallPostViewController:(NSNumber *)userId;
+- (UIViewController *)wallPostViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;
 - (UIViewController *)chatListViewController;
 - (UIViewController *)friendsViewController;
 - (UIViewController *)dialogViewController:(NSNumber *)userId;

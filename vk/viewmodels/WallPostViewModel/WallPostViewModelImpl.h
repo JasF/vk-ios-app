@@ -18,5 +18,6 @@
 @interface WallPostViewModelImpl : NSObject <WallPostViewModel>
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
                         wallPostService:(id<WallPostService>)wallPostService
-                                 userId:(NSNumber *)userId;
+                                ownerId:(NSNumber *)ownerId
+                                 postId:(NSNumber *)postId;
 @end

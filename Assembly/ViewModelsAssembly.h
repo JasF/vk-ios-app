@@ -26,5 +26,5 @@
 - (id<WallViewModel>)wallScreenViewModel:(NSNumber *)userId;
 - (id<MenuViewModel>)menuScreenViewModel;
 - (id<FriendsViewModel>)friendsViewModel;
-- (id<WallPostViewModel>)wallPostViewModel:(NSNumber *)postId;
+- (id<WallPostViewModel>)wallPostViewModelWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;
 @end

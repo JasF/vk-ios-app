@@ -90,11 +90,11 @@
             }];
 }
 
-- (UIViewController *)wallPostViewController:(NSNumber *)userId {
+- (UIViewController *)wallPostViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId {
     return [TyphoonDefinition withClass:[WallPostViewController class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
-                    [initializer injectParameterWith:[self.viewModelsAssembly wallPostViewModel:userId]];
+                    [initializer injectParameterWith:[self.viewModelsAssembly wallPostViewModelWithOwnerId:ownerId postId:postId]];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
                 }];
             }];

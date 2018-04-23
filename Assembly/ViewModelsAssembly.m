@@ -60,12 +60,13 @@
             }];
 }
 
-- (id<WallPostViewModel>)wallPostViewModel:(NSNumber *)postId {
+- (id<WallPostViewModel>)wallPostViewModelWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId {
     return [TyphoonDefinition withClass:[WallPostViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:wallPostService:userId:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(initWithHandlersFactory:wallPostService:ownerId:postId:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.wallPostService];
+                    [initializer injectParameterWith:ownerId];
                     [initializer injectParameterWith:postId];
                 }];
             }];

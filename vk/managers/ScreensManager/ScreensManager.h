@@ -13,7 +13,7 @@
 - (void)showAuthorizationViewController;
 - (void)showWallViewController;
 - (void)showWallViewController:(NSNumber *)userId;
-- (void)showWallPostViewController:(NSNumber *)postId;
+- (void)showWallPostViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;
 - (void)showChatListViewController;
 - (void)showFriendsViewController;
 - (void)showMenu;

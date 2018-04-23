@@ -22,7 +22,7 @@ class PyWallViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().showMenu()
 
     def tappedOnPostWithId(self, identifier):
-        managers.shared().screensManager().showWallPostViewController_(args=[identifier])
+        managers.shared().screensManager().showWallPostViewControllerWithOwnerId_postId_(args=[self.userId, identifier])
 
     # ObjCBridgeProtocol
     def release(self):

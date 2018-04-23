@@ -19,12 +19,14 @@
 
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
                         wallPostService:(id<WallPostService>)wallPostService
-                                 userId:(NSNumber *)userId {
+                                ownerId:(NSNumber *)ownerId
+                                 postId:(NSNumber *)postId {
     NSCParameterAssert(handlersFactory);
     NSCParameterAssert(wallPostService);
-    NSCParameterAssert(userId);
+    NSCParameterAssert(ownerId);
+    NSCParameterAssert(postId);
     if (self) {
-        _handler = [handlersFactory wallPostViewModelHandlerWithDelegate:self parameters:@{@"postId": userId}];
+        _handler = [handlersFactory wallPostViewModelHandlerWithDelegate:self parameters:@{@"ownerId": ownerId, @"postId": postId}];
         _wallPostService = wallPostService;
     }
     return self;
