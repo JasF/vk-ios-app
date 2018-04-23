@@ -64,7 +64,7 @@ static NSInteger const kUserCancelledErrorCode = -999;
     
 #pragma mark - Private Methods
 - (NSArray *)scope {
-    NSArray *SCOPE = @[@"friends", @"email", @"messages"];
+    NSArray *SCOPE = @[@"friends", @"email", @"messages", @"notifications", @"groups", @"docs", @"wall", @"notes", @"status", @"stories", @"video", @"audio", @"photos"];
     return SCOPE;
 }
 

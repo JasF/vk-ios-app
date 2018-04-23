@@ -70,7 +70,7 @@
     [_pythonBridge setClassHandler:self name:@"AuthorizationHandlerProtocol"];
     [self initializeVkSdkManager];
     dispatch_block_t simulateBlock = ^{
-        VKAccessToken *token = [VKAccessToken tokenWithToken:@"5707d7a0a400d18395446787aa77fb32a37cfb8e33c153fad544f09979685055a9d4ffe6a488b72447f6e"
+        VKAccessToken *token = [VKAccessToken tokenWithToken:@"4c0638c47d2fb5c57fadfc995d123a1337c41781af7b1521e8d5fbd8d972ba0e63a9387677cb91cf8538e"
                                                       secret:@""
                                                       userId:@"7162990"];
         self.vkManager.getTokenSuccess(token);
@@ -118,6 +118,7 @@
     _vkManager.getTokenSuccess = ^(VKAccessToken *token) {
         @strongify(self);
         dispatch_python(^{
+            NSLog(@"received vk token: %@", token.accessToken);
             [self.handler accessTokenGathered:token.accessToken
                                        userId:[NSNumberFormatter.new numberFromString:token.userId]];
         });

@@ -35,6 +35,7 @@ class WallPostService:
 
     def getComments(self, ownerId, postId, offset):
         api = vk.api()
+        result = None
         try:
             result = api.wall.getComments(owner_id=ownerId, post_id=postId, offset=offset, count=g_count)
             l = result['items']
