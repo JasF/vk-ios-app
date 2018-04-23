@@ -20,6 +20,7 @@
 #import "FriendsViewModelImpl.h"
 #import "WallPostViewModelImpl.h"
 #import "NotificationsManagerImpl.h"
+#import "PhotoAlbumsViewModelImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -67,6 +68,11 @@
 
 - (id<PyNotificationsManager>)notificationsManagerHandler {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyNotificationsManager)];
+}
+
+- (id<PyPhotoAlbumsViewModel>)photoAlbumsViewModelHandler:(NSInteger)ownerId {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyPhotoAlbumsViewModel)
+                                              parameters:@{@"ownerId":@(ownerId)}];
 }
 
 @end

@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, MenuRows) {
     NewsRow,
     DialogsRow,
     FriendsRow,
+    PhotosRow,
     RowsCount
 };
 
@@ -68,6 +69,7 @@ static CGFloat const kSeparatorAlpha = 0.25f;
         case NewsRow: cell.textLabel.text = L(@"lenta"); break;
         case DialogsRow: cell.textLabel.text = L(@"dialogs"); break;
         case FriendsRow: cell.textLabel.text = L(@"friends"); break;
+        case PhotosRow: cell.textLabel.text = L(@"photos"); break;
     }
     return cell;
 }
@@ -96,6 +98,10 @@ static CGFloat const kSeparatorAlpha = 0.25f;
         }
         case FriendsRow: {
             [_viewModel friendsTapped];
+            break;
+        }
+        case PhotosRow: {
+            [_viewModel photosTapped];
             break;
         }
     }

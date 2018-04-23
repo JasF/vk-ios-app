@@ -11,6 +11,7 @@
 #import "WallPost.h"
 #import "Dialog.h"
 #import "Comment.h"
+#import "PhotoAlbum.h"
 
 @implementation NodeFactoryImpl {
     NodesAssembly *_assembly;
@@ -69,6 +70,9 @@
     }
     else if ([item isKindOfClass:[Comment class]]) {
         return [_assembly commentNode:item];
+    }
+    else if ([item isKindOfClass:[PhotoAlbum class]]) {
+        return [_assembly photoAlbumNode:item];
     }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;

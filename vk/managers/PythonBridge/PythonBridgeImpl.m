@@ -201,6 +201,13 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
 }
 
 - (id)instantiateHandlerWithProtocol:(Protocol *)protocol
+                          parameters:(NSDictionary *)parameters {
+    return [self instantiateHandlerWithProtocol:protocol
+                                       delegate:nil
+                                     parameters:parameters];
+}
+
+- (id)instantiateHandlerWithProtocol:(Protocol *)protocol
                             delegate:(id)delegate
                           parameters:(NSDictionary *)parameters {
     const char *name = protocol_getName(protocol);
@@ -210,13 +217,17 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
         handler.instanceId = ++_instanceId;
     }
     handler.key = [NSString stringWithFormat:@"%@_%@", protocolName, @(handler.instanceId)];
-    [self setClassHandler:delegate name:[NSString stringWithFormat:@"%@Delegate_%@", protocolName, @(handler.instanceId)]];
+    if (delegate) {
+        [self setClassHandler:delegate name:[NSString stringWithFormat:@"%@Delegate_%@", protocolName, @(handler.instanceId)]];
+    }
     NSMutableDictionary *dictionary = [@{
-                                 @"command":@"instantiateHandlerWithDelegate",
-                                 @"delegateId": @(handler.instanceId),
+                                 @"command":(delegate) ? @"instantiateHandlerWithDelegate" : @"instantiateHandler",
                                  @"key":handler.key,
                                  @"class":protocolName,
                                  } mutableCopy];
+    if (delegate) {
+        [dictionary setObject:@(handler.instanceId) forKey:@"delegateId"];
+    }
     if (parameters) {
         [dictionary setObject:parameters forKey:@"parameters"];
     }

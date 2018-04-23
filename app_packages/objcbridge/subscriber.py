@@ -83,7 +83,11 @@ class Subscriber():
                 allocator = self.allocators[className]
             except:
                 raise ValueError('self.allocators does not have: ' + str(className))
-            handler = allocator()
+            parameters = object.get('parameters')
+            if parameters:
+                handler = allocator(parameters)
+            else:
+                handler = allocator()
             self.handlers[key] = handler
         except Exception as e:
             dprint('instantiate handler exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))

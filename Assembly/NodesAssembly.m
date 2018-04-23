@@ -15,6 +15,7 @@
 #import "UserNode.h"
 #import "WallUserNode.h"
 #import "CommentNode.h"
+#import "PhotoAlbumNode.h"
 
 @implementation NodesAssembly
 
@@ -96,6 +97,16 @@
                 [definition useInitializer:@selector(initWithComment:) parameters:^(TyphoonMethod *initializer)
                  {
                      [initializer injectParameterWith:comment];
+                 }];
+            }];
+}
+
+- (ASDisplayNode *)photoAlbumNode:(PhotoAlbum *)photoAlbum {
+    return [TyphoonDefinition withClass:[PhotoAlbumNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithPhotoAlbum:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:photoAlbum];
                  }];
             }];
 }

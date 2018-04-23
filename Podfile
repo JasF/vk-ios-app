@@ -12,7 +12,7 @@ target 'vk' do
   pod 'Chatto', :path => 'Components/Chatto'
   pod 'ChattoAdditions', :path => 'Components/Chatto'
   pod 'LoremIpsum', '= 1.0.0'
-
+  pod 'MWPhotoBrowser', :path => 'Components/MWPhotoBrowser'
 end
 
 #post_install do |installer|

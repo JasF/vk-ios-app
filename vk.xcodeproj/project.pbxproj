@@ -12,6 +12,11 @@
 		C3036C0B208DC99A005F086E /* SectionsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C0A208DC99A005F086E /* SectionsCollectionViewController.m */; };
 		C3036C10208DE2AF005F086E /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C0F208DE2AF005F086E /* Comment.m */; };
 		C3036C19208DEF12005F086E /* NotificationsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C18208DEF12005F086E /* NotificationsManagerImpl.m */; };
+		C3137721208E1FC900F568EA /* PhotoAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3137720208E1FC900F568EA /* PhotoAlbumsViewController.m */; };
+		C3137726208E1FF400F568EA /* PhotoAlbumsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3137725208E1FF400F568EA /* PhotoAlbumsViewModelImpl.m */; };
+		C313772C208E213B00F568EA /* PhotoAlbumsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313772B208E213B00F568EA /* PhotoAlbumsServiceImpl.m */; };
+		C3137732208E291500F568EA /* PhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C3137731208E291500F568EA /* PhotoAlbum.m */; };
+		C3137736208E2A4200F568EA /* PhotoAlbumNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3137735208E2A4200F568EA /* PhotoAlbumNode.m */; };
 		C313DD3C208C53E50005E29B /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD3B208C53E50005E29B /* FriendsViewController.m */; };
 		C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD40208C54430005E29B /* FriendsViewModelImpl.m */; };
 		C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD45208C578B0005E29B /* FriendsServiceImpl.m */; };
@@ -631,6 +636,21 @@
 		C3036C20208DF966005F086E /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C3137717208DFABA00F568EA /* vk.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = vk.entitlements; sourceTree = "<group>"; };
 		C3137718208DFAE800F568EA /* vk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vk.entitlements; sourceTree = "<group>"; };
+		C313771F208E1FC900F568EA /* PhotoAlbumsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumsViewController.h; sourceTree = "<group>"; };
+		C3137720208E1FC900F568EA /* PhotoAlbumsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbumsViewController.m; sourceTree = "<group>"; };
+		C3137723208E1FE600F568EA /* PhotoAlbumsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumsViewModel.h; sourceTree = "<group>"; };
+		C3137724208E1FF400F568EA /* PhotoAlbumsViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumsViewModelImpl.h; sourceTree = "<group>"; };
+		C3137725208E1FF400F568EA /* PhotoAlbumsViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbumsViewModelImpl.m; sourceTree = "<group>"; };
+		C3137727208E203E00F568EA /* project.pbxproj */ = {isa = PBXFileReference; lastKnownFileType = text.pbxproject; name = project.pbxproj; path = vk.xcodeproj/project.pbxproj; sourceTree = "<group>"; };
+		C3137729208E212F00F568EA /* PhotoAlbumsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumsService.h; sourceTree = "<group>"; };
+		C313772A208E213B00F568EA /* PhotoAlbumsServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumsServiceImpl.h; sourceTree = "<group>"; };
+		C313772B208E213B00F568EA /* PhotoAlbumsServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbumsServiceImpl.m; sourceTree = "<group>"; };
+		C313772D208E21F300F568EA /* pyphotoalbumsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyphotoalbumsviewmodel.py; sourceTree = "<group>"; };
+		C313772E208E27D300F568EA /* photoalbumsservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = photoalbumsservice.py; sourceTree = "<group>"; };
+		C3137730208E291500F568EA /* PhotoAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAlbum.h; sourceTree = "<group>"; };
+		C3137731208E291500F568EA /* PhotoAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbum.m; sourceTree = "<group>"; };
+		C3137734208E2A4200F568EA /* PhotoAlbumNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumNode.h; sourceTree = "<group>"; };
+		C3137735208E2A4200F568EA /* PhotoAlbumNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbumNode.m; sourceTree = "<group>"; };
 		C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyfriendsviewmodel.py; sourceTree = "<group>"; };
 		C313DD3A208C53E50005E29B /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		C313DD3B208C53E50005E29B /* FriendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
@@ -1648,6 +1668,7 @@
 		197D8B021D64BA50004630AE = {
 			isa = PBXGroup;
 			children = (
+				C3137727208E203E00F568EA /* project.pbxproj */,
 				C32306FB2081AE8F00CEC487 /* Components */,
 				C32304E02080E57400CEC487 /* app_packages */,
 				C32304DF2080E57400CEC487 /* app_packages.zip */,
@@ -1749,6 +1770,53 @@
 				C3137717208DFABA00F568EA /* vk.entitlements */,
 			);
 			path = entitlements;
+			sourceTree = "<group>";
+		};
+		C313771E208E1FA000F568EA /* PhotoAlbumsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C313771F208E1FC900F568EA /* PhotoAlbumsViewController.h */,
+				C3137720208E1FC900F568EA /* PhotoAlbumsViewController.m */,
+			);
+			path = PhotoAlbumsViewController;
+			sourceTree = "<group>";
+		};
+		C3137722208E1FD700F568EA /* PhotoAlbumsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3137723208E1FE600F568EA /* PhotoAlbumsViewModel.h */,
+				C3137724208E1FF400F568EA /* PhotoAlbumsViewModelImpl.h */,
+				C3137725208E1FF400F568EA /* PhotoAlbumsViewModelImpl.m */,
+			);
+			path = PhotoAlbumsViewModel;
+			sourceTree = "<group>";
+		};
+		C3137728208E212600F568EA /* PhotoAlbumsService */ = {
+			isa = PBXGroup;
+			children = (
+				C3137729208E212F00F568EA /* PhotoAlbumsService.h */,
+				C313772A208E213B00F568EA /* PhotoAlbumsServiceImpl.h */,
+				C313772B208E213B00F568EA /* PhotoAlbumsServiceImpl.m */,
+			);
+			path = PhotoAlbumsService;
+			sourceTree = "<group>";
+		};
+		C313772F208E290800F568EA /* PhotoAlbum */ = {
+			isa = PBXGroup;
+			children = (
+				C3137730208E291500F568EA /* PhotoAlbum.h */,
+				C3137731208E291500F568EA /* PhotoAlbum.m */,
+			);
+			path = PhotoAlbum;
+			sourceTree = "<group>";
+		};
+		C3137733208E2A2400F568EA /* PhotoAlbumNode */ = {
+			isa = PBXGroup;
+			children = (
+				C3137734208E2A4200F568EA /* PhotoAlbumNode.h */,
+				C3137735208E2A4200F568EA /* PhotoAlbumNode.m */,
+			);
+			path = PhotoAlbumNode;
 			sourceTree = "<group>";
 		};
 		C313DD39208C53C50005E29B /* FriendsViewController */ = {
@@ -1979,6 +2047,7 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C3137733208E2A2400F568EA /* PhotoAlbumNode */,
 				C313DD56208CA7830005E29B /* WriteCommentNode */,
 				C313DD55208CA7740005E29B /* CommentNode */,
 				C313DD51208C99B90005E29B /* WallUserNode */,
@@ -2073,6 +2142,7 @@
 		C32304572080E57400CEC487 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C313772F208E290800F568EA /* PhotoAlbum */,
 				C3036C0D208DE298005F086E /* Comment */,
 				C32304582080E57400CEC487 /* Comments */,
 				C323045B2080E57400CEC487 /* Video */,
@@ -2211,6 +2281,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C313771E208E1FA000F568EA /* PhotoAlbumsViewController */,
 				C3036C08208DC94B005F086E /* SectionsCollectionViewController */,
 				C313DD5D208CAEFB0005E29B /* WallPostViewController */,
 				C313DD39208C53C50005E29B /* FriendsViewController */,
@@ -2338,6 +2409,7 @@
 		C32304B92080E57400CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C3137728208E212600F568EA /* PhotoAlbumsService */,
 				C313DD6A208CBA330005E29B /* WallPostService */,
 				C313DD42208C57260005E29B /* FriendsService */,
 				C32304BA2080E57400CEC487 /* WallService */,
@@ -2867,6 +2939,7 @@
 				C313DD47208C5B830005E29B /* friendsservice.py */,
 				C313DD62208CB0210005E29B /* wallpostservice.py */,
 				C313DD6F208CD4F00005E29B /* usersdecorator.py */,
+				C313772E208E27D300F568EA /* photoalbumsservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -3958,6 +4031,7 @@
 				C3B2252220862B7600599E04 /* pymenuviewmodel.py */,
 				C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */,
 				C313DD61208CAFA00005E29B /* pywallpostviewmodel.py */,
+				C313772D208E21F300F568EA /* pyphotoalbumsviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -4116,6 +4190,7 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C3137722208E1FD700F568EA /* PhotoAlbumsViewModel */,
 				C313DD63208CB1360005E29B /* WallPostViewModel */,
 				C313DD3D208C541F0005E29B /* FriendsViewModel */,
 				C3B2251D2086270100599E04 /* MenuViewModel */,
@@ -4208,7 +4283,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = "Ebay Inc.";
+				ORGANIZATIONNAME = Freedom;
 				TargetAttributes = {
 					197D8B0A1D64BA50004630AE = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -4645,20 +4720,28 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-vk/Pods-vk-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Chatto/Chatto.framework",
 				"${BUILT_PRODUCTS_DIR}/ChattoAdditions/ChattoAdditions.framework",
+				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/LoremIpsum/LoremIpsum.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Chatto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChattoAdditions.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoremIpsum.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MWPhotoBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4711,6 +4794,7 @@
 				C3B0EF48208B15E6008802BB /* iOSDevCenters+GIF.swift in Sources */,
 				C32308DA2081AEB100CEC487 /* TyphoonViewHelpers.m in Sources */,
 				C32309082081AEB100CEC487 /* TyphoonNSNumberTypeConverter.m in Sources */,
+				C313772C208E213B00F568EA /* PhotoAlbumsServiceImpl.m in Sources */,
 				C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */,
 				C32306042080E57500CEC487 /* LeftViewCell.m in Sources */,
 				C313DD5C208CA7A10005E29B /* CommentNode.m in Sources */,
@@ -4784,6 +4868,7 @@
 				C32308E92081AEB100CEC487 /* TyphoonDefinition.m in Sources */,
 				C32308CE2081AEB100CEC487 /* NSArray+TyphoonManualEnumeration.m in Sources */,
 				C32308F42081AEB100CEC487 /* TyphoonBlockDefinition.m in Sources */,
+				C3137721208E1FC900F568EA /* PhotoAlbumsViewController.m in Sources */,
 				C32308BD2081AEB100CEC487 /* LGSideMenuGesturesHandler.m in Sources */,
 				C323090D2081AEB100CEC487 /* TyphoonTypeConverterRegistry.m in Sources */,
 				C35B737B208B11E3001C8067 /* TypingPresenter.swift in Sources */,
@@ -4807,6 +4892,8 @@
 				C32305C32080E57500CEC487 /* EXTSafeCategory.m in Sources */,
 				C32308DF2081AEB100CEC487 /* UIViewController+TyphoonStoryboardIntegration.m in Sources */,
 				C32309332081AEB100CEC487 /* CALayer+Image.m in Sources */,
+				C3137736208E2A4200F568EA /* PhotoAlbumNode.m in Sources */,
+				C3137732208E291500F568EA /* PhotoAlbum.m in Sources */,
 				C32305FA2080E57500CEC487 /* Attachments.m in Sources */,
 				C323091F2081AEB100CEC487 /* TyphoonCollaboratingAssemblyPropertyEnumerator.m in Sources */,
 				C32305D62080E57500CEC487 /* ServicesAssembly.m in Sources */,
@@ -4928,6 +5015,7 @@
 				C32305D72080E57500CEC487 /* VKCoreComponents.m in Sources */,
 				C32309102081AEB100CEC487 /* TyphoonDefinitionRegisterer.m in Sources */,
 				C32308CF2081AEB100CEC487 /* TyphoonSelector.m in Sources */,
+				C3137726208E1FF400F568EA /* PhotoAlbumsViewModelImpl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

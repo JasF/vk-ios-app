@@ -7,4 +7,5 @@ class AuthorizationHandlerProtocol:
         vk.setUserId(aUserId)
         #managers.shared().screensManager().showFriendsViewController()
         #managers.shared().screensManager().showChatListViewController()
-        managers.shared().screensManager().showWallViewController()
+        #managers.shared().screensManager().showWallViewController()
+        managers.shared().screensManager().showPhotoAlbumsViewController_(args=[vk.userId()])

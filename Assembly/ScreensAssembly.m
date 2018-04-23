@@ -21,6 +21,7 @@
 #import "vk-Swift.h"
 #import "WallPostViewController.h"
 #import "VKApplicationAssembly.h"
+#import "PhotoAlbumsViewController.h"
 
 @implementation ScreensAssembly
 
@@ -126,6 +127,15 @@
     return [TyphoonDefinition withClass:[FriendsViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:self.viewModelsAssembly.friendsViewModel];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+        }];
+    }];
+}
+
+- (UIViewController *)photoAlbumsViewController:(NSNumber *)ownerId {
+    return [TyphoonDefinition withClass:[PhotoAlbumsViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly photoAlbumsViewModel:ownerId]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
     }];

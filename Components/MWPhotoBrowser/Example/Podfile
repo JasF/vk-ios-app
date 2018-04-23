@@ -1,0 +1,6 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'MWPhotoBrowser_Example' do
+  pod "MWPhotoBrowser", :path => "../"
+end
+

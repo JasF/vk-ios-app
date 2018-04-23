@@ -18,6 +18,7 @@
 #import "ViewModelsAssembly.h"
 #import "FriendsViewController.h"
 #import "WallPostViewController.h"
+#import "PhotoAlbumsViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -132,6 +133,18 @@
 - (void)showMenu {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.mainViewController showLeftViewAnimated:YES completionHandler:^{}];
+    });
+}
+
+- (void)showPhotoAlbumsViewController:(NSNumber *)ownerId {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[PhotoAlbumsViewController class]]) {
+            return;
+        }
+        PhotoAlbumsViewController *viewController =(PhotoAlbumsViewController *)[_screensAssembly photoAlbumsViewController:ownerId];
+        [self pushViewController:viewController clean:NO];
     });
 }
 

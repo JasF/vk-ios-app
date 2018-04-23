@@ -3,7 +3,7 @@
 //  vk
 //
 //  Created by Jasf on 17.04.2018.
-//  Copyright © 2018 Ebay Inc. All rights reserved.
+//  Copyright © 2018 Freedom. All rights reserved.
 //
 
 #import "MenuViewModelImpl.h"
@@ -37,6 +37,12 @@
 - (void)friendsTapped {
     dispatch_python(^{
         [self.handler friendsTapped];
+    });
+}
+
+- (void)photosTapped {
+    dispatch_python(^{
+        [self.handler photosTapped];
     });
 }
 

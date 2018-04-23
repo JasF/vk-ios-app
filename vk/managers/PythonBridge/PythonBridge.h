@@ -20,6 +20,8 @@ typedef void (^ResultBlock)(id result);
 - (id)instantiateHandlerWithProtocol:(Protocol *)protocol
                             delegate:(id)delegate
                           parameters:(NSDictionary *)parameters;
+- (id)instantiateHandlerWithProtocol:(Protocol *)protocol
+                          parameters:(NSDictionary *)parameters;
 - (void)sendAction:(NSString *)action
          className:(NSString *)className
          arguments:(NSArray *)arguments

@@ -32,6 +32,7 @@
 - (UIViewController *)chatListViewController;
 - (UIViewController *)friendsViewController;
 - (UIViewController *)dialogViewController:(NSNumber *)userId;
+- (UIViewController *)photoAlbumsViewController:(NSNumber *)ownerId;
 - (UIWindow *)window;
 - (UINavigationController *)rootNavigationController;
 @end

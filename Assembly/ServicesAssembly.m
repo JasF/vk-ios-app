@@ -13,6 +13,7 @@
 #import "HandlersFactoryImpl.h"
 #import "FriendsServiceImpl.h"
 #import "WallPostServiceImpl.h"
+#import "PhotoAlbumsServiceImpl.h"
 
 @implementation ServicesAssembly
 
@@ -59,6 +60,10 @@
              [initializer injectParameterWith:self.wallService];
          }];
     }];
+}
+
+- (id<PhotoAlbumsService>)photoAlbumsService {
+    return [TyphoonDefinition withClass:[PhotoAlbumsServiceImpl class]];
 }
 
 @end

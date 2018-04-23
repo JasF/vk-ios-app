@@ -18,4 +18,5 @@
 - (void)showFriendsViewController;
 - (void)showMenu;
 - (void)showDialogViewController:(NSNumber *)userId;
+- (void)showPhotoAlbumsViewController:(NSNumber *)ownerId;
 @end

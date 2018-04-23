@@ -13,6 +13,7 @@
 #import "Video.h"
 #import "User.h"
 #import "Comment.h"
+#import "PhotoAlbum.h"
 
 @class WallPostNode;
 @class ASDisplayNode;
@@ -26,4 +27,5 @@
 - (ASDisplayNode *)userNode:(User *)user;
 - (ASDisplayNode *)wallUserNode:(WallUser *)user;
 - (ASDisplayNode *)commentNode:(Comment *)comment;
+- (ASDisplayNode *)photoAlbumNode:(PhotoAlbum *)photoAlbum;
 @end

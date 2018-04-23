@@ -1,4 +1,5 @@
 from objc import managers
+import vk
 
 class PyMenuViewModel():
     def newsTapped(self):
@@ -9,3 +10,6 @@ class PyMenuViewModel():
 
     def friendsTapped(self):
         managers.shared().screensManager().showFriendsViewController()
+
+    def photosTapped(self):
+        managers.shared().screensManager().showPhotoAlbumsViewController_(args=[vk.userId()])

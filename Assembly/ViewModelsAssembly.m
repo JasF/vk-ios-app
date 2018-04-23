@@ -3,7 +3,7 @@
 //  vk
 //
 //  Created by Jasf on 17.04.2018.
-//  Copyright © 2018 Ebay Inc. All rights reserved.
+//  Copyright © 2018 Freedom. All rights reserved.
 //
 
 #import "ViewModelsAssembly.h"
@@ -13,6 +13,7 @@
 #import "WallViewModelImpl.h"
 #import "WallPostViewModelImpl.h"
 #import "MenuViewModelImpl.h"
+#import "PhotoAlbumsViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -77,6 +78,17 @@
             {
                 [definition useInitializer:@selector(initWithHandlersFactory:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                }];
+            }];
+}
+
+- (id<PhotoAlbumsViewModel>)photoAlbumsViewModel:(NSNumber *)ownerId {
+    return [TyphoonDefinition withClass:[PhotoAlbumsViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:photoAlbumsService:ownerId:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.photoAlbumsService];
+                    [initializer injectParameterWith:ownerId];
                 }];
             }];
 }

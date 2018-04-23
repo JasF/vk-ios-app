@@ -3,7 +3,7 @@
 //  vk
 //
 //  Created by Jasf on 17.04.2018.
-//  Copyright © 2018 Ebay Inc. All rights reserved.
+//  Copyright © 2018 Freedom. All rights reserved.
 //
 
 #import "TyphoonAssembly.h"
@@ -16,6 +16,7 @@
 #import "MenuViewModel.h"
 #import "FriendsViewModel.h"
 #import "WallPostViewModel.h"
+#import "PhotoAlbumsViewModel.h"
 
 @interface ViewModelsAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -27,4 +28,5 @@
 - (id<MenuViewModel>)menuScreenViewModel;
 - (id<FriendsViewModel>)friendsViewModel;
 - (id<WallPostViewModel>)wallPostViewModelWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;
+- (id<PhotoAlbumsViewModel>)photoAlbumsViewModel:(NSNumber *)ownerId;
 @end
