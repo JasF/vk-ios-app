@@ -651,6 +651,7 @@
 		C3137731208E291500F568EA /* PhotoAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbum.m; sourceTree = "<group>"; };
 		C3137734208E2A4200F568EA /* PhotoAlbumNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumNode.h; sourceTree = "<group>"; };
 		C3137735208E2A4200F568EA /* PhotoAlbumNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbumNode.m; sourceTree = "<group>"; };
+		C3137737208E2C0500F568EA /* photoalbumsdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = photoalbumsdatabase.py; sourceTree = "<group>"; };
 		C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyfriendsviewmodel.py; sourceTree = "<group>"; };
 		C313DD3A208C53E50005E29B /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		C313DD3B208C53E50005E29B /* FriendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
@@ -2954,6 +2955,7 @@
 				C313DD48208C6C9F0005E29B /* friendsdatabase.py */,
 				C313DD68208CB47F0005E29B /* postsdatabase.py */,
 				C3036C0C208DDCEC005F086E /* commentsdatabase.py */,
+				C3137737208E2C0500F568EA /* photoalbumsdatabase.py */,
 			);
 			path = caches;
 			sourceTree = "<group>";

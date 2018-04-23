@@ -55,6 +55,8 @@ class BaseDatabase():
 
 
     def update(self, dictionariesList):
+        if not isinstance(dictionariesList, list):
+            raise ValueError('argument must be list, not ' + str(type(dictionariesList).__name__))
         try:
             script = ''
             def vtostr(v,k):
