@@ -64,7 +64,6 @@
   
     // SocialAppNode has its own separator
     self.tableNode.view.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.notificationsManager initialize];
     
     self.handler = [self.pythonBridge handlerWithProtocol:@protocol(AuthorizationHandlerProtocol)];
     [_pythonBridge setClassHandler:self name:@"AuthorizationHandlerProtocol"];
@@ -118,6 +117,7 @@
     @weakify(self);
     _vkManager.getTokenSuccess = ^(VKAccessToken *token) {
         @strongify(self);
+        [self.notificationsManager initialize];
         dispatch_python(^{
             NSLog(@"received vk token: %@", token.accessToken);
             [self.handler accessTokenGathered:token.accessToken
