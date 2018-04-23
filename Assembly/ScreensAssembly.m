@@ -20,6 +20,7 @@
 #import "FriendsViewController.h"
 #import "vk-Swift.h"
 #import "WallPostViewController.h"
+#import "VKApplicationAssembly.h"
 
 @implementation ScreensAssembly
 
@@ -66,6 +67,7 @@
                 [definition useInitializer:@selector(init)];
                 [definition injectProperty:@selector(vkManager) with:self.coreComponents.vkManager];
                 [definition injectProperty:@selector(pythonBridge) with:self.coreComponents.pythonBridge];
+                [definition injectProperty:@selector(notificationsManager) with:self.applicationAssembly.notificationsManager];
             }];
 }
 

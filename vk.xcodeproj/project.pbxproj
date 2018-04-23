@@ -11,6 +11,7 @@
 		197D8B141D64BA50004630AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197D8B121D64BA50004630AE /* Main.storyboard */; };
 		C3036C0B208DC99A005F086E /* SectionsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C0A208DC99A005F086E /* SectionsCollectionViewController.m */; };
 		C3036C10208DE2AF005F086E /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C0F208DE2AF005F086E /* Comment.m */; };
+		C3036C19208DEF12005F086E /* NotificationsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C18208DEF12005F086E /* NotificationsManagerImpl.m */; };
 		C313DD3C208C53E50005E29B /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD3B208C53E50005E29B /* FriendsViewController.m */; };
 		C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD40208C54430005E29B /* FriendsViewModelImpl.m */; };
 		C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD45208C578B0005E29B /* FriendsServiceImpl.m */; };
@@ -623,6 +624,13 @@
 		C3036C0C208DDCEC005F086E /* commentsdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = commentsdatabase.py; sourceTree = "<group>"; };
 		C3036C0E208DE2AF005F086E /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		C3036C0F208DE2AF005F086E /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		C3036C16208DEF05005F086E /* NotificationsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationsManager.h; sourceTree = "<group>"; };
+		C3036C17208DEF12005F086E /* NotificationsManagerImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationsManagerImpl.h; sourceTree = "<group>"; };
+		C3036C18208DEF12005F086E /* NotificationsManagerImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationsManagerImpl.m; sourceTree = "<group>"; };
+		C3036C1F208DF809005F086E /* pynotificationsmanager.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pynotificationsmanager.py; sourceTree = "<group>"; };
+		C3036C20208DF966005F086E /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		C3137717208DFABA00F568EA /* vk.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = vk.entitlements; sourceTree = "<group>"; };
+		C3137718208DFAE800F568EA /* vk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vk.entitlements; sourceTree = "<group>"; };
 		C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyfriendsviewmodel.py; sourceTree = "<group>"; };
 		C313DD3A208C53E50005E29B /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		C313DD3B208C53E50005E29B /* FriendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
@@ -1716,6 +1724,33 @@
 			path = Comment;
 			sourceTree = "<group>";
 		};
+		C3036C12208DEE8F005F086E /* NotificationsManager */ = {
+			isa = PBXGroup;
+			children = (
+				C3036C16208DEF05005F086E /* NotificationsManager.h */,
+				C3036C17208DEF12005F086E /* NotificationsManagerImpl.h */,
+				C3036C18208DEF12005F086E /* NotificationsManagerImpl.m */,
+			);
+			path = NotificationsManager;
+			sourceTree = "<group>";
+		};
+		C3036C1E208DF7FC005F086E /* pymanagers */ = {
+			isa = PBXGroup;
+			children = (
+				C3036C1F208DF809005F086E /* pynotificationsmanager.py */,
+				C3036C20208DF966005F086E /* __init__.py */,
+			);
+			path = pymanagers;
+			sourceTree = "<group>";
+		};
+		C3137716208DFABA00F568EA /* entitlements */ = {
+			isa = PBXGroup;
+			children = (
+				C3137717208DFABA00F568EA /* vk.entitlements */,
+			);
+			path = entitlements;
+			sourceTree = "<group>";
+		};
 		C313DD39208C53C50005E29B /* FriendsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1924,6 +1959,7 @@
 		C32304292080E57400CEC487 /* vk */ = {
 			isa = PBXGroup;
 			children = (
+				C3137718208DFAE800F568EA /* vk.entitlements */,
 				C32304B92080E57400CEC487 /* services */,
 				C3B225012085BA4000599E04 /* viewmodels */,
 				C32304372080E57400CEC487 /* nodes */,
@@ -1995,6 +2031,7 @@
 		C32304472080E57400CEC487 /* managers */ = {
 			isa = PBXGroup;
 			children = (
+				C3036C12208DEE8F005F086E /* NotificationsManager */,
 				C32306EC2080E9B700CEC487 /* PythonManager */,
 				C32304482080E57400CEC487 /* ScreensManager */,
 				C323044C2080E57400CEC487 /* PythonBridge */,
@@ -2271,6 +2308,7 @@
 		C32304A72080E57400CEC487 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3137716208DFABA00F568EA /* entitlements */,
 				C32306FA2080F2DE00CEC487 /* Podfile */,
 				C32304A82080E57400CEC487 /* vk-Bridging-Header.h */,
 				C32304A92080E57400CEC487 /* vk.pch */,
@@ -2414,6 +2452,7 @@
 		C32304E02080E57400CEC487 /* app_packages */ = {
 			isa = PBXGroup;
 			children = (
+				C3036C1E208DF7FC005F086E /* pymanagers */,
 				C3A943FA2084B89E0033355E /* viewmodels */,
 				C32305B22080E57500CEC487 /* services */,
 				C32305252080E57500CEC487 /* screens */,
@@ -4176,6 +4215,11 @@
 						DevelopmentTeam = 5892LD7JW5;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -4879,6 +4923,7 @@
 				C32308F02081AEB100CEC487 /* Collections+CustomInjection.m in Sources */,
 				C32308FC2081AEB100CEC487 /* TyphoonInject.m in Sources */,
 				C32308BF2081AEB100CEC487 /* LGSideMenuBorderView.m in Sources */,
+				C3036C19208DEF12005F086E /* NotificationsManagerImpl.m in Sources */,
 				C3372FBC2083356C0080DA75 /* DemoChatViewController.swift in Sources */,
 				C32305D72080E57500CEC487 /* VKCoreComponents.m in Sources */,
 				C32309102081AEB100CEC487 /* TyphoonDefinitionRegisterer.m in Sources */,
@@ -5005,6 +5050,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = vk/vk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -5021,7 +5067,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/Frameworks/python",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ebay.MessageGroups;
+				PRODUCT_BUNDLE_IDENTIFIER = by.vk.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "vk/Supporting Files/vk-Bridging-Header.h";
@@ -5035,6 +5081,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = vk/vk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -5051,7 +5098,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)/Frameworks/python",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ebay.MessageGroups;
+				PRODUCT_BUNDLE_IDENTIFIER = by.vk.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "vk/Supporting Files/vk-Bridging-Header.h";

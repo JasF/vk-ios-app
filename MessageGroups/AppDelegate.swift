@@ -8,12 +8,24 @@
 
 import UIKit
 
+extension Data {
+    struct HexEncodingOptions: OptionSet {
+        let rawValue: Int
+        static let upperCase = HexEncodingOptions(rawValue: 1 << 0)
+    }
+    
+    func hexEncodedString(options: HexEncodingOptions = []) -> String {
+        let format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
+        return map { String(format: format, $0) }.joined()
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     @objc dynamic var pythonBridge: PythonBridge?
     @objc dynamic var screensManager: ScreensManager?
     @objc dynamic var pythonManager: PythonManager?
+    @objc dynamic var notificationsManager: NotificationsManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,6 +34,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.pythonBridge?.connect()
         
         return true
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        self.notificationsManager?.didRegisterForRemoteNotifications(withDeviceToken: deviceToken.hexEncodedString())
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        self.notificationsManager?.didFailToRegisterForRemoteNotificationsWithError(error)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        self.notificationsManager?.didReceiveRemoteNotification(userInfo)
+        completionHandler(.newData);
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -17,6 +17,9 @@
 @class AppDelegate;
 @class VKThemeAssembly;
 @class ScreensAssembly;
+@class ServicesAssembly;
+@protocol NotificationsManager;
+
 
 /**
 * This is the assembly for the PocketForecast application. We'll be bootstrapping Typhoon using the iOS way, by declaring the list of
@@ -28,5 +31,7 @@
 @property(nonatomic, strong, readonly) VKCoreComponents *coreComponents;
 @property(nonatomic, strong, readonly) VKThemeAssembly *themeProvider;
 @property(nonatomic, strong, readonly) ScreensAssembly *screensAssembly;
+@property(nonatomic, strong, readonly) ServicesAssembly *servicesAssembly;
 - (AppDelegate *)appDelegate;
+- (id<NotificationsManager>)notificationsManager;
 @end

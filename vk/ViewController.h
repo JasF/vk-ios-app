@@ -18,6 +18,7 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "VKSdkManager.h"
 #import "PythonBridge.h"
+#import "NotificationsManager.h"
 
 @protocol AuthorizationHandlerProtocolDelegate <NSObject>
 - (NSString *)receivedWall:(NSDictionary *)wall;
@@ -32,4 +33,5 @@
 @property (strong, nonatomic) id<AuthorizationHandlerProtocol> handler;
 @property (strong, nonatomic) id<VKSdkManager> vkManager;
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
+@property id<NotificationsManager> notificationsManager;
 @end

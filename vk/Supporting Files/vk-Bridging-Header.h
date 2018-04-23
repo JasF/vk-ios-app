@@ -12,3 +12,4 @@
 #import "Message.h"
 #import "DialogScreenViewModel.h"
 #import <VK-ios-sdk/VKSdk.h>
+#import "NotificationsManager.h"

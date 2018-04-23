@@ -17,8 +17,6 @@
 @protocol VKSdkManager;
 @protocol PythonBridge;
 @protocol PythonManager;
-
-
 @interface VKCoreComponents : TyphoonAssembly
 - (id<VKSdkManager>)vkManager;
 - (id<PythonBridge>)pythonBridge;

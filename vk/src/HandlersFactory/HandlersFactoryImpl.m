@@ -19,6 +19,7 @@
 #import "MenuViewModelImpl.h"
 #import "FriendsViewModelImpl.h"
 #import "WallPostViewModelImpl.h"
+#import "NotificationsManagerImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -62,6 +63,10 @@
 
 - (id<PyFriendsViewModel>)friendsViewModelHandler {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyFriendsViewModel)];
+}
+
+- (id<PyNotificationsManager>)notificationsManagerHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyNotificationsManager)];
 }
 
 @end

@@ -13,6 +13,7 @@
 
 @class VKCoreComponents;
 @class VKThemeAssembly;
+@class VKApplicationAssembly;
 @class NodesAssembly;
 @class ViewModelsAssembly;
 
@@ -20,6 +21,7 @@
 @property (nonatomic, strong, readonly) VKCoreComponents *coreComponents;
 @property (nonatomic, strong, readonly) VKThemeAssembly *themeProvider;
 @property (nonatomic, strong, readonly) NodesAssembly *nodesAssembly;
+@property (nonatomic, strong, readonly) VKApplicationAssembly *applicationAssembly;
 @property (readonly) ServicesAssembly *servicesAssembly;
 @property (readonly) ViewModelsAssembly *viewModelsAssembly;
 - (id<ScreensManager>)screensManager;

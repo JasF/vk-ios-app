@@ -64,7 +64,7 @@
   
     // SocialAppNode has its own separator
     self.tableNode.view.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    [self.notificationsManager initialize];
     
     self.handler = [self.pythonBridge handlerWithProtocol:@protocol(AuthorizationHandlerProtocol)];
     [_pythonBridge setClassHandler:self name:@"AuthorizationHandlerProtocol"];
@@ -78,6 +78,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
 #ifdef DEBUG
         simulateBlock();
+        
         //[self.vkManager authorize];
 #else
         

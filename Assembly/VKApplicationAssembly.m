@@ -14,8 +14,8 @@
 #import "VKThemeAssembly.h"
 #import "ScreensAssembly.h"
 #import "vk-Swift.h"
-
-
+#import "NotificationsManagerImpl.h"
+#import "ServicesAssembly.h"
 @implementation VKApplicationAssembly
 
 //-------------------------------------------------------------------------------------------
@@ -29,6 +29,7 @@
                 [definition injectProperty:@selector(screensManager) with:[self.screensAssembly screensManager]];
                 [definition injectProperty:@selector(pythonBridge) with:[self.coreComponents pythonBridge]];
                 [definition injectProperty:@selector(pythonManager) with:[self.coreComponents pythonManager]];
+                [definition injectProperty:@selector(notificationsManager) with:[self notificationsManager]];
             }];
 }
 
@@ -53,6 +54,16 @@
         [definition useInitializer:@selector(init)];
         definition.scope = TyphoonScopeSingleton;
     }];
+}
+
+- (id<NotificationsManager>)notificationsManager {
+    return [TyphoonDefinition withClass:[NotificationsManagerImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                }];
+                definition.scope = TyphoonScopeSingleton;
+            }];
 }
 
 @end

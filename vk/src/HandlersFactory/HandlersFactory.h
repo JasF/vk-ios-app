@@ -14,6 +14,7 @@
 @protocol PyMenuViewModel;
 @protocol PyFriendsViewModel;
 @protocol PyWallPostViewModel;
+@protocol PyNotificationsManager;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
@@ -22,4 +23,5 @@
 - (id<PyWallPostViewModel>)wallPostViewModelHandlerWithDelegate:(id)delegate parameters:(NSDictionary *)parameters;
 - (id<PyMenuViewModel>)menuViewModelHandler;
 - (id<PyFriendsViewModel>)friendsViewModelHandler;
+- (id<PyNotificationsManager>)notificationsManagerHandler;
 @end
