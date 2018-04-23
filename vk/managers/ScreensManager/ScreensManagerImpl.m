@@ -55,7 +55,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
         ViewController *viewController =(ViewController *)[self.screensAssembly createViewController];
-        [navigationController pushViewController:viewController animated:YES];
+        [navigationController pushViewController:viewController animated:NO];
     });
 }
 
@@ -171,7 +171,7 @@
         self.navigationController.viewControllers = @[viewController];
     }
     else {
-        [self.navigationController pushViewController:viewController animated:YES completion:^{
+        [self.navigationController pushViewController:viewController animated:(clean)?NO:YES completion:^{
             if (clean && self.navigationController.viewControllers.count > 1) {
                 self.navigationController.viewControllers = @[viewController];
             }

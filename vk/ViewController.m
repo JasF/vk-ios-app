@@ -117,11 +117,13 @@
     @weakify(self);
     _vkManager.getTokenSuccess = ^(VKAccessToken *token) {
         @strongify(self);
-        [self.notificationsManager initialize];
         dispatch_python(^{
             NSLog(@"received vk token: %@", token.accessToken);
             [self.handler accessTokenGathered:token.accessToken
                                        userId:[NSNumberFormatter.new numberFromString:token.userId]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.notificationsManager initialize];
+            });
         });
     };
     _vkManager.getTokenFailed = ^(NSError *error, BOOL cancelled) {

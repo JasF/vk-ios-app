@@ -13,14 +13,18 @@
 @interface NotificationsManagerImpl () <UNUserNotificationCenterDelegate>
 @property (strong, nonatomic) id<PyNotificationsManager> handler;
 @property (strong, nonatomic) id<HandlersFactory> handlersFactory;
+@property (strong, nonatomic) NSMutableArray *delayedPushes;
 @end
 
-@implementation NotificationsManagerImpl
+@implementation NotificationsManagerImpl {
+    BOOL _initialized;
+}
 
 - (id)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory {
     NSCParameterAssert(handlersFactory);
     if (self = [super init]) {
         _handlersFactory = handlersFactory;
+        _delayedPushes = [NSMutableArray new];
     }
     return self;
 }
@@ -39,9 +43,13 @@
 }
 
 - (void)didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    dispatch_python(^{
-        [self.handler didReceiveRemoteNotification:userInfo];
-    });
+    if (_initialized) {
+        dispatch_python(^{
+            [self.handler didReceiveRemoteNotification:userInfo];
+        });
+        return;
+    }
+    [_delayedPushes addObject:userInfo];
 }
 
 - (void)initialize {
@@ -54,6 +62,11 @@
         [self registerForRemoteNotifications]; // ios10 ipad support
         [self registerForUserNotification];
     }
+    _initialized = YES;
+    for (NSDictionary *userInfo in _delayedPushes) {
+        [self didReceiveRemoteNotification:userInfo];
+    }
+    [_delayedPushes removeAllObjects];
 }
 
 - (void)cleanBadgeNumber {
