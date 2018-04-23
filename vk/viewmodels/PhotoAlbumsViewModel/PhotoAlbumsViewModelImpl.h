@@ -13,6 +13,7 @@
 @protocol PyPhotoAlbumsViewModel <NSObject>
 - (NSDictionary *)getPhotoAlbums:(NSNumber *)offset;
 - (void)menuTapped;
+- (void)tappedOnAlbumWithId:(NSNumber *)albumId;
 @end
 
 @interface PhotoAlbumsViewModelImpl : NSObject <PhotoAlbumsViewModel>

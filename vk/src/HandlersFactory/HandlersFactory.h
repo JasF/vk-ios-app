@@ -16,6 +16,7 @@
 @protocol PyWallPostViewModel;
 @protocol PyNotificationsManager;
 @protocol PyPhotoAlbumsViewModel;
+@protocol PyGalleryViewModel;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
@@ -26,4 +27,5 @@
 - (id<PyFriendsViewModel>)friendsViewModelHandler;
 - (id<PyNotificationsManager>)notificationsManagerHandler;
 - (id<PyPhotoAlbumsViewModel>)photoAlbumsViewModelHandler:(NSInteger)ownerId;
+- (id<PyGalleryViewModel>)galleryViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(id)albumId;
 @end

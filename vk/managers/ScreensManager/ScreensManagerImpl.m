@@ -19,6 +19,7 @@
 #import "FriendsViewController.h"
 #import "WallPostViewController.h"
 #import "PhotoAlbumsViewController.h"
+#import "GalleryViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -144,6 +145,18 @@
             return;
         }
         PhotoAlbumsViewController *viewController =(PhotoAlbumsViewController *)[_screensAssembly photoAlbumsViewController:ownerId];
+        [self pushViewController:viewController clean:NO];
+    });
+}
+
+- (void)showGalleryViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(id)albumId {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[GalleryViewController class]]) {
+            return;
+        }
+        GalleryViewController *viewController =(GalleryViewController *)[_screensAssembly galleryViewController:ownerId albumId:albumId];
         [self pushViewController:viewController clean:NO];
     });
 }

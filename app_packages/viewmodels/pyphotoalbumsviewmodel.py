@@ -15,3 +15,6 @@ class PyPhotoAlbumsViewModel():
 
     def menuTapped(self):
         managers.shared().screensManager().showMenu()
+
+    def tappedOnAlbumWithId(self, albumId):
+        managers.shared().screensManager().showGalleryViewControllerWithOwnerId_albumId_(args=[self.ownerId, albumId]);

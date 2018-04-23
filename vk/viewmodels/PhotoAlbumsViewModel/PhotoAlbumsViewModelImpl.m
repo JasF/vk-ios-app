@@ -41,8 +41,10 @@
     });
 }
 
-- (void)clickedOnAlbumAtIndex:(NSInteger)index {
-    
+- (void)clickedOnAlbumWithId:(NSInteger)albumId {
+    dispatch_python(^{
+        [self.handler tappedOnAlbumWithId:@(albumId)];
+    });
 }
 
 - (void)menuTapped {

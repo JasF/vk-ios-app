@@ -7,6 +7,7 @@
 //
 
 #import "PhotoAlbumsViewController.h"
+#import "PhotoAlbum.h"
 
 @interface PhotoAlbumsViewController () <BaseCollectionViewControllerDataSource>
 @property id<PhotoAlbumsViewModel> viewModel;
@@ -50,6 +51,15 @@
             completion(albums);
         }
     }];
+}
+
+#pragma mark - ASCollectionNodeDelegate
+- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    PhotoAlbum *photoAlbum = [collectionNode nodeModelForItemAtIndexPath:indexPath];
+    if (!photoAlbum) {
+        return;
+    }
+    [_viewModel clickedOnAlbumWithId:photoAlbum.id];
 }
 
 @end

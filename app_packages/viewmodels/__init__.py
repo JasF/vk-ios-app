@@ -6,6 +6,7 @@ from .pymenuviewmodel import PyMenuViewModel
 from .pyfriendsviewmodel import PyFriendsViewModel
 from .pywallpostviewmodel import PyWallPostViewModel
 from .pyphotoalbumsviewmodel import PyPhotoAlbumsViewModel
+from .pygalleryviewmodel import PyGalleryViewModel
 
 from services.messagesservice import MessagesService
 from services.chatlistservice import ChatListService
@@ -15,11 +16,14 @@ from services.wallpostservice import WallPostService
 from services.friendsservice import FriendsService
 from services.usersdecorator import UsersDecorator
 from services.photoalbumsservice import PhotoAlbumsService
+from services.galleryservice import GalleryService
+
 
 Subscriber().setClassAllocatorWithDelegate( PyChatListViewModel, lambda delegateId: PyChatListViewModel(delegateId, MessagesService(), ChatListService()) )
 Subscriber().setClassAllocatorWithDelegate( PyDialogScreenViewModel, lambda delegateId, parameters: PyDialogScreenViewModel(delegateId, parameters, MessagesService(), DialogService()) )
 Subscriber().setClassAllocatorWithDelegate( PyWallViewModel, lambda delegateId, parameters: PyWallViewModel(WallService(parameters, UsersDecorator()), parameters) )
 Subscriber().setClassAllocator( PyMenuViewModel, lambda: PyMenuViewModel() )
 Subscriber().setClassAllocator( PyPhotoAlbumsViewModel, lambda parameters: PyPhotoAlbumsViewModel(PhotoAlbumsService(), parameters['ownerId']) )
+Subscriber().setClassAllocator( PyGalleryViewModel, lambda parameters: PyGalleryViewModel(GalleryService(), parameters['ownerId'], parameters['albumId']) )
 Subscriber().setClassAllocator( PyFriendsViewModel, lambda: PyFriendsViewModel(FriendsService()) )
 Subscriber().setClassAllocatorWithDelegate( PyWallPostViewModel, lambda delegateId, parameters: PyWallPostViewModel(WallPostService(UsersDecorator()), parameters['ownerId'], parameters['postId']) )

@@ -33,6 +33,7 @@
 - (UIViewController *)friendsViewController;
 - (UIViewController *)dialogViewController:(NSNumber *)userId;
 - (UIViewController *)photoAlbumsViewController:(NSNumber *)ownerId;
+- (UIViewController *)galleryViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId;
 - (UIWindow *)window;
 - (UINavigationController *)rootNavigationController;
 @end

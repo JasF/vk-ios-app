@@ -21,6 +21,7 @@
 #import "WallPostViewModelImpl.h"
 #import "NotificationsManagerImpl.h"
 #import "PhotoAlbumsViewModelImpl.h"
+#import "GalleryViewModelImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -73,6 +74,12 @@
 - (id<PyPhotoAlbumsViewModel>)photoAlbumsViewModelHandler:(NSInteger)ownerId {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyPhotoAlbumsViewModel)
                                               parameters:@{@"ownerId":@(ownerId)}];
+}
+
+- (id<PyGalleryViewModel>)galleryViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(id)albumId {
+    NSCParameterAssert(albumId);
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyGalleryViewModel)
+                                              parameters:@{@"ownerId":@(ownerId), @"albumId":albumId}];
 }
 
 @end

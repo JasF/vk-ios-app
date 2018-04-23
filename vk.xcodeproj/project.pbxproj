@@ -17,6 +17,10 @@
 		C313772C208E213B00F568EA /* PhotoAlbumsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313772B208E213B00F568EA /* PhotoAlbumsServiceImpl.m */; };
 		C3137732208E291500F568EA /* PhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = C3137731208E291500F568EA /* PhotoAlbum.m */; };
 		C3137736208E2A4200F568EA /* PhotoAlbumNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3137735208E2A4200F568EA /* PhotoAlbumNode.m */; };
+		C313773B208E2EDF00F568EA /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C313773A208E2EDF00F568EA /* GalleryViewController.m */; };
+		C3137740208E2F5200F568EA /* GalleryViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313773F208E2F5200F568EA /* GalleryViewModelImpl.m */; };
+		C3137744208E303E00F568EA /* GalleryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3137743208E303E00F568EA /* GalleryServiceImpl.m */; };
+		C313774D208E3AC500F568EA /* PhotoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313774C208E3AC500F568EA /* PhotoNode.m */; };
 		C313DD3C208C53E50005E29B /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD3B208C53E50005E29B /* FriendsViewController.m */; };
 		C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD40208C54430005E29B /* FriendsViewModelImpl.m */; };
 		C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD45208C578B0005E29B /* FriendsServiceImpl.m */; };
@@ -652,6 +656,18 @@
 		C3137734208E2A4200F568EA /* PhotoAlbumNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumNode.h; sourceTree = "<group>"; };
 		C3137735208E2A4200F568EA /* PhotoAlbumNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbumNode.m; sourceTree = "<group>"; };
 		C3137737208E2C0500F568EA /* photoalbumsdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = photoalbumsdatabase.py; sourceTree = "<group>"; };
+		C3137739208E2EDF00F568EA /* GalleryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		C313773A208E2EDF00F568EA /* GalleryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		C313773D208E2F4600F568EA /* GalleryViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryViewModel.h; sourceTree = "<group>"; };
+		C313773E208E2F5200F568EA /* GalleryViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryViewModelImpl.h; sourceTree = "<group>"; };
+		C313773F208E2F5200F568EA /* GalleryViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GalleryViewModelImpl.m; sourceTree = "<group>"; };
+		C3137742208E303E00F568EA /* GalleryServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryServiceImpl.h; sourceTree = "<group>"; };
+		C3137743208E303E00F568EA /* GalleryServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GalleryServiceImpl.m; sourceTree = "<group>"; };
+		C3137745208E304600F568EA /* GalleryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryService.h; sourceTree = "<group>"; };
+		C3137748208E357400F568EA /* galleryservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = galleryservice.py; sourceTree = "<group>"; };
+		C3137749208E358E00F568EA /* pygalleryviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pygalleryviewmodel.py; sourceTree = "<group>"; };
+		C313774B208E3AC500F568EA /* PhotoNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoNode.h; sourceTree = "<group>"; };
+		C313774C208E3AC500F568EA /* PhotoNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoNode.m; sourceTree = "<group>"; };
 		C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyfriendsviewmodel.py; sourceTree = "<group>"; };
 		C313DD3A208C53E50005E29B /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		C313DD3B208C53E50005E29B /* FriendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
@@ -1820,6 +1836,44 @@
 			path = PhotoAlbumNode;
 			sourceTree = "<group>";
 		};
+		C3137738208E2EAE00F568EA /* GalleryViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3137739208E2EDF00F568EA /* GalleryViewController.h */,
+				C313773A208E2EDF00F568EA /* GalleryViewController.m */,
+			);
+			path = GalleryViewController;
+			sourceTree = "<group>";
+		};
+		C313773C208E2F3B00F568EA /* GalleryViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C313773D208E2F4600F568EA /* GalleryViewModel.h */,
+				C313773E208E2F5200F568EA /* GalleryViewModelImpl.h */,
+				C313773F208E2F5200F568EA /* GalleryViewModelImpl.m */,
+			);
+			path = GalleryViewModel;
+			sourceTree = "<group>";
+		};
+		C3137741208E303000F568EA /* GalleryService */ = {
+			isa = PBXGroup;
+			children = (
+				C3137745208E304600F568EA /* GalleryService.h */,
+				C3137742208E303E00F568EA /* GalleryServiceImpl.h */,
+				C3137743208E303E00F568EA /* GalleryServiceImpl.m */,
+			);
+			path = GalleryService;
+			sourceTree = "<group>";
+		};
+		C313774A208E3AB500F568EA /* PhotoNode */ = {
+			isa = PBXGroup;
+			children = (
+				C313774B208E3AC500F568EA /* PhotoNode.h */,
+				C313774C208E3AC500F568EA /* PhotoNode.m */,
+			);
+			path = PhotoNode;
+			sourceTree = "<group>";
+		};
 		C313DD39208C53C50005E29B /* FriendsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2048,6 +2102,7 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C313774A208E3AB500F568EA /* PhotoNode */,
 				C3137733208E2A2400F568EA /* PhotoAlbumNode */,
 				C313DD56208CA7830005E29B /* WriteCommentNode */,
 				C313DD55208CA7740005E29B /* CommentNode */,
@@ -2282,6 +2337,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3137738208E2EAE00F568EA /* GalleryViewController */,
 				C313771E208E1FA000F568EA /* PhotoAlbumsViewController */,
 				C3036C08208DC94B005F086E /* SectionsCollectionViewController */,
 				C313DD5D208CAEFB0005E29B /* WallPostViewController */,
@@ -2410,6 +2466,7 @@
 		C32304B92080E57400CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C3137741208E303000F568EA /* GalleryService */,
 				C3137728208E212600F568EA /* PhotoAlbumsService */,
 				C313DD6A208CBA330005E29B /* WallPostService */,
 				C313DD42208C57260005E29B /* FriendsService */,
@@ -2941,6 +2998,7 @@
 				C313DD62208CB0210005E29B /* wallpostservice.py */,
 				C313DD6F208CD4F00005E29B /* usersdecorator.py */,
 				C313772E208E27D300F568EA /* photoalbumsservice.py */,
+				C3137748208E357400F568EA /* galleryservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -4034,6 +4092,7 @@
 				C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */,
 				C313DD61208CAFA00005E29B /* pywallpostviewmodel.py */,
 				C313772D208E21F300F568EA /* pyphotoalbumsviewmodel.py */,
+				C3137749208E358E00F568EA /* pygalleryviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -4192,6 +4251,7 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C313773C208E2F3B00F568EA /* GalleryViewModel */,
 				C3137722208E1FD700F568EA /* PhotoAlbumsViewModel */,
 				C313DD63208CB1360005E29B /* WallPostViewModel */,
 				C313DD3D208C541F0005E29B /* FriendsViewModel */,
@@ -4837,7 +4897,9 @@
 				C32309092081AEB100CEC487 /* TyphoonPrimitiveTypeConverter.m in Sources */,
 				C32309002081AEB100CEC487 /* TyphoonInjectionByFactoryReference.m in Sources */,
 				C32308E52081AEB100CEC487 /* TyphoonStoryboardDefinition.m in Sources */,
+				C3137744208E303E00F568EA /* GalleryServiceImpl.m in Sources */,
 				C313DD4C208C7BCF0005E29B /* UserNode.m in Sources */,
+				C313773B208E2EDF00F568EA /* GalleryViewController.m in Sources */,
 				C32305F42080E57500CEC487 /* Reposts.m in Sources */,
 				C32309272081AEB100CEC487 /* NSInvocation+TCFInstanceBuilder.m in Sources */,
 				C32305BD2080E57500CEC487 /* EXTSelectorChecking.m in Sources */,
@@ -4870,6 +4932,7 @@
 				C32308E92081AEB100CEC487 /* TyphoonDefinition.m in Sources */,
 				C32308CE2081AEB100CEC487 /* NSArray+TyphoonManualEnumeration.m in Sources */,
 				C32308F42081AEB100CEC487 /* TyphoonBlockDefinition.m in Sources */,
+				C313774D208E3AC500F568EA /* PhotoNode.m in Sources */,
 				C3137721208E1FC900F568EA /* PhotoAlbumsViewController.m in Sources */,
 				C32308BD2081AEB100CEC487 /* LGSideMenuGesturesHandler.m in Sources */,
 				C323090D2081AEB100CEC487 /* TyphoonTypeConverterRegistry.m in Sources */,
@@ -4938,6 +5001,7 @@
 				C32308EF2081AEB100CEC487 /* TyphoonBlockDefinitionController.m in Sources */,
 				C313DD66208CB14A0005E29B /* WallPostViewModelImpl.m in Sources */,
 				C32305EC2080E57500CEC487 /* PythonBridgeImpl.m in Sources */,
+				C3137740208E2F5200F568EA /* GalleryViewModelImpl.m in Sources */,
 				C32308E02081AEB100CEC487 /* TyphoonStoryboardResolver.m in Sources */,
 				C32305FC2080E57500CEC487 /* Photo.m in Sources */,
 				C32308D22081AEB100CEC487 /* TyphoonIntrospectionUtils.m in Sources */,

@@ -10,6 +10,6 @@
 
 @protocol PhotoAlbumsViewModel <NSObject>
 - (void)getPhotoAlbums:(NSInteger)offset completion:(void(^)(NSArray *albums))completion;
-- (void)clickedOnAlbumAtIndex:(NSInteger)index;
+- (void)clickedOnAlbumWithId:(NSInteger)albumId;
 - (void)menuTapped;
 @end

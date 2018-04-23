@@ -74,6 +74,9 @@
     else if ([item isKindOfClass:[PhotoAlbum class]]) {
         return [_assembly photoAlbumNode:item];
     }
+    else if ([item isKindOfClass:[Photo class]]) {
+        return [_assembly photoNode:item];
+    }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;
 }
