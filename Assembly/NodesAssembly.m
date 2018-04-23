@@ -14,6 +14,7 @@
 #import "DialogNode.h"
 #import "UserNode.h"
 #import "WallUserNode.h"
+#import "CommentNode.h"
 
 @implementation NodesAssembly
 
@@ -88,4 +89,15 @@
                  }];
             }];
 }
+
+- (ASDisplayNode *)commentNode:(Comment *)comment {
+    return [TyphoonDefinition withClass:[CommentNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithComment:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:comment];
+                 }];
+            }];
+}
+
 @end

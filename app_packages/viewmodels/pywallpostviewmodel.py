@@ -13,10 +13,14 @@ class PyWallPostViewModel():
     
     # protocol methods implementation
     def getPostData(self, offset):
+        results = {}
         if not self.postData:
             self.postData = self.wallPostService.getPostById(self.postId)
             comments = self.wallPostService.getComments(self.ownerId, self.postId, offset)
-        return self.postData
+            results['comments'] = comments
+        if offset == 0:
+            results['postData'] = self.postData
+        return results
     
     # ObjCBridgeProtocol
     def release(self):

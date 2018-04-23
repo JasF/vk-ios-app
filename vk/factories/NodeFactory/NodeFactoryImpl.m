@@ -10,6 +10,7 @@
 #import "NodesAssembly.h"
 #import "WallPost.h"
 #import "Dialog.h"
+#import "Comment.h"
 
 @implementation NodeFactoryImpl {
     NodesAssembly *_assembly;
@@ -65,6 +66,9 @@
     }
     else if ([item isKindOfClass:[WallUser class]]) {
         return [_assembly wallUserNode:item];
+    }
+    else if ([item isKindOfClass:[Comment class]]) {
+        return [_assembly commentNode:item];
     }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;

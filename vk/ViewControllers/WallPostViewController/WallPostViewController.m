@@ -64,12 +64,12 @@ ASCollectionDelegate, ASCollectionDataSource>
         });
         return;
     }
-    [_viewModel getWallPostWithCommentsOffset:offset completion:^(WallPost *post) {
+    [_viewModel getWallPostWithCommentsOffset:offset completion:^(WallPost *post, NSArray *comments) {
         if (!self.post) {
             self.post = post;
         }
         if (completion) {
-            completion(@[]);
+            completion(comments);
         }
     }];
 }

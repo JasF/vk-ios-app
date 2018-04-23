@@ -7,6 +7,7 @@
 //
 
 #import "WallPostServiceImpl.h"
+#import "Comment.h"
 
 @implementation WallPostServiceImpl {
     id<WallService> _wallService;
@@ -23,6 +24,19 @@
 - (WallPost *)parseOne:(NSDictionary *)postData {
     WallPost *post = [_wallService parse:postData].firstObject;
     return post;
+}
+
+- (NSArray *)parseComments:(NSDictionary *)comments {
+    if (![comments isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    NSArray *commentsData = comments[@"items"];
+    if (![commentsData isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    NSArray *results = [EKMapper arrayOfObjectsFromExternalRepresentation:commentsData
+                                                              withMapping:[Comment objectMapping]];
+    return results;
 }
 
 @end

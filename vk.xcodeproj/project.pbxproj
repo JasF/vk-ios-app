@@ -10,6 +10,7 @@
 		197D8B0F1D64BA50004630AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197D8B0E1D64BA50004630AE /* AppDelegate.swift */; };
 		197D8B141D64BA50004630AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197D8B121D64BA50004630AE /* Main.storyboard */; };
 		C3036C0B208DC99A005F086E /* SectionsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C0A208DC99A005F086E /* SectionsCollectionViewController.m */; };
+		C3036C10208DE2AF005F086E /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C0F208DE2AF005F086E /* Comment.m */; };
 		C313DD3C208C53E50005E29B /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD3B208C53E50005E29B /* FriendsViewController.m */; };
 		C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD40208C54430005E29B /* FriendsViewModelImpl.m */; };
 		C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD45208C578B0005E29B /* FriendsServiceImpl.m */; };
@@ -620,6 +621,8 @@
 		C3036C09208DC99A005F086E /* SectionsCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectionsCollectionViewController.h; sourceTree = "<group>"; };
 		C3036C0A208DC99A005F086E /* SectionsCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionsCollectionViewController.m; sourceTree = "<group>"; };
 		C3036C0C208DDCEC005F086E /* commentsdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = commentsdatabase.py; sourceTree = "<group>"; };
+		C3036C0E208DE2AF005F086E /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		C3036C0F208DE2AF005F086E /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		C313DD38208C522B0005E29B /* pyfriendsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyfriendsviewmodel.py; sourceTree = "<group>"; };
 		C313DD3A208C53E50005E29B /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		C313DD3B208C53E50005E29B /* FriendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
@@ -1704,6 +1707,15 @@
 			path = SectionsCollectionViewController;
 			sourceTree = "<group>";
 		};
+		C3036C0D208DE298005F086E /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				C3036C0E208DE2AF005F086E /* Comment.h */,
+				C3036C0F208DE2AF005F086E /* Comment.m */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
 		C313DD39208C53C50005E29B /* FriendsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2024,6 +2036,7 @@
 		C32304572080E57400CEC487 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C3036C0D208DE298005F086E /* Comment */,
 				C32304582080E57400CEC487 /* Comments */,
 				C323045B2080E57400CEC487 /* Video */,
 				C323045E2080E57400CEC487 /* Likes */,
@@ -4761,6 +4774,7 @@
 				C323090F2081AEB100CEC487 /* TyphoonColorConversionUtils.m in Sources */,
 				C32309182081AEB100CEC487 /* NSInvocation+TCFCustomImplementation.m in Sources */,
 				C3372FBF2083356C0080DA75 /* DemoChatMessageFactory.swift in Sources */,
+				C3036C10208DE2AF005F086E /* Comment.m in Sources */,
 				C32309112081AEB100CEC487 /* TyphoonPreattachedComponentsRegisterer.m in Sources */,
 				C32309132081AEB100CEC487 /* TyphoonAssemblyAccessor.m in Sources */,
 				C32308EB2081AEB100CEC487 /* TyphoonReferenceDefinition.m in Sources */,

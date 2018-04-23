@@ -10,4 +10,5 @@
 
 @protocol WallPostService <NSObject>
 - (WallPost *)parseOne:(NSDictionary *)post;
+- (NSArray *)parseComments:(NSDictionary *)comments;
 @end

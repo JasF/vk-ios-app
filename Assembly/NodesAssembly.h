@@ -12,6 +12,7 @@
 #import "Dialog.h"
 #import "Video.h"
 #import "User.h"
+#import "Comment.h"
 
 @class WallPostNode;
 @class ASDisplayNode;
@@ -24,4 +25,5 @@
 - (ASDisplayNode *)dialogNode:(Dialog *)dialog;
 - (ASDisplayNode *)userNode:(User *)user;
 - (ASDisplayNode *)wallUserNode:(WallUser *)user;
+- (ASDisplayNode *)commentNode:(Comment *)comment;
 @end

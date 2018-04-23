@@ -22,6 +22,10 @@ def isObject(o):
     return False
 
 print('{' + ', '.join("'" + k + "': '" + resultDict[k] + "'" for k in resultDict if k != 'id') + '}')
-
-
 print('[' + ', '.join("'" + k + "'" for k in resultDict if isObject(k) == True) + ']')
+
+types = {'text': 'NSString *', 'integer': 'NSInteger '}
+
+print( '\n'.join('@property ' + types[resultDict[k]] + k + ';' for k in resultDict))
+
+print( '[mapping mapPropertiesFromArray:@[' + ', '.join('@"' + k + '"' for k in resultDict) + ']];')
