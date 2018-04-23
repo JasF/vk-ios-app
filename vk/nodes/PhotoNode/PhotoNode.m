@@ -22,7 +22,7 @@
         _imageNode.style.width = ASDimensionMakeWithPoints(44);
         _imageNode.style.height = ASDimensionMakeWithPoints(44);
         _imageNode.cornerRadius = 22.0;
-        _imageNode.URL = [NSURL URLWithString:photo.photo130];
+        _imageNode.URL = [NSURL URLWithString:photo.photo_130];
         [self addSubnode:_imageNode];
     }
     return self;

@@ -2,7 +2,7 @@ import vk
 import json
 from vk import users
 import traceback
-from caches.photoalbumsdatabase import PhotoAlbumsDatabase
+from caches.photosdatabase import PhotosDatabase
 
 g_count = 40
 
@@ -16,9 +16,9 @@ class GalleryService:
         try:
             response = api.photos.get(owner_id=ownerId, album_id=albumId, offset=offset, count=g_count, extended=1)
             l = response['items']
-            #cache = PhotosDatabase()
-            #cache.update(l)
-            #cache.close()
+            cache = PhotosDatabase()
+            cache.update(l)
+            cache.close()
         except Exception as e:
             print('getPhotos exception: ' + str(e))
         return response

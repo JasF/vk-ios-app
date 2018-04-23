@@ -11,17 +11,23 @@
 @import EasyMapping;
 
 @interface Photo : NSObject <EKMappingProtocol>
-@property NSString *accessKey;
-@property NSInteger albumId;
-@property NSInteger date;
-@property NSInteger height;
-@property NSInteger identifier;
-@property NSInteger ownerId;
-@property NSString *photo130;
-@property NSString *photo604;
-@property NSString *photo75;
-@property NSInteger postId;
-@property NSString *text;
-@property NSInteger userId;
+@property NSString *access_key;
+@property NSInteger id;
+@property NSInteger album_id;
+@property NSInteger owner_id;
+@property NSString *photo_75;
+@property NSString *photo_130;
+@property NSString *photo_604;
+@property NSString *photo_807;
+@property NSString *photo_1280;
+@property NSString *photo_2560;
 @property NSInteger width;
+@property NSInteger height;
+@property NSString *text;
+@property NSInteger date;
+@property NSString *likes;
+@property NSString *reposts;
+@property NSString *comments;
+@property NSInteger can_comment;
+@property NSString *tags;
 @end

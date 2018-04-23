@@ -13,16 +13,7 @@
 +(EKObjectMapping *)objectMapping
 {
     return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
-        [mapping mapPropertiesFromArray:@[@"date", @"height", @"width", @"text"]];
-        [mapping mapKeyPath:@"access_key" toProperty:@"accessKey"];
-        [mapping mapKeyPath:@"album_id" toProperty:@"albumId"];
-        [mapping mapKeyPath:@"id" toProperty:@"identifier"];
-        [mapping mapKeyPath:@"owner_id" toProperty:@"ownerId"];
-        [mapping mapKeyPath:@"photo_130" toProperty:@"photo130"];
-        [mapping mapKeyPath:@"photo_604" toProperty:@"photo604"];
-        [mapping mapKeyPath:@"photo_75" toProperty:@"photo75"];
-        [mapping mapKeyPath:@"post_id" toProperty:@"postId"];
-        [mapping mapKeyPath:@"user_id" toProperty:@"userId"];
+        [mapping mapPropertiesFromArray:@[@"id", @"album_id", @"owner_id", @"photo_75", @"photo_130", @"photo_604", @"photo_807", @"photo_1280", @"photo_2560", @"width", @"height", @"text", @"date", @"likes", @"reposts", @"comments", @"can_comment", @"tags", @"access_key"]];
     }];
 }
 

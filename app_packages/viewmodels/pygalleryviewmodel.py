@@ -12,7 +12,6 @@ class PyGalleryViewModel():
     
     def getPhotos(self, offset):
         photosData = self.galleryService.getPhotos(self.ownerId, self.albumId, offset)
-        print('photosData: ' + json.dumps(photosData))
         return photosData
     
     def menuTapped(self):

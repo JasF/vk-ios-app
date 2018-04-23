@@ -27,7 +27,7 @@
             ASNetworkImageNode *node = [[ASNetworkImageNode alloc] init];
             node.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
             node.cornerRadius = 4.0;
-            node.URL = [NSURL URLWithString:attachment.photo.photo604];
+            node.URL = [NSURL URLWithString:attachment.photo.photo_604];
             node.delegate = self;
             node.imageModificationBlock = ^UIImage *(UIImage *image) {
                 
