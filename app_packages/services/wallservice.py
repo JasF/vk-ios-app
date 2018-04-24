@@ -5,11 +5,10 @@ from vk import users as users
 from caches.postsdatabase import PostsDatabase
 
 class WallService:
-    def __init__(self, parameters, usersDecorator):
+    def __init__(self, userId, usersDecorator):
         self.userInfo = None
         self.usersDecorator = usersDecorator
-        print('WallService parameters: ' + str(parameters))
-        self.userId = parameters.get('userId')
+        self.userId = userId
         if self.userId == None or self.userId == 0:
             self.userId = vk.userId()
     

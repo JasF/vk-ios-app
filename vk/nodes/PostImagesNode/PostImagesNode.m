@@ -20,14 +20,24 @@
 }
 
 - (id)initWithAttachments:(NSArray *)attachments {
-    NSCParameterAssert(attachments);
+    NSMutableArray *array = [NSMutableArray new];
+    for (Attachments *attachment in attachments) {
+        if (attachment.photo) {
+            [array addObject:attachment.photo];
+        }
+    }
+    return [self initWithPhotos:array];
+}
+
+- (id)initWithPhotos:(NSArray *)photos {
+    NSCParameterAssert(photos);
     if (self = [super init]) {
         _nodes = [NSMutableArray new];
-        for (Attachments *attachment in attachments) {
+        for (Photo *photo in photos) {
             ASNetworkImageNode *node = [[ASNetworkImageNode alloc] init];
             node.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
             node.cornerRadius = 4.0;
-            node.URL = [NSURL URLWithString:attachment.photo.photo_604];
+            node.URL = [NSURL URLWithString:photo.photo_604];
             node.delegate = self;
             node.imageModificationBlock = ^UIImage *(UIImage *image) {
                 

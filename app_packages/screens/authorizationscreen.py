@@ -8,4 +8,5 @@ class AuthorizationHandlerProtocol:
         #managers.shared().screensManager().showFriendsViewController()
         #managers.shared().screensManager().showChatListViewController()
         #managers.shared().screensManager().showWallViewController()
-        managers.shared().screensManager().showPhotoAlbumsViewController_(args=[vk.userId()])
+        #managers.shared().screensManager().showPhotoAlbumsViewController_(args=[vk.userId()])
+        managers.shared().screensManager().showNewsViewController()

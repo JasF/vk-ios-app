@@ -21,6 +21,7 @@
 #import "PhotoAlbumsViewController.h"
 #import "GalleryViewController.h"
 #import "ImagesViewerViewController.h"
+#import "NewsViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -171,6 +172,18 @@
         }
         ImagesViewerViewController *viewController =(ImagesViewerViewController *)[_screensAssembly imagesViewerViewController:ownerId albumId:albumId photoId:photoId];
         [self pushViewController:viewController clean:NO];
+    });
+}
+
+- (void)showNewsViewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[NewsViewController class]]) {
+            return;
+        }
+        NewsViewController *viewController =(NewsViewController *)[_screensAssembly newsViewController];
+        [self pushViewController:viewController];
     });
 }
 

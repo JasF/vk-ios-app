@@ -10,4 +10,5 @@
 
 @interface PostImagesNode : ASDisplayNode
 - (id)initWithAttachments:(NSArray *)attachments;
+- (id)initWithPhotos:(NSArray *)photos;
 @end

@@ -17,6 +17,8 @@
 #import "CommentNode.h"
 #import "PhotoAlbumNode.h"
 #import "PhotoNode.h"
+#import "AudioNode.h"
+#import "FriendsNode.h"
 
 @implementation NodesAssembly
 
@@ -48,6 +50,16 @@
                 [definition useInitializer:@selector(initWithAttachments:) parameters:^(TyphoonMethod *initializer)
                  {
                      [initializer injectParameterWith:attachments];
+                 }];
+            }];
+}
+
+- (ASDisplayNode *)postImagesNodeWithPhotos:(NSArray *)photos {
+    return [TyphoonDefinition withClass:[PostImagesNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithPhotos:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:photos];
                  }];
             }];
 }
@@ -118,6 +130,26 @@
                 [definition useInitializer:@selector(initWithPhoto:) parameters:^(TyphoonMethod *initializer)
                  {
                      [initializer injectParameterWith:photo];
+                 }];
+            }];
+}
+
+- (ASDisplayNode *)audioNode:(Audio *)audio {
+    return [TyphoonDefinition withClass:[AudioNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithAudio:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:audio];
+                 }];
+            }];
+}
+
+- (ASDisplayNode *)friendsNode:(NSArray *)friends {
+    return [TyphoonDefinition withClass:[FriendsNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithFriends:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:friends];
                  }];
             }];
 }

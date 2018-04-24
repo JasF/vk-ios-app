@@ -22,6 +22,12 @@
     return self;
 }
 
+- (void)lentaTapped {
+    dispatch_python(^{
+        [self.handler lentaTapped];
+    });
+}
+
 - (void)newsTapped {
     dispatch_python(^{
         [self.handler newsTapped];

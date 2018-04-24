@@ -10,6 +10,10 @@
 
 @import EasyMapping;
 
+@interface UserId : NSObject <EKMappingProtocol>
+@property NSInteger user_id;
+@end
+
 @interface User : NSObject <EKMappingProtocol>
 @property (assign, nonatomic) NSInteger identifier;
 @property (strong, nonatomic) NSString *first_name;

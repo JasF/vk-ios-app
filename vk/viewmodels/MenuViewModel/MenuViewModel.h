@@ -7,6 +7,7 @@
 //
 
 @protocol MenuViewModel <NSObject>
+- (void)lentaTapped;
 - (void)newsTapped;
 - (void)dialogsTapped;
 - (void)friendsTapped;

@@ -51,17 +51,44 @@
     }
     
     void (^updatePostBlock)(WallPost *post) = ^void(WallPost *post) {
-        post.user = usersDictionary[@(ABS(post.from_id))];
+        post.user = usersDictionary[@(ABS(post.validId))];
+#ifdef DEBUG
+        if ([post.user.first_name isEqualToString:@"Konstantin"]) {
+            NSLog(@"!");
+        }
+#endif
     };
+    void (^updateFriendsBlock)(WallPost *post) = ^void(WallPost *post) {
+        NSMutableArray *friends = [NSMutableArray new];
+        for (UserId *userId in post.friendsIds) {
+            User *user = usersDictionary[@(userId.user_id)];
+            if (user) {
+                [friends addObject:user];
+            }
+            else {
+                NSCAssert(user, @"User data must be exists");
+            }
+        }
+        post.friends = friends;
+    };
+    NSMutableArray *results = [NSMutableArray new];
+    NSArray *excludedTypes = @[@"wall_photo"];
     for (WallPost *post in posts) {
+        if ([excludedTypes containsObject:post.type]) {
+            continue;
+        }
+        [results addObject:post];
         updatePostBlock(post);
+        if (post.friendsIds.count) {
+            updateFriendsBlock(post);
+        }
         for (WallPost *history in post.history) {
             updatePostBlock(history);
         }
         NSMutableArray *mutableHistory = [post.history mutableCopy];
         [self setHistoryFromArray:mutableHistory toPost:post];
     }
-    return posts;
+    return results;
 }
 
 - (User *)parseUserInfo:(NSDictionary *)data {

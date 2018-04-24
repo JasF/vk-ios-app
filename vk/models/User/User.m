@@ -8,6 +8,15 @@
 
 #import "User.h"
 
+@implementation UserId
++(EKObjectMapping *)objectMapping
+{
+    return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
+        [mapping mapPropertiesFromArray:@[@"user_id"]];
+    }];
+}
+@end
+
 @implementation User
 
 +(EKObjectMapping *)objectMapping

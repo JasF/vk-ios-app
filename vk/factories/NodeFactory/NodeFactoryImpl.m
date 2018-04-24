@@ -36,7 +36,10 @@
     }
     else if ([item isKindOfClass:[NSArray class]]) {
         NSArray *array = (NSArray *)item;
-        if ([array.firstObject isKindOfClass:[Attachments class]]) {
+        if ([array.firstObject isKindOfClass:[Photo class]]) {
+            return [_assembly postImagesNodeWithPhotos:array];
+        }
+        else if ([array.firstObject isKindOfClass:[Attachments class]]) {
             Attachments *attachment = (Attachments *)array.firstObject;
             if (attachment.type == AttachmentPhoto) {
                 return [_assembly postImagesNodeWithAttachments:array];
@@ -77,8 +80,15 @@
     else if ([item isKindOfClass:[Photo class]]) {
         return [_assembly photoNode:item];
     }
+    else if ([item isKindOfClass:[Audio class]]) {
+        return [_assembly audioNode:item];
+    }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;
+}
+
+- (ASDisplayNode *)friendsNodeWithArray:(NSArray *)array {
+    return [_assembly friendsNode:array];
 }
 
 @end

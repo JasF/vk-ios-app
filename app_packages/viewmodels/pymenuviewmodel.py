@@ -2,8 +2,11 @@ from objc import managers
 import vk
 
 class PyMenuViewModel():
-    def newsTapped(self):
+    def lentaTapped(self):
         managers.shared().screensManager().showWallViewController()
+    
+    def newsTapped(self):
+        managers.shared().screensManager().showNewsViewController()
     
     def dialogsTapped(self):
         managers.shared().screensManager().showChatListViewController()

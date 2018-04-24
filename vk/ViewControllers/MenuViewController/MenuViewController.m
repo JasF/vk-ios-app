@@ -11,6 +11,7 @@
 #import "vk-Swift.h"
 
 typedef NS_ENUM(NSInteger, MenuRows) {
+    LentaRow,
     NewsRow,
     DialogsRow,
     FriendsRow,
@@ -66,7 +67,8 @@ static CGFloat const kSeparatorAlpha = 0.25f;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleCell"];
     cell.textLabel.textColor = [UIColor whiteColor];
     switch (indexPath.row) {
-        case NewsRow: cell.textLabel.text = L(@"lenta"); break;
+        case LentaRow: cell.textLabel.text = L(@"lenta"); break;
+        case NewsRow: cell.textLabel.text = L(@"news"); break;
         case DialogsRow: cell.textLabel.text = L(@"dialogs"); break;
         case FriendsRow: cell.textLabel.text = L(@"friends"); break;
         case PhotosRow: cell.textLabel.text = L(@"photos"); break;
@@ -88,6 +90,10 @@ static CGFloat const kSeparatorAlpha = 0.25f;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
+        case LentaRow: {
+            [_viewModel lentaTapped];
+            break;
+        }
         case NewsRow: {
             [_viewModel newsTapped];
             break;

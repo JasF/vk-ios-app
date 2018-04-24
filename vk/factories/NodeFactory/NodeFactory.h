@@ -13,4 +13,5 @@
 @protocol NodeFactory <NSObject>
 - (ASDisplayNode *)nodeForItem:(id)item;
 - (ASDisplayNode *)nodeForItem:(id)item embedded:(BOOL)embedded;
+- (ASDisplayNode *)friendsNodeWithArray:(NSArray *)array;
 @end

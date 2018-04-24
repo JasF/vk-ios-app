@@ -11,6 +11,7 @@
 #import "HandlersFactory.h"
 
 @protocol PyMenuViewModel
+- (void)lentaTapped;
 - (void)newsTapped;
 - (void)dialogsTapped;
 - (void)friendsTapped;

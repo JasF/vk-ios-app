@@ -23,6 +23,7 @@
 #import "PhotoAlbumsViewModelImpl.h"
 #import "GalleryViewModelImpl.h"
 #import "ImagesViewerViewModelImpl.h"
+#import "NewsViewModelImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -86,6 +87,10 @@
 - (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(NSInteger)albumId photoId:(NSInteger)photoId {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyImagesViewerViewModel)
                                               parameters:@{@"ownerId":@(ownerId), @"albumId":@(albumId), @"photoId":@(photoId)}];
+}
+
+- (id<PyNewsViewModel>)newsViewModelHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyNewsViewModel)];
 }
 
 @end

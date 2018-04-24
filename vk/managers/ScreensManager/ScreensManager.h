@@ -21,4 +21,5 @@
 - (void)showPhotoAlbumsViewController:(NSNumber *)ownerId;
 - (void)showGalleryViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(id)albumId;
 - (void)showImagesViewerViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;
+- (void)showNewsViewController;
 @end

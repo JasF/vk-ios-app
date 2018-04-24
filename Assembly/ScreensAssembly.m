@@ -24,6 +24,7 @@
 #import "PhotoAlbumsViewController.h"
 #import "GalleryViewController.h"
 #import "ImagesViewerViewController.h"
+#import "NewsViewController.h"
 
 @implementation ScreensAssembly
 
@@ -156,6 +157,15 @@
     return [TyphoonDefinition withClass:[ImagesViewerViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self.viewModelsAssembly imagesViewerViewModel:ownerId albumId:albumId photoId:photoId]];
+        }];
+    }];
+}
+
+- (UIViewController *)newsViewController {
+    return [TyphoonDefinition withClass:[NewsViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly newsViewModel]];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
     }];
 }

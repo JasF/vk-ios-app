@@ -16,6 +16,7 @@
 #import "PhotoAlbumsViewModelImpl.h"
 #import "GalleryViewModelImpl.h"
 #import "ImagesViewerViewModelImpl.h"
+#import "NewsViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -116,6 +117,16 @@
                     [initializer injectParameterWith:ownerId];
                     [initializer injectParameterWith:albumId];
                     [initializer injectParameterWith:photoId];
+                }];
+            }];
+}
+
+- (id<NewsViewModel>)newsViewModel {
+    return [TyphoonDefinition withClass:[NewsViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:wallService:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.wallService];
                 }];
             }];
 }

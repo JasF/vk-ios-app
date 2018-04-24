@@ -137,6 +137,11 @@
         }
         
         // Media
+        if (_post.photos) {
+            id node = [_nodeFactory nodeForItem:_post.photos];
+            [self addSubnode:node];
+            [_mediaNodes addObject:node];
+        }
         if (_post.photoAttachments.count) {
             id node = [_nodeFactory nodeForItem:_post.photoAttachments];
             [self addSubnode:node];
@@ -144,6 +149,20 @@
         }
         for (Attachments *attachment in _post.attachments) {
             id node = [_nodeFactory nodeForItem:attachment];
+            if (node) {
+                [self addSubnode:node];
+                [_mediaNodes addObject:node];
+            }
+        }
+        for (Audio *audio in _post.audio) {
+            id node = [_nodeFactory nodeForItem:audio];
+            if (node) {
+                [self addSubnode:node];
+                [_mediaNodes addObject:node];
+            }
+        }
+        if (_post.friends.count) {
+            id node = [_nodeFactory friendsNodeWithArray:_post.friends];
             if (node) {
                 [self addSubnode:node];
                 [_mediaNodes addObject:node];
