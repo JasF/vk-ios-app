@@ -11,7 +11,7 @@
 
 static const NSInteger kBatchSize = 20;
 
-@interface BaseCollectionViewController ()
+@interface BaseCollectionViewController () <ASCollectionDelegate, ASCollectionDataSource>
 @property NSMutableArray *data;
 @property (assign, nonatomic) BOOL updating;
 @end

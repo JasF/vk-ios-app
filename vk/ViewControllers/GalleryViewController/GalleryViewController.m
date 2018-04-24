@@ -36,6 +36,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ASSizeRange result = ASSizeRangeUnconstrained;
+    result.min.width = self.view.width/4;
+    result.max.width = self.view.width/4;
+    return result;
+}
 
 #pragma mark - BaseCollectionViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
