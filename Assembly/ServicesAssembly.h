@@ -16,6 +16,7 @@
 #import "WallPostService.h"
 #import "PhotoAlbumsService.h"
 #import "GalleryService.h"
+#import "AnswersService.h"
 
 @interface ServicesAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -27,4 +28,5 @@
 - (id<WallPostService>)wallPostService;
 - (id<PhotoAlbumsService>)photoAlbumsService;
 - (id<GalleryService>)galleryService;
+- (id<AnswersService>)answersService;
 @end

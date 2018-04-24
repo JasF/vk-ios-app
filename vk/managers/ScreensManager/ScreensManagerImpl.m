@@ -22,6 +22,7 @@
 #import "GalleryViewController.h"
 #import "ImagesViewerViewController.h"
 #import "NewsViewController.h"
+#import "AnswersViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -183,6 +184,18 @@
             return;
         }
         NewsViewController *viewController =(NewsViewController *)[_screensAssembly newsViewController];
+        [self pushViewController:viewController];
+    });
+}
+
+- (void)showAnswersViewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[AnswersViewController class]]) {
+            return;
+        }
+        AnswersViewController *viewController =(AnswersViewController *)[_screensAssembly answersViewController];
         [self pushViewController:viewController];
     });
 }

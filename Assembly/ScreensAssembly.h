@@ -36,6 +36,7 @@
 - (UIViewController *)galleryViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId;
 - (UIViewController *)imagesViewerViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;
 - (UIViewController *)newsViewController;
+- (UIViewController *)answersViewController;
 - (UIWindow *)window;
 - (UINavigationController *)rootNavigationController;
 @end

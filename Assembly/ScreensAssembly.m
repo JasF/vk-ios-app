@@ -25,6 +25,7 @@
 #import "GalleryViewController.h"
 #import "ImagesViewerViewController.h"
 #import "NewsViewController.h"
+#import "AnswersViewController.h"
 
 @implementation ScreensAssembly
 
@@ -165,6 +166,15 @@
     return [TyphoonDefinition withClass:[NewsViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self.viewModelsAssembly newsViewModel]];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+        }];
+    }];
+}
+
+- (UIViewController *)answersViewController {
+    return [TyphoonDefinition withClass:[AnswersViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly answersViewModel]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
     }];

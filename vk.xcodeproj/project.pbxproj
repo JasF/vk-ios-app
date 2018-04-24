@@ -488,6 +488,9 @@
 		C343755A208F6984004EF670 /* Audio.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437559208F6984004EF670 /* Audio.m */; };
 		C343755E208F6B72004EF670 /* AudioNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C343755D208F6B72004EF670 /* AudioNode.m */; };
 		C3437562208F70C4004EF670 /* FriendsNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437561208F70C4004EF670 /* FriendsNode.m */; };
+		C3437569208F816C004EF670 /* AnswersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437568208F816C004EF670 /* AnswersViewController.m */; };
+		C343756E208F81DB004EF670 /* AnswersViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C343756D208F81DB004EF670 /* AnswersViewModelImpl.m */; };
+		C3437573208F83AD004EF670 /* AnswersServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437572208F83AD004EF670 /* AnswersServiceImpl.m */; };
 		C35B737B208B11E3001C8067 /* TypingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35B737A208B11E3001C8067 /* TypingPresenter.swift */; };
 		C35B737D208B1203001C8067 /* TypingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35B737C208B1203001C8067 /* TypingModel.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
@@ -1523,6 +1526,16 @@
 		C343755D208F6B72004EF670 /* AudioNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioNode.m; sourceTree = "<group>"; };
 		C3437560208F70C4004EF670 /* FriendsNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsNode.h; sourceTree = "<group>"; };
 		C3437561208F70C4004EF670 /* FriendsNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsNode.m; sourceTree = "<group>"; };
+		C3437567208F816C004EF670 /* AnswersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswersViewController.h; sourceTree = "<group>"; };
+		C3437568208F816C004EF670 /* AnswersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswersViewController.m; sourceTree = "<group>"; };
+		C343756B208F81C1004EF670 /* AnswersViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswersViewModel.h; sourceTree = "<group>"; };
+		C343756C208F81DB004EF670 /* AnswersViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswersViewModelImpl.h; sourceTree = "<group>"; };
+		C343756D208F81DB004EF670 /* AnswersViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswersViewModelImpl.m; sourceTree = "<group>"; };
+		C3437570208F8339004EF670 /* AnswersService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswersService.h; sourceTree = "<group>"; };
+		C3437571208F83AD004EF670 /* AnswersServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswersServiceImpl.h; sourceTree = "<group>"; };
+		C3437572208F83AD004EF670 /* AnswersServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswersServiceImpl.m; sourceTree = "<group>"; };
+		C3437574208F8678004EF670 /* answersservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = answersservice.py; sourceTree = "<group>"; };
+		C3437575208F8687004EF670 /* pyanswersviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyanswersviewmodel.py; sourceTree = "<group>"; };
 		C35B737A208B11E3001C8067 /* TypingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingPresenter.swift; sourceTree = "<group>"; };
 		C35B737C208B1203001C8067 /* TypingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingModel.swift; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
@@ -2367,6 +2380,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3437566208F815A004EF670 /* AnswersViewController */,
 				C343754C208F3188004EF670 /* NewsViewController */,
 				C3437542208EFDDE004EF670 /* ImagesViewerViewController */,
 				C3137738208E2EAE00F568EA /* GalleryViewController */,
@@ -2498,6 +2512,7 @@
 		C32304B92080E57400CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C343756F208F8328004EF670 /* AnswersService */,
 				C3137741208E303000F568EA /* GalleryService */,
 				C3137728208E212600F568EA /* PhotoAlbumsService */,
 				C313DD6A208CBA330005E29B /* WallPostService */,
@@ -3032,6 +3047,7 @@
 				C313772E208E27D300F568EA /* photoalbumsservice.py */,
 				C3137748208E357400F568EA /* galleryservice.py */,
 				C3437556208F5E0C004EF670 /* newsservice.py */,
+				C3437574208F8678004EF670 /* answersservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -4160,6 +4176,35 @@
 			path = FriendsNode;
 			sourceTree = "<group>";
 		};
+		C3437566208F815A004EF670 /* AnswersViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3437567208F816C004EF670 /* AnswersViewController.h */,
+				C3437568208F816C004EF670 /* AnswersViewController.m */,
+			);
+			path = AnswersViewController;
+			sourceTree = "<group>";
+		};
+		C343756A208F81B3004EF670 /* AnswersViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C343756B208F81C1004EF670 /* AnswersViewModel.h */,
+				C343756C208F81DB004EF670 /* AnswersViewModelImpl.h */,
+				C343756D208F81DB004EF670 /* AnswersViewModelImpl.m */,
+			);
+			path = AnswersViewModel;
+			sourceTree = "<group>";
+		};
+		C343756F208F8328004EF670 /* AnswersService */ = {
+			isa = PBXGroup;
+			children = (
+				C3437570208F8339004EF670 /* AnswersService.h */,
+				C3437571208F83AD004EF670 /* AnswersServiceImpl.h */,
+				C3437572208F83AD004EF670 /* AnswersServiceImpl.m */,
+			);
+			path = AnswersService;
+			sourceTree = "<group>";
+		};
 		C35B7379208B11CF001C8067 /* Typing */ = {
 			isa = PBXGroup;
 			children = (
@@ -4194,6 +4239,7 @@
 				C3137749208E358E00F568EA /* pygalleryviewmodel.py */,
 				C343754B208F01BE004EF670 /* pyimagesviewerviewmodel.py */,
 				C3437555208F39B8004EF670 /* pynewsviewmodel.py */,
+				C3437575208F8687004EF670 /* pyanswersviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -4352,6 +4398,7 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C343756A208F81B3004EF670 /* AnswersViewModel */,
 				C3437550208F31AC004EF670 /* NewsViewModel */,
 				C3437546208EFE0B004EF670 /* ImagesViewerViewModel */,
 				C313773C208E2F3B00F568EA /* GalleryViewModel */,
@@ -4967,6 +5014,7 @@
 				C32308C32081AEB100CEC487 /* TyphoonJsonStyleConfiguration.m in Sources */,
 				C323061C2080E57500CEC487 /* ChatListServiceImpl.m in Sources */,
 				C32309022081AEB100CEC487 /* TyphoonInjectionByConfig.m in Sources */,
+				C3437569208F816C004EF670 /* AnswersViewController.m in Sources */,
 				C343754F208F31A5004EF670 /* NewsViewController.m in Sources */,
 				C313DD54208C99C70005E29B /* WallUserNode.m in Sources */,
 				C3B2251520860BE400599E04 /* DeallocSubscriber.m in Sources */,
@@ -5029,6 +5077,7 @@
 				C32309042081AEB100CEC487 /* TyphoonInjectionByCollection.m in Sources */,
 				C32309162081AEB100CEC487 /* NSInvocation+TCFWrapValues.m in Sources */,
 				C32306132080E57500CEC487 /* NodeFactoryImpl.m in Sources */,
+				C343756E208F81DB004EF670 /* AnswersViewModelImpl.m in Sources */,
 				C32308C72081AEB100CEC487 /* TyphoonGlobalConfigCollector.m in Sources */,
 				C3372FC82083356C0080DA75 /* DemoTextMessageModel.swift in Sources */,
 				C32308E72081AEB100CEC487 /* TyphoonBundledImageTypeConverter.m in Sources */,
@@ -5182,6 +5231,7 @@
 				C323092B2081AEB100CEC487 /* NSInvocation+TCFUnwrapValues.m in Sources */,
 				C323090C2081AEB100CEC487 /* TyphoonPassThroughTypeConverter.m in Sources */,
 				C32308C62081AEB100CEC487 /* TyphoonConfigPostProcessor.m in Sources */,
+				C3437573208F83AD004EF670 /* AnswersServiceImpl.m in Sources */,
 				C32305FB2080E57500CEC487 /* Views.m in Sources */,
 				C32308F02081AEB100CEC487 /* Collections+CustomInjection.m in Sources */,
 				C32308FC2081AEB100CEC487 /* TyphoonInject.m in Sources */,
@@ -5336,6 +5386,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "vk/Supporting Files/vk-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -5367,6 +5418,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "vk/Supporting Files/vk-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

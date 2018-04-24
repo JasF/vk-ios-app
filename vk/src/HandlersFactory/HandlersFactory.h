@@ -19,6 +19,7 @@
 @protocol PyGalleryViewModel;
 @protocol PyImagesViewerViewModel;
 @protocol PyNewsViewModel;
+@protocol PyAnswersViewModel;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
@@ -32,4 +33,5 @@
 - (id<PyGalleryViewModel>)galleryViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(id)albumId;
 - (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(NSInteger)albumId photoId:(NSInteger)photoId;
 - (id<PyNewsViewModel>)newsViewModelHandler;
+- (id<PyAnswersViewModel>)answersViewModelHandler;
 @end

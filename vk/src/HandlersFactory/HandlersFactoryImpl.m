@@ -24,6 +24,7 @@
 #import "GalleryViewModelImpl.h"
 #import "ImagesViewerViewModelImpl.h"
 #import "NewsViewModelImpl.h"
+#import "AnswersViewModelImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -91,6 +92,10 @@
 
 - (id<PyNewsViewModel>)newsViewModelHandler {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyNewsViewModel)];
+}
+
+- (id<PyAnswersViewModel>)answersViewModelHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyAnswersViewModel)];
 }
 
 @end
