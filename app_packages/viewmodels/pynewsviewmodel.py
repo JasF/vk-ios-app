@@ -7,10 +7,13 @@ class PyNewsViewModel(ObjCBridgeProtocol):
     def __init__(self, newsService):
         self.newsService = newsService
         self.userId = vk.userId()
+        self.next_from = None
     
     # protocol methods implementation
     def getNews(self, offset):
-        response = self.newsService.getNews(offset)
+        response, next_from = self.newsService.getNews(offset, self.next_from)
+        if isinstance(next_from, str):
+            self.next_from = next_from
         return response
     
     def menuTapped(self):

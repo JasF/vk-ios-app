@@ -8,14 +8,17 @@ class NewsService:
     def __init__(self, usersDecorator):
         self.usersDecorator = usersDecorator
     
-    def getNews(self, offset):
+    def getNews(self, offset, next_from):
         response = None
         usersData = None
         try:
             api = vk.api()
-            response = api.newsfeed.get()
+            if isinstance(next_from, str):
+                response = api.newsfeed.get(start_from=next_from)
+            else:
+                response = api.newsfeed.get()
+            next_from = response.get('next_from')
             l = response["items"]
-            print('newsfeed: ' + json.dumps(response))
             
             '''
             cache = PostsDatabase()
@@ -28,5 +31,5 @@ class NewsService:
         except Exception as e:
             print('newsfeed.get exception: ' + str(e))
         results = {'response':response, 'users':usersData}
-        return results
+        return results, next_from
 
