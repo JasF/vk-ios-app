@@ -7,6 +7,7 @@
 //
 
 #import "GalleryViewModelImpl.h"
+#import "Photo.h"
 
 @interface GalleryViewModelImpl ()
 @property id<PyGalleryViewModel> handler;
@@ -31,12 +32,6 @@
 }
 
 #pragma mark - GalleryViewModel
-- (void)menuTapped {
-    dispatch_python(^{
-        [self.handler menuTapped];
-    });
-}
-
 - (void)getPhotos:(NSInteger)offset completion:(void(^)(NSArray *photos))completion {
     dispatch_python(^{
         NSDictionary *data = [self.handler getPhotos:@(offset)];
@@ -46,6 +41,12 @@
                 completion(result);
             }
         });
+    });
+}
+
+- (void)tappedOnPhoto:(Photo *)photo {
+    dispatch_python(^{
+        [self.handler tappedOnPhotoWithId:@(photo.id)];
     });
 }
 

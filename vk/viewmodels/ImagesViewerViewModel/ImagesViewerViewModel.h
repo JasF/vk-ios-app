@@ -1,16 +1,14 @@
 //
-//  GalleryViewModel.h
+//  ImagesViewerViewModel.h
 //  vk
 //
-//  Created by Jasf on 23.04.2018.
+//  Created by Jasf on 24.04.2018.
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@class Photo;
-
-@protocol GalleryViewModel <NSObject>
+@protocol ImagesViewerViewModel <NSObject>
+@property NSInteger photoId;
 - (void)getPhotos:(NSInteger)offset completion:(void(^)(NSArray *photos))completion;
-- (void)tappedOnPhoto:(Photo *)photo;
 @end

@@ -22,6 +22,7 @@
 #import "NotificationsManagerImpl.h"
 #import "PhotoAlbumsViewModelImpl.h"
 #import "GalleryViewModelImpl.h"
+#import "ImagesViewerViewModelImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -80,6 +81,11 @@
     NSCParameterAssert(albumId);
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyGalleryViewModel)
                                               parameters:@{@"ownerId":@(ownerId), @"albumId":albumId}];
+}
+
+- (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(NSInteger)albumId photoId:(NSInteger)photoId {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyImagesViewerViewModel)
+                                              parameters:@{@"ownerId":@(ownerId), @"albumId":@(albumId), @"photoId":@(photoId)}];
 }
 
 @end

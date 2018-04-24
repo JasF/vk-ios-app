@@ -1,23 +1,23 @@
 //
-//  GalleryViewModelImpl.h
+//  ImagesViewerViewModelImpl.h
 //  vk
 //
-//  Created by Jasf on 23.04.2018.
+//  Created by Jasf on 24.04.2018.
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "GalleryViewModel.h"
-#import "GalleryService.h"
+#import "ImagesViewerViewModel.h"
 #import "HandlersFactory.h"
+#import "GalleryService.h"
 
-@protocol PyGalleryViewModel <NSObject>
+@protocol PyImagesViewerViewModel <NSObject>
 - (NSDictionary *)getPhotos:(NSNumber *)offset;
-- (void)tappedOnPhotoWithId:(NSNumber *)identifier;
 @end
 
-@interface GalleryViewModelImpl : NSObject <GalleryViewModel>
+@interface ImagesViewerViewModelImpl : NSObject <ImagesViewerViewModel>
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
                          galleryService:(id<GalleryService>)galleryService
                                 ownerId:(NSNumber *)ownerId
-                                albumId:(id)albumId;
+                                albumId:(NSNumber *)albumId
+                                photoId:(NSNumber *)photoId;
 @end

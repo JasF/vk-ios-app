@@ -54,4 +54,13 @@
     }];
 }
 
+#pragma mark - ASCollectionNodeDelegate
+- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    Photo *photo = [collectionNode nodeModelForItemAtIndexPath:indexPath];
+    if (!photo) {
+        return;
+    }
+    [_viewModel tappedOnPhoto:photo];
+}
+
 @end

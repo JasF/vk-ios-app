@@ -10,3 +10,13 @@ class PhotosDatabase(BaseDatabase):
 
     def objects(self):
         return ['likes', 'reposts', 'comments', 'tags']
+
+    def getAll(self, ownerId, albumId):
+        script = 'SELECT * FROM ' + self.tableName + ' WHERE owner_id = ' + str(ownerId)  + ' AND album_id = ' + str(albumId) + ' ORDER BY date ASC'
+        result = []
+        try:
+            self.cursor.execute(script)
+            result = self.cursor.fetchall()
+        except Exception as e:
+            print('getAll from base exception: ' + str(e))
+        return result

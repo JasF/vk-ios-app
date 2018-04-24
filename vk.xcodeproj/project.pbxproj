@@ -481,6 +481,8 @@
 		C3372FD12083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB62083356C0080DA75 /* TimeSeparatorCollectionViewCell.swift */; };
 		C3372FD22083356C0080DA75 /* SlidingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB72083356C0080DA75 /* SlidingDataSource.swift */; };
 		C3372FD32083356C0080DA75 /* ChatExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372FB82083356C0080DA75 /* ChatExamplesViewController.swift */; };
+		C3437545208EFDEE004EF670 /* ImagesViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437544208EFDEE004EF670 /* ImagesViewerViewController.m */; };
+		C343754A208EFEA0004EF670 /* ImagesViewerViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437549208EFEA0004EF670 /* ImagesViewerViewModelImpl.m */; };
 		C35B737B208B11E3001C8067 /* TypingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35B737A208B11E3001C8067 /* TypingPresenter.swift */; };
 		C35B737D208B1203001C8067 /* TypingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35B737C208B1203001C8067 /* TypingModel.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
@@ -1497,6 +1499,12 @@
 		C3372FB72083356C0080DA75 /* SlidingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingDataSource.swift; sourceTree = "<group>"; };
 		C3372FB82083356C0080DA75 /* ChatExamplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatExamplesViewController.swift; sourceTree = "<group>"; };
 		C3372FD4208335DD0080DA75 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile; path = Components/Chatto/ChattoApp/Podfile; sourceTree = SOURCE_ROOT; };
+		C3437543208EFDEE004EF670 /* ImagesViewerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagesViewerViewController.h; sourceTree = "<group>"; };
+		C3437544208EFDEE004EF670 /* ImagesViewerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagesViewerViewController.m; sourceTree = "<group>"; };
+		C3437547208EFE17004EF670 /* ImagesViewerViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagesViewerViewModel.h; sourceTree = "<group>"; };
+		C3437548208EFEA0004EF670 /* ImagesViewerViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagesViewerViewModelImpl.h; sourceTree = "<group>"; };
+		C3437549208EFEA0004EF670 /* ImagesViewerViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagesViewerViewModelImpl.m; sourceTree = "<group>"; };
+		C343754B208F01BE004EF670 /* pyimagesviewerviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyimagesviewerviewmodel.py; sourceTree = "<group>"; };
 		C35B737A208B11E3001C8067 /* TypingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingPresenter.swift; sourceTree = "<group>"; };
 		C35B737C208B1203001C8067 /* TypingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingModel.swift; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
@@ -2338,6 +2346,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3437542208EFDDE004EF670 /* ImagesViewerViewController */,
 				C3137738208E2EAE00F568EA /* GalleryViewController */,
 				C313771E208E1FA000F568EA /* PhotoAlbumsViewController */,
 				C3036C08208DC94B005F086E /* SectionsCollectionViewController */,
@@ -4063,6 +4072,25 @@
 			path = "Time Separator";
 			sourceTree = "<group>";
 		};
+		C3437542208EFDDE004EF670 /* ImagesViewerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3437543208EFDEE004EF670 /* ImagesViewerViewController.h */,
+				C3437544208EFDEE004EF670 /* ImagesViewerViewController.m */,
+			);
+			path = ImagesViewerViewController;
+			sourceTree = "<group>";
+		};
+		C3437546208EFE0B004EF670 /* ImagesViewerViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3437547208EFE17004EF670 /* ImagesViewerViewModel.h */,
+				C3437548208EFEA0004EF670 /* ImagesViewerViewModelImpl.h */,
+				C3437549208EFEA0004EF670 /* ImagesViewerViewModelImpl.m */,
+			);
+			path = ImagesViewerViewModel;
+			sourceTree = "<group>";
+		};
 		C35B7379208B11CF001C8067 /* Typing */ = {
 			isa = PBXGroup;
 			children = (
@@ -4095,6 +4123,7 @@
 				C313DD61208CAFA00005E29B /* pywallpostviewmodel.py */,
 				C313772D208E21F300F568EA /* pyphotoalbumsviewmodel.py */,
 				C3137749208E358E00F568EA /* pygalleryviewmodel.py */,
+				C343754B208F01BE004EF670 /* pyimagesviewerviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -4253,6 +4282,7 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C3437546208EFE0B004EF670 /* ImagesViewerViewModel */,
 				C313773C208E2F3B00F568EA /* GalleryViewModel */,
 				C3137722208E1FD700F568EA /* PhotoAlbumsViewModel */,
 				C313DD63208CB1360005E29B /* WallPostViewModel */,
@@ -4938,6 +4968,7 @@
 				C3137721208E1FC900F568EA /* PhotoAlbumsViewController.m in Sources */,
 				C32308BD2081AEB100CEC487 /* LGSideMenuGesturesHandler.m in Sources */,
 				C323090D2081AEB100CEC487 /* TyphoonTypeConverterRegistry.m in Sources */,
+				C343754A208EFEA0004EF670 /* ImagesViewerViewModelImpl.m in Sources */,
 				C35B737B208B11E3001C8067 /* TypingPresenter.swift in Sources */,
 				C32308DD2081AEB100CEC487 /* TyphoonViewControllerFactory.m in Sources */,
 				C32308BA2081AEB100CEC487 /* LGSideMenuView.m in Sources */,
@@ -4955,6 +4986,7 @@
 				C3372FD22083356C0080DA75 /* SlidingDataSource.swift in Sources */,
 				C323061A2080E57500CEC487 /* WallServiceImpl.m in Sources */,
 				C3372FD32083356C0080DA75 /* ChatExamplesViewController.swift in Sources */,
+				C3437545208EFDEE004EF670 /* ImagesViewerViewController.m in Sources */,
 				C32305F92080E57500CEC487 /* WallPost.m in Sources */,
 				C32305C32080E57500CEC487 /* EXTSafeCategory.m in Sources */,
 				C32308DF2081AEB100CEC487 /* UIViewController+TyphoonStoryboardIntegration.m in Sources */,

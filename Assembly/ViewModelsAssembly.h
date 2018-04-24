@@ -18,6 +18,7 @@
 #import "WallPostViewModel.h"
 #import "PhotoAlbumsViewModel.h"
 #import "GalleryViewModel.h"
+#import "ImagesViewerViewModel.h"
 
 @interface ViewModelsAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -31,4 +32,5 @@
 - (id<WallPostViewModel>)wallPostViewModelWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;
 - (id<PhotoAlbumsViewModel>)photoAlbumsViewModel:(NSNumber *)ownerId;
 - (id<GalleryViewModel>)galleryViewModel:(NSNumber *)ownerId albumId:(NSNumber *)albumId;
+- (id<ImagesViewerViewModel>)imagesViewerViewModel:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;
 @end

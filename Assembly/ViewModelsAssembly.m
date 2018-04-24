@@ -15,6 +15,7 @@
 #import "MenuViewModelImpl.h"
 #import "PhotoAlbumsViewModelImpl.h"
 #import "GalleryViewModelImpl.h"
+#import "ImagesViewerViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -102,6 +103,19 @@
                     [initializer injectParameterWith:self.servicesAssembly.galleryService];
                     [initializer injectParameterWith:ownerId];
                     [initializer injectParameterWith:albumId];
+                }];
+            }];
+}
+
+- (id<ImagesViewerViewModel>)imagesViewerViewModel:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
+    return [TyphoonDefinition withClass:[ImagesViewerViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:galleryService:ownerId:albumId:photoId:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.galleryService];
+                    [initializer injectParameterWith:ownerId];
+                    [initializer injectParameterWith:albumId];
+                    [initializer injectParameterWith:photoId];
                 }];
             }];
 }

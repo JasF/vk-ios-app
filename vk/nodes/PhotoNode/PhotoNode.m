@@ -19,9 +19,8 @@
     if (self = [super init]) {
         _imageNode = [[ASNetworkImageNode alloc] init];
         _imageNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-        _imageNode.style.width = ASDimensionMakeWithPoints(44);
-        _imageNode.style.height = ASDimensionMakeWithPoints(44);
-        _imageNode.cornerRadius = 22.0;
+        _imageNode.style.width = ASDimensionMakeWithPoints(66);
+        _imageNode.style.height = ASDimensionMakeWithPoints(66);
         _imageNode.URL = [NSURL URLWithString:photo.photo_130];
         [self addSubnode:_imageNode];
     }

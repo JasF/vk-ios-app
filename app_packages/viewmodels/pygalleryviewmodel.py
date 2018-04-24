@@ -1,7 +1,6 @@
 from objc import managers
-from services.wallservice import WallService
-from objcbridge import BridgeBase, ObjCBridgeProtocol
-import vk, json
+
+g_count = 40
 
 class PyGalleryViewModel():
     def __init__(self, galleryService, ownerId, albumId):
@@ -11,8 +10,9 @@ class PyGalleryViewModel():
         print('PyGalleryViewModel ownerId: ' + str(ownerId) + '; albumId: ' + str(albumId))
     
     def getPhotos(self, offset):
-        photosData = self.galleryService.getPhotos(self.ownerId, self.albumId, offset)
+        photosData = self.galleryService.getPhotos(self.ownerId, self.albumId, offset, count=g_count)
         return photosData
-    
-    def menuTapped(self):
-        managers.shared().screensManager().showMenu()
+
+    def tappedOnPhotoWithId(self, photoId):
+        managers.shared().screensManager().showImagesViewerViewControllerWithOwnerId_albumId_photoId_(args=[self.ownerId, self.albumId, photoId])
+

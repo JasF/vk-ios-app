@@ -17,4 +17,24 @@
     }];
 }
 
+- (NSString *)bigPhotoURL {
+    NSString *imageURL = _photo_2560;
+    if (!imageURL.length) {
+        imageURL = _photo_1280;
+    }
+    if (!imageURL.length) {
+        imageURL = _photo_807;
+    }
+    if (!imageURL.length) {
+        imageURL = _photo_604;
+    }
+    if (!imageURL.length) {
+        imageURL = _photo_130;
+    }
+    if (!imageURL.length) {
+        imageURL = _photo_75;
+    }
+    return imageURL;
+}
+
 @end

@@ -30,4 +30,6 @@
 @property NSString *comments;
 @property NSInteger can_comment;
 @property NSString *tags;
+
+- (NSString *)bigPhotoURL;
 @end

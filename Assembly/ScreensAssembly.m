@@ -23,6 +23,7 @@
 #import "VKApplicationAssembly.h"
 #import "PhotoAlbumsViewController.h"
 #import "GalleryViewController.h"
+#import "ImagesViewerViewController.h"
 
 @implementation ScreensAssembly
 
@@ -147,6 +148,14 @@
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self.viewModelsAssembly galleryViewModel:ownerId albumId:albumId]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+        }];
+    }];
+}
+
+- (UIViewController *)imagesViewerViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
+    return [TyphoonDefinition withClass:[ImagesViewerViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly imagesViewerViewModel:ownerId albumId:albumId photoId:photoId]];
         }];
     }];
 }
