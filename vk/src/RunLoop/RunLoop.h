@@ -10,6 +10,6 @@
 
 @interface RunLoop : NSObject
 + (instancetype)shared;
-- (NSInteger)exec;
-- (void)exit:(NSInteger)resultCode;
+- (void)exec:(NSInteger)requestId;
+- (void)exit:(NSInteger)requestId;
 @end

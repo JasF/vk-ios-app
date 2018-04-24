@@ -118,20 +118,22 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
                                                      actions:actions];
 }
 
-- (void)sendAction:(NSString *)action
-         className:(NSString *)className
-         arguments:(NSArray *)arguments
-        withResult:(BOOL)withResult
-       resultBlock:(ResultBlock)resultBlock {
+- (NSInteger)sendAction:(NSString *)action
+              className:(NSString *)className
+              arguments:(NSArray *)arguments
+             withResult:(BOOL)withResult
+            resultBlock:(ResultBlock)resultBlock {
     NSCParameterAssert(action);
     NSCParameterAssert(className);
+    NSInteger result = 0;
     if (!action || !className) {
-        return;
+        return result;
     }
     @synchronized(self) {
         if (resultBlock) {
             _currentRequestId++;
-            [_resultBlocks setObject:resultBlock forKey:@(_currentRequestId)];
+            result = _currentRequestId;
+            [_resultBlocks setObject:resultBlock forKey:@(result)];
         }
         NSDictionary *dictionary = @{
                                      @"command":@"classAction",
@@ -139,10 +141,11 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
                                      @"class":className,
                                      @"args":(arguments) ?: @[],
                                      @"withResult":@(withResult),
-                                     @"requestId":@(_currentRequestId)
+                                     @"requestId":@(result)
                                     };
         [self send:dictionary];
     }
+    return result;
 }
 
 NSArray *px_allProtocolMethods(Protocol *protocol)
@@ -264,7 +267,7 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
             NSCAssert(resultBlock, @"received response but callback not achived!");
             if (resultBlock) {
                 [_resultBlocks removeObjectForKey:@(requestId)];
-                resultBlock(result);
+                resultBlock(result, requestId);
             }
         }
         else {

@@ -9,8 +9,7 @@
 #import "RunLoop.h"
 
 @implementation RunLoop {
-    NSMutableArray *_groups;
-    NSMutableArray *_resultCodes;
+    NSMutableDictionary *_groups;
     NSInteger _groupIndex;
 }
 
@@ -27,40 +26,32 @@
 #pragma mark - Initialization
 - (id)init {
     if (self = [super init]) {
-        _groups = [NSMutableArray new];
-        _resultCodes = [NSMutableArray new];
+        _groups = [NSMutableDictionary new];
     }
     return self;
 }
 
 #pragma mark - Public Methods
-- (NSInteger)exec {
-    _groupIndex++;
+- (void)exec:(NSInteger)requestId {
     dispatch_group_t group = dispatch_group_create();
     @synchronized(self) {
-        [_groups addObject:[NSValue valueWithNonretainedObject:group]];
+        [_groups setObject:[NSValue valueWithNonretainedObject:group] forKey:@(requestId)];
     }
     dispatch_group_enter(group);
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-    __block NSNumber *resultCode = nil;
-    @synchronized(self) {
-        NSCAssert(_resultCodes.count, @"_resultCodes cannot be nil");
-        resultCode = _resultCodes.firstObject;
-        [_resultCodes removeObjectAtIndex:0];
-    }
-    return [resultCode integerValue];
 }
 
-- (void)exit:(NSInteger)resultCode {
+- (void)exit:(NSInteger)requestId {
     NSValue *value = nil;
     @synchronized(self) {
-        NSCAssert(_groups.count, @"object in _groups must be exists");
-        [_resultCodes addObject:@(resultCode)];
-        value = _groups.lastObject;
-        [_groups removeLastObject];
+        value = _groups[@(requestId)];
+        NSCAssert(value, @"value must be exists");
+        [_groups removeObjectForKey:@(requestId)];
     }
     dispatch_group_t group = (dispatch_group_t)value.nonretainedObjectValue;
-    dispatch_group_leave(group);
+    if (group) {
+        dispatch_group_leave(group);
+    }
 }
 
 @end

@@ -125,7 +125,7 @@ static NSInteger const kPreloadingBorder = 2;
     if (self.updating) {
         return;
     }
-    if (index >= _photos.count - kPreloadingBorder) {
+    if (_photos.count && index >= _photos.count - kPreloadingBorder) {
         self.updating = YES;
         @weakify(self);
         [_viewModel getPhotos:_photos.count completion:^(NSArray *photos) {

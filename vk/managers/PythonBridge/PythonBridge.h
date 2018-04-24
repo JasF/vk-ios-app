@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class PythonBridgeHandler;
-typedef void (^ResultBlock)(id result);
+typedef void (^ResultBlock)(id result, NSInteger requestId);
 @protocol PythonBridge <NSObject>
 - (void)send:(NSDictionary *)object;
 - (void)connect;
@@ -22,10 +22,10 @@ typedef void (^ResultBlock)(id result);
                           parameters:(NSDictionary *)parameters;
 - (id)instantiateHandlerWithProtocol:(Protocol *)protocol
                           parameters:(NSDictionary *)parameters;
-- (void)sendAction:(NSString *)action
-         className:(NSString *)className
-         arguments:(NSArray *)arguments
-        withResult:(BOOL)withResult
-       resultBlock:(ResultBlock)resultBlock;
+- (NSInteger)sendAction:(NSString *)action
+              className:(NSString *)className
+              arguments:(NSArray *)arguments
+             withResult:(BOOL)withResult
+            resultBlock:(ResultBlock)resultBlock;
 - (void)handlerWillRelease:(PythonBridgeHandler *)handler;
 @end

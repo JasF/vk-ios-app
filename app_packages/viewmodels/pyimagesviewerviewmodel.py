@@ -10,6 +10,7 @@ class PyImagesViewerViewModel():
         self.photoId = photoId
     
     def getPhotos(self, offset):
+        photosData = None
         if offset == 0:
             photosData = self.galleryService.getAllFromCache(self.ownerId, self.albumId)
         else:
