@@ -17,7 +17,6 @@ class PyDocumentsViewModel(ObjCBridgeProtocol):
         response, count = self.videosService.getDocuments(self.ownerId, offset)
         if count == 0:
             self.endReached = True
-        print('getDocuments response: ' + json.dumps(response))
         return response
     
     def menuTapped(self):

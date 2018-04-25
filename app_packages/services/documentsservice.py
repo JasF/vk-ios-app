@@ -16,11 +16,11 @@ class DocumentsService:
             response = api.docs.get(owner_id=ownerId, offset=offset)
             l = response['items']
             count = len(l)
-            '''
+            
             cache = DocumentsDatabase()
             cache.update(l)
             cache.close()
-            '''
+            
         except Exception as e:
             print('getDocuments exception: ' + str(e))
         return {'response': response}, count

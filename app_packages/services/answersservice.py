@@ -22,8 +22,6 @@ class AnswersService:
             print('next_from: ' + str(next_from))
             l = response["items"]
             usersData = self.usersDecorator.usersDataFromAnswers(l)
-            #print('\n\n\n$$$$$answer l is: ' + json.dumps(response) + '\n$$$$$\n\n\n')
-            #usersData = self.usersDecorator.usersDataFromPosts(l)
         except Exception as e:
             print('getAnswers.get exception: ' + str(e))
         results = {'response':response, 'users':usersData}

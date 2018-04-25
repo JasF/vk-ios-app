@@ -20,11 +20,6 @@ class GroupsService:
             count = len(l)
             gl = [-id for id in l]
             usersData = users.getShortUsersByIds(set(gl))
-            '''
-            cache = PhotosDatabase()
-            cache.update(l)
-            cache.close()
-            '''
         except Exception as e:
             print('groups.get exception: ' + str(e))
         return {'response': response, 'users': usersData}, count

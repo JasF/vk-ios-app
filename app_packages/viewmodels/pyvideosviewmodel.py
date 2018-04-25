@@ -17,7 +17,6 @@ class PyVideosViewModel(ObjCBridgeProtocol):
         response, count = self.videosService.getVideos(self.ownerId, offset)
         if count == 0:
             self.endReached = True
-        print('getVideos response: ' + json.dumps(response))
         return response
     
     def menuTapped(self):

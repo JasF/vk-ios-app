@@ -20,14 +20,6 @@ class BookmarksService:
             l = response['items']
             count = len(l)
             usersData = self.usersDecorator.usersDataFromPosts(l)
-            '''
-            gl = [-id for id in l]
-            usersData = users.getShortUsersByIds(set(gl))
-            
-                cache = PhotosDatabase()
-                cache.update(l)
-                cache.close()
-                '''
         except Exception as e:
             print('getBookmarks exception: ' + str(e))
         return {'response': response, 'users': usersData}, count

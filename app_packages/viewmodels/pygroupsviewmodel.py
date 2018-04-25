@@ -18,7 +18,6 @@ class PyGroupsViewModel(ObjCBridgeProtocol):
         response, count = self.groupsService.getGroups(self.userId, offset)
         if count == 0:
             self.endReached = True
-        print('getGroups response: ' + json.dumps(response))
         return response
     
     def menuTapped(self):

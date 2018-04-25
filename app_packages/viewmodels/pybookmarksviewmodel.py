@@ -16,7 +16,6 @@ class PyBookmarksViewModel(ObjCBridgeProtocol):
         response, count = self.bookmarksService.getBookmarks(offset)
         if count == 0:
             self.endReached = True
-        print('getBookmarks response: ' + json.dumps(response))
         return response
     
     def menuTapped(self):
