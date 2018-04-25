@@ -57,5 +57,11 @@
         [self.handler answersTapped];
     });
 }
+
+- (void)groupsTapped {
+    dispatch_python(^{
+        [self.handler groupsTapped];
+    });
+}
     
 @end
