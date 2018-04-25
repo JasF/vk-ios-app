@@ -19,6 +19,7 @@
 #import "PhotoNode.h"
 #import "AudioNode.h"
 #import "FriendsNode.h"
+#import "AnswerNode.h"
 
 @implementation NodesAssembly
 
@@ -148,6 +149,16 @@
     return [TyphoonDefinition withClass:[FriendsNode class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithFriends:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:friends];
+                 }];
+            }];
+}
+
+- (ASDisplayNode *)answerNode:(NSArray *)friends {
+    return [TyphoonDefinition withClass:[AnswerNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithAnswer:) parameters:^(TyphoonMethod *initializer)
                  {
                      [initializer injectParameterWith:friends];
                  }];

@@ -8,12 +8,26 @@
 
 #import "User.h"
 
+@interface UserId ()
+@property (assign, nonatomic) NSInteger from_id;
+@end
 @implementation UserId
++ (instancetype)userId:(NSInteger)userId {
+    UserId *result = [UserId new];
+    result.user_id = userId;
+    return result;
+}
 +(EKObjectMapping *)objectMapping
 {
     return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
-        [mapping mapPropertiesFromArray:@[@"user_id"]];
+        [mapping mapPropertiesFromArray:@[@"user_id", @"from_id"]];
     }];
+}
+
+- (void)setFrom_id:(NSInteger)from_id {
+    if (from_id && !_user_id) {
+        _user_id = from_id;
+    }
 }
 @end
 

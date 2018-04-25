@@ -1,6 +1,5 @@
 import vk
 import json
-from vk import users
 import traceback
 from vk import users as users
 
@@ -50,5 +49,21 @@ class UsersDecorator:
         #ids |= set(historySourceIds)
         
         usersData = users.getShortUsersByIds(ids)
-        print('historySourceIds: ' + str(historySourceIds))
+        #print('historySourceIds: ' + str(historySourceIds))
+        return usersData
+
+
+    def usersDataFromAnswers(self, l):
+        userIds = []
+        for d in l:
+            type = d.get('type')
+            if type in ['like_post', 'like_photo', 'like_comment']:
+                userIds.extend([d.get('from_id') for d in d.get('feedback').get('items') if d.get('from_id')])
+            elif type == 'reply_comment' or type == 'comment_post':
+                fromId = d.get('feedback').get('from_id')
+                if fromId:
+                    userIds.append(fromId)
+       
+        ids = set(userIds)
+        usersData = users.getShortUsersByIds(ids)
         return usersData

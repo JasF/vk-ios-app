@@ -16,6 +16,7 @@
 - (void)dialogsTapped;
 - (void)friendsTapped;
 - (void)photosTapped;
+- (void)answersTapped;
 @end
 
 @interface MenuViewModelImpl : NSObject <MenuViewModel>

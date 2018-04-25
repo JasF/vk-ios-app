@@ -6,7 +6,7 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "AnswersService.h"
 
 @interface AnswersServiceImpl : NSObject <AnswersService>
 @end

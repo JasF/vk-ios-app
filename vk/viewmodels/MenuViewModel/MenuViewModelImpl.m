@@ -52,4 +52,10 @@
     });
 }
 
+- (void)answersTapped {
+    dispatch_python(^{
+        [self.handler answersTapped];
+    });
+}
+    
 @end

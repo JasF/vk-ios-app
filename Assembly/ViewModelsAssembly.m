@@ -133,7 +133,7 @@
 }
 
 - (id<AnswersViewModel>)answersViewModel {
-    return [TyphoonDefinition withClass:[NewsViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+    return [TyphoonDefinition withClass:[AnswersViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithHandlersFactory:answersService:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];

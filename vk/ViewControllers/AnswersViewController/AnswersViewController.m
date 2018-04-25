@@ -45,12 +45,12 @@
 #pragma mark - BaseCollectionViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
-    [_viewModel getNewsWithOffset:offset
-                       completion:^(NSArray *objects) {
-                           if (completion) {
-                               completion(objects);
-                           }
-                       }];
+    [_viewModel getAnswers:offset
+                completion:^(NSArray *objects) {
+                    if (completion) {
+                        completion(objects);
+                    }
+                }];
 }
 
 @end

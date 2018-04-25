@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Answer.h"
 
 @protocol AnswersService <NSObject>
-- (NSArray *)parse:(NSDictionary *)data;
+- (NSArray<Answer *> *)parse:(NSDictionary *)data;
 @end

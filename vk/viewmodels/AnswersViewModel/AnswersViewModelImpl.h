@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HandlersFactory.h"
 #import "AnswersService.h"
+#import "AnswersViewModel.h"
 
 @protocol PyAnswersViewModel <NSObject>
 - (NSDictionary *)getAnswers:(NSNumber *)offset;

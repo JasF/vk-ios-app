@@ -9,8 +9,8 @@
 #import "AnswersViewModelImpl.h"
 
 @interface AnswersViewModelImpl ()
-@property (strong) id<PyNewsViewModel> handler;
-@property (strong) id<AnswersService> wallService;
+@property (strong) id<PyAnswersViewModel> handler;
+@property (strong) id<AnswersService> answersService;
 @end
 
 @implementation AnswersViewModelImpl
@@ -21,9 +21,10 @@
     NSCParameterAssert(handlersFactory);
     NSCParameterAssert(answersService);
     if (self) {
-        _handler = [handlersFactory newsViewModelHandler];
+        _handler = [handlersFactory answersViewModelHandler];
         _answersService = answersService;
     }
+    return self;
 }
 
 #pragma mark -

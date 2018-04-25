@@ -12,6 +12,7 @@
 #import "Dialog.h"
 #import "Comment.h"
 #import "PhotoAlbum.h"
+#import "Answer.h"
 
 @implementation NodeFactoryImpl {
     NodesAssembly *_assembly;
@@ -82,6 +83,9 @@
     }
     else if ([item isKindOfClass:[Audio class]]) {
         return [_assembly audioNode:item];
+    }
+    else if ([item isKindOfClass:[Answer class]]) {
+        return [_assembly answerNode:item];
     }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;

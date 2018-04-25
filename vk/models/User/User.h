@@ -12,6 +12,7 @@
 
 @interface UserId : NSObject <EKMappingProtocol>
 @property NSInteger user_id;
++ (instancetype)userId:(NSInteger)userId;
 @end
 
 @interface User : NSObject <EKMappingProtocol>

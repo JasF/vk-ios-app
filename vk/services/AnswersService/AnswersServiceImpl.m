@@ -10,20 +10,35 @@
 
 @implementation AnswersServiceImpl
 
-- (NSArray *)parse:(NSDictionary *)photosData {
+- (NSArray<Answer *> *)parse:(NSDictionary *)photosData {
     if (![photosData isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
-    NSArray *items = photosData[@"items"];
+    NSDictionary *response = photosData[@"response"];
+    if (![response isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    NSArray *items = response[@"items"];
     if (![items isKindOfClass:[NSArray class]]) {
         return nil;
     }
-    /*
-    NSArray *objects = [EKMapper arrayOfObjectsFromExternalRepresentation:items
-                                                              withMapping:[Photo objectMapping]];
+    
+    NSArray *users = photosData[@"users"];
+    NSArray *usersObjects = [EKMapper arrayOfObjectsFromExternalRepresentation:users
+                                                                   withMapping:[User objectMapping]];
+    NSMutableDictionary *usersDictionary = [NSMutableDictionary new];
+    for (User *user in usersObjects) {
+        [usersDictionary setObject:user forKey:@(user.identifier)];
+    }
+    
+    NSMutableArray *objects = [NSMutableArray new];
+    for (NSDictionary *representation in items) {
+        Answer *answer = [Answer new];
+        [answer fillWithRepresentation:representation users:usersDictionary];
+        [objects addObject:answer];
+    }
+    
     return objects;
-     */
-    return nil;
 }
 
 @end

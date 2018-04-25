@@ -8,12 +8,17 @@ class PyNewsViewModel(ObjCBridgeProtocol):
         self.newsService = newsService
         self.userId = vk.userId()
         self.next_from = None
+        self.endReached = False
     
     # protocol methods implementation
     def getNews(self, offset):
+        if self.endReached == True:
+            return {}
         response, next_from = self.newsService.getNews(offset, self.next_from)
         if isinstance(next_from, str):
             self.next_from = next_from
+        else:
+            self.endReached = True
         return response
     
     def menuTapped(self):

@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WallPost.h"
+#import "Likes.h"
 
 @import EasyMapping;
 
@@ -17,4 +19,6 @@
 @property NSString *text;
 @property NSInteger reply_to_user;
 @property NSInteger reply_to_comment;
+@property WallPost *post;
+@property Likes *likes;
 @end
