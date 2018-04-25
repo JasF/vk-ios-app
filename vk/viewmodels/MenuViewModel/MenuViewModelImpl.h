@@ -21,6 +21,7 @@
 - (void)bookmarksTapped;
 - (void)videosTapped;
 - (void)documentsTapped;
+- (void)settingsTapped;
 @end
 
 @interface MenuViewModelImpl : NSObject <MenuViewModel>

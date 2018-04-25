@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, MenuRows) {
     BookmarksRow,
     VideosRow,
     DocumentsRow,
+    SettingsRow,
     RowsCount
 };
 
@@ -82,6 +83,7 @@ static CGFloat const kSeparatorAlpha = 0.25f;
         case BookmarksRow: cell.textLabel.text = L(@"bookmarks"); break;
         case VideosRow: cell.textLabel.text = L(@"videos"); break;
         case DocumentsRow: cell.textLabel.text = L(@"documents"); break;
+        case SettingsRow: cell.textLabel.text = L(@"settings"); break;
     }
     return cell;
 }
@@ -138,6 +140,10 @@ static CGFloat const kSeparatorAlpha = 0.25f;
         }
         case DocumentsRow: {
             [_viewModel documentsTapped];
+            break;
+        }
+        case SettingsRow: {
+            [_viewModel settingsTapped];
             break;
         }
     }

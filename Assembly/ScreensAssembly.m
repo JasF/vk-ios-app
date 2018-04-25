@@ -30,6 +30,7 @@
 #import "BookmarksViewController.h"
 #import "VideosViewController.h"
 #import "DocumentsViewController.h"
+#import "SettingsViewController.h"
 
 @implementation ScreensAssembly
 
@@ -215,6 +216,15 @@
     return [TyphoonDefinition withClass:[DocumentsViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self.viewModelsAssembly documentsViewModel:ownerId]];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+        }];
+    }];
+}
+
+- (UIViewController *)settingsViewController {
+    return [TyphoonDefinition withClass:[SettingsViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly settingsViewModel]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
     }];

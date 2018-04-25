@@ -27,6 +27,7 @@
 #import "BookmarksViewController.h"
 #import "VideosViewController.h"
 #import "DocumentsViewController.h"
+#import "SettingsViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -248,6 +249,18 @@
             return;
         }
         DocumentsViewController *viewController =(DocumentsViewController *)[_screensAssembly documentsViewController:ownerId];
+        [self pushViewController:viewController];
+    });
+}
+
+- (void)showSettingsViewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[SettingsViewController class]]) {
+            return;
+        }
+        SettingsViewController *viewController =(SettingsViewController *)[_screensAssembly settingsViewController];
         [self pushViewController:viewController];
     });
 }

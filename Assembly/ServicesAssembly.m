@@ -20,6 +20,7 @@
 #import "BookmarksServiceImpl.h"
 #import "VideosServiceImpl.h"
 #import "DocumentsServiceImpl.h"
+#import "SettingsServiceImpl.h"
 
 @implementation ServicesAssembly
 
@@ -99,6 +100,10 @@
 
 - (id<DocumentsService>)documentsService {
     return [TyphoonDefinition withClass:[DocumentsServiceImpl class]];
+}
+
+- (id<SettingsService>)settingsService {
+    return [TyphoonDefinition withClass:[SettingsServiceImpl class]];
 }
 
 @end

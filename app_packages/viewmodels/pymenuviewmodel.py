@@ -31,3 +31,6 @@ class PyMenuViewModel():
 
     def documentsTapped(self):
         managers.shared().screensManager().showDocumentsViewController_(args=[vk.userId()])
+
+    def settingsTapped(self):
+        managers.shared().screensManager().showSettingsViewController()

@@ -19,4 +19,5 @@
 - (void)bookmarksTapped;
 - (void)videosTapped;
 - (void)documentsTapped;
+- (void)settingsTapped;
 @end

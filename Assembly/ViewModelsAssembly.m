@@ -22,6 +22,7 @@
 #import "BookmarksViewModelImpl.h"
 #import "VideosViewModelImpl.h"
 #import "DocumentsViewModelImpl.h"
+#import "SettingsViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -186,6 +187,16 @@
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.documentsService];
                     [initializer injectParameterWith:ownerId];
+                }];
+            }];
+}
+
+- (id<SettingsViewModel>)settingsViewModel {
+    return [TyphoonDefinition withClass:[SettingsViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:settingsService:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.settingsService];
                 }];
             }];
 }

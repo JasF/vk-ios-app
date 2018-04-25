@@ -41,6 +41,7 @@
 - (UIViewController *)bookmarksViewController;
 - (UIViewController *)videosViewController:(NSNumber *)ownerId;
 - (UIViewController *)documentsViewController:(NSNumber *)ownerId;
+- (UIViewController *)settingsViewController;
 - (UIWindow *)window;
 - (UINavigationController *)rootNavigationController;
 @end

@@ -27,4 +27,5 @@
 - (void)showBookmarksViewController;
 - (void)showVideosViewController:(NSNumber *)ownerId;
 - (void)showDocumentsViewController:(NSNumber *)ownerId;
+- (void)showSettingsViewController;
 @end

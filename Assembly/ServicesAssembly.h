@@ -21,6 +21,7 @@
 #import "BookmarksService.h"
 #import "VideosService.h"
 #import "DocumentsService.h"
+#import "SettingsService.h"
 
 @interface ServicesAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -37,4 +38,5 @@
 - (id<BookmarksService>)bookmarksService;
 - (id<VideosService>)videosService;
 - (id<DocumentsService>)documentsService;
+- (id<SettingsService>)settingsService;
 @end

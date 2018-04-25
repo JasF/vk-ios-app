@@ -24,6 +24,7 @@
 @protocol PyBookmarksViewModel;
 @protocol PyVideosViewModel;
 @protocol PyDocumentsViewModel;
+@protocol PySettingsViewModel;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
@@ -42,4 +43,5 @@
 - (id<PyBookmarksViewModel>)bookmarksViewModelHandler;
 - (id<PyVideosViewModel>)videosViewModelHandler:(NSInteger)ownerId;
 - (id<PyDocumentsViewModel>)documentsViewModelHandler:(NSInteger)ownerId;
+- (id<PySettingsViewModel>)settingsViewModelHandler;
 @end

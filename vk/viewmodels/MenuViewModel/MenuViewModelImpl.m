@@ -82,4 +82,10 @@
     });
 }
 
+- (void)settingsTapped {
+    dispatch_python(^{
+        [self.handler settingsTapped];
+    });
+}
+
 @end
