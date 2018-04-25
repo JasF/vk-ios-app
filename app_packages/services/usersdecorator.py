@@ -67,3 +67,4 @@ class UsersDecorator:
         ids = set(userIds)
         usersData = users.getShortUsersByIds(ids)
         return usersData
+

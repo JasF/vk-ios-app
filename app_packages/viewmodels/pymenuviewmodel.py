@@ -19,3 +19,6 @@ class PyMenuViewModel():
 
     def answersTapped(self):
         managers.shared().screensManager().showAnswersViewController()
+
+    def groupsTapped(self):
+        managers.shared().screensManager().showGroupsViewController_(args=[vk.userId()])

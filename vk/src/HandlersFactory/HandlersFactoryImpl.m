@@ -25,6 +25,7 @@
 #import "ImagesViewerViewModelImpl.h"
 #import "NewsViewModelImpl.h"
 #import "AnswersViewModelImpl.h"
+#import "GroupsViewModelImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -96,6 +97,11 @@
 
 - (id<PyAnswersViewModel>)answersViewModelHandler {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyAnswersViewModel)];
+}
+
+- (id<PyGroupsViewModel>)groupsViewModelHandler:(NSInteger)userId {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyGroupsViewModel)
+                                              parameters:@{@"userId":@(userId)}];
 }
 
 @end

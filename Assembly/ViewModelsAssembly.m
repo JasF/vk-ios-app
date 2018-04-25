@@ -18,6 +18,7 @@
 #import "ImagesViewerViewModelImpl.h"
 #import "NewsViewModelImpl.h"
 #import "AnswersViewModelImpl.h"
+#import "GroupsViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -141,6 +142,17 @@
                 }];
             }];
 
+}
+
+- (id<GroupsViewModel>)groupsViewModel:(NSNumber *)userId {
+    return [TyphoonDefinition withClass:[GroupsViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:groupsService:userId:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.groupsService];
+                    [initializer injectParameterWith:userId];
+                }];
+            }];
 }
 
 @end

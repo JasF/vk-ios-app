@@ -15,4 +15,5 @@
 - (void)friendsTapped;
 - (void)photosTapped;
 - (void)answersTapped;
+- (void)groupsTapped;
 @end

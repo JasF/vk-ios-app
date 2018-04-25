@@ -26,6 +26,7 @@
 #import "ImagesViewerViewController.h"
 #import "NewsViewController.h"
 #import "AnswersViewController.h"
+#import "GroupsViewController.h"
 
 @implementation ScreensAssembly
 
@@ -175,6 +176,15 @@
     return [TyphoonDefinition withClass:[AnswersViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self.viewModelsAssembly answersViewModel]];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+        }];
+    }];
+}
+
+- (UIViewController *)groupsViewController:(NSNumber *)userId {
+    return [TyphoonDefinition withClass:[GroupsViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly groupsViewModel:userId]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
     }];

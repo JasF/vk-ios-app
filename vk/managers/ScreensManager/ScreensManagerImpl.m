@@ -23,6 +23,7 @@
 #import "ImagesViewerViewController.h"
 #import "NewsViewController.h"
 #import "AnswersViewController.h"
+#import "GroupsViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -196,6 +197,18 @@
             return;
         }
         AnswersViewController *viewController =(AnswersViewController *)[_screensAssembly answersViewController];
+        [self pushViewController:viewController];
+    });
+}
+
+- (void)showGroupsViewController:(NSNumber *)userId {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[GroupsViewController class]]) {
+            return;
+        }
+        GroupsViewController *viewController =(GroupsViewController *)[_screensAssembly groupsViewController:userId];
         [self pushViewController:viewController];
     });
 }

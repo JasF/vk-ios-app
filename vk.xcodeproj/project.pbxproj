@@ -32,6 +32,9 @@
 		C313DD66208CB14A0005E29B /* WallPostViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD65208CB14A0005E29B /* WallPostViewModelImpl.m */; };
 		C313DD6D208CBA460005E29B /* WallPostServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD6C208CBA460005E29B /* WallPostServiceImpl.m */; };
 		C322627D20905E930054789B /* AnswerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C322627C20905E930054789B /* AnswerNode.m */; };
+		C3226281209074120054789B /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3226280209074120054789B /* GroupsViewController.m */; };
+		C3226286209074EF0054789B /* GroupsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3226285209074EF0054789B /* GroupsViewModelImpl.m */; };
+		C322628B209075CB0054789B /* GroupsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C322628A209075CB0054789B /* GroupsServiceImpl.m */; };
 		C32305B92080E57500CEC487 /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EC2080E57300CEC487 /* libOpenSSL.a */; };
 		C32305BA2080E57500CEC487 /* PythonFramework.zip in Resources */ = {isa = PBXBuildFile; fileRef = C32303ED2080E57300CEC487 /* PythonFramework.zip */; };
 		C32305BB2080E57500CEC487 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EE2080E57300CEC487 /* libbz2.a */; };
@@ -714,6 +717,16 @@
 		C313DD6F208CD4F00005E29B /* usersdecorator.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = usersdecorator.py; sourceTree = "<group>"; };
 		C322627B20905E930054789B /* AnswerNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswerNode.h; sourceTree = "<group>"; };
 		C322627C20905E930054789B /* AnswerNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswerNode.m; sourceTree = "<group>"; };
+		C322627F209074120054789B /* GroupsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
+		C3226280209074120054789B /* GroupsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
+		C3226283209074E30054789B /* GroupsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupsViewModel.h; sourceTree = "<group>"; };
+		C3226284209074EF0054789B /* GroupsViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupsViewModelImpl.h; sourceTree = "<group>"; };
+		C3226285209074EF0054789B /* GroupsViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupsViewModelImpl.m; sourceTree = "<group>"; };
+		C3226288209075A10054789B /* GroupsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupsService.h; sourceTree = "<group>"; };
+		C3226289209075CB0054789B /* GroupsServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupsServiceImpl.h; sourceTree = "<group>"; };
+		C322628A209075CB0054789B /* GroupsServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupsServiceImpl.m; sourceTree = "<group>"; };
+		C322628C209077420054789B /* pygroupsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pygroupsviewmodel.py; sourceTree = "<group>"; };
+		C322628D2090774D0054789B /* groupsservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = groupsservice.py; sourceTree = "<group>"; };
 		C32303EC2080E57300CEC487 /* libOpenSSL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenSSL.a; sourceTree = "<group>"; };
 		C32303ED2080E57300CEC487 /* PythonFramework.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = PythonFramework.zip; sourceTree = "<group>"; };
 		C32303EE2080E57300CEC487 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbz2.a; sourceTree = "<group>"; };
@@ -2024,6 +2037,35 @@
 			path = AnswerNode;
 			sourceTree = "<group>";
 		};
+		C322627E209073FB0054789B /* GroupsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C322627F209074120054789B /* GroupsViewController.h */,
+				C3226280209074120054789B /* GroupsViewController.m */,
+			);
+			path = GroupsViewController;
+			sourceTree = "<group>";
+		};
+		C3226282209074D90054789B /* GroupsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3226283209074E30054789B /* GroupsViewModel.h */,
+				C3226284209074EF0054789B /* GroupsViewModelImpl.h */,
+				C3226285209074EF0054789B /* GroupsViewModelImpl.m */,
+			);
+			path = GroupsViewModel;
+			sourceTree = "<group>";
+		};
+		C3226287209075930054789B /* GroupsService */ = {
+			isa = PBXGroup;
+			children = (
+				C3226288209075A10054789B /* GroupsService.h */,
+				C3226289209075CB0054789B /* GroupsServiceImpl.h */,
+				C322628A209075CB0054789B /* GroupsServiceImpl.m */,
+			);
+			path = GroupsService;
+			sourceTree = "<group>";
+		};
 		C32303EB2080E57300CEC487 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2398,6 +2440,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C322627E209073FB0054789B /* GroupsViewController */,
 				C3437566208F815A004EF670 /* AnswersViewController */,
 				C343754C208F3188004EF670 /* NewsViewController */,
 				C3437542208EFDDE004EF670 /* ImagesViewerViewController */,
@@ -2530,6 +2573,7 @@
 		C32304B92080E57400CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C3226287209075930054789B /* GroupsService */,
 				C343756F208F8328004EF670 /* AnswersService */,
 				C3137741208E303000F568EA /* GalleryService */,
 				C3137728208E212600F568EA /* PhotoAlbumsService */,
@@ -3066,6 +3110,7 @@
 				C3137748208E357400F568EA /* galleryservice.py */,
 				C3437556208F5E0C004EF670 /* newsservice.py */,
 				C3437574208F8678004EF670 /* answersservice.py */,
+				C322628D2090774D0054789B /* groupsservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -4259,6 +4304,7 @@
 				C343754B208F01BE004EF670 /* pyimagesviewerviewmodel.py */,
 				C3437555208F39B8004EF670 /* pynewsviewmodel.py */,
 				C3437575208F8687004EF670 /* pyanswersviewmodel.py */,
+				C322628C209077420054789B /* pygroupsviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -4417,6 +4463,7 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C3226282209074D90054789B /* GroupsViewModel */,
 				C343756A208F81B3004EF670 /* AnswersViewModel */,
 				C3437550208F31AC004EF670 /* NewsViewModel */,
 				C3437546208EFE0B004EF670 /* ImagesViewerViewModel */,
@@ -5125,6 +5172,7 @@
 				C35B737B208B11E3001C8067 /* TypingPresenter.swift in Sources */,
 				C32308DD2081AEB100CEC487 /* TyphoonViewControllerFactory.m in Sources */,
 				C32308BA2081AEB100CEC487 /* LGSideMenuView.m in Sources */,
+				C322628B209075CB0054789B /* GroupsServiceImpl.m in Sources */,
 				C32305C22080E57500CEC487 /* NSInvocation+EXT.m in Sources */,
 				C32308CD2081AEB100CEC487 /* TyphoonTestUtils.m in Sources */,
 				C32309062081AEB100CEC487 /* TyphoonInjectionByType.m in Sources */,
@@ -5168,6 +5216,7 @@
 				C32308D62081AEB100CEC487 /* TyphoonViewControllerNibResolver.m in Sources */,
 				C32306252080E57500CEC487 /* PythonBridgeHandler.m in Sources */,
 				C32308D52081AEB100CEC487 /* TyphoonViewControllerInjector.m in Sources */,
+				C3226286209074EF0054789B /* GroupsViewModelImpl.m in Sources */,
 				C32305D32080E57500CEC487 /* NodesAssembly.m in Sources */,
 				C323090E2081AEB100CEC487 /* TyphoonTypeConversionUtils.m in Sources */,
 				C32308B92081AEB100CEC487 /* LGSideMenuHelper.m in Sources */,
@@ -5245,6 +5294,7 @@
 				C3B225062085BA6800599E04 /* DialogScreenViewModelImpl.m in Sources */,
 				C32306032080E57500CEC487 /* BaseNavigationController.mm in Sources */,
 				C32309292081AEB100CEC487 /* TyphoonStackElement.m in Sources */,
+				C3226281209074120054789B /* GroupsViewController.m in Sources */,
 				C32309192081AEB100CEC487 /* TyphoonParentReferenceHydratingPostProcessor.m in Sources */,
 				C32306082080E57500CEC487 /* DialogViewController.swift in Sources */,
 				C32306072080E57500CEC487 /* LeftViewController.m in Sources */,

@@ -16,6 +16,7 @@
 #import "PhotoAlbumsServiceImpl.h"
 #import "GalleryServiceImpl.h"
 #import "AnswersServiceImpl.h"
+#import "GroupsServiceImpl.h"
 
 @implementation ServicesAssembly
 
@@ -74,6 +75,10 @@
 
 - (id<AnswersService>)answersService {
     return [TyphoonDefinition withClass:[AnswersServiceImpl class]];
+}
+
+- (id<GroupsService>)groupsService {
+    return [TyphoonDefinition withClass:[GroupsServiceImpl class]];
 }
 
 @end

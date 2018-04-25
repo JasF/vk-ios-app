@@ -23,4 +23,5 @@
 - (void)showImagesViewerViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;
 - (void)showNewsViewController;
 - (void)showAnswersViewController;
+- (void)showGroupsViewController:(NSNumber *)userId;
 @end
