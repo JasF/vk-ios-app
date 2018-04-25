@@ -34,7 +34,9 @@
     NSMutableArray *objects = [NSMutableArray new];
     for (NSDictionary *representation in items) {
         Answer *answer = [Answer new];
-        [answer fillWithRepresentation:representation users:usersDictionary];
+        if (![answer fillWithRepresentation:representation users:usersDictionary]) {
+            continue;
+        }
         [objects addObject:answer];
     }
     

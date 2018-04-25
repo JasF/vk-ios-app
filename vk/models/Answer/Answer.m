@@ -17,7 +17,7 @@
     }];
 }
     
-- (void)fillWithRepresentation:(NSDictionary *)representation users:(NSDictionary *)users {
+- (BOOL)fillWithRepresentation:(NSDictionary *)representation users:(NSDictionary *)users {
     [EKMapper fillObject:self fromExternalRepresentation:representation withMapping:[Answer objectMapping]];
     NSDictionary *parent = representation[@"parent"];
     NSDictionary *feedback = representation[@"feedback"];
@@ -47,6 +47,7 @@
     }
     else {
         NSCAssert(false, @"Unhandled answer type: %@", self.type);
+        return NO;
     }
     
     NSMutableArray *usersArray = [NSMutableArray new];
@@ -57,6 +58,7 @@
         }
     }
     self.users = usersArray;
+    return YES;
 }
     
 @end

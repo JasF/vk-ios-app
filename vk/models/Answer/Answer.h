@@ -25,6 +25,6 @@
 @property Comment *replyComment;
 @property NSArray<User *> *users;
     
-- (void)fillWithRepresentation:(NSDictionary *)representation users:(NSDictionary *)users;
+- (BOOL)fillWithRepresentation:(NSDictionary *)representation users:(NSDictionary *)users;
     
 @end
