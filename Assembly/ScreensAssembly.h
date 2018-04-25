@@ -40,6 +40,7 @@
 - (UIViewController *)groupsViewController:(NSNumber *)userId;
 - (UIViewController *)bookmarksViewController;
 - (UIViewController *)videosViewController:(NSNumber *)ownerId;
+- (UIViewController *)documentsViewController:(NSNumber *)ownerId;
 - (UIWindow *)window;
 - (UINavigationController *)rootNavigationController;
 @end

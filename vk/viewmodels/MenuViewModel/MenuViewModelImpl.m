@@ -76,4 +76,10 @@
     });
 }
 
+- (void)documentsTapped {
+    dispatch_python(^{
+        [self.handler documentsTapped];
+    });
+}
+
 @end

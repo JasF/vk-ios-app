@@ -26,6 +26,7 @@
 #import "GroupsViewController.h"
 #import "BookmarksViewController.h"
 #import "VideosViewController.h"
+#import "DocumentsViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -235,6 +236,18 @@
             return;
         }
         VideosViewController *viewController =(VideosViewController *)[_screensAssembly videosViewController:ownerId];
+        [self pushViewController:viewController];
+    });
+}
+
+- (void)showDocumentsViewController:(NSNumber *)ownerId {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[VideosViewController class]]) {
+            return;
+        }
+        DocumentsViewController *viewController =(DocumentsViewController *)[_screensAssembly documentsViewController:ownerId];
         [self pushViewController:viewController];
     });
 }

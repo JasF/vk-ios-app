@@ -13,4 +13,5 @@ class AuthorizationHandlerProtocol:
         #managers.shared().screensManager().showAnswersViewController()
         #managers.shared().screensManager().showGroupsViewController_(args=[vk.userId()])
         #managers.shared().screensManager().showBookmarksViewController()
-        managers.shared().screensManager().showVideosViewController_(args=[vk.userId()])
+        #managers.shared().screensManager().showVideosViewController_(args=[vk.userId()])
+        managers.shared().screensManager().showDocumentsViewController_(args=[vk.userId()])

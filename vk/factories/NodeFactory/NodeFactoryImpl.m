@@ -14,6 +14,7 @@
 #import "PhotoAlbum.h"
 #import "Answer.h"
 #import "Video.h"
+#import "Document.h"
 
 @implementation NodeFactoryImpl {
     NodesAssembly *_assembly;
@@ -90,6 +91,9 @@
     }
     else if ([item isKindOfClass:[Video class]]) {
         return [_assembly videoNode:item];
+    }
+    else if ([item isKindOfClass:[Document class]]) {
+        return [_assembly documentNode:item];
     }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;

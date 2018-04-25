@@ -21,6 +21,7 @@
 #import "FriendsNode.h"
 #import "AnswerNode.h"
 #import "VideoNode.h"
+#import "DocumentNode.h"
 
 @implementation NodesAssembly
 
@@ -172,6 +173,16 @@
                 [definition useInitializer:@selector(initWithVideo:) parameters:^(TyphoonMethod *initializer)
                  {
                      [initializer injectParameterWith:video];
+                 }];
+            }];
+}
+
+- (ASDisplayNode *)documentNode:(Document *)document {
+    return [TyphoonDefinition withClass:[DocumentNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithDocument:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:document];
                  }];
             }];
 }

@@ -21,6 +21,7 @@
 #import "GroupsViewModelImpl.h"
 #import "BookmarksViewModelImpl.h"
 #import "VideosViewModelImpl.h"
+#import "DocumentsViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -173,6 +174,17 @@
                 [definition useInitializer:@selector(initWithHandlersFactory:videosService:ownerId:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.videosService];
+                    [initializer injectParameterWith:ownerId];
+                }];
+            }];
+}
+
+- (id<DocumentsViewModel>)documentsViewModel:(NSNumber *)ownerId {
+    return [TyphoonDefinition withClass:[DocumentsViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:documentsService:ownerId:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.documentsService];
                     [initializer injectParameterWith:ownerId];
                 }];
             }];

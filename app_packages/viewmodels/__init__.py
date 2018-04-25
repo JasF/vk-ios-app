@@ -13,6 +13,7 @@ from .pyanswersviewmodel import PyAnswersViewModel
 from .pygroupsviewmodel import PyGroupsViewModel
 from .pybookmarksviewmodel import PyBookmarksViewModel
 from .pyvideosviewmodel import PyVideosViewModel
+from .pydocumentsviewmodel import PyDocumentsViewModel
 
 from services.messagesservice import MessagesService
 from services.chatlistservice import ChatListService
@@ -28,6 +29,7 @@ from services.answersservice import AnswersService
 from services.groupsservice import GroupsService
 from services.bookmarksservice import BookmarksService
 from services.videosservice import VideosService
+from services.documentsservice import DocumentsService
 
 Subscriber().setClassAllocatorWithDelegate( PyChatListViewModel, lambda delegateId: PyChatListViewModel(delegateId, MessagesService(), ChatListService()) )
 Subscriber().setClassAllocatorWithDelegate( PyDialogScreenViewModel, lambda delegateId, parameters: PyDialogScreenViewModel(delegateId, parameters, MessagesService(), DialogService()) )
@@ -43,3 +45,4 @@ Subscriber().setClassAllocator( PyAnswersViewModel, lambda: PyAnswersViewModel(A
 Subscriber().setClassAllocator( PyGroupsViewModel, lambda parameters: PyGroupsViewModel(GroupsService(UsersDecorator()), parameters.get('userId')) )
 Subscriber().setClassAllocator( PyBookmarksViewModel, lambda: PyBookmarksViewModel(BookmarksService(UsersDecorator())) )
 Subscriber().setClassAllocator( PyVideosViewModel, lambda parameters: PyVideosViewModel(VideosService(), parameters.get('ownerId')) )
+Subscriber().setClassAllocator( PyDocumentsViewModel, lambda parameters: PyDocumentsViewModel(DocumentsService(), parameters.get('ownerId')) )

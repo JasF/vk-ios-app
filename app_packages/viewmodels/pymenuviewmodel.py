@@ -28,3 +28,6 @@ class PyMenuViewModel():
 
     def videosTapped(self):
         managers.shared().screensManager().showVideosViewController_(args=[vk.userId()])
+
+    def documentsTapped(self):
+        managers.shared().screensManager().showDocumentsViewController_(args=[vk.userId()])

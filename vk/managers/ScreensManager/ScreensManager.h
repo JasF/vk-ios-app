@@ -26,4 +26,5 @@
 - (void)showGroupsViewController:(NSNumber *)userId;
 - (void)showBookmarksViewController;
 - (void)showVideosViewController:(NSNumber *)ownerId;
+- (void)showDocumentsViewController:(NSNumber *)ownerId;
 @end

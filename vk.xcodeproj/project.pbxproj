@@ -43,6 +43,12 @@
 		C32262AC20908CC70054789B /* VideosServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262AB20908CC70054789B /* VideosServiceImpl.m */; };
 		C32262B6209091CE0054789B /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262B4209091CE0054789B /* Video.m */; };
 		C32262BA209092DA0054789B /* VideoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262B9209092DA0054789B /* VideoNode.m */; };
+		C32262BE2090A34A0054789B /* DocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262BD2090A34A0054789B /* DocumentsViewController.m */; };
+		C32262C32090A49A0054789B /* DocumentsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262C22090A49A0054789B /* DocumentsViewModelImpl.m */; };
+		C32262C82090A5110054789B /* DocumentsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262C72090A5110054789B /* DocumentsServiceImpl.m */; };
+		C32262D02090A66D0054789B /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262CF2090A66D0054789B /* Document.m */; };
+		C32262D42090A7850054789B /* SizedPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262D32090A7850054789B /* SizedPhoto.m */; };
+		C32262D82090A88C0054789B /* DocumentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262D72090A88C0054789B /* DocumentNode.m */; };
 		C32305B92080E57500CEC487 /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EC2080E57300CEC487 /* libOpenSSL.a */; };
 		C32305BA2080E57500CEC487 /* PythonFramework.zip in Resources */ = {isa = PBXBuildFile; fileRef = C32303ED2080E57300CEC487 /* PythonFramework.zip */; };
 		C32305BB2080E57500CEC487 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EE2080E57300CEC487 /* libbz2.a */; };
@@ -759,6 +765,23 @@
 		C32262B5209091CE0054789B /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Video.h; path = vk/models/Video/Video.h; sourceTree = SOURCE_ROOT; };
 		C32262B8209092DA0054789B /* VideoNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoNode.h; sourceTree = "<group>"; };
 		C32262B9209092DA0054789B /* VideoNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoNode.m; sourceTree = "<group>"; };
+		C32262BC2090A34A0054789B /* DocumentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentsViewController.h; sourceTree = "<group>"; };
+		C32262BD2090A34A0054789B /* DocumentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocumentsViewController.m; sourceTree = "<group>"; };
+		C32262C02090A48D0054789B /* DocumentsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentsViewModel.h; sourceTree = "<group>"; };
+		C32262C12090A49A0054789B /* DocumentsViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentsViewModelImpl.h; sourceTree = "<group>"; };
+		C32262C22090A49A0054789B /* DocumentsViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocumentsViewModelImpl.m; sourceTree = "<group>"; };
+		C32262C52090A5050054789B /* DocumentsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentsService.h; sourceTree = "<group>"; };
+		C32262C62090A5110054789B /* DocumentsServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentsServiceImpl.h; sourceTree = "<group>"; };
+		C32262C72090A5110054789B /* DocumentsServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocumentsServiceImpl.m; sourceTree = "<group>"; };
+		C32262C92090A55F0054789B /* pydocumentsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pydocumentsviewmodel.py; sourceTree = "<group>"; };
+		C32262CA2090A56D0054789B /* documentsservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = documentsservice.py; sourceTree = "<group>"; };
+		C32262CB2090A58E0054789B /* documentsdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = documentsdatabase.py; sourceTree = "<group>"; };
+		C32262CE2090A66D0054789B /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
+		C32262CF2090A66D0054789B /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		C32262D22090A7850054789B /* SizedPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SizedPhoto.h; sourceTree = "<group>"; };
+		C32262D32090A7850054789B /* SizedPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SizedPhoto.m; sourceTree = "<group>"; };
+		C32262D62090A88C0054789B /* DocumentNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentNode.h; sourceTree = "<group>"; };
+		C32262D72090A88C0054789B /* DocumentNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocumentNode.m; sourceTree = "<group>"; };
 		C32303EC2080E57300CEC487 /* libOpenSSL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenSSL.a; sourceTree = "<group>"; };
 		C32303ED2080E57300CEC487 /* PythonFramework.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = PythonFramework.zip; sourceTree = "<group>"; };
 		C32303EE2080E57300CEC487 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbz2.a; sourceTree = "<group>"; };
@@ -2173,6 +2196,62 @@
 			path = VideoNode;
 			sourceTree = "<group>";
 		};
+		C32262BB2090A3380054789B /* DocumentsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C32262BC2090A34A0054789B /* DocumentsViewController.h */,
+				C32262BD2090A34A0054789B /* DocumentsViewController.m */,
+			);
+			path = DocumentsViewController;
+			sourceTree = "<group>";
+		};
+		C32262BF2090A4810054789B /* DocumentsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C32262C02090A48D0054789B /* DocumentsViewModel.h */,
+				C32262C12090A49A0054789B /* DocumentsViewModelImpl.h */,
+				C32262C22090A49A0054789B /* DocumentsViewModelImpl.m */,
+			);
+			path = DocumentsViewModel;
+			sourceTree = "<group>";
+		};
+		C32262C42090A4F80054789B /* DocumentsService */ = {
+			isa = PBXGroup;
+			children = (
+				C32262C52090A5050054789B /* DocumentsService.h */,
+				C32262C62090A5110054789B /* DocumentsServiceImpl.h */,
+				C32262C72090A5110054789B /* DocumentsServiceImpl.m */,
+			);
+			path = DocumentsService;
+			sourceTree = "<group>";
+		};
+		C32262CD2090A65E0054789B /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				C32262CE2090A66D0054789B /* Document.h */,
+				C32262CF2090A66D0054789B /* Document.m */,
+			);
+			path = Document;
+			sourceTree = "<group>";
+		};
+		C32262D12090A76C0054789B /* SizedPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				C32262D22090A7850054789B /* SizedPhoto.h */,
+				C32262D32090A7850054789B /* SizedPhoto.m */,
+			);
+			path = SizedPhoto;
+			sourceTree = "<group>";
+		};
+		C32262D52090A87E0054789B /* DocumentNode */ = {
+			isa = PBXGroup;
+			children = (
+				C32262D62090A88C0054789B /* DocumentNode.h */,
+				C32262D72090A88C0054789B /* DocumentNode.m */,
+			);
+			path = DocumentNode;
+			sourceTree = "<group>";
+		};
 		C32303EB2080E57300CEC487 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2307,6 +2386,7 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C32262D52090A87E0054789B /* DocumentNode */,
 				C32262B7209092CC0054789B /* VideoNode */,
 				C322627A20905E830054789B /* AnswerNode */,
 				C343755F208F70B6004EF670 /* FriendsNode */,
@@ -2407,6 +2487,8 @@
 		C32304572080E57400CEC487 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C32262D12090A76C0054789B /* SizedPhoto */,
+				C32262CD2090A65E0054789B /* Document */,
 				C32262AF20908FD10054789B /* Video */,
 				C3F170CF2090547500C33F2C /* Answer */,
 				C3437557208F696D004EF670 /* Audio */,
@@ -2539,6 +2621,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C32262BB2090A3380054789B /* DocumentsViewController */,
 				C322629F2090899E0054789B /* VideosViewController */,
 				C322628E209080DD0054789B /* BookmarksViewController */,
 				C322627E209073FB0054789B /* GroupsViewController */,
@@ -2674,6 +2757,7 @@
 		C32304B92080E57400CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C32262C42090A4F80054789B /* DocumentsService */,
 				C32262A820908CB20054789B /* VideosService */,
 				C32262922090826A0054789B /* BookmarksService */,
 				C3226287209075930054789B /* GroupsService */,
@@ -3216,6 +3300,7 @@
 				C322628D2090774D0054789B /* groupsservice.py */,
 				C322629E209084B40054789B /* bookmarksservice.py */,
 				C32262AE20908D810054789B /* videosservice.py */,
+				C32262CA2090A56D0054789B /* documentsservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -3234,6 +3319,7 @@
 				C313774E208E3C5300F568EA /* photosdatabase.py */,
 				C3F170D32090555900C33F2C /* answersdatabase.py */,
 				C32262B32090902E0054789B /* videosdatabase.py */,
+				C32262CB2090A58E0054789B /* documentsdatabase.py */,
 			);
 			path = caches;
 			sourceTree = "<group>";
@@ -4413,6 +4499,7 @@
 				C322628C209077420054789B /* pygroupsviewmodel.py */,
 				C322629D209084A20054789B /* pybookmarksviewmodel.py */,
 				C32262AD20908D740054789B /* pyvideosviewmodel.py */,
+				C32262C92090A55F0054789B /* pydocumentsviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -4571,6 +4658,7 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C32262BF2090A4810054789B /* DocumentsViewModel */,
 				C32262A320908B940054789B /* VideosViewModel */,
 				C3226298209082C70054789B /* BookmarksViewModel */,
 				C3226282209074D90054789B /* GroupsViewModel */,
@@ -5274,6 +5362,7 @@
 				C3437554208F31E0004EF670 /* NewsViewModelImpl.m in Sources */,
 				C32262A2209089B40054789B /* VideosViewController.m in Sources */,
 				C32308E82081AEB100CEC487 /* TyphoonUIColorTypeConverter.m in Sources */,
+				C32262BE2090A34A0054789B /* DocumentsViewController.m in Sources */,
 				C32308EC2081AEB100CEC487 /* NSDictionary+CustomInjection.m in Sources */,
 				C32308D32081AEB100CEC487 /* NSObject+TyphoonIntrospectionUtils.m in Sources */,
 				C32308E92081AEB100CEC487 /* TyphoonDefinition.m in Sources */,
@@ -5307,8 +5396,10 @@
 				C32305C32080E57500CEC487 /* EXTSafeCategory.m in Sources */,
 				C32308DF2081AEB100CEC487 /* UIViewController+TyphoonStoryboardIntegration.m in Sources */,
 				C32309332081AEB100CEC487 /* CALayer+Image.m in Sources */,
+				C32262C32090A49A0054789B /* DocumentsViewModelImpl.m in Sources */,
 				C3137736208E2A4200F568EA /* PhotoAlbumNode.m in Sources */,
 				C3137732208E291500F568EA /* PhotoAlbum.m in Sources */,
+				C32262D42090A7850054789B /* SizedPhoto.m in Sources */,
 				C32305FA2080E57500CEC487 /* Attachments.m in Sources */,
 				C323091F2081AEB100CEC487 /* TyphoonCollaboratingAssemblyPropertyEnumerator.m in Sources */,
 				C32305D62080E57500CEC487 /* ServicesAssembly.m in Sources */,
@@ -5388,8 +5479,10 @@
 				C3372FCB2083356C0080DA75 /* BaseMessageHandler.swift in Sources */,
 				C32308D02081AEB100CEC487 /* TyphoonSwizzlerDefaultImpl.m in Sources */,
 				C323060A2080E57500CEC487 /* WallViewController.m in Sources */,
+				C32262D82090A88C0054789B /* DocumentNode.m in Sources */,
 				C32308DB2081AEB100CEC487 /* TyphoonStoryboard.m in Sources */,
 				C32308FD2081AEB100CEC487 /* TyphoonAbstractInjection.m in Sources */,
+				C32262C82090A5110054789B /* DocumentsServiceImpl.m in Sources */,
 				C32308E62081AEB100CEC487 /* TyphoonStoryboardDefinitionContext.m in Sources */,
 				C32308F32081AEB100CEC487 /* TyphoonInjectedObject.m in Sources */,
 				C32308D42081AEB100CEC487 /* NSObject+DeallocNotification.m in Sources */,
@@ -5412,6 +5505,7 @@
 				C32306032080E57500CEC487 /* BaseNavigationController.mm in Sources */,
 				C32309292081AEB100CEC487 /* TyphoonStackElement.m in Sources */,
 				C3226281209074120054789B /* GroupsViewController.m in Sources */,
+				C32262D02090A66D0054789B /* Document.m in Sources */,
 				C32309192081AEB100CEC487 /* TyphoonParentReferenceHydratingPostProcessor.m in Sources */,
 				C32306082080E57500CEC487 /* DialogViewController.swift in Sources */,
 				C32306072080E57500CEC487 /* LeftViewController.m in Sources */,

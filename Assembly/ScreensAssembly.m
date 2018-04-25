@@ -29,6 +29,7 @@
 #import "GroupsViewController.h"
 #import "BookmarksViewController.h"
 #import "VideosViewController.h"
+#import "DocumentsViewController.h"
 
 @implementation ScreensAssembly
 
@@ -205,6 +206,15 @@
     return [TyphoonDefinition withClass:[VideosViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self.viewModelsAssembly videosViewModel:ownerId]];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+        }];
+    }];
+}
+
+- (UIViewController *)documentsViewController:(NSNumber *)ownerId {
+    return [TyphoonDefinition withClass:[DocumentsViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly documentsViewModel:ownerId]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
     }];

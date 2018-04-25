@@ -18,4 +18,5 @@
 - (void)groupsTapped;
 - (void)bookmarksTapped;
 - (void)videosTapped;
+- (void)documentsTapped;
 @end

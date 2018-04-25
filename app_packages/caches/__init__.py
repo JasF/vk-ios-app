@@ -6,6 +6,7 @@ from .commentsdatabase import CommentsDatabase
 from .photoalbumsdatabase import PhotoAlbumsDatabase
 from .photosdatabase import PhotosDatabase
 from .videosdatabase import VideosDatabase
+from .documentsdatabase import DocumentsDatabase
 
 MessagesDatabase.deleteDatabaseFile(MessagesDatabase)
 UsersDatabase.deleteDatabaseFile(UsersDatabase)
@@ -14,3 +15,4 @@ PostsDatabase.deleteDatabaseFile(PostsDatabase)
 PhotoAlbumsDatabase.deleteDatabaseFile(PhotoAlbumsDatabase)
 PhotosDatabase.deleteDatabaseFile(PhotosDatabase)
 VideosDatabase.deleteDatabaseFile(VideosDatabase)
+DocumentsDatabase.deleteDatabaseFile(DocumentsDatabase)

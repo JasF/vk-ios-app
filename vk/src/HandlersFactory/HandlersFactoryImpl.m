@@ -28,6 +28,7 @@
 #import "GroupsViewModelImpl.h"
 #import "BookmarksViewModelImpl.h"
 #import "VideosViewModelImpl.h"
+#import "DocumentsViewModelImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -112,6 +113,11 @@
 
 - (id<PyVideosViewModel>)videosViewModelHandler:(NSInteger)ownerId {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyVideosViewModel)
+                                              parameters:@{@"ownerId":@(ownerId)}];
+}
+
+- (id<PyDocumentsViewModel>)documentsViewModelHandler:(NSInteger)ownerId {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyDocumentsViewModel)
                                               parameters:@{@"ownerId":@(ownerId)}];
 }
 
