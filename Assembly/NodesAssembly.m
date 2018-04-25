@@ -20,6 +20,7 @@
 #import "AudioNode.h"
 #import "FriendsNode.h"
 #import "AnswerNode.h"
+#import "VideoNode.h"
 
 @implementation NodesAssembly
 
@@ -161,6 +162,16 @@
                 [definition useInitializer:@selector(initWithAnswer:) parameters:^(TyphoonMethod *initializer)
                  {
                      [initializer injectParameterWith:friends];
+                 }];
+            }];
+}
+
+- (ASDisplayNode *)videoNode:(Video *)video {
+    return [TyphoonDefinition withClass:[VideoNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithVideo:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:video];
                  }];
             }];
 }

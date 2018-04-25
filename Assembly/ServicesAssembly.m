@@ -17,6 +17,8 @@
 #import "GalleryServiceImpl.h"
 #import "AnswersServiceImpl.h"
 #import "GroupsServiceImpl.h"
+#import "BookmarksServiceImpl.h"
+#import "VideosServiceImpl.h"
 
 @implementation ServicesAssembly
 
@@ -79,6 +81,19 @@
 
 - (id<GroupsService>)groupsService {
     return [TyphoonDefinition withClass:[GroupsServiceImpl class]];
+}
+
+- (id<BookmarksService>)bookmarksService {
+    return [TyphoonDefinition withClass:[BookmarksServiceImpl class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithWallService:) parameters:^(TyphoonMethod *initializer)
+         {
+             [initializer injectParameterWith:self.wallService];
+         }];
+    }];
+}
+
+- (id<VideosService>)videosService {
+    return [TyphoonDefinition withClass:[VideosServiceImpl class]];
 }
 
 @end

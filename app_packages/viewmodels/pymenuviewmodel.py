@@ -22,3 +22,9 @@ class PyMenuViewModel():
 
     def groupsTapped(self):
         managers.shared().screensManager().showGroupsViewController_(args=[vk.userId()])
+
+    def bookmarksTapped(self):
+        managers.shared().screensManager().showBookmarksViewController()
+
+    def videosTapped(self):
+        managers.shared().screensManager().showVideosViewController_(args=[vk.userId()])

@@ -1,5 +1,5 @@
 //
-//  GroupsViewModel.h
+//  VideosViewModel.h
 //  vk
 //
 //  Created by Jasf on 25.04.2018.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol GroupsViewModel <NSObject>
-- (void)getGroups:(NSInteger)offset completion:(void(^)(NSArray *groups))completion;
+@protocol VideosViewModel <NSObject>
+- (void)getVideos:(NSInteger)offset completion:(void(^)(NSArray *videos))completion;
 - (void)menuTapped;
 @end

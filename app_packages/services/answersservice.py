@@ -15,14 +15,14 @@ class AnswersService:
         try:
             api = vk.api()
             if isinstance(next_from, str):
-                response = api.notifications.get(start_from=next_from, count=5)
+                response = api.notifications.get(start_from=next_from)
             else:
-                response = api.notifications.get(count=5)
+                response = api.notifications.get()
             next_from = response.get('next_from')
             print('next_from: ' + str(next_from))
             l = response["items"]
             usersData = self.usersDecorator.usersDataFromAnswers(l)
-            print('\n\n\n$$$$$answer l is: ' + json.dumps(response) + '\n$$$$$\n\n\n')
+            #print('\n\n\n$$$$$answer l is: ' + json.dumps(response) + '\n$$$$$\n\n\n')
             #usersData = self.usersDecorator.usersDataFromPosts(l)
         except Exception as e:
             print('getAnswers.get exception: ' + str(e))

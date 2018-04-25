@@ -13,6 +13,7 @@
 #import "Comment.h"
 #import "PhotoAlbum.h"
 #import "Answer.h"
+#import "Video.h"
 
 @implementation NodeFactoryImpl {
     NodesAssembly *_assembly;
@@ -86,6 +87,9 @@
     }
     else if ([item isKindOfClass:[Answer class]]) {
         return [_assembly answerNode:item];
+    }
+    else if ([item isKindOfClass:[Video class]]) {
+        return [_assembly videoNode:item];
     }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;

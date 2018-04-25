@@ -17,6 +17,7 @@
 #import "Photo.h"
 #import "Audio.h"
 #import "Answer.h"
+#import "Video.h"
 
 @class WallPostNode;
 @class ASDisplayNode;
@@ -36,4 +37,5 @@
 - (ASDisplayNode *)audioNode:(Audio *)audio;
 - (ASDisplayNode *)friendsNode:(NSArray *)friends;
 - (ASDisplayNode *)answerNode:(Answer *)answer;
+- (ASDisplayNode *)videoNode:(Video *)video;
 @end

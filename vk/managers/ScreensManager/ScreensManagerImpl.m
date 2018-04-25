@@ -24,6 +24,8 @@
 #import "NewsViewController.h"
 #import "AnswersViewController.h"
 #import "GroupsViewController.h"
+#import "BookmarksViewController.h"
+#import "VideosViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -209,6 +211,30 @@
             return;
         }
         GroupsViewController *viewController =(GroupsViewController *)[_screensAssembly groupsViewController:userId];
+        [self pushViewController:viewController];
+    });
+}
+
+- (void)showBookmarksViewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[BookmarksViewController class]]) {
+            return;
+        }
+        BookmarksViewController *viewController =(BookmarksViewController *)[_screensAssembly bookmarksViewController];
+        [self pushViewController:viewController];
+    });
+}
+
+- (void)showVideosViewController:(NSNumber *)ownerId {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[VideosViewController class]]) {
+            return;
+        }
+        VideosViewController *viewController =(VideosViewController *)[_screensAssembly videosViewController:ownerId];
         [self pushViewController:viewController];
     });
 }

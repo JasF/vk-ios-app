@@ -19,6 +19,8 @@
 #import "NewsViewModelImpl.h"
 #import "AnswersViewModelImpl.h"
 #import "GroupsViewModelImpl.h"
+#import "BookmarksViewModelImpl.h"
+#import "VideosViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -151,6 +153,27 @@
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.groupsService];
                     [initializer injectParameterWith:userId];
+                }];
+            }];
+}
+
+- (id<BookmarksViewModel>)bookmarksViewModel {
+    return [TyphoonDefinition withClass:[BookmarksViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:bookmarksService:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.bookmarksService];
+                }];
+            }];
+}
+
+- (id<VideosViewModel>)videosViewModel:(NSNumber *)ownerId {
+    return [TyphoonDefinition withClass:[VideosViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:videosService:ownerId:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.videosService];
+                    [initializer injectParameterWith:ownerId];
                 }];
             }];
 }

@@ -24,4 +24,6 @@
 - (void)showNewsViewController;
 - (void)showAnswersViewController;
 - (void)showGroupsViewController:(NSNumber *)userId;
+- (void)showBookmarksViewController;
+- (void)showVideosViewController:(NSNumber *)ownerId;
 @end

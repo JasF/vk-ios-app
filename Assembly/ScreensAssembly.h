@@ -38,6 +38,8 @@
 - (UIViewController *)newsViewController;
 - (UIViewController *)answersViewController;
 - (UIViewController *)groupsViewController:(NSNumber *)userId;
+- (UIViewController *)bookmarksViewController;
+- (UIViewController *)videosViewController:(NSNumber *)ownerId;
 - (UIWindow *)window;
 - (UINavigationController *)rootNavigationController;
 @end

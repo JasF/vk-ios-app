@@ -18,6 +18,8 @@
 #import "GalleryService.h"
 #import "AnswersService.h"
 #import "GroupsService.h"
+#import "BookmarksService.h"
+#import "VideosService.h"
 
 @interface ServicesAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -31,4 +33,6 @@
 - (id<GalleryService>)galleryService;
 - (id<AnswersService>)answersService;
 - (id<GroupsService>)groupsService;
+- (id<BookmarksService>)bookmarksService;
+- (id<VideosService>)videosService;
 @end

@@ -27,6 +27,8 @@
 #import "NewsViewController.h"
 #import "AnswersViewController.h"
 #import "GroupsViewController.h"
+#import "BookmarksViewController.h"
+#import "VideosViewController.h"
 
 @implementation ScreensAssembly
 
@@ -185,6 +187,24 @@
     return [TyphoonDefinition withClass:[GroupsViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self.viewModelsAssembly groupsViewModel:userId]];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+        }];
+    }];
+}
+
+- (UIViewController *)bookmarksViewController {
+    return [TyphoonDefinition withClass:[BookmarksViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly bookmarksViewModel]];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+        }];
+    }];
+}
+
+- (UIViewController *)videosViewController:(NSNumber *)ownerId {
+    return [TyphoonDefinition withClass:[VideosViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly videosViewModel:ownerId]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
     }];

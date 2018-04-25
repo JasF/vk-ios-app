@@ -63,5 +63,17 @@
         [self.handler groupsTapped];
     });
 }
-    
+
+- (void)bookmarksTapped {
+    dispatch_python(^{
+        [self.handler bookmarksTapped];
+    });
+}
+
+- (void)videosTapped {
+    dispatch_python(^{
+        [self.handler videosTapped];
+    });
+}
+
 @end

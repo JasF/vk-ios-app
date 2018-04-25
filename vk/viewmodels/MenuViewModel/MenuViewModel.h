@@ -16,4 +16,6 @@
 - (void)photosTapped;
 - (void)answersTapped;
 - (void)groupsTapped;
+- (void)bookmarksTapped;
+- (void)videosTapped;
 @end

@@ -22,6 +22,8 @@
 #import "NewsViewModel.h"
 #import "AnswersViewModel.h"
 #import "GroupsViewModel.h"
+#import "BookmarksViewModel.h"
+#import "VideosViewModel.h"
 
 @interface ViewModelsAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -39,4 +41,6 @@
 - (id<NewsViewModel>)newsViewModel;
 - (id<AnswersViewModel>)answersViewModel;
 - (id<GroupsViewModel>)groupsViewModel:(NSNumber *)userId;
+- (id<BookmarksViewModel>)bookmarksViewModel;
+- (id<VideosViewModel>)videosViewModel:(NSNumber *)ownerId;
 @end

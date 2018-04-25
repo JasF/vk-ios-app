@@ -35,6 +35,14 @@
 		C3226281209074120054789B /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3226280209074120054789B /* GroupsViewController.m */; };
 		C3226286209074EF0054789B /* GroupsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3226285209074EF0054789B /* GroupsViewModelImpl.m */; };
 		C322628B209075CB0054789B /* GroupsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C322628A209075CB0054789B /* GroupsServiceImpl.m */; };
+		C3226291209081060054789B /* BookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3226290209081060054789B /* BookmarksViewController.m */; };
+		C3226297209082890054789B /* BookmarksServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3226296209082890054789B /* BookmarksServiceImpl.m */; };
+		C322629C209082E10054789B /* BookmarksViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C322629B209082E10054789B /* BookmarksViewModelImpl.m */; };
+		C32262A2209089B40054789B /* VideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262A1209089B40054789B /* VideosViewController.m */; };
+		C32262A720908BB00054789B /* VideosViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262A620908BB00054789B /* VideosViewModelImpl.m */; };
+		C32262AC20908CC70054789B /* VideosServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262AB20908CC70054789B /* VideosServiceImpl.m */; };
+		C32262B6209091CE0054789B /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262B4209091CE0054789B /* Video.m */; };
+		C32262BA209092DA0054789B /* VideoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C32262B9209092DA0054789B /* VideoNode.m */; };
 		C32305B92080E57500CEC487 /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EC2080E57300CEC487 /* libOpenSSL.a */; };
 		C32305BA2080E57500CEC487 /* PythonFramework.zip in Resources */ = {isa = PBXBuildFile; fileRef = C32303ED2080E57300CEC487 /* PythonFramework.zip */; };
 		C32305BB2080E57500CEC487 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32303EE2080E57300CEC487 /* libbz2.a */; };
@@ -92,7 +100,6 @@
 		C32305EF2080E57500CEC487 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304552080E57400CEC487 /* ViewController.m */; };
 		C32305F02080E57500CEC487 /* icon_liked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C32304562080E57400CEC487 /* icon_liked@3x.png */; };
 		C32305F12080E57500CEC487 /* Comments.m in Sources */ = {isa = PBXBuildFile; fileRef = C323045A2080E57400CEC487 /* Comments.m */; };
-		C32305F22080E57500CEC487 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = C323045C2080E57400CEC487 /* Video.m */; };
 		C32305F32080E57500CEC487 /* Likes.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304602080E57400CEC487 /* Likes.m */; };
 		C32305F42080E57500CEC487 /* Reposts.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304622080E57400CEC487 /* Reposts.m */; };
 		C32305F52080E57500CEC487 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304662080E57400CEC487 /* Message.m */; };
@@ -727,6 +734,31 @@
 		C322628A209075CB0054789B /* GroupsServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupsServiceImpl.m; sourceTree = "<group>"; };
 		C322628C209077420054789B /* pygroupsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pygroupsviewmodel.py; sourceTree = "<group>"; };
 		C322628D2090774D0054789B /* groupsservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = groupsservice.py; sourceTree = "<group>"; };
+		C322628F209081060054789B /* BookmarksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarksViewController.h; sourceTree = "<group>"; };
+		C3226290209081060054789B /* BookmarksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookmarksViewController.m; sourceTree = "<group>"; };
+		C3226293209082770054789B /* BookmarksService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarksService.h; sourceTree = "<group>"; };
+		C3226295209082890054789B /* BookmarksServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarksServiceImpl.h; sourceTree = "<group>"; };
+		C3226296209082890054789B /* BookmarksServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookmarksServiceImpl.m; sourceTree = "<group>"; };
+		C3226299209082D50054789B /* BookmarksViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarksViewModel.h; sourceTree = "<group>"; };
+		C322629A209082E10054789B /* BookmarksViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarksViewModelImpl.h; sourceTree = "<group>"; };
+		C322629B209082E10054789B /* BookmarksViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookmarksViewModelImpl.m; sourceTree = "<group>"; };
+		C322629D209084A20054789B /* pybookmarksviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pybookmarksviewmodel.py; sourceTree = "<group>"; };
+		C322629E209084B40054789B /* bookmarksservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = bookmarksservice.py; sourceTree = "<group>"; };
+		C32262A0209089B40054789B /* VideosViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideosViewController.h; sourceTree = "<group>"; };
+		C32262A1209089B40054789B /* VideosViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideosViewController.m; sourceTree = "<group>"; };
+		C32262A420908BA00054789B /* VideosViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideosViewModel.h; sourceTree = "<group>"; };
+		C32262A520908BB00054789B /* VideosViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideosViewModelImpl.h; sourceTree = "<group>"; };
+		C32262A620908BB00054789B /* VideosViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideosViewModelImpl.m; sourceTree = "<group>"; };
+		C32262A920908CBD0054789B /* VideosService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideosService.h; sourceTree = "<group>"; };
+		C32262AA20908CC70054789B /* VideosServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideosServiceImpl.h; sourceTree = "<group>"; };
+		C32262AB20908CC70054789B /* VideosServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideosServiceImpl.m; sourceTree = "<group>"; };
+		C32262AD20908D740054789B /* pyvideosviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyvideosviewmodel.py; sourceTree = "<group>"; };
+		C32262AE20908D810054789B /* videosservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = videosservice.py; sourceTree = "<group>"; };
+		C32262B32090902E0054789B /* videosdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = videosdatabase.py; sourceTree = "<group>"; };
+		C32262B4209091CE0054789B /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Video.m; path = vk/models/Video/Video.m; sourceTree = SOURCE_ROOT; };
+		C32262B5209091CE0054789B /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Video.h; path = vk/models/Video/Video.h; sourceTree = SOURCE_ROOT; };
+		C32262B8209092DA0054789B /* VideoNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoNode.h; sourceTree = "<group>"; };
+		C32262B9209092DA0054789B /* VideoNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoNode.m; sourceTree = "<group>"; };
 		C32303EC2080E57300CEC487 /* libOpenSSL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenSSL.a; sourceTree = "<group>"; };
 		C32303ED2080E57300CEC487 /* PythonFramework.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = PythonFramework.zip; sourceTree = "<group>"; };
 		C32303EE2080E57300CEC487 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbz2.a; sourceTree = "<group>"; };
@@ -819,8 +851,6 @@
 		C32304562080E57400CEC487 /* icon_liked@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_liked@3x.png"; sourceTree = "<group>"; };
 		C32304592080E57400CEC487 /* Comments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comments.h; sourceTree = "<group>"; };
 		C323045A2080E57400CEC487 /* Comments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comments.m; sourceTree = "<group>"; };
-		C323045C2080E57400CEC487 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
-		C323045D2080E57400CEC487 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
 		C323045F2080E57400CEC487 /* Likes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Likes.h; sourceTree = "<group>"; };
 		C32304602080E57400CEC487 /* Likes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Likes.m; sourceTree = "<group>"; };
 		C32304622080E57400CEC487 /* Reposts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reposts.m; sourceTree = "<group>"; };
@@ -2066,6 +2096,83 @@
 			path = GroupsService;
 			sourceTree = "<group>";
 		};
+		C322628E209080DD0054789B /* BookmarksViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C322628F209081060054789B /* BookmarksViewController.h */,
+				C3226290209081060054789B /* BookmarksViewController.m */,
+			);
+			path = BookmarksViewController;
+			sourceTree = "<group>";
+		};
+		C32262922090826A0054789B /* BookmarksService */ = {
+			isa = PBXGroup;
+			children = (
+				C3226293209082770054789B /* BookmarksService.h */,
+				C3226295209082890054789B /* BookmarksServiceImpl.h */,
+				C3226296209082890054789B /* BookmarksServiceImpl.m */,
+			);
+			path = BookmarksService;
+			sourceTree = "<group>";
+		};
+		C3226298209082C70054789B /* BookmarksViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3226299209082D50054789B /* BookmarksViewModel.h */,
+				C322629A209082E10054789B /* BookmarksViewModelImpl.h */,
+				C322629B209082E10054789B /* BookmarksViewModelImpl.m */,
+			);
+			path = BookmarksViewModel;
+			sourceTree = "<group>";
+		};
+		C322629F2090899E0054789B /* VideosViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C32262A0209089B40054789B /* VideosViewController.h */,
+				C32262A1209089B40054789B /* VideosViewController.m */,
+			);
+			path = VideosViewController;
+			sourceTree = "<group>";
+		};
+		C32262A320908B940054789B /* VideosViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C32262A420908BA00054789B /* VideosViewModel.h */,
+				C32262A520908BB00054789B /* VideosViewModelImpl.h */,
+				C32262A620908BB00054789B /* VideosViewModelImpl.m */,
+			);
+			path = VideosViewModel;
+			sourceTree = "<group>";
+		};
+		C32262A820908CB20054789B /* VideosService */ = {
+			isa = PBXGroup;
+			children = (
+				C32262A920908CBD0054789B /* VideosService.h */,
+				C32262AA20908CC70054789B /* VideosServiceImpl.h */,
+				C32262AB20908CC70054789B /* VideosServiceImpl.m */,
+			);
+			path = VideosService;
+			sourceTree = "<group>";
+		};
+		C32262AF20908FD10054789B /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				C32262B5209091CE0054789B /* Video.h */,
+				C32262B4209091CE0054789B /* Video.m */,
+			);
+			name = Video;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		C32262B7209092CC0054789B /* VideoNode */ = {
+			isa = PBXGroup;
+			children = (
+				C32262B8209092DA0054789B /* VideoNode.h */,
+				C32262B9209092DA0054789B /* VideoNode.m */,
+			);
+			path = VideoNode;
+			sourceTree = "<group>";
+		};
 		C32303EB2080E57300CEC487 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2200,6 +2307,7 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C32262B7209092CC0054789B /* VideoNode */,
 				C322627A20905E830054789B /* AnswerNode */,
 				C343755F208F70B6004EF670 /* FriendsNode */,
 				C343755B208F6B64004EF670 /* AudioNode */,
@@ -2299,12 +2407,12 @@
 		C32304572080E57400CEC487 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C32262AF20908FD10054789B /* Video */,
 				C3F170CF2090547500C33F2C /* Answer */,
 				C3437557208F696D004EF670 /* Audio */,
 				C313772F208E290800F568EA /* PhotoAlbum */,
 				C3036C0D208DE298005F086E /* Comment */,
 				C32304582080E57400CEC487 /* Comments */,
-				C323045B2080E57400CEC487 /* Video */,
 				C323045E2080E57400CEC487 /* Likes */,
 				C32304612080E57400CEC487 /* Reposts */,
 				C32304642080E57400CEC487 /* Message */,
@@ -2327,15 +2435,6 @@
 				C323045A2080E57400CEC487 /* Comments.m */,
 			);
 			path = Comments;
-			sourceTree = "<group>";
-		};
-		C323045B2080E57400CEC487 /* Video */ = {
-			isa = PBXGroup;
-			children = (
-				C323045C2080E57400CEC487 /* Video.m */,
-				C323045D2080E57400CEC487 /* Video.h */,
-			);
-			path = Video;
 			sourceTree = "<group>";
 		};
 		C323045E2080E57400CEC487 /* Likes */ = {
@@ -2440,6 +2539,8 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C322629F2090899E0054789B /* VideosViewController */,
+				C322628E209080DD0054789B /* BookmarksViewController */,
 				C322627E209073FB0054789B /* GroupsViewController */,
 				C3437566208F815A004EF670 /* AnswersViewController */,
 				C343754C208F3188004EF670 /* NewsViewController */,
@@ -2573,6 +2674,8 @@
 		C32304B92080E57400CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C32262A820908CB20054789B /* VideosService */,
+				C32262922090826A0054789B /* BookmarksService */,
 				C3226287209075930054789B /* GroupsService */,
 				C343756F208F8328004EF670 /* AnswersService */,
 				C3137741208E303000F568EA /* GalleryService */,
@@ -3111,6 +3214,8 @@
 				C3437556208F5E0C004EF670 /* newsservice.py */,
 				C3437574208F8678004EF670 /* answersservice.py */,
 				C322628D2090774D0054789B /* groupsservice.py */,
+				C322629E209084B40054789B /* bookmarksservice.py */,
+				C32262AE20908D810054789B /* videosservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -3128,6 +3233,7 @@
 				C3137737208E2C0500F568EA /* photoalbumsdatabase.py */,
 				C313774E208E3C5300F568EA /* photosdatabase.py */,
 				C3F170D32090555900C33F2C /* answersdatabase.py */,
+				C32262B32090902E0054789B /* videosdatabase.py */,
 			);
 			path = caches;
 			sourceTree = "<group>";
@@ -4305,6 +4411,8 @@
 				C3437555208F39B8004EF670 /* pynewsviewmodel.py */,
 				C3437575208F8687004EF670 /* pyanswersviewmodel.py */,
 				C322628C209077420054789B /* pygroupsviewmodel.py */,
+				C322629D209084A20054789B /* pybookmarksviewmodel.py */,
+				C32262AD20908D740054789B /* pyvideosviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -4463,6 +4571,8 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C32262A320908B940054789B /* VideosViewModel */,
+				C3226298209082C70054789B /* BookmarksViewModel */,
 				C3226282209074D90054789B /* GroupsViewModel */,
 				C343756A208F81B3004EF670 /* AnswersViewModel */,
 				C3437550208F31AC004EF670 /* NewsViewModel */,
@@ -5064,12 +5174,14 @@
 				C323092C2081AEB100CEC487 /* TyphoonComponentFactory.m in Sources */,
 				C3372FBA2083356C0080DA75 /* AddRandomMessageChatViewController.swift in Sources */,
 				C32305BE2080E57500CEC487 /* EXTConcreteProtocol.m in Sources */,
+				C32262BA209092DA0054789B /* VideoNode.m in Sources */,
 				C3B0EF4A208B2FF9008802BB /* DemoChatViewController+ChatInputDelegate.swift in Sources */,
 				C32308C82081AEB100CEC487 /* TyphoonAbstractDetachableComponentFactoryPostProcessor.m in Sources */,
 				C32308F72081AEB100CEC487 /* TyphoonDefinitionNamespace.m in Sources */,
 				C343755E208F6B72004EF670 /* AudioNode.m in Sources */,
 				C32308FE2081AEB100CEC487 /* TyphoonInjectionByDictionary.m in Sources */,
 				C32308BC2081AEB100CEC487 /* LGSideMenuController.m in Sources */,
+				C32262B6209091CE0054789B /* Video.m in Sources */,
 				C32306052080E57500CEC487 /* MainViewController.mm in Sources */,
 				C32308BE2081AEB100CEC487 /* UIViewController+LGSideMenuController.m in Sources */,
 				C3372FC02083356C0080DA75 /* MessagesSelectionChatViewController.swift in Sources */,
@@ -5105,6 +5217,7 @@
 				C32309342081AEB100CEC487 /* UIScreen+NanoFrame.m in Sources */,
 				C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */,
 				C32305BF2080E57500CEC487 /* EXTScope.m in Sources */,
+				C3226291209081060054789B /* BookmarksViewController.m in Sources */,
 				C32308C02081AEB100CEC487 /* TyphoonOptionMatcher.m in Sources */,
 				C32308C42081AEB100CEC487 /* TyphoonPropertyStyleConfiguration.m in Sources */,
 				C32309242081AEB100CEC487 /* TyphoonCollaboratingAssemblyProxy.m in Sources */,
@@ -5146,10 +5259,11 @@
 				C32305F62080E57500CEC487 /* User.m in Sources */,
 				C3437562208F70C4004EF670 /* FriendsNode.m in Sources */,
 				C313DD59208CA7950005E29B /* WriteCommentNode.m in Sources */,
-				C32305F22080E57500CEC487 /* Video.m in Sources */,
 				C32308FB2081AEB100CEC487 /* TyphoonInjectionByComponentFactory.m in Sources */,
+				C32262A720908BB00054789B /* VideosViewModelImpl.m in Sources */,
 				C32305C52080E57500CEC487 /* EXTNil.m in Sources */,
 				C32309042081AEB100CEC487 /* TyphoonInjectionByCollection.m in Sources */,
+				C322629C209082E10054789B /* BookmarksViewModelImpl.m in Sources */,
 				C32309162081AEB100CEC487 /* NSInvocation+TCFWrapValues.m in Sources */,
 				C32306132080E57500CEC487 /* NodeFactoryImpl.m in Sources */,
 				C343756E208F81DB004EF670 /* AnswersViewModelImpl.m in Sources */,
@@ -5158,6 +5272,7 @@
 				C32308E72081AEB100CEC487 /* TyphoonBundledImageTypeConverter.m in Sources */,
 				C32308CA2081AEB100CEC487 /* TyphoonBundleResource.m in Sources */,
 				C3437554208F31E0004EF670 /* NewsViewModelImpl.m in Sources */,
+				C32262A2209089B40054789B /* VideosViewController.m in Sources */,
 				C32308E82081AEB100CEC487 /* TyphoonUIColorTypeConverter.m in Sources */,
 				C32308EC2081AEB100CEC487 /* NSDictionary+CustomInjection.m in Sources */,
 				C32308D32081AEB100CEC487 /* NSObject+TyphoonIntrospectionUtils.m in Sources */,
@@ -5282,9 +5397,11 @@
 				C313DD6D208CBA460005E29B /* WallPostServiceImpl.m in Sources */,
 				C323060E2080E57500CEC487 /* MenuViewController.m in Sources */,
 				C32306092080E57500CEC487 /* EmptyViewController.m in Sources */,
+				C3226297209082890054789B /* BookmarksServiceImpl.m in Sources */,
 				C32308C22081AEB100CEC487 /* TyphoonDefinition+Config.m in Sources */,
 				C32305ED2080E57500CEC487 /* VKSdkManagerImpl.m in Sources */,
 				C323091A2081AEB100CEC487 /* TyphoonAssemblyAdviser.m in Sources */,
+				C32262AC20908CC70054789B /* VideosServiceImpl.m in Sources */,
 				C32305EB2080E57500CEC487 /* ScreensManagerImpl.m in Sources */,
 				C35B737D208B1203001C8067 /* TypingModel.swift in Sources */,
 				C32309072081AEB100CEC487 /* TyphoonTypeDescriptor.m in Sources */,

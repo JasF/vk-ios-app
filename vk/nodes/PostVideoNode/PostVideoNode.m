@@ -33,7 +33,7 @@
         ASNetworkImageNode *node = [[ASNetworkImageNode alloc] init];
         node.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
         node.cornerRadius = 4.0;
-        node.URL = [NSURL URLWithString:video.photo_640];
+        node.URL = [NSURL URLWithString:video.imageURL];
         node.delegate = self;
         node.imageModificationBlock = ^UIImage *(UIImage *image) {
             UIImage *modifiedImage;
