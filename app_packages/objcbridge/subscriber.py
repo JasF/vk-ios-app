@@ -90,7 +90,7 @@ class Subscriber():
                 handler = allocator()
             self.handlers[key] = handler
         except Exception as e:
-            dprint('instantiate handler exception: ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))
+            dprint('instantiate handler exception: ' + key + '; ' + str(e) + '; allocators: ' + str(self.allocators) + '; object: ' + str(object))
 
 
     def processInstantiateHandlerWithDelegate(self, object):

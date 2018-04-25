@@ -23,6 +23,7 @@
 #import "VideosViewModelImpl.h"
 #import "DocumentsViewModelImpl.h"
 #import "SettingsViewModelImpl.h"
+#import "DetailPhotoViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -120,6 +121,19 @@
                 [definition useInitializer:@selector(initWithHandlersFactory:galleryService:ownerId:albumId:photoId:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.galleryService];
+                    [initializer injectParameterWith:ownerId];
+                    [initializer injectParameterWith:albumId];
+                    [initializer injectParameterWith:photoId];
+                }];
+            }];
+}
+
+- (id<DetailPhotoViewModel>)detailPhotoViewModel:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
+    return [TyphoonDefinition withClass:[DetailPhotoViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:detailPhotoService:ownerId:albumId:photoId:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.detailPhotoService];
                     [initializer injectParameterWith:ownerId];
                     [initializer injectParameterWith:albumId];
                     [initializer injectParameterWith:photoId];

@@ -25,6 +25,7 @@
 @protocol PyVideosViewModel;
 @protocol PyDocumentsViewModel;
 @protocol PySettingsViewModel;
+@protocol PyDetailPhotoViewModel;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
@@ -37,6 +38,7 @@
 - (id<PyPhotoAlbumsViewModel>)photoAlbumsViewModelHandler:(NSInteger)ownerId;
 - (id<PyGalleryViewModel>)galleryViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(id)albumId;
 - (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(NSInteger)albumId photoId:(NSInteger)photoId;
+- (id<PyDetailPhotoViewModel>)detailPhotoViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(NSInteger)albumId photoId:(NSInteger)photoId;
 - (id<PyNewsViewModel>)newsViewModelHandler;
 - (id<PyAnswersViewModel>)answersViewModelHandler;
 - (id<PyGroupsViewModel>)groupsViewModelHandler:(NSInteger)userId;

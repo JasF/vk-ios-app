@@ -31,6 +31,7 @@
 #import "VideosViewController.h"
 #import "DocumentsViewController.h"
 #import "SettingsViewController.h"
+#import "DetailPhotoViewController.h"
 
 @implementation ScreensAssembly
 
@@ -163,6 +164,15 @@
     return [TyphoonDefinition withClass:[ImagesViewerViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self.viewModelsAssembly imagesViewerViewModel:ownerId albumId:albumId photoId:photoId]];
+        }];
+    }];
+}
+
+- (UIViewController *)detailPhotoViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
+    return [TyphoonDefinition withClass:[DetailPhotoViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly detailPhotoViewModel:ownerId albumId:albumId photoId:photoId]];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
     }];
 }

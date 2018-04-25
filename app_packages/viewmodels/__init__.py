@@ -15,6 +15,7 @@ from .pybookmarksviewmodel import PyBookmarksViewModel
 from .pyvideosviewmodel import PyVideosViewModel
 from .pydocumentsviewmodel import PyDocumentsViewModel
 from .pysettingsviewmodel import PySettingsViewModel
+from .pydetailphotoviewmodel import PyDetailPhotoViewModel
 
 from services.messagesservice import MessagesService
 from services.chatlistservice import ChatListService
@@ -31,6 +32,7 @@ from services.groupsservice import GroupsService
 from services.bookmarksservice import BookmarksService
 from services.videosservice import VideosService
 from services.documentsservice import DocumentsService
+from services.detailphotoservice import DetailPhotoService
 
 Subscriber().setClassAllocatorWithDelegate( PyChatListViewModel, lambda delegateId: PyChatListViewModel(delegateId, MessagesService(), ChatListService()) )
 Subscriber().setClassAllocatorWithDelegate( PyDialogScreenViewModel, lambda delegateId, parameters: PyDialogScreenViewModel(delegateId, parameters, MessagesService(), DialogService()) )
@@ -40,6 +42,7 @@ Subscriber().setClassAllocator( PyMenuViewModel, lambda: PyMenuViewModel() )
 Subscriber().setClassAllocator( PyPhotoAlbumsViewModel, lambda parameters: PyPhotoAlbumsViewModel(PhotoAlbumsService(), parameters['ownerId']) )
 Subscriber().setClassAllocator( PyGalleryViewModel, lambda parameters: PyGalleryViewModel(GalleryService(), parameters['ownerId'], parameters['albumId']) )
 Subscriber().setClassAllocator( PyImagesViewerViewModel, lambda parameters: PyImagesViewerViewModel(GalleryService(), parameters['ownerId'], parameters['albumId'], parameters['photoId']) )
+Subscriber().setClassAllocator( PyDetailPhotoViewModel, lambda parameters: PyDetailPhotoViewModel(DetailPhotoService(UsersDecorator()), parameters['ownerId'], parameters['albumId'], parameters['photoId']) )
 Subscriber().setClassAllocator( PyFriendsViewModel, lambda: PyFriendsViewModel(FriendsService()) )
 Subscriber().setClassAllocatorWithDelegate( PyWallPostViewModel, lambda delegateId, parameters: PyWallPostViewModel(WallPostService(UsersDecorator()), parameters['ownerId'], parameters['postId']) )
 Subscriber().setClassAllocator( PyAnswersViewModel, lambda: PyAnswersViewModel(AnswersService(UsersDecorator())) )

@@ -28,6 +28,7 @@
 #import "VideosViewController.h"
 #import "DocumentsViewController.h"
 #import "SettingsViewController.h"
+#import "DetailPhotoViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -177,6 +178,18 @@
             return;
         }
         ImagesViewerViewController *viewController =(ImagesViewerViewController *)[_screensAssembly imagesViewerViewController:ownerId albumId:albumId photoId:photoId];
+        [self pushViewController:viewController clean:NO];
+    });
+}
+
+- (void)showDetailPhotoViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[DetailPhotoViewController class]]) {
+            return;
+        }
+        DetailPhotoViewController *viewController =(DetailPhotoViewController *)[_screensAssembly detailPhotoViewController:ownerId albumId:albumId photoId:photoId];
         [self pushViewController:viewController clean:NO];
     });
 }

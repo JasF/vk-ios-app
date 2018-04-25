@@ -22,6 +22,8 @@
 #import "VideosService.h"
 #import "DocumentsService.h"
 #import "SettingsService.h"
+#import "GalleryService.h"
+#import "DetailPhotoService.h"
 
 @interface ServicesAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -39,4 +41,6 @@
 - (id<VideosService>)videosService;
 - (id<DocumentsService>)documentsService;
 - (id<SettingsService>)settingsService;
+- (id<GalleryService>)galleryService;
+- (id<DetailPhotoService>)detailPhotoService;
 @end
