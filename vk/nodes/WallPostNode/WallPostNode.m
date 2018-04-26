@@ -241,19 +241,7 @@
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsStart
      children:@[_nameNode, _timeNode]];
-    nameVerticalStack.style.flexShrink = 1.0f;
-    
-    NSMutableArray *layoutSpecChildren = [@[_nameNode] mutableCopy];
-    [layoutSpecChildren addObject:_timeNode];
-    
-    ASStackLayoutSpec *nameStack =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:5.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsCenter
-     children:layoutSpecChildren];
-    nameStack.style.alignSelf = ASStackLayoutAlignSelfStretch;
+
     
     // bottom controls horizontal stack
     ASStackLayoutSpec *controlsStack = nil;
@@ -286,17 +274,15 @@
     
     if (_verticalLineNode && _historyNode) {
         ASInsetLayoutSpec *verticalLineSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_verticalLineNode];
-        ASInsetLayoutSpec *historySpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_historyNode];
-        
-        historySpec.style.flexShrink = 1.0;
         ASStackLayoutSpec *historyHorizontalSpec =
         [ASStackLayoutSpec
          stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
          spacing:8.0
          justifyContent:ASStackLayoutJustifyContentStart
          alignItems:ASStackLayoutAlignItemsStretch
-         children:@[verticalLineSpec, historySpec]];
-        historyHorizontalSpec.style.flexShrink = 1.0;
+         children:@[verticalLineSpec, _historyNode]];
+        _historyNode.style.flexShrink = 1.f;
+        _historyNode.style.flexGrow = 1.f;
         [mainStackContent addObject:historyHorizontalSpec];
     }
     
@@ -312,16 +298,16 @@
     
     ASInsetLayoutSpec *rightSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_verticalRightNode];
     
-    ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
-    spacer.style.flexGrow = 1.0;
+    nameVerticalStack.style.flexShrink = 1.f;
+    nameVerticalStack.style.flexGrow = 1.f;
     // Horizontal spec for avatar
     ASStackLayoutSpec *avatarContentSpec =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
      spacing:8.0
      justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
-     children:@[_avatarNode, nameVerticalStack, spacer, rightSpec]];
+     alignItems:ASStackLayoutAlignItemsCenter
+     children:@[_avatarNode, nameVerticalStack, rightSpec]];
     
     NSMutableArray *verticalContentSpecArray = [@[avatarContentSpec, _postNode, contentSpec] mutableCopy];
     if (controlsStack) {
@@ -336,9 +322,7 @@
      children:verticalContentSpecArray];
     verticalContentSpec.style.flexShrink = 1.0;
     
-    return [ASInsetLayoutSpec
-            insetLayoutSpecWithInsets:UIEdgeInsetsMake(10, 10, 10, 10)
-            child:verticalContentSpec];
+    return verticalContentSpec;
     
 }
 

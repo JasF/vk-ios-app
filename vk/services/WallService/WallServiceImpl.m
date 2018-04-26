@@ -50,12 +50,7 @@
     }
     
     void (^updatePostBlock)(WallPost *post) = ^void(WallPost *post) {
-        post.user = usersDictionary[@(ABS(post.validId))];
-#ifdef DEBUG
-        if ([post.user.first_name isEqualToString:@"Konstantin"]) {
-            NSLog(@"!");
-        }
-#endif
+        post.user = usersDictionary[@(post.validId)];
     };
     void (^updateFriendsBlock)(WallPost *post) = ^void(WallPost *post) {
         NSMutableArray *friends = [NSMutableArray new];

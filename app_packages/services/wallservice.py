@@ -20,7 +20,7 @@ class WallService:
             response = api.wall.get(offset=offset, owner_id=userId)
             l = response["items"]
             
-            #print('wall response: ' + json.dumps(l, sort_keys=True, indent=4, separators=(',', ': ')))
+            print('wall response: ' + json.dumps(l, sort_keys=True, indent=4, separators=(',', ': ')))
             cache = PostsDatabase()
             cache.update(l)
             cache.close()

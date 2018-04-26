@@ -66,6 +66,7 @@
     ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
     spacer.style.flexGrow = 1.0;
     
+    _usernameNode.style.flexShrink = 1.f;
     ASStackLayoutSpec *topLineStack =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
@@ -73,7 +74,6 @@
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsCenter
      children:@[_usernameNode, spacer, _timeNode]];
-    topLineStack.style.alignSelf = ASStackLayoutAlignSelfStretch;
     
     ASStackLayoutSpec *nameVerticalStack =
     [ASStackLayoutSpec
@@ -90,9 +90,9 @@
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsStart
      children:@[_avatarNode, nameVerticalStack]];
+    nameVerticalStack.style.flexShrink = 1.f;
     
     ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
-    spec.style.flexShrink = 1.0f;
     return spec;
 }
 
