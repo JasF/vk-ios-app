@@ -1,0 +1,93 @@
+#####################################
+# Defines
+#####################################
+COMMON_PREPROCESSOR_FLAGS = ['-fobjc-arc']
+
+COMMON_LANG_PREPROCESSOR_FLAGS = {
+  'C': ['-std=gnu99'],
+  'CXX': ['-std=gnu++11', '-stdlib=libc++'],
+}
+
+FLANIMATEDIMAGE_HEADER_FILES = ['Pod/Classes/Image Categories/FLAnimatedImageView+PI_NRemoteImage.h']
+FLANIMATEDIMAGE_SOURCE_FILES = ['Pod/Classes/Image Categories/FLAnimatedImageView+PI_NRemoteImage.m']
+
+PI_NCACHE_HEADER_FILES = glob(['Pod/Classes/PI_NCache/**/*.h'])
+PI_NCACHE_SOURCE_FILES = glob(['Pod/Classes/PI_NCache/**/*.m'])
+
+#####################################
+# PI_NRemoteImage core targets
+#####################################
+apple_library(
+  name = 'PI_NRemoteImage-Core',
+  header_path_prefix = 'PI_NRemoteImage',
+  exported_headers = glob([
+      'Pod/Classes/**/*.h',
+    ],
+    excludes = FLANIMATEDIMAGE_HEADER_FILES + PI_NCACHE_HEADER_FILES
+  ),
+  srcs = glob([
+      'Pod/Classes/**/*.m',
+    ],
+    excludes = FLANIMATEDIMAGE_SOURCE_FILES + PI_NCACHE_SOURCE_FILES
+  ),
+  preprocessor_flags = COMMON_PREPROCESSOR_FLAGS + [
+    '-DPI_N_TARGET_IOS=(TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR || TARGET_OS_TV)',
+    '-DPI_N_TARGET_MAC=(TARGET_OS_MAC)',
+  ],
+  lang_preprocessor_flags = COMMON_LANG_PREPROCESSOR_FLAGS,
+  linker_flags = [
+    '-weak_framework',
+    'UIKit',
+    '-weak_framework',
+    'MobileCoreServices',
+    '-weak_framework',
+    'Cocoa',
+    '-weak_framework',
+    'CoreServices',
+  ],
+  frameworks = [
+    '$SDKROOT/System/Library/Frameworks/ImageIO.framework',
+    '$SDKROOT/System/Library/Frameworks/Accelerate.framework',
+  ],
+  visibility = ['PUBLIC'],
+)
+
+apple_library(
+  name = 'PI_NRemoteImage',
+  deps = [
+    ':PI_NRemoteImage-FLAnimatedImage',
+    ':PI_NRemoteImage-PI_NCache'
+  ],
+  visibility = ['PUBLIC'],
+)
+
+#####################################
+# Other PI_NRemoteImage targets
+#####################################
+apple_library(
+  name = 'PI_NRemoteImage-FLAnimatedImage',
+  header_path_prefix = 'PI_NRemoteImage',
+  exported_headers = FLANIMATEDIMAGE_HEADER_FILES,
+  srcs = FLANIMATEDIMAGE_SOURCE_FILES,
+  preprocessor_flags = COMMON_PREPROCESSOR_FLAGS,
+  deps = [
+    ':PI_NRemoteImage-Core',
+    '//Pods/FLAnimatedImage:FLAnimatedImage'
+  ],
+  visibility = ['PUBLIC'],
+)
+
+apple_library(
+  name = 'PI_NRemoteImage-PI_NCache',
+  header_path_prefix = 'PI_NRemoteImage',
+  exported_headers = PI_NCACHE_HEADER_FILES,
+  srcs = PI_NCACHE_SOURCE_FILES,
+  preprocessor_flags = COMMON_PREPROCESSOR_FLAGS,
+  deps = [
+    ':PI_NRemoteImage-Core',
+    '//Pods/PI_NCache:PI_NCache'
+  ],
+  visibility = ['PUBLIC'],
+)
+
+#TODO WebP variants
