@@ -19,6 +19,7 @@ class GroupsService:
             l = response['items']
             count = len(l)
             gl = [-id for id in l]
+            response['items'] = gl
             usersData = users.getShortUsersByIds(set(gl))
         except Exception as e:
             print('groups.get exception: ' + str(e))

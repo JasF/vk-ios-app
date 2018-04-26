@@ -28,6 +28,12 @@
 @property (strong, nonatomic) NSString *photo_max;
 @property (strong, nonatomic) NSString *photo_max_orig;
 
+@property NSInteger is_admin;
+@property NSInteger is_closed;
+@property NSInteger is_member;
+@property NSString *screen_name;
+@property NSString *type;
+
 - (NSString *)nameString;
 - (NSString *)avatarURLString;
 @end

@@ -53,4 +53,15 @@
                }];
 }
 
+#pragma mark - ASCollectionNodeDelegate
+- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *objects = [self objectsArray];
+    NSCAssert(indexPath.row < objects.count, @"index out of bounds: %@ %@", indexPath, objects);
+    if (indexPath.row >= objects.count) {
+        return;
+    }
+    
+    [_viewModel tappedOnGroup:objects[indexPath.row]];
+}
+
 @end

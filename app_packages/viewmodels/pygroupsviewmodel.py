@@ -23,6 +23,9 @@ class PyGroupsViewModel(ObjCBridgeProtocol):
     def menuTapped(self):
         managers.shared().screensManager().showMenu()
     
+    def tappedOnGroupWithId(self, groupId):
+        managers.shared().screensManager().showWallViewController_(args=[groupId])
+    
     # ObjCBridgeProtocol
     def release(self):
         pass

@@ -13,6 +13,7 @@
 @protocol PyGroupsViewModel <NSObject>
 - (NSDictionary *)getGroups:(NSNumber *)offset;
 - (void)menuTapped;
+- (void)tappedOnGroupWithId:(NSNumber *)ownerId;
 @end
 
 @interface GroupsViewModelImpl : NSObject <GroupsViewModel>

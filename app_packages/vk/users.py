@@ -39,6 +39,8 @@ class Users():
             self.initializeSession()
             idsString = ', '.join(str(e) for e in groupIds)
             freshGroupsData = self.api.groups.getById(group_ids=idsString)
+            for d in freshGroupsData:
+                d['id'] = -d['id']
             users.update(freshGroupsData)
             usersData.extend(freshGroupsData)
         
