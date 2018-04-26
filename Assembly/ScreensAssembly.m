@@ -7,7 +7,7 @@
 //
 
 #import "ScreensAssembly.h"
-#import "ViewController.h"
+#import "AuthorizationViewController.h"
 #import "VKCoreComponents.h"
 #import "VKThemeAssembly.h"
 #import "ScreensManagerImpl.h"
@@ -71,14 +71,13 @@
             }];
 }
 
-- (UIViewController *)createViewController
+- (UIViewController *)authorizationViewController
 {
-    return [TyphoonDefinition withClass:[ViewController class] configuration:^(TyphoonDefinition *definition)
+    return [TyphoonDefinition withClass:[AuthorizationViewController class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(init)];
-                [definition injectProperty:@selector(vkManager) with:self.coreComponents.vkManager];
-                [definition injectProperty:@selector(pythonBridge) with:self.coreComponents.pythonBridge];
-                [definition injectProperty:@selector(notificationsManager) with:self.applicationAssembly.notificationsManager];
+                [definition useInitializer:@selector(initWithViewModel:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:[self.viewModelsAssembly authorizationViewModel]];
+                }];
             }];
 }
 

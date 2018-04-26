@@ -25,7 +25,7 @@
 @property (readonly) ServicesAssembly *servicesAssembly;
 @property (readonly) ViewModelsAssembly *viewModelsAssembly;
 - (id<ScreensManager>)screensManager;
-- (UIViewController *)createViewController;
+- (UIViewController *)authorizationViewController;
 - (UIViewController *)createMainViewController;
 - (UIViewController *)wallViewController:(NSNumber *)userId;
 - (UIViewController *)wallPostViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;

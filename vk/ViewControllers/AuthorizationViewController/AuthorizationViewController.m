@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ViewController.m
 //  Sample
 //
 //  Copyright (c) 2014-present, Facebook, Inc.  All rights reserved.
@@ -15,23 +15,29 @@
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "VKSdkManager.h"
-#import "PythonBridge.h"
-#import "NotificationsManager.h"
+#import "AuthorizationViewController.h"
 
-@protocol AuthorizationHandlerProtocolDelegate <NSObject>
-- (NSString *)receivedWall:(NSDictionary *)wall;
+@interface AuthorizationViewController ()
+@property id<AuthorizationViewModel> viewModel;
 @end
 
-@protocol AuthorizationHandlerProtocol <NSObject>
-- (void)accessTokenGathered:(NSString *)accessToken userId:(NSNumber *)userId;
-@end
+#pragma mark - Lifecycle
 
-
-@interface ViewController : ASViewController
-@property (strong, nonatomic) id<AuthorizationHandlerProtocol> handler;
-@property (strong, nonatomic) id<VKSdkManager> vkManager;
-@property (strong, nonatomic) id<PythonBridge> pythonBridge;
-@property id<NotificationsManager> notificationsManager;
+@implementation AuthorizationViewController
+- (id)initWithViewModel:(id<AuthorizationViewModel>)viewModel
+{
+    NSCParameterAssert(viewModel);
+    if (self = [super init]) {
+        self.viewModel = viewModel;
+        self.title = @"Authorization";
+    }
+  
+    return self;
+}
+    
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.viewModel.viewController = self;
+}
+    
 @end

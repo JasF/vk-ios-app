@@ -16,7 +16,7 @@
 
 @interface DetailPhotoViewModelImpl : NSObject <DetailPhotoViewModel>
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
-                        wallPostService:(id<DetailPhotoService>)detailPhotoService
+                     detailPhotoService:(id<DetailPhotoService>)detailPhotoService
                                 ownerId:(NSNumber *)ownerId
                                 albumId:(NSNumber *)albumId
                                 photoId:(NSNumber *)photoId;

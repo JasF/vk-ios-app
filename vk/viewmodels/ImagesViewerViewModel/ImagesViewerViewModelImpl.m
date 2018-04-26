@@ -50,4 +50,10 @@
     });
 }
 
+- (void)navigateWithPhoto:(Photo *)photo {
+    dispatch_python(^{
+        [self.handler navigateWithPhotoId:@(photo.id)];
+    });
+}
+    
 @end

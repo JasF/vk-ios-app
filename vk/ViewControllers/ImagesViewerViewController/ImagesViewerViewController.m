@@ -85,6 +85,7 @@ static NSInteger const kPreloadingBorder = 2;
     for (Photo *photo in photosArray) {
         MWPhoto *object = [MWPhoto photoWithURL:[NSURL URLWithString:photo.bigPhotoURL]];
         object.caption = photo.text;
+        object.model = photo;
         [photos addObject:object];
     }
     return photos;
@@ -116,9 +117,15 @@ static NSInteger const kPreloadingBorder = 2;
     return captionView;
 }
 
-//- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
-//    NSLog(@"ACTION!");
-//}
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
+    NSCAssert(_photos.count > index, @"index out of bounds");
+    if (index >= _photos.count) {
+        return;
+    }
+    MWPhoto *photoObject = _photos[index];
+    Photo *photo = (Photo *)photoObject.model;
+    [self.viewModel navigateWithPhoto:photo];
+}
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index {
     NSLog(@"Did start viewing photo at index %lu", (unsigned long)index);

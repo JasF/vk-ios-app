@@ -12,6 +12,7 @@
 
 @protocol PyImagesViewerViewModel <NSObject>
 - (NSDictionary *)getPhotos:(NSNumber *)offset;
+- (void)navigateWithPhotoId:(NSNumber *)photoId;
 @end
 
 @interface ImagesViewerViewModelImpl : NSObject <ImagesViewerViewModel>

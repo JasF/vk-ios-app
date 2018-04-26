@@ -31,6 +31,7 @@
 #import "DocumentsViewModelImpl.h"
 #import "SettingsViewModelImpl.h"
 #import "DetailPhotoViewModelImpl.h"
+#import "AuthorizationViewModelImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -132,4 +133,8 @@
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PySettingsViewModel)];
 }
 
+- (id<PyAuthorizationViewModel>)authorizationViewModelHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyAuthorizationViewModel)];
+}
+    
 @end

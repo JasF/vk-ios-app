@@ -16,6 +16,7 @@ from .pyvideosviewmodel import PyVideosViewModel
 from .pydocumentsviewmodel import PyDocumentsViewModel
 from .pysettingsviewmodel import PySettingsViewModel
 from .pydetailphotoviewmodel import PyDetailPhotoViewModel
+from .pyauthorizationviewmodel import PyAuthorizationViewModel
 
 from services.messagesservice import MessagesService
 from services.chatlistservice import ChatListService
@@ -51,3 +52,4 @@ Subscriber().setClassAllocator( PyBookmarksViewModel, lambda: PyBookmarksViewMod
 Subscriber().setClassAllocator( PyVideosViewModel, lambda parameters: PyVideosViewModel(VideosService(), parameters.get('ownerId')) )
 Subscriber().setClassAllocator( PyDocumentsViewModel, lambda parameters: PyDocumentsViewModel(DocumentsService(), parameters.get('ownerId')) )
 Subscriber().setClassAllocator( PySettingsViewModel, lambda: PySettingsViewModel() )
+Subscriber().setClassAllocator( PyAuthorizationViewModel, lambda: PyAuthorizationViewModel() )

@@ -24,6 +24,7 @@
 #import "DocumentsViewModelImpl.h"
 #import "SettingsViewModelImpl.h"
 #import "DetailPhotoViewModelImpl.h"
+#import "AuthorizationViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -215,4 +216,21 @@
             }];
 }
 
+- (id<AuthorizationViewModel>)authorizationViewModel {
+    return [TyphoonDefinition withClass:[AuthorizationViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:vkManager:notificationsManager:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.coreComponents.vkManager];
+                    [initializer injectParameterWith:self.applicationAssembly.notificationsManager];
+                    /*
+                     [definition useInitializer:@selector(initWithViewModel:)];
+                     [definition injectProperty:@selector(vkManager) with:self.coreComponents.vkManager];
+                     [definition injectProperty:@selector(pythonBridge) with:self.coreComponents.pythonBridge];
+                     [definition injectProperty:@selector(notificationsManager) with:self.applicationAssembly.notificationsManager];
+                     */
+                }];
+            }];
+}
+    
 @end

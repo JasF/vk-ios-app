@@ -17,3 +17,5 @@ class PyImagesViewerViewModel():
             photosData = self.galleryService.getPhotos(self.ownerId, self.albumId, offset, count=g_count)
         return photosData
 
+    def navigateWithPhotoId(self, photoId):
+        managers.shared().screensManager().showDetailPhotoViewControllerWithOwnerId_albumId_photoId_(args=[self.ownerId, self.albumId, photoId])

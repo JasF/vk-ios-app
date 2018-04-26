@@ -9,7 +9,7 @@
 #import "ScreensManagerImpl.h"
 #import "MainViewController.h"
 #import "ScreensAssembly.h"
-#import "ViewController.h"
+#import "AuthorizationViewController.h"
 #import "WallViewController.h"
 #import "ChatListViewController.h"
 #import "BaseNavigationController.h"
@@ -65,7 +65,7 @@
 - (void)showAuthorizationViewController {
     dispatch_async(dispatch_get_main_queue(), ^{
         UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-        ViewController *viewController =(ViewController *)[self.screensAssembly createViewController];
+        UIViewController *viewController = [self.screensAssembly authorizationViewController];
         [navigationController pushViewController:viewController animated:NO];
     });
 }
@@ -279,15 +279,6 @@
 }
 
 #pragma mark - Private Methods
-- (ViewController *)createViewController {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
-    viewController.vkManager = [self vkSdkManager];
-    viewController.handler = [self.pythonBridge handlerWithProtocol:@protocol(AuthorizationHandlerProtocolDelegate)];
-    viewController.pythonBridge = self.pythonBridge;
-    return viewController;
-}
-
 - (BaseNavigationController *)navigationController {
     return(BaseNavigationController *)_mainViewController.rootViewController;
 }
@@ -327,7 +318,7 @@
         return YES;
     }
     if (self.navigationController.viewControllers.count == 1 &&
-        [self.navigationController.viewControllers.firstObject isKindOfClass:[ViewController class]]) {
+        [self.navigationController.viewControllers.firstObject isKindOfClass:[AuthorizationViewController class]]) {
         return YES;
     }
     return NO;

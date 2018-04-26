@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Photo.h"
 
 @protocol ImagesViewerViewModel <NSObject>
 @property NSInteger photoId;
 - (void)getPhotos:(NSInteger)offset completion:(void(^)(NSArray *photos))completion;
+- (void)navigateWithPhoto:(Photo *)photo;
 @end

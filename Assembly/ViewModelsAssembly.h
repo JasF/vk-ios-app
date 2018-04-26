@@ -7,6 +7,7 @@
 //
 
 #import "TyphoonAssembly.h"
+#import "VKApplicationAssembly.h"
 #import "VKCoreComponents.h"
 #import "ServicesAssembly.h"
 #import "ScreensAssembly.h"
@@ -27,11 +28,13 @@
 #import "DocumentsViewModel.h"
 #import "SettingsViewModel.h"
 #import "DetailPhotoViewModel.h"
+#import "AuthorizationViewModel.h"
 
 @interface ViewModelsAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
 @property (readonly) ServicesAssembly *servicesAssembly;
 @property (readonly) ScreensAssembly *screensAssembly;
+@property (readonly) VKApplicationAssembly *applicationAssembly;
 - (id<DialogScreenViewModel>)dialogScreenViewModel:(NSNumber *)userId;
 - (id<ChatListViewModel>)chatListScreenViewModel;
 - (id<WallViewModel>)wallScreenViewModel:(NSNumber *)userId;
@@ -49,4 +52,5 @@
 - (id<VideosViewModel>)videosViewModel:(NSNumber *)ownerId;
 - (id<DocumentsViewModel>)documentsViewModel:(NSNumber *)ownerId;
 - (id<SettingsViewModel>)settingsViewModel;
+- (id<AuthorizationViewModel>)authorizationViewModel;
 @end

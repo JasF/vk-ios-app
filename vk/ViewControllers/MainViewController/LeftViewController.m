@@ -7,7 +7,7 @@
 #import "LeftViewCell.h"
 #import "MainViewController.h"
 #import "UIViewController+LGSideMenuController.h"
-#import "ViewController.h"
+#import "AuthorizationViewController.h"
 
 @interface LeftViewController ()
 
@@ -87,14 +87,7 @@
     else if (indexPath.row == 2) {
         UINavigationController *navigationController = (UINavigationController *)mainViewController.rootViewController;
         UIViewController *viewController;
-
-        if ([navigationController.viewControllers.firstObject isKindOfClass:[ViewController class]]) {
-            viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OtherViewController"];
-        }
-        else {
-            viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
-        }
-
+        viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
         [navigationController setViewControllers:@[viewController]];
 
         // Rarely you can get some visual bugs when you change view hierarchy and toggle side views in the same iteration

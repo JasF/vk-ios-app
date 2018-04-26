@@ -1,7 +1,9 @@
 from objc import managers
+from objcbridge import BridgeBase, ObjCBridgeProtocol
 import vk
 
-class AuthorizationHandlerProtocol:
+class PyAuthorizationViewModel(ObjCBridgeProtocol):
+    # protocol methods implementation
     def accessTokenGathereduserId(self, aAccessToken, aUserId):
         vk.setToken(aAccessToken)
         vk.setUserId(aUserId)
@@ -16,3 +18,7 @@ class AuthorizationHandlerProtocol:
         #managers.shared().screensManager().showVideosViewController_(args=[vk.userId()])
         #managers.shared().screensManager().showDocumentsViewController_(args=[vk.userId()])
         #managers.shared().screensManager().showSettingsViewController()
+    
+    # ObjCBridgeProtocol
+    def release(self):
+        pass
