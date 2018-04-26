@@ -13,13 +13,14 @@ class WallPostService:
         self.usersDecorator = usersDecorator
         pass
 
-    def getPostById(self, identifier):
+    def getPostById(self, ownerId, postId):
         response = None
         usersData = None
         l = None
         try:
             cache = PostsDatabase()
-            result = cache.getById(identifier)
+            result = cache.getById(ownerId, postId)
+            print('getPostById: ' + str(result) + '; from ' + str(ownerId) + ' and ' + str(postId))
             cache.close()
             if not result:
                 return None

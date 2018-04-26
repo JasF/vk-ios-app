@@ -16,7 +16,7 @@ class PyWallPostViewModel():
     def getPostData(self, offset):
         results = {}
         if not self.postData:
-            self.postData = self.wallPostService.getPostById(self.postId)
+            self.postData = self.wallPostService.getPostById(self.ownerId, self.postId)
             comments = self.wallPostService.getComments(self.ownerId, self.postId, offset)
             results['comments'] = comments
         if offset == 0:

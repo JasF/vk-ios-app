@@ -480,6 +480,8 @@
 		C3333D402091A830009EBB09 /* DetailVideoServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D3F2091A830009EBB09 /* DetailVideoServiceImpl.m */; };
 		C3333D452091A8E0009EBB09 /* DetailVideoViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D442091A8E0009EBB09 /* DetailVideoViewModelImpl.m */; };
 		C3333D492091A9A4009EBB09 /* DetailVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D482091A9A4009EBB09 /* DetailVideoViewController.m */; };
+		C3333D4D2091BF0E009EBB09 /* Geo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D4C2091BF0E009EBB09 /* Geo.m */; };
+		C3333D512091BF1C009EBB09 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D502091BF1C009EBB09 /* Place.m */; };
 		C3372FB92083356C0080DA75 /* MessagesSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372F972083356B0080DA75 /* MessagesSelectorProtocol.swift */; };
 		C3372FBA2083356C0080DA75 /* AddRandomMessageChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372F992083356B0080DA75 /* AddRandomMessageChatViewController.swift */; };
 		C3372FBB2083356C0080DA75 /* DemoChatMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372F9A2083356B0080DA75 /* DemoChatMessageSender.swift */; };
@@ -1585,6 +1587,10 @@
 		C3333D442091A8E0009EBB09 /* DetailVideoViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailVideoViewModelImpl.m; sourceTree = "<group>"; };
 		C3333D472091A9A4009EBB09 /* DetailVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailVideoViewController.h; sourceTree = "<group>"; };
 		C3333D482091A9A4009EBB09 /* DetailVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailVideoViewController.m; sourceTree = "<group>"; };
+		C3333D4B2091BF0E009EBB09 /* Geo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geo.h; sourceTree = "<group>"; };
+		C3333D4C2091BF0E009EBB09 /* Geo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Geo.m; sourceTree = "<group>"; };
+		C3333D4F2091BF1C009EBB09 /* Place.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		C3333D502091BF1C009EBB09 /* Place.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		C3372F902081D7480080DA75 /* dialogservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogservice.py; sourceTree = "<group>"; };
 		C3372F912081F68E0080DA75 /* basedatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = basedatabase.py; sourceTree = "<group>"; };
 		C3372F922081FAEA0080DA75 /* messagesdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messagesdatabase.py; sourceTree = "<group>"; };
@@ -2620,6 +2626,8 @@
 		C32304572080E57400CEC487 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C3333D4E2091BF11009EBB09 /* Place */,
+				C3333D4A2091BEF6009EBB09 /* Geo */,
 				C32262E92090AFAE0054789B /* Settings */,
 				C32262D12090A76C0054789B /* SizedPhoto */,
 				C32262CD2090A65E0054789B /* Document */,
@@ -4436,6 +4444,24 @@
 			path = DetailVideoViewController;
 			sourceTree = "<group>";
 		};
+		C3333D4A2091BEF6009EBB09 /* Geo */ = {
+			isa = PBXGroup;
+			children = (
+				C3333D4B2091BF0E009EBB09 /* Geo.h */,
+				C3333D4C2091BF0E009EBB09 /* Geo.m */,
+			);
+			path = Geo;
+			sourceTree = "<group>";
+		};
+		C3333D4E2091BF11009EBB09 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				C3333D4F2091BF1C009EBB09 /* Place.h */,
+				C3333D502091BF1C009EBB09 /* Place.m */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
 		C3372F96208335440080DA75 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -5473,6 +5499,7 @@
 				C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */,
 				C32306042080E57500CEC487 /* LeftViewCell.m in Sources */,
 				C313DD5C208CA7A10005E29B /* CommentNode.m in Sources */,
+				C3333D4D2091BF0E009EBB09 /* Geo.m in Sources */,
 				C32308C32081AEB100CEC487 /* TyphoonJsonStyleConfiguration.m in Sources */,
 				C323061C2080E57500CEC487 /* ChatListServiceImpl.m in Sources */,
 				C32309022081AEB100CEC487 /* TyphoonInjectionByConfig.m in Sources */,
@@ -5488,6 +5515,7 @@
 				C313DD3C208C53E50005E29B /* FriendsViewController.m in Sources */,
 				C32309052081AEB100CEC487 /* TyphoonInjectionByReference.m in Sources */,
 				C323092A2081AEB100CEC487 /* TyphoonBlockComponentFactory.m in Sources */,
+				C3333D512091BF1C009EBB09 /* Place.m in Sources */,
 				C32305E62080E57500CEC487 /* PostImagesNode.m in Sources */,
 				C32309342081AEB100CEC487 /* UIScreen+NanoFrame.m in Sources */,
 				C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */,

@@ -3,11 +3,15 @@ import os
 import sys
 
 data = {
-    "src": "https://sun9-3.userapi.com/c834501/u7162990/d18/-3/m_cb557a4dae.jpg",
-        "width": 130,
-            "height": 100,
-                "type": "m"
-                }
+    "city": "\u0411\u043e\u0431\u0440\u0443\u0439\u0441\u043a",
+        "country": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c",
+        "created": 0,
+        "icon": "https://vk.com/images/places/place.png",
+        "id": 0,
+        "latitude": 0,
+        "longitude": 0,
+        "title": "\u0443\u043b\u0438\u0446\u0430 \u0421\u043e\u0432\u0435\u0442\u0441\u043a\u0430\u044f, \u0411\u043e\u0431\u0440\u0443\u0439\u0441\u043a"
+}
 
 resultDict = {}
 for k in data.keys():

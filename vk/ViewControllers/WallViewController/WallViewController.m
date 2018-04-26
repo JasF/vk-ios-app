@@ -69,6 +69,9 @@
 
 #pragma mark - ASCollectionNodeDelegate
 - (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (!indexPath.section) {
+        return;
+    }
     NSArray *objects = [self objectsArray];
     NSCAssert(indexPath.row < objects.count, @"index out of bounds: %@ %@", indexPath, objects);
     if (indexPath.row >= objects.count) {

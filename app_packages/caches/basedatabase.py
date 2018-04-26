@@ -102,7 +102,3 @@ class BaseDatabase():
     def selectIdsByKeys(self, ids, keys):
         return self.selectIds(ids, ','.join(k for k in keys))
 
-    def getById(self, id):
-        self.cursor.execute('SELECT * FROM ' + self.tableName + ' WHERE id = ' + str(id))
-        result = self.cursor.fetchone()
-        return result

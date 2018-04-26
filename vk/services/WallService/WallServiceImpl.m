@@ -25,7 +25,6 @@
 
 #pragma mark - WallService
 - (NSArray<WallPost *> *)parse:(NSDictionary *)wallData {
-    NSCAssert([wallData isKindOfClass:[NSDictionary class]] || !wallData, @"wallData unknown type");
     if (![wallData isKindOfClass:[NSDictionary class]]) {
         return nil;
     }

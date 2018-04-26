@@ -16,7 +16,7 @@
 +(EKObjectMapping *)objectMapping
 {
     return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
-        [mapping mapPropertiesFromArray:@[@"date", @"text", @"can_delete", @"can_pin", @"from_id", @"owner_id", @"source_id", @"type"]];
+        [mapping mapPropertiesFromArray:@[@"date", @"text", @"can_delete", @"can_pin", @"from_id", @"owner_id", @"source_id", @"type", @"post_id"]];
         
         [mapping mapKeyPath:@"comments" toProperty:@"comments" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
             Comments *comments = [EKMapper objectFromExternalRepresentation:value
@@ -112,17 +112,27 @@
 }
 
 - (NSInteger)validId {
-    if (_source_id != 0) {
+    if (_source_id) {
         return _source_id;
+    }
+    else if (_owner_id) {
+        return _owner_id;
     }
     return _from_id;
 }
 
 - (NSInteger)identifier {
-    if (_post_id != 0) {
+    if (_post_id) {
         return _post_id;
     }
     return _identifier;
+}
+
+- (NSInteger)owner_id {
+    if (self.validId) {
+        return self.validId;
+    }
+    return _owner_id;
 }
 
 @end

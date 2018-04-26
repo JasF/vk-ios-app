@@ -37,11 +37,6 @@
     [_viewModel menuTapped];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - BaseCollectionViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
@@ -51,6 +46,17 @@
                                 completion(objects);
                             }
                         }];
+}
+
+#pragma mark - ASCollectionNodeDelegate
+- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *objects = [self objectsArray];
+    NSCAssert(indexPath.row < objects.count, @"index out of bounds: %@ %@", indexPath, objects);
+    if (indexPath.row >= objects.count) {
+        return;
+    }
+    
+    [_viewModel tappedOnPost:objects[indexPath.row]];
 }
 
 @end
