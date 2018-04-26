@@ -32,6 +32,7 @@
 #import "DocumentsViewController.h"
 #import "SettingsViewController.h"
 #import "DetailPhotoViewController.h"
+#import "DetailVideoViewController.h"
 
 @implementation ScreensAssembly
 
@@ -234,6 +235,15 @@
     return [TyphoonDefinition withClass:[SettingsViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self.viewModelsAssembly settingsViewModel]];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+        }];
+    }];
+}
+
+- (UIViewController *)detailVideoViewController:(NSNumber *)ownerId videoId:(NSNumber *)videoId {
+    return [TyphoonDefinition withClass:[DetailVideoViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly detailVideoViewModel:ownerId videoId:videoId]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
     }];

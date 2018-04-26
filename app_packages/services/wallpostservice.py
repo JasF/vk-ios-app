@@ -44,5 +44,5 @@ class WallPostService:
             cache.close()
         
         except Exception as e:
-            print('get comments exception: ' + str(e))
+            print('WallPost: get comments exception: ' + str(e))
         return result

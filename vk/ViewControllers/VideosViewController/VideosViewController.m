@@ -54,4 +54,13 @@
                }];
 }
 
+#pragma mark - ASCollectionNodeDelegate
+- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    Video *video = [collectionNode nodeModelForItemAtIndexPath:indexPath];
+    if (!video) {
+        return;
+    }
+    [_viewModel tappedOnVideo:video];
+}
+
 @end

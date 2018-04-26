@@ -32,6 +32,7 @@
 #import "SettingsViewModelImpl.h"
 #import "DetailPhotoViewModelImpl.h"
 #import "AuthorizationViewModelImpl.h"
+#import "DetailVideoViewModelImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -136,5 +137,11 @@
 - (id<PyAuthorizationViewModel>)authorizationViewModelHandler {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyAuthorizationViewModel)];
 }
-    
+
+- (id<PyDetailVideoViewModel>)detailVideoViewModelHandlerWithOwnerId:(NSInteger)ownerId
+                                                             videoId:(NSInteger)videoId {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyDetailVideoViewModel)
+                                              parameters:@{@"ownerId":@(ownerId), @"videoId":@(videoId)}];
+}
+
 @end

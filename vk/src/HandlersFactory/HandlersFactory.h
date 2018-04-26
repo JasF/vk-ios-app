@@ -27,6 +27,7 @@
 @protocol PySettingsViewModel;
 @protocol PyDetailPhotoViewModel;
 @protocol PyAuthorizationViewModel;
+@protocol PyDetailVideoViewModel;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
@@ -48,4 +49,5 @@
 - (id<PyDocumentsViewModel>)documentsViewModelHandler:(NSInteger)ownerId;
 - (id<PySettingsViewModel>)settingsViewModelHandler;
 - (id<PyAuthorizationViewModel>)authorizationViewModelHandler;
+- (id<PyDetailVideoViewModel>)detailVideoViewModelHandlerWithOwnerId:(NSInteger)ownerId videoId:(NSInteger)videoId;
 @end

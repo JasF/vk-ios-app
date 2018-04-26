@@ -13,4 +13,3 @@
 - (instancetype)initWithViewModel:(id<DetailPhotoViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end
-

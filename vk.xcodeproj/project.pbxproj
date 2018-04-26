@@ -477,6 +477,9 @@
 		C32309342081AEB100CEC487 /* UIScreen+NanoFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308B62081AEB000CEC487 /* UIScreen+NanoFrame.m */; };
 		C32309352081AEB100CEC487 /* UIImage+NanoFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C32308B72081AEB000CEC487 /* UIImage+NanoFrame.m */; };
 		C32309362081AEB100CEC487 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C32308B82081AEB000CEC487 /* README.md */; };
+		C3333D402091A830009EBB09 /* DetailVideoServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D3F2091A830009EBB09 /* DetailVideoServiceImpl.m */; };
+		C3333D452091A8E0009EBB09 /* DetailVideoViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D442091A8E0009EBB09 /* DetailVideoViewModelImpl.m */; };
+		C3333D492091A9A4009EBB09 /* DetailVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D482091A9A4009EBB09 /* DetailVideoViewController.m */; };
 		C3372FB92083356C0080DA75 /* MessagesSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372F972083356B0080DA75 /* MessagesSelectorProtocol.swift */; };
 		C3372FBA2083356C0080DA75 /* AddRandomMessageChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372F992083356B0080DA75 /* AddRandomMessageChatViewController.swift */; };
 		C3372FBB2083356C0080DA75 /* DemoChatMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3372F9A2083356B0080DA75 /* DemoChatMessageSender.swift */; };
@@ -1574,6 +1577,14 @@
 		C32308B72081AEB000CEC487 /* UIImage+NanoFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NanoFrame.m"; sourceTree = "<group>"; };
 		C32308B82081AEB000CEC487 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C32309382081AED800CEC487 /* renametexture.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = renametexture.py; sourceTree = "<group>"; };
+		C3333D3D2091A81F009EBB09 /* DetailVideoService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailVideoService.h; sourceTree = "<group>"; };
+		C3333D3E2091A830009EBB09 /* DetailVideoServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailVideoServiceImpl.h; sourceTree = "<group>"; };
+		C3333D3F2091A830009EBB09 /* DetailVideoServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailVideoServiceImpl.m; sourceTree = "<group>"; };
+		C3333D422091A8CA009EBB09 /* DetailVideoViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailVideoViewModel.h; sourceTree = "<group>"; };
+		C3333D432091A8E0009EBB09 /* DetailVideoViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailVideoViewModelImpl.h; sourceTree = "<group>"; };
+		C3333D442091A8E0009EBB09 /* DetailVideoViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailVideoViewModelImpl.m; sourceTree = "<group>"; };
+		C3333D472091A9A4009EBB09 /* DetailVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailVideoViewController.h; sourceTree = "<group>"; };
+		C3333D482091A9A4009EBB09 /* DetailVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailVideoViewController.m; sourceTree = "<group>"; };
 		C3372F902081D7480080DA75 /* dialogservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogservice.py; sourceTree = "<group>"; };
 		C3372F912081F68E0080DA75 /* basedatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = basedatabase.py; sourceTree = "<group>"; };
 		C3372F922081FAEA0080DA75 /* messagesdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messagesdatabase.py; sourceTree = "<group>"; };
@@ -1791,6 +1802,8 @@
 		C3D4873E20919BA1007EC440 /* AuthorizationViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthorizationViewModelImpl.m; sourceTree = "<group>"; };
 		C3D4874020919BAB007EC440 /* AuthorizationViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthorizationViewModel.h; sourceTree = "<group>"; };
 		C3D487412091A025007EC440 /* pyauthorizationviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyauthorizationviewmodel.py; sourceTree = "<group>"; };
+		C3D487422091A54A007EC440 /* pydetailvideoviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pydetailvideoviewmodel.py; sourceTree = "<group>"; };
+		C3D487432091A561007EC440 /* detailvideoservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = detailvideoservice.py; sourceTree = "<group>"; };
 		C3F170D02090549300C33F2C /* Answer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
 		C3F170D12090549300C33F2C /* Answer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
 		C3F170D32090555900C33F2C /* answersdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = answersdatabase.py; sourceTree = "<group>"; };
@@ -2489,10 +2502,10 @@
 				C3137718208DFAE800F568EA /* vk.entitlements */,
 				C32304B92080E57400CEC487 /* services */,
 				C3B225012085BA4000599E04 /* viewmodels */,
+				C32304852080E57400CEC487 /* ViewControllers */,
 				C32304372080E57400CEC487 /* nodes */,
 				C32304472080E57400CEC487 /* managers */,
 				C32304572080E57400CEC487 /* models */,
-				C32304852080E57400CEC487 /* ViewControllers */,
 				C32304A72080E57400CEC487 /* Supporting Files */,
 				C32304AB2080E57400CEC487 /* factories */,
 				C32304B82080E57400CEC487 /* Info.plist */,
@@ -2742,6 +2755,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3333D462091A98D009EBB09 /* DetailVideoViewController */,
 				C3D4873820919A4F007EC440 /* AuthorizationViewController */,
 				C32262FA2090CB070054789B /* DetailPhotoViewController */,
 				C313DD5D208CAEFB0005E29B /* WallPostViewController */,
@@ -2881,6 +2895,7 @@
 		C32304B92080E57400CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C3333D3C2091A812009EBB09 /* DetailVideoService */,
 				C32263032090CD800054789B /* DetailPhotoService */,
 				C32262E42090AF4F0054789B /* SettingsService */,
 				C32262C42090A4F80054789B /* DocumentsService */,
@@ -3418,6 +3433,7 @@
 				C32262AE20908D810054789B /* videosservice.py */,
 				C32262CA2090A56D0054789B /* documentsservice.py */,
 				C32263092090D1FF0054789B /* detailphotoservice.py */,
+				C3D487432091A561007EC440 /* detailvideoservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -4391,6 +4407,35 @@
 			path = scripts;
 			sourceTree = "<group>";
 		};
+		C3333D3C2091A812009EBB09 /* DetailVideoService */ = {
+			isa = PBXGroup;
+			children = (
+				C3333D3D2091A81F009EBB09 /* DetailVideoService.h */,
+				C3333D3E2091A830009EBB09 /* DetailVideoServiceImpl.h */,
+				C3333D3F2091A830009EBB09 /* DetailVideoServiceImpl.m */,
+			);
+			path = DetailVideoService;
+			sourceTree = "<group>";
+		};
+		C3333D412091A8B9009EBB09 /* DetailVideoViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3333D422091A8CA009EBB09 /* DetailVideoViewModel.h */,
+				C3333D432091A8E0009EBB09 /* DetailVideoViewModelImpl.h */,
+				C3333D442091A8E0009EBB09 /* DetailVideoViewModelImpl.m */,
+			);
+			path = DetailVideoViewModel;
+			sourceTree = "<group>";
+		};
+		C3333D462091A98D009EBB09 /* DetailVideoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3333D472091A9A4009EBB09 /* DetailVideoViewController.h */,
+				C3333D482091A9A4009EBB09 /* DetailVideoViewController.m */,
+			);
+			path = DetailVideoViewController;
+			sourceTree = "<group>";
+		};
 		C3372F96208335440080DA75 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -4620,6 +4665,7 @@
 				C32262ED2090B1070054789B /* pysettingsviewmodel.py */,
 				C32263082090D1F10054789B /* pydetailphotoviewmodel.py */,
 				C3D487412091A025007EC440 /* pyauthorizationviewmodel.py */,
+				C3D487422091A54A007EC440 /* pydetailvideoviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -4778,6 +4824,7 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C3333D412091A8B9009EBB09 /* DetailVideoViewModel */,
 				C3D4873C20919B86007EC440 /* AuthorizationViewModel */,
 				C32262FE2090CC500054789B /* DetailPhotoViewModel */,
 				C313DD63208CB1360005E29B /* WallPostViewModel */,
@@ -5538,6 +5585,7 @@
 				C3437545208EFDEE004EF670 /* ImagesViewerViewController.m in Sources */,
 				C32305F92080E57500CEC487 /* WallPost.m in Sources */,
 				C32262F52090C16B0054789B /* TextNode.m in Sources */,
+				C3333D402091A830009EBB09 /* DetailVideoServiceImpl.m in Sources */,
 				C32305C32080E57500CEC487 /* EXTSafeCategory.m in Sources */,
 				C32308DF2081AEB100CEC487 /* UIViewController+TyphoonStoryboardIntegration.m in Sources */,
 				C32309332081AEB100CEC487 /* CALayer+Image.m in Sources */,
@@ -5633,6 +5681,7 @@
 				C32262C82090A5110054789B /* DocumentsServiceImpl.m in Sources */,
 				C32308E62081AEB100CEC487 /* TyphoonStoryboardDefinitionContext.m in Sources */,
 				C32308F32081AEB100CEC487 /* TyphoonInjectedObject.m in Sources */,
+				C3333D452091A8E0009EBB09 /* DetailVideoViewModelImpl.m in Sources */,
 				C32308D42081AEB100CEC487 /* NSObject+DeallocNotification.m in Sources */,
 				C3372FCF2083356C0080DA75 /* TimeSeparatorModel.swift in Sources */,
 				C313DD6D208CBA460005E29B /* WallPostServiceImpl.m in Sources */,
@@ -5642,6 +5691,7 @@
 				C32308C22081AEB100CEC487 /* TyphoonDefinition+Config.m in Sources */,
 				C32305ED2080E57500CEC487 /* VKSdkManagerImpl.m in Sources */,
 				C323091A2081AEB100CEC487 /* TyphoonAssemblyAdviser.m in Sources */,
+				C3333D492091A9A4009EBB09 /* DetailVideoViewController.m in Sources */,
 				C32262AC20908CC70054789B /* VideosServiceImpl.m in Sources */,
 				C32305EB2080E57500CEC487 /* ScreensManagerImpl.m in Sources */,
 				C35B737D208B1203001C8067 /* TypingModel.swift in Sources */,

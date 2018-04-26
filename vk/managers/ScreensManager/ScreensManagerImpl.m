@@ -29,6 +29,7 @@
 #import "DocumentsViewController.h"
 #import "SettingsViewController.h"
 #import "DetailPhotoViewController.h"
+#import "DetailVideoViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -275,6 +276,18 @@
         }
         SettingsViewController *viewController =(SettingsViewController *)[_screensAssembly settingsViewController];
         [self pushViewController:viewController];
+    });
+}
+
+- (void)showDetailVideoViewControllerWithOwnerId:(NSNumber *)ownerId videoId:(NSNumber *)videoId {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showMainViewController];
+        [self closeMenu];
+        if ([self canIgnorePushingViewController:[DetailVideoViewController class]]) {
+            return;
+        }
+        DetailVideoViewController *viewController =(DetailVideoViewController *)[_screensAssembly detailVideoViewController:ownerId videoId:videoId];
+        [self pushViewController:viewController clean:NO];
     });
 }
 

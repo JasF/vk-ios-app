@@ -29,4 +29,5 @@
 - (void)showVideosViewController:(NSNumber *)ownerId;
 - (void)showDocumentsViewController:(NSNumber *)ownerId;
 - (void)showSettingsViewController;
+- (void)showDetailVideoViewControllerWithOwnerId:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
 @end

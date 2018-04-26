@@ -48,4 +48,10 @@
     });
 }
 
+- (void)tappedOnVideo:(Video *)video {
+    dispatch_python(^{
+        [self.handler tappedOnVideoWithId:@(video.id) ownerId:@(video.owner_id)];
+    });
+}
+
 @end

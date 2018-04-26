@@ -43,6 +43,7 @@
 - (UIViewController *)videosViewController:(NSNumber *)ownerId;
 - (UIViewController *)documentsViewController:(NSNumber *)ownerId;
 - (UIViewController *)settingsViewController;
+- (UIViewController *)detailVideoViewController:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
 - (UIWindow *)window;
 - (UINavigationController *)rootNavigationController;
 @end

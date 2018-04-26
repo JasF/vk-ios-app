@@ -25,6 +25,7 @@
 #import "SettingsViewModelImpl.h"
 #import "DetailPhotoViewModelImpl.h"
 #import "AuthorizationViewModelImpl.h"
+#import "DetailVideoViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -223,14 +224,20 @@
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.coreComponents.vkManager];
                     [initializer injectParameterWith:self.applicationAssembly.notificationsManager];
-                    /*
-                     [definition useInitializer:@selector(initWithViewModel:)];
-                     [definition injectProperty:@selector(vkManager) with:self.coreComponents.vkManager];
-                     [definition injectProperty:@selector(pythonBridge) with:self.coreComponents.pythonBridge];
-                     [definition injectProperty:@selector(notificationsManager) with:self.applicationAssembly.notificationsManager];
-                     */
                 }];
             }];
 }
-    
+
+- (id<DetailVideoViewModel>)detailVideoViewModel:(NSNumber *)ownerId videoId:(NSNumber *)videoId {
+    return [TyphoonDefinition withClass:[DetailVideoViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:detailVideoService:ownerId:videoId:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.detailVideoService];
+                    [initializer injectParameterWith:ownerId];
+                    [initializer injectParameterWith:videoId];
+                }];
+            }];
+}
+
 @end

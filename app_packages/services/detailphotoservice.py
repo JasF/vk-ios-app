@@ -36,5 +36,5 @@ class DetailPhotoService:
             cache.close()
                 '''
         except Exception as e:
-            print('get comments exception: ' + str(e))
+            print('DetailPhoto: get comments exception: ' + str(e))
         return result

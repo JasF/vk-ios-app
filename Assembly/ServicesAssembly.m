@@ -22,6 +22,7 @@
 #import "DocumentsServiceImpl.h"
 #import "SettingsServiceImpl.h"
 #import "DetailPhotoServiceImpl.h"
+#import "DetailVideoServiceImpl.h"
 
 @implementation ServicesAssembly
 
@@ -84,6 +85,17 @@
          {
              [initializer injectParameterWith:self.galleryService];
          }];
+    }];
+}
+
+- (id<DetailVideoService>)detailVideoService {
+    return [TyphoonDefinition withClass:[DetailVideoServiceImpl class] configuration:^(TyphoonDefinition *definition) {
+        /*
+        [definition useInitializer:@selector(initWithGalleryService:) parameters:^(TyphoonMethod *initializer)
+         {
+             [initializer injectParameterWith:self.galleryService];
+         }];
+         */
     }];
 }
 

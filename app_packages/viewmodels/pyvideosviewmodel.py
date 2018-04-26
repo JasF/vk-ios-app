@@ -21,6 +21,9 @@ class PyVideosViewModel(ObjCBridgeProtocol):
     
     def menuTapped(self):
         managers.shared().screensManager().showMenu()
+
+    def tappedOnVideoWithIdownerId(self, videoId, ownerId):
+        managers.shared().screensManager().showDetailVideoViewControllerWithOwnerId_videoId_(args=[ownerId, videoId])
     
     # ObjCBridgeProtocol
     def release(self):

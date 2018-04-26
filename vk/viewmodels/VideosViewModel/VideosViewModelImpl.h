@@ -13,6 +13,7 @@
 @protocol PyVideosViewModel <NSObject>
 - (NSDictionary *)getVideos:(NSNumber *)offset;
 - (void)menuTapped;
+- (void)tappedOnVideoWithId:(NSNumber *)videoId ownerId:(NSNumber *)ownerId;
 @end
 
 @interface VideosViewModelImpl : NSObject <VideosViewModel>
