@@ -5,10 +5,10 @@ target 'vk' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  swift_version = '3.0'
+  swift_version = '3.3'
 
   # Pods for MessageGroups
-  #pod 'Texture', :path => 'Components/Texture'
+  pod 'Texture', :path => 'Components/Texture'
   pod 'NMessenger', :path => 'Components/nMessenger'
   #pod 'PI_NOperation', :path => 'Components/Tex_ture/PI_NOperation'
   #pod 'PI_NCache', :path => 'Components/Tex_ture/PI_NCache'

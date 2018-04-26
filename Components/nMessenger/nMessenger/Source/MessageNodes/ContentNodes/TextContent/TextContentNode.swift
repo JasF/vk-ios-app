@@ -140,6 +140,7 @@ open class TextContentNode: ContentNode,ASTextNodeDelegate {
         self.textMessageNode.attributedText = outputString
         self.textMessageNode.accessibilityIdentifier = "labelMessage"
         self.textMessageNode.isAccessibilityElement = true
+        self.addSubnode(bubbleNode)
         self.addSubnode(textMessageNode)
     }
     
@@ -167,8 +168,9 @@ open class TextContentNode: ContentNode,ASTextNodeDelegate {
         let textMessageSize = ASAbsoluteLayoutSpec()
         textMessageSize.sizing = .sizeToFit
         textMessageSize.children = [self.textMessageNode]
-        
-        return  ASInsetLayoutSpec(insets: insets, child: textMessageSize)
+        return ASBackgroundLayoutSpec(child: ASInsetLayoutSpec(insets: insets, child: textMessageSize), background: bubbleNode)
+        //[ASBackgroundLayoutSpec backgroundLayoutSpecWithChild:childNode background:backgroundNode];
+        //return // ASInsetLayoutSpec(insets: insets, child: textMessageSize)
         
     }
     

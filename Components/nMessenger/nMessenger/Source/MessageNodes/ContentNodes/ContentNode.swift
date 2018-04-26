@@ -16,15 +16,22 @@ import AsyncDisplayKit
  Content node class for NMessenger.
  Define the content a a MessageNode or a MessageGroup
  */
+open class BubbleNode: ASDisplayNode {
+    override init() {
+        super.init()
+    }
+}
+
 open class ContentNode: ASDisplayNode {
     
     // MARK: Public Parameters
     /** Bubble that defines the background for the message*/
     open var backgroundBubble: Bubble?
+    open var bubbleNode: BubbleNode = BubbleNode()
     /** UIViewController that holds the cell. Allows the cell the present View Controllers. Generally used for UIMenu or UIAlert Options*/
     open weak var currentViewController: UIViewController?
     /** MessageConfigurationProtocol hold common definition for all messages. Defaults to **StandardMessageConfiguration***/
-    open var bubbleConfiguration : BubbleConfigurationProtocol = StandardBubbleConfiguration() {
+    open var bubbleConfiguration : BubbleConfigurationProtocol = SimpleBubbleConfiguration() {
         didSet {
             self.updateBubbleConfig(self.bubbleConfiguration)
         }
@@ -60,6 +67,7 @@ open class ContentNode: ASDisplayNode {
     override open func didLoad() {
         super.didLoad()
         self.addSublayers()
+        self.backgroundColor = UIColor.blue
     }
     
     //MARK: Node Lifecycle helper methods
@@ -84,6 +92,7 @@ open class ContentNode: ASDisplayNode {
             backgroundBubble.layer.removeFromSuperlayer()
             backgroundBubble.maskLayer.removeFromSuperlayer()
             
+            //self.layer.addSublayer(backgroundBubble.layer)
             self.layer.insertSublayer(backgroundBubble.layer, at: 0)
             
             //If there is a layer mask, add it
@@ -100,18 +109,6 @@ open class ContentNode: ASDisplayNode {
     /**
      Draws the content in the bubble. This is called on a background thread.
      */
-    open func drawRect(_ bounds: CGRect, withParameters parameters: NSObjectProtocol!,
-                  isCancelled isCancelledBlock: asdisplaynode_iscancelled_block_t, isRasterizing: Bool) {
-        self.isOpaque = false
-        if !isRasterizing {
-            self.calculateLayerPropertiesThatFit(bounds)
-            
-            //call the main queue
-            DispatchQueue.main.async {
-                self.layoutLayers()
-            }
-        }
-    }
     
     
     //MARK: Override AsycDisaplyKit helper methods

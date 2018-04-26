@@ -62,6 +62,9 @@ class DialogViewController: NMessengerViewController, DialogScreenViewModelDeleg
             context.beginBatchFetching()
             self.viewModel?.getMessagesWithOffset(0, startMessageId: Int(message!.identifier)) {messages in
                 print("hello response!")
+                if messages == nil {
+                    return
+                }
                 if let array = messages! as NSArray as? [Message] {
                     self.messages?.append(contentsOf: array)
                     var messagesArray = [GeneralMessengerCell]()
