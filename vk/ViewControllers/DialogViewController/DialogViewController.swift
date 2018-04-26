@@ -7,6 +7,115 @@
 //
 
 import UIKit
+import NMessenger
+import AsyncDisplayKit
+
+class DialogViewController: NMessengerViewController, DialogScreenViewModelDelegate {
+    public required init?(coder aDecoder: NSCoder) {
+        self.scrollToBottom = false
+        super.init(coder: aDecoder)
+    }
+    
+    var nodeFactory: NodeFactory?
+    var viewModel: DialogScreenViewModel?
+    var messages: Array<Message>?
+    var secondMessages: Array<Message>?
+    var scrollToBottom: Bool
+    
+    @objc init(viewModel:DialogScreenViewModel?, nodeFactory:NodeFactory?) {
+        self.scrollToBottom = false
+        super.init(nibName:nil, bundle:nil)
+        self.viewModel = viewModel!
+        self.nodeFactory = nodeFactory!
+        self.viewModel!.delegate = self
+    }
+    /*
+    var updating: Bool?
+    public func batchFetchContent() {
+        if self.updating == true {
+            return
+        }
+        let message = self.secondMessages?.last
+        if message != nil {
+            self.updating = true
+            
+            self.viewModel?.getMessagesWithOffset(0, startMessageId: Int(message!.identifier)) {messages in
+                print("hello response!")
+                if messages == nil {
+                    return
+                }
+                self.updating = false
+                if let array = messages! as NSArray as? [Message] {
+                    self.secondMessages?.append(contentsOf: array)
+                    self.messages?.append(contentsOf: array)
+                }
+                self.mDataSource.loadPrevious(count:self.messages!.count)
+            }
+            
+        }
+        NSLog("begin chat batch fetch content");
+    }
+    */
+    public func batchFetchContent(_ context: ASBatchContext) {
+        let message = self.messages?.last
+        if message != nil {
+            context.beginBatchFetching()
+            self.viewModel?.getMessagesWithOffset(0, startMessageId: Int(message!.identifier)) {messages in
+                print("hello response!")
+                if let array = messages! as NSArray as? [Message] {
+                    self.messages?.append(contentsOf: array)
+                    var messagesArray = [GeneralMessengerCell]()
+                    for data in array {
+                        let message = self.createTextMessage(data.body, isIncomingMessage: data.isOut == 0 ?true:false)
+                        messagesArray.append(message)
+                    }
+                    self.messengerView.endBatchFetchWithMessages(messagesArray)
+                    context.completeBatchFetching(true)
+                }
+                
+            }
+        }
+        else {
+            self.messengerView.endBatchFetchWithMessages([])
+        }
+        NSLog("begin chat batch fetch content");
+    }
+    
+    override open func viewWillAppear(_ animated: Bool ) {
+        super.viewWillAppear(animated)
+        
+        self.viewModel?.getMessagesWithOffset(0) {messages in
+            if messages == nil {
+                return
+            }
+            if let array = messages! as NSArray as? [Message] {
+                self.messages = array
+                self.secondMessages = array
+                self.scrollToBottom = true
+                for message in array {
+                    self.sendText(message.body!, isIncomingMessage:message.isOut == 0 ? true : false)
+                }
+                //self.mDataSource.loadPrevious(count:array.count)
+            }
+        }
+    }
+    
+    //pragma mark - DialogScreenViewModelDelegate
+    func handleIncomingMessage(_ message: Message?) {
+        //self.setTypingCellEnabled(false)
+        //self.mDataSource?.addIncomingTextMessage(message)
+    }
+    
+    func handleMessageFlagsChanged(_ message: Message!) {
+        //self.mDataSource?.handleMessageFlagsChanged(message)
+    }
+    
+    func handleTyping(_ userId: Int, end: Bool) {
+        NSLog("typing: \(userId)");
+        //self.setTypingCellEnabled(!end)
+    }
+}
+/*
 import Chatto
 import ChattoAdditions
 
@@ -161,3 +270,4 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         self.viewModel?.inputBarDidChangeText(inputBar.text())
     }
 }
+*/

@@ -1,0 +1,73 @@
+//
+//  A_SCollectionSectionController.m
+//  Sample
+//
+//  Created by Adlai Holler on 12/29/16.
+//  Copyright © 2016 Facebook. All rights reserved.
+//
+
+#import "A_SCollectionSectionController.h"
+#import <Async_DisplayKit/Async_DisplayKit.h>
+
+@interface A_SCollectionSectionController ()
+@property (nonatomic, strong, readonly) dispatch_queue_t diffingQueue;
+
+/// The items that have been diffed and are waiting to be submitted to the collection view.
+/// Should always be accessed on the diffing queue, and should never be accessed
+/// before the initial items are read (in -numberOfItems).
+@property (nonatomic, copy) NSArray *pendingItems;
+
+@property (nonatomic) BOOL initialItemsRead;
+@end
+
+@implementation A_SCollectionSectionController
+@synthesize diffingQueue = _diffingQueue;
+
+- (NSInteger)numberOfItems
+{
+  if (_initialItemsRead == NO) {
+    _pendingItems = self.items;
+    _initialItemsRead = YES;
+  }
+  return self.items.count;
+}
+
+- (dispatch_queue_t)diffingQueue
+{
+  if (_diffingQueue == nil) {
+    _diffingQueue = dispatch_queue_create("A_SCollectionSectionController.diffingQueue", DISPATCH_QUEUE_SERIAL);
+  }
+  return _diffingQueue;
+}
+
+- (void)setItems:(NSArray *)newItems animated:(BOOL)animated completion:(void(^)())completion
+{
+  A_SDisplayNodeAssertMainThread();
+  newItems = [newItems copy];
+  if (!self.initialItemsRead) {
+    _items = newItems;
+    if (completion) {
+      completion();
+    }
+    return;
+  }
+
+  dispatch_async(self.diffingQueue, ^{
+    IGListIndexSetResult *result = IGListDiff(self.pendingItems, newItems, IGListDiffPointerPersonality);
+    self.pendingItems = newItems;
+    dispatch_async(dispatch_get_main_queue(), ^{
+      id<IGListCollectionContext> ctx = self.collectionContext;
+      [ctx performBatchAnimated:animated updates:^(id<IGListBatchContext>  _Nonnull batchContext) {
+        [batchContext insertInSectionController:(id)self atIndexes:result.inserts];
+        [batchContext deleteInSectionController:(id)self atIndexes:result.deletes];
+        _items = newItems;
+      } completion:^(BOOL finished) {
+        if (completion) {
+          completion();
+        }
+      }];
+    });
+  });
+}
+
+@end

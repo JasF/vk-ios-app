@@ -1,0 +1,10 @@
+//
+//  PI_NRemoteImage-Prefix.pch
+//  PI_NRemoteImage
+//
+//  Created by Garrett Moon on 2/9/16.
+//  Copyright © 2016 Pinterest. All rights reserved.
+//
+
+#import <Availability.h>
+#import "PI_NRemoteImageMacros.h"

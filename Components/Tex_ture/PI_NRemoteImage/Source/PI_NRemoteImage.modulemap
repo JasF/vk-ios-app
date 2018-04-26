@@ -1,0 +1,10 @@
+framework module PI_NRemoteImage {    
+    umbrella header "PI_NRemoteImage.h"
+
+    textual header "PI_NRemoteImageMacros.h"
+    header "FLAnimatedImageView+PI_NRemoteImage.h"
+    header "PI_NButton+PI_NRemoteImage.h"
+    header "PI_NImageView+PI_NRemoteImage.h"
+
+    export *
+}
