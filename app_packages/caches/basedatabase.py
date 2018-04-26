@@ -27,11 +27,12 @@ class BaseDatabase():
         path = sys.argv[1] + '/databases'
         os.makedirs(path, exist_ok=True)
         path += '/' + self.tableName + '.sql'
+        self.rowid = self.primaryKeyName()
         try:
             self.conn = sqlite3.connect(path)
             self.conn.row_factory = self.row_factory()
             self.cursor = self.conn.cursor()
-            createTableScript = 'CREATE TABLE IF NOT EXISTS ' + self.tableName + ' (id integer PRIMARY KEY, ' + ', '.join(  k + ' ' + self.params()[k] for k in self.params()  ) + ')'
+            createTableScript = 'CREATE TABLE IF NOT EXISTS ' + self.tableName + ' (' + self.rowid + ' ' + self.primaryKeyType() + ' PRIMARY KEY, ' + ', '.join(  k + ' ' + self.params()[k] for k in self.params()  ) + ')'
             self.cursor.execute(createTableScript)
         except Exception as e:
             print('connect to database ' + path + ' error: ' + str(e))
@@ -43,9 +44,15 @@ class BaseDatabase():
 
     def objects(self):
         return []
+    
+    def primaryKeyName(self):
+        return 'id'
+    
+    def primaryKeyType(self):
+        return 'integer'
 
     def allowed(self, key):
-        if key in self.params().keys() or key == 'id':
+        if key in self.params().keys() or key == self.rowid:
             return True
         return False
 
@@ -80,9 +87,10 @@ class BaseDatabase():
                 #print('update script 1 is: ' + str(script) + '; parameters: ' + str(parameters))
                 self.cursor.execute(script, parameters)
                 script = 'UPDATE ' + self.tableName + ' SET '
-                script += ', '.join(k + ' = ?' for k in keys if self.allowed(k) and k != 'id')
-                script += ' WHERE id=' + str(d['id']) + ';'
-                parameters = [vtostr(d[k],k) for k in keys if self.allowed(k) and k != 'id']
+                script += ', '.join(k + ' = ?' for k in keys if self.allowed(k) and k != self.rowid)
+                script += ' WHERE ' + self.rowid + '= ?'
+                parameters = [vtostr(d[k],k) for k in keys if self.allowed(k) and k != self.rowid]
+                parameters.append(str(d[self.rowid]))
                 #print('update script 2 is: ' + str(script) + '; parameters: ' + str(parameters))
                 self.cursor.execute(script, parameters)
             self.conn.commit()
@@ -94,7 +102,7 @@ class BaseDatabase():
         pass
     
     def selectIds(self, ids, keys):
-        script = 'SELECT ' + keys + ' FROM ' + self.tableName + ' WHERE id IN (' + ','.join(str(id) for id in ids) + ')'
+        script = 'SELECT ' + keys + ' FROM ' + self.tableName + ' WHERE ' + self.rowid + ' IN (' + ','.join(str(id) for id in ids) + ')'
         self.cursor.execute(script)
         result = self.cursor.fetchall()
         return result

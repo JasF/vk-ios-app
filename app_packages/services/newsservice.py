@@ -19,9 +19,7 @@ class NewsService:
                 response = api.newsfeed.get()
             next_from = response.get('next_from')
             l = response["items"]
-            print('news response: ' + json.dumps(l, sort_keys=True, indent=4, separators=(',', ': ')))
-            for d in l:
-                d['id'] = d.get('post_id') if isinstance(d.get('post_id'), int) else 0
+            #print('news response: ' + json.dumps(l, sort_keys=True, indent=4, separators=(',', ': ')))
             cache = PostsDatabase()
             cache.update(l)
             cache.close()
