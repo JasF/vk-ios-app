@@ -1,4 +1,4 @@
-import vk
+import vk, os, sys
 import json
 from vk import users
 import traceback
@@ -20,7 +20,6 @@ class WallPostService:
         try:
             cache = PostsDatabase()
             result = cache.getById(ownerId, postId)
-            print('getPostById: ' + str(result) + '; from ' + str(ownerId) + ' and ' + str(postId))
             cache.close()
             if not result:
                 return None
@@ -28,7 +27,11 @@ class WallPostService:
             usersData = self.usersDecorator.usersDataFromPosts(l)
         
         except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            print(exc_type, fname, exc_tb.tb_lineno)
             print('wall post service exception: ' + str(e))
+            print(traceback.format_exc())
         results = {'response':{'items':l}, 'users':usersData}
         return results
         

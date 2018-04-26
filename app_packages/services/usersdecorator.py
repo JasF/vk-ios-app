@@ -46,6 +46,8 @@ class UsersDecorator:
         ids |= set(historyFromIds)
         ids |= set(historyOwnerIds)
         ids |= set(friends)
+        
+        ids.discard(None)
         #ids |= set(historySourceIds)
         
         usersData = users.getShortUsersByIds(ids)
