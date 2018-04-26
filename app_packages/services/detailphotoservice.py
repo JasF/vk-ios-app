@@ -3,7 +3,7 @@ import json
 from vk import users
 import traceback
 from vk import users as users
-from caches.postsdatabase import PostsDatabase
+from caches.photosdatabase import PhotosDatabase
 from caches.commentsdatabase import CommentsDatabase
 
 g_count = 40
@@ -12,27 +12,18 @@ class DetailPhotoService:
     def __init__(self, usersDecorator):
         self.usersDecorator = usersDecorator
         pass
-    '''
-    def getPostById(self, identifier):
-        response = None
-        usersData = None
-        l = None
+    
+    def getPhoto(self, ownerId, photoId):
+        api = vk.api()
+        items = None
         try:
-            cache = PostsDatabase()
-            result = cache.getById(identifier)
+            cache = PhotosDatabase()
+            items = cache.getPhoto(ownerId, photoId)
             cache.close()
-            if not result:
-                return None
-            l = [result]
-            usersData = self.usersDecorator.usersDataFromPosts(l)
-        
         except Exception as e:
-            print('wall post service exception: ' + str(e))
-        results = {'response':{'items':l}, 'users':usersData}
-        return results
-        
-        return result
-    '''
+            print('DetailPhotoService getPhoto exception: ' + str(e))
+        return items
+
     def getComments(self, ownerId, photoId, offset):
         api = vk.api()
         result = None

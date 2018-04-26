@@ -23,9 +23,12 @@
     return self;
 }
 
-- (Photo *)parseOne:(NSDictionary *)postData {
-    //WallPost *post = [_galleryService parse:postData].firstObject;
-    return nil;
+- (Photo *)parseOne:(NSDictionary *)photoData {
+    if (!photoData) {
+        return nil;
+    }
+    Photo *photo = [_galleryService parse:@{@"items":@[photoData]}].firstObject;
+    return photo;
 }
 
 - (NSArray *)parseComments:(NSDictionary *)comments {

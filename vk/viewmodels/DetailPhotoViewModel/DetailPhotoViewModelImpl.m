@@ -35,7 +35,7 @@
 - (void)getPhotoWithCommentsOffset:(NSInteger)offset completion:(void(^)(Photo *photo, NSArray *comments))completion {
     dispatch_python(^{
         NSDictionary *response = [self.handler getPhotoData:@(offset)];
-        Photo *photo = [self.detailPhotoService parseOne:response[@"postData"]];
+        Photo *photo = [self.detailPhotoService parseOne:response[@"photoData"]];
         NSArray *comments = [self.detailPhotoService parseComments:response[@"comments"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {

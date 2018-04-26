@@ -17,9 +17,8 @@ class PyDetailPhotoViewModel():
     def getPhotoData(self, offset):
         results = {}
         if not self.photoData:
-            #self.photoData = self.detailPhotoService.getPostById(self.postId)
+            self.photoData = self.detailPhotoService.getPhoto(self.ownerId, self.photoId)
             comments = self.detailPhotoService.getComments(self.ownerId, self.photoId, offset)
-            print('comments: ' + str(comments))
             results['comments'] = comments
         if offset == 0:
             results['photoData'] = self.photoData
