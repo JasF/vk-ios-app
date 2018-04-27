@@ -100,6 +100,7 @@
                     [initializer injectParameterWith:[self.viewModelsAssembly wallScreenViewModel:userId]];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
                 }];
+                [definition injectProperty:@selector(postsViewModel) with:[self.viewModelsAssembly postsViewModel]];
             }];
 }
 
@@ -110,6 +111,7 @@
                     [initializer injectParameterWith:[self.viewModelsAssembly wallPostViewModelWithOwnerId:ownerId postId:postId]];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
                 }];
+                [definition injectProperty:@selector(postsViewModel) with:[self.viewModelsAssembly postsViewModel]];
             }];
 }
 
@@ -174,6 +176,7 @@
             [initializer injectParameterWith:[self.viewModelsAssembly detailPhotoViewModel:ownerId albumId:albumId photoId:photoId]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
+        [definition injectProperty:@selector(postsViewModel) with:[self.viewModelsAssembly postsViewModel]];
     }];
 }
 
@@ -246,6 +249,7 @@
             [initializer injectParameterWith:[self.viewModelsAssembly detailVideoViewModel:ownerId videoId:videoId]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
+        [definition injectProperty:@selector(postsViewModel) with:[self.viewModelsAssembly postsViewModel]];
     }];
 }
 

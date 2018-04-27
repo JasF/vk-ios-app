@@ -26,6 +26,7 @@
 #import "DetailPhotoViewModelImpl.h"
 #import "AuthorizationViewModelImpl.h"
 #import "DetailVideoViewModelImpl.h"
+#import "PostsViewModelImpl.h"
 
 @implementation ViewModelsAssembly
 
@@ -236,6 +237,15 @@
                     [initializer injectParameterWith:self.servicesAssembly.detailVideoService];
                     [initializer injectParameterWith:ownerId];
                     [initializer injectParameterWith:videoId];
+                }];
+            }];
+}
+
+- (id<PostsViewModel>)postsViewModel {
+    return [TyphoonDefinition withClass:[PostsViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                 }];
             }];
 }

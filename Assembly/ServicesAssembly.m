@@ -23,6 +23,7 @@
 #import "SettingsServiceImpl.h"
 #import "DetailPhotoServiceImpl.h"
 #import "DetailVideoServiceImpl.h"
+#import "PostsServiceImpl.h"
 
 @implementation ServicesAssembly
 
@@ -126,6 +127,12 @@
 
 - (id<SettingsService>)settingsService {
     return [TyphoonDefinition withClass:[SettingsServiceImpl class]];
+}
+
+- (id<PostsService>)postsService {
+    return [TyphoonDefinition withClass:[PostsServiceImpl class] configuration:^(TyphoonDefinition *definition) {
+        definition.scope = TyphoonScopeSingleton;
+    }];
 }
 
 @end

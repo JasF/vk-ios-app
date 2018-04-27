@@ -6,8 +6,8 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "PostsViewController.h"
 
-@interface SectionsTableViewController : BaseTableViewController
+@interface SectionsTableViewController : PostsViewController
 @property (nonatomic) NSArray *sectionsArray;
 @end

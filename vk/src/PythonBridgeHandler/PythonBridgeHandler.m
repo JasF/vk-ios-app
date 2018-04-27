@@ -74,6 +74,9 @@
 - (id)methodWithResultAndThreeArgument:(id)argument arg2:(id)arg2 arg3:(id)arg3 {
     return self.resultValue;
 }
+- (id)methodWithResultAndFiveArgument:(id)argument arg2:(id)arg2 arg3:(id)arg3 arg4:(id)arg4 arg5:(id)arg5 {
+    return self.resultValue;
+}
 
 -(void)forwardInvocation:(NSInvocation*)anInvocation
 {
@@ -120,6 +123,9 @@
     }
     else if (withResultValue && arguments.count == 3) {
         anInvocation.selector = @selector(methodWithResultAndThreeArgument:arg2:arg3:);
+    }
+    else if (withResultValue && arguments.count == 5) {
+        anInvocation.selector = @selector(methodWithResultAndFiveArgument:arg2:arg3:arg4:arg5:);
     }
     else if (withResultValue) {
         NSCParameterAssert(!arguments.count);

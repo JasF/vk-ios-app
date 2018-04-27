@@ -18,6 +18,7 @@ from .pysettingsviewmodel import PySettingsViewModel
 from .pydetailphotoviewmodel import PyDetailPhotoViewModel
 from .pyauthorizationviewmodel import PyAuthorizationViewModel
 from .pydetailvideoviewmodel import PyDetailVideoViewModel
+from .pypostsviewmodel import PyPostsViewModel
 
 from services.messagesservice import MessagesService
 from services.chatlistservice import ChatListService
@@ -56,3 +57,5 @@ Subscriber().setClassAllocator( PyDocumentsViewModel, lambda parameters: PyDocum
 Subscriber().setClassAllocator( PySettingsViewModel, lambda: PySettingsViewModel() )
 Subscriber().setClassAllocator( PyAuthorizationViewModel, lambda: PyAuthorizationViewModel() )
 Subscriber().setClassAllocator( PyDetailVideoViewModel, lambda parameters: PyDetailVideoViewModel(DetailVideoService(UsersDecorator()), parameters['ownerId'], parameters['videoId']) )
+Subscriber().setClassAllocatorWithDelegate( PyPostsViewModel, lambda delegateId: PyPostsViewModel() )
+

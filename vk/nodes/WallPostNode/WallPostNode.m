@@ -19,7 +19,7 @@ static CGFloat const kNameNodeMargin = 5.f;
 static CGFloat const kBottomSeparatorHeight = 8.f;
 static CGFloat const kControlsSize = 40.f;
 
-@interface WallPostNode() <ASNetworkImageNodeDelegate, ASTextNodeDelegate>
+@interface WallPostNode() <ASNetworkImageNodeDelegate, ASTextNodeDelegate, PostsServiceConsumer>
 
 @property (strong, nonatomic) WallPost *post;
 @property (strong, nonatomic) ASTextNode *nameNode;
@@ -46,6 +46,8 @@ static CGFloat const kControlsSize = 40.f;
 @implementation WallPostNode {
     NSIndexPath *_indexPath;
 }
+
+@synthesize postsService = _postsService;
 
 #pragma mark - Lifecycle
 
@@ -364,7 +366,7 @@ static CGFloat const kControlsSize = 40.f;
 
 #pragma mark - Observers
 - (void)likesTapped:(id)sender {
-    
+    [_postsService consumer:self likeActionWithItem:_post];
 }
 
 - (void)optionsTapped:(id)sender {
@@ -372,7 +374,12 @@ static CGFloat const kControlsSize = 40.f;
 }
 
 - (void)repostTapped:(id)sender {
-    
+    [_postsService consumer:self repostActionWithItem:_post];
+}
+
+#pragma mark - PostsServiceConsumer
+- (void)setLikesCount:(NSInteger)likes liked:(BOOL)liked {
+    [_likesNode setLikesCount:likes liked:liked];
 }
 
 @end

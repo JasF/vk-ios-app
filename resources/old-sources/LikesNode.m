@@ -32,48 +32,34 @@
 {
     self = [super init];
     if (self) {
-        _likesCount = likesCount;
-        _liked = (_likesCount > 0) ? liked : NO;
-        
-        _iconNode = [[ASImageNode alloc] init];
-        _iconNode.image = (_liked) ? [UIImage imageNamed:@"icon_liked.png"] : [UIImage imageNamed:@"icon_like.png"];
+        _iconNode = [ASImageNode new];
         [self addSubnode:_iconNode];
-        
-        _countNode = [[ASTextNode alloc] init];
-        if (_likesCount > 0) {
-            
-            NSDictionary *attributes = _liked ? [TextStyles cellControlColoredStyle] : [TextStyles cellControlStyle];
-            _countNode.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld", (long)_likesCount] attributes:attributes];
-            
-        }
+        _countNode = [ASTextNode new];
         [self addSubnode:_countNode];
-        
-        // make it tappable easily
-        //self.hitTestSlop = UIEdgeInsetsMake(-10, -10, -10, -10);
+        [self setLikesCount:likesCount liked:liked];
     }
-    
     return self;
     
 }
 
-+ (BOOL)getYesOrNo
-{
-    int tmp = (arc4random() % 30)+1;
-    if (tmp % 5 == 0) {
-        return YES;
+- (void)setLikesCount:(NSInteger)likes liked:(BOOL)liked {
+    _likesCount = likes;
+    _liked = (_likesCount > 0) ? liked : NO;
+    _iconNode.image = (_liked) ? [UIImage imageNamed:@"icon_liked.png"] : [UIImage imageNamed:@"icon_like.png"];
+    if (_likesCount > 0) {
+        NSDictionary *attributes = _liked ? [TextStyles cellControlColoredStyle] : [TextStyles cellControlStyle];
+        _countNode.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld", (long)_likesCount] attributes:attributes];
     }
-    return NO;
+    [self setNeedsLayout];
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    ASStackLayoutSpec *mainStack =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:6.0
-     justifyContent:ASStackLayoutJustifyContentCenter
-     alignItems:ASStackLayoutAlignItemsCenter
-     children:@[_iconNode, _countNode]];
+    ASStackLayoutSpec *mainStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+                                                                           spacing:6.0
+                                                                    justifyContent:ASStackLayoutJustifyContentCenter
+                                                                        alignItems:ASStackLayoutAlignItemsCenter
+                                                                          children:@[_iconNode, _countNode]];
     return mainStack;
 }
 

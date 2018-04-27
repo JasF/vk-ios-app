@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NodeFactory.h"
+#import "PostsService.h"
 
 @class NodesAssembly;
 

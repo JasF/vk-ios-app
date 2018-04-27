@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ServicesAssembly.h"
 #import "TyphoonAssembly.h"
 #import "NodeFactory.h"
 #import "Dialog.h"
@@ -24,6 +25,7 @@
 @class ASDisplayNode;
 
 @interface NodesAssembly : TyphoonAssembly
+@property ServicesAssembly *servicesAssembly;
 - (id<NodeFactory>)nodeFactory;
 - (ASDisplayNode *)wallPostNodeWithData:(id)data embedded:(NSNumber *)embedded;
 - (ASDisplayNode *)postImagesNodeWithAttachments:(NSArray *)attachments;

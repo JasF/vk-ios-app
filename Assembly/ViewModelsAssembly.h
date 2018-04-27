@@ -30,6 +30,7 @@
 #import "DetailPhotoViewModel.h"
 #import "AuthorizationViewModel.h"
 #import "DetailVideoViewModel.h"
+#import "PostsViewModel.h"
 
 @interface ViewModelsAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -55,4 +56,5 @@
 - (id<SettingsViewModel>)settingsViewModel;
 - (id<AuthorizationViewModel>)authorizationViewModel;
 - (id<DetailVideoViewModel>)detailVideoViewModel:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
+- (id<PostsViewModel>)postsViewModel;
 @end

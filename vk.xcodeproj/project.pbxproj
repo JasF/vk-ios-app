@@ -476,6 +476,9 @@
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
+		C3A82A342093342400C41CA8 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A332093342400C41CA8 /* PostsViewController.m */; };
+		C3A82A392093350600C41CA8 /* PostsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A382093350600C41CA8 /* PostsViewModelImpl.m */; };
+		C3A82A3F2093389F00C41CA8 /* PostsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A3E2093389F00C41CA8 /* PostsServiceImpl.m */; };
 		C3B0EECF208B14E8008802BB /* loadBubble_0019_Layer-20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE55208B14E8008802BB /* loadBubble_0019_Layer-20@2x.png */; };
 		C3B0EED0208B14E8008802BB /* loadBubble_0031_Layer-8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE56208B14E8008802BB /* loadBubble_0031_Layer-8@2x.png */; };
 		C3B0EED1208B14E8008802BB /* loadBubble_0014_Layer-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE57208B14E8008802BB /* loadBubble_0014_Layer-25@2x.png */; };
@@ -1561,6 +1564,15 @@
 		C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ASInsetLayoutSpec+Utils.m"; sourceTree = "<group>"; };
 		C3A82A2E20932DAC00C41CA8 /* RepostNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepostNode.h; sourceTree = "<group>"; };
 		C3A82A2F20932DAC00C41CA8 /* RepostNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepostNode.m; sourceTree = "<group>"; };
+		C3A82A322093342400C41CA8 /* PostsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostsViewController.h; sourceTree = "<group>"; };
+		C3A82A332093342400C41CA8 /* PostsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostsViewController.m; sourceTree = "<group>"; };
+		C3A82A36209334F800C41CA8 /* PostsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostsViewModel.h; sourceTree = "<group>"; };
+		C3A82A372093350600C41CA8 /* PostsViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostsViewModelImpl.h; sourceTree = "<group>"; };
+		C3A82A382093350600C41CA8 /* PostsViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostsViewModelImpl.m; sourceTree = "<group>"; };
+		C3A82A3A2093366800C41CA8 /* pypostsviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pypostsviewmodel.py; sourceTree = "<group>"; };
+		C3A82A3C2093389200C41CA8 /* PostsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostsService.h; sourceTree = "<group>"; };
+		C3A82A3D2093389F00C41CA8 /* PostsServiceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostsServiceImpl.h; sourceTree = "<group>"; };
+		C3A82A3E2093389F00C41CA8 /* PostsServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostsServiceImpl.m; sourceTree = "<group>"; };
 		C3A943D22084824F0033355E /* longpoll.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = longpoll.py; sourceTree = "<group>"; };
 		C3A943FB2084B8B20033355E /* pydialogscreenviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pydialogscreenviewmodel.py; sourceTree = "<group>"; };
 		C3A943FC2084B9360033355E /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
@@ -2665,6 +2677,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3A82A312093340D00C41CA8 /* PostsViewController */,
 				C3A82A23209304F300C41CA8 /* BaseTableViewController */,
 				C323049D2080E57400CEC487 /* BaseCollectionViewController */,
 				C3333D462091A98D009EBB09 /* DetailVideoViewController */,
@@ -2805,6 +2818,7 @@
 		C32304B92080E57400CEC487 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				C3A82A3B2093386400C41CA8 /* PostsService */,
 				C3333D3C2091A812009EBB09 /* DetailVideoService */,
 				C32263032090CD800054789B /* DetailPhotoService */,
 				C32262E42090AF4F0054789B /* SettingsService */,
@@ -4466,6 +4480,35 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		C3A82A312093340D00C41CA8 /* PostsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3A82A322093342400C41CA8 /* PostsViewController.h */,
+				C3A82A332093342400C41CA8 /* PostsViewController.m */,
+			);
+			path = PostsViewController;
+			sourceTree = "<group>";
+		};
+		C3A82A35209334EC00C41CA8 /* PostsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3A82A36209334F800C41CA8 /* PostsViewModel.h */,
+				C3A82A372093350600C41CA8 /* PostsViewModelImpl.h */,
+				C3A82A382093350600C41CA8 /* PostsViewModelImpl.m */,
+			);
+			path = PostsViewModel;
+			sourceTree = "<group>";
+		};
+		C3A82A3B2093386400C41CA8 /* PostsService */ = {
+			isa = PBXGroup;
+			children = (
+				C3A82A3C2093389200C41CA8 /* PostsService.h */,
+				C3A82A3D2093389F00C41CA8 /* PostsServiceImpl.h */,
+				C3A82A3E2093389F00C41CA8 /* PostsServiceImpl.m */,
+			);
+			path = PostsService;
+			sourceTree = "<group>";
+		};
 		C3A943FA2084B89E0033355E /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
@@ -4489,6 +4532,7 @@
 				C32263082090D1F10054789B /* pydetailphotoviewmodel.py */,
 				C3D487412091A025007EC440 /* pyauthorizationviewmodel.py */,
 				C3D487422091A54A007EC440 /* pydetailvideoviewmodel.py */,
+				C3A82A3A2093366800C41CA8 /* pypostsviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -4647,6 +4691,7 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C3A82A35209334EC00C41CA8 /* PostsViewModel */,
 				C3333D412091A8B9009EBB09 /* DetailVideoViewModel */,
 				C3D4873C20919B86007EC440 /* AuthorizationViewModel */,
 				C32262FE2090CC500054789B /* DetailPhotoViewModel */,
@@ -5316,12 +5361,14 @@
 				C32309272081AEB100CEC487 /* NSInvocation+TCFInstanceBuilder.m in Sources */,
 				C32305BD2080E57500CEC487 /* EXTSelectorChecking.m in Sources */,
 				C323060C2080E57500CEC487 /* BaseCollectionViewController.m in Sources */,
+				C3A82A342093342400C41CA8 /* PostsViewController.m in Sources */,
 				C32305C12080E57500CEC487 /* EXTADT.m in Sources */,
 				197D8B0F1D64BA50004630AE /* AppDelegate.swift in Sources */,
 				C32305E92080E57500CEC487 /* CommentsNode.m in Sources */,
 				C32262FD2090CB190054789B /* DetailPhotoViewController.m in Sources */,
 				C323092D2081AEB100CEC487 /* TyphoonWeakComponentsPool.m in Sources */,
 				C32308BB2081AEB100CEC487 /* LGSideMenuSegue.m in Sources */,
+				C3A82A3F2093389F00C41CA8 /* PostsServiceImpl.m in Sources */,
 				C32309172081AEB100CEC487 /* TyphoonAssemblyBuilder+PlistProcessor.m in Sources */,
 				C343755A208F6984004EF670 /* Audio.m in Sources */,
 				C32305D22080E57500CEC487 /* VKThemeAssembly.m in Sources */,
@@ -5478,6 +5525,7 @@
 				C3B225062085BA6800599E04 /* DialogScreenViewModelImpl.m in Sources */,
 				C32306032080E57500CEC487 /* BaseNavigationController.mm in Sources */,
 				C32309292081AEB100CEC487 /* TyphoonStackElement.m in Sources */,
+				C3A82A392093350600C41CA8 /* PostsViewModelImpl.m in Sources */,
 				C3226281209074120054789B /* GroupsViewController.m in Sources */,
 				C32262D02090A66D0054789B /* Document.m in Sources */,
 				C32309192081AEB100CEC487 /* TyphoonParentReferenceHydratingPostProcessor.m in Sources */,
