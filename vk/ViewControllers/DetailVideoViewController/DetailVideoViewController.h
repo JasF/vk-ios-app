@@ -6,10 +6,10 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "SectionsCollectionViewController.h"
+#import "SectionsTableViewController.h"
 #import "DetailVideoViewModel.h"
 
-@interface DetailVideoViewController : SectionsCollectionViewController
+@interface DetailVideoViewController : SectionsTableViewController
 - (instancetype)initWithViewModel:(id<DetailVideoViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

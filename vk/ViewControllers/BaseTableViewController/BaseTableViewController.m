@@ -1,58 +1,56 @@
 //
-//  BaseCollectionViewController.m
+//  BaseTableViewController.m
 //  vk
 //
-//  Created by Jasf on 13.04.2018.
+//  Created by Jasf on 27.04.2018.
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "BaseCollectionViewController.h"
+#import "BaseTableViewController.h"
+
+#import "BaseTableViewController.h"
 #import "LoadingNode.h"
 
 static const NSInteger kBatchSize = 20;
 
-@interface BaseCollectionViewController () <ASCollectionDelegate, ASCollectionDataSource>
+@interface BaseTableViewController () <ASTableDelegate, ASTableDataSource>
 @property NSMutableArray *data;
 @property (assign, nonatomic) BOOL updating;
 @end
 
-@implementation BaseCollectionViewController {
+@implementation BaseTableViewController {
     BOOL _initiallyUpdated;
 }
 
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(nodeFactory);
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    _collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:layout];
-    self = [super initWithNode:_collectionNode];
+    _tableNode = [[ASTableNode alloc] init];
+    self = [super initWithNode:_tableNode];
     if (self) {
         _nodeFactory = nodeFactory;
-        _collectionNode.backgroundColor = [UIColor whiteColor];
-        _collectionNode.accessibilityIdentifier = NSStringFromClass([self class]);
+        _tableNode.backgroundColor = [UIColor whiteColor];
+        _tableNode.accessibilityIdentifier = NSStringFromClass([self class]);
         
         ASRangeTuningParameters preloadTuning;
         preloadTuning.leadingBufferScreenfuls = 2;
         preloadTuning.trailingBufferScreenfuls = 1;
-        [_collectionNode setTuningParameters:preloadTuning forRangeType:ASLayoutRangeTypePreload];
+        [_tableNode setTuningParameters:preloadTuning forRangeType:ASLayoutRangeTypePreload];
         
         ASRangeTuningParameters displayTuning;
         displayTuning.leadingBufferScreenfuls = 1;
         displayTuning.trailingBufferScreenfuls = 0.5;
-        [_collectionNode setTuningParameters:displayTuning forRangeType:ASLayoutRangeTypeDisplay];
-        
-        [_collectionNode registerSupplementaryNodeOfKind:UICollectionElementKindSectionHeader];
-        [_collectionNode registerSupplementaryNodeOfKind:UICollectionElementKindSectionFooter];
+        [_tableNode setTuningParameters:displayTuning forRangeType:ASLayoutRangeTypeDisplay];
         
         _data = [[NSMutableArray alloc] init];
-        _collectionNode.dataSource = self;
-        _collectionNode.delegate = self;
+        _tableNode.dataSource = self;
+        _tableNode.delegate = self;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _collectionNode.leadingScreensForBatching = 2;
+    _tableNode.leadingScreensForBatching = 2;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -96,18 +94,18 @@ static const NSInteger kBatchSize = 20;
             if (withReload) {
                 [self.data removeAllObjects];
                 [self.data addObjectsFromArray:objects];
-                [self.collectionNode reloadData];
+                [self.tableNode reloadData];
                 if (completion) {
                     completion(YES);
                 }
             }
             else {
-                [self.collectionNode performBatchAnimated:YES updates:^{
+                [self.tableNode performBatchAnimated:YES updates:^{
                     @strongify(self);
                     [self performBatchAnimated:YES];
                     [self.data addObjectsFromArray:objects];
                     NSArray *addedIndexPaths = [self indexPathsForObjects:objects];
-                    [self.collectionNode insertItemsAtIndexPaths:addedIndexPaths];
+                    [self.tableNode insertRowsAtIndexPaths:addedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
                 } completion:completion];
             }
         }
@@ -121,7 +119,7 @@ static const NSInteger kBatchSize = 20;
 - (NSArray *)indexPathsForObjects:(NSArray *)data
 {
     NSMutableArray *indexPaths = [NSMutableArray array];
-    NSInteger section = [self numberOfSectionsInCollectionNode:self.collectionNode] - 1;
+    NSInteger section = [self numberOfSectionsInTableNode:self.tableNode] - 1;
     for (id viewModel in data) {
         NSInteger item = [_data indexOfObject:viewModel];
         NSAssert(item < [_data count] && item != NSNotFound, @"Item should be in _data");
@@ -130,59 +128,31 @@ static const NSInteger kBatchSize = 20;
     return indexPaths;
 }
 
-#pragma mark - ASCollectionDelegate, ASCollectionDataSource
+#pragma mark - ASTableDelegate, ASTableDataSource
 
-- (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
+- (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     @weakify(self);
     return ^{
         @strongify(self);
         id object = self.data[indexPath.row];
-        /*
-        NSArray *colors = @[[UIColor greenColor], [UIColor redColor], [UIColor brownColor], [UIColor cyanColor]];
-        ASCellNode *node = [ASCellNode new];
-        node.style.width = ASDimensionMakeWithPoints(40.f);
-        node.style.height = ASDimensionMakeWithPoints(40.f);
-        node.backgroundColor = [colors[arc4random()%3] colorWithAlphaComponent:0.1];
-        */
         ASCellNode *node = (ASCellNode *)[self.nodeFactory nodeForItem:object];
         return node;
     };
 }
 
-- (id)collectionNode:(ASCollectionNode *)collectionNode nodeModelForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return _data[indexPath.item];
-}
-
-- (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    if ([kind isEqualToString:UICollectionElementKindSectionFooter] && indexPath.section == ([self numberOfSectionsInCollectionNode:self.collectionNode] > -1)) {
-        return [[LoadingNode alloc] init];
-    }
-    return nil;
-}
-
-- (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    ASSizeRange result = ASSizeRangeUnconstrained;
-    result.min.width = self.view.width;
-    result.max.width = self.view.width;
-    return result;
-}
-
-- (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
+- (NSInteger)tableNode:(ASTableNode *)tableNode numberOfRowsInSection:(NSInteger)section
 {
     return [_data count];
 }
 
-- (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode
+- (NSInteger)numberOfSectionsInTableNode:(ASTableNode *)tableNode
 {
     return 1;
 }
 
-- (void)collectionNode:(ASCollectionNode *)collectionNode willBeginBatchFetchWithContext:(ASBatchContext *)context
-{
+- (void)tableNode:(ASTableNode *)tableNode willBeginBatchFetchWithContext:(ASBatchContext *)context {
+    
     DDLogInfo(@"\n\n\nPre fetching$$$\n\n\n");
     if (self.updating) {
         [context completeBatchFetching:YES];
@@ -195,32 +165,6 @@ static const NSInteger kBatchSize = 20;
         self.updating = NO;
     }];
 }
-
-#pragma mark - Layouting
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    [_collectionNode.view.collectionViewLayout invalidateLayout];
-}
-
-#pragma mark - ASCollectionDelegateFlowLayout
-- (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode sizeRangeForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return ASSizeRangeUnconstrained;
-    } else {
-        return ASSizeRangeZero;
-    }
-}
-
-- (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode sizeRangeForFooterInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return ASSizeRangeUnconstrained;
-    } else {
-        return ASSizeRangeZero;
-    }
-}
-
 #pragma mark - Public Methods
 - (NSArray *)objectsArray {
     return _data;
@@ -235,8 +179,8 @@ static const NSInteger kBatchSize = 20;
     [button sizeToFit];
 }
 
-- (void)simpleReloadCollectionView {
-    [self.collectionNode reloadData];
+- (void)simpleReloadTableView {
+    [self.tableNode reloadData];
 }
 
 - (void)reloadData {

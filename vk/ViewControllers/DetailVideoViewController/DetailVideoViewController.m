@@ -8,7 +8,7 @@
 
 #import "DetailVideoViewController.h"
 
-@interface DetailVideoViewController () <BaseCollectionViewControllerDataSource,
+@interface DetailVideoViewController () <BaseTableViewControllerDataSource,
 ASCollectionDelegate, ASCollectionDataSource>
 @property (strong, nonatomic) id<DetailVideoViewModel> viewModel;
 @property Video *video;
@@ -29,7 +29,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     return self;
 }
 
-#pragma mark - BaseCollectionViewControllerDataSource
+#pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     if (offset) {
@@ -61,8 +61,6 @@ ASCollectionDelegate, ASCollectionDataSource>
 - (void)performBatchAnimated:(BOOL)animated {
     if (!self.sectionsArray && self.video) {
         self.sectionsArray = @[@[self.video]];
-        [self.collectionNode insertSections:[NSIndexSet indexSetWithIndex:0]];
-        [self.collectionNode insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]];
     }
     [super performBatchAnimated:animated];
 }

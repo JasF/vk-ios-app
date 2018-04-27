@@ -18,7 +18,7 @@
 #import "BlurbNode.h"
 #import "LoadingNode.h"
 
-@interface WallViewController () <BaseCollectionViewControllerDataSource>
+@interface WallViewController () <BaseTableViewControllerDataSource>
 @property (strong, nonatomic) id<WallViewModel> viewModel;
 @end
 
@@ -47,7 +47,7 @@
     [_viewModel menuTapped];
 }
 
-#pragma mark - BaseCollectionViewControllerDataSource
+#pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getWallPostsWithOffset:offset
@@ -61,8 +61,6 @@
 - (void)performBatchAnimated:(BOOL)animated {
     if (!self.sectionsArray && self.viewModel.currentUser) {
         self.sectionsArray = @[@[[ [WallUser alloc] initWithUser:self.viewModel.currentUser] ]];
-        [self.collectionNode insertSections:[NSIndexSet indexSetWithIndex:0]];
-        [self.collectionNode insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]];
     }
     [super performBatchAnimated:animated];
 }

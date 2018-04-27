@@ -8,7 +8,7 @@
 
 #import "GalleryViewController.h"
 
-@interface GalleryViewController () <BaseCollectionViewControllerDataSource>
+@interface GalleryViewController () <BaseTableViewControllerDataSource>
 @property id<GalleryViewModel> viewModel;
 @end
 
@@ -44,7 +44,7 @@
     return result;
 }
 
-#pragma mark - BaseCollectionViewControllerDataSource
+#pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getPhotos:offset completion:^(NSArray *photos) {

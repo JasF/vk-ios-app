@@ -19,7 +19,7 @@
 #import "LoadingNode.h"
 #import "Dialog.h"
 
-@interface ChatListViewController () <BaseCollectionViewControllerDataSource, ASCollectionDelegate, ChatListViewModelDelegate>
+@interface ChatListViewController () <BaseTableViewControllerDataSource, ASCollectionDelegate, ChatListViewModelDelegate>
 @property (strong, nonatomic) id<ChatListViewModel> viewModel;
 @end
 
@@ -52,7 +52,7 @@
     [_viewModel menuTapped];
 }
 
-#pragma mark - BaseCollectionViewControllerDataSource
+#pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getDialogsWithOffset:offset

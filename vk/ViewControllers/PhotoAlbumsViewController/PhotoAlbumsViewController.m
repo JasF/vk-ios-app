@@ -9,7 +9,7 @@
 #import "PhotoAlbumsViewController.h"
 #import "PhotoAlbum.h"
 
-@interface PhotoAlbumsViewController () <BaseCollectionViewControllerDataSource>
+@interface PhotoAlbumsViewController () <BaseTableViewControllerDataSource>
 @property id<PhotoAlbumsViewModel> viewModel;
 @end
 
@@ -43,7 +43,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - BaseCollectionViewControllerDataSource
+#pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getPhotoAlbums:offset completion:^(NSArray *albums) {

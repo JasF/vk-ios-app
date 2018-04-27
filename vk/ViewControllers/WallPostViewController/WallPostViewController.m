@@ -18,7 +18,7 @@
 #import "BlurbNode.h"
 #import "LoadingNode.h"
 
-@interface WallPostViewController () <BaseCollectionViewControllerDataSource,
+@interface WallPostViewController () <BaseTableViewControllerDataSource,
 ASCollectionDelegate, ASCollectionDataSource>
 @property (strong, nonatomic) id<WallPostViewModel> viewModel;
 @property WallPost *post;
@@ -45,7 +45,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     [super viewDidLoad];
 }
 
-#pragma mark - BaseCollectionViewControllerDataSource
+#pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     if (offset) {
@@ -77,8 +77,6 @@ ASCollectionDelegate, ASCollectionDataSource>
 - (void)performBatchAnimated:(BOOL)animated {
     if (!self.sectionsArray && self.post) {
         self.sectionsArray = @[@[self.post]];
-        [self.collectionNode insertSections:[NSIndexSet indexSetWithIndex:0]];
-        [self.collectionNode insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]];
     }
     [super performBatchAnimated:animated];
 }

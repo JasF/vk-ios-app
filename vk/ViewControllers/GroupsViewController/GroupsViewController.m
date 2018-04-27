@@ -8,7 +8,7 @@
 
 #import "GroupsViewController.h"
 
-@interface GroupsViewController ()<BaseCollectionViewControllerDataSource>
+@interface GroupsViewController ()<BaseTableViewControllerDataSource>
 @property id<GroupsViewModel> viewModel;
 @end
 
@@ -42,7 +42,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - BaseCollectionViewControllerDataSource
+#pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getGroups:offset

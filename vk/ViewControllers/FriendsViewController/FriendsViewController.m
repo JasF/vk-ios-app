@@ -8,7 +8,7 @@
 
 #import "FriendsViewController.h"
 
-@interface FriendsViewController () <BaseCollectionViewControllerDataSource>
+@interface FriendsViewController () <BaseTableViewControllerDataSource>
 @property (strong, nonatomic) id<FriendsViewModel> viewModel;
 @end
 
@@ -41,7 +41,7 @@
     [_viewModel menuTapped];
 }
 
-#pragma mark - BaseCollectionViewControllerDataSource
+#pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getFriendsWithOffset:offset

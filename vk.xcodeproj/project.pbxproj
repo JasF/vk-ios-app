@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		197D8B0F1D64BA50004630AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197D8B0E1D64BA50004630AE /* AppDelegate.swift */; };
 		197D8B141D64BA50004630AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197D8B121D64BA50004630AE /* Main.storyboard */; };
-		C3036C0B208DC99A005F086E /* SectionsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C0A208DC99A005F086E /* SectionsCollectionViewController.m */; };
+		C3036C0B208DC99A005F086E /* SectionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C0A208DC99A005F086E /* SectionsTableViewController.m */; };
 		C3036C10208DE2AF005F086E /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C0F208DE2AF005F086E /* Comment.m */; };
 		C3036C19208DEF12005F086E /* NotificationsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3036C18208DEF12005F086E /* NotificationsManagerImpl.m */; };
 		C3137721208E1FC900F568EA /* PhotoAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3137720208E1FC900F568EA /* PhotoAlbumsViewController.m */; };
@@ -493,6 +493,7 @@
 		C343756E208F81DB004EF670 /* AnswersViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C343756D208F81DB004EF670 /* AnswersViewModelImpl.m */; };
 		C3437573208F83AD004EF670 /* AnswersServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437572208F83AD004EF670 /* AnswersServiceImpl.m */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
+		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3B0EECF208B14E8008802BB /* loadBubble_0019_Layer-20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE55208B14E8008802BB /* loadBubble_0019_Layer-20@2x.png */; };
 		C3B0EED0208B14E8008802BB /* loadBubble_0031_Layer-8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE56208B14E8008802BB /* loadBubble_0031_Layer-8@2x.png */; };
 		C3B0EED1208B14E8008802BB /* loadBubble_0014_Layer-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE57208B14E8008802BB /* loadBubble_0014_Layer-25@2x.png */; };
@@ -637,8 +638,8 @@
 		A3EFD1DB3DB35D26BD34A97F /* Pods_MessageGroupsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageGroupsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA69975BD27688EB85F70A6A /* Pods-MessageGroupsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B52498E6A69599165C997DF8 /* Pods_MessageGroupsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageGroupsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3036C09208DC99A005F086E /* SectionsCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectionsCollectionViewController.h; sourceTree = "<group>"; };
-		C3036C0A208DC99A005F086E /* SectionsCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionsCollectionViewController.m; sourceTree = "<group>"; };
+		C3036C09208DC99A005F086E /* SectionsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectionsTableViewController.h; sourceTree = "<group>"; };
+		C3036C0A208DC99A005F086E /* SectionsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionsTableViewController.m; sourceTree = "<group>"; };
 		C3036C0C208DDCEC005F086E /* commentsdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = commentsdatabase.py; sourceTree = "<group>"; };
 		C3036C0E208DE2AF005F086E /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		C3036C0F208DE2AF005F086E /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
@@ -1594,6 +1595,8 @@
 		C3437575208F8687004EF670 /* pyanswersviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyanswersviewmodel.py; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
+		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A943D22084824F0033355E /* longpoll.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = longpoll.py; sourceTree = "<group>"; };
 		C3A943FB2084B8B20033355E /* pydialogscreenviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pydialogscreenviewmodel.py; sourceTree = "<group>"; };
 		C3A943FC2084B9360033355E /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
@@ -1846,13 +1849,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		C3036C08208DC94B005F086E /* SectionsCollectionViewController */ = {
+		C3036C08208DC94B005F086E /* SectionsTableViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C3036C09208DC99A005F086E /* SectionsCollectionViewController.h */,
-				C3036C0A208DC99A005F086E /* SectionsCollectionViewController.m */,
+				C3036C09208DC99A005F086E /* SectionsTableViewController.h */,
+				C3036C0A208DC99A005F086E /* SectionsTableViewController.m */,
 			);
-			path = SectionsCollectionViewController;
+			path = SectionsTableViewController;
 			sourceTree = "<group>";
 		};
 		C3036C0D208DE298005F086E /* Comment */ = {
@@ -2698,6 +2701,8 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3A82A23209304F300C41CA8 /* BaseTableViewController */,
+				C323049D2080E57400CEC487 /* BaseCollectionViewController */,
 				C3333D462091A98D009EBB09 /* DetailVideoViewController */,
 				C3D4873820919A4F007EC440 /* AuthorizationViewController */,
 				C32262FA2090CB070054789B /* DetailPhotoViewController */,
@@ -2712,7 +2717,7 @@
 				C3437542208EFDDE004EF670 /* ImagesViewerViewController */,
 				C3137738208E2EAE00F568EA /* GalleryViewController */,
 				C313771E208E1FA000F568EA /* PhotoAlbumsViewController */,
-				C3036C08208DC94B005F086E /* SectionsCollectionViewController */,
+				C3036C08208DC94B005F086E /* SectionsTableViewController */,
 				C313DD39208C53C50005E29B /* FriendsViewController */,
 				C32304862080E57400CEC487 /* BaseNavigationController */,
 				C32304892080E57400CEC487 /* MainViewController */,
@@ -2720,7 +2725,6 @@
 				C32304942080E57400CEC487 /* EmptyViewController */,
 				C32304972080E57400CEC487 /* WallViewController */,
 				C323049A2080E57400CEC487 /* ChatListViewController */,
-				C323049D2080E57400CEC487 /* BaseCollectionViewController */,
 				C32304A02080E57400CEC487 /* MenuViewController */,
 			);
 			path = ViewControllers;
@@ -4499,6 +4503,15 @@
 			path = AvatarNode;
 			sourceTree = "<group>";
 		};
+		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3A82A272093053500C41CA8 /* BaseTableViewController.h */,
+				C3A82A282093053500C41CA8 /* BaseTableViewController.m */,
+			);
+			path = BaseTableViewController;
+			sourceTree = "<group>";
+		};
 		C3A943FA2084B89E0033355E /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
@@ -5323,6 +5336,7 @@
 				C32308C32081AEB100CEC487 /* TyphoonJsonStyleConfiguration.m in Sources */,
 				C323061C2080E57500CEC487 /* ChatListServiceImpl.m in Sources */,
 				C32309022081AEB100CEC487 /* TyphoonInjectionByConfig.m in Sources */,
+				C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */,
 				C3437569208F816C004EF670 /* AnswersViewController.m in Sources */,
 				C343754F208F31A5004EF670 /* NewsViewController.m in Sources */,
 				C313DD54208C99C70005E29B /* WallUserNode.m in Sources */,
@@ -5466,7 +5480,7 @@
 				C32305F32080E57500CEC487 /* Likes.m in Sources */,
 				C32308F62081AEB100CEC487 /* TyphoonMethod+InstanceBuilder.m in Sources */,
 				C32308D82081AEB100CEC487 /* UIView+TyphoonOutletTransfer.m in Sources */,
-				C3036C0B208DC99A005F086E /* SectionsCollectionViewController.m in Sources */,
+				C3036C0B208DC99A005F086E /* SectionsTableViewController.m in Sources */,
 				C32308EF2081AEB100CEC487 /* TyphoonBlockDefinitionController.m in Sources */,
 				C313DD66208CB14A0005E29B /* WallPostViewModelImpl.m in Sources */,
 				C32305EC2080E57500CEC487 /* PythonBridgeImpl.m in Sources */,
