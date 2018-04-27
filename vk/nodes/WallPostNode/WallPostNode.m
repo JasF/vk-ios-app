@@ -184,9 +184,6 @@ static CGFloat const kControlsSize = 40.f;
             [self addSubnode:_bottomSeparator];
         }
         
-        NSArray *colors = @[[UIColor greenColor], [UIColor redColor], [UIColor brownColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor orangeColor]];
-        self.backgroundColor = [colors[arc4random()%6] colorWithAlphaComponent:0.1];
-        
         for (ASDisplayNode *node in self.subnodes) {
             // ASTextNode with embedded links doesn't support layer backing
             if (node.supportsLayerBacking) {
@@ -237,10 +234,15 @@ static CGFloat const kControlsSize = 40.f;
                                                                children:array];
         controlsStack = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(-kMargin, 0, -kMargin, 0)
                                                                child:controlsStack];
+        /*
         _likesNode.backgroundColor = [UIColor redColor];
         _commentsNode.backgroundColor = [UIColor greenColor];
         _optionsNode.backgroundColor = [UIColor blueColor];
         _postNode.backgroundColor = [UIColor orangeColor];
+        
+         NSArray *colors = @[[UIColor greenColor], [UIColor redColor], [UIColor brownColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor orangeColor]];
+         self.backgroundColor = [colors[arc4random()%6] colorWithAlphaComponent:0.1];
+         */
     }
     
     NSMutableArray *mainStackContent = [[NSMutableArray alloc] init];
