@@ -12,7 +12,7 @@
 
 @interface Likes : NSObject <EKMappingProtocol>
 @property NSInteger count;
-@property BOOL canLike;
-@property BOOL canPublish;
-@property BOOL userLikes;
+@property BOOL can_like;
+@property BOOL can_publish;
+@property BOOL user_likes;
 @end

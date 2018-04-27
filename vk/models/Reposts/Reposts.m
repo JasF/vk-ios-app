@@ -13,8 +13,7 @@
 +(EKObjectMapping *)objectMapping
 {
     return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
-        [mapping mapPropertiesFromArray:@[@"count"]];
-        [mapping mapKeyPath:@"user_reposted" toProperty:@"userReposted"];
+        [mapping mapPropertiesFromArray:@[@"count", @"user_reposted"]];
     }];
 }
 

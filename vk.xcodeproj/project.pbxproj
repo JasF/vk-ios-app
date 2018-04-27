@@ -114,7 +114,6 @@
 		C32305FC2080E57500CEC487 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C323047A2080E57400CEC487 /* Photo.m */; };
 		C32305FD2080E57500CEC487 /* PostType.m in Sources */ = {isa = PBXBuildFile; fileRef = C323047D2080E57400CEC487 /* PostType.m */; };
 		C32305FF2080E57500CEC487 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C32304802080E57400CEC487 /* Default-736h@3x.png */; };
-		C32306012080E57500CEC487 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304832080E57400CEC487 /* Post.m */; };
 		C32306032080E57500CEC487 /* BaseNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C32304872080E57400CEC487 /* BaseNavigationController.mm */; };
 		C32306042080E57500CEC487 /* LeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C323048B2080E57400CEC487 /* LeftViewCell.m */; };
 		C32306052080E57500CEC487 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C323048C2080E57400CEC487 /* MainViewController.mm */; };
@@ -476,6 +475,7 @@
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
+		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
 		C3B0EECF208B14E8008802BB /* loadBubble_0019_Layer-20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE55208B14E8008802BB /* loadBubble_0019_Layer-20@2x.png */; };
 		C3B0EED0208B14E8008802BB /* loadBubble_0031_Layer-8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE56208B14E8008802BB /* loadBubble_0031_Layer-8@2x.png */; };
 		C3B0EED1208B14E8008802BB /* loadBubble_0014_Layer-25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0EE57208B14E8008802BB /* loadBubble_0014_Layer-25@2x.png */; };
@@ -826,7 +826,6 @@
 		C32304232080E57400CEC487 /* VKApplicationAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKApplicationAssembly.h; sourceTree = "<group>"; };
 		C32304272080E57400CEC487 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C32304282080E57400CEC487 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C323042D2080E57400CEC487 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		C32304302080E57400CEC487 /* LikesNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikesNode.m; sourceTree = "<group>"; };
 		C32304322080E57400CEC487 /* TextStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextStyles.m; sourceTree = "<group>"; };
 		C32304392080E57400CEC487 /* DialogNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogNode.m; sourceTree = "<group>"; };
@@ -874,7 +873,6 @@
 		C323047E2080E57400CEC487 /* PostType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostType.h; sourceTree = "<group>"; };
 		C32304802080E57400CEC487 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		C32304822080E57400CEC487 /* LikesNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikesNode.h; sourceTree = "<group>"; };
-		C32304832080E57400CEC487 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		C32304872080E57400CEC487 /* BaseNavigationController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BaseNavigationController.mm; sourceTree = "<group>"; };
 		C32304882080E57400CEC487 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		C323048A2080E57400CEC487 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
@@ -1561,6 +1559,8 @@
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
 		C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ASInsetLayoutSpec+Utils.m"; sourceTree = "<group>"; };
+		C3A82A2E20932DAC00C41CA8 /* RepostNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepostNode.h; sourceTree = "<group>"; };
+		C3A82A2F20932DAC00C41CA8 /* RepostNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepostNode.m; sourceTree = "<group>"; };
 		C3A943D22084824F0033355E /* longpoll.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = longpoll.py; sourceTree = "<group>"; };
 		C3A943FB2084B8B20033355E /* pydialogscreenviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pydialogscreenviewmodel.py; sourceTree = "<group>"; };
 		C3A943FC2084B9360033355E /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
@@ -3396,8 +3396,8 @@
 				C32304822080E57400CEC487 /* LikesNode.h */,
 				C32304B22080E57400CEC487 /* TextStyles.h */,
 				C32304B52080E57400CEC487 /* CommentsNode.h */,
-				C323042D2080E57400CEC487 /* Post.h */,
-				C32304832080E57400CEC487 /* Post.m */,
+				C3A82A2E20932DAC00C41CA8 /* RepostNode.h */,
+				C3A82A2F20932DAC00C41CA8 /* RepostNode.m */,
 			);
 			path = "old-sources";
 			sourceTree = "<group>";
@@ -5294,6 +5294,7 @@
 				C32309242081AEB100CEC487 /* TyphoonCollaboratingAssemblyProxy.m in Sources */,
 				C3B225102085D7DC00599E04 /* ChatListViewModelImpl.m in Sources */,
 				C32308ED2081AEB100CEC487 /* TyphoonInjectionDefinition.m in Sources */,
+				C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */,
 				C32308CB2081AEB100CEC487 /* TyphoonStartup.m in Sources */,
 				C323091B2081AEB100CEC487 /* TyphoonCollaboratingAssembliesCollector.m in Sources */,
 				C32308C52081AEB100CEC487 /* TyphoonPlistStyleConfiguration.m in Sources */,
@@ -5324,7 +5325,6 @@
 				C32309172081AEB100CEC487 /* TyphoonAssemblyBuilder+PlistProcessor.m in Sources */,
 				C343755A208F6984004EF670 /* Audio.m in Sources */,
 				C32305D22080E57500CEC487 /* VKThemeAssembly.m in Sources */,
-				C32306012080E57500CEC487 /* Post.m in Sources */,
 				C32305F62080E57500CEC487 /* User.m in Sources */,
 				C3437562208F70C4004EF670 /* FriendsNode.m in Sources */,
 				C313DD59208CA7950005E29B /* WriteCommentNode.m in Sources */,

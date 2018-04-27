@@ -6,10 +6,10 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "BaseCollectionViewController.h"
+#import "BaseTableViewController.h"
 #import "DocumentsViewModel.h"
 
-@interface DocumentsViewController : BaseCollectionViewController
+@interface DocumentsViewController : BaseTableViewController
 - (instancetype)initWithViewModel:(id<DocumentsViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

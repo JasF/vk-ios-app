@@ -6,10 +6,10 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "BaseCollectionViewController.h"
+#import "BaseTableViewController.h"
 #import "SettingsViewModel.h"
 
-@interface SettingsViewController : BaseCollectionViewController
+@interface SettingsViewController : BaseTableViewController
 - (instancetype)initWithViewModel:(id<SettingsViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

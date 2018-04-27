@@ -6,7 +6,7 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "BaseCollectionViewController.h"
+#import "BaseTableViewController.h"
 #import "LoadingNode.h"
 
 static const NSInteger kBatchSize = 20;

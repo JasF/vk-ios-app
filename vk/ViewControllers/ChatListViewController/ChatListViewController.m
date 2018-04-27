@@ -8,14 +8,9 @@
 
 #import "ChatListViewController.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "Post.h"
 #import "VKSdkManager.h"
 #import <VK-ios-sdk/VKSdk.h>
 #import "WallPost.h"
-#import "WallPostNode.h"
-#import "User.h"
-#import "BlurbNode.h"
-#import "LoadingNode.h"
 #import "Dialog.h"
 
 @interface ChatListViewController () <BaseTableViewControllerDataSource, ASCollectionDelegate, ChatListViewModelDelegate>
@@ -78,7 +73,7 @@
     for (Dialog *dialog in [self objectsArray]) {
         if (dialog.message.user_id == userId) {
             dialog.message.isTyping = enabled;
-            [self simpleReloadCollectionView];
+            [self.tableNode reloadData];
             break;
         }
     }

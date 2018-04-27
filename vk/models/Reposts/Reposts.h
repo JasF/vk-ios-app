@@ -12,5 +12,5 @@
 
 @interface Reposts : NSObject <EKMappingProtocol>
 @property NSInteger count;
-@property NSInteger userReposted;
+@property BOOL user_reposted;
 @end

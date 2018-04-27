@@ -12,6 +12,7 @@
 #import "LikesNode.h"
 #import "CommentsNode.h"
 #import "AvatarNode.h"
+#import "RepostNode.h"
 
 static CGFloat const kMargin = 12.f;
 static CGFloat const kNameNodeMargin = 5.f;
@@ -30,7 +31,7 @@ static CGFloat const kControlsSize = 40.f;
 @property (strong, nonatomic) LikesNode *likesNode;
 @property (strong, nonatomic) CommentsNode *commentsNode;
 @property (strong, nonatomic) ASImageNode *optionsNode;
-@property (strong, nonatomic) ASImageNode *repostNode;
+@property (strong, nonatomic) RepostNode *repostNode;
 @property ASDisplayNode *bottomSeparator;
 
 @property (strong, nonatomic) ASDisplayNode *verticalLineNode;
@@ -159,7 +160,7 @@ static CGFloat const kControlsSize = 40.f;
         
         // Bottom controls
         if (!_embedded) {
-            _likesNode = [[LikesNode alloc] initWithLikesCount:_post.likes.count liked:NO];
+            _likesNode = [[LikesNode alloc] initWithLikesCount:_post.likes.count liked:_post.likes.user_likes];
             [_likesNode addTarget:self action:@selector(likesTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
             [self addSubnode:_likesNode];
             
@@ -172,9 +173,7 @@ static CGFloat const kControlsSize = 40.f;
             [_optionsNode addTarget:self action:@selector(optionsTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
             [self addSubnode:_optionsNode];
             
-            _repostNode = [[ASImageNode alloc] init];
-            _repostNode.image = [UIImage imageNamed:@"repost"];
-            _repostNode.contentMode = UIViewContentModeCenter;
+            _repostNode = [[RepostNode alloc] initWithRepostsCount:_post.reposts.count reposted:_post.reposts.user_reposted];
             [_repostNode addTarget:self action:@selector(repostTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
             [self addSubnode:_repostNode];
             

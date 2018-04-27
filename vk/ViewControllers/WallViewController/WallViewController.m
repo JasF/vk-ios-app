@@ -8,14 +8,9 @@
 
 #import "WallViewController.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "Post.h"
 #import "VKSdkManager.h"
 #import <VK-ios-sdk/VKSdk.h>
 #import "WallPost.h"
-#import "WallPostNode.h"
-#import "User.h"
-#import "BlurbNode.h"
-#import "LoadingNode.h"
 
 @interface WallViewController () <BaseTableViewControllerDataSource>
 @property (strong, nonatomic) id<WallViewModel> viewModel;

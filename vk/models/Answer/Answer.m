@@ -45,6 +45,14 @@
         self.parentComment = [EKMapper objectFromExternalRepresentation:parent withMapping:[Comment objectMapping]];
         userIds = [EKMapper arrayOfObjectsFromExternalRepresentation:feedback[@"items"] withMapping:[UserId objectMapping]];
     }
+    else if ([self.type isEqualToString:@"copy_post"]) {
+        //self.parentComment = [EKMapper objectFromExternalRepresentation:parent withMapping:[Comment objectMapping]];
+        //userIds = [EKMapper arrayOfObjectsFromExternalRepresentation:feedback[@"items"] withMapping:[UserId objectMapping]];
+    }
+    else if ([self.type isEqualToString:@"like_post"]) {
+        //self.parentComment = [EKMapper objectFromExternalRepresentation:parent withMapping:[Comment objectMapping]];
+        //userIds = [EKMapper arrayOfObjectsFromExternalRepresentation:feedback[@"items"] withMapping:[UserId objectMapping]];
+    }
     else {
         NSCAssert(false, @"Unhandled answer type: %@", self.type);
         return NO;

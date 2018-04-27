@@ -13,10 +13,7 @@
 +(EKObjectMapping *)objectMapping
 {
     return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
-        [mapping mapPropertiesFromArray:@[@"count"]];
-        [mapping mapKeyPath:@"can_like" toProperty:@"canLike"];
-        [mapping mapKeyPath:@"can_publish" toProperty:@"canPublish"];
-        [mapping mapKeyPath:@"user_likes" toProperty:@"userLikes"];
+        [mapping mapPropertiesFromArray:@[@"count", @"can_like", @"can_publish", @"user_likes"]];
     }];
 }
 
