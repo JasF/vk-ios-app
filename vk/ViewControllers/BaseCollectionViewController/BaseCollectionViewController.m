@@ -138,6 +138,13 @@ static const NSInteger kBatchSize = 20;
     return ^{
         @strongify(self);
         id object = self.data[indexPath.row];
+        /*
+        NSArray *colors = @[[UIColor greenColor], [UIColor redColor], [UIColor brownColor], [UIColor cyanColor]];
+        ASCellNode *node = [ASCellNode new];
+        node.style.width = ASDimensionMakeWithPoints(40.f);
+        node.style.height = ASDimensionMakeWithPoints(40.f);
+        node.backgroundColor = [colors[arc4random()%3] colorWithAlphaComponent:0.1];
+        */
         ASCellNode *node = (ASCellNode *)[self.nodeFactory nodeForItem:object];
         return node;
     };
@@ -222,9 +229,10 @@ static const NSInteger kBatchSize = 20;
 - (void)addMenuIconWithTarget:(id)target action:(SEL)action {
     UIButton *button = [UIButton new];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    [button setImage:[UIImage imageNamed:@"menuIcon.phg"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    [self.navigationItem setLeftBarButtonItem:backButton];
+    self.navigationItem.leftBarButtonItem = backButton;
+    [button sizeToFit];
 }
 
 - (void)simpleReloadCollectionView {

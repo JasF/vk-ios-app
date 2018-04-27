@@ -13,12 +13,13 @@
 #import "CommentsNode.h"
 #import "AvatarNode.h"
 
-#define PostNodeDividerColor [UIColor lightGrayColor]
+static CGFloat const kMargin = 12.f;
+static CGFloat const kNameNodeMargin = 5.f;
+static CGFloat const kBottomSeparatorHeight = 4.f;
 
 @interface WallPostNode() <ASNetworkImageNodeDelegate, ASTextNodeDelegate>
 
 @property (strong, nonatomic) WallPost *post;
-@property (strong, nonatomic) ASDisplayNode *divider;
 @property (strong, nonatomic) ASTextNode *nameNode;
 @property (strong, nonatomic) ASTextNode *usernameNode;
 @property (strong, nonatomic) ASTextNode *timeNode;
@@ -28,6 +29,7 @@
 @property (strong, nonatomic) LikesNode *likesNode;
 @property (strong, nonatomic) CommentsNode *commentsNode;
 @property (strong, nonatomic) ASImageNode *optionsNode;
+@property ASDisplayNode *bottomSeparator;
 
 @property (strong, nonatomic) ASDisplayNode *verticalLineNode;
 @property (strong, nonatomic) ASDisplayNode *verticalRightNode;
@@ -82,31 +84,21 @@
         _postNode.truncationAttributedText = [[NSAttributedString alloc] initWithString:@"\n"];
         _postNode.additionalTruncationMessage = [[NSAttributedString alloc] initWithString:L(@"show_fully")
                                                                                 attributes:[TextStyles truncationStyle]];
-        
         // Processing URLs in post
         NSString *kLinkAttributeName = @"TextLinkAttributeName";
         
         NSString *text = _post.text;
         if (text.length) {
-            
-            
             NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:text attributes:[TextStyles postStyle]];
-            
             NSDataDetector *urlDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
-            
             [urlDetector enumerateMatchesInString:attrString.string options:kNilOptions range:NSMakeRange(0, attrString.string.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop){
-                
                 if (result.resultType == NSTextCheckingTypeLink) {
-                    
                     NSMutableDictionary *linkAttributes = [[NSMutableDictionary alloc] initWithDictionary:[TextStyles postLinkStyle]];
                     linkAttributes[kLinkAttributeName] = [NSURL URLWithString:result.URL.absoluteString];
-                    
                     [attrString addAttributes:linkAttributes range:result.range];
-                    
                 }
                 
             }];
-            
             // Configure node to support tappable links
             _postNode.delegate = self;
             _postNode.userInteractionEnabled = YES;
@@ -115,25 +107,16 @@
             _postNode.passthroughNonlinkTouches = YES;   // passes touches through when they aren't on a link
             
         }
-        
         [self addSubnode:_postNode];
-        
-        _verticalRightNode = [ASDisplayNode new];
-        _verticalRightNode.style.preferredSize = CGSizeMake(2, 50);
-        _verticalRightNode.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.25f];
-        [self addSubnode:_verticalRightNode];
         
         WallPost *history = _post.history.firstObject;
         if (history) {
             _historyNode = [_nodeFactory nodeForItem:history embedded:YES];
             [self addSubnode:_historyNode];
-            
             _verticalLineNode = [ASDisplayNode new];
             _verticalLineNode.style.preferredSize = CGSizeMake(2, 50);
             _verticalLineNode.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.25f];
             [self addSubnode:_verticalLineNode];
-            
-            
         }
         
         // Media
@@ -173,21 +156,6 @@
         _avatarNode = [[AvatarNode alloc] initWithUser:_post.user];
         [self addSubnode:_avatarNode];
         
-        // Hairline cell separator
-        /*
-        _divider = [[ASDisplayNode alloc] init];
-        [self updateDividerColor];
-        [self addSubnode:_divider];
-        */
-        /*
-        // Via
-        if (_post.via != 0) {
-            _viaNode = [[ASImageNode alloc] init];
-            _viaNode.image = (_post.via == 1) ? [UIImage imageNamed:@"icon_ios.png"] : [UIImage imageNamed:@"icon_android.png"];
-            [self addSubnode:_viaNode];
-        }
-         */
-        
         // Bottom controls
         if (!_embedded) {
             _likesNode = [[LikesNode alloc] initWithLikesCount:_post.likes.count];
@@ -199,25 +167,22 @@
             _optionsNode = [[ASImageNode alloc] init];
             _optionsNode.image = [UIImage imageNamed:@"icon_more"];
             [self addSubnode:_optionsNode];
+            
+            _bottomSeparator = [ASDisplayNode new];
+            _bottomSeparator.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+            NSArray *colors = @[[UIColor greenColor], [UIColor redColor], [UIColor brownColor], [UIColor cyanColor]];
+            self.backgroundColor = [colors[arc4random()%3] colorWithAlphaComponent:0.1];
+            [self addSubnode:_bottomSeparator];
         }
         
         for (ASDisplayNode *node in self.subnodes) {
-            //node.layerBacked = YES;
+            // ASTextNode with embedded links doesn't support layer backing
+            if (node.supportsLayerBacking) {
+                node.layerBacked = YES;
+            }
         }
     }
     return self;
-}
-
-- (void)updateDividerColor
-{
-    /*
-     * UITableViewCell traverses through all its descendant views and adjusts their background color accordingly
-     * either to [UIColor clearColor], although potentially it could use the same color as the selection highlight itself.
-     * After selection, the same trick is performed again in reverse, putting all the backgrounds back as they used to be.
-     * But in our case, we don't want to have the background color disappearing so we reset it after highlighting or
-     * selection is done.
-     */
-    _divider.backgroundColor = PostNodeDividerColor;
 }
 
 #pragma mark - ASDisplayNode
@@ -232,40 +197,36 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    // Horizontal stack for name, username, via icon and time
-    
     ASStackLayoutSpec *nameVerticalStack =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-     spacing:5.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
-     children:@[_nameNode, _timeNode]];
-
+    [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
+                                            spacing:kNameNodeMargin
+                                     justifyContent:ASStackLayoutJustifyContentStart
+                                         alignItems:ASStackLayoutAlignItemsStart
+                                           children:@[_nameNode, _timeNode]];
+    nameVerticalStack.style.flexShrink = 1.f;
+    nameVerticalStack.style.flexGrow = 1.f;
     
-    // bottom controls horizontal stack
     ASStackLayoutSpec *controlsStack = nil;
     if (!_embedded) {
-        controlsStack = [ASStackLayoutSpec
-         stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-         spacing:10
-         justifyContent:ASStackLayoutJustifyContentStart
-         alignItems:ASStackLayoutAlignItemsCenter
-         children:@[_likesNode, _commentsNode, _optionsNode]];
-        // Add more gaps for control line
-        controlsStack.style.spacingAfter = 3.0;
-        controlsStack.style.spacingBefore = 3.0;
+        controlsStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+                                                                spacing:0
+                                                         justifyContent:ASStackLayoutJustifyContentStart
+                                                             alignItems:ASStackLayoutAlignItemsCenter
+                                                               children:@[_likesNode, _commentsNode, _optionsNode]];
+        _likesNode.backgroundColor = [UIColor redColor];
+        _commentsNode.backgroundColor = [UIColor greenColor];
+        _optionsNode.backgroundColor = [UIColor blueColor];
+        _postNode.backgroundColor = [UIColor orangeColor];
     }
     
     NSMutableArray *mainStackContent = [[NSMutableArray alloc] init];
-    
     if (_mediaNodes.count == 1) {
         [mainStackContent addObject:_mediaNodes.firstObject];
     }
-    else {
+    else if (_mediaNodes.count > 1) {
         ASStackLayoutSpec *mediaSpec = [ASStackLayoutSpec
                                           stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-                                          spacing:8.0
+                                          spacing:kMargin
                                           justifyContent:ASStackLayoutJustifyContentStart
                                           alignItems:ASStackLayoutAlignItemsStart
                                           children:_mediaNodes];
@@ -274,65 +235,62 @@
     
     if (_verticalLineNode && _historyNode) {
         ASInsetLayoutSpec *verticalLineSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_verticalLineNode];
-        ASStackLayoutSpec *historyHorizontalSpec =
-        [ASStackLayoutSpec
-         stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-         spacing:8.0
-         justifyContent:ASStackLayoutJustifyContentStart
-         alignItems:ASStackLayoutAlignItemsStretch
-         children:@[verticalLineSpec, _historyNode]];
+        ASStackLayoutSpec *historyHorizontalSpec = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+                                                                                           spacing:kMargin
+                                                                                    justifyContent:ASStackLayoutJustifyContentStart
+                                                                                        alignItems:ASStackLayoutAlignItemsStretch
+                                                                                          children:@[verticalLineSpec, _historyNode]];
         _historyNode.style.flexShrink = 1.f;
         _historyNode.style.flexGrow = 1.f;
         [mainStackContent addObject:historyHorizontalSpec];
     }
     
-    // Vertical spec of cell main content
-    ASStackLayoutSpec *contentSpec =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-     spacing:8.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStretch
-     children:mainStackContent];
-    contentSpec.style.flexShrink = 1.0;
     
-    ASInsetLayoutSpec *rightSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_verticalRightNode];
-    
-    nameVerticalStack.style.flexShrink = 1.f;
-    nameVerticalStack.style.flexGrow = 1.f;
-    // Horizontal spec for avatar
-    ASStackLayoutSpec *avatarContentSpec =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:8.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsCenter
-     children:@[_avatarNode, nameVerticalStack, rightSpec]];
-    
-    NSMutableArray *verticalContentSpecArray = [@[avatarContentSpec, _postNode, contentSpec] mutableCopy];
-    if (controlsStack) {
-        [verticalContentSpecArray addObject:controlsStack];
+    ASStackLayoutSpec *contentSpec = nil;
+    if (mainStackContent.count) {
+        contentSpec = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
+                                                              spacing:kMargin
+                                                       justifyContent:ASStackLayoutJustifyContentStart
+                                                           alignItems:ASStackLayoutAlignItemsStretch
+                                                             children:mainStackContent];
+        contentSpec.style.flexShrink = 1.0;
     }
-    ASStackLayoutSpec *verticalContentSpec =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-     spacing:8.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStretch
-     children:verticalContentSpecArray];
+    
+    _avatarNode.style.spacingBefore = kMargin;
+    ASStackLayoutSpec *avatarContentSpec = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+                                                                                   spacing:kMargin
+                                                                            justifyContent:ASStackLayoutJustifyContentStart
+                                                                                alignItems:ASStackLayoutAlignItemsCenter
+                                                                                  children:@[_avatarNode, nameVerticalStack]];
+    avatarContentSpec.style.spacingBefore = kMargin;
+    
+    NSMutableArray *verticalContentSpecArray = [@[avatarContentSpec,
+                                                  [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(0, kMargin, 0, kMargin)
+                                                                                         child:_postNode]] mutableCopy];
+    if (contentSpec) {
+        [verticalContentSpecArray addObject:contentSpec];
+    }
+    if (controlsStack) {
+        [verticalContentSpecArray addObject:[ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(0, kMargin, 0, kMargin)
+                                                                                   child:controlsStack]];
+    }
+    if (_bottomSeparator) {
+        [verticalContentSpecArray addObject:[ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_bottomSeparator]];
+        _bottomSeparator.style.height = ASDimensionMakeWithPoints(kBottomSeparatorHeight);
+        _bottomSeparator.style.width = ASDimensionMakeWithPoints(40);
+    }
+    ASStackLayoutSpec *verticalContentSpec = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
+                                                                                     spacing:kMargin
+                                                                              justifyContent:ASStackLayoutJustifyContentStart
+                                                                                  alignItems:ASStackLayoutAlignItemsStretch
+                                                                                    children:verticalContentSpecArray];
     verticalContentSpec.style.flexShrink = 1.0;
-    
     return verticalContentSpec;
-    
 }
 
 - (void)layout
 {
     [super layout];
-    
-    // Manually layout the divider.
-    CGFloat pixelHeight = 1.0f / [[UIScreen mainScreen] scale];
-    _divider.frame = CGRectMake(0.0f, 0.0f, self.calculatedSize.width, pixelHeight);
 }
 
 #pragma mark - ASCellNode
@@ -340,15 +298,11 @@
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
-    
-    [self updateDividerColor];
 }
 
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
-    
-    [self updateDividerColor];
 }
 
 #pragma mark - <ASTextNodeDelegate>

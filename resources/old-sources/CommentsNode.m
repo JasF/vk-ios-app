@@ -61,8 +61,8 @@
      children:@[_iconNode, _countNode]];
     
     // Adjust size
-    mainStack.style.minWidth = ASDimensionMakeWithPoints(60.0);
-    mainStack.style.maxHeight = ASDimensionMakeWithPoints(40.0);
+    //mainStack.style.minWidth = ASDimensionMakeWithPoints(60.0);
+    //mainStack.style.maxHeight = ASDimensionMakeWithPoints(40.0);
     
     return mainStack;
 }

@@ -67,7 +67,7 @@ open class ContentNode: ASDisplayNode {
     override open func didLoad() {
         super.didLoad()
         self.addSublayers()
-        self.backgroundColor = UIColor.blue
+        self.backgroundColor = UIColor.blue.withAlphaComponent(0.4)
     }
     
     //MARK: Node Lifecycle helper methods
