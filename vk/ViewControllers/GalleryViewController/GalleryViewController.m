@@ -56,7 +56,7 @@
 
 #pragma mark - ASCollectionNodeDelegate
 - (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    Photo *photo = [collectionNode nodeModelForItemAtIndexPath:indexPath];
+    Photo *photo = self.objectsArray[indexPath.row];
     if (!photo) {
         return;
     }

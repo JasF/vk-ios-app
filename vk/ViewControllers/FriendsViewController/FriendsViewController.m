@@ -49,8 +49,8 @@
 }
 
 #pragma mark - ASCollectionNodeDelegate
-- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    User *user = [collectionNode nodeModelForItemAtIndexPath:indexPath];
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    User *user = self.objectsArray[indexPath.row];
     if (!user) {
         return;
     }

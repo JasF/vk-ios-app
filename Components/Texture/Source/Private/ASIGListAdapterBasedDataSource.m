@@ -87,7 +87,7 @@ typedef struct {
 
 #pragma mark - ASCollectionDelegate
 
-- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   [self.delegate collectionView:collectionNode.view didSelectItemAtIndexPath:indexPath];
 }

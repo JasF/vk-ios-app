@@ -8,6 +8,8 @@
 
 #import "AvatarNode.h"
 
+static CGFloat const kSize = 40.f;
+
 @implementation AvatarNode
 
 #pragma mark - Initialization
@@ -15,15 +17,15 @@
     if (self = [super init]) {
         _user = user;
         self.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-        self.style.width = ASDimensionMakeWithPoints(40);
-        self.style.height = ASDimensionMakeWithPoints(40);
-        self.cornerRadius = 22.0;
+        self.style.width = ASDimensionMakeWithPoints(kSize);
+        self.style.height = ASDimensionMakeWithPoints(kSize);
+        self.cornerRadius = kSize/2;
         self.URL = [NSURL URLWithString:_user.avatarURLString];
         self.imageModificationBlock = ^UIImage *(UIImage *image) {
             UIImage *modifiedImage;
             CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
             UIGraphicsBeginImageContextWithOptions(image.size, false, [[UIScreen mainScreen] scale]);
-            [[UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:40.0] addClip];
+            [[UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:kSize] addClip];
             [image drawInRect:rect];
             modifiedImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();

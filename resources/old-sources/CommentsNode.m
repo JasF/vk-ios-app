@@ -38,12 +38,12 @@
         
         _countNode = [[ASTextNode alloc] init];
         if (_commentsCount > 0) {
-           _countNode.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd", _commentsCount] attributes:[TextStyles cellControlStyle]];
+           _countNode.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", @(_commentsCount)] attributes:[TextStyles cellControlStyle]];
         }
         [self addSubnode:_countNode];
         
         // make it tappable easily
-        self.hitTestSlop = UIEdgeInsetsMake(-10, -10, -10, -10);
+        //self.hitTestSlop = UIEdgeInsetsMake(-10, -10, -10, -10);
     }
     
     return self;
@@ -56,13 +56,9 @@
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
      spacing:6.0
-     justifyContent:ASStackLayoutJustifyContentStart
+     justifyContent:ASStackLayoutJustifyContentCenter
      alignItems:ASStackLayoutAlignItemsCenter
      children:@[_iconNode, _countNode]];
-    
-    // Adjust size
-    //mainStack.style.minWidth = ASDimensionMakeWithPoints(60.0);
-    //mainStack.style.maxHeight = ASDimensionMakeWithPoints(40.0);
     
     return mainStack;
 }

@@ -55,8 +55,8 @@
 }
 
 #pragma mark - ASCollectionNodeDelegate
-- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    Video *video = [collectionNode nodeModelForItemAtIndexPath:indexPath];
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Video *video = self.objectsArray[indexPath.row];
     if (!video) {
         return;
     }

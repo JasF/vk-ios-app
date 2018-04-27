@@ -15,7 +15,8 @@
 
 static CGFloat const kMargin = 12.f;
 static CGFloat const kNameNodeMargin = 5.f;
-static CGFloat const kBottomSeparatorHeight = 4.f;
+static CGFloat const kBottomSeparatorHeight = 8.f;
+static CGFloat const kControlsSize = 40.f;
 
 @interface WallPostNode() <ASNetworkImageNodeDelegate, ASTextNodeDelegate>
 
@@ -29,10 +30,10 @@ static CGFloat const kBottomSeparatorHeight = 4.f;
 @property (strong, nonatomic) LikesNode *likesNode;
 @property (strong, nonatomic) CommentsNode *commentsNode;
 @property (strong, nonatomic) ASImageNode *optionsNode;
+@property (strong, nonatomic) ASImageNode *repostNode;
 @property ASDisplayNode *bottomSeparator;
 
 @property (strong, nonatomic) ASDisplayNode *verticalLineNode;
-@property (strong, nonatomic) ASDisplayNode *verticalRightNode;
 @property (strong, nonatomic) ASDisplayNode *historyNode;
 @property (assign, nonatomic) BOOL embedded;
 @property (strong, nonatomic) id<NodeFactory> nodeFactory;
@@ -158,7 +159,8 @@ static CGFloat const kBottomSeparatorHeight = 4.f;
         
         // Bottom controls
         if (!_embedded) {
-            _likesNode = [[LikesNode alloc] initWithLikesCount:_post.likes.count];
+            _likesNode = [[LikesNode alloc] initWithLikesCount:_post.likes.count liked:NO];
+            [_likesNode addTarget:self action:@selector(likesTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
             [self addSubnode:_likesNode];
             
             _commentsNode = [[CommentsNode alloc] initWithCommentsCount:_post.comments.count];
@@ -166,14 +168,23 @@ static CGFloat const kBottomSeparatorHeight = 4.f;
             
             _optionsNode = [[ASImageNode alloc] init];
             _optionsNode.image = [UIImage imageNamed:@"icon_more"];
+            _optionsNode.contentMode = UIViewContentModeCenter;
+            [_optionsNode addTarget:self action:@selector(optionsTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
             [self addSubnode:_optionsNode];
             
+            _repostNode = [[ASImageNode alloc] init];
+            _repostNode.image = [UIImage imageNamed:@"repost"];
+            _repostNode.contentMode = UIViewContentModeCenter;
+            [_repostNode addTarget:self action:@selector(repostTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
+            [self addSubnode:_repostNode];
+            
             _bottomSeparator = [ASDisplayNode new];
-            _bottomSeparator.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
-            NSArray *colors = @[[UIColor greenColor], [UIColor redColor], [UIColor brownColor], [UIColor cyanColor]];
-            self.backgroundColor = [colors[arc4random()%3] colorWithAlphaComponent:0.1];
+            _bottomSeparator.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
             [self addSubnode:_bottomSeparator];
         }
+        
+        NSArray *colors = @[[UIColor greenColor], [UIColor redColor], [UIColor brownColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor orangeColor]];
+        self.backgroundColor = [colors[arc4random()%6] colorWithAlphaComponent:0.1];
         
         for (ASDisplayNode *node in self.subnodes) {
             // ASTextNode with embedded links doesn't support layer backing
@@ -206,13 +217,25 @@ static CGFloat const kBottomSeparatorHeight = 4.f;
     nameVerticalStack.style.flexShrink = 1.f;
     nameVerticalStack.style.flexGrow = 1.f;
     
-    ASStackLayoutSpec *controlsStack = nil;
+    ASLayoutSpec *controlsStack = nil;
     if (!_embedded) {
+        NSArray *array = @[_likesNode,
+                           _commentsNode,
+                           _repostNode];
+        for (id<ASLayoutElement> el in array) {
+            el.style.flexGrow = 1.f;
+            el.style.height = ASDimensionMake(kControlsSize);
+        }
+        _optionsNode.style.width = ASDimensionMake(kControlsSize);
+        _optionsNode.style.height = ASDimensionMake(kControlsSize);
+        
         controlsStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
                                                                 spacing:0
                                                          justifyContent:ASStackLayoutJustifyContentStart
                                                              alignItems:ASStackLayoutAlignItemsCenter
-                                                               children:@[_likesNode, _commentsNode, _optionsNode]];
+                                                               children:array];
+        controlsStack = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(-kMargin, 0, -kMargin, 0)
+                                                               child:controlsStack];
         _likesNode.backgroundColor = [UIColor redColor];
         _commentsNode.backgroundColor = [UIColor greenColor];
         _optionsNode.backgroundColor = [UIColor blueColor];
@@ -243,7 +266,7 @@ static CGFloat const kBottomSeparatorHeight = 4.f;
                                                                                           children:childs];
         _historyNode.style.flexShrink = 1.f;
         _historyNode.style.flexGrow = 1.f;
-        [mainStackContent addObject:[ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(0, kMargin, 0, kMargin)
+        [mainStackContent addObject:[ASInsetLayoutSpec insetLayoutSpecWithInsets:_embedded ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, kMargin, 0, kMargin)
                                                                            child:historyHorizontalSpec]];
     }
     
@@ -258,30 +281,35 @@ static CGFloat const kBottomSeparatorHeight = 4.f;
         contentSpec.style.flexShrink = 1.0;
     }
     
-    _avatarNode.style.spacingBefore = kMargin;
+    if (!_embedded) {
+        _avatarNode.style.spacingBefore = kMargin;
+    }
+    NSMutableArray *avatarSpecChilds = [@[_avatarNode, nameVerticalStack] mutableCopy];
+    if (_optionsNode) {
+        [avatarSpecChilds addObject:_optionsNode];
+    }
     ASStackLayoutSpec *avatarContentSpec = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
                                                                                    spacing:kMargin
                                                                             justifyContent:ASStackLayoutJustifyContentStart
                                                                                 alignItems:ASStackLayoutAlignItemsCenter
-                                                                                  children:@[_avatarNode, nameVerticalStack]];
+                                                                                  children:avatarSpecChilds];
     avatarContentSpec.style.spacingBefore = kMargin;
     
     NSMutableArray *verticalContentSpecArray = [@[avatarContentSpec] mutableCopy];
     if (_postNode) {
-        [verticalContentSpecArray addObject:[ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(0, kMargin, 0, kMargin)
+        [verticalContentSpecArray addObject:[ASInsetLayoutSpec insetLayoutSpecWithInsets:_embedded ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, kMargin, 0, kMargin)
                                                                                    child:_postNode]];
     }
     if (contentSpec) {
         [verticalContentSpecArray addObject:contentSpec];
     }
     if (controlsStack) {
-        [verticalContentSpecArray addObject:[ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(0, kMargin, 0, kMargin)
+        [verticalContentSpecArray addObject:[ASInsetLayoutSpec insetLayoutSpecWithInsets:_embedded ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, kMargin, 0, kMargin)
                                                                                    child:controlsStack]];
     }
     if (_bottomSeparator) {
         [verticalContentSpecArray addObject:[ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_bottomSeparator]];
         _bottomSeparator.style.height = ASDimensionMakeWithPoints(kBottomSeparatorHeight);
-        _bottomSeparator.style.width = ASDimensionMakeWithPoints(40);
     }
     ASStackLayoutSpec *verticalContentSpec = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
                                                                                      spacing:kMargin
@@ -335,5 +363,17 @@ static CGFloat const kBottomSeparatorHeight = 4.f;
     [self setNeedsLayout];
 }
 
+#pragma mark - Observers
+- (void)likesTapped:(id)sender {
+    
+}
+
+- (void)optionsTapped:(id)sender {
+    
+}
+
+- (void)repostTapped:(id)sender {
+    
+}
 
 @end

@@ -19,6 +19,7 @@
 
 @interface LikesNode : ASControlNode
 
-- (instancetype)initWithLikesCount:(NSInteger)likesCount;
+- (instancetype)initWithLikesCount:(NSInteger)likesCount
+                             liked:(BOOL)liked;
 
 @end

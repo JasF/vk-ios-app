@@ -9,7 +9,6 @@
 #import "WallViewController.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "Post.h"
-#import "PostNode.h"
 #import "VKSdkManager.h"
 #import <VK-ios-sdk/VKSdk.h>
 #import "WallPost.h"
@@ -66,7 +65,7 @@
 }
 
 #pragma mark - ASCollectionNodeDelegate
-- (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!indexPath.section) {
         return;
     }

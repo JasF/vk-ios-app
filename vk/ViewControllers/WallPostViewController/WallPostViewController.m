@@ -9,7 +9,6 @@
 #import "WallPostViewController.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "Post.h"
-#import "PostNode.h"
 #import "VKSdkManager.h"
 #import <VK-ios-sdk/VKSdk.h>
 #import "WallPost.h"

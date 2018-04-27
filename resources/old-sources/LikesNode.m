@@ -28,11 +28,12 @@
 @implementation LikesNode
 
 - (instancetype)initWithLikesCount:(NSInteger)likesCount
+                             liked:(BOOL)liked
 {
     self = [super init];
     if (self) {
         _likesCount = likesCount;
-        _liked = (_likesCount > 0) ? [LikesNode getYesOrNo] : NO;
+        _liked = (_likesCount > 0) ? liked : NO;
         
         _iconNode = [[ASImageNode alloc] init];
         _iconNode.image = (_liked) ? [UIImage imageNamed:@"icon_liked.png"] : [UIImage imageNamed:@"icon_like.png"];
@@ -48,7 +49,7 @@
         [self addSubnode:_countNode];
         
         // make it tappable easily
-        self.hitTestSlop = UIEdgeInsetsMake(-10, -10, -10, -10);
+        //self.hitTestSlop = UIEdgeInsetsMake(-10, -10, -10, -10);
     }
     
     return self;
@@ -70,13 +71,9 @@
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
      spacing:6.0
-     justifyContent:ASStackLayoutJustifyContentStart
+     justifyContent:ASStackLayoutJustifyContentCenter
      alignItems:ASStackLayoutAlignItemsCenter
      children:@[_iconNode, _countNode]];
-
-    //mainStack.style.minWidth = ASDimensionMakeWithPoints(60.0);
-    //mainStack.style.maxHeight = ASDimensionMakeWithPoints(40.0);
-
     return mainStack;
 }
 
