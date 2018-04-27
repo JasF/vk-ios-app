@@ -473,6 +473,9 @@
 		C343756E208F81DB004EF670 /* AnswersViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C343756D208F81DB004EF670 /* AnswersViewModelImpl.m */; };
 		C3437573208F83AD004EF670 /* AnswersServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437572208F83AD004EF670 /* AnswersServiceImpl.m */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
+		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
+		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
+		C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA65209369130071FA04 /* RowsDialogImpl.m */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1558,6 +1561,16 @@
 		C3437575208F8687004EF670 /* pyanswersviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyanswersviewmodel.py; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
+		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
+		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
+		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
+		C398BA5B209358F70071FA04 /* DialogsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogsManager.h; sourceTree = "<group>"; };
+		C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogsManagerImpl.m; sourceTree = "<group>"; };
+		C398BA5D209358F70071FA04 /* DialogsManagerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogsManagerImpl.h; sourceTree = "<group>"; };
+		C398BA6120935C3F0071FA04 /* pydialogsmanager.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pydialogsmanager.py; sourceTree = "<group>"; };
+		C398BA63209368BA0071FA04 /* RowsDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RowsDialog.h; sourceTree = "<group>"; };
+		C398BA64209369130071FA04 /* RowsDialogImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RowsDialogImpl.h; sourceTree = "<group>"; };
+		C398BA65209369130071FA04 /* RowsDialogImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RowsDialogImpl.m; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -1856,6 +1869,7 @@
 		C3036C1E208DF7FC005F086E /* pymanagers */ = {
 			isa = PBXGroup;
 			children = (
+				C398BA6120935C3F0071FA04 /* pydialogsmanager.py */,
 				C3036C1F208DF809005F086E /* pynotificationsmanager.py */,
 				C3036C20208DF966005F086E /* __init__.py */,
 			);
@@ -2498,6 +2512,7 @@
 		C32304472080E57400CEC487 /* managers */ = {
 			isa = PBXGroup;
 			children = (
+				C398BA5A209358F70071FA04 /* DialogsManager */,
 				C3036C12208DEE8F005F086E /* NotificationsManager */,
 				C32306EC2080E9B700CEC487 /* PythonManager */,
 				C32304482080E57400CEC487 /* ScreensManager */,
@@ -2677,6 +2692,8 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C398BA62209368820071FA04 /* RowsDialog */,
+				C398BA55209357340071FA04 /* TextFieldDialog */,
 				C3A82A312093340D00C41CA8 /* PostsViewController */,
 				C3A82A23209304F300C41CA8 /* BaseTableViewController */,
 				C323049D2080E57400CEC487 /* BaseCollectionViewController */,
@@ -4462,6 +4479,36 @@
 			path = AvatarNode;
 			sourceTree = "<group>";
 		};
+		C398BA55209357340071FA04 /* TextFieldDialog */ = {
+			isa = PBXGroup;
+			children = (
+				C398BA56209357340071FA04 /* TextFieldDialog.h */,
+				C398BA58209357340071FA04 /* TextFieldDialogImpl.h */,
+				C398BA57209357340071FA04 /* TextFieldDialogImpl.m */,
+			);
+			path = TextFieldDialog;
+			sourceTree = "<group>";
+		};
+		C398BA5A209358F70071FA04 /* DialogsManager */ = {
+			isa = PBXGroup;
+			children = (
+				C398BA5B209358F70071FA04 /* DialogsManager.h */,
+				C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */,
+				C398BA5D209358F70071FA04 /* DialogsManagerImpl.h */,
+			);
+			path = DialogsManager;
+			sourceTree = "<group>";
+		};
+		C398BA62209368820071FA04 /* RowsDialog */ = {
+			isa = PBXGroup;
+			children = (
+				C398BA63209368BA0071FA04 /* RowsDialog.h */,
+				C398BA64209369130071FA04 /* RowsDialogImpl.h */,
+				C398BA65209369130071FA04 /* RowsDialogImpl.m */,
+			);
+			path = RowsDialog;
+			sourceTree = "<group>";
+		};
 		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5340,6 +5387,7 @@
 				C3B225102085D7DC00599E04 /* ChatListViewModelImpl.m in Sources */,
 				C32308ED2081AEB100CEC487 /* TyphoonInjectionDefinition.m in Sources */,
 				C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */,
+				C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */,
 				C32308CB2081AEB100CEC487 /* TyphoonStartup.m in Sources */,
 				C323091B2081AEB100CEC487 /* TyphoonCollaboratingAssembliesCollector.m in Sources */,
 				C32308C52081AEB100CEC487 /* TyphoonPlistStyleConfiguration.m in Sources */,
@@ -5380,6 +5428,7 @@
 				C32305C52080E57500CEC487 /* EXTNil.m in Sources */,
 				C32309042081AEB100CEC487 /* TyphoonInjectionByCollection.m in Sources */,
 				C322629C209082E10054789B /* BookmarksViewModelImpl.m in Sources */,
+				C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */,
 				C32309162081AEB100CEC487 /* NSInvocation+TCFWrapValues.m in Sources */,
 				C32306132080E57500CEC487 /* NodeFactoryImpl.m in Sources */,
 				C343756E208F81DB004EF670 /* AnswersViewModelImpl.m in Sources */,
@@ -5429,6 +5478,7 @@
 				C323091F2081AEB100CEC487 /* TyphoonCollaboratingAssemblyPropertyEnumerator.m in Sources */,
 				C32305D62080E57500CEC487 /* ServicesAssembly.m in Sources */,
 				C323061E2080E57500CEC487 /* BlurbNode.m in Sources */,
+				C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */,
 				C32308F12081AEB100CEC487 /* TyphoonBlockDefinition+InstanceBuilder.m in Sources */,
 				C3B2251B20861F5F00599E04 /* WallViewModelImpl.m in Sources */,
 				C32306F12080E9D800CEC487 /* PythonManagerImpl.m in Sources */,

@@ -382,4 +382,8 @@ static CGFloat const kControlsSize = 40.f;
     [_likesNode setLikesCount:likes liked:liked];
 }
 
+- (void)setRepostsCount:(NSInteger)reposts reposted:(BOOL)reposted {
+    [_repostNode setRepostsCount:reposts reposted:reposted];
+}
+
 @end

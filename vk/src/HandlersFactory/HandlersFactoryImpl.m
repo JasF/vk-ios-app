@@ -34,6 +34,7 @@
 #import "AuthorizationViewModelImpl.h"
 #import "DetailVideoViewModelImpl.h"
 #import "PostsViewModelImpl.h"
+#import "DialogsManagerImpl.h"
 
 @interface HandlersFactoryImpl ()
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
@@ -147,6 +148,11 @@
 
 - (id<PyPostsViewModel>)postsViewModelHandlerWithDelegate:(id)delegate {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyPostsViewModel)
+                                                delegate:delegate];
+}
+
+- (id<PyDialogsManager>)dialogManagerHandlerWithDelegate:(id)delegate {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyDialogsManager)
                                                 delegate:delegate];
 }
 

@@ -24,11 +24,8 @@
 
 #pragma mark - PostsService
 - (void)consumer:(id<PostsServiceConsumer>)consumer likeActionWithItem:(id)item {
-    //NSIndexPath *indexPath = [self.tableNode indexPathForNode:(ASCellNode *)node];
-    //@weakify(self);
     [_postsViewModel likeActionWithItem:item
                              completion:^(NSInteger likesCount, BOOL liked, BOOL error) {
-                                 //@strongify(self);
                                  if (error) {
                                      return;
                                  }
@@ -37,7 +34,14 @@
 }
 
 - (void)consumer:(id<PostsServiceConsumer>)consumer repostActionWithItem:(id)item {
-    [_postsViewModel repostActionWithItem:item];
+    [_postsViewModel repostActionWithItem:item
+                               completion:^(NSInteger likes, NSInteger reposts, BOOL error) {
+                                   if (error) {
+                                       return;
+                                   }
+                                   [consumer setLikesCount:likes liked:YES];
+                                   [consumer setRepostsCount:reposts reposted:YES];
+                               }];
 }
 
 @end

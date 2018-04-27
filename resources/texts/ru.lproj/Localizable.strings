@@ -19,3 +19,8 @@
 "documents"="Документы";
 "settings"="Настройки";
 "exit"="Выход";
+"ok"="OK";
+"cancel"="Отмена";
+"repost_enter_message"="Введите комментарий";
+"repost_for_friends"="Рассказать друзьям";
+"repost_as_message"="Отправить сообщением";

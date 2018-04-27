@@ -78,7 +78,10 @@ def sendCommandWithHandler(className, action, handler, args=[], withResult=False
         objectForSend['delegateId'] = delegateId
     if withResult:
         event = Event()
-        key = className + action
+        if delegateId > 0:
+            key = className + '_' + str(delegateId) + action
+        else:
+            key = className + action
         events[key] = event
         send(objectForSend)
         event.wait()
@@ -96,7 +99,7 @@ def setEvent(className, action, result):
         del events[key]
         event.set()
     else:
-        print('event for key: ' + key + ' missing. events: ' + str(events))
+        print('event for key: ' + key + ' missing. Maybe do you forget pass named argument withResult=True in method call? events: ' + str(events))
         traceback.print_stack()
 
 subscriber.setEvent = setEvent

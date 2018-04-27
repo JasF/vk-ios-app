@@ -12,7 +12,7 @@
 
 @class WallPost;
 
-@interface WallPostNode : ASCellNode <PostsService>
+@interface WallPostNode : ASCellNode
 - (instancetype)initWithPost:(WallPost *)post
                  nodeFactory:(id<NodeFactory>)nodeFactory
                     embedded:(NSNumber *)embedded;

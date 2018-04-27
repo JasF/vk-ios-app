@@ -36,6 +36,7 @@
 @property (strong, nonatomic) id<VKSdkManager> vkSdkManager;
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
 @property (strong, nonatomic) ScreensAssembly *screensAssembly;
+@property (strong, nonatomic) id<DialogsManager> dialogsManager;
 @end
 
 @implementation ScreensManagerImpl
@@ -130,9 +131,11 @@
 }
 
 - (void)showMainViewController {
+    NSCParameterAssert(_dialogsManager);
     if ([self.window.rootViewController isEqual:_mainViewController]) {
         return;
     }
+    [_dialogsManager initialize];
     MenuViewController *menuViewController = (MenuViewController *)_mainViewController.leftViewController;
     NSCAssert([menuViewController isKindOfClass:[MenuViewController class]], @"menuViewController has unknown class: %@", menuViewController);
     if ([menuViewController isKindOfClass:[MenuViewController class]]) {
@@ -289,6 +292,11 @@
         DetailVideoViewController *viewController =(DetailVideoViewController *)[_screensAssembly detailVideoViewController:ownerId videoId:videoId];
         [self pushViewController:viewController clean:NO];
     });
+}
+
+- (UIViewController *)topViewController {
+    UIViewController *viewController = [self navigationController].viewControllers.lastObject;
+    return viewController;
 }
 
 #pragma mark - Private Methods

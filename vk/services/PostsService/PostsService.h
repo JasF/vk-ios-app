@@ -14,6 +14,7 @@
 @protocol PostsServiceConsumer <NSObject>
 @property (weak) id<PostsService> postsService;
 - (void)setLikesCount:(NSInteger)likes liked:(BOOL)liked;
+- (void)setRepostsCount:(NSInteger)reposts reposted:(BOOL)reposted;
 @end
 
 @protocol PostsService <NSObject>

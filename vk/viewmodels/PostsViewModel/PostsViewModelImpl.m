@@ -72,8 +72,50 @@
     });
 }
 
-- (void)repostActionWithItem:(id)item {
-    
+- (void)repostActionWithItem:(id)item completion:(void(^)(NSInteger likes, NSInteger reposts, BOOL error))completion {
+    dispatch_python(^{
+        NSString *identifier = nil;
+        Reposts *repostsObject = nil;
+        Likes *likesObject = nil;
+        if ([item isKindOfClass:[WallPost class]]) {
+            WallPost *post = (WallPost *)item;
+            repostsObject = post.reposts;
+            likesObject = post.likes;
+            identifier = [NSString stringWithFormat:@"wall%@_%@", @(post.owner_id), @(post.identifier)];
+        }
+        NSCAssert(identifier, @"Unhandled item type for repost");
+        if (!identifier) {
+            return;
+        }
+        NSDictionary *response = [self.handler repostObjectWithIdentifier:identifier];
+        NSLog(@"resp: %@", response);
+        NSInteger likes = 0;
+        NSInteger reposts = 0;
+        BOOL error = YES;
+        if ([response isKindOfClass:[NSDictionary class]]) {
+            NSNumber *likesValue = response[@"likes_count"];
+            NSNumber *reposts_count = response[@"reposts_count"];
+            if ([likesValue isKindOfClass:[NSNumber class]]) {
+                likes = likesValue.integerValue;
+            }
+            if ([reposts_count isKindOfClass:[NSNumber class]]) {
+                reposts = reposts_count.integerValue;
+            }
+            if ((likesValue || reposts_count) && response[@"success"]) {
+                error = NO;
+            }
+        }
+        if (!error) {
+            likesObject.count = likes;
+            likesObject.user_likes = YES;
+            repostsObject.count = reposts;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(likes, reposts, error);
+            }
+        });
+    });
 }
 
 @end

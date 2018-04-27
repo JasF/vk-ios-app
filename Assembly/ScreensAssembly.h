@@ -10,6 +10,8 @@
 #import "TyphoonAssembly.h"
 #import "ScreensManager.h"
 #import "ServicesAssembly.h"
+#import "TextFieldDialog.h"
+#import "DialogsManager.h"
 
 @class VKCoreComponents;
 @class VKThemeAssembly;
@@ -44,6 +46,8 @@
 - (UIViewController *)documentsViewController:(NSNumber *)ownerId;
 - (UIViewController *)settingsViewController;
 - (UIViewController *)detailVideoViewController:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
+- (id<TextFieldDialog>)textFieldDialog;
+- (id<DialogsManager>)dialogsManager;
 - (UIWindow *)window;
 - (UINavigationController *)rootNavigationController;
 @end

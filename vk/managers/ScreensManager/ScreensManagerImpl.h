@@ -10,6 +10,7 @@
 #import "VKSdkManager.h"
 #import "PythonBridge.h"
 #import "NodeFactory.h"
+#import "DialogsManager.h"
 
 @class ScreensAssembly;
 @class MainViewController;

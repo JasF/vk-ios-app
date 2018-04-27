@@ -33,6 +33,9 @@
 #import "SettingsViewController.h"
 #import "DetailPhotoViewController.h"
 #import "DetailVideoViewController.h"
+#import "TextFieldDialogImpl.h"
+#import "DialogsManagerImpl.h"
+#import "RowsDialogImpl.h"
 
 @implementation ScreensAssembly
 
@@ -48,6 +51,7 @@
                      [initializer injectParameterWith:self];
                  }];
                 [definition injectProperty:@selector(window) with:[self window]];
+                [definition injectProperty:@selector(dialogsManager) with:[self dialogsManager]];
                 [definition injectProperty:@selector(mainViewController) with:[self createMainViewController]];
                 definition.scope = TyphoonScopeSingleton;
             }];
@@ -250,6 +254,33 @@
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
         [definition injectProperty:@selector(postsViewModel) with:[self.viewModelsAssembly postsViewModel]];
+    }];
+}
+
+- (id<TextFieldDialog>)textFieldDialog {
+    return [TyphoonDefinition withClass:[TextFieldDialogImpl class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithScreensManager:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self screensManager]];
+        }];
+    }];
+}
+
+- (id<RowsDialog>)rowsDialog {
+    return [TyphoonDefinition withClass:[RowsDialogImpl class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithScreensManager:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self screensManager]];
+        }];
+    }];
+}
+
+- (id<DialogsManager>)dialogsManager {
+    return [TyphoonDefinition withClass:[DialogsManagerImpl class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithHandlersFactory:textFieldDialog:rowsDialog:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.servicesAssembly handlersFactory]];
+            [initializer injectParameterWith:[self textFieldDialog]];
+            [initializer injectParameterWith:[self rowsDialog]];
+        }];
+        definition.scope = TyphoonScopeSingleton;
     }];
 }
 

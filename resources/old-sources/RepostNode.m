@@ -23,18 +23,11 @@
 {
     self = [super init];
     if (self) {
-        _repostsCount = repostsCount;
-        _reposted = (_repostsCount > 0) ? reposted : NO;
         _iconNode = [[ASImageNode alloc] init];
-        _iconNode.image = (_reposted) ? [UIImage imageNamed:@"reposted.png"] : [UIImage imageNamed:@"repost.png"];
         [self addSubnode:_iconNode];
         _countNode = [[ASTextNode alloc] init];
-        if (_repostsCount > 0) {
-            NSDictionary *attributes = _reposted ? [TextStyles cellControlColoredStyle] : [TextStyles cellControlStyle];
-            _countNode.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", @(repostsCount)] attributes:attributes];
-            
-        }
         [self addSubnode:_countNode];
+        [self setRepostsCount:repostsCount reposted:reposted];
     }
     return self;
 }
@@ -49,6 +42,17 @@
      alignItems:ASStackLayoutAlignItemsCenter
      children:@[_iconNode, _countNode]];
     return mainStack;
+}
+
+#pragma mark - Public Methods
+- (void)setRepostsCount:(NSInteger)reposts reposted:(BOOL)reposted {
+    _repostsCount = reposts;
+    _reposted = (_repostsCount > 0) ? reposted : NO;
+    _iconNode.image = (_reposted) ? [UIImage imageNamed:@"reposted.png"] : [UIImage imageNamed:@"repost.png"];
+    if (_repostsCount > 0) {
+        NSDictionary *attributes = _reposted ? [TextStyles cellControlColoredStyle] : [TextStyles cellControlStyle];
+        _countNode.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", @(_repostsCount)] attributes:attributes];
+    }
 }
 
 @end

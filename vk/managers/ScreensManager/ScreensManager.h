@@ -30,4 +30,5 @@
 - (void)showDocumentsViewController:(NSNumber *)ownerId;
 - (void)showSettingsViewController;
 - (void)showDetailVideoViewControllerWithOwnerId:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
+- (UIViewController *)topViewController;
 @end

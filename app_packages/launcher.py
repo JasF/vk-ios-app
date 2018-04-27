@@ -11,7 +11,7 @@ def performLaunch():
         main.launch()
     except Exception as e:
         print('fail launch: ' + str(e))
-        traceback.print_stack()
+        print(traceback.format_exc())
 
 try:
     import objcbridge

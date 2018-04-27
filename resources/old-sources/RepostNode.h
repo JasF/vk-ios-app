@@ -11,4 +11,5 @@
 @interface RepostNode : ASControlNode
 - (instancetype)initWithRepostsCount:(NSInteger)repostsCount
                             reposted:(BOOL)reposted;
+- (void)setRepostsCount:(NSInteger)reposts reposted:(BOOL)reposted;
 @end
