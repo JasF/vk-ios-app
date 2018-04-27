@@ -78,17 +78,18 @@ static CGFloat const kBottomSeparatorHeight = 4.f;
         [self addSubnode:_timeNode];
         
         // Post node
-        _postNode = [[ASTextNode alloc] init];
-        _postNode.maximumNumberOfLines = 12;
-        _postNode.truncationMode = NSLineBreakByTruncatingTail;
-        _postNode.truncationAttributedText = [[NSAttributedString alloc] initWithString:@"\n"];
-        _postNode.additionalTruncationMessage = [[NSAttributedString alloc] initWithString:L(@"show_fully")
-                                                                                attributes:[TextStyles truncationStyle]];
         // Processing URLs in post
         NSString *kLinkAttributeName = @"TextLinkAttributeName";
         
         NSString *text = _post.text;
         if (text.length) {
+            _postNode = [[ASTextNode alloc] init];
+            _postNode.maximumNumberOfLines = 12;
+            _postNode.truncationMode = NSLineBreakByTruncatingTail;
+            _postNode.truncationAttributedText = [[NSAttributedString alloc] initWithString:@"\n"];
+            _postNode.additionalTruncationMessage = [[NSAttributedString alloc] initWithString:L(@"show_fully")
+                                                                                    attributes:[TextStyles truncationStyle]];
+            [self addSubnode:_postNode];
             NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:text attributes:[TextStyles postStyle]];
             NSDataDetector *urlDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
             [urlDetector enumerateMatchesInString:attrString.string options:kNilOptions range:NSMakeRange(0, attrString.string.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop){
@@ -107,7 +108,6 @@ static CGFloat const kBottomSeparatorHeight = 4.f;
             _postNode.passthroughNonlinkTouches = YES;   // passes touches through when they aren't on a link
             
         }
-        [self addSubnode:_postNode];
         
         WallPost *history = _post.history.firstObject;
         if (history) {
@@ -234,15 +234,17 @@ static CGFloat const kBottomSeparatorHeight = 4.f;
     }
     
     if (_verticalLineNode && _historyNode) {
-        ASInsetLayoutSpec *verticalLineSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:_verticalLineNode];
+        NSArray *childs = @[[ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero
+                                                                   child:_verticalLineNode], _historyNode];
         ASStackLayoutSpec *historyHorizontalSpec = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
                                                                                            spacing:kMargin
                                                                                     justifyContent:ASStackLayoutJustifyContentStart
                                                                                         alignItems:ASStackLayoutAlignItemsStretch
-                                                                                          children:@[verticalLineSpec, _historyNode]];
+                                                                                          children:childs];
         _historyNode.style.flexShrink = 1.f;
         _historyNode.style.flexGrow = 1.f;
-        [mainStackContent addObject:historyHorizontalSpec];
+        [mainStackContent addObject:[ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(0, kMargin, 0, kMargin)
+                                                                           child:historyHorizontalSpec]];
     }
     
     
@@ -264,9 +266,11 @@ static CGFloat const kBottomSeparatorHeight = 4.f;
                                                                                   children:@[_avatarNode, nameVerticalStack]];
     avatarContentSpec.style.spacingBefore = kMargin;
     
-    NSMutableArray *verticalContentSpecArray = [@[avatarContentSpec,
-                                                  [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(0, kMargin, 0, kMargin)
-                                                                                         child:_postNode]] mutableCopy];
+    NSMutableArray *verticalContentSpecArray = [@[avatarContentSpec] mutableCopy];
+    if (_postNode) {
+        [verticalContentSpecArray addObject:[ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(0, kMargin, 0, kMargin)
+                                                                                   child:_postNode]];
+    }
     if (contentSpec) {
         [verticalContentSpecArray addObject:contentSpec];
     }
