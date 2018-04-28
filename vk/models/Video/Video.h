@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Likes.h"
+#import "Reposts.h"
 
 @import EasyMapping;
 
@@ -19,18 +21,27 @@
 @property NSInteger date;
 @property NSInteger comments;
 @property NSInteger views;
-@property NSInteger width;
-@property NSInteger height;
 @property NSString *photo_130;
 @property NSString *photo_320;
-@property NSString *photo_800;
 @property NSInteger adding_date;
+@property NSString *player;
+@property NSInteger can_edit;
+@property NSInteger can_add;
+@property NSString *privacy_view;
+@property NSString *privacy_comment;
+@property NSInteger can_comment;
+@property NSInteger can_repost;
+@property Likes *likes;
+@property Reposts *reposts;
+@property NSInteger repeat;
+
+@property NSInteger width;
+@property NSInteger height;
+@property NSString *photo_800;
 @property NSString *first_frame_320;
 @property NSString *first_frame_160;
 @property NSString *first_frame_130;
 @property NSString *first_frame_800;
-@property NSString *player;
-@property NSInteger can_add;
 
 - (NSString *)imageURL;
 @end

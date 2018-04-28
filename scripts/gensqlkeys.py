@@ -3,14 +3,37 @@ import os
 import sys
 
 data = {
-    "city": "\u0411\u043e\u0431\u0440\u0443\u0439\u0441\u043a",
-        "country": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c",
-        "created": 0,
-        "icon": "https://vk.com/images/places/place.png",
-        "id": 0,
-        "latitude": 0,
-        "longitude": 0,
-        "title": "\u0443\u043b\u0438\u0446\u0430 \u0421\u043e\u0432\u0435\u0442\u0441\u043a\u0430\u044f, \u0411\u043e\u0431\u0440\u0443\u0439\u0441\u043a"
+    "id": 144831667,
+        "owner_id": 7162990,
+        "title": "\u0413\u043e\u0440\u043e\u0445\u043e\u0432 - \u041c\u044b \u0432\u0441\u0435, \u043f\u043e\u0440\u043e\u044e, \u0447\u0442\u043e-\u0442\u043e \u043c\u043e\u0436\u0435\u043c",
+        "duration": 64,
+        "description": "",
+        "date": 1275513302,
+        "comments": 0,
+        "views": 15,
+        "photo_130": "https://pp.userapi.com/v402/assets/thumbnails/ba2e8fc084033924.130.vk.jpg",
+        "photo_320": "https://pp.userapi.com/v402/assets/thumbnails/ba2e8fc084033924.320.vk.jpg",
+        "adding_date": 1275513302,
+        "player": "https://vk.com/video_ext.php?oid=7162990&id=144831667&hash=09bba39952b24a41&__ref=vk.api&api_hash=1524902883b26a8a345fd1c353c0_G4YTMMRZHEYA",
+        "can_edit": 1,
+        "can_add": 1,
+        "privacy_view": [
+                         "all"
+                         ],
+                         "privacy_comment": [
+                                             "all"
+                                             ],
+                         "can_comment": 1,
+                         "can_repost": 1,
+                         "likes": {
+                             "user_likes": 0,
+                                 "count": 0
+                             },
+    "reposts": {
+        "count": 0,
+            "user_reposted": 0
+        },
+        "repeat": 0
 }
 
 resultDict = {}

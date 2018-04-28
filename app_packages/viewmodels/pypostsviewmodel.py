@@ -3,6 +3,7 @@ from services.wallservice import WallService
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 import vk, json
 from caches.postsdatabase import PostsDatabase
+from caches.videosdatabase import VideosDatabase
 import threading
 from pymanagers.pydialogsmanager import PyDialogsManager
 
@@ -14,6 +15,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
     def likeObjectWithTypeownerIditemIdaccessKeylike(self, type, ownerId, itemId, accessKey, like):
         try:
             api = vk.api()
+            print('type: ' + str(type) + ' ownerId ' + str(ownerId) + ' itemId ' + str(itemId) + ' accessKey ' + str(accessKey) + ' like ' + str(like))
             if like == True:
                 response = api.likes.add(type=type, owner_id=ownerId, item_id=itemId, access_key=accessKey)
             else:
@@ -22,14 +24,24 @@ class PyPostsViewModel(ObjCBridgeProtocol):
             def updateCache():
                 likesCount = response.get('likes')
                 if isinstance(likesCount, int):
-                    cache = PostsDatabase()
-                    data = cache.getById(ownerId, itemId)
-                    likes = data['likes']
-                    likes['count'] = likesCount
-                    likes['user_likes'] = 1 if like == True else 0
-                    data['likes'] = likes
-                    cache.update([data])
-                    cache.close()
+                    if type == 'post':
+                        cache = PostsDatabase()
+                        data = cache.getById(ownerId, itemId)
+                        likes = data['likes']
+                        likes['count'] = likesCount
+                        likes['user_likes'] = 1 if like == True else 0
+                        data['likes'] = likes
+                        cache.update([data])
+                        cache.close()
+                    elif type == 'video':
+                        cache = VideosDatabase()
+                        data = cache.getById(ownerId, itemId)
+                        likes = data['likes']
+                        likes['count'] = likesCount
+                        likes['user_likes'] = 1 if like == True else 0
+                        data['likes'] = likes
+                        cache.update([data])
+                        cache.close()
                         
             thread = threading.Thread(target=updateCache)
             thread.start()
@@ -67,7 +79,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
     
     def repostObjectWithIdentifier(self, identifier):
         dialogsManager = PyDialogsManager()
-        index, cancelled = dialogsManager.showRowsDialogWithTitles(['repost_for_friends', 'repost_as_message'])
+        index, cancelled = dialogsManager.showRowsDialogWithTitles(['repost_for_friends'])
         if cancelled:
             return {}
         if index == 0:

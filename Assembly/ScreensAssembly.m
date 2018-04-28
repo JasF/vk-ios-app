@@ -227,6 +227,7 @@
             [initializer injectParameterWith:[self.viewModelsAssembly videosViewModel:ownerId]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
+        [definition injectProperty:@selector(postsViewModel) with:[self.viewModelsAssembly postsViewModel]];
     }];
 }
 

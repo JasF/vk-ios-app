@@ -13,7 +13,10 @@
 
 @interface PostBaseNode : ASCellNode
 - (id)initWithEmbedded:(BOOL)embedded likesCount:(NSInteger)likesCount liked:(BOOL)liked repostsCount:(NSInteger)repostsCount reposted:(BOOL)reposted commentsCount:(NSInteger)commentsCount;
+- (id)init NS_UNAVAILABLE;
++ (id)new NS_UNAVAILABLE;
 - (ASLayoutSpec *)controlsStack;
+@property id item;
 @property (strong, nonatomic) LikesNode *likesNode;
 @property (strong, nonatomic) CommentsNode *commentsNode;
 @property (strong, nonatomic) RepostNode *repostNode;

@@ -11,6 +11,8 @@
 #import "UserNode.h"
 #import "User.h"
 
+extern CGFloat const kMargin;
+
 @interface VideoNode ()
 @property ASTextNode *titleNode;
 @property ASNetworkImageNode *imageNode;
@@ -19,7 +21,8 @@
 @implementation VideoNode
 
 - (id)initWithVideo:(Video *)video {
-    if (self = [super init]) {
+    if (self = [super initWithEmbedded:NO likesCount:video.likes.count liked:video.likes.user_likes repostsCount:video.reposts.count reposted:video.reposts.user_reposted commentsCount:video.comments]) {
+        self.item = video;
         _titleNode = [[ASTextNode alloc] init];
         _titleNode.attributedText = [[NSAttributedString alloc] initWithString:video.title attributes:[TextStyles nameStyle]];
         _titleNode.maximumNumberOfLines = 1;
@@ -64,8 +67,22 @@
      alignItems:ASStackLayoutAlignItemsStart
      children:@[_imageNode, nameVerticalStack]];
     
+    
     ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
     spec.style.flexShrink = 1.0f;
+    spec.style.flexGrow = 1.0f;
+    
+    ASLayoutSpec *controlsStack = [self controlsStack];
+    if (controlsStack) {
+        ASStackLayoutSpec *subnodesStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
+                                                                                   spacing:0.0
+                                                                            justifyContent:ASStackLayoutJustifyContentStart
+                                                                                alignItems:ASStackLayoutAlignItemsStretch
+                                                                                  children:@[spec, controlsStack]];
+        subnodesStack.style.flexGrow = 1;
+        
+        return subnodesStack;
+    }
     return spec;
 }
 

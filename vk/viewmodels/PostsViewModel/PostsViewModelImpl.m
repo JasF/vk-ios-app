@@ -9,6 +9,7 @@
 #import "WallPost.h"
 #import "PostsViewModelImpl.h"
 #import "PostsService.h"
+#import "Video.h"
 
 @interface PostsViewModelImpl () <PostsViewModel>
 @property id<PyPostsViewModel> handler;
@@ -34,14 +35,21 @@
         BOOL liked = NO;
         NSString *accessKey = @"";
         Likes *likesObject = nil;
-        if ([item isKindOfClass:[WallPost class]]) {
+        if ([item isKindOfClass:[Video class]]) {
+            Video *video = (Video *)item;
+            type = @"video";
+            likesObject = video.likes;
+            ownerId = video.owner_id;
+            itemId = video.id;
+        }
+        else if ([item isKindOfClass:[WallPost class]]) {
             WallPost *post = (WallPost *)item;
             likesObject = post.likes;
             type = @"post";
             ownerId = post.owner_id;
             itemId = post.identifier;
-            liked = likesObject.user_likes;
         }
+        liked = likesObject.user_likes;
         NSCAssert(type && ownerId && itemId, @"Unhandled item type for like");
         if (!type || !ownerId || !itemId) {
             return;

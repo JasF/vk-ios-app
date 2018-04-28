@@ -8,7 +8,8 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "Video.h"
+#import "PostBaseNode.h"
 
-@interface VideoNode : ASCellNode
+@interface VideoNode : PostBaseNode
 - (id)initWithVideo:(Video *)video;
 @end

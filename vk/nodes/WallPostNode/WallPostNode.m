@@ -14,12 +14,12 @@
 #import "AvatarNode.h"
 #import "RepostNode.h"
 
-static CGFloat const kMargin = 12.f;
-static CGFloat const kNameNodeMargin = 5.f;
-static CGFloat const kBottomSeparatorHeight = 8.f;
-static CGFloat const kControlsSize = 40.f;
+extern CGFloat const kMargin;
+extern CGFloat const kNameNodeMargin;
+extern CGFloat const kBottomSeparatorHeight;
+extern CGFloat const kControlsSize;
 
-@interface WallPostNode() <ASNetworkImageNodeDelegate, ASTextNodeDelegate, PostsServiceConsumer>
+@interface WallPostNode() <ASNetworkImageNodeDelegate, ASTextNodeDelegate>
 
 @property (strong, nonatomic) WallPost *post;
 @property (strong, nonatomic) ASTextNode *nameNode;
@@ -44,8 +44,6 @@ static CGFloat const kControlsSize = 40.f;
     NSIndexPath *_indexPath;
 }
 
-@synthesize postsService = _postsService;
-
 #pragma mark - Lifecycle
 
 - (instancetype)initWithPost:(WallPost *)post
@@ -57,6 +55,7 @@ static CGFloat const kControlsSize = 40.f;
     
     self = [super initWithEmbedded:embedded.boolValue likesCount:post.likes.count liked:post.likes.user_likes repostsCount:post.reposts.count reposted:post.reposts.user_reposted commentsCount:post.comments.count];
     if (self) {
+        self.item = post;
         _mediaNodes = [NSMutableArray new];
         _nodeFactory = nodeFactory;
         _embedded = embedded.boolValue;
@@ -356,28 +355,6 @@ static CGFloat const kControlsSize = 40.f;
 - (void)imageNode:(ASNetworkImageNode *)imageNode didLoadImage:(UIImage *)image
 {
     [self setNeedsLayout];
-}
-
-#pragma mark - Observers
-- (void)likesTapped:(id)sender {
-    [_postsService consumer:self likeActionWithItem:_post];
-}
-
-- (void)optionsTapped:(id)sender {
-    
-}
-
-- (void)repostTapped:(id)sender {
-    [_postsService consumer:self repostActionWithItem:_post];
-}
-
-#pragma mark - PostsServiceConsumer
-- (void)setLikesCount:(NSInteger)likes liked:(BOOL)liked {
-    [self.likesNode setLikesCount:likes liked:liked];
-}
-
-- (void)setRepostsCount:(NSInteger)reposts reposted:(BOOL)reposted {
-    [self.repostNode setRepostsCount:reposts reposted:reposted];
 }
 
 @end

@@ -13,8 +13,9 @@ class VideosService:
         response = None
         count = 0
         try:
-            response = api.video.get(owner_id=ownerId, offset=offset)
+            response = api.video.get(owner_id=ownerId, offset=offset, extended=1)
             l = response['items']
+            print('videos l: ' + json.dumps(l, indent=4))
             count = len(l)
             
             cache = VideosDatabase()
