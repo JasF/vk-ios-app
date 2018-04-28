@@ -8,7 +8,7 @@
 
 #import "WallViewModelImpl.h"
 
-@interface WallViewModelImpl ()
+@interface WallViewModelImpl () <WallViewModel>
 @property (strong) id<PyWallViewModel> handler;
 @property (strong) id<WallService> wallService;
 @property NSInteger userId;
@@ -63,6 +63,36 @@
 - (void)tappedOnPost:(WallPost *)post {
     dispatch_python(^{
         [_handler tappedOnPostWithId:@(post.identifier)];
+    });
+}
+
+- (void)friendsTapped {
+    dispatch_python(^{
+        [_handler friendsTapped];
+    });
+}
+
+- (void)commonTapped {
+    dispatch_python(^{
+        [_handler commonTapped];
+    });
+}
+
+- (void)subscribersTapped {
+    dispatch_python(^{
+        [_handler subscribersTapped];
+    });
+}
+
+- (void)photosTapped {
+    dispatch_python(^{
+        [_handler photosTapped];
+    });
+}
+
+- (void)videosTapped {
+    dispatch_python(^{
+        [_handler videosTapped];
     });
 }
 

@@ -106,14 +106,14 @@
     });
 }
 
-- (void)showFriendsViewController {
+- (void)showFriendsViewController:(NSNumber *)userId {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
         if ([self canIgnorePushingViewController:[FriendsViewController class]]) {
             return;
         }
-        FriendsViewController *viewController =(FriendsViewController *)[_screensAssembly friendsViewController];
+        FriendsViewController *viewController =(FriendsViewController *)[_screensAssembly friendsViewController:userId];
         [self pushViewController:viewController];
     });
 }

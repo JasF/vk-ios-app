@@ -76,8 +76,9 @@
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyMenuViewModel)];
 }
 
-- (id<PyFriendsViewModel>)friendsViewModelHandler {
-    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyFriendsViewModel)];
+- (id<PyFriendsViewModel>)friendsViewModelHandler:(NSInteger)userId {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyFriendsViewModel)
+                                              parameters:@{@"userId":@(userId)}];
 }
 
 - (id<PyNotificationsManager>)notificationsManagerHandler {

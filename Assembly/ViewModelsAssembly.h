@@ -41,7 +41,7 @@
 - (id<ChatListViewModel>)chatListScreenViewModel;
 - (id<WallViewModel>)wallScreenViewModel:(NSNumber *)userId;
 - (id<MenuViewModel>)menuScreenViewModel;
-- (id<FriendsViewModel>)friendsViewModel;
+- (id<FriendsViewModel>)friendsViewModel:(NSNumber *)userId;
 - (id<WallPostViewModel>)wallPostViewModelWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;
 - (id<PhotoAlbumsViewModel>)photoAlbumsViewModel:(NSNumber *)ownerId;
 - (id<GalleryViewModel>)galleryViewModel:(NSNumber *)ownerId albumId:(NSNumber *)albumId;

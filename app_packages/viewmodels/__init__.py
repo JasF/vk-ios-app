@@ -47,7 +47,7 @@ Subscriber().setClassAllocator( PyPhotoAlbumsViewModel, lambda parameters: PyPho
 Subscriber().setClassAllocator( PyGalleryViewModel, lambda parameters: PyGalleryViewModel(GalleryService(), parameters['ownerId'], parameters['albumId']) )
 Subscriber().setClassAllocator( PyImagesViewerViewModel, lambda parameters: PyImagesViewerViewModel(GalleryService(), parameters['ownerId'], parameters['albumId'], parameters['photoId']) )
 Subscriber().setClassAllocator( PyDetailPhotoViewModel, lambda parameters: PyDetailPhotoViewModel(DetailPhotoService(UsersDecorator()), parameters['ownerId'], parameters['albumId'], parameters['photoId']) )
-Subscriber().setClassAllocator( PyFriendsViewModel, lambda: PyFriendsViewModel(FriendsService()) )
+Subscriber().setClassAllocator( PyFriendsViewModel, lambda parameters: PyFriendsViewModel(FriendsService(), parameters['userId']) )
 Subscriber().setClassAllocatorWithDelegate( PyWallPostViewModel, lambda delegateId, parameters: PyWallPostViewModel(WallPostService(UsersDecorator()), parameters['ownerId'], parameters['postId']) )
 Subscriber().setClassAllocator( PyAnswersViewModel, lambda: PyAnswersViewModel(AnswersService(UsersDecorator())) )
 Subscriber().setClassAllocator( PyGroupsViewModel, lambda parameters: PyGroupsViewModel(GroupsService(UsersDecorator()), parameters.get('userId')) )

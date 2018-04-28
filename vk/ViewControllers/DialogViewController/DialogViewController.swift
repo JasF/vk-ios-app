@@ -8,7 +8,6 @@
 
 import UIKit
 import NMessenger
-import AsyncDisplayKit
 
 class DialogViewController: NMessengerViewController, DialogScreenViewModelDelegate {
     public required init?(coder aDecoder: NSCoder) {

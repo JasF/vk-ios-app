@@ -139,10 +139,10 @@
             }];
 }
 
-- (UIViewController *)friendsViewController {
+- (UIViewController *)friendsViewController:(NSNumber *)userId {
     return [TyphoonDefinition withClass:[FriendsViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
-            [initializer injectParameterWith:self.viewModelsAssembly.friendsViewModel];
+            [initializer injectParameterWith:[self.viewModelsAssembly friendsViewModel:userId]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
     }];

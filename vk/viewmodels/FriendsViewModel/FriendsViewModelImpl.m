@@ -16,12 +16,14 @@
 @implementation FriendsViewModelImpl
 #pragma mark - Initialization
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
-                         friendsService:(id<FriendsService>)friendsService {
+                         friendsService:(id<FriendsService>)friendsService
+                                 userId:(NSNumber *)userId {
     NSCParameterAssert(handlersFactory);
     NSCParameterAssert(friendsService);
+    NSCParameterAssert(userId);
     if (self = [self init]) {
         _friendsService = friendsService;
-        _handler = [handlersFactory friendsViewModelHandler];
+        _handler = [handlersFactory friendsViewModelHandler:userId.integerValue];
     }
     return self;
 }

@@ -37,7 +37,7 @@
 - (id<PyWallViewModel>)wallViewModelHandlerWithDelegate:(id)delegate parameters:(NSDictionary *)parameters;
 - (id<PyWallPostViewModel>)wallPostViewModelHandlerWithDelegate:(id)delegate parameters:(NSDictionary *)parameters;
 - (id<PyMenuViewModel>)menuViewModelHandler;
-- (id<PyFriendsViewModel>)friendsViewModelHandler;
+- (id<PyFriendsViewModel>)friendsViewModelHandler:(NSInteger)userId;
 - (id<PyNotificationsManager>)notificationsManagerHandler;
 - (id<PyPhotoAlbumsViewModel>)photoAlbumsViewModelHandler:(NSInteger)ownerId;
 - (id<PyGalleryViewModel>)galleryViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(id)albumId;

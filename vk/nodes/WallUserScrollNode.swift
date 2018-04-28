@@ -25,26 +25,47 @@ class WallUserScrollNodeImpl : ASScrollNode {
 }
 */
 
+
+@objc enum WallUserScrollActions : Int {
+    case friends
+    case common
+    case subscribers
+    case photos
+    case videos
+}
+
 class ActionModel : NSObject {
     var text: String
     var number: Int
-    init(_ text: String, number: Int) {
+    var action: WallUserScrollActions
+    init(_ text: String, number: Int, action: WallUserScrollActions) {
         self.text = text
         self.number = number
+        self.action = action
     }
 }
+
+@objc protocol WallUserScrollNodeDelegate {
+    func friendsTapped()
+    func commonTapped()
+    func subscribersTapped()
+    func photosTapped()
+    func videosTapped()
+}
+
 @objcMembers class WallUserScrollNode : ASCellNode {
     var actions: [ActionModel] = [ActionModel]()
     var collectionNode: ASCollectionNode
     var elementSize: CGSize = CGSize(width: 80, height: 100)
+    weak var delegate: WallUserScrollNodeDelegate?
     init(_ user: User?) {
-        actions.append(ActionModel.init("friends", number:(user?.friends_count)!))
+        actions.append(ActionModel.init("friends", number:(user?.friends_count)!, action:.friends))
         if (user?.currentUser)! == false {
-            actions.append(ActionModel.init("common", number:(user?.common_count)!))
+            //actions.append(ActionModel.init("common", number:(user?.common_count)!, action:.common))
         }
-        actions.append(ActionModel.init("subscribers", number:(user?.followers_count)!))
-        actions.append(ActionModel.init("photos", number:(user?.photos_count)!))
-        actions.append(ActionModel.init("videos", number:(user?.videos_count)!))
+        actions.append(ActionModel.init("subscribers", number:(user?.followers_count)!, action:.subscribers))
+        actions.append(ActionModel.init("photos", number:(user?.photos_count)!, action:.photos))
+        actions.append(ActionModel.init("videos", number:(user?.videos_count)!, action:.videos))
         
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal
@@ -63,6 +84,7 @@ class ActionModel : NSObject {
         return spec
     }
     
+    
     override func layout() {
         super.layout()
         collectionNode.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
@@ -75,6 +97,16 @@ extension WallUserScrollNode : ASCollectionDelegate, ASCollectionDataSource {
         return self.actions.count
     }
     
+    func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        let data = actions[indexPath.row]
+        switch (data.action) {
+        case .friends: self.delegate?.friendsTapped(); break
+        case .common: self.delegate?.commonTapped(); break
+        case .subscribers: self.delegate?.subscribersTapped(); break
+        case .photos: self.delegate?.photosTapped(); break
+        case .videos: self.delegate?.videosTapped(); break
+        }
+    }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
         return {

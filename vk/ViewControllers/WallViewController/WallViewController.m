@@ -13,7 +13,7 @@
 #import "WallPost.h"
 #import "vk-Swift.h"
 
-@interface WallViewController () <BaseTableViewControllerDataSource>
+@interface WallViewController () <BaseTableViewControllerDataSource, WallUserScrollNodeDelegate>
 @property (strong, nonatomic) id<WallViewModel> viewModel;
 @end
 
@@ -64,6 +64,13 @@
 }
 
 #pragma mark - ASCollectionNodeDelegate
+- (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)node {
+    if ([node isKindOfClass:[WallUserScrollNode class]]) {
+        WallUserScrollNode *scrollNode = (WallUserScrollNode *)node;
+        scrollNode.delegate = self;
+    }
+}
+
 - (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!indexPath.section) {
         return;
@@ -75,6 +82,23 @@
     }
     
     [_viewModel tappedOnPost:objects[indexPath.row]];
+}
+
+#pragma mark - WallUserScrollNodeDelegate
+- (void)friendsTapped {
+    [_viewModel friendsTapped];
+}
+- (void)commonTapped {
+    [_viewModel commonTapped];
+}
+- (void)subscribersTapped {
+    [_viewModel subscribersTapped];
+}
+- (void)photosTapped {
+    [_viewModel photosTapped];
+}
+- (void)videosTapped {
+    [_viewModel videosTapped];
 }
 
 @end

@@ -65,6 +65,6 @@ class WallService:
             except Exception as e:
                 print('get additional user info exception: ' + str(e))
                 print(traceback.format_exc())
-        if self.userInfo and self.userId == self.userInfo.get('id'):
+        if self.userInfo and vk.userId() == self.userId:
                 self.userInfo['currentUser'] = 1
         return self.userInfo

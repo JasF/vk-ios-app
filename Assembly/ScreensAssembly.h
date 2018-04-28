@@ -32,7 +32,7 @@
 - (UIViewController *)wallViewController:(NSNumber *)userId;
 - (UIViewController *)wallPostViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;
 - (UIViewController *)chatListViewController;
-- (UIViewController *)friendsViewController;
+- (UIViewController *)friendsViewController:(NSNumber *)userId;
 - (UIViewController *)dialogViewController:(NSNumber *)userId;
 - (UIViewController *)photoAlbumsViewController:(NSNumber *)ownerId;
 - (UIViewController *)galleryViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId;

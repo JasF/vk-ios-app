@@ -53,12 +53,13 @@
 }
 
 
-- (id<FriendsViewModel>)friendsViewModel {
+- (id<FriendsViewModel>)friendsViewModel:(NSNumber *)userId {
     return [TyphoonDefinition withClass:[FriendsViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:friendsService:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(initWithHandlersFactory:friendsService:userId:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.friendsService];
+                    [initializer injectParameterWith:userId];
                 }];
             }];
 }

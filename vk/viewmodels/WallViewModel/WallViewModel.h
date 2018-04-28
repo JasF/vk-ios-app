@@ -15,4 +15,9 @@
                     completion:(void(^)(NSArray *posts))completion;
 - (void)menuTapped;
 - (void)tappedOnPost:(WallPost *)post;
+- (void)friendsTapped;
+- (void)commonTapped;
+- (void)subscribersTapped;
+- (void)photosTapped;
+- (void)videosTapped;
 @end

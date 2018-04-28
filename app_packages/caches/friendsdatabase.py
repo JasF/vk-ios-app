@@ -26,10 +26,10 @@ class FriendsDatabase(BaseDatabase):
             print('appendFriendsIds count is: ' + str(counter))
         return counter
             
-    def getFriendsIds(self, offset, count):
+    def getFriendsIds(userId, self, offset, count):
         result = []
         try:
-            script = 'SELECT * FROM ' + self.tableName + ' ORDER BY position ASC LIMIT ' + str(count) + ' OFFSET ' + str(offset)
+            script = 'SELECT * FROM ' + self.tableName + ' WHERE id = ' + str(userId) + ' ORDER BY position ASC LIMIT ' + str(count) + ' OFFSET ' + str(offset)
             self.cursor.execute(script)
             result = self.cursor.fetchall()
         except Exception as e:

@@ -15,6 +15,11 @@
 - (void)menuTapped;
 - (NSDictionary *)getUserInfo;
 - (void)tappedOnPostWithId:(NSNumber *)identifier;
+- (void)friendsTapped;
+- (void)commonTapped;
+- (void)subscribersTapped;
+- (void)photosTapped;
+- (void)videosTapped;
 @end
 
 @interface WallViewModelImpl : NSObject <WallViewModel>
