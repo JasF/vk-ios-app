@@ -28,10 +28,7 @@ static CGFloat const kControlsSize = 40.f;
 @property (strong, nonatomic) ASTextNode *postNode;
 @property (strong, nonatomic) ASImageNode *viaNode;
 @property (strong, nonatomic) AvatarNode *avatarNode;
-@property (strong, nonatomic) LikesNode *likesNode;
-@property (strong, nonatomic) CommentsNode *commentsNode;
 @property (strong, nonatomic) ASImageNode *optionsNode;
-@property (strong, nonatomic) RepostNode *repostNode;
 @property ASDisplayNode *bottomSeparator;
 
 @property (strong, nonatomic) ASDisplayNode *verticalLineNode;
@@ -57,7 +54,8 @@ static CGFloat const kControlsSize = 40.f;
 {
     NSCParameterAssert(post);
     NSCParameterAssert(nodeFactory);
-    self = [super init];
+    
+    self = [super initWithEmbedded:embedded.boolValue likesCount:post.likes.count liked:post.likes.user_likes repostsCount:post.reposts.count reposted:post.reposts.user_reposted commentsCount:post.comments.count];
     if (self) {
         _mediaNodes = [NSMutableArray new];
         _nodeFactory = nodeFactory;
@@ -162,6 +160,22 @@ static CGFloat const kControlsSize = 40.f;
         
         // Bottom controls
         if (!_embedded) {
+            
+            _optionsNode = [[ASImageNode alloc] init];
+            _optionsNode.image = [UIImage imageNamed:@"icon_more"];
+            _optionsNode.contentMode = UIViewContentModeCenter;
+            [_optionsNode addTarget:self action:@selector(optionsTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
+            [self addSubnode:_optionsNode];
+            
+            
+            _bottomSeparator = [ASDisplayNode new];
+            _bottomSeparator.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
+            [self addSubnode:_bottomSeparator];
+            /*
+            @property (strong, nonatomic) LikesNode *likesNode;
+            @property (strong, nonatomic) CommentsNode *commentsNode;
+            @property (strong, nonatomic) RepostNode *repostNode;
+            
             _likesNode = [[LikesNode alloc] initWithLikesCount:_post.likes.count liked:_post.likes.user_likes];
             [_likesNode addTarget:self action:@selector(likesTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
             [self addSubnode:_likesNode];
@@ -182,6 +196,7 @@ static CGFloat const kControlsSize = 40.f;
             _bottomSeparator = [ASDisplayNode new];
             _bottomSeparator.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
             [self addSubnode:_bottomSeparator];
+            */
         }
         
         for (ASDisplayNode *node in self.subnodes) {
@@ -217,32 +232,9 @@ static CGFloat const kControlsSize = 40.f;
     
     ASLayoutSpec *controlsStack = nil;
     if (!_embedded) {
-        NSArray *array = @[_likesNode,
-                           _commentsNode,
-                           _repostNode];
-        for (id<ASLayoutElement> el in array) {
-            el.style.flexGrow = 1.f;
-            el.style.height = ASDimensionMake(kControlsSize);
-        }
+        controlsStack = [self controlsStack];
         _optionsNode.style.width = ASDimensionMake(kControlsSize);
         _optionsNode.style.height = ASDimensionMake(kControlsSize);
-        
-        controlsStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-                                                                spacing:0
-                                                         justifyContent:ASStackLayoutJustifyContentStart
-                                                             alignItems:ASStackLayoutAlignItemsCenter
-                                                               children:array];
-        controlsStack = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(-kMargin, 0, -kMargin, 0)
-                                                               child:controlsStack];
-        /*
-        _likesNode.backgroundColor = [UIColor redColor];
-        _commentsNode.backgroundColor = [UIColor greenColor];
-        _optionsNode.backgroundColor = [UIColor blueColor];
-        _postNode.backgroundColor = [UIColor orangeColor];
-        
-         NSArray *colors = @[[UIColor greenColor], [UIColor redColor], [UIColor brownColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor orangeColor]];
-         self.backgroundColor = [colors[arc4random()%6] colorWithAlphaComponent:0.1];
-         */
     }
     
     NSMutableArray *mainStackContent = [[NSMutableArray alloc] init];
@@ -381,11 +373,11 @@ static CGFloat const kControlsSize = 40.f;
 
 #pragma mark - PostsServiceConsumer
 - (void)setLikesCount:(NSInteger)likes liked:(BOOL)liked {
-    [_likesNode setLikesCount:likes liked:liked];
+    [self.likesNode setLikesCount:likes liked:liked];
 }
 
 - (void)setRepostsCount:(NSInteger)reposts reposted:(BOOL)reposted {
-    [_repostNode setRepostsCount:reposts reposted:reposted];
+    [self.repostNode setRepostsCount:reposts reposted:reposted];
 }
 
 @end

@@ -9,10 +9,11 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "NodeFactory.h"
 #import "PostsService.h"
+#import "PostBaseNode.h"
 
 @class WallPost;
 
-@interface WallPostNode : ASCellNode
+@interface WallPostNode : PostBaseNode
 - (instancetype)initWithPost:(WallPost *)post
                  nodeFactory:(id<NodeFactory>)nodeFactory
                     embedded:(NSNumber *)embedded;
