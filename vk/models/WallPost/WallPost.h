@@ -17,7 +17,7 @@
 #import "Audio.h"
 #import "User.h"
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface WallPost : NSObject <EKMappingProtocol>
 @property BOOL can_delete;

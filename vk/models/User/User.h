@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface UserId : NSObject <EKMappingProtocol>
 @property NSInteger user_id;

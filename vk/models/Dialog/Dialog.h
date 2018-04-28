@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Message.h"
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface Dialog : NSObject <EKMappingProtocol>
 @property NSInteger unread;

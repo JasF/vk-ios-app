@@ -42,4 +42,5 @@
 - (ASDisplayNode *)answerNode:(Answer *)answer;
 - (ASDisplayNode *)videoNode:(Video *)video;
 - (ASDisplayNode *)documentNode:(Document *)document;
+- (ASDisplayNode *)wallUserMessageNode:(User *)user;
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SizedPhoto.h"
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface Document : NSObject <EKMappingProtocol>
 @property NSInteger id;

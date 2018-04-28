@@ -15,6 +15,7 @@
 #import "Answer.h"
 #import "Video.h"
 #import "Document.h"
+#import "vk-Swift.h"
 
 @implementation NodeFactoryImpl {
     NodesAssembly *_assembly;
@@ -94,6 +95,12 @@
     }
     else if ([item isKindOfClass:[Document class]]) {
         return [_assembly documentNode:item];
+    }
+    else if ([item isKindOfClass:[WallUserCellModel class]]) {
+        WallUserCellModel *model = (WallUserCellModel *)item;
+        if (model.type == WallUserCellModelTypeMessage) {
+            return [_assembly wallUserMessageNode:model.user];
+        }
     }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;

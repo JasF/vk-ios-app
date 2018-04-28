@@ -11,6 +11,7 @@
 #import "VKSdkManager.h"
 #import <VK-ios-sdk/VKSdk.h>
 #import "WallPost.h"
+#import "vk-Swift.h"
 
 @interface WallViewController () <BaseTableViewControllerDataSource>
 @property (strong, nonatomic) id<WallViewModel> viewModel;
@@ -54,7 +55,9 @@
 
 - (void)performBatchAnimated:(BOOL)animated {
     if (!self.sectionsArray && self.viewModel.currentUser) {
-        self.sectionsArray = @[@[[ [WallUser alloc] initWithUser:self.viewModel.currentUser] ]];
+        self.sectionsArray = @[@[[ [WallUser alloc] initWithUser:self.viewModel.currentUser],
+                                 [[WallUserCellModel alloc] init:WallUserCellModelTypeMessage user:self.viewModel.currentUser]
+                                 ]];
     }
     [super performBatchAnimated:animated];
 }

@@ -12,7 +12,7 @@
 #import "Comment.h"
 #import "User.h"
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface Answer : NSObject <EKMappingProtocol>
 @property NSString *type;

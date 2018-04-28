@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface SizedPhoto : NSObject <EKMappingProtocol>
 @property NSString *src;

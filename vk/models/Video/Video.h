@@ -10,7 +10,7 @@
 #import "Likes.h"
 #import "Reposts.h"
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface Video : NSObject <EKMappingProtocol>
 @property NSInteger id;

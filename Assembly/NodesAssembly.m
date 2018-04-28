@@ -22,6 +22,7 @@
 #import "AnswerNode.h"
 #import "VideoNode.h"
 #import "DocumentNode.h"
+#import "vk-Swift.h"
 
 @implementation NodesAssembly
 
@@ -183,6 +184,16 @@
                 [definition useInitializer:@selector(initWithDocument:) parameters:^(TyphoonMethod *initializer)
                  {
                      [initializer injectParameterWith:document];
+                 }];
+            }];
+}
+
+- (ASDisplayNode *)wallUserMessageNode:(User *)user {
+    return [TyphoonDefinition withClass:[WallUserMessageNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:user];
                  }];
             }];
 }

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface Views : NSObject <EKMappingProtocol>
 @property NSInteger count;

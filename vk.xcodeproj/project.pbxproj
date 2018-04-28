@@ -472,11 +472,14 @@
 		C3437569208F816C004EF670 /* AnswersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437568208F816C004EF670 /* AnswersViewController.m */; };
 		C343756E208F81DB004EF670 /* AnswersViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C343756D208F81DB004EF670 /* AnswersViewModelImpl.m */; };
 		C3437573208F83AD004EF670 /* AnswersServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437572208F83AD004EF670 /* AnswersServiceImpl.m */; };
+		C3507821209477B4000C8FB3 /* WallUserCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3507820209477B4000C8FB3 /* WallUserCellModel.swift */; };
+		C350782320948114000C8FB3 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782220948114000C8FB3 /* TextStyles.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
 		C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA65209369130071FA04 /* RowsDialogImpl.m */; };
 		C398BA6F2094597A0071FA04 /* PostBaseNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA6E2094597A0071FA04 /* PostBaseNode.m */; };
+		C398BA742094743A0071FA04 /* WallUserMessageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C398BA732094743A0071FA04 /* WallUserMessageNode.swift */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1560,6 +1563,8 @@
 		C3437572208F83AD004EF670 /* AnswersServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswersServiceImpl.m; sourceTree = "<group>"; };
 		C3437574208F8678004EF670 /* answersservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = answersservice.py; sourceTree = "<group>"; };
 		C3437575208F8687004EF670 /* pyanswersviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyanswersviewmodel.py; sourceTree = "<group>"; };
+		C3507820209477B4000C8FB3 /* WallUserCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserCellModel.swift; sourceTree = "<group>"; };
+		C350782220948114000C8FB3 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
@@ -1574,6 +1579,7 @@
 		C398BA65209369130071FA04 /* RowsDialogImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RowsDialogImpl.m; sourceTree = "<group>"; };
 		C398BA6D2094597A0071FA04 /* PostBaseNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostBaseNode.h; sourceTree = "<group>"; };
 		C398BA6E2094597A0071FA04 /* PostBaseNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostBaseNode.m; sourceTree = "<group>"; };
+		C398BA732094743A0071FA04 /* WallUserMessageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserMessageNode.swift; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -2454,6 +2460,7 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C398BA72209474270071FA04 /* WallUserMessageNode */,
 				C398BA6C2094595C0071FA04 /* PostBaseNode */,
 				C32262F22090C1610054789B /* TextNode */,
 				C32262EE2090BBF30054789B /* SwitchNode */,
@@ -2559,6 +2566,7 @@
 		C32304572080E57400CEC487 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C3507820209477B4000C8FB3 /* WallUserCellModel.swift */,
 				C3333D4E2091BF11009EBB09 /* Place */,
 				C3333D4A2091BEF6009EBB09 /* Geo */,
 				C32262E92090AFAE0054789B /* Settings */,
@@ -3433,6 +3441,7 @@
 				C32304B52080E57400CEC487 /* CommentsNode.h */,
 				C3A82A2E20932DAC00C41CA8 /* RepostNode.h */,
 				C3A82A2F20932DAC00C41CA8 /* RepostNode.m */,
+				C350782220948114000C8FB3 /* TextStyles.swift */,
 			);
 			path = "old-sources";
 			sourceTree = "<group>";
@@ -4522,6 +4531,14 @@
 			path = PostBaseNode;
 			sourceTree = "<group>";
 		};
+		C398BA72209474270071FA04 /* WallUserMessageNode */ = {
+			isa = PBXGroup;
+			children = (
+				C398BA732094743A0071FA04 /* WallUserMessageNode.swift */,
+			);
+			path = WallUserMessageNode;
+			sourceTree = "<group>";
+		};
 		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5458,6 +5475,7 @@
 				C32308E92081AEB100CEC487 /* TyphoonDefinition.m in Sources */,
 				C32308CE2081AEB100CEC487 /* NSArray+TyphoonManualEnumeration.m in Sources */,
 				C32308F42081AEB100CEC487 /* TyphoonBlockDefinition.m in Sources */,
+				C350782320948114000C8FB3 /* TextStyles.swift in Sources */,
 				C313774D208E3AC500F568EA /* PhotoNode.m in Sources */,
 				C3137721208E1FC900F568EA /* PhotoAlbumsViewController.m in Sources */,
 				C32308BD2081AEB100CEC487 /* LGSideMenuGesturesHandler.m in Sources */,
@@ -5518,9 +5536,11 @@
 				C32306232080E57500CEC487 /* MaskingView.m in Sources */,
 				C323091E2081AEB100CEC487 /* TyphoonAssemblyBuilder.m in Sources */,
 				C32305C02080E57500CEC487 /* EXTRuntimeExtensions.m in Sources */,
+				C3507821209477B4000C8FB3 /* WallUserCellModel.swift in Sources */,
 				C32309152081AEB100CEC487 /* TyphoonFactoryPropertyInjectionPostProcessor.m in Sources */,
 				C32309142081AEB100CEC487 /* TyphoonComponentFactory+InstanceBuilder.m in Sources */,
 				C32305C42080E57500CEC487 /* NSMethodSignature+EXT.m in Sources */,
+				C398BA742094743A0071FA04 /* WallUserMessageNode.swift in Sources */,
 				C32309352081AEB100CEC487 /* UIImage+NanoFrame.m in Sources */,
 				C32308DE2081AEB100CEC487 /* UIView+TyphoonDefinitionKey.m in Sources */,
 				C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */,
@@ -5762,7 +5782,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "vk/Supporting Files/vk-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -5794,7 +5814,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "vk/Supporting Files/vk-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

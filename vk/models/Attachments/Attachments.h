@@ -10,7 +10,7 @@
 #import "Photo.h"
 #import "Video.h"
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 typedef NS_ENUM(NSInteger, AttachmentTypes) {
     AttachmentUnknown,

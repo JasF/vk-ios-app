@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 typedef NS_ENUM(NSInteger, PostsTypes) {
     PostTypeUnknown,

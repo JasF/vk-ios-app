@@ -20,6 +20,10 @@ static const DDLogLevel ddLogLevel = DDLogLevelWarning;
 #import "Functions.h"
 #import "ASInsetLayoutSpec+Utils.h"
 
+@interface NMessengerViewController : UIViewController
+@end
+
+
 CF_INLINE bool IsEqualFloat(float a, float b) { return ABS(a - b) < pow(10, -10); }
 CF_INLINE bool IsFloatEqual(float a, float b) { return IsEqualFloat(a,b);}
 
@@ -29,5 +33,6 @@ CF_INLINE bool IsFloatEqual(float a, float b) { return IsEqualFloat(a,b);}
 
 @interface BaseChatViewController : UIViewController
 @end
+
 
 #endif

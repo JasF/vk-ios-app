@@ -6,7 +6,7 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface Audio : NSObject <EKMappingProtocol>
 @property NSInteger id;

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Attachments.h"
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface Message : NSObject <EKMappingProtocol>
 @property NSString *body;

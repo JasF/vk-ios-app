@@ -10,7 +10,7 @@
 #import "WallPost.h"
 #import "Likes.h"
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface Comment : NSObject <EKMappingProtocol>
 @property NSInteger id;

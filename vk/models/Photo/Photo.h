@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface Photo : NSObject <EKMappingProtocol>
 @property NSString *access_key;

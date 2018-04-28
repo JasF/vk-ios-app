@@ -21,8 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-@import CoreData;
-@import Foundation;
+#import <CoreData/CoreData.h>
+#import <Foundation/Foundation.h>
 #import "EKPropertyMapping.h"
 #import "EKObjectMapping.h"
 #import "EKMappingProtocol.h"

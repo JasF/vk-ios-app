@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@import EasyMapping;
+#import <EasyMapping/EasyMapping.h>
 
 @interface Reposts : NSObject <EKMappingProtocol>
 @property NSInteger count;
