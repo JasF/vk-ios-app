@@ -63,9 +63,9 @@ class ActionModel : NSObject {
         if (user?.currentUser)! == false {
             //actions.append(ActionModel.init("common", number:(user?.common_count)!, action:.common))
         }
-        actions.append(ActionModel.init("subscribers", number:(user?.followers_count)!, action:.subscribers))
         actions.append(ActionModel.init("photos", number:(user?.photos_count)!, action:.photos))
         actions.append(ActionModel.init("videos", number:(user?.videos_count)!, action:.videos))
+        actions.append(ActionModel.init("interest_pages", number:(user?.subscriptions_count)!, action:.subscribers))
         
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal
