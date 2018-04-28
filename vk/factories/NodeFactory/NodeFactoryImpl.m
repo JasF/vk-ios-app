@@ -101,6 +101,9 @@
         if (model.type == WallUserCellModelTypeMessage) {
             return [_assembly wallUserMessageNode:model.user];
         }
+        else if (model.type == WallUserCellModelTypeActions) {
+            return [_assembly wallUserScrollNode:model.user];
+        }
     }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;

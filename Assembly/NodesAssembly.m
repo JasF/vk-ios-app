@@ -198,4 +198,14 @@
             }];
 }
 
+- (ASDisplayNode *)wallUserScrollNode:(User *)user {
+    return [TyphoonDefinition withClass:[WallUserScrollNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:user];
+                 }];
+            }];
+}
+
 @end

@@ -11,6 +11,7 @@ import Foundation
 @objc enum WallUserCellModelType: Int {
     case image
     case message
+    case actions
 }
 @objcMembers class WallUserCellModel : NSObject {
     var type:WallUserCellModelType

@@ -56,7 +56,8 @@
 - (void)performBatchAnimated:(BOOL)animated {
     if (!self.sectionsArray && self.viewModel.currentUser) {
         self.sectionsArray = @[@[[ [WallUser alloc] initWithUser:self.viewModel.currentUser],
-                                 [[WallUserCellModel alloc] init:WallUserCellModelTypeMessage user:self.viewModel.currentUser]
+                                 [[WallUserCellModel alloc] init:WallUserCellModelTypeMessage user:self.viewModel.currentUser],
+                                 [[WallUserCellModel alloc] init:WallUserCellModelTypeActions user:self.viewModel.currentUser]
                                  ]];
     }
     [super performBatchAnimated:animated];

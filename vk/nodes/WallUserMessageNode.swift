@@ -22,6 +22,7 @@ import NMessenger
         leftButton.cornerRadius = 20
         leftButton.backgroundColor = UIColor.green
         leftButton.setAttributedTitle(NSAttributedString.init(string: "send message", attributes: TextStyles.titleStyle()), for: .normal)
+        leftButton.addTarget(self, action: #selector(leftButtonTapped), forControlEvents: .touchUpInside)
         rightButton.style.height = ASDimensionMake(40)
         rightButton.cornerRadius = 20
         rightButton.backgroundColor = UIColor.white
@@ -37,7 +38,11 @@ import NMessenger
         return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(10,0,10,0), child:spec)
     }
     
+    func leftButtonTapped() {
+        NSLog("observer left")
+    }
+    
     func rightButtonTapped() {
-        NSLog("observer")
+        NSLog("observer right")
     }
 }

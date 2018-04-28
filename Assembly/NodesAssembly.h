@@ -43,4 +43,5 @@
 - (ASDisplayNode *)videoNode:(Video *)video;
 - (ASDisplayNode *)documentNode:(Document *)document;
 - (ASDisplayNode *)wallUserMessageNode:(User *)user;
+- (ASDisplayNode *)wallUserScrollNode:(User *)user;
 @end

@@ -474,6 +474,8 @@
 		C3437573208F83AD004EF670 /* AnswersServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437572208F83AD004EF670 /* AnswersServiceImpl.m */; };
 		C3507821209477B4000C8FB3 /* WallUserCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3507820209477B4000C8FB3 /* WallUserCellModel.swift */; };
 		C350782320948114000C8FB3 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782220948114000C8FB3 /* TextStyles.swift */; };
+		C3507825209485DF000C8FB3 /* WallUserActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3507824209485DF000C8FB3 /* WallUserActionNode.swift */; };
+		C350782720948925000C8FB3 /* WallUserScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782620948925000C8FB3 /* WallUserScrollNode.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
@@ -1565,6 +1567,8 @@
 		C3437575208F8687004EF670 /* pyanswersviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyanswersviewmodel.py; sourceTree = "<group>"; };
 		C3507820209477B4000C8FB3 /* WallUserCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserCellModel.swift; sourceTree = "<group>"; };
 		C350782220948114000C8FB3 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
+		C3507824209485DF000C8FB3 /* WallUserActionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserActionNode.swift; sourceTree = "<group>"; };
+		C350782620948925000C8FB3 /* WallUserScrollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserScrollNode.swift; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
@@ -2460,7 +2464,9 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
-				C398BA72209474270071FA04 /* WallUserMessageNode */,
+				C350782620948925000C8FB3 /* WallUserScrollNode.swift */,
+				C3507824209485DF000C8FB3 /* WallUserActionNode.swift */,
+				C398BA732094743A0071FA04 /* WallUserMessageNode.swift */,
 				C398BA6C2094595C0071FA04 /* PostBaseNode */,
 				C32262F22090C1610054789B /* TextNode */,
 				C32262EE2090BBF30054789B /* SwitchNode */,
@@ -4531,14 +4537,6 @@
 			path = PostBaseNode;
 			sourceTree = "<group>";
 		};
-		C398BA72209474270071FA04 /* WallUserMessageNode */ = {
-			isa = PBXGroup;
-			children = (
-				C398BA732094743A0071FA04 /* WallUserMessageNode.swift */,
-			);
-			path = WallUserMessageNode;
-			sourceTree = "<group>";
-		};
 		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5374,6 +5372,7 @@
 				C32305BE2080E57500CEC487 /* EXTConcreteProtocol.m in Sources */,
 				C32262BA209092DA0054789B /* VideoNode.m in Sources */,
 				C32308C82081AEB100CEC487 /* TyphoonAbstractDetachableComponentFactoryPostProcessor.m in Sources */,
+				C3507825209485DF000C8FB3 /* WallUserActionNode.swift in Sources */,
 				C32308F72081AEB100CEC487 /* TyphoonDefinitionNamespace.m in Sources */,
 				C343755E208F6B72004EF670 /* AudioNode.m in Sources */,
 				C32308FE2081AEB100CEC487 /* TyphoonInjectionByDictionary.m in Sources */,
@@ -5603,6 +5602,7 @@
 				C3333D492091A9A4009EBB09 /* DetailVideoViewController.m in Sources */,
 				C32262AC20908CC70054789B /* VideosServiceImpl.m in Sources */,
 				C32305EB2080E57500CEC487 /* ScreensManagerImpl.m in Sources */,
+				C350782720948925000C8FB3 /* WallUserScrollNode.swift in Sources */,
 				C32309072081AEB100CEC487 /* TyphoonTypeDescriptor.m in Sources */,
 				C32306242080E57500CEC487 /* Functions.m in Sources */,
 				C32308FF2081AEB100CEC487 /* TyphoonInjectionByObjectFromString.m in Sources */,

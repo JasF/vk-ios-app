@@ -9,7 +9,11 @@
 import Foundation
 
 class TextStyles : NSObject {
-    static public func titleStyle () -> [NSAttributedStringKey : Any]! {
+    static public func nameStyle() -> [NSAttributedStringKey : Any]! {
+        return [ NSAttributedStringKey.foregroundColor: UIColor.black,
+                 NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15) ]
+    }
+    static public func titleStyle() -> [NSAttributedStringKey : Any]! {
     return [ NSAttributedStringKey.foregroundColor: UIColor.black,
              NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15) ]
     }
