@@ -476,6 +476,7 @@
 		C3507825209485DF000C8FB3 /* WallUserActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3507824209485DF000C8FB3 /* WallUserActionNode.swift */; };
 		C350782720948925000C8FB3 /* WallUserScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782620948925000C8FB3 /* WallUserScrollNode.swift */; };
 		C350782920949C46000C8FB3 /* WallUserImageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782820949C46000C8FB3 /* WallUserImageNode.swift */; };
+		C350782B2094AC9A000C8FB3 /* LastSeen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782A2094AC9A000C8FB3 /* LastSeen.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
@@ -1568,6 +1569,7 @@
 		C3507824209485DF000C8FB3 /* WallUserActionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserActionNode.swift; sourceTree = "<group>"; };
 		C350782620948925000C8FB3 /* WallUserScrollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserScrollNode.swift; sourceTree = "<group>"; };
 		C350782820949C46000C8FB3 /* WallUserImageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserImageNode.swift; sourceTree = "<group>"; };
+		C350782A2094AC9A000C8FB3 /* LastSeen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSeen.swift; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
@@ -2585,6 +2587,7 @@
 				C32304762080E57400CEC487 /* Views */,
 				C32304792080E57400CEC487 /* Photo */,
 				C323047C2080E57400CEC487 /* PostType */,
+				C350782A2094AC9A000C8FB3 /* LastSeen.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -5446,6 +5449,7 @@
 				C32262A720908BB00054789B /* VideosViewModelImpl.m in Sources */,
 				C32305C52080E57500CEC487 /* EXTNil.m in Sources */,
 				C32309042081AEB100CEC487 /* TyphoonInjectionByCollection.m in Sources */,
+				C350782B2094AC9A000C8FB3 /* LastSeen.swift in Sources */,
 				C322629C209082E10054789B /* BookmarksViewModelImpl.m in Sources */,
 				C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */,
 				C32309162081AEB100CEC487 /* NSInvocation+TCFWrapValues.m in Sources */,

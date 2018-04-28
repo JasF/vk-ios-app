@@ -17,4 +17,8 @@ class TextStyles : NSObject {
     return [ NSAttributedStringKey.foregroundColor: UIColor.black,
              NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15) ]
     }
+    static public func usernameGradientStyle() -> [NSAttributedStringKey : Any]! {
+        return [ NSAttributedStringKey.foregroundColor: UIColor.white,
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15) ]
+    }
 }

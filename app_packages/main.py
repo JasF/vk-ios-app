@@ -6,7 +6,7 @@ import viewmodels
 try:
     import pymanagers
 except Exception as e:
-    print('im ex: ' + str(e))
+    print(traceback.format_exc())
 
 def launch():
     Managers.shared().screensManager().showAuthorizationViewController()

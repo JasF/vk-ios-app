@@ -1,6 +1,7 @@
 //
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
+#import <EasyMapping/EasyMapping.h>
 #import "PythonBridge.h"
 #import "PythonManager.h"
 #import "VKCoreComponents.h"

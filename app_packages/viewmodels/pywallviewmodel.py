@@ -1,7 +1,7 @@
 from objc import managers
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 from services.wallservice import WallService
-import vk
+import vk, json
 
 class PyWallViewModel(ObjCBridgeProtocol):
     def __init__(self, wallService, parameters):
@@ -16,7 +16,9 @@ class PyWallViewModel(ObjCBridgeProtocol):
         return response
     
     def getUserInfo(self):
-        return self.wallService.getUserInfo()
+        results = self.wallService.getBigUserInfo()
+        #print('getUserInfo result: ' + json.dumps(results, indent=4))
+        return results
     
     def menuTapped(self):
         managers.shared().screensManager().showMenu()

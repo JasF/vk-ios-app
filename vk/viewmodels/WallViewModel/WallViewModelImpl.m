@@ -11,6 +11,7 @@
 @interface WallViewModelImpl ()
 @property (strong) id<PyWallViewModel> handler;
 @property (strong) id<WallService> wallService;
+@property NSInteger userId;
 @end
 
 @implementation WallViewModelImpl
@@ -25,6 +26,7 @@
     NSCParameterAssert(wallService);
     NSCParameterAssert(userId);
     if (self) {
+        self.userId = userId.integerValue;
         _handler = [handlersFactory wallViewModelHandlerWithDelegate:self parameters:@{@"userId": userId}];
         _wallService = wallService;
     }

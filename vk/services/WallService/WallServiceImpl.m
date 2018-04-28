@@ -46,7 +46,7 @@
     
     NSMutableDictionary *usersDictionary = [NSMutableDictionary new];
     for (User *user in usersObjects) {
-        [usersDictionary setObject:user forKey:@(user.identifier)];
+        [usersDictionary setObject:user forKey:@(user.id)];
     }
     
     void (^updatePostBlock)(WallPost *post) = ^void(WallPost *post) {

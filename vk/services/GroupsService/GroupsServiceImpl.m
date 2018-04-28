@@ -29,7 +29,7 @@
                                                                    withMapping:[User objectMapping]];
     NSMutableDictionary *usersDictionary = [NSMutableDictionary new];
     for (User *user in usersObjects) {
-        [usersDictionary setObject:user forKey:@(user.identifier)];
+        [usersDictionary setObject:user forKey:@(user.id)];
     }
     
     NSCAssert(usersObjects.count == items.count, @"Number of groups IDs and groups infos missmatch");

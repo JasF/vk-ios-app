@@ -54,7 +54,7 @@
     if (!user) {
         return;
     }
-    [_viewModel tappedOnUserWithId:user.identifier];
+    [_viewModel tappedOnUserWithId:user.id];
 }
 
 #pragma mark - FriendsViewModelDelegate

@@ -50,7 +50,7 @@
 
 - (void)tappedOnGroup:(User *)user {
     dispatch_python(^{
-        [self.handler tappedOnGroupWithId:@(user.identifier)];
+        [self.handler tappedOnGroupWithId:@(user.id)];
     });
 }
 

@@ -44,7 +44,7 @@
     
     NSMutableDictionary *usersDictionary = [NSMutableDictionary new];
     for (User *user in usersObjects) {
-        [usersDictionary setObject:user forKey:@(user.identifier)];
+        [usersDictionary setObject:user forKey:@(user.id)];
     }
     
     for (Dialog *dialog in dialogs) {

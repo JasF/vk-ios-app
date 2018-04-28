@@ -38,12 +38,13 @@ class ActionModel : NSObject {
     var collectionNode: ASCollectionNode
     var elementSize: CGSize = CGSize(width: 80, height: 100)
     init(_ user: User?) {
-        
-        actions.append(ActionModel.init("friends", number:119))
-        actions.append(ActionModel.init("common", number:10))
-        actions.append(ActionModel.init("subscribers", number:98))
-        actions.append(ActionModel.init("photos", number:630))
-        actions.append(ActionModel.init("videos", number:46))
+        actions.append(ActionModel.init("friends", number:(user?.friends_count)!))
+        if (user?.currentUser)! == false {
+            actions.append(ActionModel.init("common", number:(user?.common_count)!))
+        }
+        actions.append(ActionModel.init("subscribers", number:(user?.followers_count)!))
+        actions.append(ActionModel.init("photos", number:(user?.photos_count)!))
+        actions.append(ActionModel.init("videos", number:(user?.videos_count)!))
         
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal

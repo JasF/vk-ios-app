@@ -28,7 +28,7 @@
                                                                    withMapping:[User objectMapping]];
     NSMutableDictionary *usersDictionary = [NSMutableDictionary new];
     for (User *user in usersObjects) {
-        [usersDictionary setObject:user forKey:@(user.identifier)];
+        [usersDictionary setObject:user forKey:@(user.id)];
     }
     
     NSMutableArray *objects = [NSMutableArray new];
