@@ -77,9 +77,9 @@
 }
 
 - (id<PyFriendsViewModel>)friendsViewModelHandler:(NSInteger)userId
-                                    subscriptions:(NSNumber *)subscriptions {
+                                    usersListType:(NSNumber *)usersListType {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyFriendsViewModel)
-                                              parameters:@{@"userId":@(userId), @"subscriptions":subscriptions}];
+                                              parameters:@{@"userId":@(userId), @"usersListType":usersListType}];
 }
 
 - (id<PyNotificationsManager>)notificationsManagerHandler {

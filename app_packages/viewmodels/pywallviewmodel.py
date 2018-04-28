@@ -2,6 +2,7 @@ from objc import managers
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 from services.wallservice import WallService
 import vk, json
+from .pyfriendsviewmodel import UsersListTypes
 
 class PyWallViewModel(ObjCBridgeProtocol):
     def __init__(self, wallService, parameters):
@@ -27,14 +28,18 @@ class PyWallViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().showWallPostViewControllerWithOwnerId_postId_(args=[self.userId, identifier])
 
     def friendsTapped(self):
-        managers.shared().screensManager().showFriendsViewController_subscriptions_(args=[self.userId, False])
+        managers.shared().screensManager().showFriendsViewController_usersListType_(args=[self.userId, UsersListTypes.FRIENDS])
         pass
 
     def commonTapped(self):
         pass
 
-    def subscribersTapped(self):
-        managers.shared().screensManager().showFriendsViewController_subscriptions_(args=[self.userId, True])
+    def subscribtionsTapped(self):
+        managers.shared().screensManager().showFriendsViewController_usersListType_(args=[self.userId, UsersListTypes.SUBSCRIPTIONS])
+        pass
+    
+    def followersTapped(self):
+        managers.shared().screensManager().showFriendsViewController_usersListType_(args=[self.userId, UsersListTypes.FOLLOWERS])
         pass
 
     def photosTapped(self):

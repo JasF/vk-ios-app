@@ -139,10 +139,10 @@
             }];
 }
 
-- (UIViewController *)friendsViewController:(NSNumber *)userId subscriptions:(NSNumber *)subscriptions {
+- (UIViewController *)friendsViewController:(NSNumber *)userId usersListType:(NSNumber *)usersListType {
     return [TyphoonDefinition withClass:[FriendsViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
-            [initializer injectParameterWith:[self.viewModelsAssembly friendsViewModel:userId subscriptions:subscriptions]];
+            [initializer injectParameterWith:[self.viewModelsAssembly friendsViewModel:userId usersListType:usersListType]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
     }];

@@ -18,13 +18,13 @@
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
                          friendsService:(id<FriendsService>)friendsService
                                  userId:(NSNumber *)userId
-                          subscriptions:(NSNumber *)subscriptions {
+                          usersListType:(NSNumber *)usersListType {
     NSCParameterAssert(handlersFactory);
     NSCParameterAssert(friendsService);
     NSCParameterAssert(userId);
     if (self = [self init]) {
         _friendsService = friendsService;
-        _handler = [handlersFactory friendsViewModelHandler:userId.integerValue subscriptions:subscriptions];
+        _handler = [handlersFactory friendsViewModelHandler:userId.integerValue usersListType:usersListType];
     }
     return self;
 }

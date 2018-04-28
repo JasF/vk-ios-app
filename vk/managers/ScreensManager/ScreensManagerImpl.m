@@ -106,14 +106,14 @@
     });
 }
 
-- (void)showFriendsViewController:(NSNumber *)userId subscriptions:(NSNumber *)subscriptions {
+- (void)showFriendsViewController:(NSNumber *)userId usersListType:(NSNumber *)usersListType {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
         if ([self canIgnorePushingViewController:[FriendsViewController class]]) {
             return;
         }
-        FriendsViewController *viewController =(FriendsViewController *)[_screensAssembly friendsViewController:userId subscriptions:subscriptions];
+        FriendsViewController *viewController =(FriendsViewController *)[_screensAssembly friendsViewController:userId usersListType:usersListType];
         [self pushViewController:viewController];
     });
 }

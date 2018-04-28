@@ -20,5 +20,5 @@
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
                          friendsService:(id<FriendsService>)friendsService
                                  userId:(NSNumber *)userId
-                          subscriptions:(NSNumber *)subscriptions;
+                          usersListType:(NSNumber *)usersListType;
 @end

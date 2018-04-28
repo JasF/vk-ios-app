@@ -32,6 +32,7 @@ async def sendText(text):
                          body=text)
     except Exception as e:
         __builtin__.original_print('send exception: ' + str(e))
+        print(traceback.format_exc())
     finally:
         pass
 

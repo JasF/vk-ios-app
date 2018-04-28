@@ -32,6 +32,7 @@ class WallUserScrollNodeImpl : ASScrollNode {
     case subscribers
     case photos
     case videos
+    case followers
 }
 
 class ActionModel : NSObject {
@@ -48,7 +49,8 @@ class ActionModel : NSObject {
 @objc protocol WallUserScrollNodeDelegate {
     func friendsTapped()
     func commonTapped()
-    func subscribersTapped()
+    func subscribtionsTapped()
+    func followersTapped()
     func photosTapped()
     func videosTapped()
 }
@@ -60,12 +62,13 @@ class ActionModel : NSObject {
     weak var delegate: WallUserScrollNodeDelegate?
     init(_ user: User?) {
         actions.append(ActionModel.init("friends", number:(user?.friends_count)!, action:.friends))
+        actions.append(ActionModel.init("followers", number:(user?.followers_count)!, action:.followers))
         if (user?.currentUser)! == false {
             //actions.append(ActionModel.init("common", number:(user?.common_count)!, action:.common))
         }
         actions.append(ActionModel.init("photos", number:(user?.photos_count)!, action:.photos))
         actions.append(ActionModel.init("videos", number:(user?.videos_count)!, action:.videos))
-        actions.append(ActionModel.init("interest_pages", number:(user?.subscriptions_count)!, action:.subscribers))
+        actions.append(ActionModel.init("interest_pages", number:(user?.usersListType_count)!, action:.subscribers))
         
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal
@@ -102,7 +105,8 @@ extension WallUserScrollNode : ASCollectionDelegate, ASCollectionDataSource {
         switch (data.action) {
         case .friends: self.delegate?.friendsTapped(); break
         case .common: self.delegate?.commonTapped(); break
-        case .subscribers: self.delegate?.subscribersTapped(); break
+        case .subscribers: self.delegate?.subscribtionsTapped(); break
+        case .followers: self.delegate?.followersTapped(); break
         case .photos: self.delegate?.photosTapped(); break
         case .videos: self.delegate?.videosTapped(); break
         }

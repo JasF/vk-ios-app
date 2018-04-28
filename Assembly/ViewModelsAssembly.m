@@ -52,14 +52,14 @@
             }];
 }
 
-- (id<FriendsViewModel>)friendsViewModel:(NSNumber *)userId subscriptions:(NSNumber *)subscriptions {
+- (id<FriendsViewModel>)friendsViewModel:(NSNumber *)userId usersListType:(NSNumber *)usersListType {
     return [TyphoonDefinition withClass:[FriendsViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:friendsService:userId:subscriptions:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(initWithHandlersFactory:friendsService:userId:usersListType:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.friendsService];
                     [initializer injectParameterWith:userId];
-                    [initializer injectParameterWith:subscriptions];
+                    [initializer injectParameterWith:usersListType];
                 }];
             }];
 }

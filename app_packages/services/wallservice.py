@@ -58,8 +58,8 @@ class WallService:
                 safeSet(photosResponse, self.userInfo, 'photos_count')
                 videoResponse = api.video.get(owner_id=self.userId, count=0)
                 safeSet(videoResponse, self.userInfo, 'videos_count')
-                subscriptionsResponse = api.users.getSubscriptions(user_id=self.userId, extended=1, count=0)
-                safeSet(subscriptionsResponse, self.userInfo, 'subscriptions_count')
+                usersListTypeResponse = api.users.getSubscriptions(user_id=self.userId, extended=1, count=0)
+                safeSet(usersListTypeResponse, self.userInfo, 'usersListType_count')
                 cache = UsersDatabase()
                 cache.update([self.userInfo])
             except Exception as e:

@@ -91,8 +91,11 @@
 - (void)commonTapped {
     [_viewModel commonTapped];
 }
-- (void)subscribersTapped {
-    [_viewModel subscribersTapped];
+- (void)subscribtionsTapped {
+    [_viewModel subscribtionsTapped];
+}
+- (void)followersTapped {
+    [_viewModel followersTapped];
 }
 - (void)photosTapped {
     [_viewModel photosTapped];

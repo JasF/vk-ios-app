@@ -78,9 +78,15 @@
     });
 }
 
-- (void)subscribersTapped {
+- (void)subscribtionsTapped {
     dispatch_python(^{
-        [_handler subscribersTapped];
+        [_handler subscribtionsTapped];
+    });
+}
+
+- (void)followersTapped {
+    dispatch_python(^{
+        [_handler followersTapped];
     });
 }
 

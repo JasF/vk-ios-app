@@ -17,7 +17,8 @@
 - (void)tappedOnPostWithId:(NSNumber *)identifier;
 - (void)friendsTapped;
 - (void)commonTapped;
-- (void)subscribersTapped;
+- (void)subscribtionsTapped;
+- (void)followersTapped;
 - (void)photosTapped;
 - (void)videosTapped;
 @end

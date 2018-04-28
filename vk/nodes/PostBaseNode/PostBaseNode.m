@@ -15,6 +15,7 @@
 #import "CommentsNode.h"
 #import "AvatarNode.h"
 #import "RepostNode.h"
+#import "ASInsetLayoutSpec+Utils.h"
 
 CGFloat const kMargin = 12.f;
 CGFloat const kNameNodeMargin = 5.f;

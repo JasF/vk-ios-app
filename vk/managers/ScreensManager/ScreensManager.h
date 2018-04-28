@@ -15,7 +15,7 @@
 - (void)showWallViewController:(NSNumber *)userId;
 - (void)showWallPostViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;
 - (void)showChatListViewController;
-- (void)showFriendsViewController:(NSNumber *)userId subscriptions:(NSNumber *)subscriptions;
+- (void)showFriendsViewController:(NSNumber *)userId usersListType:(NSNumber *)usersListType;
 - (void)showMenu;
 - (void)showDialogViewController:(NSNumber *)userId;
 - (void)showPhotoAlbumsViewController:(NSNumber *)ownerId;

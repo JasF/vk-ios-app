@@ -94,7 +94,7 @@
 @property NSInteger friends_count;
 @property NSInteger photos_count;
 @property NSInteger videos_count;
-@property NSInteger subscriptions_count;
+@property NSInteger usersListType_count;
 
 - (NSString *)nameString;
 - (NSString *)avatarURLString;
