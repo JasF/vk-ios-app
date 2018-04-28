@@ -33,7 +33,6 @@
 - (ASDisplayNode *)postVideoNodeWithVideo:(Video *)video;
 - (ASDisplayNode *)dialogNode:(Dialog *)dialog;
 - (ASDisplayNode *)userNode:(User *)user;
-- (ASDisplayNode *)wallUserNode:(WallUser *)user;
 - (ASDisplayNode *)commentNode:(Comment *)comment;
 - (ASDisplayNode *)photoAlbumNode:(PhotoAlbum *)photoAlbum;
 - (ASDisplayNode *)photoNode:(Photo *)photo;
@@ -44,4 +43,5 @@
 - (ASDisplayNode *)documentNode:(Document *)document;
 - (ASDisplayNode *)wallUserMessageNode:(User *)user;
 - (ASDisplayNode *)wallUserScrollNode:(User *)user;
+- (ASDisplayNode *)WallUserImageNode:(User *)user;
 @end

@@ -13,7 +13,6 @@
 #import "PostVideoNode.h"
 #import "DialogNode.h"
 #import "UserNode.h"
-#import "WallUserNode.h"
 #import "CommentNode.h"
 #import "PhotoAlbumNode.h"
 #import "PhotoNode.h"
@@ -92,16 +91,6 @@
     return [TyphoonDefinition withClass:[UserNode class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithUser:) parameters:^(TyphoonMethod *initializer)
-                 {
-                     [initializer injectParameterWith:user];
-                 }];
-            }];
-}
-
-- (ASDisplayNode *)wallUserNode:(WallUser *)user {
-    return [TyphoonDefinition withClass:[WallUserNode class] configuration:^(TyphoonDefinition *definition)
-            {
-                [definition useInitializer:@selector(initWithWallUser:) parameters:^(TyphoonMethod *initializer)
                  {
                      [initializer injectParameterWith:user];
                  }];
@@ -200,6 +189,16 @@
 
 - (ASDisplayNode *)wallUserScrollNode:(User *)user {
     return [TyphoonDefinition withClass:[WallUserScrollNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:user];
+                 }];
+            }];
+}
+
+- (ASDisplayNode *)WallUserImageNode:(User *)user {
+    return [TyphoonDefinition withClass:[WallUserImageNode class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer)
                  {

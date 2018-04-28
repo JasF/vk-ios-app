@@ -25,7 +25,6 @@
 		C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD40208C54430005E29B /* FriendsViewModelImpl.m */; };
 		C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD45208C578B0005E29B /* FriendsServiceImpl.m */; };
 		C313DD4C208C7BCF0005E29B /* UserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD4B208C7BCF0005E29B /* UserNode.m */; };
-		C313DD54208C99C70005E29B /* WallUserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD53208C99C70005E29B /* WallUserNode.m */; };
 		C313DD59208CA7950005E29B /* WriteCommentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD58208CA7950005E29B /* WriteCommentNode.m */; };
 		C313DD5C208CA7A10005E29B /* CommentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD5B208CA7A10005E29B /* CommentNode.m */; };
 		C313DD60208CAF150005E29B /* WallPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C313DD5F208CAF150005E29B /* WallPostViewController.m */; };
@@ -476,6 +475,7 @@
 		C350782320948114000C8FB3 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782220948114000C8FB3 /* TextStyles.swift */; };
 		C3507825209485DF000C8FB3 /* WallUserActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3507824209485DF000C8FB3 /* WallUserActionNode.swift */; };
 		C350782720948925000C8FB3 /* WallUserScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782620948925000C8FB3 /* WallUserScrollNode.swift */; };
+		C350782920949C46000C8FB3 /* WallUserImageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782820949C46000C8FB3 /* WallUserImageNode.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
@@ -686,8 +686,6 @@
 		C313DD48208C6C9F0005E29B /* friendsdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = friendsdatabase.py; sourceTree = "<group>"; };
 		C313DD4A208C7BCF0005E29B /* UserNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserNode.h; sourceTree = "<group>"; };
 		C313DD4B208C7BCF0005E29B /* UserNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserNode.m; sourceTree = "<group>"; };
-		C313DD52208C99C70005E29B /* WallUserNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallUserNode.h; sourceTree = "<group>"; };
-		C313DD53208C99C70005E29B /* WallUserNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallUserNode.m; sourceTree = "<group>"; };
 		C313DD57208CA7950005E29B /* WriteCommentNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WriteCommentNode.h; sourceTree = "<group>"; };
 		C313DD58208CA7950005E29B /* WriteCommentNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WriteCommentNode.m; sourceTree = "<group>"; };
 		C313DD5A208CA7A10005E29B /* CommentNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentNode.h; sourceTree = "<group>"; };
@@ -1569,6 +1567,7 @@
 		C350782220948114000C8FB3 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		C3507824209485DF000C8FB3 /* WallUserActionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserActionNode.swift; sourceTree = "<group>"; };
 		C350782620948925000C8FB3 /* WallUserScrollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserScrollNode.swift; sourceTree = "<group>"; };
+		C350782820949C46000C8FB3 /* WallUserImageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserImageNode.swift; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
@@ -2020,15 +2019,6 @@
 			path = UserNode;
 			sourceTree = "<group>";
 		};
-		C313DD51208C99B90005E29B /* WallUserNode */ = {
-			isa = PBXGroup;
-			children = (
-				C313DD52208C99C70005E29B /* WallUserNode.h */,
-				C313DD53208C99C70005E29B /* WallUserNode.m */,
-			);
-			path = WallUserNode;
-			sourceTree = "<group>";
-		};
 		C313DD55208CA7740005E29B /* CommentNode */ = {
 			isa = PBXGroup;
 			children = (
@@ -2464,6 +2454,7 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C350782820949C46000C8FB3 /* WallUserImageNode.swift */,
 				C350782620948925000C8FB3 /* WallUserScrollNode.swift */,
 				C3507824209485DF000C8FB3 /* WallUserActionNode.swift */,
 				C398BA732094743A0071FA04 /* WallUserMessageNode.swift */,
@@ -2479,7 +2470,6 @@
 				C3137733208E2A2400F568EA /* PhotoAlbumNode */,
 				C313DD56208CA7830005E29B /* WriteCommentNode */,
 				C313DD55208CA7740005E29B /* CommentNode */,
-				C313DD51208C99B90005E29B /* WallUserNode */,
 				C313DD49208C7BB80005E29B /* UserNode */,
 				C37C0BF92086F7E60086A875 /* AvatarNode */,
 				C32304382080E57400CEC487 /* DialogNode */,
@@ -5397,7 +5387,6 @@
 				C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */,
 				C3437569208F816C004EF670 /* AnswersViewController.m in Sources */,
 				C343754F208F31A5004EF670 /* NewsViewController.m in Sources */,
-				C313DD54208C99C70005E29B /* WallUserNode.m in Sources */,
 				C3B2251520860BE400599E04 /* DeallocSubscriber.m in Sources */,
 				C32309282081AEB100CEC487 /* TyphoonRuntimeArguments.m in Sources */,
 				C32308E32081AEB100CEC487 /* TyphoonLoadedView.m in Sources */,
@@ -5618,6 +5607,7 @@
 				C3D4873F20919BA1007EC440 /* AuthorizationViewModelImpl.m in Sources */,
 				C32308E42081AEB100CEC487 /* NSLayoutConstraint+TyphoonOutletTransfer.m in Sources */,
 				C32305D52080E57500CEC487 /* ScreensAssembly.m in Sources */,
+				C350782920949C46000C8FB3 /* WallUserImageNode.swift in Sources */,
 				C32306212080E57500CEC487 /* RunLoop.m in Sources */,
 				C32309212081AEB100CEC487 /* TyphoonCallStack.m in Sources */,
 				C322627D20905E930054789B /* AnswerNode.m in Sources */,

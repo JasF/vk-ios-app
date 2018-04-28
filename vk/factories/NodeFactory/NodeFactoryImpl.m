@@ -72,9 +72,6 @@
     else if ([item isKindOfClass:[User class]]) {
         return [_assembly userNode:item];
     }
-    else if ([item isKindOfClass:[WallUser class]]) {
-        return [_assembly wallUserNode:item];
-    }
     else if ([item isKindOfClass:[Comment class]]) {
         return [_assembly commentNode:item];
     }
@@ -103,6 +100,9 @@
         }
         else if (model.type == WallUserCellModelTypeActions) {
             return [_assembly wallUserScrollNode:model.user];
+        }
+        else if (model.type == WallUserCellModelTypeImage) {
+            return [_assembly WallUserImageNode:model.user];
         }
     }
     NSCAssert(false, @"Undeterminated item class: %@", item);
