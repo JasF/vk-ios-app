@@ -12,7 +12,7 @@ class PyMenuViewModel():
         managers.shared().screensManager().showChatListViewController()
 
     def friendsTapped(self):
-        managers.shared().screensManager().showFriendsViewController_(args=[vk.userId()])
+        managers.shared().screensManager().showFriendsViewController_subscriptions_(args=[vk.userId(), False])
 
     def photosTapped(self):
         managers.shared().screensManager().showPhotoAlbumsViewController_(args=[vk.userId()])

@@ -106,14 +106,14 @@
     });
 }
 
-- (void)showFriendsViewController:(NSNumber *)userId {
+- (void)showFriendsViewController:(NSNumber *)userId subscriptions:(NSNumber *)subscriptions {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
         if ([self canIgnorePushingViewController:[FriendsViewController class]]) {
             return;
         }
-        FriendsViewController *viewController =(FriendsViewController *)[_screensAssembly friendsViewController:userId];
+        FriendsViewController *viewController =(FriendsViewController *)[_screensAssembly friendsViewController:userId subscriptions:subscriptions];
         [self pushViewController:viewController];
     });
 }

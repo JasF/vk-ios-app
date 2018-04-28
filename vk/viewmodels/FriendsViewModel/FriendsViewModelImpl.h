@@ -19,5 +19,6 @@
 @interface FriendsViewModelImpl : NSObject<FriendsViewModel>
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
                          friendsService:(id<FriendsService>)friendsService
-                                 userId:(NSNumber *)userId;
+                                 userId:(NSNumber *)userId
+                          subscriptions:(NSNumber *)subscriptions;
 @end

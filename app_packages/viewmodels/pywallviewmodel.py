@@ -27,13 +27,14 @@ class PyWallViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().showWallPostViewControllerWithOwnerId_postId_(args=[self.userId, identifier])
 
     def friendsTapped(self):
-        managers.shared().screensManager().showFriendsViewController_(args=[self.userId])
+        managers.shared().screensManager().showFriendsViewController_subscriptions_(args=[self.userId, False])
         pass
 
     def commonTapped(self):
         pass
 
     def subscribersTapped(self):
+        managers.shared().screensManager().showFriendsViewController_subscriptions_(args=[self.userId, True])
         pass
 
     def photosTapped(self):
