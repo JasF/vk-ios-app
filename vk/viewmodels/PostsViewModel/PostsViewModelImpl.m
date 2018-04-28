@@ -91,6 +91,12 @@
             likesObject = post.likes;
             identifier = [NSString stringWithFormat:@"wall%@_%@", @(post.owner_id), @(post.identifier)];
         }
+        else if ([item isKindOfClass:[Video class]]) {
+            Video *video = (Video *)item;
+            repostsObject = video.reposts;
+            likesObject = video.likes;
+            identifier = [NSString stringWithFormat:@"video%@_%@", @(video.owner_id), @(video.id)];
+        }
         NSCAssert(identifier, @"Unhandled item type for repost");
         if (!identifier) {
             return;

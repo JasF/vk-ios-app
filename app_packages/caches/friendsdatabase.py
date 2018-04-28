@@ -26,7 +26,7 @@ class FriendsDatabase(BaseDatabase):
             print('appendFriendsIds count is: ' + str(counter))
         return counter
             
-    def getFriendsIds(userId, self, offset, count):
+    def getFriendsIds(self, userId, offset, count):
         result = []
         try:
             script = 'SELECT * FROM ' + self.tableName + ' WHERE id = ' + str(userId) + ' ORDER BY position ASC LIMIT ' + str(count) + ' OFFSET ' + str(offset)
