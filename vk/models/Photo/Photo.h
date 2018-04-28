@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Likes.h"
+#import "Reposts.h"
+#import "Comments.h"
 
 #import <EasyMapping/EasyMapping.h>
 
@@ -25,9 +28,9 @@
 @property NSInteger height;
 @property NSString *text;
 @property NSInteger date;
-@property NSString *likes;
-@property NSString *reposts;
-@property NSString *comments;
+@property Likes *likes;
+@property Reposts *reposts;
+@property Comments *comments;
 @property NSInteger can_comment;
 @property NSString *tags;
 

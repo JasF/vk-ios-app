@@ -26,6 +26,7 @@ class GalleryService:
         try:
             response = api.photos.get(owner_id=ownerId, album_id=albumId, offset=offset, count=count, extended=1)
             l = response['items']
+            print('photos.get resp: ' + json.dumps(response, indent=4))
             cache = PhotosDatabase()
             cache.update(l)
             cache.close()

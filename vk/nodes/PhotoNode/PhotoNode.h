@@ -8,7 +8,8 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "Photo.h"
+#import "PostBaseNode.h"
 
-@interface PhotoNode : ASCellNode
+@interface PhotoNode : PostBaseNode
 - (id)initWithPhoto:(Photo *)photo;
 @end

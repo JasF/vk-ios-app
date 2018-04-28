@@ -10,6 +10,7 @@
 #import "PostsViewModelImpl.h"
 #import "PostsService.h"
 #import "Video.h"
+#import "Photo.h"
 
 @interface PostsViewModelImpl () <PostsViewModel>
 @property id<PyPostsViewModel> handler;
@@ -48,6 +49,13 @@
             type = @"post";
             ownerId = post.owner_id;
             itemId = post.identifier;
+        }
+        else if ([item isKindOfClass:[Photo class]]) {
+            Photo *photo = (Photo *)item;
+            likesObject = photo.likes;
+            type = @"photo";
+            ownerId = photo.owner_id;
+            itemId = photo.id;
         }
         liked = likesObject.user_likes;
         NSCAssert(type && ownerId && itemId, @"Unhandled item type for like");
@@ -96,6 +104,12 @@
             repostsObject = video.reposts;
             likesObject = video.likes;
             identifier = [NSString stringWithFormat:@"video%@_%@", @(video.owner_id), @(video.id)];
+        }
+        else if ([item isKindOfClass:[Photo class]]) {
+            Photo *photo = (Photo *)item;
+            likesObject = photo.likes;
+            repostsObject = photo.reposts;
+            identifier = [NSString stringWithFormat:@"photo%@_%@", @(photo.owner_id), @(photo.id)];
         }
         NSCAssert(identifier, @"Unhandled item type for repost");
         if (!identifier) {

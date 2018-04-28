@@ -16,7 +16,8 @@
 
 - (id)initWithPhoto:(Photo *)photo {
     NSCParameterAssert(photo);
-    if (self = [super init]) {
+    if (self = [super initWithEmbedded:NO likesCount:photo.likes.count liked:photo.likes.user_likes repostsCount:photo.reposts.count reposted:photo.reposts.user_reposted commentsCount:photo.comments.count]) {
+        self.item = photo;
         _imageNode = [[ASNetworkImageNode alloc] init];
         _imageNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
         _imageNode.style.width = ASDimensionMakeWithPoints(66);
@@ -44,6 +45,19 @@
     
     ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
     spec.style.flexShrink = 1.0f;
+    spec.style.flexGrow = 1.0f;
+    
+    ASLayoutSpec *controlsStack = [self controlsStack];
+    if (controlsStack) {
+        ASStackLayoutSpec *subnodesStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
+                                                                                   spacing:0.0
+                                                                            justifyContent:ASStackLayoutJustifyContentStart
+                                                                                alignItems:ASStackLayoutAlignItemsStretch
+                                                                                  children:@[spec, controlsStack]];
+        subnodesStack.style.flexGrow = 1;
+        
+        return subnodesStack;
+    }
     return spec;
 }
 
