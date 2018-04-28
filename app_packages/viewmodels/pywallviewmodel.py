@@ -37,6 +37,7 @@ class PyWallViewModel(ObjCBridgeProtocol):
         pass
 
     def photosTapped(self):
+        managers.shared().screensManager().showPhotoAlbumsViewController_(args=[self.userId])
         pass
 
     def videosTapped(self):
