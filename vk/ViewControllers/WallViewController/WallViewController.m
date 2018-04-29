@@ -120,7 +120,7 @@
 }
 
 - (void)friendButtonTapped {
-    [_viewModel messageButtonTapped];
+    [_viewModel friendButtonTapped];
 }
 
 @end
