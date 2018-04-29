@@ -259,6 +259,14 @@
     }];
 }
 
+- (UIViewController *)videoPlayerViewController:(Video *)video {
+    return [TyphoonDefinition withClass:[VideoPlayerViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly videoPlayerViewModel:video]];
+        }];
+    }];
+}
+
 - (id<TextFieldDialog>)textFieldDialog {
     return [TyphoonDefinition withClass:[TextFieldDialogImpl class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithScreensManager:) parameters:^(TyphoonMethod *initializer) {

@@ -32,6 +32,8 @@
 #import "DetailVideoViewModel.h"
 #import "PostsViewModel.h"
 
+@protocol VideoPlayerViewModel;
+
 @interface ViewModelsAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
 @property (readonly) ServicesAssembly *servicesAssembly;
@@ -57,4 +59,5 @@
 - (id<AuthorizationViewModel>)authorizationViewModel;
 - (id<DetailVideoViewModel>)detailVideoViewModel:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
 - (id<PostsViewModel>)postsViewModel;
+- (id<VideoPlayerViewModel>)videoPlayerViewModel:(Video *)video;
 @end

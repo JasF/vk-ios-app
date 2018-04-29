@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Video;
+
 @protocol ScreensManager <NSObject>
 - (void)createWindowIfNeeded;
 - (void)showAuthorizationViewController;
@@ -30,5 +32,6 @@
 - (void)showDocumentsViewController:(NSNumber *)ownerId;
 - (void)showSettingsViewController;
 - (void)showDetailVideoViewControllerWithOwnerId:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
+- (void)showVideoPlayerViewControllerWithVideo:(Video *)video;
 - (UIViewController *)topViewController;
 @end

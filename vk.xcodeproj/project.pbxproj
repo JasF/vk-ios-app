@@ -618,6 +618,8 @@
 		C3D4873B20919A83007EC440 /* AuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D4873A20919A83007EC440 /* AuthorizationViewController.m */; };
 		C3D4873F20919BA1007EC440 /* AuthorizationViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D4873E20919BA1007EC440 /* AuthorizationViewModelImpl.m */; };
 		C3F170D22090549300C33F2C /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F170D12090549300C33F2C /* Answer.m */; };
+		C3FF542C2095AF0C007275D4 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF542B2095AF0C007275D4 /* VideoPlayerViewController.swift */; };
+		C3FF542E2095AF7F007275D4 /* VideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF542D2095AF7F007275D4 /* VideoPlayerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1754,6 +1756,8 @@
 		C3F170D02090549300C33F2C /* Answer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
 		C3F170D12090549300C33F2C /* Answer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
 		C3F170D32090555900C33F2C /* answersdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = answersdatabase.py; sourceTree = "<group>"; };
+		C3FF542B2095AF0C007275D4 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		C3FF542D2095AF7F007275D4 /* VideoPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewModel.swift; sourceTree = "<group>"; };
 		E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA13F2494D45D4FE5E319D6 /* Pods-MessageGroupsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0D613A92790A124CBD92B36 /* Pods-MessageGroups.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroups.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroups/Pods-MessageGroups.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2703,6 +2707,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3FF542B2095AF0C007275D4 /* VideoPlayerViewController.swift */,
 				C398BA62209368820071FA04 /* RowsDialog */,
 				C398BA55209357340071FA04 /* TextFieldDialog */,
 				C3A82A312093340D00C41CA8 /* PostsViewController */,
@@ -4759,6 +4764,7 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				C3FF542D2095AF7F007275D4 /* VideoPlayerViewModel.swift */,
 				C3A82A35209334EC00C41CA8 /* PostsViewModel */,
 				C3333D412091A8B9009EBB09 /* DetailVideoViewModel */,
 				C3D4873C20919B86007EC440 /* AuthorizationViewModel */,
@@ -5532,6 +5538,7 @@
 				C32309152081AEB100CEC487 /* TyphoonFactoryPropertyInjectionPostProcessor.m in Sources */,
 				C32309142081AEB100CEC487 /* TyphoonComponentFactory+InstanceBuilder.m in Sources */,
 				C32305C42080E57500CEC487 /* NSMethodSignature+EXT.m in Sources */,
+				C3FF542C2095AF0C007275D4 /* VideoPlayerViewController.swift in Sources */,
 				C398BA742094743A0071FA04 /* WallUserMessageNode.swift in Sources */,
 				C32309352081AEB100CEC487 /* UIImage+NanoFrame.m in Sources */,
 				C32308DE2081AEB100CEC487 /* UIView+TyphoonDefinitionKey.m in Sources */,
@@ -5571,6 +5578,7 @@
 				C32309312081AEB100CEC487 /* UIColor+NanoFrame.m in Sources */,
 				C32305F12080E57500CEC487 /* Comments.m in Sources */,
 				C32309252081AEB100CEC487 /* TyphoonAssemblyDefinitionBuilder.m in Sources */,
+				C3FF542E2095AF7F007275D4 /* VideoPlayerViewModel.swift in Sources */,
 				C32263022090CC6D0054789B /* DetailPhotoViewModelImpl.m in Sources */,
 				C32262E82090AF6D0054789B /* SettingsServiceImpl.m in Sources */,
 				C32308D02081AEB100CEC487 /* TyphoonSwizzlerDefaultImpl.m in Sources */,

@@ -18,6 +18,7 @@
 @class VKApplicationAssembly;
 @class NodesAssembly;
 @class ViewModelsAssembly;
+@class Video;
 
 @interface ScreensAssembly : TyphoonAssembly
 @property (nonatomic, strong, readonly) VKCoreComponents *coreComponents;
@@ -46,6 +47,7 @@
 - (UIViewController *)documentsViewController:(NSNumber *)ownerId;
 - (UIViewController *)settingsViewController;
 - (UIViewController *)detailVideoViewController:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
+- (UIViewController *)videoPlayerViewController:(Video *)video;
 - (id<TextFieldDialog>)textFieldDialog;
 - (id<DialogsManager>)dialogsManager;
 - (UIWindow *)window;
