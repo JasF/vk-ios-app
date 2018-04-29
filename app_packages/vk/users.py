@@ -29,9 +29,7 @@ class Users():
             return {"friends_count": friends.count, "photos_count": photos.count, "videos_count": video.count, "subscriptions_count": users.count, "groups_count": groups.count, "user_info": freshUsersData};"""
             scriptCode = scriptCode.replace("{0}", str(id))
             scriptCode = scriptCode.replace("{1}", fields)
-            print('scriptCode: ' + str(scriptCode))
             response = self.api.execute(code=scriptCode)
-            
             freshUsersData = response.get('user_info')
             if len(freshUsersData) > 0:
                 def s_set(k):
@@ -43,13 +41,11 @@ class Users():
                 s_set('subscriptions_count')
                 s_set('groups_count')
                 freshUsersData = [userInfo]
-            print('freshUsersData is ' + str(freshUsersData))
             if isinstance(freshUsersData, list):
                 users.update(freshUsersData)
         users.close()
         return userInfo
         
-
     def getBigUserById(self, id):
         return self.getBigFieldsById(id, fields='photo_id, verified, sex, bdate, city, country, home_town, has_photo, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, domain, has_mobile, contacts, site, education, universities, schools, status, last_seen, followers_count, common_count, occupation, nickname, relatives, relation, personal, connections, exports, wall_comments, activities, interests, music, movies, tv, books, games, about, quotes, can_post, can_see_all_posts, can_see_audio, can_write_private_message, can_send_friend_request, is_favorite, is_hidden_from_feed, timezone, screen_name, maiden_name, crop_photo, is_friend, friend_status, career, military, blacklisted, blacklisted_by_me')
     

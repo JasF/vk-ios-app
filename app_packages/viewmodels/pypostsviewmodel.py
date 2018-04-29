@@ -89,6 +89,9 @@ class PyPostsViewModel(ObjCBridgeProtocol):
             return self.doRepostForFriends(identifier, text)
         return {}
     
+    def titleNodeTapped(self, ownerId):
+        managers.shared().screensManager().showWallViewController_push_(args=[ownerId, True])
+    
     # ObjCBridgeProtocol
     def release(self):
         pass

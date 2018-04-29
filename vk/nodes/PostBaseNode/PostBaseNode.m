@@ -18,7 +18,6 @@
 #import "ASInsetLayoutSpec+Utils.h"
 
 CGFloat const kMargin = 12.f;
-CGFloat const kNameNodeMargin = 5.f;
 CGFloat const kBottomSeparatorHeight = 8.f;
 CGFloat const kControlsSize = 40.f;
 

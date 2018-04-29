@@ -35,7 +35,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (!self.pushed && !self.navigationItem.leftBarButtonItem) {
+        [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
+    }
 }
 
 #pragma mark - Observers
@@ -68,6 +74,7 @@
 
 #pragma mark - ASCollectionNodeDelegate
 - (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)aNode {
+    [super tableNode:tableNode willDisplayRowWithNode:aNode];
     if ([aNode isKindOfClass:[WallUserScrollNode class]]) {
         self.scrollNode = (WallUserScrollNode *)aNode;
         self.scrollNode.delegate = self;
@@ -122,5 +129,6 @@
 - (void)friendButtonTapped {
     [_viewModel friendButtonTapped];
 }
+
 
 @end

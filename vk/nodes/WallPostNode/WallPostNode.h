@@ -12,9 +12,15 @@
 #import "PostBaseNode.h"
 
 @class WallPost;
+@class WallPostNode;
+
+@protocol WallPostNodeDelegate <NSObject>
+- (void)titleNodeTapped:(WallPost *)post;
+@end
 
 @interface WallPostNode : PostBaseNode
 - (instancetype)initWithPost:(WallPost *)post
                  nodeFactory:(id<NodeFactory>)nodeFactory
                     embedded:(NSNumber *)embedded;
+@property id<WallPostNodeDelegate> delegate;
 @end

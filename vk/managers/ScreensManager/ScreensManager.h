@@ -15,6 +15,7 @@
 - (void)showAuthorizationViewController;
 - (void)showWallViewController;
 - (void)showWallViewController:(NSNumber *)userId;
+- (void)showWallViewController:(NSNumber *)userId push:(NSNumber *)push;
 - (void)showWallPostViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;
 - (void)showChatListViewController;
 - (void)showFriendsViewController:(NSNumber *)userId usersListType:(NSNumber *)usersListType;

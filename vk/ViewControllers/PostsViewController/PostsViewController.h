@@ -11,4 +11,5 @@
 
 @interface PostsViewController : BaseTableViewController
 @property id<PostsViewModel> postsViewModel;
+- (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)aNode;
 @end

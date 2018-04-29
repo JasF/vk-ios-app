@@ -14,4 +14,5 @@
 @interface WallViewController : SectionsTableViewController
 - (instancetype)initWithViewModel:(id<WallViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
+@property BOOL pushed;
 @end

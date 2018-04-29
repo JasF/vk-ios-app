@@ -77,11 +77,16 @@
 }
 
 - (void)showWallViewController:(NSNumber *)userId {
+    [self showWallViewController:userId push:@(NO)];
+}
+
+- (void)showWallViewController:(NSNumber *)userId push:(NSNumber *)push {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
         WallViewController *viewController =(WallViewController *)[_screensAssembly wallViewController:userId];
-        [self pushViewController:viewController];
+        viewController.pushed = push.boolValue;
+        [self pushViewController:viewController clean:!push.boolValue];
     });
 }
 

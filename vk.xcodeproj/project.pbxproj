@@ -620,6 +620,7 @@
 		C3F170D22090549300C33F2C /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F170D12090549300C33F2C /* Answer.m */; };
 		C3FF542C2095AF0C007275D4 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF542B2095AF0C007275D4 /* VideoPlayerViewController.swift */; };
 		C3FF542E2095AF7F007275D4 /* VideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF542D2095AF7F007275D4 /* VideoPlayerViewModel.swift */; };
+		C3FF543020961326007275D4 /* NameTimeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF542F20961326007275D4 /* NameTimeNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1758,6 +1759,7 @@
 		C3F170D32090555900C33F2C /* answersdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = answersdatabase.py; sourceTree = "<group>"; };
 		C3FF542B2095AF0C007275D4 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		C3FF542D2095AF7F007275D4 /* VideoPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewModel.swift; sourceTree = "<group>"; };
+		C3FF542F20961326007275D4 /* NameTimeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTimeNode.swift; sourceTree = "<group>"; };
 		E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA13F2494D45D4FE5E319D6 /* Pods-MessageGroupsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0D613A92790A124CBD92B36 /* Pods-MessageGroups.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroups.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroups/Pods-MessageGroups.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2482,6 +2484,7 @@
 				C323043B2080E57400CEC487 /* PostVideoNode */,
 				C323043E2080E57400CEC487 /* PostImagesNode */,
 				C32304412080E57400CEC487 /* WallPostNode */,
+				C3FF542F20961326007275D4 /* NameTimeNode.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -5530,6 +5533,7 @@
 				C3226286209074EF0054789B /* GroupsViewModelImpl.m in Sources */,
 				C32305D32080E57500CEC487 /* NodesAssembly.m in Sources */,
 				C323090E2081AEB100CEC487 /* TyphoonTypeConversionUtils.m in Sources */,
+				C3FF543020961326007275D4 /* NameTimeNode.swift in Sources */,
 				C32308B92081AEB100CEC487 /* LGSideMenuHelper.m in Sources */,
 				C32306232080E57500CEC487 /* MaskingView.m in Sources */,
 				C323091E2081AEB100CEC487 /* TyphoonAssemblyBuilder.m in Sources */,

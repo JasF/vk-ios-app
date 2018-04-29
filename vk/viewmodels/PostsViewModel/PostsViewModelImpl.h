@@ -12,6 +12,7 @@
 @protocol PyPostsViewModel <NSObject>
 - (NSDictionary *)likeObjectWithType:(NSString *)type ownerId:(NSNumber *)ownerId itemId:(NSNumber *)itemId accessKey:(NSString *)accessKey like:(NSNumber *)like;
 - (NSDictionary *)repostObjectWithIdentifier:(NSString *)identifier;
+- (void)titleNodeTapped:(NSNumber *)userId;
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>

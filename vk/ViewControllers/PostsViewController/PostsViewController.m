@@ -8,16 +8,21 @@
 
 #import "PostsViewController.h"
 #import "WallPostNode.h"
+#import "WallPost.h"
 
-@interface PostsViewController () <ASTableDelegate, PostsService>
+@interface PostsViewController () <ASTableDelegate, PostsService, WallPostNodeDelegate>
 @end
 
 @implementation PostsViewController
 
 #pragma mark - ASTableDelegate
-- (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)node {
-    if ([node conformsToProtocol:@protocol(PostsServiceConsumer)]) {
-        id<PostsServiceConsumer> consumer = (id<PostsServiceConsumer>)node;
+- (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)aNode {
+    if ([aNode isKindOfClass:[WallPostNode class]]) {
+        WallPostNode *node = (WallPostNode *)aNode;
+        node.delegate = self;
+    }
+    else if ([aNode conformsToProtocol:@protocol(PostsServiceConsumer)]) {
+        id<PostsServiceConsumer> consumer = (id<PostsServiceConsumer>)aNode;
         consumer.postsService = self;
     }
 }
@@ -42,6 +47,11 @@
                                    [consumer setLikesCount:likes liked:YES];
                                    [consumer setRepostsCount:reposts reposted:YES];
                                }];
+}
+
+#pragma mark - WallPostNodeDelegate
+- (void)titleNodeTapped:(WallPost *)post {
+    [_postsViewModel titleNodeTapped:post];
 }
 
 @end

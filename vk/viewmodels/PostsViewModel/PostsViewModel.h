@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class WallPost;
+
 @protocol PostsViewModel <NSObject>
 - (void)likeActionWithItem:(id)item completion:(void(^)(NSInteger likesCount, BOOL liked, BOOL error))completion;
 - (void)repostActionWithItem:(id)item completion:(void(^)(NSInteger likes, NSInteger reposts, BOOL error))completion;
+- (void)titleNodeTapped:(WallPost *)post;
 @end

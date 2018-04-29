@@ -13,13 +13,14 @@
 #import "CommentsNode.h"
 #import "AvatarNode.h"
 #import "RepostNode.h"
+#import "vk-Swift.h"
 
 extern CGFloat const kMargin;
 extern CGFloat const kNameNodeMargin;
 extern CGFloat const kBottomSeparatorHeight;
 extern CGFloat const kControlsSize;
 
-@interface WallPostNode() <ASNetworkImageNodeDelegate, ASTextNodeDelegate>
+@interface WallPostNode() <ASNetworkImageNodeDelegate, ASTextNodeDelegate, WallPostNodeDelegate>
 
 @property (strong, nonatomic) WallPost *post;
 @property (strong, nonatomic) ASTextNode *nameNode;
@@ -29,6 +30,7 @@ extern CGFloat const kControlsSize;
 @property (strong, nonatomic) ASImageNode *viaNode;
 @property (strong, nonatomic) AvatarNode *avatarNode;
 @property (strong, nonatomic) ASImageNode *optionsNode;
+@property (strong, nonatomic) NameTimeNode *titleNode;
 @property ASDisplayNode *bottomSeparator;
 
 @property (strong, nonatomic) ASDisplayNode *verticalLineNode;
@@ -62,7 +64,14 @@ extern CGFloat const kControlsSize;
         _post = post;
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:_post.date];
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:date
+                                                              dateStyle:NSDateFormatterShortStyle
+                                                              timeStyle:NSDateFormatterShortStyle];
+        _titleNode = [[NameTimeNode alloc] init:[_post.user nameString] ?: @"" time:dateString];
+        [_titleNode addTarget:self action:@selector(titleNodeClicked:) forControlEvents:ASControlNodeEventTouchUpInside];
+        [self addSubnode:_titleNode];
+        /*
         // Name node
         _nameNode = [[ASTextNode alloc] init];
         _nameNode.attributedText = [[NSAttributedString alloc] initWithString:[_post.user nameString] ?: @"" attributes:[TextStyles nameStyle]];
@@ -71,12 +80,9 @@ extern CGFloat const kControlsSize;
         
         // Time node
         _timeNode = [[ASTextNode alloc] init];
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:_post.date];
-        NSString *dateString = [NSDateFormatter localizedStringFromDate:date
-                                                              dateStyle:NSDateFormatterShortStyle
-                                                              timeStyle:NSDateFormatterShortStyle];
         _timeNode.attributedText = [[NSAttributedString alloc] initWithString:dateString attributes:[TextStyles timeStyle]];
         [self addSubnode:_timeNode];
+         */
         
         // Post node
         // Processing URLs in post
@@ -113,6 +119,10 @@ extern CGFloat const kControlsSize;
         WallPost *history = _post.history.firstObject;
         if (history) {
             _historyNode = [_nodeFactory nodeForItem:history embedded:YES];
+            if ([_historyNode isKindOfClass:[WallPostNode class]]) {
+                WallPostNode *postNode = (WallPostNode *)_historyNode;
+                postNode.delegate = self;
+            }
             [self addSubnode:_historyNode];
             _verticalLineNode = [ASDisplayNode new];
             _verticalLineNode.style.preferredSize = CGSizeMake(2, 50);
@@ -220,14 +230,8 @@ extern CGFloat const kControlsSize;
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    ASStackLayoutSpec *nameVerticalStack =
-    [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-                                            spacing:kNameNodeMargin
-                                     justifyContent:ASStackLayoutJustifyContentStart
-                                         alignItems:ASStackLayoutAlignItemsStart
-                                           children:@[_nameNode, _timeNode]];
-    nameVerticalStack.style.flexShrink = 1.f;
-    nameVerticalStack.style.flexGrow = 1.f;
+    _titleNode.style.flexShrink = 1.f;
+    _titleNode.style.flexGrow = 1.f;
     
     ASLayoutSpec *controlsStack = nil;
     if (!_embedded) {
@@ -278,7 +282,7 @@ extern CGFloat const kControlsSize;
     if (!_embedded) {
         _avatarNode.style.spacingBefore = kMargin;
     }
-    NSMutableArray *avatarSpecChilds = [@[_avatarNode, nameVerticalStack] mutableCopy];
+    NSMutableArray *avatarSpecChilds = [@[_avatarNode, _titleNode] mutableCopy];
     if (_optionsNode) {
         [avatarSpecChilds addObject:_optionsNode];
     }
@@ -355,6 +359,19 @@ extern CGFloat const kControlsSize;
 - (void)imageNode:(ASNetworkImageNode *)imageNode didLoadImage:(UIImage *)image
 {
     [self setNeedsLayout];
+}
+
+- (void)optionsTapped:(id)sender {
+    
+}
+
+- (void)titleNodeClicked:(id)sender {
+    [self.delegate titleNodeTapped:self.post];
+}
+
+#pragma mark - WallPostNodeDelegate
+- (void)titleNodeTapped:(WallPost *)post {
+    [self.delegate titleNodeTapped:post];
 }
 
 @end

@@ -146,4 +146,9 @@
     });
 }
 
+- (void)titleNodeTapped:(WallPost *)post {
+    dispatch_python(^{
+        [_handler titleNodeTapped:@(post.owner_id)];
+    });
+}
 @end
