@@ -11,6 +11,7 @@ import WebKit
 
 @objcMembers class VideoPlayerViewController : UIViewController {
     let viewModel: VideoPlayerViewModel?
+    var webView: WKWebView = WKWebView.init()
     convenience init() {
         self.init(nil)
     }
@@ -26,6 +27,15 @@ import WebKit
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view .addSubview(self.webView)
+        self.webView.backgroundColor = UIColor.black
         self.view.backgroundColor = UIColor.black
+        let request = URLRequest.init(url: URL.init(string: (viewModel?.videoUrl())!)!)
+        self.webView .load(request)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.webView.frame = self.view.bounds
     }
 }
