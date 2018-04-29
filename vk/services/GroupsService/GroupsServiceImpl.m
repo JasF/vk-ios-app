@@ -32,7 +32,7 @@
         [usersDictionary setObject:user forKey:@(user.id)];
     }
     
-    NSCAssert(usersObjects.count == items.count, @"Number of groups IDs and groups infos missmatch");
+    //NSCAssert(usersObjects.count == items.count, @"Number of groups IDs and groups infos missmatch");
     NSMutableArray *results = [NSMutableArray new];
     for (NSNumber *groupId in items) {
         User *group = usersDictionary[groupId];

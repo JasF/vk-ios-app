@@ -18,24 +18,31 @@ import NMessenger
         self.user = user
         self.addSubnode(leftButton)
         self.addSubnode(rightButton)
-        leftButton.style.height = ASDimensionMake(40)
-        leftButton.cornerRadius = 20
-        leftButton.backgroundColor = UIColor.green
-        leftButton.setAttributedTitle(NSAttributedString.init(string: "send message", attributes: TextStyles.titleStyle()), for: .normal)
+        leftButton.style.height = ASDimensionMake(30)
+        leftButton.cornerRadius = leftButton.style.height.value/2
+        leftButton.setAttributedTitle(NSAttributedString.init(string: "send_message".localized, attributes: TextStyles.buttonTextStyle()), for: .normal)
+        leftButton.backgroundColor = TextStyles.buttonColor()
         leftButton.addTarget(self, action: #selector(leftButtonTapped), forControlEvents: .touchUpInside)
-        rightButton.style.height = ASDimensionMake(40)
-        rightButton.cornerRadius = 20
-        rightButton.backgroundColor = UIColor.white
-        rightButton.setAttributedTitle(NSAttributedString.init(string: "maybe friend", attributes: TextStyles.titleStyle()), for: .normal)
+        rightButton.style.height = leftButton.style.height
+        rightButton.cornerRadius = leftButton.style.height.value/2
+        var rightAttrString: NSAttributedString!
+        if user?.is_friend == 1 {
+            rightAttrString = NSAttributedString.init(string: "is_your_friend".localized, attributes: TextStyles.buttonPassiveTextStyle())
+        }
+        else {
+            rightAttrString = NSAttributedString.init(string: "add_to_friends".localized, attributes: TextStyles.buttonTextStyle())
+        }
+        rightButton.backgroundColor = (user?.is_friend == 1) ? TextStyles.buttonPassiveColor() : TextStyles.buttonColor()
+        rightButton.setAttributedTitle(rightAttrString, for: .normal)
         rightButton.addTarget(self, action: #selector(rightButtonTapped), forControlEvents: .touchUpInside)
-        self.backgroundColor = UIColor.orange
+        
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         leftButton.style.flexGrow = 1
         rightButton.style.flexGrow = 1
-        let spec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 20, justifyContent: .start, alignItems: .center, children: [leftButton, rightButton])
-        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(10,0,10,0), child:spec)
+        let spec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 8, justifyContent: .start, alignItems: .center, children: [leftButton, rightButton])
+        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(8,8,8,8), child:spec)
     }
     
     func leftButtonTapped() {
@@ -46,3 +53,6 @@ import NMessenger
         NSLog("observer right")
     }
 }
+
+
+

@@ -19,7 +19,11 @@ extension Data {
         return map { String(format: format, $0) }.joined()
     }
 }
-
+extension String {
+    var localized: String {
+        return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
+    }
+}
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc dynamic var pythonBridge: PythonBridge?

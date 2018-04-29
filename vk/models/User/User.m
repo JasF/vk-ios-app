@@ -51,6 +51,25 @@
     return result;
 }
 
+- (NSString *)bigAvatarURLString {
+    NSString *result = _photo_400_orig;
+    if (!result.length) {
+        result = _photo_max_orig;
+    }
+    if (!result.length) {
+        result = _photo_max;
+    }
+    if (!result.length) {
+        result = _photo_200_orig;
+    }
+    if (!result.length) {
+        result = _photo_200;
+    }
+    if (!result.length) {
+        result = [self avatarURLString];
+    }
+    return result;
+}
 @end
 
 @implementation WallUser

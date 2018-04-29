@@ -9,7 +9,9 @@ class PyAuthorizationViewModel(ObjCBridgeProtocol):
         vk.setUserId(aUserId)
         #managers.shared().screensManager().showFriendsViewController_usersListType_(args=[vk.userId(), True]))
         #managers.shared().screensManager().showChatListViewController()
-        managers.shared().screensManager().showWallViewController()
+        #managers.shared().screensManager().showWallViewController()
+        
+        managers.shared().screensManager().showWallViewController_(args=[82108968])
         #managers.shared().screensManager().showPhotoAlbumsViewController_(args=[vk.userId()])
         #managers.shared().screensManager().showNewsViewController()
         #managers.shared().screensManager().showAnswersViewController()

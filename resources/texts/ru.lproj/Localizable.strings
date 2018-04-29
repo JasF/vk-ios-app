@@ -24,3 +24,12 @@
 "repost_enter_message"="Введите комментарий";
 "repost_for_friends"="Рассказать друзьям";
 "repost_as_message"="Отправить сообщением";
+"friends"="Друзья";
+"followers"="Подписчики";
+"groups"="Группы";
+"photos"="Фотографии";
+"videos"="Видео";
+"interest_pages"="Страниц";
+"send_message"="Сообщение";
+"is_your_friend"="У Вас в друзьях";
+"add_to_friends"="Добавить в друзья";

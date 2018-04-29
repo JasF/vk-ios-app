@@ -81,10 +81,12 @@
 
 - (void)performBatchAnimated:(BOOL)animated {
     if (!self.sectionsArray && self.viewModel.currentUser) {
-        self.sectionsArray = @[@[[[WallUserCellModel alloc] init:WallUserCellModelTypeImage user:self.viewModel.currentUser],
-                                 [[WallUserCellModel alloc] init:WallUserCellModelTypeMessage user:self.viewModel.currentUser],
-                                 [[WallUserCellModel alloc] init:WallUserCellModelTypeActions user:self.viewModel.currentUser]
-                                 ]];
+        NSMutableArray *array = [@[[[WallUserCellModel alloc] init:WallUserCellModelTypeImage user:self.viewModel.currentUser]] mutableCopy];
+        if (!self.viewModel.currentUser.currentUser) {
+            [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeMessage user:self.viewModel.currentUser]];
+        }
+        [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeActions user:self.viewModel.currentUser]];
+        self.sectionsArray = @[array];
     }
     [super performBatchAnimated:animated];
 }

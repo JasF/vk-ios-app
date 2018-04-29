@@ -99,6 +99,7 @@
 
 - (NSString *)nameString;
 - (NSString *)avatarURLString;
+- (NSString *)bigAvatarURLString;
 
 @property BOOL currentUser;
 @end

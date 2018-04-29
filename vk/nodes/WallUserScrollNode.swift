@@ -55,13 +55,13 @@ class ActionModel : NSObject {
 @objcMembers class WallUserScrollNode : ASCellNode {
     var actions: [ActionModel] = [ActionModel]()
     var collectionNode: ASCollectionNode
-    var elementSize: CGSize = CGSize(width: 80, height: 100)
+    var elementSize: CGSize = CGSize(width: 80, height: 60)
     weak var delegate: WallUserScrollNodeDelegate?
     init(_ user: User?) {
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal
-        layout.itemSize = elementSize
-        layout.minimumInteritemSpacing = 20;
+        layout.minimumInteritemSpacing = 12;
+        layout.minimumLineSpacing = 1000;
         collectionNode = ASCollectionNode.init(collectionViewLayout: layout)
         super.init()
         configureActions(user);
@@ -71,15 +71,15 @@ class ActionModel : NSObject {
     }
     
     func configureActions(_ user: User?) {
-        actions.append(ActionModel.init("friends", number:(user?.friends_count)!, action:.friends))
-        actions.append(ActionModel.init("followers", number:(user?.followers_count)!, action:.followers))
+        actions.append(ActionModel.init("friends".localized, number:(user?.friends_count)!, action:.friends))
+        actions.append(ActionModel.init("followers".localized, number:(user?.followers_count)!, action:.followers))
         if (user?.currentUser)! == false {
             //actions.append(ActionModel.init("common", number:(user?.common_count)!, action:.common))
         }
-        actions.append(ActionModel.init("groups", number:(user?.groups_count)!, action:.groups))
-        actions.append(ActionModel.init("photos", number:(user?.photos_count)!, action:.photos))
-        actions.append(ActionModel.init("videos", number:(user?.videos_count)!, action:.videos))
-        actions.append(ActionModel.init("interest_pages", number:(user?.usersListType_count)!, action:.subscribers))
+        actions.append(ActionModel.init("groups".localized, number:(user?.groups_count)!, action:.groups))
+        actions.append(ActionModel.init("photos".localized, number:(user?.photos_count)!, action:.photos))
+        actions.append(ActionModel.init("videos".localized, number:(user?.videos_count)!, action:.videos))
+        actions.append(ActionModel.init("interest_pages".localized, number:(user?.usersListType_count)!, action:.subscribers))
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -91,7 +91,7 @@ class ActionModel : NSObject {
     
     override func layout() {
         super.layout()
-        collectionNode.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        collectionNode.contentInset = UIEdgeInsetsMake(0, 12, 0, 12)
     }
     
     public func countDidUpdated(_ count: Int, forAction action: WallUserScrollActions) -> Void {
@@ -129,5 +129,12 @@ extension WallUserScrollNode : ASCollectionDelegate, ASCollectionDataSource {
             data.actionNode = node
             return node
         }
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
+        var size = ASSizeRangeUnconstrained
+        size.min.height = 40
+        size.max.height = 40
+        return size
     }
 }

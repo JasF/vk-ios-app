@@ -15,9 +15,6 @@ import NMessenger
     
     init(_ title: String, number: Int) {
         super.init()
-        textNode.style.height = ASDimensionMake(40)
-        textNode.cornerRadius = 20
-        textNode.backgroundColor = UIColor.green
         textNode.attributedText = NSAttributedString.init(string: title, attributes: TextStyles.titleStyle())
         setNumber(number)
         self.addSubnode(textNode)
