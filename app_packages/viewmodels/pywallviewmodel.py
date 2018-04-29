@@ -60,8 +60,10 @@ class PyWallViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().showDialogViewController_(args=[self.userId])
     
     def friendButtonTapped(self):
-        managers.shared().screensManager().showWallPostViewControllerWithOwnerId_postId_(args=[self.userId, identifier])
-        pass
+        api = vk.api()
+        response = api.friends.add(user_id=self.userId)
+        #managers.shared().screensManager().showWallPostViewControllerWithOwnerId_postId_(args=[self.userId, identifier])
+        return response
         
     # ObjCBridgeProtocol
     def release(self):

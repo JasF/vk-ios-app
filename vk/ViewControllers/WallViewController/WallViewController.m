@@ -126,8 +126,8 @@
     [_viewModel messageButtonTapped];
 }
 
-- (void)friendButtonTapped {
-    [_viewModel friendButtonTapped];
+- (void)friendButtonTapped:(void(^)(NSInteger resultCode))callback {
+    [_viewModel friendButtonTapped:callback];
 }
 
 

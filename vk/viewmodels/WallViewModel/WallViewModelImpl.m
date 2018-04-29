@@ -118,9 +118,16 @@
     });
 }
 
-- (void)friendButtonTapped {
+- (void)friendButtonTapped:(void(^)(NSInteger resultCode))callback {
     dispatch_python(^{
-        [_handler friendButtonTapped];
+        NSNumber *response = [_handler friendButtonTapped];
+        if (!response || [response isKindOfClass:[NSNumber class]]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (callback) {
+                    callback(response.integerValue);
+                }
+            });
+        }
     });
 }
 
