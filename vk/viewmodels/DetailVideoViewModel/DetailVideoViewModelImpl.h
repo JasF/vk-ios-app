@@ -9,6 +9,7 @@
 #import "DetailVideoViewModel.h"
 #import "DetailVideoService.h"
 #import "HandlersFactory.h"
+#import "ScreensManager.h"
 
 @protocol PyDetailVideoViewModel <NSObject>
 - (NSDictionary *)getVideoData:(NSNumber *)offset;
@@ -18,5 +19,6 @@
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
                      detailVideoService:(id<DetailVideoService>)detailVideoService
                                 ownerId:(NSNumber *)ownerId
-                                videoId:(NSNumber *)videoId;
+                                videoId:(NSNumber *)videoId
+                         screensManager:(id<ScreensManager>)screensManager;
 @end

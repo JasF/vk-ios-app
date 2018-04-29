@@ -11,6 +11,7 @@
 @interface DetailVideoViewModelImpl ()
 @property id<DetailVideoService> detailVideoService;
 @property id<PyDetailVideoViewModel> handler;
+@property id<ScreensManager> screensManager;
 @end
 
 @implementation DetailVideoViewModelImpl
@@ -18,12 +19,15 @@
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
                      detailVideoService:(id<DetailVideoService>)detailVideoService
                                 ownerId:(NSNumber *)ownerId
-                                videoId:(NSNumber *)videoId {
+                                videoId:(NSNumber *)videoId
+                         screensManager:(id<ScreensManager>)screensManager {
     NSCParameterAssert(handlersFactory);
     NSCParameterAssert(detailVideoService);
     NSCParameterAssert(ownerId);
     NSCParameterAssert(videoId);
+    NSCParameterAssert(screensManager);
     if (self) {
+        _screensManager = screensManager;
         _handler = [handlersFactory detailVideoViewModelHandlerWithOwnerId:ownerId.integerValue videoId:videoId.integerValue];
         _detailVideoService = detailVideoService;
     }
@@ -41,6 +45,10 @@
             }
         });
     });
+}
+
+- (void)tappedOnVideo:(Video *)video {
+    [self.screensManager showVideoPlayerViewControllerWithVideo:video];
 }
 
 @end

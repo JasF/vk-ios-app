@@ -27,6 +27,7 @@
 #import "AuthorizationViewModelImpl.h"
 #import "DetailVideoViewModelImpl.h"
 #import "PostsViewModelImpl.h"
+#import "vk-Swift.h"
 
 @implementation ViewModelsAssembly
 
@@ -209,6 +210,15 @@
             }];
 }
 
+- (id<VideoPlayerViewModel>)videoPlayerViewModel:(Video *)video {
+    return [TyphoonDefinition withClass:[VideoPlayerViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:video];
+                }];
+            }];
+}
+
 - (id<SettingsViewModel>)settingsViewModel {
     return [TyphoonDefinition withClass:[SettingsViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
@@ -233,11 +243,12 @@
 - (id<DetailVideoViewModel>)detailVideoViewModel:(NSNumber *)ownerId videoId:(NSNumber *)videoId {
     return [TyphoonDefinition withClass:[DetailVideoViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:detailVideoService:ownerId:videoId:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(initWithHandlersFactory:detailVideoService:ownerId:videoId:screensManager:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.detailVideoService];
                     [initializer injectParameterWith:ownerId];
                     [initializer injectParameterWith:videoId];
+                    [initializer injectParameterWith:self.screensAssembly.screensManager];
                 }];
             }];
 }

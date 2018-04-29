@@ -65,4 +65,11 @@ ASCollectionDelegate, ASCollectionDataSource>
     [super performBatchAnimated:animated];
 }
 
+#pragma mark - ASCollectionNodeDelegate
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        [_viewModel tappedOnVideo:self.video];
+    }
+}
+
 @end

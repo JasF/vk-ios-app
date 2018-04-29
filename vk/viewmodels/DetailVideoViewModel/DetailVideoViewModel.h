@@ -10,4 +10,5 @@
 
 @protocol DetailVideoViewModel <NSObject>
 - (void)getVideoWithCommentsOffset:(NSInteger)offset completion:(void(^)(Video *video, NSArray *comments))completion;
+- (void)tappedOnVideo:(Video *)video;
 @end

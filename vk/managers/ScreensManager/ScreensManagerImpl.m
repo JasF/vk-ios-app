@@ -294,6 +294,13 @@
     });
 }
 
+- (void)showVideoPlayerViewControllerWithVideo:(Video *)video {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIViewController *viewController = [_screensAssembly videoPlayerViewController:video];
+        [self pushViewController:viewController clean:NO];
+    });
+}
+
 - (UIViewController *)topViewController {
     UIViewController *viewController = [self navigationController].viewControllers.lastObject;
     return viewController;
