@@ -35,32 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    @weakify(self);
-    _viewModel.friendsCountDidUpdated = ^(NSNumber *value) {
-        @strongify(self);
-        [self countDidUpdated:value.integerValue forAction:WallUserScrollActionsFriends];
-    };
-    _viewModel.photosCountDidUpdated = ^(NSNumber *value) {
-        @strongify(self);
-        [self countDidUpdated:value.integerValue forAction:WallUserScrollActionsPhotos];
-    };
-    _viewModel.groupsCountDidUpdated = ^(NSNumber *value) {
-        @strongify(self);
-        [self countDidUpdated:value.integerValue forAction:WallUserScrollActionsGroups];
-    };
-    _viewModel.videosCountDidUpdated = ^(NSNumber *value) {
-        @strongify(self);
-        [self countDidUpdated:value.integerValue forAction:WallUserScrollActionsVideos];
-    };
-    _viewModel.interestPagesCountDidUpdated = ^(NSNumber *value) {
-        @strongify(self);
-        [self countDidUpdated:value.integerValue forAction:WallUserScrollActionsSubscribers];
-    };
     [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
-}
-
-- (void)countDidUpdated:(NSInteger)count forAction:(WallUserScrollActions)action {
-    [self.scrollNode countDidUpdated:count forAction:action];
 }
 
 #pragma mark - Observers

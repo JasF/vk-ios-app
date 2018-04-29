@@ -26,10 +26,4 @@ typedef void (^CountUpdatedBlock)(NSNumber *);
 - (void)messageButtonTapped;
 - (void)friendButtonTapped;
 
-@property CountUpdatedBlock friendsCountDidUpdated;
-@property CountUpdatedBlock photosCountDidUpdated;
-@property CountUpdatedBlock groupsCountDidUpdated;
-@property CountUpdatedBlock videosCountDidUpdated;
-@property CountUpdatedBlock interestPagesCountDidUpdated;
-
 @end

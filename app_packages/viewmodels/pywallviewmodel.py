@@ -11,7 +11,6 @@ class PyWallViewModel(ObjCBridgeProtocol):
     def __init__(self, wallService, parameters, delegateId):
         self.wallService = wallService
         self.userId = parameters.get('userId')
-        print('PyWallViewModel: ' + str(self.userId))
         self.guiDelegate = PyWallViewModelDelegate(delegateId)
         if self.userId == None or self.userId == 0:
             self.userId = vk.userId()
@@ -28,13 +27,6 @@ class PyWallViewModel(ObjCBridgeProtocol):
             return results
         elif self.userId > 0:
             results = self.wallService.getBigUserInfo()
-            self.wallService.updateCounters(
-                                            lambda friendsCount: self.guiDelegate.friendsCountDidUpdated_(args=[friendsCount]),
-                                            lambda photosCount: self.guiDelegate.photosCountDidUpdated_(args=[photosCount]),
-                                            lambda groupscount: self.guiDelegate.groupsCountDidUpdated_(args=[groupscount]),
-                                            lambda videoCount: self.guiDelegate.videosCountDidUpdated_(args=[videoCount]),
-                                            lambda subscriptionsCount: self.guiDelegate.interestPagesCountDidUpdated_(args=[subscriptionsCount]))
-            print('getUserInfo result: ' + json.dumps(results, indent=4))
             return results
 
     def menuTapped(self):

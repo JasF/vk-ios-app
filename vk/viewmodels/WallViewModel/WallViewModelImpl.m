@@ -9,11 +9,7 @@
 #import "WallViewModelImpl.h"
 
 @protocol PyWallViewModelDelegate <NSObject>
-- (void)friendsCountDidUpdated:(NSNumber *)friendsCount;
-- (void)photosCountDidUpdated:(NSNumber *)photos;
-- (void)videosCountDidUpdated:(NSNumber *)videos;
-- (void)groupsCountDidUpdated:(NSNumber *)groups;
-- (void)interestPagesCountDidUpdated:(NSNumber *)interestPages;
+- (void)pass;
 @end
 
 @interface WallViewModelImpl () <WallViewModel>
@@ -23,12 +19,6 @@
 @end
 
 @implementation WallViewModelImpl
-
-@synthesize friendsCountDidUpdated = _friendsCountDidUpdated;
-@synthesize photosCountDidUpdated = _photosCountDidUpdated;
-@synthesize videosCountDidUpdated = _videosCountDidUpdated;
-@synthesize groupsCountDidUpdated = _groupsCountDidUpdated;
-@synthesize interestPagesCountDidUpdated = _interestPagesCountDidUpdated;
 
 @synthesize currentUser = _currentUser;
 
@@ -135,44 +125,7 @@
 }
 
 #pragma mark - PyWallViewModelDelegate
-- (void)friendsCountDidUpdated:(NSNumber *)friendsCount {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.friendsCountDidUpdated) {
-            self.friendsCountDidUpdated(friendsCount);
-        }
-    });
-}
 
-- (void)photosCountDidUpdated:(NSNumber *)photos {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.photosCountDidUpdated) {
-            self.photosCountDidUpdated(photos);
-        }
-    });
-}
 
-- (void)groupsCountDidUpdated:(NSNumber *)groups {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.groupsCountDidUpdated) {
-            self.groupsCountDidUpdated(groups);
-        }
-    });
-}
-
-- (void)videosCountDidUpdated:(NSNumber *)videos {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.videosCountDidUpdated) {
-            self.videosCountDidUpdated(videos);
-        }
-    });
-}
-
-- (void)interestPagesCountDidUpdated:(NSNumber *)interestPages {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.interestPagesCountDidUpdated) {
-            self.interestPagesCountDidUpdated(interestPages);
-        }
-    });
-}
 
 @end

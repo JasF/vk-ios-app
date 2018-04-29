@@ -79,7 +79,7 @@ class ActionModel : NSObject {
         actions.append(ActionModel.init("groups".localized, number:(user?.groups_count)!, action:.groups))
         actions.append(ActionModel.init("photos".localized, number:(user?.photos_count)!, action:.photos))
         actions.append(ActionModel.init("videos".localized, number:(user?.videos_count)!, action:.videos))
-        actions.append(ActionModel.init("interest_pages".localized, number:(user?.usersListType_count)!, action:.subscribers))
+        actions.append(ActionModel.init("interest_pages".localized, number:(user?.subscriptions_count)!, action:.subscribers))
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -92,15 +92,6 @@ class ActionModel : NSObject {
     override func layout() {
         super.layout()
         collectionNode.contentInset = UIEdgeInsetsMake(0, 12, 0, 12)
-    }
-    
-    public func countDidUpdated(_ count: Int, forAction action: WallUserScrollActions) -> Void {
-        for data in actions {
-            if data.action == action {
-                data.number = count
-                return
-            }
-        }
     }
 }
 

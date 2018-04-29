@@ -14,21 +14,44 @@ class Users():
     def getShortUsersByIds(self, ids):
         return self.getFieldsByIds(ids, fields='photo_100')
     
-    def getBigFieldsByIds(self, ids,fields):
+    def getBigFieldsById(self, id, fields):
         users = UsersDatabase()
-        usersData = []
-        if len(ids):
+        userInfo = {}
+        if id:
             self.initializeSession()
-            idsString = ', '.join(str(e) for e in ids)
-            freshUsersData = self.api.users.get(user_ids=idsString, fields=fields)
-            users.update(freshUsersData)
-            usersData.extend(freshUsersData)
+            
+            scriptCode = """var friends = API.friends.get({ "count": 1, "user_id": {0} });
+            var photos = API.photos.getAll({ "count": 0, "user_id": {0} });
+            var video = API.video.get({ "owner_id": 0, "user_id": {0} });
+            var users = API.users.getSubscriptions({ "count": 0, "user_id": {0}, "extended": 1});
+            var groups = API.groups.get({ "count": 0, "user_id": {0} });
+            var freshUsersData = API.users.get({"user_ids":"{0}", "fields":"{1}"});
+            return {"friends_count": friends.count, "photos_count": photos.count, "videos_count": video.count, "subscriptions_count": users.count, "groups_count": groups.count, "user_info": freshUsersData};"""
+            scriptCode = scriptCode.replace("{0}", str(id))
+            scriptCode = scriptCode.replace("{1}", fields)
+            print('scriptCode: ' + str(scriptCode))
+            response = self.api.execute(code=scriptCode)
+            
+            freshUsersData = response.get('user_info')
+            if len(freshUsersData) > 0:
+                def s_set(k):
+                    userInfo[k] = response.get(k)
+                userInfo = freshUsersData[0]
+                s_set('friends_count')
+                s_set('photos_count')
+                s_set('videos_count')
+                s_set('subscriptions_count')
+                s_set('groups_count')
+                freshUsersData = [userInfo]
+            print('freshUsersData is ' + str(freshUsersData))
+            if isinstance(freshUsersData, list):
+                users.update(freshUsersData)
         users.close()
-        return usersData
+        return userInfo
         
 
-    def getBigUsersByIds(self, ids):
-        return self.getBigFieldsByIds(ids, fields='photo_id, verified, sex, bdate, city, country, home_town, has_photo, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, domain, has_mobile, contacts, site, education, universities, schools, status, last_seen, followers_count, common_count, occupation, nickname, relatives, relation, personal, connections, exports, wall_comments, activities, interests, music, movies, tv, books, games, about, quotes, can_post, can_see_all_posts, can_see_audio, can_write_private_message, can_send_friend_request, is_favorite, is_hidden_from_feed, timezone, screen_name, maiden_name, crop_photo, is_friend, friend_status, career, military, blacklisted, blacklisted_by_me')
+    def getBigUserById(self, id):
+        return self.getBigFieldsById(id, fields='photo_id, verified, sex, bdate, city, country, home_town, has_photo, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, domain, has_mobile, contacts, site, education, universities, schools, status, last_seen, followers_count, common_count, occupation, nickname, relatives, relation, personal, connections, exports, wall_comments, activities, interests, music, movies, tv, books, games, about, quotes, can_post, can_see_all_posts, can_see_audio, can_write_private_message, can_send_friend_request, is_favorite, is_hidden_from_feed, timezone, screen_name, maiden_name, crop_photo, is_friend, friend_status, career, military, blacklisted, blacklisted_by_me')
     
     def getFieldsByIds(self, ids, fields):
         users = UsersDatabase()
@@ -70,6 +93,6 @@ def getShortUsersByIds(ids):
     object = Users()
     return object.getShortUsersByIds(ids)
 
-def getBigUsersByIds(ids):
+def getBigUserById(id):
     object = Users()
-    return object.getBigUsersByIds(ids)
+    return object.getBigUserById(id)
