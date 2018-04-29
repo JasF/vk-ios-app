@@ -15,6 +15,7 @@
 
 @interface WallViewController () <BaseTableViewControllerDataSource, WallUserScrollNodeDelegate>
 @property (strong, nonatomic) id<WallViewModel> viewModel;
+@property (weak, nonatomic) WallUserScrollNode *scrollNode;
 @end
 
 @implementation WallViewController
@@ -34,7 +35,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    @weakify(self);
+    _viewModel.friendsCountDidUpdated = ^(NSNumber *value) {
+        @strongify(self);
+        [self countDidUpdated:value.integerValue forAction:WallUserScrollActionsFriends];
+    };
+    _viewModel.photosCountDidUpdated = ^(NSNumber *value) {
+        @strongify(self);
+        [self countDidUpdated:value.integerValue forAction:WallUserScrollActionsPhotos];
+    };
+    _viewModel.groupsCountDidUpdated = ^(NSNumber *value) {
+        @strongify(self);
+        [self countDidUpdated:value.integerValue forAction:WallUserScrollActionsGroups];
+    };
+    _viewModel.videosCountDidUpdated = ^(NSNumber *value) {
+        @strongify(self);
+        [self countDidUpdated:value.integerValue forAction:WallUserScrollActionsVideos];
+    };
+    _viewModel.interestPagesCountDidUpdated = ^(NSNumber *value) {
+        @strongify(self);
+        [self countDidUpdated:value.integerValue forAction:WallUserScrollActionsSubscribers];
+    };
     [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
+}
+
+- (void)countDidUpdated:(NSInteger)count forAction:(WallUserScrollActions)action {
+    [self.scrollNode countDidUpdated:count forAction:action];
 }
 
 #pragma mark - Observers
@@ -66,8 +92,9 @@
 #pragma mark - ASCollectionNodeDelegate
 - (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)node {
     if ([node isKindOfClass:[WallUserScrollNode class]]) {
-        WallUserScrollNode *scrollNode = (WallUserScrollNode *)node;
-        scrollNode.delegate = self;
+        self.scrollNode = (WallUserScrollNode *)node;
+        self.scrollNode.delegate = self;
+        
     }
 }
 
@@ -102,6 +129,9 @@
 }
 - (void)videosTapped {
     [_viewModel videosTapped];
+}
+- (void)groupsTapped {
+    [_viewModel groupsTapped];
 }
 
 @end

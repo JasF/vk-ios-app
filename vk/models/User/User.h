@@ -95,6 +95,7 @@
 @property NSInteger photos_count;
 @property NSInteger videos_count;
 @property NSInteger usersListType_count;
+@property NSInteger groups_count;
 
 - (NSString *)nameString;
 - (NSString *)avatarURLString;

@@ -9,23 +9,6 @@
 import Foundation
 import NMessenger
 
-/*
-class WallUserScrollNodeImpl : ASScrollNode {
-    override init() {
-        super.init()
-        for (_, node) in actions.enumerated() {
-            self.addSubnode(node)
-        }
-    }
-    
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let spec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: actions)
-        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(10,0,10,0), child:spec)
-    }
-}
-*/
-
-
 @objc enum WallUserScrollActions : Int {
     case friends
     case common
@@ -33,16 +16,29 @@ class WallUserScrollNodeImpl : ASScrollNode {
     case photos
     case videos
     case followers
+    case groups
 }
 
 class ActionModel : NSObject {
     var text: String
-    var number: Int
     var action: WallUserScrollActions
+    var _number: Int = 0
+    var number: Int {
+        get {
+            return _number
+        }
+        set {
+            _number = newValue
+            guard let node = self.actionNode else { return }
+            node.setNumber(_number)
+        }
+    }
+    weak var actionNode: WallUserActionNode?
     init(_ text: String, number: Int, action: WallUserScrollActions) {
         self.text = text
-        self.number = number
         self.action = action
+        super.init()
+        self.number = number
     }
 }
 
@@ -53,6 +49,7 @@ class ActionModel : NSObject {
     func followersTapped()
     func photosTapped()
     func videosTapped()
+    func groupsTapped()
 }
 
 @objcMembers class WallUserScrollNode : ASCellNode {
@@ -61,24 +58,28 @@ class ActionModel : NSObject {
     var elementSize: CGSize = CGSize(width: 80, height: 100)
     weak var delegate: WallUserScrollNodeDelegate?
     init(_ user: User?) {
-        actions.append(ActionModel.init("friends", number:(user?.friends_count)!, action:.friends))
-        actions.append(ActionModel.init("followers", number:(user?.followers_count)!, action:.followers))
-        if (user?.currentUser)! == false {
-            //actions.append(ActionModel.init("common", number:(user?.common_count)!, action:.common))
-        }
-        actions.append(ActionModel.init("photos", number:(user?.photos_count)!, action:.photos))
-        actions.append(ActionModel.init("videos", number:(user?.videos_count)!, action:.videos))
-        actions.append(ActionModel.init("interest_pages", number:(user?.usersListType_count)!, action:.subscribers))
-        
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal
         layout.itemSize = elementSize
         layout.minimumInteritemSpacing = 20;
         collectionNode = ASCollectionNode.init(collectionViewLayout: layout)
         super.init()
+        configureActions(user);
         collectionNode.delegate = self
         collectionNode.dataSource = self
         self .addSubnode(collectionNode)
+    }
+    
+    func configureActions(_ user: User?) {
+        actions.append(ActionModel.init("friends", number:(user?.friends_count)!, action:.friends))
+        actions.append(ActionModel.init("followers", number:(user?.followers_count)!, action:.followers))
+        if (user?.currentUser)! == false {
+            //actions.append(ActionModel.init("common", number:(user?.common_count)!, action:.common))
+        }
+        actions.append(ActionModel.init("groups", number:(user?.groups_count)!, action:.groups))
+        actions.append(ActionModel.init("photos", number:(user?.photos_count)!, action:.photos))
+        actions.append(ActionModel.init("videos", number:(user?.videos_count)!, action:.videos))
+        actions.append(ActionModel.init("interest_pages", number:(user?.usersListType_count)!, action:.subscribers))
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -93,6 +94,14 @@ class ActionModel : NSObject {
         collectionNode.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
+    public func countDidUpdated(_ count: Int, forAction action: WallUserScrollActions) -> Void {
+        for data in actions {
+            if data.action == action {
+                data.number = count
+                return
+            }
+        }
+    }
 }
 
 extension WallUserScrollNode : ASCollectionDelegate, ASCollectionDataSource {
@@ -109,6 +118,7 @@ extension WallUserScrollNode : ASCollectionDelegate, ASCollectionDataSource {
         case .followers: self.delegate?.followersTapped(); break
         case .photos: self.delegate?.photosTapped(); break
         case .videos: self.delegate?.videosTapped(); break
+        case .groups: self.delegate?.groupsTapped(); break
         }
     }
     
@@ -116,6 +126,7 @@ extension WallUserScrollNode : ASCollectionDelegate, ASCollectionDataSource {
         return {
             let data = self.actions[indexPath.row]
             let node = WallUserActionNode.init(data.text, number:data.number)
+            data.actionNode = node
             return node
         }
     }

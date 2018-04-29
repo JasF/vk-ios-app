@@ -9,6 +9,7 @@
 #import "User.h"
 #import "WallPost.h"
 
+typedef void (^CountUpdatedBlock)(NSNumber *);
 @protocol WallViewModel <NSObject>
 @property User *currentUser;
 - (void)getWallPostsWithOffset:(NSInteger)offset
@@ -21,4 +22,12 @@
 - (void)followersTapped;
 - (void)photosTapped;
 - (void)videosTapped;
+- (void)groupsTapped;
+
+@property CountUpdatedBlock friendsCountDidUpdated;
+@property CountUpdatedBlock photosCountDidUpdated;
+@property CountUpdatedBlock groupsCountDidUpdated;
+@property CountUpdatedBlock videosCountDidUpdated;
+@property CountUpdatedBlock interestPagesCountDidUpdated;
+
 @end

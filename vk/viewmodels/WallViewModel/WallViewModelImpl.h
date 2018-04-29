@@ -21,6 +21,7 @@
 - (void)followersTapped;
 - (void)photosTapped;
 - (void)videosTapped;
+- (void)groupsTapped;
 @end
 
 @interface WallViewModelImpl : NSObject <WallViewModel>

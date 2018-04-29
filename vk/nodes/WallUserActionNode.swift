@@ -19,9 +19,13 @@ import NMessenger
         textNode.cornerRadius = 20
         textNode.backgroundColor = UIColor.green
         textNode.attributedText = NSAttributedString.init(string: title, attributes: TextStyles.titleStyle())
-        numberNode.attributedText = NSAttributedString.init(string: "\(number)", attributes: TextStyles.nameStyle())
+        setNumber(number)
         self.addSubnode(textNode)
         self.addSubnode(numberNode)
+    }
+    
+    public func setNumber(_ number: Int) {
+        numberNode.attributedText = NSAttributedString.init(string: "\(number)", attributes: TextStyles.nameStyle())
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
