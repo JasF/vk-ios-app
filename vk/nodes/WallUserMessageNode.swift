@@ -9,10 +9,17 @@
 import Foundation
 import NMessenger
 
+
+@objc protocol WallUserMessageNodeDelegate {
+    func messageButtonTapped()
+    func friendButtonTapped()
+}
+
 @objcMembers class WallUserMessageNode : ASCellNode {
     var user: User? = nil
     let leftButton: ASButtonNode! = ASButtonNode()
     let rightButton: ASButtonNode! = ASButtonNode()
+    var delegate: WallUserMessageNodeDelegate? = nil
     init(_ user: User?) {
         super.init()
         self.user = user
@@ -46,11 +53,11 @@ import NMessenger
     }
     
     func leftButtonTapped() {
-        NSLog("observer left")
+        self.delegate?.messageButtonTapped()
     }
     
     func rightButtonTapped() {
-        NSLog("observer right")
+        self.delegate?.friendButtonTapped()
     }
 }
 

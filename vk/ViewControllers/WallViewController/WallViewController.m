@@ -13,7 +13,7 @@
 #import "WallPost.h"
 #import "vk-Swift.h"
 
-@interface WallViewController () <BaseTableViewControllerDataSource, WallUserScrollNodeDelegate>
+@interface WallViewController () <BaseTableViewControllerDataSource, WallUserScrollNodeDelegate, WallUserMessageNodeDelegate>
 @property (strong, nonatomic) id<WallViewModel> viewModel;
 @property (weak, nonatomic) WallUserScrollNode *scrollNode;
 @end
@@ -92,11 +92,14 @@
 }
 
 #pragma mark - ASCollectionNodeDelegate
-- (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)node {
-    if ([node isKindOfClass:[WallUserScrollNode class]]) {
-        self.scrollNode = (WallUserScrollNode *)node;
+- (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)aNode {
+    if ([aNode isKindOfClass:[WallUserScrollNode class]]) {
+        self.scrollNode = (WallUserScrollNode *)aNode;
         self.scrollNode.delegate = self;
-        
+    }
+    else if ([aNode isKindOfClass:[WallUserMessageNode class]]) {
+        WallUserMessageNode *node = (WallUserMessageNode *)aNode;
+        node.delegate = self;
     }
 }
 
@@ -134,6 +137,15 @@
 }
 - (void)groupsTapped {
     [_viewModel groupsTapped];
+}
+
+#pragma mark - WallUserMessageNodeDelegate
+- (void)messageButtonTapped {
+    [_viewModel messageButtonTapped];
+}
+
+- (void)friendButtonTapped {
+    [_viewModel messageButtonTapped];
 }
 
 @end

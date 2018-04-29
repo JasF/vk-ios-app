@@ -122,6 +122,18 @@
     });
 }
 
+- (void)messageButtonTapped {
+    dispatch_python(^{
+        [_handler messageButtonTapped];
+    });
+}
+
+- (void)friendButtonTapped {
+    dispatch_python(^{
+        [_handler friendButtonTapped];
+    });
+}
+
 #pragma mark - PyWallViewModelDelegate
 - (void)friendsCountDidUpdated:(NSNumber *)friendsCount {
     dispatch_async(dispatch_get_main_queue(), ^{

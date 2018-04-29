@@ -64,6 +64,12 @@ class PyWallViewModel(ObjCBridgeProtocol):
     def groupsTapped(self):
         managers.shared().screensManager().showGroupsViewController_(args=[self.userId])
 
+    def messageButtonTapped(self):
+        managers.shared().screensManager().showDialogViewController_(args=[self.userId])
+    
+    def friendButtonTapped(self):
+        pass
+        
     # ObjCBridgeProtocol
     def release(self):
         pass
