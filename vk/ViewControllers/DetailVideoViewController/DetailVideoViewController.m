@@ -7,6 +7,8 @@
 //
 
 #import "DetailVideoViewController.h"
+#import "vk-Swift.h"
+#import "User.h"
 
 @interface DetailVideoViewController () <BaseTableViewControllerDataSource,
 ASCollectionDelegate, ASCollectionDataSource>
@@ -60,16 +62,32 @@ ASCollectionDelegate, ASCollectionDataSource>
 
 - (void)performBatchAnimated:(BOOL)animated {
     if (!self.sectionsArray && self.video) {
-        self.sectionsArray = @[@[self.video]];
+        NSMutableArray *array = [NSMutableArray new];
+        if (self.video.owner) {
+            [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeAvatarNameDate user:self.video.owner date:self.video.date]];
+        }
+        if (self.video) {
+            [array addObject:self.video];
+        }
+        self.sectionsArray = @[array];
     }
     [super performBatchAnimated:animated];
 }
 
 #pragma mark - ASCollectionNodeDelegate
 - (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        [_viewModel tappedOnVideo:self.video];
+    if (!indexPath.section && self.sectionsArray) {
+        NSArray *section = self.sectionsArray[0];
+        NSCAssert(indexPath.row < section.count, @"Unknown indexPath: %@", indexPath);
+        if (indexPath.row >= section.count) {
+            return;
+        }
+        if ([section[indexPath.row] isEqual:self.video]) {
+            [_viewModel tappedOnVideo:self.video];
+            return;
+        }
     }
+    [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
 }
 
 @end

@@ -14,4 +14,4 @@
 #import <VK-ios-sdk/VKSdk.h>
 #import "NotificationsManager.h"
 #import <EasyMapping/EasyMapping.h>
-   
+    

@@ -10,79 +10,79 @@
 #import "TextStyles.h"
 #import "UserNode.h"
 #import "User.h"
+#import "vk-Swift.h"
 
-extern CGFloat const kMargin;
+static CGFloat const kMargin = 8.f;
+static CGFloat const kSpacing;
+static CGFloat const kImageWidth = 120.f;
+static CGFloat const kImageHeight = 90.f;
+
 
 @interface VideoNode ()
 @property ASTextNode *titleNode;
 @property ASNetworkImageNode *imageNode;
+@property ASTextNode *timeNode;
+@property ASTextNode *viewsNode;
 @end
 
 @implementation VideoNode
 
 - (id)initWithVideo:(Video *)video {
-    if (self = [super initWithEmbedded:NO likesCount:video.likes.count liked:video.likes.user_likes repostsCount:video.reposts.count reposted:video.reposts.user_reposted commentsCount:video.comments]) {
-        self.item = video;
+    if (self = [super init]) {
         _titleNode = [[ASTextNode alloc] init];
         _titleNode.attributedText = [[NSAttributedString alloc] initWithString:video.title attributes:[TextStyles nameStyle]];
-        _titleNode.maximumNumberOfLines = 1;
         _titleNode.truncationMode = NSLineBreakByTruncatingTail;
         [self addSubnode:_titleNode];
         
         _imageNode = [[ASNetworkImageNode alloc] init];
         _imageNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-        _imageNode.style.width = ASDimensionMakeWithPoints(44);
-        _imageNode.style.height = ASDimensionMakeWithPoints(44);
-        _imageNode.cornerRadius = 22.0;
         _imageNode.URL = [NSURL URLWithString:video.imageURL];
+        _imageNode.style.width = ASDimensionMake(kImageWidth);
+        _imageNode.style.height = ASDimensionMake(kImageHeight);
         [self addSubnode:_imageNode];
+        
+        _timeNode = [[ASTextNode alloc] init];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:video.date];
+        _timeNode.attributedText = [[NSAttributedString alloc] initWithString:[date utils_longDayDifferenceFromNow] attributes:[TextStyles timeStyle]];
+        [self addSubnode:_timeNode];
+        
+        _viewsNode = [[ASTextNode alloc] init];
+        _viewsNode.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@: %@", L(@"video_views"), @(video.views)]
+                                                                    attributes:[TextStyles timeStyle]];
+        [self addSubnode:_viewsNode];
     }
     return self;
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    ASStackLayoutSpec *topLineStack =
+    ASStackLayoutSpec *titleSpec =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:5.0
+     spacing:kSpacing
      justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsCenter
+     alignItems:ASStackLayoutAlignItemsStretch
      children:@[_titleNode]];
-    topLineStack.style.alignSelf = ASStackLayoutAlignSelfStretch;
     
     ASStackLayoutSpec *nameVerticalStack =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-     spacing:5.0
+     spacing:kSpacing
      justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
-     children:@[topLineStack]];
+     alignItems:ASStackLayoutAlignItemsStretch
+     children:@[titleSpec, _timeNode, _viewsNode]];
+    _titleNode.style.flexShrink = 1.f;
+    nameVerticalStack.style.flexShrink = 1.f;
     
     ASStackLayoutSpec *avatarContentSpec =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:8.0
+     spacing:kMargin
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsStart
      children:@[_imageNode, nameVerticalStack]];
     
-    
-    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
-    spec.style.flexShrink = 1.0f;
-    spec.style.flexGrow = 1.0f;
-    
-    ASLayoutSpec *controlsStack = [self controlsStack];
-    if (controlsStack) {
-        ASStackLayoutSpec *subnodesStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-                                                                                   spacing:0.0
-                                                                            justifyContent:ASStackLayoutJustifyContentStart
-                                                                                alignItems:ASStackLayoutAlignItemsStretch
-                                                                                  children:@[spec, controlsStack]];
-        subnodesStack.style.flexGrow = 1;
-        
-        return subnodesStack;
-    }
+    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(kMargin, kMargin, kMargin, kMargin) child:avatarContentSpec];
     return spec;
 }
 

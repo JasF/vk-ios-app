@@ -9,6 +9,7 @@
 #import "Video.h"
 #import "Likes.h"
 #import "Reposts.h"
+#import "User.h"
 
 @implementation Video
 
@@ -27,6 +28,11 @@
         [mapping mapKeyPath:@"reposts" toProperty:@"reposts" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
             Reposts *reposts = [EKMapper objectFromExternalRepresentation:value
                                                               withMapping:[Reposts objectMapping]];
+            return reposts;
+        }];
+        [mapping mapKeyPath:@"owner" toProperty:@"owner" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
+            Reposts *reposts = [EKMapper objectFromExternalRepresentation:value
+                                                              withMapping:[User objectMapping]];
             return reposts;
         }];
     }];

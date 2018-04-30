@@ -10,6 +10,6 @@
 #import "Video.h"
 #import "PostBaseNode.h"
 
-@interface VideoNode : PostBaseNode
+@interface VideoNode : ASCellNode
 - (id)initWithVideo:(Video *)video;
 @end

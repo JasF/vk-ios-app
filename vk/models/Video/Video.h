@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Likes.h"
 #import "Reposts.h"
-
 #import <EasyMapping/EasyMapping.h>
 
+@class User;
 @interface Video : NSObject <EKMappingProtocol>
 @property NSInteger id;
 @property NSInteger owner_id;
@@ -42,6 +42,8 @@
 @property NSString *first_frame_160;
 @property NSString *first_frame_130;
 @property NSString *first_frame_800;
+
+@property User *owner;
 
 - (NSString *)imageURL;
 @end
