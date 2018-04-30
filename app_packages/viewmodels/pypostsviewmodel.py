@@ -91,7 +91,10 @@ class PyPostsViewModel(ObjCBridgeProtocol):
     
     def titleNodeTapped(self, ownerId):
         managers.shared().screensManager().showWallViewController_push_(args=[ownerId, True])
-    
+
+    def tappedOnCellWithUserId(self, userId):
+        managers.shared().screensManager().showWallViewController_push_(args=[userId, True])
+
     # ObjCBridgeProtocol
     def release(self):
         pass

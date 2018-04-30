@@ -12,15 +12,25 @@
 @property ASNetworkImageNode *imageNode;
 @end
 
-@implementation PhotoNode
+@implementation PhotoNode {
+    Photo *_photo;
+    BOOL _asGallery;
+}
 
 - (id)initWithPhoto:(Photo *)photo {
     NSCParameterAssert(photo);
-    if (self = [super initWithEmbedded:photo.asGallery.boolValue likesCount:photo.likes.count liked:photo.likes.user_likes repostsCount:photo.reposts.count reposted:photo.reposts.user_reposted commentsCount:photo.comments.count]) {
+    _asGallery = photo.asGallery.boolValue;
+    if (self = [super initWithEmbedded:_asGallery likesCount:photo.likes.count liked:photo.likes.user_likes repostsCount:photo.reposts.count reposted:photo.reposts.user_reposted commentsCount:photo.comments.count]) {
+        _photo = photo;
         self.item = photo;
         _imageNode = [[ASNetworkImageNode alloc] init];
         _imageNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-        _imageNode.URL = [NSURL URLWithString:photo.photo_130];
+        if (_asGallery) {
+            _imageNode.URL = [NSURL URLWithString:photo.photo_604];
+        }
+        else {
+            _imageNode.URL = [NSURL URLWithString:photo.photo_807];
+        }
         [self addSubnode:_imageNode];
         _imageNode.layerBacked = YES;
     }

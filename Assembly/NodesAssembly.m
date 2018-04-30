@@ -197,7 +197,7 @@
             }];
 }
 
-- (ASDisplayNode *)WallUserImageNode:(User *)user {
+- (ASDisplayNode *)wallUserImageNode:(User *)user {
     return [TyphoonDefinition withClass:[WallUserImageNode class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer)
@@ -207,4 +207,14 @@
             }];
 }
 
+- (ASDisplayNode *)avatarNameDateNode:(User *)user date:(NSNumber *)date {
+    return [TyphoonDefinition withClass:[AvatarNameDateNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:date:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:user];
+                     [initializer injectParameterWith:date];
+                 }];
+            }];
+}
 @end

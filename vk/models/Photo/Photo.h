@@ -10,6 +10,7 @@
 #import "Likes.h"
 #import "Reposts.h"
 #import "Comments.h"
+#import "User.h"
 
 #import <EasyMapping/EasyMapping.h>
 
@@ -18,14 +19,14 @@
 @property NSInteger id;
 @property NSInteger album_id;
 @property NSInteger owner_id;
-@property NSString *photo_75;
-@property NSString *photo_130;
-@property NSString *photo_604;
-@property NSString *photo_807;
-@property NSString *photo_1280;
-@property NSString *photo_2560;
-@property NSInteger width;
-@property NSInteger height;
+@property (nonatomic) NSString *photo_75;
+@property (nonatomic) NSString *photo_130;
+@property (nonatomic) NSString *photo_604;
+@property (nonatomic) NSString *photo_807;
+@property (nonatomic) NSString *photo_1280;
+@property (nonatomic) NSString *photo_2560;
+@property CGFloat width;
+@property CGFloat height;
 @property NSString *text;
 @property NSInteger date;
 @property Likes *likes;
@@ -35,5 +36,7 @@
 @property NSString *tags;
 
 @property (nonatomic) NSNumber *asGallery;
+@property (nonatomic) User *owner;
+
 - (NSString *)bigPhotoURL;
 @end

@@ -31,6 +31,10 @@
     return photo;
 }
 
+- (User *)parseUserInfo:(NSDictionary *)userInfo {
+    return nil;
+}
+
 - (NSArray *)parseComments:(NSDictionary *)comments {
     if (![comments isKindOfClass:[NSDictionary class]]) {
         return nil;

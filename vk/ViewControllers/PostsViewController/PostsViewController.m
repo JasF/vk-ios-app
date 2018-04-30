@@ -9,6 +9,7 @@
 #import "PostsViewController.h"
 #import "WallPostNode.h"
 #import "WallPost.h"
+#import "vk-Swift.h"
 
 @interface PostsViewController () <ASTableDelegate, PostsService, WallPostNodeDelegate>
 @end
@@ -47,6 +48,14 @@
                                    [consumer setLikesCount:likes liked:YES];
                                    [consumer setRepostsCount:reposts reposted:YES];
                                }];
+}
+
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ASCellNode *cellNode = [tableNode nodeForRowAtIndexPath:indexPath];
+    if ([cellNode isKindOfClass:[AvatarNameDateNode class]]) {
+        AvatarNameDateNode *node = (AvatarNameDateNode *)cellNode;
+        [_postsViewModel tappedOnCellWithUser:node.user];
+    }
 }
 
 #pragma mark - WallPostNodeDelegate

@@ -12,4 +12,5 @@
 @interface PostsViewController : BaseTableViewController
 @property id<PostsViewModel> postsViewModel;
 - (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)aNode;
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 @end

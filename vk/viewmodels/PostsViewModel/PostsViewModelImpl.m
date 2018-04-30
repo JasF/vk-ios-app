@@ -151,4 +151,11 @@
         [_handler titleNodeTapped:@(post.owner_id)];
     });
 }
+
+- (void)tappedOnCellWithUser:(User *)user {
+    dispatch_python(^{
+        [_handler tappedOnCellWithUserId:@(user.id)];
+    });
+}
+
 @end

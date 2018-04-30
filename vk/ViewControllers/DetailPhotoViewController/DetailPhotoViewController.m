@@ -7,6 +7,7 @@
 //
 
 #import "DetailPhotoViewController.h"
+#import "vk-Swift.h"
 
 @interface DetailPhotoViewController () <BaseTableViewControllerDataSource,
 ASCollectionDelegate, ASCollectionDataSource>
@@ -60,8 +61,29 @@ ASCollectionDelegate, ASCollectionDataSource>
 
 - (void)performBatchAnimated:(BOOL)animated {
     if (!self.sectionsArray && self.photo) {
-        self.sectionsArray = @[@[self.photo]];
+        NSMutableArray *array = [NSMutableArray new];
+        if (self.photo.owner) {
+            [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeAvatarNameDate user:self.photo.owner date:self.photo.date]];
+        }
+        if (self.photo) {
+            [array addObject:self.photo];
+        }
+        self.sectionsArray = @[array];
     }
+    
+    /*
+    - (void)performBatchAnimated:(BOOL)animated {
+        if (!self.sectionsArray && self.viewModel.currentUser) {
+            NSMutableArray *array = [@[[[WallUserCellModel alloc] init:WallUserCellModelTypeImage user:self.viewModel.currentUser]] mutableCopy];
+            if (!self.viewModel.currentUser.currentUser) {
+                [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeMessage user:self.viewModel.currentUser]];
+            }
+            [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeActions user:self.viewModel.currentUser]];
+            self.sectionsArray = @[array];
+        }
+        [super performBatchAnimated:animated];
+    }
+*/
     [super performBatchAnimated:animated];
 }
 

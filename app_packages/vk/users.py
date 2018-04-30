@@ -18,6 +18,12 @@ class Users():
             result = sorted(result,key=lambda x:ids.index(x['id']))
         return result
     
+    def getShortUserById(self, id):
+        l = self.getShortUsersByIds([id])
+        if len(l) > 0:
+            return l[0]
+        return {}
+
     def getBigFieldsById(self, id, fields):
         users = UsersDatabase()
         userInfo = {}
@@ -92,6 +98,10 @@ class Users():
 def getShortUsersByIds(ids):
     object = Users()
     return object.getShortUsersByIds(ids)
+
+def getShortUserById(id):
+    object = Users()
+    return object.getShortUserById(id)
 
 def getBigUserById(id):
     object = Users()

@@ -43,5 +43,6 @@
 - (ASDisplayNode *)documentNode:(Document *)document;
 - (ASDisplayNode *)wallUserMessageNode:(User *)user;
 - (ASDisplayNode *)wallUserScrollNode:(User *)user;
-- (ASDisplayNode *)WallUserImageNode:(User *)user;
+- (ASDisplayNode *)wallUserImageNode:(User *)user;
+- (ASDisplayNode *)avatarNameDateNode:(User *)user date:(NSNumber *)date;
 @end

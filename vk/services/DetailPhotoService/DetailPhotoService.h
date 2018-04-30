@@ -10,5 +10,6 @@
 
 @protocol DetailPhotoService <NSObject>
 - (Photo *)parseOne:(NSDictionary *)post;
+- (User *)parseUserInfo:(NSDictionary *)userInfo;
 - (NSArray *)parseComments:(NSDictionary *)comments;
 @end

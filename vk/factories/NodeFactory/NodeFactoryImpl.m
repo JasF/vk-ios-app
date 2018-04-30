@@ -102,7 +102,10 @@
             return [_assembly wallUserScrollNode:model.user];
         }
         else if (model.type == WallUserCellModelTypeImage) {
-            return [_assembly WallUserImageNode:model.user];
+            return [_assembly wallUserImageNode:model.user];
+        }
+        else if (model.type == WallUserCellModelTypeAvatarNameDate) {
+            return [_assembly avatarNameDateNode:model.user date:@(model.date)];
         }
     }
     NSCAssert(false, @"Undeterminated item class: %@", item);

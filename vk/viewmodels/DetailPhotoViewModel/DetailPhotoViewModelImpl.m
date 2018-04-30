@@ -7,6 +7,7 @@
 //
 
 #import "DetailPhotoViewModelImpl.h"
+#import "User.h"
 
 @interface DetailPhotoViewModelImpl ()
 @property id<DetailPhotoService> detailPhotoService;

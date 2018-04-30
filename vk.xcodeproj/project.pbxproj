@@ -480,6 +480,7 @@
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
 		C3987DD42096F8BF0047A30F /* NSDate+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */; };
 		C3987DD620971B880047A30F /* AlignTopCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */; };
+		C3987DD8209733890047A30F /* AvatarNameDateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD7209733890047A30F /* AvatarNameDateNode.swift */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
 		C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA65209369130071FA04 /* RowsDialogImpl.m */; };
@@ -1579,6 +1580,7 @@
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
 		C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Utils.swift"; sourceTree = "<group>"; };
 		C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignTopCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		C3987DD7209733890047A30F /* AvatarNameDateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarNameDateNode.swift; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -2490,6 +2492,7 @@
 				C323043E2080E57400CEC487 /* PostImagesNode */,
 				C32304412080E57400CEC487 /* WallPostNode */,
 				C3FF542F20961326007275D4 /* NameTimeNode.swift */,
+				C3987DD7209733890047A30F /* AvatarNameDateNode.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -5559,6 +5562,7 @@
 				C32305F32080E57500CEC487 /* Likes.m in Sources */,
 				C32308F62081AEB100CEC487 /* TyphoonMethod+InstanceBuilder.m in Sources */,
 				C32308D82081AEB100CEC487 /* UIView+TyphoonOutletTransfer.m in Sources */,
+				C3987DD8209733890047A30F /* AvatarNameDateNode.swift in Sources */,
 				C3036C0B208DC99A005F086E /* SectionsTableViewController.m in Sources */,
 				C32308EF2081AEB100CEC487 /* TyphoonBlockDefinitionController.m in Sources */,
 				C313DD66208CB14A0005E29B /* WallPostViewModelImpl.m in Sources */,

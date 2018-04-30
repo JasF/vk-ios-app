@@ -12,12 +12,20 @@ import Foundation
     case image
     case message
     case actions
+    case avatarNameDate
 }
 @objcMembers class WallUserCellModel : NSObject {
     var type:WallUserCellModelType
     var user: User?
+    var date: Int = 0
     init(_ type:WallUserCellModelType, user: User?) {
         self.type = type
         self.user = user
+        super.init()
+    }
+    init(_ type:WallUserCellModelType, user: User?, date: Int) {
+        self.type = type
+        self.user = user
+        self.date = date
     }
 }

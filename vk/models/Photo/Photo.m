@@ -31,6 +31,11 @@
                                                               withMapping:[Comments objectMapping]];
             return reposts;
         }];
+        [mapping mapKeyPath:@"owner" toProperty:@"owner" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
+            Reposts *reposts = [EKMapper objectFromExternalRepresentation:value
+                                                              withMapping:[User objectMapping]];
+            return reposts;
+        }];
     }];
 }
 
@@ -42,6 +47,39 @@
     if (!imageURL.length) {
         imageURL = _photo_807;
     }
+    if (!imageURL.length) {
+        imageURL = _photo_604;
+    }
+    if (!imageURL.length) {
+        imageURL = _photo_130;
+    }
+    if (!imageURL.length) {
+        imageURL = _photo_75;
+    }
+    return imageURL;
+}
+
+- (NSString *)photo_130 {
+    NSString *imageURL = _photo_130;
+    if (!imageURL.length) {
+        imageURL = _photo_75;
+    }
+    return imageURL;
+}
+
+- (NSString *)photo_604 {
+    NSString *imageURL = _photo_604;
+    if (!imageURL.length) {
+        imageURL = _photo_130;
+    }
+    if (!imageURL.length) {
+        imageURL = _photo_75;
+    }
+    return imageURL;
+}
+
+- (NSString *)photo_807 {
+    NSString *imageURL = _photo_807;
     if (!imageURL.length) {
         imageURL = _photo_604;
     }
