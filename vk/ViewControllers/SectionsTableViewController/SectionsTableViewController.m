@@ -61,21 +61,38 @@
 }
 
 - (void)setSectionsArray:(NSArray *)sectionsArray {
-    NSCAssert(!_sectionsArray, @"TBD: deleteRows");
-    _sectionsArray = sectionsArray;
-    if (sectionsArray) {
-        for (NSInteger section = 0; section < _sectionsArray.count; ++section) {
-            [self.tableNode insertSections:[NSIndexSet indexSetWithIndex:section]
-                          withRowAnimation:UITableViewRowAnimationFade];
-            NSArray *rows = _sectionsArray[section];
-            NSMutableArray *indexPathes = [NSMutableArray new];
-            for (NSInteger row = 0; row < rows.count; ++row) {
-                [indexPathes addObject:[NSIndexPath indexPathForRow:row inSection:section]];
-            }
-            [self.tableNode insertRowsAtIndexPaths:indexPathes
-                                  withRowAnimation:UITableViewRowAnimationFade];
+    if (!_sectionsArray && sectionsArray) {
+        for (int i=0;i<sectionsArray.count;++i) {
+            [self.tableNode insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         }
     }
+    if (sectionsArray) {
+        NSArray *displayEntries = sectionsArray.firstObject;
+        NSArray *oldEntries = _sectionsArray.firstObject;
+        
+        NSMutableArray* rowsToDelete = [NSMutableArray array];
+        NSMutableArray* rowsToInsert = [NSMutableArray array];
+        
+        for ( NSInteger i = 0; i < oldEntries.count; i++ )
+        {
+            id entry = [oldEntries objectAtIndex:i];
+            if ( ! [displayEntries containsObject:entry] )
+                [rowsToDelete addObject: [NSIndexPath indexPathForRow:i inSection:0]];
+        }
+        
+        for ( NSInteger i = 0; i < displayEntries.count; i++ )
+        {
+            id entry = [displayEntries objectAtIndex:i];
+            if ( ! [oldEntries containsObject:entry] )
+                [rowsToInsert addObject: [NSIndexPath indexPathForRow:i inSection:0]];
+        }
+        
+        [self.tableNode deleteRowsAtIndexPaths:rowsToDelete withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableNode insertRowsAtIndexPaths:rowsToInsert withRowAnimation:UITableViewRowAnimationFade];
+
+    }
+    _sectionsArray = sectionsArray;
 }
+
 
 @end

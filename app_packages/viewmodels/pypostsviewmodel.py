@@ -9,7 +9,10 @@ from pymanagers.pydialogsmanager import PyDialogsManager
 
 # https://vk.com/dev/wall.getComments
 class PyPostsViewModel(ObjCBridgeProtocol):
-    def __init__(self):
+    def __init__(self, wallPostService, detailPhotoService, detailVideoService):
+        self.wallPostService = wallPostService
+        self.detailPhotoService = detailPhotoService
+        self.detailVideoService = detailVideoService
         print('\n\n\nPyPostsViewModel allocated\n\n\n')
 
     def likeObjectWithTypeownerIditemIdaccessKeylike(self, type, ownerId, itemId, accessKey, like):
@@ -95,6 +98,9 @@ class PyPostsViewModel(ObjCBridgeProtocol):
     def tappedOnCellWithUserId(self, userId):
         managers.shared().screensManager().showWallViewController_push_(args=[userId, True])
 
+    def preloadCommentsWithTypeownerIdpostIdcountloaded(self, type, ownerId, postId, count, loaded):
+        print( 'commens common preload ' + str(type) + ' ' + str(ownerId) + ' ' + str(postId) + ' ' + str(count) + ' ' + str(loaded))
+        pass
     # ObjCBridgeProtocol
     def release(self):
         pass

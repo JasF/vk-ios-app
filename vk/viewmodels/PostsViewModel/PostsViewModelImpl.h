@@ -14,6 +14,11 @@
 - (NSDictionary *)repostObjectWithIdentifier:(NSString *)identifier;
 - (void)titleNodeTapped:(NSNumber *)userId;
 - (void)tappedOnCellWithUserId:(NSNumber *)userId;
+- (NSDictionary *)preloadCommentsWithType:(NSString *)type
+                                  ownerId:(NSNumber *)ownerId
+                                   postId:(NSNumber *)postId
+                                    count:(NSNumber *)count
+                                   loaded:(NSNumber *)loaded;
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>

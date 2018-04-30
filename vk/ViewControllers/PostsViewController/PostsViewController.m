@@ -12,6 +12,7 @@
 #import "vk-Swift.h"
 
 @interface PostsViewController () <ASTableDelegate, PostsService, WallPostNodeDelegate>
+@property (nonatomic) BOOL commentsPreloading;
 @end
 
 @implementation PostsViewController
@@ -22,7 +23,7 @@
         WallPostNode *node = (WallPostNode *)aNode;
         node.delegate = self;
     }
-    else if ([aNode conformsToProtocol:@protocol(PostsServiceConsumer)]) {
+    if ([aNode conformsToProtocol:@protocol(PostsServiceConsumer)]) {
         id<PostsServiceConsumer> consumer = (id<PostsServiceConsumer>)aNode;
         consumer.postsService = self;
     }
@@ -55,6 +56,19 @@
     if ([cellNode isKindOfClass:[AvatarNameDateNode class]]) {
         AvatarNameDateNode *node = (AvatarNameDateNode *)cellNode;
         [_postsViewModel tappedOnCellWithUser:node.user];
+    }
+    else if ([cellNode isKindOfClass:[CommentsPreloadNode class]]) {
+        CommentsPreloadNode *node = (CommentsPreloadNode *)cellNode;
+        if (self.commentsPreloading) {
+            return;
+        }
+        self.commentsPreloading = YES;
+        @weakify(self);
+        [_postsViewModel tappedOnPreloadCommentsWithModel:node.model completion:^(NSArray *comments) {
+            @strongify(self);
+            NSLog(@"!");
+            self.commentsPreloading = NO;
+        }];
     }
 }
 

@@ -57,5 +57,5 @@ Subscriber().setClassAllocator( PyDocumentsViewModel, lambda parameters: PyDocum
 Subscriber().setClassAllocator( PySettingsViewModel, lambda: PySettingsViewModel() )
 Subscriber().setClassAllocator( PyAuthorizationViewModel, lambda: PyAuthorizationViewModel() )
 Subscriber().setClassAllocator( PyDetailVideoViewModel, lambda parameters: PyDetailVideoViewModel(DetailVideoService(UsersDecorator()), parameters['ownerId'], parameters['videoId']) )
-Subscriber().setClassAllocatorWithDelegate( PyPostsViewModel, lambda delegateId: PyPostsViewModel() )
+Subscriber().setClassAllocatorWithDelegate( PyPostsViewModel, lambda delegateId: PyPostsViewModel(WallPostService(UsersDecorator()), DetailPhotoService(UsersDecorator()), DetailVideoService(UsersDecorator())) )
 

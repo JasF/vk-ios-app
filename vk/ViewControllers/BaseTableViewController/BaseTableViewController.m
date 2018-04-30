@@ -102,8 +102,8 @@ static const NSInteger kBatchSize = 20;
             else {
                 [self.tableNode performBatchAnimated:YES updates:^{
                     @strongify(self);
-                    [self performBatchAnimated:YES];
                     [self.data addObjectsFromArray:objects];
+                    [self performBatchAnimated:YES];
                     NSArray *addedIndexPaths = [self indexPathsForObjects:objects];
                     [self.tableNode insertRowsAtIndexPaths:addedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
                 } completion:completion];

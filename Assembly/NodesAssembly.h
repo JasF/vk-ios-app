@@ -23,6 +23,7 @@
 
 @class WallPostNode;
 @class ASDisplayNode;
+@class CommentsPreloadModel;
 
 @interface NodesAssembly : TyphoonAssembly
 @property ServicesAssembly *servicesAssembly;
@@ -45,4 +46,5 @@
 - (ASDisplayNode *)wallUserScrollNode:(User *)user;
 - (ASDisplayNode *)wallUserImageNode:(User *)user;
 - (ASDisplayNode *)avatarNameDateNode:(User *)user date:(NSNumber *)date;
+- (ASDisplayNode *)commentsPreloadNode:(CommentsPreloadModel *)model;
 @end

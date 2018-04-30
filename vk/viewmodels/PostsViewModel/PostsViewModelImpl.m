@@ -11,6 +11,7 @@
 #import "PostsService.h"
 #import "Video.h"
 #import "Photo.h"
+#import "vk-Swift.h"
 
 @interface PostsViewModelImpl () <PostsViewModel>
 @property id<PyPostsViewModel> handler;
@@ -155,6 +156,43 @@
 - (void)tappedOnCellWithUser:(User *)user {
     dispatch_python(^{
         [_handler tappedOnCellWithUserId:@(user.id)];
+    });
+}
+
+- (void)tappedOnPreloadCommentsWithModel:(CommentsPreloadModel *)model completion:(void(^)(NSArray *comments))completion {
+    dispatch_python(^{
+        NSString *type = nil;
+        NSInteger ownerId = 0;
+        NSInteger postId = 0;
+        NSInteger count = 0;
+        if (model.post) {
+            type = @"post";
+            ownerId = model.post.owner_id;
+            postId = model.post.identifier;
+            count = model.post.comments.count;
+        }
+        else if (model.video) {
+            type = @"video";
+            ownerId = model.video.owner_id;
+            postId = model.video.id;
+            count = model.video.comments;
+        }
+        else if (model.photo) {
+            type = @"photo";
+            ownerId = model.photo.owner_id;
+            postId = model.photo.id;
+            count = model.photo.comments.count;
+        }
+        NSCAssert(type.length && ownerId && postId, @"Unknown item with comments type");
+        if (!type.length || !ownerId || !postId) {
+            return;
+        }
+        
+        NSDictionary *comments = [_handler preloadCommentsWithType:type
+                                                           ownerId:@(ownerId)
+                                                            postId:@(postId)
+                                                             count:@(count)
+                                                            loaded:@(model.loaded)];
     });
 }
 

@@ -31,6 +31,7 @@
     NSCParameterAssert(userId);
     if (self) {
         self.userId = userId.integerValue;
+        DDLogInfo(@"WallInfoVMM: %@", userId);
         _handler = [handlersFactory wallViewModelHandlerWithDelegate:self parameters:@{@"userId": userId}];
         _wallService = wallService;
     }

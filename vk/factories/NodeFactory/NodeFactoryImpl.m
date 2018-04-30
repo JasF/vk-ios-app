@@ -108,6 +108,9 @@
             return [_assembly avatarNameDateNode:model.user date:@(model.date)];
         }
     }
+    else if ([item isKindOfClass:[CommentsPreloadModel class]]) {
+        return [_assembly commentsPreloadNode:item];
+    }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;
 }

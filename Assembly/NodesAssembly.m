@@ -217,4 +217,14 @@
                  }];
             }];
 }
+
+- (ASDisplayNode *)commentsPreloadNode:(CommentsPreloadModel *)model {
+    return [TyphoonDefinition withClass:[CommentsPreloadNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:model];
+                 }];
+            }];
+}
 @end

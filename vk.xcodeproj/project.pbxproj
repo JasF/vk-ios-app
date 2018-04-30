@@ -481,6 +481,8 @@
 		C3987DD42096F8BF0047A30F /* NSDate+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */; };
 		C3987DD620971B880047A30F /* AlignTopCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */; };
 		C3987DD8209733890047A30F /* AvatarNameDateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD7209733890047A30F /* AvatarNameDateNode.swift */; };
+		C3987DDA209756B60047A30F /* CommentsPreloadNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD9209756B60047A30F /* CommentsPreloadNode.swift */; };
+		C3987DDC209756FE0047A30F /* CommentsPreloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DDB209756FE0047A30F /* CommentsPreloadModel.swift */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
 		C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA65209369130071FA04 /* RowsDialogImpl.m */; };
@@ -1581,6 +1583,8 @@
 		C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Utils.swift"; sourceTree = "<group>"; };
 		C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignTopCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		C3987DD7209733890047A30F /* AvatarNameDateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarNameDateNode.swift; sourceTree = "<group>"; };
+		C3987DD9209756B60047A30F /* CommentsPreloadNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsPreloadNode.swift; sourceTree = "<group>"; };
+		C3987DDB209756FE0047A30F /* CommentsPreloadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsPreloadModel.swift; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -2493,6 +2497,7 @@
 				C32304412080E57400CEC487 /* WallPostNode */,
 				C3FF542F20961326007275D4 /* NameTimeNode.swift */,
 				C3987DD7209733890047A30F /* AvatarNameDateNode.swift */,
+				C3987DD9209756B60047A30F /* CommentsPreloadNode.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -2603,6 +2608,7 @@
 				C32304792080E57400CEC487 /* Photo */,
 				C323047C2080E57400CEC487 /* PostType */,
 				C350782A2094AC9A000C8FB3 /* LastSeen.swift */,
+				C3987DDB209756FE0047A30F /* CommentsPreloadModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -5460,6 +5466,7 @@
 				C32308BB2081AEB100CEC487 /* LGSideMenuSegue.m in Sources */,
 				C3A82A3F2093389F00C41CA8 /* PostsServiceImpl.m in Sources */,
 				C32309172081AEB100CEC487 /* TyphoonAssemblyBuilder+PlistProcessor.m in Sources */,
+				C3987DDA209756B60047A30F /* CommentsPreloadNode.swift in Sources */,
 				C343755A208F6984004EF670 /* Audio.m in Sources */,
 				C32305D22080E57500CEC487 /* VKThemeAssembly.m in Sources */,
 				C32305F62080E57500CEC487 /* User.m in Sources */,
@@ -5607,6 +5614,7 @@
 				C32262C82090A5110054789B /* DocumentsServiceImpl.m in Sources */,
 				C32308E62081AEB100CEC487 /* TyphoonStoryboardDefinitionContext.m in Sources */,
 				C32308F32081AEB100CEC487 /* TyphoonInjectedObject.m in Sources */,
+				C3987DDC209756FE0047A30F /* CommentsPreloadModel.swift in Sources */,
 				C3333D452091A8E0009EBB09 /* DetailVideoViewModelImpl.m in Sources */,
 				C32308D42081AEB100CEC487 /* NSObject+DeallocNotification.m in Sources */,
 				C313DD6D208CBA460005E29B /* WallPostServiceImpl.m in Sources */,
