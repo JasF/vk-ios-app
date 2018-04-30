@@ -34,5 +34,6 @@
 @property NSInteger can_comment;
 @property NSString *tags;
 
+@property (nonatomic) NSNumber *asGallery;
 - (NSString *)bigPhotoURL;
 @end

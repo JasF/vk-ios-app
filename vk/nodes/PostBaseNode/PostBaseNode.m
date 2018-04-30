@@ -50,7 +50,6 @@ CGFloat const kControlsSize = 40.f;
 }
 
 - (ASLayoutSpec *)controlsStack {
-    
     if (!_embedded) {
         NSArray *array = @[_likesNode,
                            _commentsNode,
@@ -68,7 +67,7 @@ CGFloat const kControlsSize = 40.f;
                                                                child:controlsStack];
         return controlsStack;
     }
-    return [ASInsetLayoutSpec utils_with:self];
+    return nil;
 }
 
 #pragma mark - Observers

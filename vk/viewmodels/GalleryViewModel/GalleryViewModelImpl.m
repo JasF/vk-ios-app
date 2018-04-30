@@ -36,6 +36,7 @@
     dispatch_python(^{
         NSDictionary *data = [self.handler getPhotos:@(offset)];
         NSArray *result = [self.galleryService parse:data];
+        [result makeObjectsPerformSelector:@selector(setAsGallery:) withObject:@(YES)];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
                 completion(result);

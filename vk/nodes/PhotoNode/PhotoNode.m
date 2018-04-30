@@ -16,49 +16,33 @@
 
 - (id)initWithPhoto:(Photo *)photo {
     NSCParameterAssert(photo);
-    if (self = [super initWithEmbedded:NO likesCount:photo.likes.count liked:photo.likes.user_likes repostsCount:photo.reposts.count reposted:photo.reposts.user_reposted commentsCount:photo.comments.count]) {
+    if (self = [super initWithEmbedded:photo.asGallery.boolValue likesCount:photo.likes.count liked:photo.likes.user_likes repostsCount:photo.reposts.count reposted:photo.reposts.user_reposted commentsCount:photo.comments.count]) {
         self.item = photo;
         _imageNode = [[ASNetworkImageNode alloc] init];
         _imageNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-        _imageNode.style.width = ASDimensionMakeWithPoints(66);
-        _imageNode.style.height = ASDimensionMakeWithPoints(66);
         _imageNode.URL = [NSURL URLWithString:photo.photo_130];
         [self addSubnode:_imageNode];
+        _imageNode.layerBacked = YES;
     }
     return self;
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
-    spacer.style.flexGrow = 1.0;
-    
-    
-    
-    ASStackLayoutSpec *avatarContentSpec =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:8.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
-     children:@[_imageNode]];
-    
-    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
-    spec.style.flexShrink = 1.0f;
-    spec.style.flexGrow = 1.0f;
-    
+    ASRatioLayoutSpec *ratioSpec = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:1.f child:_imageNode];
+    ratioSpec.style.flexShrink = 1.0f;
+    ratioSpec.style.flexGrow = 1.0f;
     ASLayoutSpec *controlsStack = [self controlsStack];
     if (controlsStack) {
         ASStackLayoutSpec *subnodesStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
                                                                                    spacing:0.0
                                                                             justifyContent:ASStackLayoutJustifyContentStart
                                                                                 alignItems:ASStackLayoutAlignItemsStretch
-                                                                                  children:@[spec, controlsStack]];
+                                                                                  children:@[ratioSpec, controlsStack]];
         subnodesStack.style.flexGrow = 1;
-        
         return subnodesStack;
     }
-    return spec;
+    return ratioSpec;
 }
 
 @end

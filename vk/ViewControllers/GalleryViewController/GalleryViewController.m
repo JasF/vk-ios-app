@@ -8,6 +8,9 @@
 
 #import "GalleryViewController.h"
 
+static CGFloat const kItemSpacing = 2.f;
+static NSInteger const kColumnsCount = 3;
+
 @interface GalleryViewController () <BaseTableViewControllerDataSource>
 @property id<GalleryViewModel> viewModel;
 @end
@@ -20,6 +23,8 @@
     NSCParameterAssert(nodeFactory);
     _viewModel = viewModel;
     self.dataSource = self;
+    self.layout.minimumInteritemSpacing = 0.f;
+    self.layout.minimumLineSpacing = kItemSpacing;
     if (self = [super initWithNodeFactory:nodeFactory]) {
         self.title = @"VK Photos";
     }
@@ -39,8 +44,8 @@
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ASSizeRange result = ASSizeRangeUnconstrained;
-    result.min.width = self.view.width/4;
-    result.max.width = self.view.width/4;
+    result.min.width = (self.view.width - (kColumnsCount-1)*kItemSpacing)/kColumnsCount;
+    result.max.width = result.min.width;
     return result;
 }
 
