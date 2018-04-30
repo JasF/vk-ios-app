@@ -23,7 +23,6 @@ static CGFloat const kMargin = 6.f;
     if (self = [super init]) {
         _usernameNode = [[ASTextNode alloc] init];
         _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:user.nameString ?: @"" attributes:[TextStyles titleStyle]];
-        _usernameNode.maximumNumberOfLines = 1;
         _usernameNode.truncationMode = NSLineBreakByTruncatingTail;
         [self addSubnode:_usernameNode];
         

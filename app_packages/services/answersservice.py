@@ -19,7 +19,7 @@ class AnswersService:
             else:
                 response = api.notifications.get()
             next_from = response.get('next_from')
-            print('next_from: ' + str(next_from))
+            print('answers response: ' + json.dumps(response, indent=4))
             l = response["items"]
             usersData = self.usersDecorator.usersDataFromAnswers(l)
         except Exception as e:

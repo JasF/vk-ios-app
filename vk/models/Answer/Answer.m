@@ -53,6 +53,9 @@
         //self.parentComment = [EKMapper objectFromExternalRepresentation:parent withMapping:[Comment objectMapping]];
         //userIds = [EKMapper arrayOfObjectsFromExternalRepresentation:feedback[@"items"] withMapping:[UserId objectMapping]];
     }
+    else if ([self.type isEqualToString:@"like_comment_photo"]) {
+        
+    }
     else {
         NSCAssert(false, @"Unhandled answer type: %@", self.type);
         return NO;
