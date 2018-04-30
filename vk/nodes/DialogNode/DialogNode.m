@@ -12,6 +12,7 @@
 #import "vk-Swift.h"
 
 static CGFloat const kMargin = 6.f;
+static CGFloat const kTextCornerRadius = 3.f;
 
 @interface DialogNode ()
 @property ASTextNode *textNode;
@@ -41,7 +42,8 @@ static CGFloat const kMargin = 6.f;
         _textNode.attributedText = [[NSAttributedString alloc] initWithString:body attributes:[TextStyles titleStyle]];
         _textNode.maximumNumberOfLines = 2;
         _textNode.truncationMode = NSLineBreakByTruncatingTail;
-        _textNode.backgroundColor = (dialog.message.read_state == 0) ? [[UIColor grayColor] colorWithAlphaComponent:0.1f] : [UIColor clearColor];
+        _textNode.cornerRadius = kTextCornerRadius;
+        _textNode.backgroundColor = (dialog.message.read_state == 0) ? RGB(240, 242, 245) : [UIColor clearColor];
         [self addSubnode:_textNode];
         
         
@@ -75,16 +77,17 @@ static CGFloat const kMargin = 6.f;
      alignItems:ASStackLayoutAlignItemsCenter
      children:@[_usernameNode, _timeNode]];
     
+    ASLayoutSpec *prespacer = [ASLayoutSpec new];
+    prespacer.style.flexGrow = 1.f;
     ASLayoutSpec *spacer = [ASLayoutSpec new];
     spacer.style.flexGrow = 1.f;
     ASStackLayoutSpec *nameVerticalStack =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-     spacing:5.0
-     justifyContent:ASStackLayoutJustifyContentStart
+     spacing:0.0
+     justifyContent:ASStackLayoutJustifyContentSpaceBetween
      alignItems:ASStackLayoutAlignItemsStretch
-     children:@[topLineStack, _textNode, spacer]];
-    //_textNode.style.flexGrow = 1.f;
+     children:@[topLineStack, prespacer, _textNode, spacer]];
     nameVerticalStack.style.flexShrink = 1.f;
     nameVerticalStack.style.flexGrow = 1.f;
     
@@ -93,7 +96,7 @@ static CGFloat const kMargin = 6.f;
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
      spacing:kMargin
      justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsCenter
+     alignItems:ASStackLayoutAlignItemsStretch
      children:@[_avatarNode, nameVerticalStack]];
     avatarContentSpec.style.flexShrink = 1.f;
     avatarContentSpec.style.flexGrow = 1.f;
