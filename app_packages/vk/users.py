@@ -12,7 +12,11 @@ class Users():
         self.api = vk.api()
     
     def getShortUsersByIds(self, ids):
-        return self.getFieldsByIds(ids, fields='photo_100')
+        idsSet = ids if isinstance(ids, set) else set(ids)
+        result = self.getFieldsByIds(idsSet, fields='photo_100')
+        if isinstance(ids, list):
+            result = sorted(result,key=lambda x:ids.index(x['id']))
+        return result
     
     def getBigFieldsById(self, id, fields):
         users = UsersDatabase()

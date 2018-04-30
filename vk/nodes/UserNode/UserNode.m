@@ -10,6 +10,8 @@
 #import "UserNode.h"
 #import "User.h"
 
+static CGFloat const kMargin = 6.f;
+
 @interface UserNode ()
 @property ASTextNode *usernameNode;
 @property ASNetworkImageNode *avatarNode;
@@ -20,7 +22,7 @@
 - (id)initWithUser:(User *)user {
     if (self = [super init]) {
         _usernameNode = [[ASTextNode alloc] init];
-        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:user.nameString ?: @"" attributes:[TextStyles nameStyle]];
+        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:user.nameString ?: @"" attributes:[TextStyles titleStyle]];
         _usernameNode.maximumNumberOfLines = 1;
         _usernameNode.truncationMode = NSLineBreakByTruncatingTail;
         [self addSubnode:_usernameNode];
@@ -38,36 +40,17 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
-    spacer.style.flexGrow = 1.0;
-    
-    ASStackLayoutSpec *topLineStack =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:5.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsCenter
-     children:@[_usernameNode, spacer]];
-    topLineStack.style.alignSelf = ASStackLayoutAlignSelfStretch;
-    
-    ASStackLayoutSpec *nameVerticalStack =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-     spacing:5.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
-     children:@[topLineStack]];
+    _usernameNode.style.flexShrink = 1.f;
     
     ASStackLayoutSpec *avatarContentSpec =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:8.0
+     spacing:kMargin * 2
      justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
-     children:@[_avatarNode, nameVerticalStack]];
+     alignItems:ASStackLayoutAlignItemsCenter
+     children:@[_avatarNode, _usernameNode]];
     
-    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
-    spec.style.flexShrink = 1.0f;
+    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(kMargin, kMargin, kMargin, kMargin) child:avatarContentSpec];
     return spec;
 }
 
