@@ -6,11 +6,11 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseCollectionViewController.h"
 #import "PhotoAlbumsViewModel.h"
 #import "NodeFactory.h"
 
-@interface PhotoAlbumsViewController : BaseTableViewController
+@interface PhotoAlbumsViewController : BaseCollectionViewController
 - (instancetype)initWithViewModel:(id<PhotoAlbumsViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

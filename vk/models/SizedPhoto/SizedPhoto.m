@@ -10,6 +10,23 @@
 
 @implementation SizedPhoto
 
++ (NSArray *)types {
+    return @[@"s", @"m", @"x"];
+}
+
++ (SizedPhoto *)getWithType:(NSString *)type array:(NSArray *)array {
+    for (SizedPhoto *photo in array) {
+        if ([photo.type isEqualToString:type]) {
+            return photo;
+        }
+    }
+    NSInteger index = [[self types] indexOfObject:type];
+    if (index > 0) {
+        return [self getWithType:[self types][index - 1] array:array];
+    }
+    return nil;
+}
+
 +(EKObjectMapping *)objectMapping
 {
     return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {

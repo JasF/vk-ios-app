@@ -479,6 +479,7 @@
 		C350782B2094AC9A000C8FB3 /* LastSeen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782A2094AC9A000C8FB3 /* LastSeen.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
 		C3987DD42096F8BF0047A30F /* NSDate+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */; };
+		C3987DD620971B880047A30F /* AlignTopCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
 		C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA65209369130071FA04 /* RowsDialogImpl.m */; };
@@ -1577,6 +1578,7 @@
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
 		C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Utils.swift"; sourceTree = "<group>"; };
+		C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignTopCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -1911,6 +1913,7 @@
 			children = (
 				C313771F208E1FC900F568EA /* PhotoAlbumsViewController.h */,
 				C3137720208E1FC900F568EA /* PhotoAlbumsViewController.m */,
+				C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */,
 			);
 			path = PhotoAlbumsViewController;
 			sourceTree = "<group>";
@@ -5427,6 +5430,7 @@
 				C32308C52081AEB100CEC487 /* TyphoonPlistStyleConfiguration.m in Sources */,
 				C3987DD42096F8BF0047A30F /* NSDate+Utils.swift in Sources */,
 				C32263072090CD920054789B /* DetailPhotoServiceImpl.m in Sources */,
+				C3987DD620971B880047A30F /* AlignTopCollectionViewFlowLayout.swift in Sources */,
 				C32305DF2080E57500CEC487 /* TextStyles.m in Sources */,
 				C32305DE2080E57500CEC487 /* LikesNode.m in Sources */,
 				C32308E12081AEB100CEC487 /* TyphoonDefinition+Storyboard.m in Sources */,

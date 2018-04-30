@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SizedPhoto.h"
 #import <EasyMapping/EasyMapping.h>
 
 @interface PhotoAlbum : NSObject <EKMappingProtocol>
@@ -17,4 +17,5 @@
 @property NSString *title;
 @property NSInteger size;
 @property NSString *thumb_src;
+@property NSArray<SizedPhoto *> *sizes;
 @end

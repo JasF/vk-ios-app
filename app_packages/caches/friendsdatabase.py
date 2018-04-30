@@ -23,7 +23,8 @@ class FriendsDatabase(BaseDatabase):
         except Exception as e:
             print('fetch count exception: ' + str(e))
         finally:
-            print('appendFriendsIds count is: ' + str(counter))
+            pass
+            #print('appendFriendsIds count is: ' + str(counter))
         return counter
             
     def getFriendsIds(self, userId, offset, count):

@@ -13,6 +13,11 @@
 {
     return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
         [mapping mapPropertiesFromArray:@[@"id", @"thumb_id", @"owner_id", @"title", @"size", @"thumb_src"]];
+        [mapping mapKeyPath:@"sizes" toProperty:@"sizes" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
+            NSArray *sizes = [EKMapper arrayOfObjectsFromExternalRepresentation:value
+                                                                    withMapping:[SizedPhoto objectMapping]];
+            return sizes;
+        }];
     }];
 }
 @end

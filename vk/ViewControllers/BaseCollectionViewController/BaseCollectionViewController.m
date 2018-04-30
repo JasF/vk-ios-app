@@ -18,12 +18,12 @@ static const NSInteger kBatchSize = 20;
 
 @implementation BaseCollectionViewController {
     BOOL _initiallyUpdated;
+    UICollectionViewFlowLayout *_layout;
 }
 
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(nodeFactory);
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    _collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:layout];
+    _collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:[self layout]];
     self = [super initWithNode:_collectionNode];
     if (self) {
         _nodeFactory = nodeFactory;
@@ -247,6 +247,14 @@ static const NSInteger kBatchSize = 20;
                completion:^(BOOL finished) {
                    self.updating = NO;
                }];
+}
+
+#pragma mark - Accessors
+- (UICollectionViewFlowLayout *)layout {
+    if (!_layout) {
+        _layout = [[UICollectionViewFlowLayout alloc] init];
+    }
+    return _layout;
 }
 
 @end

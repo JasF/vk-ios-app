@@ -15,4 +15,5 @@
 @property NSInteger width;
 @property NSInteger height;
 @property NSString *type;
++ (SizedPhoto *)getWithType:(NSString *)type array:(NSArray *)array;
 @end

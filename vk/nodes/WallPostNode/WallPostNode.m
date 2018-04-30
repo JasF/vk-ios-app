@@ -71,18 +71,6 @@ extern CGFloat const kControlsSize;
         _titleNode = [[NameTimeNode alloc] init:[_post.user nameString] ?: @"" time:dateString];
         [_titleNode addTarget:self action:@selector(titleNodeClicked:) forControlEvents:ASControlNodeEventTouchUpInside];
         [self addSubnode:_titleNode];
-        /*
-        // Name node
-        _nameNode = [[ASTextNode alloc] init];
-        _nameNode.attributedText = [[NSAttributedString alloc] initWithString:[_post.user nameString] ?: @"" attributes:[TextStyles nameStyle]];
-        _nameNode.maximumNumberOfLines = 0;
-        [self addSubnode:_nameNode];
-        
-        // Time node
-        _timeNode = [[ASTextNode alloc] init];
-        _timeNode.attributedText = [[NSAttributedString alloc] initWithString:dateString attributes:[TextStyles timeStyle]];
-        [self addSubnode:_timeNode];
-         */
         
         // Post node
         // Processing URLs in post

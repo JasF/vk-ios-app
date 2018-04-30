@@ -14,7 +14,7 @@ class PhotoAlbumsService:
         api = vk.api()
         response = None
         try:
-            response = api.photos.getAlbums(owner_id=ownerId, offset=offset, count=g_count, need_system=1, need_covers=1)
+            response = api.photos.getAlbums(owner_id=ownerId, offset=offset, count=g_count, need_system=1, need_covers=1, photo_sizes=1)
             l = response['items']
             cache = PhotoAlbumsDatabase()
             cache.update(l)

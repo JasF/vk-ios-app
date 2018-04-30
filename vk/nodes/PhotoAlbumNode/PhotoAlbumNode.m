@@ -9,6 +9,8 @@
 #import "PhotoAlbumNode.h"
 #import "TextStyles.h"
 
+static CGFloat const kTextMargin = 6.f;
+
 @interface PhotoAlbumNode ()
 @property ASTextNode *textNode;
 @property ASTextNode *sizeNode;
@@ -22,23 +24,20 @@
     if (self = [super init]) {
         
         _sizeNode = [[ASTextNode alloc] init];
-        _sizeNode.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ photos", @(photoAlbum.size)] attributes:[TextStyles nameStyle]];
+        _sizeNode.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", @(photoAlbum.size), L(@"photoalbum_photos")] attributes:[TextStyles timeStyle]];
         _sizeNode.maximumNumberOfLines = 1;
         _sizeNode.truncationMode = NSLineBreakByTruncatingTail;
         [self addSubnode:_sizeNode];
         
         _textNode = [[ASTextNode alloc] init];
         _textNode.attributedText = [[NSAttributedString alloc] initWithString:photoAlbum.title attributes:[TextStyles titleStyle]];
-        _textNode.maximumNumberOfLines = 1;
+        //_textNode.maximumNumberOfLines = 1;
         _textNode.truncationMode = NSLineBreakByTruncatingTail;
         [self addSubnode:_textNode];
         
         _imageNode = [[ASNetworkImageNode alloc] init];
         _imageNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-        _imageNode.style.width = ASDimensionMakeWithPoints(44);
-        _imageNode.style.height = ASDimensionMakeWithPoints(44);
-        _imageNode.cornerRadius = 22.0;
-        _imageNode.URL = [NSURL URLWithString:photoAlbum.thumb_src];
+        _imageNode.URL = [NSURL URLWithString:[SizedPhoto getWithType:@"x" array:photoAlbum.sizes].src];
         [self addSubnode:_imageNode];
     }
     return self;
@@ -46,37 +45,29 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
-    spacer.style.flexGrow = 1.0;
-    
-    ASStackLayoutSpec *topLineStack =
-    [ASStackLayoutSpec
+    ASStackLayoutSpec *sizeSpec = [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:5.0
-     justifyContent:ASStackLayoutJustifyContentStart
+     spacing:0.0
+     justifyContent:ASStackLayoutJustifyContentCenter
      alignItems:ASStackLayoutAlignItemsCenter
-     children:@[_sizeNode, spacer]];
-    topLineStack.style.alignSelf = ASStackLayoutAlignSelfStretch;
+     children:@[_sizeNode]];
+    sizeSpec.style.spacingBefore = kTextMargin;
     
-    ASStackLayoutSpec *nameVerticalStack =
-    [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-     spacing:5.0
-     justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
-     children:@[topLineStack, _textNode]];
-    
+    ASRatioLayoutSpec *ratioSpec = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:1.f child:_imageNode];
+    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(0, kTextMargin, 0, kTextMargin) child:_textNode];
+    spec.style.flexGrow = 1.f;
+    _sizeNode.style.spacingBefore = kTextMargin;
     ASStackLayoutSpec *avatarContentSpec =
     [ASStackLayoutSpec
-     stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+     stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
      spacing:8.0
      justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
-     children:@[_imageNode, nameVerticalStack]];
+     alignItems:ASStackLayoutAlignItemsStretch
+     children:@[sizeSpec, ratioSpec, spec]];
+    _textNode.style.flexGrow = 1.f;
+    avatarContentSpec.style.flexGrow = 1.f;
     
-    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
-    spec.style.flexShrink = 1.0f;
-    return spec;
+    return avatarContentSpec;
 }
 
 @end
