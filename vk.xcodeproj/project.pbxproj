@@ -478,6 +478,7 @@
 		C350782920949C46000C8FB3 /* WallUserImageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782820949C46000C8FB3 /* WallUserImageNode.swift */; };
 		C350782B2094AC9A000C8FB3 /* LastSeen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782A2094AC9A000C8FB3 /* LastSeen.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
+		C3987DD42096F8BF0047A30F /* NSDate+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
 		C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA65209369130071FA04 /* RowsDialogImpl.m */; };
@@ -1575,6 +1576,7 @@
 		C350782A2094AC9A000C8FB3 /* LastSeen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSeen.swift; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
+		C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Utils.swift"; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -4552,6 +4554,7 @@
 			children = (
 				C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */,
 				C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */,
+				C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -5422,6 +5425,7 @@
 				C32308CB2081AEB100CEC487 /* TyphoonStartup.m in Sources */,
 				C323091B2081AEB100CEC487 /* TyphoonCollaboratingAssembliesCollector.m in Sources */,
 				C32308C52081AEB100CEC487 /* TyphoonPlistStyleConfiguration.m in Sources */,
+				C3987DD42096F8BF0047A30F /* NSDate+Utils.swift in Sources */,
 				C32263072090CD920054789B /* DetailPhotoServiceImpl.m in Sources */,
 				C32305DF2080E57500CEC487 /* TextStyles.m in Sources */,
 				C32305DE2080E57500CEC487 /* LikesNode.m in Sources */,

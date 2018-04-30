@@ -9,6 +9,9 @@
 #import "DialogNode.h"
 #import "Dialog.h"
 #import "TextStyles.h"
+#import "vk-Swift.h"
+
+static CGFloat const kMargin = 6.f;
 
 @interface DialogNode ()
 @property ASTextNode *textNode;
@@ -36,7 +39,7 @@
             body = [NSString stringWithFormat:@"%@: %@", L(@"typing"), body];
         }
         _textNode.attributedText = [[NSAttributedString alloc] initWithString:body attributes:[TextStyles titleStyle]];
-        _textNode.maximumNumberOfLines = 1;
+        _textNode.maximumNumberOfLines = 2;
         _textNode.truncationMode = NSLineBreakByTruncatingTail;
         _textNode.backgroundColor = (dialog.message.read_state == 0) ? [[UIColor grayColor] colorWithAlphaComponent:0.1f] : [UIColor clearColor];
         [self addSubnode:_textNode];
@@ -44,17 +47,16 @@
         
         _timeNode = [[ASTextNode alloc] init];
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:dialog.message.date];
-        NSString *dateString = [NSDateFormatter localizedStringFromDate:date
-                                                              dateStyle:NSDateFormatterShortStyle
-                                                              timeStyle:NSDateFormatterShortStyle];
+        
+        NSString *dateString = [date utils_dayDifferenceFromNow];
         _timeNode.attributedText = [[NSAttributedString alloc] initWithString:dateString attributes:[TextStyles timeStyle]];
         [self addSubnode:_timeNode];
         
         _avatarNode = [[ASNetworkImageNode alloc] init];
         _avatarNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-        _avatarNode.style.width = ASDimensionMakeWithPoints(44);
-        _avatarNode.style.height = ASDimensionMakeWithPoints(44);
-        _avatarNode.cornerRadius = 22.0;
+        _avatarNode.style.width = ASDimensionMakeWithPoints(60);
+        _avatarNode.style.height = ASDimensionMakeWithPoints(60);
+        _avatarNode.cornerRadius = _avatarNode.style.height.value/2;
         _avatarNode.URL = [NSURL URLWithString:dialog.avatarURLString];
         [self addSubnode:_avatarNode];
     }
@@ -63,36 +65,40 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
-    spacer.style.flexGrow = 1.0;
-    
     _usernameNode.style.flexShrink = 1.f;
+    _usernameNode.style.flexGrow = 1.f;
     ASStackLayoutSpec *topLineStack =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
      spacing:5.0
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsCenter
-     children:@[_usernameNode, spacer, _timeNode]];
+     children:@[_usernameNode, _timeNode]];
     
+    ASLayoutSpec *spacer = [ASLayoutSpec new];
+    spacer.style.flexGrow = 1.f;
     ASStackLayoutSpec *nameVerticalStack =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
      spacing:5.0
      justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
-     children:@[topLineStack, _textNode]];
+     alignItems:ASStackLayoutAlignItemsStretch
+     children:@[topLineStack, _textNode, spacer]];
+    //_textNode.style.flexGrow = 1.f;
+    nameVerticalStack.style.flexShrink = 1.f;
+    nameVerticalStack.style.flexGrow = 1.f;
     
     ASStackLayoutSpec *avatarContentSpec =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:8.0
+     spacing:kMargin
      justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
+     alignItems:ASStackLayoutAlignItemsCenter
      children:@[_avatarNode, nameVerticalStack]];
-    nameVerticalStack.style.flexShrink = 1.f;
+    avatarContentSpec.style.flexShrink = 1.f;
+    avatarContentSpec.style.flexGrow = 1.f;
     
-    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
+    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(kMargin, kMargin, kMargin, kMargin) child:avatarContentSpec];
     return spec;
 }
 
