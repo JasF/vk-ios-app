@@ -57,6 +57,8 @@ import NMessenger
             4 — повторная отправка заявки.
             */
             switch response {
+            case 5: valueForWrite = 2; break // удален друг
+            case 0: valueForWrite = 0; self?.user?.is_friend = 0; break
             case 1: valueForWrite = 1; break
             case 2: valueForWrite = 3; self?.user?.is_friend = 1; break
             case 4: valueForWrite = 1; break
@@ -86,6 +88,9 @@ import NMessenger
         }
         rightButton.backgroundColor = rightButtonBackgroundColor
         rightButton.setAttributedTitle(rightAttrString, for: .normal)
+        self.setNeedsLayout()
+        self.setNeedsDisplay()
+        rightButton.setNeedsDisplay()
     }
 }
 

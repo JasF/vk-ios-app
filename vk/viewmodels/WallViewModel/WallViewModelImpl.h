@@ -23,7 +23,7 @@
 - (void)videosTapped;
 - (void)groupsTapped;
 - (void)messageButtonTapped;
-- (NSNumber *)friendButtonTapped;
+- (NSNumber *)friendButtonTapped:(NSNumber *)friend_status;
 @end
 
 @interface WallViewModelImpl : NSObject <WallViewModel>

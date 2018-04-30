@@ -120,7 +120,7 @@
 
 - (void)friendButtonTapped:(void(^)(NSInteger resultCode))callback {
     dispatch_python(^{
-        NSNumber *response = [_handler friendButtonTapped];
+        NSNumber *response = [_handler friendButtonTapped:@(self.currentUser.friend_status)];
         if (!response || [response isKindOfClass:[NSNumber class]]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (callback) {

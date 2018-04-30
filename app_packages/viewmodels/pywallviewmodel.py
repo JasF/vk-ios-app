@@ -3,6 +3,7 @@ from objcbridge import BridgeBase, ObjCBridgeProtocol
 from services.wallservice import WallService
 import vk, json
 from .pyfriendsviewmodel import UsersListTypes
+from pymanagers.pydialogsmanager import PyDialogsManager
 
 class PyWallViewModelDelegate(BridgeBase):
     pass
@@ -59,10 +60,21 @@ class PyWallViewModel(ObjCBridgeProtocol):
     def messageButtonTapped(self):
         managers.shared().screensManager().showDialogViewController_(args=[self.userId])
     
-    def friendButtonTapped(self):
+    def friendButtonTapped(self, friend_status):
         api = vk.api()
+        if friend_status == 1 or friend_status == 3:
+            if friend_status == 3:
+                # Пользователь друг или есть входящая заявка
+                dialogsManager = PyDialogsManager()
+                index, cancelled = dialogsManager.showRowsDialogWithTitles(['delete_from_friends'])
+                if cancelled:
+                    return -1
+            response = api.friends.delete(user_id=self.userId)
+            print('friends.delete response: ' + str(response))
+            if response.get('success') == 1:
+                return 5 if friend_status == 3 else 0
+            return -1
         response = api.friends.add(user_id=self.userId)
-        #managers.shared().screensManager().showWallPostViewControllerWithOwnerId_postId_(args=[self.userId, identifier])
         return response
         
     # ObjCBridgeProtocol
