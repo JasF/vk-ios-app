@@ -8,6 +8,8 @@
 
 import Foundation
 
+let kMargin : CGFloat = 6.0
+
 @objcMembers class AvatarNameDateNode : ASCellNode {
     let textNode : ASTextNode = ASTextNode()
     let timeNode : ASTextNode = ASTextNode()
@@ -20,7 +22,9 @@ import Foundation
         self.date = date
         super.init()
         textNode.attributedText = NSAttributedString.init(string: (user?.nameString())!, attributes: TextStyles.titleStyle())
-        timeNode.attributedText = NSAttributedString.init(string: "\(date)", attributes: TextStyles.timeStyle())
+        
+        let dateObject = NSDate.init(timeIntervalSince1970: TimeInterval(date))
+        timeNode.attributedText = NSAttributedString.init(string: dateObject.utils_longDayDifferenceFromNow(), attributes: TextStyles.timeStyle())
         self.addSubnode(avatarNode)
         self.addSubnode(textNode)
         self.addSubnode(timeNode)
@@ -34,6 +38,6 @@ import Foundation
         
         let spec = ASStackLayoutSpec.init(direction: .vertical, spacing: 6, justifyContent: .start, alignItems: .start, children: [textNode, timeNode])
         let imageTextSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 6, justifyContent: .start, alignItems: .center, children: [avatarNode, spec] )
-        return imageTextSpec
+        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(kMargin, kMargin, kMargin, kMargin), child: imageTextSpec)
     }
 }

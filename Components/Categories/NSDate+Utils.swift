@@ -29,4 +29,25 @@ import Foundation
         dateFormatter.locale = Locale.init(identifier: "ru_RU")
         return dateFormatter.string(from:date)
     }
+    
+    func utils_longDayDifferenceFromNow() -> String
+    {
+        let calendar = NSCalendar.current
+        let date = self as Date
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm"
+        
+        if calendar.isDateInYesterday(date) {
+            return "yesterday_at_".localized + dateFormatter.string(from:date)
+            
+        }
+        else if calendar.isDateInToday(date) {
+            return "today_at_".localized + dateFormatter.string(from:date)
+        }
+        
+        dateFormatter.dateFormat = "dd MMM YYYY, hh:mm"
+        dateFormatter.locale = Locale.init(identifier: "ru_RU")
+        return dateFormatter.string(from:date)
+    }
 }
