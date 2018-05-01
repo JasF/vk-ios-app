@@ -20,4 +20,7 @@
 @property (strong, nonatomic) id<TextFieldDialogDelegate> delegate;
 - (void)showTextFieldDialogWithMessage:(NSString *)message
                            placeholder:(NSString *)placeholder;
+- (void)showTextFieldDialogWithMessage:(NSString *)message
+                           placeholder:(NSString *)placeholder
+                           onlyMessage:(BOOL)onlyMessage;
 @end

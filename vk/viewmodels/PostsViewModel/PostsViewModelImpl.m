@@ -38,38 +38,16 @@
         NSInteger itemId = 0;
         NSString *type = nil;
         BOOL liked = NO;
-        NSString *accessKey = @"";
         Likes *likesObject = nil;
-        if ([item isKindOfClass:[Video class]]) {
-            Video *video = (Video *)item;
-            type = @"video";
-            likesObject = video.likes;
-            ownerId = video.owner_id;
-            itemId = video.id;
-        }
-        else if ([item isKindOfClass:[WallPost class]]) {
-            WallPost *post = (WallPost *)item;
-            likesObject = post.likes;
-            type = @"post";
-            ownerId = post.owner_id;
-            itemId = post.identifier;
-        }
-        else if ([item isKindOfClass:[Photo class]]) {
-            Photo *photo = (Photo *)item;
-            likesObject = photo.likes;
-            type = @"photo";
-            ownerId = photo.owner_id;
-            itemId = photo.id;
-        }
+        [self invokePayloadWithModel:item type:&type ownerId:&ownerId postId:&itemId commentsCount:nil likes:&likesObject reposts:nil];
         liked = likesObject.user_likes;
-        NSCAssert(type && ownerId && itemId, @"Unhandled item type for like");
         if (!type || !ownerId || !itemId) {
             return;
         }
         NSDictionary *response = [self.handler likeObjectWithType:type
                                                           ownerId:@(ownerId)
                                                            itemId:@(itemId)
-                                                        accessKey:accessKey
+                                                        accessKey:@""
                                                              like:@(!liked)];
         NSInteger likes = 0;
         BOOL error = YES;
@@ -97,28 +75,13 @@
         NSString *identifier = nil;
         Reposts *repostsObject = nil;
         Likes *likesObject = nil;
-        if ([item isKindOfClass:[WallPost class]]) {
-            WallPost *post = (WallPost *)item;
-            repostsObject = post.reposts;
-            likesObject = post.likes;
-            identifier = [NSString stringWithFormat:@"wall%@_%@", @(post.owner_id), @(post.identifier)];
-        }
-        else if ([item isKindOfClass:[Video class]]) {
-            Video *video = (Video *)item;
-            repostsObject = video.reposts;
-            likesObject = video.likes;
-            identifier = [NSString stringWithFormat:@"video%@_%@", @(video.owner_id), @(video.id)];
-        }
-        else if ([item isKindOfClass:[Photo class]]) {
-            Photo *photo = (Photo *)item;
-            likesObject = photo.likes;
-            repostsObject = photo.reposts;
-            identifier = [NSString stringWithFormat:@"photo%@_%@", @(photo.owner_id), @(photo.id)];
-        }
-        NSCAssert(identifier, @"Unhandled item type for repost");
+        NSInteger ownerId = 0;
+        NSInteger itemId = 0;
+        [self invokePayloadWithModel:item type:&identifier ownerId:&ownerId postId:&itemId commentsCount:nil likes:&likesObject reposts:&repostsObject];
         if (!identifier) {
             return;
         }
+        identifier = [NSString stringWithFormat:@"%@%@_%@", identifier, @(ownerId), @(itemId)];
         NSDictionary *response = [self.handler repostObjectWithIdentifier:identifier];
         NSLog(@"resp: %@", response);
         NSInteger likes = 0;
@@ -164,29 +127,11 @@
 
 - (void)tappedOnPreloadCommentsWithModel:(CommentsPreloadModel *)model completion:(void(^)(NSArray *comments))completion {
     dispatch_python(^{
-        NSString *type = nil;
-        NSInteger ownerId = 0;
-        NSInteger postId = 0;
-        NSInteger count = 0;
-        if (model.post) {
-            type = @"post";
-            ownerId = model.post.owner_id;
-            postId = model.post.identifier;
-            count = model.post.comments.count;
-        }
-        else if (model.video) {
-            type = @"video";
-            ownerId = model.video.owner_id;
-            postId = model.video.id;
-            count = model.video.comments;
-        }
-        else if (model.photo) {
-            type = @"photo";
-            ownerId = model.photo.owner_id;
-            postId = model.photo.id;
-            count = model.photo.comments.count;
-        }
-        NSCAssert(type.length && ownerId && postId, @"Unknown item with comments type");
+        NSString *type=nil;
+        NSInteger ownerId=0;
+        NSInteger postId=0;
+        NSInteger count=0;
+        [self invokePayloadWithModel:model type:&type ownerId:&ownerId postId:&postId commentsCount:&count likes:nil reposts:nil];
         if (!type.length || !ownerId || !postId) {
             return;
         }
@@ -203,6 +148,119 @@
             }
         });
     });
+}
+
+- (void)invokePayloadWithModel:(id)model
+                          type:(NSString **)sType
+                       ownerId:(NSInteger *)sOwnerId
+                        postId:(NSInteger *)sPostId
+                 commentsCount:(NSInteger *)sCommentsCount
+                         likes:(Likes **)sLikes
+                       reposts:(Reposts **)sReposts {
+    NSCAssert(sType && sOwnerId && sPostId, @"required storage missing");
+    if ([model isKindOfClass:[CommentsPreloadModel class]]) {
+        CommentsPreloadModel *cpm = (CommentsPreloadModel *)model;
+        if (cpm.post) {
+            model = cpm.post;
+        }
+        else if (cpm.photo) {
+            model = cpm.photo;
+        }
+        else if (cpm.video) {
+            model = cpm.video;
+        }
+        else {
+            NSCAssert(false, @"Unknown condition for CommentsPreloadModel");
+            return;
+        }
+    }
+    NSString *type = nil;
+    NSInteger ownerId = 0;
+    NSInteger postId = 0;
+    NSInteger count = 0;
+    Likes *likes = nil;
+    Reposts *reposts = nil;
+    
+    if ([model isKindOfClass:[WallPost class]]) {
+        WallPost *post = (WallPost *)model;
+        type = @"wall";
+        ownerId = post.owner_id;
+        postId = post.identifier;
+        count = post.comments.count;
+        likes = post.likes;
+        reposts = post.reposts;
+    }
+    else if ([model isKindOfClass:[Photo class]]) {
+        Photo *photo = (Photo *)model;
+        type = @"photo";
+        ownerId = photo.owner_id;
+        postId = photo.id;
+        count = photo.comments.count;
+        likes = photo.likes;
+        reposts = photo.reposts;
+    }
+    else if ([model isKindOfClass:[Video class]]) {
+        Video *video = (Video *)model;
+        type = @"video";
+        ownerId = video.owner_id;
+        postId = video.id;
+        count = video.comments;
+        likes = video.likes;
+        reposts = video.reposts;
+    }
+    else {
+        NSCAssert(false, @"Unknown condition for model");
+        return;
+    }
+    if (sType) {
+        *sType = type;
+    }
+    if (sOwnerId) {
+        *sOwnerId = ownerId;
+    }
+    if (sPostId) {
+        *sPostId = postId;
+    }
+    if (sCommentsCount) {
+        *sCommentsCount = count;
+    }
+    if (sLikes) {
+        *sLikes = likes;
+    }
+    if (sReposts) {
+        *sReposts = reposts;
+    }
+}
+
+- (void)sendCommentWithText:(NSString *)text item:(id)item completion:(void(^)(NSInteger commentId, NSInteger ownerId, NSInteger postId, NSInteger reply_to_commentId, User *user))completion {
+    dispatch_python(^{
+        NSString *type=nil;
+        NSInteger ownerId=0;
+        NSInteger postId=0;
+        [self invokePayloadWithModel:item type:&type ownerId:&ownerId postId:&postId commentsCount:nil likes:nil reposts:nil];
+        if (!type.length || !ownerId || !postId) {
+            return;
+        }
+        NSDictionary *response = [self.handler sendCommentWithType:type ownerId:@(ownerId) postId:@(postId) text:text];
+        NSInteger commentId = 0;
+        User *user = nil;
+        if ([response isKindOfClass:[NSDictionary class]]) {
+            commentId = [response[@"comment_id"] integerValue];
+            user = [self.postsService parseUserInfo:response[@"user_info"]];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(commentId, ownerId, postId, 0, user);
+            }
+        });
+        NSLog(@"Response from send comment is: %@", response);
+        /*
+         2018-05-01 14:33:31.078273+0300 vk[73878:19462853] Response from send comment is: {
+         "comment_id" = 1971;
+         }
+         */
+    });
+    
 }
 
 @end

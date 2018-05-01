@@ -62,6 +62,7 @@ ASCollectionDelegate, ASCollectionDataSource>
         @strongify(self);
         if (!self.post) {
             self.post = post;
+            self.commentsParentItem = post;
         }
         if (completion) {
             completion(comments);

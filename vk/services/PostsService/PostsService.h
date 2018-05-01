@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "User.h"
 
 @protocol PostsService;
 
@@ -23,4 +24,5 @@
 
 @optional
 - (NSArray *)parseComments:(NSDictionary *)data;
+- (User *)parseUserInfo:(NSDictionary *)userInfo;
 @end

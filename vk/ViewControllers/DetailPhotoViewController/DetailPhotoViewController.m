@@ -52,6 +52,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     [_viewModel getPhotoWithCommentsOffset:offset completion:^(Photo *photo, NSArray *comments) {
         if (!self.photo) {
             self.photo = photo;
+            self.commentsParentItem = photo;
         }
         if (completion) {
             completion(comments);

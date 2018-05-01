@@ -17,4 +17,5 @@
 - (void)titleNodeTapped:(WallPost *)post;
 - (void)tappedOnCellWithUser:(User *)user;
 - (void)tappedOnPreloadCommentsWithModel:(CommentsPreloadModel *)model completion:(void(^)(NSArray *comments))completion;
+- (void)sendCommentWithText:(NSString *)text item:(id)item completion:(void(^)(NSInteger commentId, NSInteger ownerId, NSInteger postId, NSInteger reply_to_commentId, User *user))completion;
 @end

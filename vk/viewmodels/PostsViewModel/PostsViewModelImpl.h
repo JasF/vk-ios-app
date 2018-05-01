@@ -20,6 +20,10 @@
                                    postId:(NSNumber *)postId
                                     count:(NSNumber *)count
                                    loaded:(NSNumber *)loaded;
+- (NSDictionary *)sendCommentWithType:(NSString *)type
+                              ownerId:(NSNumber *)ownerId
+                               postId:(NSNumber *)postId
+                                 text:(NSString *)text;
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>

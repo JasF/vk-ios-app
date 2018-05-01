@@ -13,6 +13,7 @@
 @protocol PyDialogsManagerDelegate <NSObject>
 - (NSArray *)showTextFieldDialogWithText:(NSString *)text;
 - (NSArray *)showRowsDialogWithTitles:(NSArray *)titles;
+- (void)showDialogWithMessage:(NSString *)message;
 @end
 
 @interface DialogsManagerImpl () <PyDialogsManagerDelegate, TextFieldDialogDelegate, RowsDialogDelegate>//, WaitingDialog, PasswordDialog, YesNoDialog>
@@ -106,6 +107,12 @@
     [_rowsDialog showRowsDialogWithTitles:titles];
     [[RunLoop shared] exec:(NSInteger)self];
     return @[@(_index), @(_cancel)];
+}
+
+- (void)showDialogWithMessage:(NSString *)message {
+    [_textFieldDialog showTextFieldDialogWithMessage:message
+                                         placeholder:@""
+                                         onlyMessage:YES];
 }
 
 #pragma mark - TextFieldDialogHandler

@@ -27,3 +27,6 @@ class PyDialogsManager(ObjCBridgeProtocol):
     def showRowsDialogWithTitles(self, titles):
         index, cancelled = self.guiDelegate.showRowsDialogWithTitles_(args=[titles], withResult=True)
         return index, cancelled
+
+    def showDialogWithMessage(self, message):
+        self.guiDelegate.showDialogWithMessage_(args=[message])

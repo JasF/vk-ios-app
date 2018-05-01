@@ -12,7 +12,6 @@
 #import "vk-Swift.h"
 
 @interface PostsViewController () <ASTableDelegate, PostsService, WallPostNodeDelegate>
-@property (nonatomic) BOOL commentsPreloading;
 @end
 
 @implementation PostsViewController

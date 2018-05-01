@@ -53,6 +53,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     [_viewModel getVideoWithCommentsOffset:offset completion:^(Video *video, NSArray *comments) {
         if (!self.video) {
             self.video = video;
+            self.commentsParentItem = video;
         }
         if (completion) {
             completion(comments);

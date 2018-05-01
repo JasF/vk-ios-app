@@ -7,6 +7,7 @@ from caches.videosdatabase import VideosDatabase
 import threading
 from pymanagers.pydialogsmanager import PyDialogsManager
 from constants import g_CommentsCount
+from vk import users
 
 # https://vk.com/dev/wall.getComments
 class PyPostsViewModel(ObjCBridgeProtocol):
@@ -18,6 +19,9 @@ class PyPostsViewModel(ObjCBridgeProtocol):
 
     def likeObjectWithTypeownerIditemIdaccessKeylike(self, type, ownerId, itemId, accessKey, like):
         try:
+            if type == 'wall':
+                type = 'post'
+            
             api = vk.api()
             print('type: ' + str(type) + ' ownerId ' + str(ownerId) + ' itemId ' + str(itemId) + ' accessKey ' + str(accessKey) + ' like ' + str(like))
             if like == True:
@@ -28,7 +32,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
             def updateCache():
                 likesCount = response.get('likes')
                 if isinstance(likesCount, int):
-                    if type == 'post':
+                    if type == 'wall':
                         cache = PostsDatabase()
                         data = cache.getById(ownerId, itemId)
                         likes = data['likes']
@@ -107,7 +111,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         offset = count - (loaded + loadCount)
         comments = []
         try:
-            if type == 'post':
+            if type == 'wall':
                 comments = self.wallPostService.getComments(ownerId, postId, offset, loadCount)
             elif type == 'photo':
                 comments = self.detailPhotoService.getComments(ownerId, postId, offset, loadCount)
@@ -117,7 +121,33 @@ class PyPostsViewModel(ObjCBridgeProtocol):
             print('preloadCommentsWithTypeownerIdpostIdcountloaded exception: ' + str(e))
         #print( 'commens common preload ' + str(type) + ' ' + str(ownerId) + ' ' + str(postId) + ' ' + str(count) + ' ' + str(loaded) + ' loading: ' + str(loadCount) + ' offset: ' + str(offset))
         return comments
-            
+
+    def sendCommentWithTypeownerIdpostIdtext(self, type, ownerId, postId, text):
+        response = {}
+        try:
+            if type == 'wall':
+                response = self.wallPostService.sendComment(ownerId, postId, text, 0)
+            elif type == 'photo':
+                pass#response = self.detailPhotoService.getComments(ownerId, postId, offset, loadCount)
+            elif type == 'video':
+                pass#response = self.detailVideoService.getComments(ownerId, postId, offset, loadCount)
+        except Exception as e:
+            print('preloadCommentsWithTypeownerIdpostIdcountloaded exception: ' + str(e))
+        commentId = 0
+        try:
+            commentId = response['comment_id']
+        except:
+            pass
+        if commentId == 0:
+            dialogsManager = PyDialogsManager()
+            dialogsManager.showDialogWithMessage('error_send_comment')
+        else:
+            try:
+                response['user_info'] = users.getShortUserById(vk.userId())
+            except:
+                pass
+        return response
+    
     # ObjCBridgeProtocol
     def release(self):
         pass

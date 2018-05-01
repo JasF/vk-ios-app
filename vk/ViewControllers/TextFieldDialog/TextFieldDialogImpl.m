@@ -25,38 +25,46 @@
 
 #pragma mark - TextFieldDialog
 - (void)showTextFieldDialogWithMessage:(NSString *)message placeholder:(NSString *)placeholder {
+    [self showTextFieldDialogWithMessage:message placeholder:placeholder onlyMessage:NO];
+}
+
+- (void)showTextFieldDialogWithMessage:(NSString *)message placeholder:(NSString *)placeholder onlyMessage:(BOOL)onlyMessage {
     NSCParameterAssert(_delegate);
     dispatch_async(dispatch_get_main_queue(), ^{
         UIViewController *viewController = _screensManager.topViewController;
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@""
                                                                                  message:L(message)
                                                                           preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            textField.text = placeholder;
-        }];
+        if (!onlyMessage) {
+            [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                textField.text = placeholder;
+            }];
+        }
         @weakify(self);
         UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:L(@"ok")
                                                                 style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * _Nonnull action) {
                                                                   @strongify(self);
-                                                                  NSString *text = [[alertController textFields][0] text];
-                                                                  dispatch_async(dispatch_get_global_queue(0, DISPATCH_QUEUE_PRIORITY_DEFAULT), ^{
-                                                                      [self.delegate textFieldDialog:self doneWithText:text cancel:NO];
-                                                                  });
+                                                                  if (!onlyMessage) {
+                                                                      NSString *text = [[alertController textFields][0] text];
+                                                                      dispatch_async(dispatch_get_global_queue(0, DISPATCH_QUEUE_PRIORITY_DEFAULT), ^{
+                                                                          [self.delegate textFieldDialog:self doneWithText:text cancel:NO];
+                                                                      });
+                                                                  }
                                                               }];
-        
-        
-        UIAlertAction *noAction = [UIAlertAction actionWithTitle:L(@"cancel")
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                             @strongify(self);
-                                                             dispatch_async(dispatch_get_global_queue(0, DISPATCH_QUEUE_PRIORITY_DEFAULT), ^{
-                                                                 [self.delegate textFieldDialog:self doneWithText:nil cancel:YES];
-                                                             });
-                                                         }];
-        
         [alertController addAction:confirmAction];
-        [alertController addAction:noAction];
+        if (!onlyMessage) {
+            UIAlertAction *noAction = [UIAlertAction actionWithTitle:L(@"cancel")
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 @strongify(self);
+                                                                 dispatch_async(dispatch_get_global_queue(0, DISPATCH_QUEUE_PRIORITY_DEFAULT), ^{
+                                                                     [self.delegate textFieldDialog:self doneWithText:nil cancel:YES];
+                                                                 });
+                                                             }];
+            [alertController addAction:noAction];
+        }
+        
         [viewController presentViewController:alertController animated:YES completion:nil];
     });
 }

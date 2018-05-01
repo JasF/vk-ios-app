@@ -9,5 +9,5 @@
 #import "SectionsTableViewController.h"
 
 @interface CommentsViewController : SectionsTableViewController
-
+@property id commentsParentItem;
 @end

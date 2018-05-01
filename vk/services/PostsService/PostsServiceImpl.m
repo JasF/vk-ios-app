@@ -31,6 +31,14 @@
     return [_commentsService parseComments:comments];
 }
 
+- (User *)parseUserInfo:(NSDictionary *)userInfo {
+    if (![userInfo isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    User *user = [EKMapper objectFromExternalRepresentation:userInfo withMapping:[User objectMapping]];
+    return user;
+}
+
 - (void)consumer:(id<PostsServiceConsumer>)consumer likeActionWithItem:(id)item { 
     
 }

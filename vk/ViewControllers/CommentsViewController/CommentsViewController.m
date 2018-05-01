@@ -8,6 +8,7 @@
 
 #import "CommentsViewController.h"
 #import "_MXRMessengerInputToolbarContainerView.h"
+#import "Comment.h"
 
 @interface CommentsViewController ()
 @property (nonatomic, strong) NSNumber* calculatedOffsetFromInteractiveKeyboardDismissal;
@@ -52,6 +53,13 @@
     }
     
     self.toolbar = [MXRMessengerInputToolbar new];
+    
+    
+    MXRMessengerIconButtonNode* addPhotosBarButtonButtonNode = [MXRMessengerIconButtonNode buttonWithIcon:[[MXRMessengerPlusIconNode alloc] init] matchingToolbar:self.toolbar];
+    [addPhotosBarButtonButtonNode addTarget:self action:@selector(tapAddPhotos:) forControlEvents:ASControlNodeEventTouchUpInside];
+    self.toolbar.leftButtonsNode = addPhotosBarButtonButtonNode;
+    [self.toolbar.defaultSendButton addTarget:self action:@selector(tapSend:) forControlEvents:ASControlNodeEventTouchUpInside];
+    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     _toolbarContainerView = [[MXRMessengerInputToolbarContainerView alloc] initWithMessengerInputToolbar:self.toolbar constrainedSize:ASSizeRangeMake(CGSizeMake(screenWidth, 0), CGSizeMake(screenWidth, CGFLOAT_MAX))];
     _minimumBottomInset = self.toolbarContainerView.toolbarNode.calculatedSize.height;
@@ -65,6 +73,8 @@
     
     [self observeKeyboardChanges];
     [self observeAppStateChanges];
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -156,4 +166,57 @@
 #pragma mark - Toolbar
 - (BOOL)canBecomeFirstResponder { return YES; }
 - (UIView *)inputAccessoryView { return self.toolbarContainerView; }
+
+#pragma mark - Observers
+- (void)tapAddPhotos:(id)sender {
+    
+}
+
+- (void)tapSend:(id)sender {
+    NSCParameterAssert(_commentsParentItem);
+    if (!_commentsParentItem) {
+        return;
+    }
+    NSString* text = [self.toolbar clearText];
+    if (text.length == 0) {
+        return;
+    }
+    @weakify(self);
+    [self.postsViewModel sendCommentWithText:text
+                                        item:self.commentsParentItem
+                                  completion:^(NSInteger commentId, NSInteger ownerId, NSInteger postId, NSInteger reply_to_commentId, User *user) {
+                                      @strongify(self);
+                                      if (!commentId) {
+                                          return;
+                                      }
+                                      Comment *comment = [Comment new];
+                                      comment.id = commentId;
+                                      comment.from_id = user.id;
+                                      comment.date = [NSDate date].timeIntervalSince1970;
+                                      comment.text = text;
+                                      comment.user = user;
+                                      NSInteger section = [self.tableNode numberOfSections] - 1;
+                                      NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.objectsArray.count inSection:section];
+                                      self.commentsPreloading = YES;
+                                      [self.tableNode performBatchUpdates:^{
+                                          [self.tableNode insertRowsAtIndexPaths:@[newIndexPath]
+                                                                withRowAnimation:UITableViewRowAnimationFade];
+                                          [self.objectsArray addObject:comment];
+                                          [self numberOfCommentsDidUpdated:self.objectsArray.count];
+                                          [self performBatchAnimated:YES];
+                                      }
+                                                               completion:^(BOOL c) {
+                                                                   CGRect frame = self.tableNode.bounds;
+                                                                   UIEdgeInsets inset = self.tableNode.contentInset;
+                                                                   CGFloat height = frame.size.height - inset.top - inset.bottom;
+                                                                   CGSize contentSize = self.tableNode.view.contentSize;
+                                                                   CGFloat invisible = contentSize.height - height;
+                                                                   if (invisible > 0) {
+                                                                       [self.tableNode setContentOffset:CGPointMake(0, invisible)];
+                                                                   }
+                                                               }];
+                                      
+                                  }];
+}
+
 @end
