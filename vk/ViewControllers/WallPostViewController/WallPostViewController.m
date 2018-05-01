@@ -35,6 +35,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     self.dataSource = self;
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
+    
     if (self) {
         self.title = @"VK Post & Comments";
     }

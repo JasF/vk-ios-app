@@ -24,7 +24,7 @@ class PyWallViewModel(ObjCBridgeProtocol):
     def getUserInfo(self):
         if self.userId <0:
             results = self.wallService.getUserInfo()
-            print('getUserInfo result: ' + json.dumps(results, indent=4))
+            #print('getUserInfo result: ' + json.dumps(results, indent=4))
             return results
         elif self.userId > 0:
             results = self.wallService.getBigUserInfo()

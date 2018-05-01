@@ -484,6 +484,10 @@
 		C3987DDA209756B60047A30F /* CommentsPreloadNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD9209756B60047A30F /* CommentsPreloadNode.swift */; };
 		C3987DDC209756FE0047A30F /* CommentsPreloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DDB209756FE0047A30F /* CommentsPreloadModel.swift */; };
 		C3987DE020985AA80047A30F /* CommentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DDF20985AA80047A30F /* CommentsService.swift */; };
+		C3987DE62098710B0047A30F /* MXRMessengerInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987DE22098710B0047A30F /* MXRMessengerInputToolbar.m */; };
+		C3987DE72098710B0047A30F /* _MXRMessengerInputToolbarContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987DE32098710B0047A30F /* _MXRMessengerInputToolbarContainerView.m */; };
+		C3987DEA2098715B0047A30F /* MXRGrowingEditableTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987DE92098715B0047A30F /* MXRGrowingEditableTextNode.m */; };
+		C3987DED209871E50047A30F /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987DEC209871E50047A30F /* CommentsViewController.m */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
 		C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA65209369130071FA04 /* RowsDialogImpl.m */; };
@@ -1588,6 +1592,14 @@
 		C3987DDB209756FE0047A30F /* CommentsPreloadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsPreloadModel.swift; sourceTree = "<group>"; };
 		C3987DDE20984A830047A30F /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C3987DDF20985AA80047A30F /* CommentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsService.swift; sourceTree = "<group>"; };
+		C3987DE22098710B0047A30F /* MXRMessengerInputToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXRMessengerInputToolbar.m; sourceTree = "<group>"; };
+		C3987DE32098710B0047A30F /* _MXRMessengerInputToolbarContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MXRMessengerInputToolbarContainerView.m; sourceTree = "<group>"; };
+		C3987DE42098710B0047A30F /* MXRMessengerInputToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXRMessengerInputToolbar.h; sourceTree = "<group>"; };
+		C3987DE52098710B0047A30F /* _MXRMessengerInputToolbarContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MXRMessengerInputToolbarContainerView.h; sourceTree = "<group>"; };
+		C3987DE82098715B0047A30F /* MXRGrowingEditableTextNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXRGrowingEditableTextNode.h; sourceTree = "<group>"; };
+		C3987DE92098715B0047A30F /* MXRGrowingEditableTextNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXRGrowingEditableTextNode.m; sourceTree = "<group>"; };
+		C3987DEB209871E50047A30F /* CommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
+		C3987DEC209871E50047A30F /* CommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -2727,6 +2739,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3987DEE209871EB0047A30F /* CommentsViewController */,
 				C3FF542B2095AF0C007275D4 /* VideoPlayerViewController.swift */,
 				C398BA62209368820071FA04 /* RowsDialog */,
 				C398BA55209357340071FA04 /* TextFieldDialog */,
@@ -2925,6 +2938,7 @@
 		C32304C82080E57400CEC487 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C3987DE12098710B0047A30F /* InputView */,
 				C3B2251220860BD300599E04 /* DeallocSubscriber */,
 				C32304C92080E57400CEC487 /* BlurbNode.m */,
 				C32304CA2080E57400CEC487 /* HandlersFactory */,
@@ -4526,6 +4540,28 @@
 			path = constants;
 			sourceTree = "<group>";
 		};
+		C3987DE12098710B0047A30F /* InputView */ = {
+			isa = PBXGroup;
+			children = (
+				C3987DE32098710B0047A30F /* _MXRMessengerInputToolbarContainerView.m */,
+				C3987DE52098710B0047A30F /* _MXRMessengerInputToolbarContainerView.h */,
+				C3987DE22098710B0047A30F /* MXRMessengerInputToolbar.m */,
+				C3987DE42098710B0047A30F /* MXRMessengerInputToolbar.h */,
+				C3987DE82098715B0047A30F /* MXRGrowingEditableTextNode.h */,
+				C3987DE92098715B0047A30F /* MXRGrowingEditableTextNode.m */,
+			);
+			path = InputView;
+			sourceTree = "<group>";
+		};
+		C3987DEE209871EB0047A30F /* CommentsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3987DEB209871E50047A30F /* CommentsViewController.h */,
+				C3987DEC209871E50047A30F /* CommentsViewController.m */,
+			);
+			path = CommentsViewController;
+			sourceTree = "<group>";
+		};
 		C398BA55209357340071FA04 /* TextFieldDialog */ = {
 			isa = PBXGroup;
 			children = (
@@ -5398,6 +5434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3987DEA2098715B0047A30F /* MXRGrowingEditableTextNode.m in Sources */,
 				C323092C2081AEB100CEC487 /* TyphoonComponentFactory.m in Sources */,
 				C32305BE2080E57500CEC487 /* EXTConcreteProtocol.m in Sources */,
 				C32262BA209092DA0054789B /* VideoNode.m in Sources */,
@@ -5488,11 +5525,14 @@
 				C313DD59208CA7950005E29B /* WriteCommentNode.m in Sources */,
 				C32308FB2081AEB100CEC487 /* TyphoonInjectionByComponentFactory.m in Sources */,
 				C32262A720908BB00054789B /* VideosViewModelImpl.m in Sources */,
+				C3987DE72098710B0047A30F /* _MXRMessengerInputToolbarContainerView.m in Sources */,
+				C3987DE62098710B0047A30F /* MXRMessengerInputToolbar.m in Sources */,
 				C32305C52080E57500CEC487 /* EXTNil.m in Sources */,
 				C32309042081AEB100CEC487 /* TyphoonInjectionByCollection.m in Sources */,
 				C350782B2094AC9A000C8FB3 /* LastSeen.swift in Sources */,
 				C322629C209082E10054789B /* BookmarksViewModelImpl.m in Sources */,
 				C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */,
+				C3987DED209871E50047A30F /* CommentsViewController.m in Sources */,
 				C32309162081AEB100CEC487 /* NSInvocation+TCFWrapValues.m in Sources */,
 				C32306132080E57500CEC487 /* NodeFactoryImpl.m in Sources */,
 				C343756E208F81DB004EF670 /* AnswersViewModelImpl.m in Sources */,

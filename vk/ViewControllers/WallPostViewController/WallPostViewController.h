@@ -6,10 +6,10 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "SectionsTableViewController.h"
+#import "CommentsViewController.h"
 #import "WallPostViewModel.h"
 
-@interface WallPostViewController : SectionsTableViewController
+@interface WallPostViewController : CommentsViewController
 - (instancetype)initWithViewModel:(id<WallPostViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end
