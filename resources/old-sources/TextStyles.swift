@@ -21,6 +21,16 @@ class TextStyles {
         return [ NSAttributedStringKey.foregroundColor: UIColor.blue,
                  NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15) ]
     }
+    static public func createPostStyle() -> [NSAttributedStringKey : Any]! {
+        return [ NSAttributedStringKey.foregroundColor: UIColor.black,
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 25) ]
+    }
+    static public func createPostTextColor() -> UIColor { return UIColor.black }
+    static public func createPostFont() -> UIFont { return UIFont.systemFont(ofSize: 25) }
+    static public func createPostPlaceholderStyle() -> [NSAttributedStringKey : Any]! {
+        return [ NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.4),
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 25) ]
+    }
     static public func usernameGradientStyle() -> [NSAttributedStringKey : Any]! {
         return [ NSAttributedStringKey.foregroundColor: UIColor.white,
                  NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15) ]

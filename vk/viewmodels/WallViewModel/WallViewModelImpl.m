@@ -132,6 +132,12 @@
     });
 }
 
+- (void)addPostTapped {
+    dispatch_python(^{
+        [_handler addPostTapped];
+    });
+}
+
 #pragma mark - PyWallViewModelDelegate
 
 

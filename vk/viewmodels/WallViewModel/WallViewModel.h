@@ -25,5 +25,6 @@ typedef void (^CountUpdatedBlock)(NSNumber *);
 - (void)groupsTapped;
 - (void)messageButtonTapped;
 - (void)friendButtonTapped:(void(^)(NSInteger resultCode))callback;
+- (void)addPostTapped;
 
 @end

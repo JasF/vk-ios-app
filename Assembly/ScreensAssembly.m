@@ -18,7 +18,6 @@
 #import "ServicesAssembly.h"
 #import "ViewModelsAssembly.h"
 #import "FriendsViewController.h"
-#import "vk-Swift.h"
 #import "WallPostViewController.h"
 #import "VKApplicationAssembly.h"
 #import "PhotoAlbumsViewController.h"
@@ -36,6 +35,8 @@
 #import "TextFieldDialogImpl.h"
 #import "DialogsManagerImpl.h"
 #import "RowsDialogImpl.h"
+#import "CreatePostViewController.h"
+#import "vk-Swift.h"
 
 @implementation ScreensAssembly
 
@@ -263,6 +264,14 @@
     return [TyphoonDefinition withClass:[VideoPlayerViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self.viewModelsAssembly videoPlayerViewModel:video]];
+        }];
+    }];
+}
+
+- (UIViewController *)createPostViewController {
+    return [TyphoonDefinition withClass:[CreatePostViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly createPostViewModel]];
         }];
     }];
 }

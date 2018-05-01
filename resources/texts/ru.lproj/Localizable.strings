@@ -45,4 +45,6 @@
 "preload_comments_second"=" из ";
 "preload_comments_third"=" комментариев";
 "error_send_comment"="Ошибка отправки комментария";
-
+"close"="Закрыть";
+"post_send"="Отправить";
+"create_post_what_is_new"="Что у вас нового";

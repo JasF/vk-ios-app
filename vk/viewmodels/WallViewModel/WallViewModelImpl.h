@@ -24,6 +24,7 @@
 - (void)groupsTapped;
 - (void)messageButtonTapped;
 - (NSNumber *)friendButtonTapped:(NSNumber *)friend_status;
+- (void)addPostTapped;
 @end
 
 @interface WallViewModelImpl : NSObject <WallViewModel>

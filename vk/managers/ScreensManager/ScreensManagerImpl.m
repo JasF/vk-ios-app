@@ -123,6 +123,14 @@
     });
 }
 
+- (void)presentAddPostViewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIViewController *viewController =(UIViewController *)[_screensAssembly createPostViewController];
+        BaseNavigationController *controller = [[BaseNavigationController alloc] initWithRootViewController:viewController];
+        [self.topViewController presentViewController:controller animated:YES completion:nil];
+    });
+}
+
 - (void)showDialogViewController:(NSNumber *)userId {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];

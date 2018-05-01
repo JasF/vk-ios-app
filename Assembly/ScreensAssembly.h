@@ -48,6 +48,7 @@
 - (UIViewController *)settingsViewController;
 - (UIViewController *)detailVideoViewController:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
 - (UIViewController *)videoPlayerViewController:(Video *)video;
+- (UIViewController *)createPostViewController;
 - (id<TextFieldDialog>)textFieldDialog;
 - (id<DialogsManager>)dialogsManager;
 - (UIWindow *)window;

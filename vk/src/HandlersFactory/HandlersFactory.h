@@ -30,6 +30,7 @@
 @protocol PyDetailVideoViewModel;
 @protocol PyPostsViewModel;
 @protocol PyDialogsManager;
+@protocol PyCreatePostViewModel;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
@@ -55,4 +56,5 @@
 - (id<PyDetailVideoViewModel>)detailVideoViewModelHandlerWithOwnerId:(NSInteger)ownerId videoId:(NSInteger)videoId;
 - (id<PyPostsViewModel>)postsViewModelHandlerWithDelegate:(id)delegate;
 - (id<PyDialogsManager>)dialogManagerHandlerWithDelegate:(id)delegate;
+- (id<PyCreatePostViewModel>)createPostViewModelHandler;
 @end

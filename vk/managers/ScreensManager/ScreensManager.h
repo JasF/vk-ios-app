@@ -34,5 +34,6 @@
 - (void)showSettingsViewController;
 - (void)showDetailVideoViewControllerWithOwnerId:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
 - (void)showVideoPlayerViewControllerWithVideo:(Video *)video;
+- (void)presentAddPostViewController;
 - (UIViewController *)topViewController;
 @end

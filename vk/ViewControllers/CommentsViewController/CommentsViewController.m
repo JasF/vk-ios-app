@@ -57,7 +57,7 @@
     
     MXRMessengerIconButtonNode* addPhotosBarButtonButtonNode = [MXRMessengerIconButtonNode buttonWithIcon:[[MXRMessengerPlusIconNode alloc] init] matchingToolbar:self.toolbar];
     [addPhotosBarButtonButtonNode addTarget:self action:@selector(tapAddPhotos:) forControlEvents:ASControlNodeEventTouchUpInside];
-    self.toolbar.leftButtonsNode = addPhotosBarButtonButtonNode;
+    //self.toolbar.leftButtonsNode = addPhotosBarButtonButtonNode;
     [self.toolbar.defaultSendButton addTarget:self action:@selector(tapSend:) forControlEvents:ASControlNodeEventTouchUpInside];
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;

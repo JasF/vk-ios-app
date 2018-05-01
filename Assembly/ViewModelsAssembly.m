@@ -263,4 +263,13 @@
             }];
 }
 
+- (id<CreatePostViewModel>)createPostViewModel {
+    return [TyphoonDefinition withClass:[CreatePostViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                }];
+            }];
+}
+
 @end

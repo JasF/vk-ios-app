@@ -60,6 +60,9 @@ class PyWallViewModel(ObjCBridgeProtocol):
     def messageButtonTapped(self):
         managers.shared().screensManager().showDialogViewController_(args=[self.userId])
     
+    def addPostTapped(self):
+        managers.shared().screensManager().presentAddPostViewController()
+    
     def friendButtonTapped(self, friend_status):
         api = vk.api()
         if friend_status == 1 or friend_status == 3:

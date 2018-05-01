@@ -49,11 +49,31 @@
     [_viewModel menuTapped];
 }
 
+- (void)addPostTapped:(id)sender {
+    [_viewModel addPostTapped];
+}
+
+- (void)addRightIconIfNeeded {
+    if (!self.navigationItem.rightBarButtonItem && self.viewModel.currentUser.currentUser) {
+        UIButton *button = [UIButton new];
+        [button addTarget:self action:@selector(addPostTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [button setImage:[UIImage imageNamed:@"add_post"] forState:UIControlStateNormal];
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+        self.navigationItem.rightBarButtonItem = backButton;
+        [button sizeToFit];
+    }
+}
+
 #pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
+    @weakify(self);
     [_viewModel getWallPostsWithOffset:offset
                             completion:^(NSArray *objects) {
+                                @strongify(self);
+                                if (!offset) {
+                                    [self addRightIconIfNeeded];
+                                }
                                 if (completion) {
                                     completion(objects);
                                 }

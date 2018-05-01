@@ -158,4 +158,8 @@
                                                 delegate:delegate];
 }
 
+- (id<PyCreatePostViewModel>)createPostViewModelHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyCreatePostViewModel)];
+}
+
 @end

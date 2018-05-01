@@ -488,6 +488,9 @@
 		C3987DE72098710B0047A30F /* _MXRMessengerInputToolbarContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987DE32098710B0047A30F /* _MXRMessengerInputToolbarContainerView.m */; };
 		C3987DEA2098715B0047A30F /* MXRGrowingEditableTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987DE92098715B0047A30F /* MXRGrowingEditableTextNode.m */; };
 		C3987DED209871E50047A30F /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987DEC209871E50047A30F /* CommentsViewController.m */; };
+		C3987DF42098B37D0047A30F /* CreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DF32098B37D0047A30F /* CreatePostViewModel.swift */; };
+		C3987DFE2098B9390047A30F /* CreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987DFD2098B9390047A30F /* CreatePostViewController.m */; };
+		C3987E002098BD770047A30F /* CreatePostNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DFF2098BD770047A30F /* CreatePostNode.swift */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
 		C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA65209369130071FA04 /* RowsDialogImpl.m */; };
@@ -1601,6 +1604,10 @@
 		C3987DEB209871E50047A30F /* CommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
 		C3987DEC209871E50047A30F /* CommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		C3987DEF209897A60047A30F /* commentsservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = commentsservice.py; sourceTree = "<group>"; };
+		C3987DF32098B37D0047A30F /* CreatePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewModel.swift; sourceTree = "<group>"; };
+		C3987DFC2098B9390047A30F /* CreatePostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatePostViewController.h; sourceTree = "<group>"; };
+		C3987DFD2098B9390047A30F /* CreatePostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatePostViewController.m; sourceTree = "<group>"; };
+		C3987DFF2098BD770047A30F /* CreatePostNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostNode.swift; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -2514,6 +2521,7 @@
 				C3FF542F20961326007275D4 /* NameTimeNode.swift */,
 				C3987DD7209733890047A30F /* AvatarNameDateNode.swift */,
 				C3987DD9209756B60047A30F /* CommentsPreloadNode.swift */,
+				C3987DFF2098BD770047A30F /* CreatePostNode.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -2740,6 +2748,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3987DFB2098B9280047A30F /* CreatePostViewController */,
 				C3987DEE209871EB0047A30F /* CommentsViewController */,
 				C3FF542B2095AF0C007275D4 /* VideoPlayerViewController.swift */,
 				C398BA62209368820071FA04 /* RowsDialog */,
@@ -4564,6 +4573,15 @@
 			path = CommentsViewController;
 			sourceTree = "<group>";
 		};
+		C3987DFB2098B9280047A30F /* CreatePostViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3987DFC2098B9390047A30F /* CreatePostViewController.h */,
+				C3987DFD2098B9390047A30F /* CreatePostViewController.m */,
+			);
+			path = CreatePostViewController;
+			sourceTree = "<group>";
+		};
 		C398BA55209357340071FA04 /* TextFieldDialog */ = {
 			isa = PBXGroup;
 			children = (
@@ -4854,6 +4872,7 @@
 				C3B2251720861F3A00599E04 /* WallViewModel */,
 				C3B2250D2085D7BF00599E04 /* ChatListViewModel */,
 				C3B225022085BA4A00599E04 /* DialogScreenViewModel */,
+				C3987DF32098B37D0047A30F /* CreatePostViewModel.swift */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -5675,6 +5694,7 @@
 				C32308D42081AEB100CEC487 /* NSObject+DeallocNotification.m in Sources */,
 				C313DD6D208CBA460005E29B /* WallPostServiceImpl.m in Sources */,
 				C323060E2080E57500CEC487 /* MenuViewController.m in Sources */,
+				C3987E002098BD770047A30F /* CreatePostNode.swift in Sources */,
 				C32306092080E57500CEC487 /* EmptyViewController.m in Sources */,
 				C3226297209082890054789B /* BookmarksServiceImpl.m in Sources */,
 				C32308C22081AEB100CEC487 /* TyphoonDefinition+Config.m in Sources */,
@@ -5700,6 +5720,7 @@
 				C32308E42081AEB100CEC487 /* NSLayoutConstraint+TyphoonOutletTransfer.m in Sources */,
 				C32305D52080E57500CEC487 /* ScreensAssembly.m in Sources */,
 				C350782920949C46000C8FB3 /* WallUserImageNode.swift in Sources */,
+				C3987DFE2098B9390047A30F /* CreatePostViewController.m in Sources */,
 				C32306212080E57500CEC487 /* RunLoop.m in Sources */,
 				C32309212081AEB100CEC487 /* TyphoonCallStack.m in Sources */,
 				C322627D20905E930054789B /* AnswerNode.m in Sources */,
@@ -5719,6 +5740,7 @@
 				C32309102081AEB100CEC487 /* TyphoonDefinitionRegisterer.m in Sources */,
 				C32308CF2081AEB100CEC487 /* TyphoonSelector.m in Sources */,
 				C32262DC2090ADF10054789B /* SettingsViewController.m in Sources */,
+				C3987DF42098B37D0047A30F /* CreatePostViewModel.swift in Sources */,
 				C3137726208E1FF400F568EA /* PhotoAlbumsViewModelImpl.m in Sources */,
 				C3F170D22090549300C33F2C /* Answer.m in Sources */,
 			);
