@@ -95,4 +95,10 @@ ASCollectionDelegate, ASCollectionDataSource>
     }
     return _commentsPreloadModel;
 }
+
+#pragma mark - PostsViewController
+- (void)numberOfCommentsDidUpdated:(NSInteger)numberOfComments {
+   
+}
+
 @end

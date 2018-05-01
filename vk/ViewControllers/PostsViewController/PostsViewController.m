@@ -75,6 +75,7 @@
                 }
                 [self.tableNode insertRowsAtIndexPaths:indexPathes withRowAnimation:UITableViewRowAnimationFade];
                 [self.objectsArray insertObjects:comments atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, comments.count)]];
+                [self numberOfCommentsDidUpdated:self.objectsArray.count];
                 [self performBatchAnimated:YES];
             }
                                      completion:^(BOOL c) {
@@ -82,6 +83,10 @@
                                      }];
         }];
     }
+}
+
+- (void)numberOfCommentsDidUpdated:(NSInteger)numberOfComments {
+    
 }
 
 #pragma mark - WallPostNodeDelegate

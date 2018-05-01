@@ -17,6 +17,7 @@ import NMessenger
         super.init()
         set((model?.preload)!, remaining: (model?.remaining)!)
         self.addSubnode(textNode)
+        model?.cellNode = self
     }
     
     public func set(_ preload: Int, remaining: Int) {
