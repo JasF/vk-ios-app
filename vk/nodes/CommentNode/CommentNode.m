@@ -30,7 +30,6 @@
         
         _textNode = [[ASTextNode alloc] init];
         _textNode.attributedText = [[NSAttributedString alloc] initWithString:comment.text attributes:[TextStyles titleStyle]];
-        _textNode.maximumNumberOfLines = 1;
         _textNode.truncationMode = NSLineBreakByTruncatingTail;
         [self addSubnode:_textNode];
         
@@ -59,6 +58,9 @@
     ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
     spacer.style.flexGrow = 1.0;
     
+    _usernameNode.style.flexShrink = 1.f;
+    _textNode.style.flexShrink = 1.f;
+    _textNode.style.flexGrow = 1.f;
     ASStackLayoutSpec *topLineStack =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
@@ -73,8 +75,9 @@
      stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
      spacing:5.0
      justifyContent:ASStackLayoutJustifyContentStart
-     alignItems:ASStackLayoutAlignItemsStart
+     alignItems:ASStackLayoutAlignItemsStretch
      children:@[topLineStack, _textNode]];
+    nameVerticalStack.style.flexShrink = 1.f;
     
     ASStackLayoutSpec *avatarContentSpec =
     [ASStackLayoutSpec
@@ -83,6 +86,7 @@
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsStart
      children:@[_avatarNode, nameVerticalStack]];
+    avatarContentSpec.style.flexShrink = 1.f;
     
     ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
     spec.style.flexShrink = 1.0f;

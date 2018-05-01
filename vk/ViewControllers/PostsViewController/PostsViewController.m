@@ -66,8 +66,20 @@
         @weakify(self);
         [_postsViewModel tappedOnPreloadCommentsWithModel:node.model completion:^(NSArray *comments) {
             @strongify(self);
-            NSLog(@"!");
-            self.commentsPreloading = NO;
+            
+            [self.tableNode performBatchUpdates:^{
+                NSInteger section = [self.tableNode numberOfSections] - 1;
+                NSMutableArray *indexPathes = [NSMutableArray new];
+                for (int i=0;i<comments.count;++i) {
+                    [indexPathes addObject:[NSIndexPath indexPathForRow:i inSection:section]];
+                }
+                [self.tableNode insertRowsAtIndexPaths:indexPathes withRowAnimation:UITableViewRowAnimationFade];
+                [self.objectsArray insertObjects:comments atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, comments.count)]];
+                [self performBatchAnimated:YES];
+            }
+                                     completion:^(BOOL c) {
+                                         self.commentsPreloading = NO;
+                                     }];
         }];
     }
 }

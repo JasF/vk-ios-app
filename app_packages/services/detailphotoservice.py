@@ -6,8 +6,6 @@ from vk import users as users
 from caches.photosdatabase import PhotosDatabase
 from caches.commentsdatabase import CommentsDatabase
 
-g_count = 40
-
 class DetailPhotoService:
     def __init__(self, usersDecorator):
         self.usersDecorator = usersDecorator
@@ -24,11 +22,11 @@ class DetailPhotoService:
             print('DetailPhotoService getPhoto exception: ' + str(e))
         return items
 
-    def getComments(self, ownerId, photoId, offset):
+    def getComments(self, ownerId, photoId, offset, count):
         api = vk.api()
         result = None
         try:
-            result = api.photos.getComments(owner_id=ownerId, photo_id=photoId, offset=offset, count=g_count)
+            result = api.photos.getComments(owner_id=ownerId, photo_id=photoId, offset=offset, count=count)
             l = result['items']
             '''
             cache = CommentsDatabase()

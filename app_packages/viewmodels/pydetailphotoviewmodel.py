@@ -3,6 +3,7 @@ from services.wallservice import WallService
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 import vk, json
 from vk import users
+from constants import g_CommentsCount
 
 # https://vk.com/dev/wall.getComments
 class PyDetailPhotoViewModel():
@@ -22,7 +23,7 @@ class PyDetailPhotoViewModel():
             self.userInfo = users.getShortUserById(self.ownerId)
             
             self.photoData = self.detailPhotoService.getPhoto(self.ownerId, self.photoId)
-            comments = self.detailPhotoService.getComments(self.ownerId, self.photoId, offset)
+            comments = self.detailPhotoService.getComments(self.ownerId, self.photoId, offset, g_CommentsCount)
             results['comments'] = comments
         if offset == 0:
             self.photoData['owner'] = self.userInfo

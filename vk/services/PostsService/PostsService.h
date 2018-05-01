@@ -20,4 +20,7 @@
 @protocol PostsService <NSObject>
 - (void)consumer:(id<PostsServiceConsumer>)consumer likeActionWithItem:(id)item;
 - (void)consumer:(id<PostsServiceConsumer>)consumer repostActionWithItem:(id)item;
+
+@optional
+- (NSArray *)parseComments:(NSDictionary *)data;
 @end

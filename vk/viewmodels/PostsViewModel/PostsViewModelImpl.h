@@ -8,6 +8,7 @@
 
 #import "PostsViewModel.h"
 #import "HandlersFactory.h"
+#import "PostsService.h"
 
 @protocol PyPostsViewModel <NSObject>
 - (NSDictionary *)likeObjectWithType:(NSString *)type ownerId:(NSNumber *)ownerId itemId:(NSNumber *)itemId accessKey:(NSString *)accessKey like:(NSNumber *)like;
@@ -22,5 +23,6 @@
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>
-- (id)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory;
+- (id)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
+                 postsService:(id<PostsService>)postsService;
 @end

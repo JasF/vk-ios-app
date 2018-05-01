@@ -2,8 +2,8 @@ from objc import managers
 from services.wallservice import WallService
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 import vk, json
+from constants import g_CommentsCount
 
-g_count = 40
 kOffsetForPreloadLatestComments = -1
 # https://vk.com/dev/wall.getComments
 class PyWallPostViewModel():
@@ -35,7 +35,7 @@ class PyWallPostViewModel():
             
             # подгружаем только свежие комментарии
             
-        comments = self.wallPostService.getComments(self.ownerId, self.postId, commentsOffset)
+        comments = self.wallPostService.getComments(self.ownerId, self.postId, commentsOffset, g_CommentsCount)
         results['comments'] = comments
         if offset == kOffsetForPreloadLatestComments:
             results['postData'] = self.postData

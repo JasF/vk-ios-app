@@ -15,15 +15,18 @@
 
 @interface PostsViewModelImpl () <PostsViewModel>
 @property id<PyPostsViewModel> handler;
+@property id<PostsService> postsService;
 @end
 
 @implementation PostsViewModelImpl
 
 #pragma mark - Initialization
-- (id)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory {
+- (id)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
+                 postsService:(id<PostsService>)postsService {
     NSCParameterAssert(handlersFactory);
     if (self = [super init]) {
         _handler = [handlersFactory postsViewModelHandlerWithDelegate:self];
+        _postsService = postsService;
     }
     return self;
 }
@@ -188,11 +191,17 @@
             return;
         }
         
-        NSDictionary *comments = [_handler preloadCommentsWithType:type
-                                                           ownerId:@(ownerId)
-                                                            postId:@(postId)
-                                                             count:@(count)
-                                                            loaded:@(model.loaded)];
+        NSDictionary *commentsData = [_handler preloadCommentsWithType:type
+                                                               ownerId:@(ownerId)
+                                                                postId:@(postId)
+                                                                 count:@(count)
+                                                                loaded:@(model.loaded)];
+        NSArray *comments = [_postsService parseComments:commentsData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(comments);
+            }
+        });
     });
 }
 

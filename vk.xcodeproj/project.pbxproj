@@ -1585,6 +1585,7 @@
 		C3987DD7209733890047A30F /* AvatarNameDateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarNameDateNode.swift; sourceTree = "<group>"; };
 		C3987DD9209756B60047A30F /* CommentsPreloadNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsPreloadNode.swift; sourceTree = "<group>"; };
 		C3987DDB209756FE0047A30F /* CommentsPreloadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsPreloadModel.swift; sourceTree = "<group>"; };
+		C3987DDE20984A830047A30F /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -2993,6 +2994,7 @@
 		C32304E02080E57400CEC487 /* app_packages */ = {
 			isa = PBXGroup;
 			children = (
+				C3987DDD20984A710047A30F /* constants */,
 				C3036C1E208DF7FC005F086E /* pymanagers */,
 				C3A943FA2084B89E0033355E /* viewmodels */,
 				C32305B22080E57500CEC487 /* services */,
@@ -4511,6 +4513,14 @@
 				C37C0BFB2086F8140086A875 /* AvatarNode.m */,
 			);
 			path = AvatarNode;
+			sourceTree = "<group>";
+		};
+		C3987DDD20984A710047A30F /* constants */ = {
+			isa = PBXGroup;
+			children = (
+				C3987DDE20984A830047A30F /* __init__.py */,
+			);
+			path = constants;
 			sourceTree = "<group>";
 		};
 		C398BA55209357340071FA04 /* TextFieldDialog */ = {

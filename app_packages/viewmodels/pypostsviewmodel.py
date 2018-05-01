@@ -6,6 +6,7 @@ from caches.postsdatabase import PostsDatabase
 from caches.videosdatabase import VideosDatabase
 import threading
 from pymanagers.pydialogsmanager import PyDialogsManager
+from constants import g_CommentsCount
 
 # https://vk.com/dev/wall.getComments
 class PyPostsViewModel(ObjCBridgeProtocol):
@@ -99,8 +100,23 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().showWallViewController_push_(args=[userId, True])
 
     def preloadCommentsWithTypeownerIdpostIdcountloaded(self, type, ownerId, postId, count, loaded):
-        print( 'commens common preload ' + str(type) + ' ' + str(ownerId) + ' ' + str(postId) + ' ' + str(count) + ' ' + str(loaded))
-        pass
+        loadCount = count-loaded
+        if loadCount < 0:
+            return {}
+        loadCount = min(loadCount, g_CommentsCount)
+        offset = count - (loaded + loadCount)
+        comments = []
+        try:
+            if type == 'post':
+                comments = self.wallPostService.getComments(ownerId, postId, offset, loadCount)
+            elif type == 'photo':
+                comments = self.detailPhotoService.getComments(ownerId, postId, offset, loadCount)
+            elif type == 'video':
+                comments = self.detailVideoService.getComments(ownerId, postId, offset, loadCount)
+        except Exception as e:
+            print('preloadCommentsWithTypeownerIdpostIdcountloaded exception: ' + str(e))
+        print( 'commens common preload ' + str(type) + ' ' + str(ownerId) + ' ' + str(postId) + ' ' + str(count) + ' ' + str(loaded) + ' loading: ' + str(loadCount) + ' offset: ' + str(offset))
+        return {'comments': comments}
     # ObjCBridgeProtocol
     def release(self):
         pass

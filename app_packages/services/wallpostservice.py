@@ -6,7 +6,6 @@ from vk import users as users
 from caches.postsdatabase import PostsDatabase
 from caches.commentsdatabase import CommentsDatabase
 
-g_count = 40
 
 class WallPostService:
     def __init__(self, usersDecorator):
@@ -37,11 +36,11 @@ class WallPostService:
         
         return result
 
-    def getComments(self, ownerId, postId, offset):
+    def getComments(self, ownerId, postId, offset, count):
         api = vk.api()
         result = None
         try:
-            result = api.wall.getComments(owner_id=ownerId, post_id=postId, offset=offset, count=g_count)
+            result = api.wall.getComments(owner_id=ownerId, post_id=postId, offset=offset, count=count)
             l = result['items']
             cache = CommentsDatabase()
             cache.update(l)

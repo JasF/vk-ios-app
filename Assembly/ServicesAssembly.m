@@ -130,9 +130,7 @@
 }
 
 - (id<PostsService>)postsService {
-    return [TyphoonDefinition withClass:[PostsServiceImpl class] configuration:^(TyphoonDefinition *definition) {
-        definition.scope = TyphoonScopeSingleton;
-    }];
+    return [TyphoonDefinition withClass:[PostsServiceImpl class]];
 }
 
 @end

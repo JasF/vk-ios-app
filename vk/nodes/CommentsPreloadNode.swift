@@ -20,11 +20,11 @@ import NMessenger
     }
     
     public func set(_ preload: Int, remaining: Int) {
-        textNode.attributedText = NSAttributedString.init(string: "preload_\(preload)_from_\(remaining)_comments".localized, attributes: TextStyles.titleStyle())
+        textNode.attributedText = NSAttributedString.init(string: "\("preload_comments_first".localized)\(preload)\("preload_comments_second".localized)\(remaining)\("preload_comments_third".localized)".localized, attributes: TextStyles.buttonStyle())
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let spec = ASStackLayoutSpec.init(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .center, children: [textNode])
-        return spec
+        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(kMargin*2, kMargin, kMargin*2, kMargin), child: spec)
     }
 }
