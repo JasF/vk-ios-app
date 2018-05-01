@@ -9,7 +9,6 @@ from pymanagers.pydialogsmanager import PyDialogsManager
 from constants import g_CommentsCount
 from vk import users
 
-# https://vk.com/dev/wall.getComments
 class PyPostsViewModel(ObjCBridgeProtocol):
     def __init__(self, wallPostService, detailPhotoService, detailVideoService):
         self.wallPostService = wallPostService

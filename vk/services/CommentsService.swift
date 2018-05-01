@@ -21,7 +21,8 @@ import EasyMapping
         if !data.isKind(of: NSDictionary.self) {
             return NSDictionary.init()
         }
-        let profiles = data["profiles"] as? NSArray
+        guard let profiles = data["profiles"] as? NSArray else { return NSDictionary.init() }
+        
         let results = EKMapper.arrayOfObjects(fromExternalRepresentation: profiles as! [Any], with: User.objectMapping())! as? [User]
         var users = [Int: NSObject]()
         guard let array = results else { return users as NSDictionary }

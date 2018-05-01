@@ -5,7 +5,6 @@ import vk, json
 from vk import users
 from constants import g_CommentsCount
 
-# https://vk.com/dev/wall.getComments
 class PyDetailPhotoViewModel():
     def __init__(self, detailPhotoService, ownerId, albumId, photoId):
         self.detailPhotoService = detailPhotoService

@@ -5,7 +5,6 @@ import vk, json
 from vk import users
 from constants import g_CommentsCount
 
-# https://vk.com/dev/wall.getComments
 class PyDetailVideoViewModel():
     def __init__(self, detailVideoService, ownerId, videoId):
         self.detailVideoService = detailVideoService

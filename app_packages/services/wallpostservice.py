@@ -6,10 +6,10 @@ from vk import users as users
 from caches.postsdatabase import PostsDatabase
 from caches.commentsdatabase import CommentsDatabase
 
-
 class WallPostService:
-    def __init__(self, usersDecorator):
+    def __init__(self, usersDecorator, commentsService):
         self.usersDecorator = usersDecorator
+        self.commentsService = commentsService
         pass
 
     def getPostById(self, ownerId, postId):
@@ -37,18 +37,7 @@ class WallPostService:
         return result
 
     def getComments(self, ownerId, postId, offset, count):
-        api = vk.api()
-        result = None
-        try:
-            result = api.wall.getComments(owner_id=ownerId, post_id=postId, offset=offset, count=count, need_likes=1, extended=1)
-            l = result['items']
-            #print('wall.getComments : ' + json.dumps(result, indent=4))
-            cache = CommentsDatabase()
-            cache.update(l)
-            cache.close()
-        
-        except Exception as e:
-            print('WallPost: get comments exception: ' + str(e))
+        result = self.commentsService.getWallComments(ownerId, postId, offset, count)
         return result
 
     def sendComment(self, ownerId, postId, messsage, reply_to_comment=0):

@@ -5,7 +5,6 @@ import vk, json
 from constants import g_CommentsCount
 
 kOffsetForPreloadLatestComments = -1
-# https://vk.com/dev/wall.getComments
 class PyWallPostViewModel():
     def __init__(self, wallPostService, ownerId, postId):
         self.wallPostService = wallPostService

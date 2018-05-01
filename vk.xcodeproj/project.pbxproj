@@ -1600,6 +1600,7 @@
 		C3987DE92098715B0047A30F /* MXRGrowingEditableTextNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXRGrowingEditableTextNode.m; sourceTree = "<group>"; };
 		C3987DEB209871E50047A30F /* CommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
 		C3987DEC209871E50047A30F /* CommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
+		C3987DEF209897A60047A30F /* commentsservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = commentsservice.py; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -3427,6 +3428,7 @@
 				C32262CA2090A56D0054789B /* documentsservice.py */,
 				C32263092090D1FF0054789B /* detailphotoservice.py */,
 				C3D487432091A561007EC440 /* detailvideoservice.py */,
+				C3987DEF209897A60047A30F /* commentsservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";

@@ -7,8 +7,9 @@ from caches.videosdatabase import VideosDatabase
 from caches.commentsdatabase import CommentsDatabase
 
 class DetailVideoService:
-    def __init__(self, usersDecorator):
+    def __init__(self, usersDecorator, commentsService):
         self.usersDecorator = usersDecorator
+        self.commentsService = commentsService
         pass
     
     def getVideo(self, ownerId, videoId):
@@ -24,16 +25,5 @@ class DetailVideoService:
         return items
     
     def getComments(self, ownerId, videoId, offset, count):
-        api = vk.api()
-        result = None
-        try:
-            result = api.video.getComments(owner_id=ownerId, video_id=videoId, offset=offset, count=count)
-            l = result['items']
-            '''
-                cache = CommentsDatabase()
-                cache.update(l)
-                cache.close()
-                '''
-        except Exception as e:
-            print('DetailVideo: get comments exception: ' + str(e))
+        result = self.commentsService.getVideoComments(ownerId, videoId, offset, count)
         return result

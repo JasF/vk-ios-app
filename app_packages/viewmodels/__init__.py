@@ -37,6 +37,7 @@ from services.videosservice import VideosService
 from services.documentsservice import DocumentsService
 from services.detailphotoservice import DetailPhotoService
 from services.detailvideoservice import DetailVideoService
+from services.commentsservice import CommentsService
 
 Subscriber().setClassAllocatorWithDelegate( PyChatListViewModel, lambda delegateId: PyChatListViewModel(delegateId, MessagesService(), ChatListService()) )
 Subscriber().setClassAllocatorWithDelegate( PyDialogScreenViewModel, lambda delegateId, parameters: PyDialogScreenViewModel(delegateId, parameters, MessagesService(), DialogService()) )
@@ -46,9 +47,9 @@ Subscriber().setClassAllocator( PyMenuViewModel, lambda: PyMenuViewModel() )
 Subscriber().setClassAllocator( PyPhotoAlbumsViewModel, lambda parameters: PyPhotoAlbumsViewModel(PhotoAlbumsService(), parameters['ownerId']) )
 Subscriber().setClassAllocator( PyGalleryViewModel, lambda parameters: PyGalleryViewModel(GalleryService(), parameters['ownerId'], parameters['albumId']) )
 Subscriber().setClassAllocator( PyImagesViewerViewModel, lambda parameters: PyImagesViewerViewModel(GalleryService(), parameters['ownerId'], parameters['albumId'], parameters['photoId']) )
-Subscriber().setClassAllocator( PyDetailPhotoViewModel, lambda parameters: PyDetailPhotoViewModel(DetailPhotoService(UsersDecorator()), parameters['ownerId'], parameters['albumId'], parameters['photoId']) )
+Subscriber().setClassAllocator( PyDetailPhotoViewModel, lambda parameters: PyDetailPhotoViewModel(DetailPhotoService(UsersDecorator(), CommentsService()), parameters['ownerId'], parameters['albumId'], parameters['photoId']) )
 Subscriber().setClassAllocator( PyFriendsViewModel, lambda parameters: PyFriendsViewModel(FriendsService(), parameters['userId'], parameters['usersListType']) )
-Subscriber().setClassAllocatorWithDelegate( PyWallPostViewModel, lambda delegateId, parameters: PyWallPostViewModel(WallPostService(UsersDecorator()), parameters['ownerId'], parameters['postId']) )
+Subscriber().setClassAllocatorWithDelegate( PyWallPostViewModel, lambda delegateId, parameters: PyWallPostViewModel(WallPostService(UsersDecorator(), CommentsService()), parameters['ownerId'], parameters['postId']) )
 Subscriber().setClassAllocator( PyAnswersViewModel, lambda: PyAnswersViewModel(AnswersService(UsersDecorator())) )
 Subscriber().setClassAllocator( PyGroupsViewModel, lambda parameters: PyGroupsViewModel(GroupsService(UsersDecorator()), parameters.get('userId')) )
 Subscriber().setClassAllocator( PyBookmarksViewModel, lambda: PyBookmarksViewModel(BookmarksService(UsersDecorator())) )
@@ -56,6 +57,6 @@ Subscriber().setClassAllocator( PyVideosViewModel, lambda parameters: PyVideosVi
 Subscriber().setClassAllocator( PyDocumentsViewModel, lambda parameters: PyDocumentsViewModel(DocumentsService(), parameters.get('ownerId')) )
 Subscriber().setClassAllocator( PySettingsViewModel, lambda: PySettingsViewModel() )
 Subscriber().setClassAllocator( PyAuthorizationViewModel, lambda: PyAuthorizationViewModel() )
-Subscriber().setClassAllocator( PyDetailVideoViewModel, lambda parameters: PyDetailVideoViewModel(DetailVideoService(UsersDecorator()), parameters['ownerId'], parameters['videoId']) )
-Subscriber().setClassAllocatorWithDelegate( PyPostsViewModel, lambda delegateId: PyPostsViewModel(WallPostService(UsersDecorator()), DetailPhotoService(UsersDecorator()), DetailVideoService(UsersDecorator())) )
+Subscriber().setClassAllocator( PyDetailVideoViewModel, lambda parameters: PyDetailVideoViewModel(DetailVideoService(UsersDecorator(), CommentsService()), parameters['ownerId'], parameters['videoId']) )
+Subscriber().setClassAllocatorWithDelegate( PyPostsViewModel, lambda delegateId: PyPostsViewModel(WallPostService(UsersDecorator(), CommentsService()), DetailPhotoService(UsersDecorator(), CommentsService()), DetailVideoService(UsersDecorator(), CommentsService())) )
 

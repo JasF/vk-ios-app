@@ -31,7 +31,7 @@ static CGFloat const kMargin = 6.f;
         [self addSubnode:_usernameNode];
         
         _textNode = [[ASTextNode alloc] init];
-        _textNode.attributedText = [[NSAttributedString alloc] initWithString:comment.text attributes:[TextStyles titleStyle]];
+        _textNode.attributedText = [[NSAttributedString alloc] initWithString:comment.text ?: @"" attributes:[TextStyles titleStyle]];
         _textNode.truncationMode = NSLineBreakByTruncatingTail;
         [self addSubnode:_textNode];
         
