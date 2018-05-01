@@ -40,8 +40,9 @@ class WallPostService:
         api = vk.api()
         result = None
         try:
-            result = api.wall.getComments(owner_id=ownerId, post_id=postId, offset=offset, count=count)
+            result = api.wall.getComments(owner_id=ownerId, post_id=postId, offset=offset, count=count, need_likes=1, extended=1)
             l = result['items']
+            print('wall.getComments : ' + json.dumps(result, indent=4))
             cache = CommentsDatabase()
             cache.update(l)
             cache.close()

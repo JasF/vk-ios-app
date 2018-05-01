@@ -8,8 +8,10 @@
 
 #import "DetailVideoServiceImpl.h"
 #import "Comment.h"
+#import "vk-Swift.h"
 
 @interface DetailVideoServiceImpl ()
+@property id<CommentsService> commentsService;
 @end
 
 @implementation DetailVideoServiceImpl
@@ -24,15 +26,7 @@
 }
 
 - (NSArray *)parseComments:(NSDictionary *)comments {
-    if (![comments isKindOfClass:[NSDictionary class]]) {
-        return nil;
-    }
-    NSArray *commentsData = comments[@"items"];
-    if (![commentsData isKindOfClass:[NSArray class]]) {
-        return nil;
-    }
-    NSArray *results = [EKMapper arrayOfObjectsFromExternalRepresentation:commentsData
-                                                              withMapping:[Comment objectMapping]];
-    return results;
+    NSCParameterAssert(_commentsService);
+    return [_commentsService parseComments:comments];
 }
 @end

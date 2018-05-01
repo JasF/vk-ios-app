@@ -483,6 +483,7 @@
 		C3987DD8209733890047A30F /* AvatarNameDateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD7209733890047A30F /* AvatarNameDateNode.swift */; };
 		C3987DDA209756B60047A30F /* CommentsPreloadNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD9209756B60047A30F /* CommentsPreloadNode.swift */; };
 		C3987DDC209756FE0047A30F /* CommentsPreloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DDB209756FE0047A30F /* CommentsPreloadModel.swift */; };
+		C3987DE020985AA80047A30F /* CommentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DDF20985AA80047A30F /* CommentsService.swift */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
 		C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA65209369130071FA04 /* RowsDialogImpl.m */; };
@@ -1586,6 +1587,7 @@
 		C3987DD9209756B60047A30F /* CommentsPreloadNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsPreloadNode.swift; sourceTree = "<group>"; };
 		C3987DDB209756FE0047A30F /* CommentsPreloadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsPreloadModel.swift; sourceTree = "<group>"; };
 		C3987DDE20984A830047A30F /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		C3987DDF20985AA80047A30F /* CommentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsService.swift; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -2885,6 +2887,7 @@
 				C32304BA2080E57400CEC487 /* WallService */,
 				C32304BE2080E57400CEC487 /* DialogService */,
 				C32304C22080E57400CEC487 /* ChatListService */,
+				C3987DDF20985AA80047A30F /* CommentsService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -5409,6 +5412,7 @@
 				C32306052080E57500CEC487 /* MainViewController.mm in Sources */,
 				C32308BE2081AEB100CEC487 /* UIViewController+LGSideMenuController.m in Sources */,
 				C32308EE2081AEB100CEC487 /* TyphoonFactoryDefinition.m in Sources */,
+				C3987DE020985AA80047A30F /* CommentsService.swift in Sources */,
 				C32309232081AEB100CEC487 /* NSMethodSignature+TCFUnwrapValues.m in Sources */,
 				C32308C92081AEB100CEC487 /* TyphoonPathResource.m in Sources */,
 				C32308DA2081AEB100CEC487 /* TyphoonViewHelpers.m in Sources */,

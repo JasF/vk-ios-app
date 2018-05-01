@@ -27,6 +27,8 @@
 #import "DetailVideoService.h"
 #import "PostsService.h"
 
+@protocol CommentsService;
+
 @interface ServicesAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
 - (id<HandlersFactory>)handlersFactory;
@@ -47,4 +49,5 @@
 - (id<DetailPhotoService>)detailPhotoService;
 - (id<DetailVideoService>)detailVideoService;
 - (id<PostsService>)postsService;
+- (id<CommentsService>)commentsService;
 @end

@@ -24,6 +24,7 @@
 #import "DetailPhotoServiceImpl.h"
 #import "DetailVideoServiceImpl.h"
 #import "PostsServiceImpl.h"
+#import "vk-Swift.h"
 
 @implementation ServicesAssembly
 
@@ -69,6 +70,7 @@
          {
              [initializer injectParameterWith:self.wallService];
          }];
+        [definition injectProperty:@selector(commentsService) with:[self commentsService]];
     }];
 }
 
@@ -85,18 +87,14 @@
         [definition useInitializer:@selector(initWithGalleryService:) parameters:^(TyphoonMethod *initializer)
          {
              [initializer injectParameterWith:self.galleryService];
+             [definition injectProperty:@selector(commentsService) with:[self commentsService]];
          }];
     }];
 }
 
 - (id<DetailVideoService>)detailVideoService {
     return [TyphoonDefinition withClass:[DetailVideoServiceImpl class] configuration:^(TyphoonDefinition *definition) {
-        /*
-        [definition useInitializer:@selector(initWithGalleryService:) parameters:^(TyphoonMethod *initializer)
-         {
-             [initializer injectParameterWith:self.galleryService];
-         }];
-         */
+        [definition injectProperty:@selector(commentsService) with:[self commentsService]];
     }];
 }
 
@@ -130,7 +128,13 @@
 }
 
 - (id<PostsService>)postsService {
-    return [TyphoonDefinition withClass:[PostsServiceImpl class]];
+    return [TyphoonDefinition withClass:[PostsServiceImpl class] configuration:^(TyphoonDefinition *definition) {
+        [definition injectProperty:@selector(commentsService) with:[self commentsService]];
+    }];
+}
+
+- (id<CommentsService>)commentsService {
+    return [TyphoonDefinition withClass:[CommentsServiceImpl class]];
 }
 
 @end

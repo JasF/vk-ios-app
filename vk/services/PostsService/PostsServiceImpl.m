@@ -7,9 +7,14 @@
 //
 
 #import "PostsServiceImpl.h"
+#import "vk-Swift.h"
 #import "Comment.h"
 
 @import EasyMapping;
+
+@interface PostsServiceImpl ()
+@property id<CommentsService> commentsService;
+@end
 
 @implementation PostsServiceImpl
 
@@ -22,20 +27,8 @@
 }
 
 - (NSArray *)parseComments:(NSDictionary *)comments {
-    if (![comments isKindOfClass:[NSDictionary class]]) {
-        return nil;
-    }
-    NSDictionary *commentsResponse = comments[@"comments"];
-    if (![commentsResponse isKindOfClass:[NSDictionary class]]) {
-        return nil;
-    }
-    NSArray *commentsData = commentsResponse[@"items"];
-    if (![commentsData isKindOfClass:[NSArray class]]) {
-        return nil;
-    }
-    NSArray *results = [EKMapper arrayOfObjectsFromExternalRepresentation:commentsData
-                                                              withMapping:[Comment objectMapping]];
-    return results;
+    NSCParameterAssert(_commentsService);
+    return [_commentsService parseComments:comments];
 }
 
 - (void)consumer:(id<PostsServiceConsumer>)consumer likeActionWithItem:(id)item { 

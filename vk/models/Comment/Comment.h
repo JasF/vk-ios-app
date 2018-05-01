@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "WallPost.h"
 #import "Likes.h"
-
+#import "User.h"
 #import <EasyMapping/EasyMapping.h>
 
 @interface Comment : NSObject <EKMappingProtocol>
@@ -21,4 +21,5 @@
 @property NSInteger reply_to_comment;
 @property WallPost *post;
 @property Likes *likes;
+@property User *user;
 @end

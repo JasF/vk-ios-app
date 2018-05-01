@@ -76,6 +76,7 @@ static CGFloat const kTextCornerRadius = 3.f;
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsCenter
      children:@[_usernameNode, _timeNode]];
+    topLineStack.style.alignSelf = ASStackLayoutAlignSelfStretch;
     
     ASLayoutSpec *prespacer = [ASLayoutSpec new];
     prespacer.style.flexGrow = 1.f;

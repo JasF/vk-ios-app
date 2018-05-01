@@ -10,6 +10,8 @@
 #import "TextStyles.h"
 #import "Comment.h"
 
+static CGFloat const kMargin = 6.f;
+
 @interface CommentNode ()
 @property ASTextNode *textNode;
 @property ASTextNode *usernameNode;
@@ -23,7 +25,7 @@
     self = [super init];
     if (self) {
         _usernameNode = [[ASTextNode alloc] init];
-        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:@"TBD" attributes:[TextStyles nameStyle]];
+        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:comment.user.nameString ?: @"" attributes:[TextStyles nameStyle]];
         _usernameNode.maximumNumberOfLines = 1;
         _usernameNode.truncationMode = NSLineBreakByTruncatingTail;
         [self addSubnode:_usernameNode];
@@ -47,7 +49,7 @@
         _avatarNode.style.width = ASDimensionMakeWithPoints(44);
         _avatarNode.style.height = ASDimensionMakeWithPoints(44);
         _avatarNode.cornerRadius = 22.0;
-        _avatarNode.URL = nil;//[NSURL URLWithString:dialog.avatarURLString];
+        _avatarNode.URL = [NSURL URLWithString:comment.user.avatarURLString];
         [self addSubnode:_avatarNode];
     }
     return self;
@@ -55,41 +57,40 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    ASLayoutSpec *spacer = [[ASLayoutSpec alloc] init];
-    spacer.style.flexGrow = 1.0;
-    
     _usernameNode.style.flexShrink = 1.f;
+    _usernameNode.style.flexGrow = 1.f;
     _textNode.style.flexShrink = 1.f;
     _textNode.style.flexGrow = 1.f;
+    
     ASStackLayoutSpec *topLineStack =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:5.0
+     spacing:kMargin
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsCenter
-     children:@[_usernameNode, spacer, _timeNode]];
-    topLineStack.style.alignSelf = ASStackLayoutAlignSelfStretch;
+     children:@[_usernameNode, _timeNode]];
     
     ASStackLayoutSpec *nameVerticalStack =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-     spacing:5.0
-     justifyContent:ASStackLayoutJustifyContentStart
+     spacing:kMargin
+     justifyContent:ASStackLayoutJustifyContentSpaceBetween
      alignItems:ASStackLayoutAlignItemsStretch
      children:@[topLineStack, _textNode]];
     nameVerticalStack.style.flexShrink = 1.f;
+    nameVerticalStack.style.flexGrow = 1.f;
     
     ASStackLayoutSpec *avatarContentSpec =
     [ASStackLayoutSpec
      stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-     spacing:8.0
+     spacing:kMargin
      justifyContent:ASStackLayoutJustifyContentStart
      alignItems:ASStackLayoutAlignItemsStart
      children:@[_avatarNode, nameVerticalStack]];
     avatarContentSpec.style.flexShrink = 1.f;
+    avatarContentSpec.style.flexGrow = 1.f;
     
-    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:avatarContentSpec];
-    spec.style.flexShrink = 1.0f;
+    ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(kMargin, kMargin, kMargin, kMargin) child:avatarContentSpec];
     return spec;
 }
 

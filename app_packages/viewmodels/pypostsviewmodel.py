@@ -116,7 +116,8 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         except Exception as e:
             print('preloadCommentsWithTypeownerIdpostIdcountloaded exception: ' + str(e))
         print( 'commens common preload ' + str(type) + ' ' + str(ownerId) + ' ' + str(postId) + ' ' + str(count) + ' ' + str(loaded) + ' loading: ' + str(loadCount) + ' offset: ' + str(offset))
-        return {'comments': comments}
+        return comments
+            
     # ObjCBridgeProtocol
     def release(self):
         pass
