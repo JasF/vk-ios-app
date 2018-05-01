@@ -24,14 +24,14 @@ class PyWallPostViewModel():
             commentsOffset = 0
             count = 0
             try:
-                print('self.postData ' + json.dumps(self.postData, indent=4))
+                #print('self.postData ' + json.dumps(self.postData, indent=4))
                 count = self.postData['response']['items'][0]['comments']['count']
-                commentsOffset = count - g_count
+                commentsOffset = count - g_CommentsCount
                 if commentsOffset < 0:
                     commentsOffset = 0
             except:
-                print('failed get comments count for post')
-            print('getPostData comments count is: ' + str(count))
+                print('failed get comments count for post ')
+            #print('getPostData comments count is: ' + str(count) + ' commentsOffset: ' + str(commentsOffset))
             
             # подгружаем только свежие комментарии
             
