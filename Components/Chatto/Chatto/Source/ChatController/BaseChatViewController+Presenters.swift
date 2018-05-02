@@ -23,9 +23,31 @@
 */
 
 import Foundation
+import AsyncDisplayKit
 
 extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
-
+    public func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        return self.chatItemCompanionCollection.count
+    }
+    public func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
+        return {
+            let presenter = self.presenterForIndexPath(indexPath)
+            let cell = presenter.dequeueCell(collectionView:self.genericCollectionView, indexPath: indexPath)
+            let decorationAttributes = self.decorationAttributesForIndexPath(indexPath)
+            presenter.configureCell(cell, decorationAttributes: decorationAttributes)
+            return cell
+            
+            /*
+            let presenter = self.presenterForIndexPath(indexPath)
+            
+            let node = presenter.dequeueNode(tableNode: tableNode, indexPath: indexPath)
+            let decorationAttributes = self.decorationAttributesForIndexPath(indexPath)
+            presenter.configureNode(node, decorationAttributes: decorationAttributes)
+            return node
+ */
+        }
+    }
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.chatItemCompanionCollection.count
     }

@@ -23,6 +23,7 @@
 */
 
 import UIKit
+import AsyncDisplayKit
 
 public enum ChatItemVisibility {
     case hidden
@@ -30,7 +31,7 @@ public enum ChatItemVisibility {
     case visible
 }
 
-open class BaseChatItemPresenter<CellT: UICollectionViewCell>: ChatItemPresenterProtocol {
+open class BaseChatItemPresenter<CellT: ASCellNode>: ChatItemPresenterProtocol {
     open func getMessageModel() -> Any? {
         return nil
     }
@@ -52,15 +53,23 @@ open class BaseChatItemPresenter<CellT: UICollectionViewCell>: ChatItemPresenter
         return 0
     }
 
-    open func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    open func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode {
         assert(false, "Implemenent in subclass")
-        return UICollectionViewCell()
+        return ASCellNode()
     }
 
-    open func configureCell(_ cell: UICollectionViewCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+    open func configureCell(_ cell: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
         assert(false, "Implemenent in subclass")
     }
 
+    open func dequeueNode(tableNode: ASTableNode, indexPath: IndexPath) -> ASCellNode {
+        assert(false, "Implemenent in subclass")
+    }
+    
+    open func configureNode(_ node: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+        assert(false, "Implemenent in subclass")
+    }
+    
     final public private(set) var itemVisibility: ChatItemVisibility = .hidden
 
     // Need to override default implementatios. Otherwise subclasses's code won't be executed

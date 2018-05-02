@@ -25,7 +25,7 @@
 import UIKit
 import AsyncDisplayKit
 
-open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDelegate, ASTableDataSource  {
+open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDelegate, ASTableDataSource {
 
     public typealias ChatItemCompanionCollection = ReadOnlyOrderedDictionary<ChatItemCompanion>
 
@@ -90,6 +90,7 @@ open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDeleg
         self.tableNode.dataSource = nil
     }
 
+    let genericCollectionView = UICollectionView()
     open override func loadView() {
         if substitutesMainViewAutomatically {
             self.view = BaseChatViewControllerView() // http://stackoverflow.com/questions/24596031/uiviewcontroller-with-inputaccessoryview-is-not-deallocated
@@ -136,8 +137,10 @@ open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDeleg
     }
 
     private func addCollectionView() {
-        NSLog("! createPresenterFactory");
+        NSLog("! addCollectionView createPresenterFactory");
         self.presenterFactory = self.createPresenterFactory()
+        self.tableNode.delegate = self
+        self.tableNode.dataSource = self
         //self.presenterFactory.configure(withCollectionView: self.collectionView)
     }
 

@@ -23,6 +23,7 @@
 */
 
 import Foundation
+import AsyncDisplayKit
 
 extension BaseChatViewController: ChatDataSourceDelegateProtocol {
 
@@ -116,8 +117,8 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         }
     }
 
-    private func visibleCellsFromCollectionViewApi() -> [IndexPath: UICollectionViewCell] {
-        var visibleCells: [IndexPath: UICollectionViewCell] = [:]
+    private func visibleCellsFromCollectionViewApi() -> [IndexPath: ASCellNode] {
+        var visibleCells: [IndexPath: ASCellNode] = [:]
         /*
         self.collectionView.indexPathsForVisibleItems.forEach({ (indexPath) in
             if let cell = self.collectionView.cellForItem(at: indexPath) {

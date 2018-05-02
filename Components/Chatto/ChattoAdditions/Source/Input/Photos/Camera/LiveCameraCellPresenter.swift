@@ -67,7 +67,7 @@ public final class LiveCameraCellPresenter {
         collectionView.register(LiveCameraCell.self, forCellWithReuseIdentifier: Class.reuseIdentifier)
     }
 
-    public func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    public func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode {
         return collectionView.dequeueReusableCell(withReuseIdentifier: Class.reuseIdentifier, for: indexPath)
     }
 

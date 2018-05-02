@@ -23,6 +23,7 @@
 */
 
 import Foundation
+import AsyncDisplayKit
 
 public typealias ChatItemType = String
 
@@ -38,14 +39,17 @@ public protocol ChatItemPresenterProtocol: class {
     static func registerCells(_ collectionView: UICollectionView)
     var canCalculateHeightInBackground: Bool { get } // Default is false
     func heightForCell(maximumWidth width: CGFloat, decorationAttributes: ChatItemDecorationAttributesProtocol?) -> CGFloat
-    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell
-    func configureCell(_ cell: UICollectionViewCell, decorationAttributes: ChatItemDecorationAttributesProtocol?)
+    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode
+    func dequeueNode(tableNode: ASTableNode, indexPath: IndexPath) -> ASCellNode
+    func configureCell(_ cell: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?)
+    func configureNode(_ node: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?)
     func cellWillBeShown(_ cell: UICollectionViewCell) // optional
     func cellWasHidden(_ cell: UICollectionViewCell) // optional
     func shouldShowMenu() -> Bool // optional. Default is false
     func canPerformMenuControllerAction(_ action: Selector) -> Bool // optional. Default is false
     func performMenuControllerAction(_ action: Selector) // optional
     func getMessageModel() -> Any?
+    /// TableNode
 }
 
 public extension ChatItemPresenterProtocol { // Optionals

@@ -27,6 +27,14 @@ public class TypingPresenterBuilder: ChatItemPresenterBuilderProtocol {
 }
 
 class TypingPresenter: ChatItemPresenterProtocol {
+    func dequeueNode(tableNode: ASTableNode, indexPath: IndexPath) -> ASCellNode {
+        return WallUserActionNode.init("typing", number: 0)
+    }
+    
+    func configureNode(_ node: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+        
+    }
+    
     func getMessageModel() -> Any? {
         return nil
     }
@@ -43,11 +51,11 @@ class TypingPresenter: ChatItemPresenterProtocol {
         collectionView.register(TypingCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
     }
     
-    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode {
         return collectionView.dequeueReusableCell(withReuseIdentifier: TypingPresenter.cellReuseIdentifier, for: indexPath)
     }
     
-    func configureCell(_ cell: UICollectionViewCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+    func configureCell(_ cell: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
         guard let typingCell = cell as? TypingCell else {
             assert(false, "expecting status cell")
             return

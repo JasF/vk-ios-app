@@ -23,6 +23,19 @@
 */
 
 import UIKit
+import AsyncDisplayKit
+
+class DummyTextNode : ASCellNode {
+    let textNode = ASTextNode()
+    public override init() {
+        super.init()
+        textNode.attributedText = NSAttributedString.init(string: "DummyTextNode")
+        self.addSubnode(textNode)
+    }
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(10, 10, 10, 10), child: textNode)
+    }
+}
 
 open class TextMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
 : BaseMessagePresenter<TextBubbleView, ViewModelBuilderT, InteractionHandlerT> where
@@ -61,10 +74,19 @@ open class TextMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
         collectionView.register(TextMessageCollectionViewCell.self, forCellWithReuseIdentifier: "text-message-incoming")
         collectionView.register(TextMessageCollectionViewCell.self, forCellWithReuseIdentifier: "text-message-outcoming")
     }
-
-    public final override func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    
+    public final override func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode {
         let identifier = self.messageViewModel.isIncoming ? "text-message-incoming" : "text-message-outcoming"
         return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+    }
+    
+    public final override func dequeueNode(tableNode: ASTableNode, indexPath: IndexPath) -> ASCellNode {
+        let node = DummyTextNode.init()
+        return node
+        /*
+         let identifier = self.messageViewModel.isIncoming ? "text-message-incoming" : "text-message-outcoming"
+        return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        */
     }
 
     open override func createViewModel() -> ViewModelBuilderT.ViewModelT {

@@ -56,7 +56,7 @@ open class PhotoMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
         collectionView.register(PhotoMessageCollectionViewCell.self, forCellWithReuseIdentifier: "photo-message")
     }
 
-    public final override func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    public final override func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode {
         return collectionView.dequeueReusableCell(withReuseIdentifier: "photo-message", for: indexPath)
     }
 
