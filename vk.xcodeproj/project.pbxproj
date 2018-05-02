@@ -493,6 +493,38 @@
 		C3987E002098BD770047A30F /* CreatePostNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DFF2098BD770047A30F /* CreatePostNode.swift */; };
 		C3987E0420998B9E0047A30F /* RSSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987E0320998B9E0047A30F /* RSSwizzle.m */; };
 		C3987E0820998D180047A30F /* ASPanningOverriddenUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987E0720998D180047A30F /* ASPanningOverriddenUITextView.m */; };
+		C3987E342099CB480047A30F /* BaseMessagesSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E0C2099CB480047A30F /* BaseMessagesSelector.swift */; };
+		C3987E352099CB480047A30F /* MessagesSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E0D2099CB480047A30F /* MessagesSelectorProtocol.swift */; };
+		C3987E362099CB480047A30F /* CellsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E0E2099CB480047A30F /* CellsViewController.swift */; };
+		C3987E372099CB480047A30F /* AddRandomMessageChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E102099CB480047A30F /* AddRandomMessageChatViewController.swift */; };
+		C3987E382099CB480047A30F /* DemoChatMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E112099CB480047A30F /* DemoChatMessageSender.swift */; };
+		C3987E392099CB480047A30F /* DemoChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E122099CB480047A30F /* DemoChatViewController.swift */; };
+		C3987E3A2099CB480047A30F /* DemoChatItemsDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E132099CB480047A30F /* DemoChatItemsDecorator.swift */; };
+		C3987E3B2099CB480047A30F /* DemoChatViewController+ChatInputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E142099CB480047A30F /* DemoChatViewController+ChatInputDelegate.swift */; };
+		C3987E3C2099CB480047A30F /* DemoChatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E152099CB480047A30F /* DemoChatDataSource.swift */; };
+		C3987E3D2099CB480047A30F /* DemoChatMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E162099CB480047A30F /* DemoChatMessageFactory.swift */; };
+		C3987E3E2099CB480047A30F /* MessagesSelectionChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E172099CB480047A30F /* MessagesSelectionChatViewController.swift */; };
+		C3987E3F2099CB480047A30F /* TimeSeparatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E192099CB480047A30F /* TimeSeparatorModel.swift */; };
+		C3987E402099CB480047A30F /* TimeSeparatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E1A2099CB480047A30F /* TimeSeparatorPresenter.swift */; };
+		C3987E412099CB480047A30F /* TimeSeparatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E1B2099CB480047A30F /* TimeSeparatorCollectionViewCell.swift */; };
+		C3987E422099CB480047A30F /* SlidingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E1C2099CB480047A30F /* SlidingDataSource.swift */; };
+		C3987E432099CB480047A30F /* ChatWithTabBarExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E1D2099CB480047A30F /* ChatWithTabBarExamplesViewController.swift */; };
+		C3987E442099CB480047A30F /* DemoPhotoMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E202099CB480047A30F /* DemoPhotoMessageViewModel.swift */; };
+		C3987E452099CB480047A30F /* DemoPhotoMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E212099CB480047A30F /* DemoPhotoMessageModel.swift */; };
+		C3987E462099CB480047A30F /* DemoPhotoMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E222099CB480047A30F /* DemoPhotoMessageHandler.swift */; };
+		C3987E472099CB480047A30F /* SendingStatusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E242099CB480047A30F /* SendingStatusPresenter.swift */; };
+		C3987E482099CB480047A30F /* SendingStatusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E252099CB480047A30F /* SendingStatusCollectionViewCell.swift */; };
+		C3987E492099CB480047A30F /* SendingStatusCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3987E262099CB480047A30F /* SendingStatusCollectionViewCell.xib */; };
+		C3987E4A2099CB480047A30F /* TypingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E282099CB480047A30F /* TypingModel.swift */; };
+		C3987E4B2099CB480047A30F /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E292099CB480047A30F /* iOSDevCenters+GIF.swift */; };
+		C3987E4C2099CB480047A30F /* TypingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E2A2099CB480047A30F /* TypingPresenter.swift */; };
+		C3987E4D2099CB480047A30F /* TypingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E2B2099CB480047A30F /* TypingCell.swift */; };
+		C3987E4E2099CB480047A30F /* DemoTextMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E2D2099CB480047A30F /* DemoTextMessageModel.swift */; };
+		C3987E4F2099CB480047A30F /* DemoTextMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E2E2099CB480047A30F /* DemoTextMessageHandler.swift */; };
+		C3987E502099CB480047A30F /* DemoTextMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E2F2099CB480047A30F /* DemoTextMessageViewModel.swift */; };
+		C3987E512099CB480047A30F /* BaseMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E312099CB480047A30F /* BaseMessageHandler.swift */; };
+		C3987E522099CB480047A30F /* BaseMessageCollectionViewCellAvatarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E322099CB480047A30F /* BaseMessageCollectionViewCellAvatarStyle.swift */; };
+		C3987E532099CB480047A30F /* ChatExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987E332099CB480047A30F /* ChatExamplesViewController.swift */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
 		C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA65209369130071FA04 /* RowsDialogImpl.m */; };
@@ -1616,6 +1648,38 @@
 		C3987E0720998D180047A30F /* ASPanningOverriddenUITextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASPanningOverriddenUITextView.m; sourceTree = "<group>"; };
 		C3987E0920999C0A0047A30F /* pycreatepostviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pycreatepostviewmodel.py; sourceTree = "<group>"; };
 		C3987E0A20999C2C0047A30F /* createpostservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = createpostservice.py; sourceTree = "<group>"; };
+		C3987E0C2099CB480047A30F /* BaseMessagesSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMessagesSelector.swift; sourceTree = "<group>"; };
+		C3987E0D2099CB480047A30F /* MessagesSelectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesSelectorProtocol.swift; sourceTree = "<group>"; };
+		C3987E0E2099CB480047A30F /* CellsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellsViewController.swift; sourceTree = "<group>"; };
+		C3987E102099CB480047A30F /* AddRandomMessageChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRandomMessageChatViewController.swift; sourceTree = "<group>"; };
+		C3987E112099CB480047A30F /* DemoChatMessageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoChatMessageSender.swift; sourceTree = "<group>"; };
+		C3987E122099CB480047A30F /* DemoChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoChatViewController.swift; sourceTree = "<group>"; };
+		C3987E132099CB480047A30F /* DemoChatItemsDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoChatItemsDecorator.swift; sourceTree = "<group>"; };
+		C3987E142099CB480047A30F /* DemoChatViewController+ChatInputDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DemoChatViewController+ChatInputDelegate.swift"; sourceTree = "<group>"; };
+		C3987E152099CB480047A30F /* DemoChatDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoChatDataSource.swift; sourceTree = "<group>"; };
+		C3987E162099CB480047A30F /* DemoChatMessageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoChatMessageFactory.swift; sourceTree = "<group>"; };
+		C3987E172099CB480047A30F /* MessagesSelectionChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesSelectionChatViewController.swift; sourceTree = "<group>"; };
+		C3987E192099CB480047A30F /* TimeSeparatorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSeparatorModel.swift; sourceTree = "<group>"; };
+		C3987E1A2099CB480047A30F /* TimeSeparatorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSeparatorPresenter.swift; sourceTree = "<group>"; };
+		C3987E1B2099CB480047A30F /* TimeSeparatorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSeparatorCollectionViewCell.swift; sourceTree = "<group>"; };
+		C3987E1C2099CB480047A30F /* SlidingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingDataSource.swift; sourceTree = "<group>"; };
+		C3987E1D2099CB480047A30F /* ChatWithTabBarExamplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatWithTabBarExamplesViewController.swift; sourceTree = "<group>"; };
+		C3987E202099CB480047A30F /* DemoPhotoMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPhotoMessageViewModel.swift; sourceTree = "<group>"; };
+		C3987E212099CB480047A30F /* DemoPhotoMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPhotoMessageModel.swift; sourceTree = "<group>"; };
+		C3987E222099CB480047A30F /* DemoPhotoMessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPhotoMessageHandler.swift; sourceTree = "<group>"; };
+		C3987E242099CB480047A30F /* SendingStatusPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendingStatusPresenter.swift; sourceTree = "<group>"; };
+		C3987E252099CB480047A30F /* SendingStatusCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendingStatusCollectionViewCell.swift; sourceTree = "<group>"; };
+		C3987E262099CB480047A30F /* SendingStatusCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendingStatusCollectionViewCell.xib; sourceTree = "<group>"; };
+		C3987E282099CB480047A30F /* TypingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypingModel.swift; sourceTree = "<group>"; };
+		C3987E292099CB480047A30F /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
+		C3987E2A2099CB480047A30F /* TypingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypingPresenter.swift; sourceTree = "<group>"; };
+		C3987E2B2099CB480047A30F /* TypingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypingCell.swift; sourceTree = "<group>"; };
+		C3987E2D2099CB480047A30F /* DemoTextMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTextMessageModel.swift; sourceTree = "<group>"; };
+		C3987E2E2099CB480047A30F /* DemoTextMessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTextMessageHandler.swift; sourceTree = "<group>"; };
+		C3987E2F2099CB480047A30F /* DemoTextMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTextMessageViewModel.swift; sourceTree = "<group>"; };
+		C3987E312099CB480047A30F /* BaseMessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMessageHandler.swift; sourceTree = "<group>"; };
+		C3987E322099CB480047A30F /* BaseMessageCollectionViewCellAvatarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMessageCollectionViewCellAvatarStyle.swift; sourceTree = "<group>"; };
+		C3987E332099CB480047A30F /* ChatExamplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatExamplesViewController.swift; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -2756,6 +2820,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3987E0B2099CB480047A30F /* Chat */,
 				C3987DFB2098B9280047A30F /* CreatePostViewController */,
 				C3987DEE209871EB0047A30F /* CommentsViewController */,
 				C3FF542B2095AF0C007275D4 /* VideoPlayerViewController.swift */,
@@ -4611,6 +4676,109 @@
 			path = TexturePatches;
 			sourceTree = "<group>";
 		};
+		C3987E0B2099CB480047A30F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C3987E0C2099CB480047A30F /* BaseMessagesSelector.swift */,
+				C3987E0D2099CB480047A30F /* MessagesSelectorProtocol.swift */,
+				C3987E0E2099CB480047A30F /* CellsViewController.swift */,
+				C3987E0F2099CB480047A30F /* Chat View Controllers */,
+				C3987E182099CB480047A30F /* Time Separator */,
+				C3987E1C2099CB480047A30F /* SlidingDataSource.swift */,
+				C3987E1D2099CB480047A30F /* ChatWithTabBarExamplesViewController.swift */,
+				C3987E1E2099CB480047A30F /* Chat Items */,
+				C3987E332099CB480047A30F /* ChatExamplesViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		C3987E0F2099CB480047A30F /* Chat View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3987E102099CB480047A30F /* AddRandomMessageChatViewController.swift */,
+				C3987E112099CB480047A30F /* DemoChatMessageSender.swift */,
+				C3987E122099CB480047A30F /* DemoChatViewController.swift */,
+				C3987E132099CB480047A30F /* DemoChatItemsDecorator.swift */,
+				C3987E142099CB480047A30F /* DemoChatViewController+ChatInputDelegate.swift */,
+				C3987E152099CB480047A30F /* DemoChatDataSource.swift */,
+				C3987E162099CB480047A30F /* DemoChatMessageFactory.swift */,
+				C3987E172099CB480047A30F /* MessagesSelectionChatViewController.swift */,
+			);
+			path = "Chat View Controllers";
+			sourceTree = "<group>";
+		};
+		C3987E182099CB480047A30F /* Time Separator */ = {
+			isa = PBXGroup;
+			children = (
+				C3987E192099CB480047A30F /* TimeSeparatorModel.swift */,
+				C3987E1A2099CB480047A30F /* TimeSeparatorPresenter.swift */,
+				C3987E1B2099CB480047A30F /* TimeSeparatorCollectionViewCell.swift */,
+			);
+			path = "Time Separator";
+			sourceTree = "<group>";
+		};
+		C3987E1E2099CB480047A30F /* Chat Items */ = {
+			isa = PBXGroup;
+			children = (
+				C3987E1F2099CB480047A30F /* Photo Messages */,
+				C3987E232099CB480047A30F /* Sending status */,
+				C3987E272099CB480047A30F /* Typing */,
+				C3987E2C2099CB480047A30F /* Text Messages */,
+				C3987E302099CB480047A30F /* Base Message */,
+			);
+			path = "Chat Items";
+			sourceTree = "<group>";
+		};
+		C3987E1F2099CB480047A30F /* Photo Messages */ = {
+			isa = PBXGroup;
+			children = (
+				C3987E202099CB480047A30F /* DemoPhotoMessageViewModel.swift */,
+				C3987E212099CB480047A30F /* DemoPhotoMessageModel.swift */,
+				C3987E222099CB480047A30F /* DemoPhotoMessageHandler.swift */,
+			);
+			path = "Photo Messages";
+			sourceTree = "<group>";
+		};
+		C3987E232099CB480047A30F /* Sending status */ = {
+			isa = PBXGroup;
+			children = (
+				C3987E242099CB480047A30F /* SendingStatusPresenter.swift */,
+				C3987E252099CB480047A30F /* SendingStatusCollectionViewCell.swift */,
+				C3987E262099CB480047A30F /* SendingStatusCollectionViewCell.xib */,
+			);
+			path = "Sending status";
+			sourceTree = "<group>";
+		};
+		C3987E272099CB480047A30F /* Typing */ = {
+			isa = PBXGroup;
+			children = (
+				C3987E282099CB480047A30F /* TypingModel.swift */,
+				C3987E292099CB480047A30F /* iOSDevCenters+GIF.swift */,
+				C3987E2A2099CB480047A30F /* TypingPresenter.swift */,
+				C3987E2B2099CB480047A30F /* TypingCell.swift */,
+			);
+			path = Typing;
+			sourceTree = "<group>";
+		};
+		C3987E2C2099CB480047A30F /* Text Messages */ = {
+			isa = PBXGroup;
+			children = (
+				C3987E2D2099CB480047A30F /* DemoTextMessageModel.swift */,
+				C3987E2E2099CB480047A30F /* DemoTextMessageHandler.swift */,
+				C3987E2F2099CB480047A30F /* DemoTextMessageViewModel.swift */,
+			);
+			path = "Text Messages";
+			sourceTree = "<group>";
+		};
+		C3987E302099CB480047A30F /* Base Message */ = {
+			isa = PBXGroup;
+			children = (
+				C3987E312099CB480047A30F /* BaseMessageHandler.swift */,
+				C3987E322099CB480047A30F /* BaseMessageCollectionViewCellAvatarStyle.swift */,
+			);
+			path = "Base Message";
+			sourceTree = "<group>";
+		};
 		C398BA55209357340071FA04 /* TextFieldDialog */ = {
 			isa = PBXGroup;
 			children = (
@@ -5247,6 +5415,7 @@
 				C323065A2080E57500CEC487 /* core.py in Resources */,
 				C3B0EEDB208B14E8008802BB /* loadBubble_0035_Layer-4@2x.png in Resources */,
 				C3B0EEEE208B14E8008802BB /* loadBubble_0000_Layer-39@2x.png in Resources */,
+				C3987E492099CB480047A30F /* SendingStatusCollectionViewCell.xib in Resources */,
 				C32306A52080E57500CEC487 /* request.py in Resources */,
 				C32306B52080E57500CEC487 /* ntlmpool.cpython-34.pyc in Resources */,
 				C32306C22080E57500CEC487 /* low_level.py in Resources */,
@@ -5431,6 +5600,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-vk/Pods-vk-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Chatto/Chatto.framework",
+				"${BUILT_PRODUCTS_DIR}/ChattoAdditions/ChattoAdditions.framework",
 				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/LoremIpsum/LoremIpsum.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -5444,6 +5615,8 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Chatto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChattoAdditions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoremIpsum.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
@@ -5494,12 +5667,15 @@
 				C32308F72081AEB100CEC487 /* TyphoonDefinitionNamespace.m in Sources */,
 				C343755E208F6B72004EF670 /* AudioNode.m in Sources */,
 				C32308FE2081AEB100CEC487 /* TyphoonInjectionByDictionary.m in Sources */,
+				C3987E3D2099CB480047A30F /* DemoChatMessageFactory.swift in Sources */,
 				C32308BC2081AEB100CEC487 /* LGSideMenuController.m in Sources */,
 				C398BA6F2094597A0071FA04 /* PostBaseNode.m in Sources */,
+				C3987E4D2099CB480047A30F /* TypingCell.swift in Sources */,
 				C32262B6209091CE0054789B /* Video.m in Sources */,
 				C32306052080E57500CEC487 /* MainViewController.mm in Sources */,
 				C32308BE2081AEB100CEC487 /* UIViewController+LGSideMenuController.m in Sources */,
 				C32308EE2081AEB100CEC487 /* TyphoonFactoryDefinition.m in Sources */,
+				C3987E3F2099CB480047A30F /* TimeSeparatorModel.swift in Sources */,
 				C3987DE020985AA80047A30F /* CommentsService.swift in Sources */,
 				C32309232081AEB100CEC487 /* NSMethodSignature+TCFUnwrapValues.m in Sources */,
 				C32308C92081AEB100CEC487 /* TyphoonPathResource.m in Sources */,
@@ -5507,6 +5683,7 @@
 				C32309082081AEB100CEC487 /* TyphoonNSNumberTypeConverter.m in Sources */,
 				C313772C208E213B00F568EA /* PhotoAlbumsServiceImpl.m in Sources */,
 				C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */,
+				C3987E442099CB480047A30F /* DemoPhotoMessageViewModel.swift in Sources */,
 				C32306042080E57500CEC487 /* LeftViewCell.m in Sources */,
 				C313DD5C208CA7A10005E29B /* CommentNode.m in Sources */,
 				C3333D4D2091BF0E009EBB09 /* Geo.m in Sources */,
@@ -5514,6 +5691,7 @@
 				C323061C2080E57500CEC487 /* ChatListServiceImpl.m in Sources */,
 				C32309022081AEB100CEC487 /* TyphoonInjectionByConfig.m in Sources */,
 				C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */,
+				C3987E3E2099CB480047A30F /* MessagesSelectionChatViewController.swift in Sources */,
 				C3437569208F816C004EF670 /* AnswersViewController.m in Sources */,
 				C343754F208F31A5004EF670 /* NewsViewController.m in Sources */,
 				C3B2251520860BE400599E04 /* DeallocSubscriber.m in Sources */,
@@ -5529,6 +5707,7 @@
 				C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */,
 				C32305BF2080E57500CEC487 /* EXTScope.m in Sources */,
 				C3226291209081060054789B /* BookmarksViewController.m in Sources */,
+				C3987E4A2099CB480047A30F /* TypingModel.swift in Sources */,
 				C32308C02081AEB100CEC487 /* TyphoonOptionMatcher.m in Sources */,
 				C32308C42081AEB100CEC487 /* TyphoonPropertyStyleConfiguration.m in Sources */,
 				C32309242081AEB100CEC487 /* TyphoonCollaboratingAssemblyProxy.m in Sources */,
@@ -5540,11 +5719,15 @@
 				C323091B2081AEB100CEC487 /* TyphoonCollaboratingAssembliesCollector.m in Sources */,
 				C32308C52081AEB100CEC487 /* TyphoonPlistStyleConfiguration.m in Sources */,
 				C3987DD42096F8BF0047A30F /* NSDate+Utils.swift in Sources */,
+				C3987E512099CB480047A30F /* BaseMessageHandler.swift in Sources */,
 				C32263072090CD920054789B /* DetailPhotoServiceImpl.m in Sources */,
 				C3987DD620971B880047A30F /* AlignTopCollectionViewFlowLayout.swift in Sources */,
 				C32305DF2080E57500CEC487 /* TextStyles.m in Sources */,
 				C32305DE2080E57500CEC487 /* LikesNode.m in Sources */,
+				C3987E4E2099CB480047A30F /* DemoTextMessageModel.swift in Sources */,
 				C3987E0820998D180047A30F /* ASPanningOverriddenUITextView.m in Sources */,
+				C3987E4F2099CB480047A30F /* DemoTextMessageHandler.swift in Sources */,
+				C3987E352099CB480047A30F /* MessagesSelectorProtocol.swift in Sources */,
 				C32308E12081AEB100CEC487 /* TyphoonDefinition+Storyboard.m in Sources */,
 				C32308F52081AEB100CEC487 /* TyphoonMethod.m in Sources */,
 				C32308D92081AEB100CEC487 /* UIResponder+TyphoonOutletTransfer.m in Sources */,
@@ -5571,6 +5754,7 @@
 				C32309172081AEB100CEC487 /* TyphoonAssemblyBuilder+PlistProcessor.m in Sources */,
 				C3987DDA209756B60047A30F /* CommentsPreloadNode.swift in Sources */,
 				C343755A208F6984004EF670 /* Audio.m in Sources */,
+				C3987E522099CB480047A30F /* BaseMessageCollectionViewCellAvatarStyle.swift in Sources */,
 				C32305D22080E57500CEC487 /* VKThemeAssembly.m in Sources */,
 				C32305F62080E57500CEC487 /* User.m in Sources */,
 				C3437562208F70C4004EF670 /* FriendsNode.m in Sources */,
@@ -5595,6 +5779,7 @@
 				C32262A2209089B40054789B /* VideosViewController.m in Sources */,
 				C32308E82081AEB100CEC487 /* TyphoonUIColorTypeConverter.m in Sources */,
 				C32262BE2090A34A0054789B /* DocumentsViewController.m in Sources */,
+				C3987E3B2099CB480047A30F /* DemoChatViewController+ChatInputDelegate.swift in Sources */,
 				C32308EC2081AEB100CEC487 /* NSDictionary+CustomInjection.m in Sources */,
 				C32308D32081AEB100CEC487 /* NSObject+TyphoonIntrospectionUtils.m in Sources */,
 				C32308E92081AEB100CEC487 /* TyphoonDefinition.m in Sources */,
@@ -5613,11 +5798,14 @@
 				C32305C22080E57500CEC487 /* NSInvocation+EXT.m in Sources */,
 				C32308CD2081AEB100CEC487 /* TyphoonTestUtils.m in Sources */,
 				C32309062081AEB100CEC487 /* TyphoonInjectionByType.m in Sources */,
+				C3987E422099CB480047A30F /* SlidingDataSource.swift in Sources */,
 				C32308F22081AEB100CEC487 /* TyphoonFactoryAutoInjectionPostProcessor.m in Sources */,
 				C32305F72080E57500CEC487 /* Dialog.m in Sources */,
+				C3987E412099CB480047A30F /* TimeSeparatorCollectionViewCell.swift in Sources */,
 				C32308FA2081AEB100CEC487 /* TyphoonInjections.m in Sources */,
 				C32305D42080E57500CEC487 /* VKApplicationAssembly.m in Sources */,
 				C32308D72081AEB100CEC487 /* TyphoonNibLoader.m in Sources */,
+				C3987E482099CB480047A30F /* SendingStatusCollectionViewCell.swift in Sources */,
 				C323090A2081AEB100CEC487 /* NSNullTypeConverter.m in Sources */,
 				C323061A2080E57500CEC487 /* WallServiceImpl.m in Sources */,
 				C3437545208EFDEE004EF670 /* ImagesViewerViewController.m in Sources */,
@@ -5629,6 +5817,7 @@
 				C32309332081AEB100CEC487 /* CALayer+Image.m in Sources */,
 				C32262C32090A49A0054789B /* DocumentsViewModelImpl.m in Sources */,
 				C3137736208E2A4200F568EA /* PhotoAlbumNode.m in Sources */,
+				C3987E372099CB480047A30F /* AddRandomMessageChatViewController.swift in Sources */,
 				C3137732208E291500F568EA /* PhotoAlbum.m in Sources */,
 				C32262D42090A7850054789B /* SizedPhoto.m in Sources */,
 				C32305FA2080E57500CEC487 /* Attachments.m in Sources */,
@@ -5661,9 +5850,12 @@
 				C32308B92081AEB100CEC487 /* LGSideMenuHelper.m in Sources */,
 				C32306232080E57500CEC487 /* MaskingView.m in Sources */,
 				C323091E2081AEB100CEC487 /* TyphoonAssemblyBuilder.m in Sources */,
+				C3987E402099CB480047A30F /* TimeSeparatorPresenter.swift in Sources */,
 				C32305C02080E57500CEC487 /* EXTRuntimeExtensions.m in Sources */,
+				C3987E392099CB480047A30F /* DemoChatViewController.swift in Sources */,
 				C3507821209477B4000C8FB3 /* WallUserCellModel.swift in Sources */,
 				C32309152081AEB100CEC487 /* TyphoonFactoryPropertyInjectionPostProcessor.m in Sources */,
+				C3987E462099CB480047A30F /* DemoPhotoMessageHandler.swift in Sources */,
 				C32309142081AEB100CEC487 /* TyphoonComponentFactory+InstanceBuilder.m in Sources */,
 				C32305C42080E57500CEC487 /* NSMethodSignature+EXT.m in Sources */,
 				C3FF542C2095AF0C007275D4 /* VideoPlayerViewController.swift in Sources */,
@@ -5679,13 +5871,16 @@
 				C3036C0B208DC99A005F086E /* SectionsTableViewController.m in Sources */,
 				C32308EF2081AEB100CEC487 /* TyphoonBlockDefinitionController.m in Sources */,
 				C313DD66208CB14A0005E29B /* WallPostViewModelImpl.m in Sources */,
+				C3987E3A2099CB480047A30F /* DemoChatItemsDecorator.swift in Sources */,
 				C32305EC2080E57500CEC487 /* PythonBridgeImpl.m in Sources */,
+				C3987E4B2099CB480047A30F /* iOSDevCenters+GIF.swift in Sources */,
 				C3137740208E2F5200F568EA /* GalleryViewModelImpl.m in Sources */,
 				C32308E02081AEB100CEC487 /* TyphoonStoryboardResolver.m in Sources */,
 				C32305FC2080E57500CEC487 /* Photo.m in Sources */,
 				C32308D22081AEB100CEC487 /* TyphoonIntrospectionUtils.m in Sources */,
 				C323090B2081AEB100CEC487 /* TyphoonNSURLTypeConverter.m in Sources */,
 				C32305E72080E57500CEC487 /* WallPostNode.m in Sources */,
+				C3987E4C2099CB480047A30F /* TypingPresenter.swift in Sources */,
 				C32309222081AEB100CEC487 /* TyphoonAssemblyPropertyInjectionPostProcessor.m in Sources */,
 				C32308F92081AEB100CEC487 /* TyphoonInjectionContext.m in Sources */,
 				C32309012081AEB100CEC487 /* TyphoonInjectionByRuntimeArgument.m in Sources */,
@@ -5700,6 +5895,7 @@
 				C32308CC2081AEB100CEC487 /* TyphoonPatcher.m in Sources */,
 				C32308DC2081AEB100CEC487 /* TyphoonComponentFactory+Storyboard.m in Sources */,
 				C323061B2080E57500CEC487 /* DialogServiceImpl.m in Sources */,
+				C3987E452099CB480047A30F /* DemoPhotoMessageModel.swift in Sources */,
 				C323060B2080E57500CEC487 /* ChatListViewController.m in Sources */,
 				C32308EA2081AEB100CEC487 /* TyphoonDefinition+InstanceBuilder.m in Sources */,
 				C3B225212086298400599E04 /* MenuViewModelImpl.m in Sources */,
@@ -5708,7 +5904,9 @@
 				C32305F12080E57500CEC487 /* Comments.m in Sources */,
 				C32309252081AEB100CEC487 /* TyphoonAssemblyDefinitionBuilder.m in Sources */,
 				C3FF542E2095AF7F007275D4 /* VideoPlayerViewModel.swift in Sources */,
+				C3987E382099CB480047A30F /* DemoChatMessageSender.swift in Sources */,
 				C32263022090CC6D0054789B /* DetailPhotoViewModelImpl.m in Sources */,
+				C3987E472099CB480047A30F /* SendingStatusPresenter.swift in Sources */,
 				C32262E82090AF6D0054789B /* SettingsServiceImpl.m in Sources */,
 				C32308D02081AEB100CEC487 /* TyphoonSwizzlerDefaultImpl.m in Sources */,
 				C323060A2080E57500CEC487 /* WallViewController.m in Sources */,
@@ -5726,6 +5924,7 @@
 				C32308D42081AEB100CEC487 /* NSObject+DeallocNotification.m in Sources */,
 				C313DD6D208CBA460005E29B /* WallPostServiceImpl.m in Sources */,
 				C323060E2080E57500CEC487 /* MenuViewController.m in Sources */,
+				C3987E502099CB480047A30F /* DemoTextMessageViewModel.swift in Sources */,
 				C3987E002098BD770047A30F /* CreatePostNode.swift in Sources */,
 				C32306092080E57500CEC487 /* EmptyViewController.m in Sources */,
 				C3226297209082890054789B /* BookmarksServiceImpl.m in Sources */,
@@ -5739,8 +5938,10 @@
 				C32309072081AEB100CEC487 /* TyphoonTypeDescriptor.m in Sources */,
 				C32306242080E57500CEC487 /* Functions.m in Sources */,
 				C32308FF2081AEB100CEC487 /* TyphoonInjectionByObjectFromString.m in Sources */,
+				C3987E342099CB480047A30F /* BaseMessagesSelector.swift in Sources */,
 				C3B225062085BA6800599E04 /* DialogScreenViewModelImpl.m in Sources */,
 				C32306032080E57500CEC487 /* BaseNavigationController.mm in Sources */,
+				C3987E432099CB480047A30F /* ChatWithTabBarExamplesViewController.swift in Sources */,
 				C32309292081AEB100CEC487 /* TyphoonStackElement.m in Sources */,
 				C3A82A392093350600C41CA8 /* PostsViewModelImpl.m in Sources */,
 				C3226281209074120054789B /* GroupsViewController.m in Sources */,
@@ -5768,9 +5969,12 @@
 				C32308FC2081AEB100CEC487 /* TyphoonInject.m in Sources */,
 				C32308BF2081AEB100CEC487 /* LGSideMenuBorderView.m in Sources */,
 				C3036C19208DEF12005F086E /* NotificationsManagerImpl.m in Sources */,
+				C3987E3C2099CB480047A30F /* DemoChatDataSource.swift in Sources */,
+				C3987E532099CB480047A30F /* ChatExamplesViewController.swift in Sources */,
 				C32305D72080E57500CEC487 /* VKCoreComponents.m in Sources */,
 				C32309102081AEB100CEC487 /* TyphoonDefinitionRegisterer.m in Sources */,
 				C32308CF2081AEB100CEC487 /* TyphoonSelector.m in Sources */,
+				C3987E362099CB480047A30F /* CellsViewController.swift in Sources */,
 				C32262DC2090ADF10054789B /* SettingsViewController.m in Sources */,
 				C3987DF42098B37D0047A30F /* CreatePostViewModel.swift in Sources */,
 				C3137726208E1FF400F568EA /* PhotoAlbumsViewModelImpl.m in Sources */,
