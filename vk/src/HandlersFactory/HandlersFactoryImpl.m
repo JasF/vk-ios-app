@@ -158,8 +158,9 @@
                                                 delegate:delegate];
 }
 
-- (id<PyCreatePostViewModel>)createPostViewModelHandler {
-    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyCreatePostViewModel)];
+- (id<PyCreatePostViewModel>)createPostViewModelHandler:(NSInteger)ownerId {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyCreatePostViewModel)
+                                              parameters:@{@"ownerId":@(ownerId)}];
 }
 
 @end

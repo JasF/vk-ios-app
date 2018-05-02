@@ -123,11 +123,25 @@
     });
 }
 
-- (void)presentAddPostViewController {
+- (void)presentAddPostViewController:(NSNumber *)ownerId {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIViewController *viewController =(UIViewController *)[_screensAssembly createPostViewController];
+        UIViewController *viewController =(UIViewController *)[_screensAssembly createPostViewController:ownerId];
         BaseNavigationController *controller = [[BaseNavigationController alloc] initWithRootViewController:viewController];
         [self.topViewController presentViewController:controller animated:YES completion:nil];
+    });
+}
+
+- (void)dismissCreatePostViewController:(NSNumber *)isPostPublished {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BaseNavigationController *navigationController = [self navigationController];
+        UIViewController *topViewController = navigationController.viewControllers.lastObject;
+        if ([topViewController conformsToProtocol:@protocol(ViewControllerActionsExtension)]) {
+            id<ViewControllerActionsExtension> extension = (id<ViewControllerActionsExtension>)topViewController;
+            extension.needsUpdateContentOnAppear = isPostPublished.boolValue;
+        }
+        if (navigationController.presentedViewController) {
+            [navigationController dismissViewControllerAnimated:YES completion:nil];
+        }
     });
 }
 
@@ -316,6 +330,9 @@
 
 - (UIViewController *)topViewController {
     UIViewController *viewController = [self navigationController].viewControllers.lastObject;
+    if (viewController.presentedViewController) {
+        return viewController.presentedViewController;
+    }
     return viewController;
 }
 

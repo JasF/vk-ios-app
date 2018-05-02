@@ -14,13 +14,13 @@ class WallService:
         if self.userId == None or self.userId == 0:
             self.userId = vk.userId()
     
-    def getWall(self, offset, userId):
+    def getWall(self, offset, userId, count):
         print('getWall userId: ' + str(userId))
         response = None
         usersData = None
         try:
             api = vk.api()
-            response = api.wall.get(offset=offset, owner_id=userId)
+            response = api.wall.get(offset=offset, owner_id=userId, count=count)
             l = response["items"]
             #print('wall response: ' + json.dumps(l, sort_keys=True, indent=4, separators=(',', ': ')))
             cache = PostsDatabase()

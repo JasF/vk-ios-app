@@ -10,6 +10,10 @@
 
 @class Video;
 
+@protocol ViewControllerActionsExtension <NSObject>
+@property (nonatomic) BOOL needsUpdateContentOnAppear;
+@end
+
 @protocol ScreensManager <NSObject>
 - (void)createWindowIfNeeded;
 - (void)showAuthorizationViewController;
@@ -34,6 +38,7 @@
 - (void)showSettingsViewController;
 - (void)showDetailVideoViewControllerWithOwnerId:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
 - (void)showVideoPlayerViewControllerWithVideo:(Video *)video;
-- (void)presentAddPostViewController;
+- (void)presentAddPostViewController:(NSNumber *)ownerId;
+- (void)dismissCreatePostViewController:(NSNumber *)isPostPublished;
 - (UIViewController *)topViewController;
 @end

@@ -9,21 +9,22 @@
 import Foundation
 import NMessenger
 
+@objc protocol CreatePostNodeDelegate {
+    func textChanged(_ text: NSString?)
+}
+
 @objcMembers class CreatePostNode : ASDisplayNode {
     let textNode = ASEditableTextNode()
     let spacingNode = ASDisplayNode()
-    let bottomNode = ASDisplayNode()
+    weak var delegate : CreatePostNodeDelegate?
+    var oldContentSize: CGSize
     override init() {
+        oldContentSize = CGSize(width: 0, height: 0)
         super.init()
         textNode.attributedPlaceholderText = NSAttributedString.init(string: "create_post_what_is_new".localized, attributes: TextStyles.createPostPlaceholderStyle())
-        //textNode. //attributedText = NSAttributedString.init(string: "", attributes: TextStyles.createPostStyle())
-        textNode.scrollEnabled = false
         textNode.delegate = self
         self.addSubnode(textNode)
         self.addSubnode(spacingNode)
-        self.addSubnode(bottomNode)
-        bottomNode.backgroundColor = UIColor.green
-        bottomNode.style.preferredSize = CGSize(width:50, height:64)
         spacingNode.style.preferredSize = CGSize(width:1, height:64)
     }
     
@@ -32,14 +33,23 @@ import NMessenger
         textNode.textView.textColor = TextStyles.createPostTextColor();
     }
     
-    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        //textNode.style.flexGrow = 1
-        let spec = ASStackLayoutSpec.init(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [spacingNode, textNode, bottomNode])
+        let spec = ASStackLayoutSpec.init(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [spacingNode, textNode])
+        textNode.style.flexGrow = 1
         return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(kMargin,kMargin,kMargin,kMargin), child: spec)
+    }
+    
+    public func text() -> NSString? {
+        return textNode.textView.text as NSString?
     }
 }
 
 extension CreatePostNode : ASEditableTextNodeDelegate {
-    
+    func editableTextNode(_ editableTextNode: ASEditableTextNode, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let string = textNode.textView.text as NSString?
+        let newText = string?.replacingCharacters(in: range, with: text) as NSString?
+        delegate?.textChanged(newText)
+        return true;
+    }
 }
+

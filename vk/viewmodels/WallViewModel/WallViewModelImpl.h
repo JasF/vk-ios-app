@@ -11,7 +11,7 @@
 #import "WallService.h"
 
 @protocol PyWallViewModel <NSObject>
-- (NSDictionary *)getWall:(NSNumber *)offset;
+- (NSDictionary *)getWall:(NSNumber *)offset count:(NSNumber *)count;
 - (void)menuTapped;
 - (NSDictionary *)getUserInfo;
 - (void)tappedOnPostWithId:(NSNumber *)identifier;

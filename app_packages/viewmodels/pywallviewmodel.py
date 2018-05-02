@@ -5,6 +5,8 @@ import vk, json
 from .pyfriendsviewmodel import UsersListTypes
 from pymanagers.pydialogsmanager import PyDialogsManager
 
+g_WallPostsCount = 20
+
 class PyWallViewModelDelegate(BridgeBase):
     pass
 
@@ -17,8 +19,10 @@ class PyWallViewModel(ObjCBridgeProtocol):
             self.userId = vk.userId()
     
     # protocol methods implementation
-    def getWall(self, offset):
-        response = self.wallService.getWall(offset, self.userId)
+    def getWallcount(self, offset, count):
+        if count == 0:
+            count = g_WallPostsCount
+        response = self.wallService.getWall(offset, self.userId, count)
         return response
     
     def getUserInfo(self):
@@ -61,7 +65,7 @@ class PyWallViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().showDialogViewController_(args=[self.userId])
     
     def addPostTapped(self):
-        managers.shared().screensManager().presentAddPostViewController()
+        managers.shared().screensManager().presentAddPostViewController_(args=[self.userId])
     
     def friendButtonTapped(self, friend_status):
         api = vk.api()

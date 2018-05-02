@@ -13,12 +13,14 @@
 #import "WallPost.h"
 #import "vk-Swift.h"
 
-@interface WallViewController () <BaseTableViewControllerDataSource, WallUserScrollNodeDelegate, WallUserMessageNodeDelegate>
+@interface WallViewController () <BaseTableViewControllerDataSource, WallUserScrollNodeDelegate, WallUserMessageNodeDelegate, ViewControllerActionsExtension>
 @property (strong, nonatomic) id<WallViewModel> viewModel;
 @property (weak, nonatomic) WallUserScrollNode *scrollNode;
 @end
 
 @implementation WallViewController
+
+@synthesize needsUpdateContentOnAppear = _needsUpdateContentOnAppear;
 
 - (instancetype)initWithViewModel:(id<WallViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory {
@@ -42,6 +44,10 @@
     if (!self.pushed && !self.navigationItem.leftBarButtonItem) {
         [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
     }
+    if (self.needsUpdateContentOnAppear) {
+        self.needsUpdateContentOnAppear = NO;
+        [self pullToRefreshAction];
+    }
 }
 
 #pragma mark - Observers
@@ -54,7 +60,8 @@
 }
 
 - (void)addRightIconIfNeeded {
-    if (!self.navigationItem.rightBarButtonItem && self.viewModel.currentUser.currentUser) {
+    User *user = self.viewModel.currentUser;
+    if (!self.navigationItem.rightBarButtonItem && user.can_post && user.id > 0) {
         UIButton *button = [UIButton new];
         [button addTarget:self action:@selector(addPostTapped:) forControlEvents:UIControlEventTouchUpInside];
         [button setImage:[UIImage imageNamed:@"add_post"] forState:UIControlStateNormal];
@@ -150,5 +157,23 @@
     [_viewModel friendButtonTapped:callback];
 }
 
+#pragma mark - Overriden
+- (void)pullToRefreshAction {
+    [_viewModel getLatestPostsWithCompletion:^(NSArray *objects) {
+        id object = objects.firstObject;
+        if (!object) {
+            return;
+        }
+        [self.tableNode performBatchUpdates:^{
+            NSInteger section = [self.tableNode numberOfSections] - 1;
+            [self.tableNode insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:section]]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            [self.objectsArray insertObject:object atIndex:0];
+        }
+                                 completion:^(BOOL finished) {
+                                     
+                                 }];
+    }];
+}
 
 @end

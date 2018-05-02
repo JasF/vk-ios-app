@@ -19,6 +19,7 @@ from .pydetailphotoviewmodel import PyDetailPhotoViewModel
 from .pyauthorizationviewmodel import PyAuthorizationViewModel
 from .pydetailvideoviewmodel import PyDetailVideoViewModel
 from .pypostsviewmodel import PyPostsViewModel
+from .pycreatepostviewmodel import PyCreatePostViewModel
 
 from services.messagesservice import MessagesService
 from services.chatlistservice import ChatListService
@@ -38,6 +39,7 @@ from services.documentsservice import DocumentsService
 from services.detailphotoservice import DetailPhotoService
 from services.detailvideoservice import DetailVideoService
 from services.commentsservice import CommentsService
+from services.createpostservice import CreatePostService
 
 Subscriber().setClassAllocatorWithDelegate( PyChatListViewModel, lambda delegateId: PyChatListViewModel(delegateId, MessagesService(), ChatListService()) )
 Subscriber().setClassAllocatorWithDelegate( PyDialogScreenViewModel, lambda delegateId, parameters: PyDialogScreenViewModel(delegateId, parameters, MessagesService(), DialogService()) )
@@ -59,4 +61,4 @@ Subscriber().setClassAllocator( PySettingsViewModel, lambda: PySettingsViewModel
 Subscriber().setClassAllocator( PyAuthorizationViewModel, lambda: PyAuthorizationViewModel() )
 Subscriber().setClassAllocator( PyDetailVideoViewModel, lambda parameters: PyDetailVideoViewModel(DetailVideoService(UsersDecorator(), CommentsService()), parameters['ownerId'], parameters['videoId']) )
 Subscriber().setClassAllocatorWithDelegate( PyPostsViewModel, lambda delegateId: PyPostsViewModel(WallPostService(UsersDecorator(), CommentsService()), DetailPhotoService(UsersDecorator(), CommentsService()), DetailVideoService(UsersDecorator(), CommentsService())) )
-
+Subscriber().setClassAllocator( PyCreatePostViewModel, lambda parameters: PyCreatePostViewModel(CreatePostService(), parameters['ownerId']) )

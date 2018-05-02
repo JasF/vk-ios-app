@@ -491,6 +491,8 @@
 		C3987DF42098B37D0047A30F /* CreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DF32098B37D0047A30F /* CreatePostViewModel.swift */; };
 		C3987DFE2098B9390047A30F /* CreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987DFD2098B9390047A30F /* CreatePostViewController.m */; };
 		C3987E002098BD770047A30F /* CreatePostNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DFF2098BD770047A30F /* CreatePostNode.swift */; };
+		C3987E0420998B9E0047A30F /* RSSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987E0320998B9E0047A30F /* RSSwizzle.m */; };
+		C3987E0820998D180047A30F /* ASPanningOverriddenUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3987E0720998D180047A30F /* ASPanningOverriddenUITextView.m */; };
 		C398BA59209357340071FA04 /* TextFieldDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA57209357340071FA04 /* TextFieldDialogImpl.m */; };
 		C398BA5E209358F70071FA04 /* DialogsManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA5C209358F70071FA04 /* DialogsManagerImpl.m */; };
 		C398BA66209369130071FA04 /* RowsDialogImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA65209369130071FA04 /* RowsDialogImpl.m */; };
@@ -1608,6 +1610,12 @@
 		C3987DFC2098B9390047A30F /* CreatePostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatePostViewController.h; sourceTree = "<group>"; };
 		C3987DFD2098B9390047A30F /* CreatePostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatePostViewController.m; sourceTree = "<group>"; };
 		C3987DFF2098BD770047A30F /* CreatePostNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostNode.swift; sourceTree = "<group>"; };
+		C3987E0220998B9E0047A30F /* RSSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSwizzle.h; sourceTree = "<group>"; };
+		C3987E0320998B9E0047A30F /* RSSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSwizzle.m; sourceTree = "<group>"; };
+		C3987E0620998D180047A30F /* ASPanningOverriddenUITextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASPanningOverriddenUITextView.h; sourceTree = "<group>"; };
+		C3987E0720998D180047A30F /* ASPanningOverriddenUITextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASPanningOverriddenUITextView.m; sourceTree = "<group>"; };
+		C3987E0920999C0A0047A30F /* pycreatepostviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pycreatepostviewmodel.py; sourceTree = "<group>"; };
+		C3987E0A20999C2C0047A30F /* createpostservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = createpostservice.py; sourceTree = "<group>"; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -3438,6 +3446,7 @@
 				C32263092090D1FF0054789B /* detailphotoservice.py */,
 				C3D487432091A561007EC440 /* detailvideoservice.py */,
 				C3987DEF209897A60047A30F /* commentsservice.py */,
+				C3987E0A20999C2C0047A30F /* createpostservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -3500,6 +3509,8 @@
 		C32306FB2081AE8F00CEC487 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C3987E0520998D000047A30F /* TexturePatches */,
+				C3987E0120998B9E0047A30F /* RSSwizzle */,
 				C3A82A2A20931F7100C41CA8 /* Categories */,
 				C32307672081AEB000CEC487 /* LGSideMenuController */,
 				C32308AA2081AEB000CEC487 /* NanoFrame */,
@@ -4582,6 +4593,24 @@
 			path = CreatePostViewController;
 			sourceTree = "<group>";
 		};
+		C3987E0120998B9E0047A30F /* RSSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				C3987E0220998B9E0047A30F /* RSSwizzle.h */,
+				C3987E0320998B9E0047A30F /* RSSwizzle.m */,
+			);
+			path = RSSwizzle;
+			sourceTree = "<group>";
+		};
+		C3987E0520998D000047A30F /* TexturePatches */ = {
+			isa = PBXGroup;
+			children = (
+				C3987E0620998D180047A30F /* ASPanningOverriddenUITextView.h */,
+				C3987E0720998D180047A30F /* ASPanningOverriddenUITextView.m */,
+			);
+			path = TexturePatches;
+			sourceTree = "<group>";
+		};
 		C398BA55209357340071FA04 /* TextFieldDialog */ = {
 			isa = PBXGroup;
 			children = (
@@ -4693,6 +4722,7 @@
 				C3D487412091A025007EC440 /* pyauthorizationviewmodel.py */,
 				C3D487422091A54A007EC440 /* pydetailvideoviewmodel.py */,
 				C3A82A3A2093366800C41CA8 /* pypostsviewmodel.py */,
+				C3987E0920999C0A0047A30F /* pycreatepostviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -5514,6 +5544,7 @@
 				C3987DD620971B880047A30F /* AlignTopCollectionViewFlowLayout.swift in Sources */,
 				C32305DF2080E57500CEC487 /* TextStyles.m in Sources */,
 				C32305DE2080E57500CEC487 /* LikesNode.m in Sources */,
+				C3987E0820998D180047A30F /* ASPanningOverriddenUITextView.m in Sources */,
 				C32308E12081AEB100CEC487 /* TyphoonDefinition+Storyboard.m in Sources */,
 				C32308F52081AEB100CEC487 /* TyphoonMethod.m in Sources */,
 				C32308D92081AEB100CEC487 /* UIResponder+TyphoonOutletTransfer.m in Sources */,
@@ -5683,6 +5714,7 @@
 				C323060A2080E57500CEC487 /* WallViewController.m in Sources */,
 				C32262EC2090AFCA0054789B /* Settings.m in Sources */,
 				C3D4873B20919A83007EC440 /* AuthorizationViewController.m in Sources */,
+				C3987E0420998B9E0047A30F /* RSSwizzle.m in Sources */,
 				C32262D82090A88C0054789B /* DocumentNode.m in Sources */,
 				C32308DB2081AEB100CEC487 /* TyphoonStoryboard.m in Sources */,
 				C32308FD2081AEB100CEC487 /* TyphoonAbstractInjection.m in Sources */,

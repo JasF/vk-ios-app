@@ -9,7 +9,9 @@
 #import "CreatePostViewController.h"
 #import "vk-Swift.h"
 
-@interface CreatePostViewController ()
+@import MBProgressHUD;
+
+@interface CreatePostViewController () <CreatePostNodeDelegate>
 @property (strong) id<CreatePostViewModel> viewModel;
 @property (strong) UIButton *closeButton;
 @property (strong) UIButton *sendButton;
@@ -20,6 +22,7 @@
 
 - (id)init:(id<CreatePostViewModel>)viewModel {
     _contentNode = [CreatePostNode new];
+    _contentNode.delegate = self;
     if (self = [super initWithNode:_contentNode]) {
         _viewModel = viewModel;
     }
@@ -51,15 +54,35 @@
 }
 
 - (void)sendTapped:(id)sender {
-    if (!_sendButton.enabled) {
+    NSString *text = [_contentNode text];
+    if (!_sendButton.enabled || !text.length) {
         return;
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self showHUD];
+    @weakify(self);
+    [_viewModel send:text completion:^(BOOL success) {
+        @strongify(self);
+        [self hideHUD];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - CreatePostNodeDelegate
+- (void)textChanged:(NSString *)text {
+    _sendButton.enabled = (text.length) ? YES : NO;
+}
+
+#pragma mark - Private Methods
+- (void)showHUD {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
+- (void)hideHUD {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 @end

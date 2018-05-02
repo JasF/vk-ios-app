@@ -41,8 +41,16 @@
 #pragma mark - WallViewModel
 - (void)getWallPostsWithOffset:(NSInteger)offset
                     completion:(void(^)(NSArray *posts))completion {
+    [self getWallPostsWithOffset:offset
+                           count:0
+                      completion:completion];
+}
+    
+- (void)getWallPostsWithOffset:(NSInteger)offset
+                         count:(NSInteger)count
+                    completion:(void(^)(NSArray *posts))completion {
     dispatch_python(^{
-        NSDictionary *data = [self.handler getWall:@(offset)];
+        NSDictionary *data = [self.handler getWall:@(offset) count:@(count)];
         if (!offset && !self.currentUser) {
             NSDictionary *currentUserData = [self.handler getUserInfo];
             User *user = [self.wallService parseUserInfo:currentUserData];
@@ -136,6 +144,16 @@
     dispatch_python(^{
         [_handler addPostTapped];
     });
+}
+
+- (void)getLatestPostsWithCompletion:(void(^)(NSArray *objects))callback {
+    [self getWallPostsWithOffset:0
+                           count:1
+                      completion:^(NSArray *objects) {
+                          if (callback) {
+                              callback(objects);
+                          }
+                      }];
 }
 
 #pragma mark - PyWallViewModelDelegate

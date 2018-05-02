@@ -9,25 +9,34 @@
 import Foundation
 
 @objc protocol CreatePostViewModel {
-    func send(_ text: String)
+    func send(_ text: String, completion: ((Bool) -> Void)?)
 }
 
 @objc protocol PyCreatePostViewModel {
-    func send(_ text: String)
+    func createPost(_ text: String) -> NSNumber?
 }
 
 @objcMembers class CreatePostViewModelImpl : NSObject {
     var handler: PyCreatePostViewModel
-    public init(_ handlersFactory: HandlersFactory) {
-        handler = handlersFactory.createPostViewModelHandler()
+    public init(_ handlersFactory: HandlersFactory, ownerId: NSNumber?) {
+        handler = handlersFactory.createPostViewModelHandler(ownerId as! Int)
         super.init()
     }
 }
 
 extension CreatePostViewModelImpl : CreatePostViewModel {
-    func send(_ text: String) {
+    func send(_ text: String, completion: ((Bool) -> Void)?) {
         DispatchQueue.global(qos: .background).async {
-            self.handler.send(text)
+            let postIdNum = self.handler.createPost(text)
+            var postId = 0
+            if (postIdNum?.isKind(of: NSNumber.self))! {
+                postId = (postIdNum?.intValue)!
+            }
+            DispatchQueue.main.async {
+                if completion != nil {
+                    completion?(postId > 0 ? true : false)
+                }
+            }
         }
     }
 }

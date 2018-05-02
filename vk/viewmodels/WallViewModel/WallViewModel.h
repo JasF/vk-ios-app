@@ -26,5 +26,5 @@ typedef void (^CountUpdatedBlock)(NSNumber *);
 - (void)messageButtonTapped;
 - (void)friendButtonTapped:(void(^)(NSInteger resultCode))callback;
 - (void)addPostTapped;
-
+- (void)getLatestPostsWithCompletion:(void(^)(NSArray *objects))callback;
 @end

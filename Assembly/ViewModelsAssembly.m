@@ -263,11 +263,12 @@
             }];
 }
 
-- (id<CreatePostViewModel>)createPostViewModel {
+- (id<CreatePostViewModel>)createPostViewModel:(NSNumber *)ownerId {
     return [TyphoonDefinition withClass:[CreatePostViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(init:ownerId:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:ownerId];
                 }];
             }];
 }

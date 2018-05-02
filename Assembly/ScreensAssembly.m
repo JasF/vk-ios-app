@@ -268,10 +268,10 @@
     }];
 }
 
-- (UIViewController *)createPostViewController {
+- (UIViewController *)createPostViewController:(NSNumber *)ownerId {
     return [TyphoonDefinition withClass:[CreatePostViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
-            [initializer injectParameterWith:[self.viewModelsAssembly createPostViewModel]];
+            [initializer injectParameterWith:[self.viewModelsAssembly createPostViewModel:ownerId]];
         }];
     }];
 }

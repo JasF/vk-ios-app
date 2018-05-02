@@ -169,15 +169,25 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     return methodList;
 }
 
+- (NSString *)nameByProtocol:(Protocol *)protocol {
+    NSString *protocolName = NSStringFromProtocol(protocol);
+    NSArray *components = [protocolName componentsSeparatedByString:@"."];
+    if (components.count == 2) {
+        protocolName = components[1];
+    }
+    return protocolName;
+}
+
 - (id)handlerWithProtocol:(Protocol *)protocol {
     NSCParameterAssert(protocol);
+    NSString *protocolName = [self nameByProtocol:protocol];
     NSArray *methods = px_allProtocolMethods(protocol);
     NSMutableDictionary *actions = [NSMutableDictionary new];
     for (NSDictionary *dictionary in methods) {
         [actions setObject:dictionary[PXProtocolMethodListArgumentTypesKey]
                     forKey:dictionary[PXProtocolMethodListMethodNameKey]];
     }
-    return [self handlerWithActions:[actions copy] name:NSStringFromProtocol(protocol)];
+    return [self handlerWithActions:[actions copy] name:protocolName];
 }
 
 - (id)instantiateHandlerWithProtocol:(Protocol *)protocol {
@@ -213,8 +223,7 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
 - (id)instantiateHandlerWithProtocol:(Protocol *)protocol
                             delegate:(id)delegate
                           parameters:(NSDictionary *)parameters {
-    const char *name = protocol_getName(protocol);
-    NSString *protocolName = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+    NSString *protocolName = [self nameByProtocol:protocol];
     PythonBridgeHandler *handler = [self handlerWithProtocol:protocol];
     @synchronized (self) {
         handler.instanceId = ++_instanceId;

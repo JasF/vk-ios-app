@@ -61,5 +61,5 @@
 - (id<DetailVideoViewModel>)detailVideoViewModel:(NSNumber *)ownerId videoId:(NSNumber *)videoId;
 - (id<PostsViewModel>)postsViewModel;
 - (id<VideoPlayerViewModel>)videoPlayerViewModel:(Video *)video;
-- (id<CreatePostViewModel>)createPostViewModel;
+- (id<CreatePostViewModel>)createPostViewModel:(NSNumber *)ownerId;
 @end

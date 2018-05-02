@@ -158,42 +158,17 @@ extern CGFloat const kControlsSize;
         // Bottom controls
         if (!_embedded) {
             
-            _optionsNode = [[ASImageNode alloc] init];
-            _optionsNode.image = [UIImage imageNamed:@"icon_more"];
-            _optionsNode.contentMode = UIViewContentModeCenter;
-            [_optionsNode addTarget:self action:@selector(optionsTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
-            [self addSubnode:_optionsNode];
-            
-            
-            _bottomSeparator = [ASDisplayNode new];
-            _bottomSeparator.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
-            [self addSubnode:_bottomSeparator];
             /*
-            @property (strong, nonatomic) LikesNode *likesNode;
-            @property (strong, nonatomic) CommentsNode *commentsNode;
-            @property (strong, nonatomic) RepostNode *repostNode;
-            
-            _likesNode = [[LikesNode alloc] initWithLikesCount:_post.likes.count liked:_post.likes.user_likes];
-            [_likesNode addTarget:self action:@selector(likesTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
-            [self addSubnode:_likesNode];
-            
-            _commentsNode = [[CommentsNode alloc] initWithCommentsCount:_post.comments.count];
-            [self addSubnode:_commentsNode];
-            
             _optionsNode = [[ASImageNode alloc] init];
             _optionsNode.image = [UIImage imageNamed:@"icon_more"];
             _optionsNode.contentMode = UIViewContentModeCenter;
             [_optionsNode addTarget:self action:@selector(optionsTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
             [self addSubnode:_optionsNode];
-            
-            _repostNode = [[RepostNode alloc] initWithRepostsCount:_post.reposts.count reposted:_post.reposts.user_reposted];
-            [_repostNode addTarget:self action:@selector(repostTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
-            [self addSubnode:_repostNode];
+            */
             
             _bottomSeparator = [ASDisplayNode new];
             _bottomSeparator.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
             [self addSubnode:_bottomSeparator];
-            */
         }
         
         for (ASDisplayNode *node in self.subnodes) {
