@@ -19,6 +19,7 @@
 @class NodesAssembly;
 @class ViewModelsAssembly;
 @class Video;
+@class DialogViewControllerAllocator;
 
 @interface ScreensAssembly : TyphoonAssembly
 @property (nonatomic, strong, readonly) VKCoreComponents *coreComponents;
@@ -34,7 +35,7 @@
 - (UIViewController *)wallPostViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;
 - (UIViewController *)chatListViewController;
 - (UIViewController *)friendsViewController:(NSNumber *)userId usersListType:(NSNumber *)usersListType;
-- (UIViewController *)dialogViewController:(NSNumber *)userId;
+- (DialogViewControllerAllocator *)dialogViewController:(NSNumber *)userId;
 - (UIViewController *)photoAlbumsViewController:(NSNumber *)ownerId;
 - (UIViewController *)galleryViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId;
 - (UIViewController *)imagesViewerViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;

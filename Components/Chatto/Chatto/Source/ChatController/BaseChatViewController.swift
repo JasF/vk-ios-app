@@ -23,8 +23,9 @@
 */
 
 import UIKit
+import AsyncDisplayKit
 
-open class BaseChatViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDelegate, ASTableDataSource  {
 
     public typealias ChatItemCompanionCollection = ReadOnlyOrderedDictionary<ChatItemCompanion>
 
@@ -34,6 +35,15 @@ open class BaseChatViewController: UIViewController, UICollectionViewDataSource,
         }
     }
 
+    let tableNode = ASTableNode()
+    public init() {
+        super.init(node:tableNode)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public struct Constants {
         public var updatesAnimationDuration: TimeInterval = 0.33
         public var preferredMaxMessageCount: Int? = 500 // If not nil, will ask data source to reduce number of messages when limit is reached. @see ChatDataSourceDelegateProtocol
@@ -50,7 +60,7 @@ open class BaseChatViewController: UIViewController, UICollectionViewDataSource,
 
     public var updatesConfig =  UpdatesConfig()
 
-    public private(set) var collectionView: UICollectionView!
+    
     public final internal(set) var chatItemCompanionCollection: ChatItemCompanionCollection = ReadOnlyOrderedDictionary(items: [])
     private var _chatDataSource: ChatDataSourceProtocol?
     public final var chatDataSource: ChatDataSourceProtocol? {
@@ -76,8 +86,8 @@ open class BaseChatViewController: UIViewController, UICollectionViewDataSource,
     }
 
     deinit {
-        self.collectionView?.delegate = nil
-        self.collectionView?.dataSource = nil
+        self.tableNode.delegate = nil
+        self.tableNode.dataSource = nil
     }
 
     open override func loadView() {
@@ -100,7 +110,11 @@ open class BaseChatViewController: UIViewController, UICollectionViewDataSource,
     }
 
     private func setupTapGestureRecognizer() {
+        NSLog("! missing gesture recognizer");
+        /*
+         
         self.collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(BaseChatViewController.userDidTapOnCollectionView)))
+        */
     }
 
     public var endsEditingWhenTappingOnChatBackground = true
@@ -122,30 +136,9 @@ open class BaseChatViewController: UIViewController, UICollectionViewDataSource,
     }
 
     private func addCollectionView() {
-        self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.createCollectionViewLayout())
-        self.collectionView.contentInset = self.layoutConfiguration.contentInsets
-        self.collectionView.scrollIndicatorInsets = self.layoutConfiguration.scrollIndicatorInsets
-        self.collectionView.alwaysBounceVertical = true
-        self.collectionView.backgroundColor = UIColor.clear
-        self.collectionView.keyboardDismissMode = .interactive
-        self.collectionView.showsVerticalScrollIndicator = true
-        self.collectionView.showsHorizontalScrollIndicator = false
-        self.collectionView.allowsSelection = false
-        self.collectionView.translatesAutoresizingMaskIntoConstraints = false
-        self.collectionView.autoresizingMask = UIViewAutoresizing()
-        self.view.addSubview(self.collectionView)
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .top, relatedBy: .equal, toItem: self.collectionView, attribute: .top, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .leading, relatedBy: .equal, toItem: self.collectionView, attribute: .leading, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .bottom, relatedBy: .equal, toItem: self.collectionView, attribute: .bottom, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .trailing, relatedBy: .equal, toItem: self.collectionView, attribute: .trailing, multiplier: 1, constant: 0))
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
-        self.collectionView.chatto_setContentInsetAdjustment(enabled: false, in: self)
-
-        self.accessoryViewRevealer = AccessoryViewRevealer(collectionView: self.collectionView)
-
+        NSLog("! createPresenterFactory");
         self.presenterFactory = self.createPresenterFactory()
-        self.presenterFactory.configure(withCollectionView: self.collectionView)
+        //self.presenterFactory.configure(withCollectionView: self.collectionView)
     }
 
     var unfinishedBatchUpdatesCount: Int = 0
@@ -169,6 +162,15 @@ open class BaseChatViewController: UIViewController, UICollectionViewDataSource,
         self.inputContainer.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .leading, relatedBy: .equal, toItem: inputView, attribute: .leading, multiplier: 1, constant: 0))
         self.inputContainer.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .bottom, relatedBy: .equal, toItem: inputView, attribute: .bottom, multiplier: 1, constant: 0))
         self.inputContainer.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .trailing, relatedBy: .equal, toItem: inputView, attribute: .trailing, multiplier: 1, constant: 0))
+    }
+    
+    var collectionView : UITableView {
+        get {
+            return self.tableNode.view
+        }
+        set {
+            
+        }
     }
 
     private func addBottomSpaceView() {
@@ -246,12 +248,18 @@ open class BaseChatViewController: UIViewController, UICollectionViewDataSource,
         let inputHeightWithKeyboard = self.view.bounds.height - self.inputContainer.frame.minY
         let insetTop = self.topLayoutGuide.length + self.layoutConfiguration.contentInsets.top
         let insetBottom = self.layoutConfiguration.contentInsets.bottom + inputHeightWithKeyboard
-        let availableHeight = self.collectionView.bounds.height - (insetTop + insetBottom)
+        /*
+        let availableHeight = self.view.bounds.height - (insetTop + insetBottom)
         let contentSize = self.collectionView.collectionViewLayout.collectionViewContentSize
         return availableHeight >= contentSize.height
+ */
+        NSLog("! allContentFits")
+        return false
     }
 
     private func adjustCollectionViewInsets(shouldUpdateContentOffset: Bool) {
+        NSLog("! adjustCollectionViewInsets")
+        /*
         let isInteracting = self.collectionView.panGestureRecognizer.numberOfTouches > 0
         let isBouncingAtTop = isInteracting && self.collectionView.contentOffset.y < -self.collectionView.contentInset.top
         if isBouncingAtTop { return }
@@ -264,7 +272,7 @@ open class BaseChatViewController: UIViewController, UICollectionViewDataSource,
 
         let newContentOffsetY: CGFloat = {
             let minOffset = -newInsetTop
-            let maxOffset = contentSize.height - (self.collectionView.bounds.height - newInsetBottom)
+            let maxOffset = contentSize.height - (self.view.bounds.height - newInsetBottom)
             let targetOffset = self.collectionView.contentOffset.y + insetBottomDiff
             return max(min(maxOffset, targetOffset), minOffset)
         }()
@@ -291,12 +299,16 @@ open class BaseChatViewController: UIViewController, UICollectionViewDataSource,
         } else if !isInteracting || inputIsAtBottom {
             self.collectionView.contentOffset.y = newContentOffsetY
         }
+        */
     }
 
     func rectAtIndexPath(_ indexPath: IndexPath?) -> CGRect? {
+        NSLog("! rectAtIndexPath")
+        /*
         if let indexPath = indexPath {
             return self.collectionView.collectionViewLayout.layoutAttributesForItem(at: indexPath)?.frame
         }
+         */
         return nil
     }
 
@@ -355,8 +367,11 @@ open class BaseChatViewController: UIViewController, UICollectionViewDataSource,
 
 extension BaseChatViewController { // Rotation
 
+    
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        NSLog("! BaseChatViewController viewWillTransition")
+        /*
         let shouldScrollToBottom = self.isScrolledAtBottom()
         let referenceIndexPath = self.collectionView.indexPathsForVisibleItems.first
         let oldRect = self.rectAtIndexPath(referenceIndexPath)
@@ -368,5 +383,6 @@ extension BaseChatViewController { // Rotation
                 self.scrollToPreservePosition(oldRefRect: oldRect, newRefRect: newRect)
             }
         }, completion: nil)
+         */
     }
 }

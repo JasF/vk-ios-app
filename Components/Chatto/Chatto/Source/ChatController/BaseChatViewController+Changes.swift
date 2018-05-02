@@ -81,6 +81,9 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
 
     // Returns scrolling position in interval [0, 1], 0 top, 1 bottom
     public var focusPosition: Double {
+        NSLog("! focusPosition");
+        return 0.5
+        /*
         if self.isCloseToBottom() {
             return 1
         } else if self.isCloseToTop() {
@@ -95,6 +98,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         // Rough estimation
         let midContentOffset = self.collectionView.contentOffset.y + self.visibleRect().height / 2
         return min(max(0, Double(midContentOffset / contentHeight)), 1.0)
+        */
     }
 
     func updateVisibleCells(_ changes: CollectionChanges) {
@@ -114,11 +118,14 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
 
     private func visibleCellsFromCollectionViewApi() -> [IndexPath: UICollectionViewCell] {
         var visibleCells: [IndexPath: UICollectionViewCell] = [:]
+        /*
         self.collectionView.indexPathsForVisibleItems.forEach({ (indexPath) in
             if let cell = self.collectionView.cellForItem(at: indexPath) {
                 visibleCells[indexPath] = cell
             }
         })
+ */
+        NSLog("! visibleCellsFromCollectionViewApi")
         return visibleCells
     }
 
@@ -199,6 +206,8 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         if usesBatchUpdates {
             UIView.animate(withDuration: self.constants.updatesAnimationDuration, animations: { () -> Void in
                 self.unfinishedBatchUpdatesCount += 1
+                NSLog("needs collectionView performBatchUpdates")
+                /*
                 self.collectionView.performBatchUpdates({ () -> Void in
                     updateModelClosure()
                     self.updateVisibleCells(changes) // For instance, to support removal of tails
@@ -216,12 +225,16 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
                         DispatchQueue.main.async(execute: onAllBatchUpdatesFinished)
                     }
                 })
+ */
             })
         } else {
             self.visibleCells = [:]
             updateModelClosure()
+            NSLog("! needs collectionView reloadData")
+            /*
             self.collectionView.reloadData()
             self.collectionView.collectionViewLayout.prepare()
+ */
         }
 
         switch scrollAction {
@@ -238,7 +251,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
     }
 
     private func updateModels(newItems: [ChatItemProtocol], oldItems: ChatItemCompanionCollection, updateType: UpdateType, completion: @escaping () -> Void) {
-        let collectionViewWidth = self.collectionView.bounds.width
+        let collectionViewWidth = self.view.bounds.width
         let updateType = self.isFirstLayout ? .firstLoad : updateType
         let performInBackground = updateType != .firstLoad
 
@@ -342,8 +355,8 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
     }
 
     public func chatCollectionViewLayoutModel() -> ChatCollectionViewLayoutModel {
-        if self.layoutModel.calculatedForWidth != self.collectionView.bounds.width {
-            self.layoutModel = self.createLayoutModel(self.chatItemCompanionCollection, collectionViewWidth: self.collectionView.bounds.width)
+        if self.layoutModel.calculatedForWidth != self.view.bounds.width {
+            self.layoutModel = self.createLayoutModel(self.chatItemCompanionCollection, collectionViewWidth: self.view.bounds.width)
         }
         return self.layoutModel
     }

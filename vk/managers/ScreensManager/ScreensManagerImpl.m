@@ -149,10 +149,13 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
+       /*
         if ([self canIgnorePushingViewController:[DialogViewController class]]) {
             return;
         }
-        DialogViewController *viewController =(DialogViewController *)[_screensAssembly dialogViewController:userId];
+        */
+        DialogViewControllerAllocator *viewControllerAllocator =(DialogViewControllerAllocator *)[_screensAssembly dialogViewController:userId];
+        UIViewController *viewController = (UIViewController *)[viewControllerAllocator getViewController];
         [self pushViewController:viewController clean:NO];
     });
 }

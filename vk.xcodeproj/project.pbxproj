@@ -1680,6 +1680,9 @@
 		C3987E312099CB480047A30F /* BaseMessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMessageHandler.swift; sourceTree = "<group>"; };
 		C3987E322099CB480047A30F /* BaseMessageCollectionViewCellAvatarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMessageCollectionViewCellAvatarStyle.swift; sourceTree = "<group>"; };
 		C3987E332099CB480047A30F /* ChatExamplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatExamplesViewController.swift; sourceTree = "<group>"; };
+		C3987E552099CEE20047A30F /* ChattoAdditions.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = ChattoAdditions.podspec; path = Components/Chatto/ChattoAdditions.podspec; sourceTree = SOURCE_ROOT; };
+		C3987E562099CEE20047A30F /* Chatto.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = Chatto.podspec; path = Components/Chatto/Chatto.podspec; sourceTree = SOURCE_ROOT; };
+		C3987E572099CF910047A30F /* NMessenger.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = NMessenger.podspec; path = Components/nMessenger/NMessenger.podspec; sourceTree = SOURCE_ROOT; };
 		C398BA56209357340071FA04 /* TextFieldDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialog.h; sourceTree = "<group>"; };
 		C398BA57209357340071FA04 /* TextFieldDialogImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDialogImpl.m; sourceTree = "<group>"; };
 		C398BA58209357340071FA04 /* TextFieldDialogImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDialogImpl.h; sourceTree = "<group>"; };
@@ -2940,6 +2943,9 @@
 				C3137716208DFABA00F568EA /* entitlements */,
 				C32306FA2080F2DE00CEC487 /* Podfile */,
 				C32304A82080E57400CEC487 /* vk-Bridging-Header.h */,
+				C3987E572099CF910047A30F /* NMessenger.podspec */,
+				C3987E562099CEE20047A30F /* Chatto.podspec */,
+				C3987E552099CEE20047A30F /* ChattoAdditions.podspec */,
 				C32304A92080E57400CEC487 /* vk.pch */,
 				C32304AA2080E57400CEC487 /* app_packages.zip */,
 			);

@@ -24,7 +24,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     
     @objc init(viewModel:DialogScreenViewModel?, nodeFactory:NodeFactory?) {
         self.scrollToBottom = false
-        super.init(nibName:nil, bundle:nil)
+        super.init()
         self.viewModel = viewModel!
         self.nodeFactory = nodeFactory!
         self.viewModel!.delegate = self
@@ -159,5 +159,16 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     // ChatInputBarDelegate
     override func inputBarDidChangeText(_ inputBar: ChatInputBar) {
         self.viewModel?.inputBarDidChangeText(inputBar.text())
+    }
+}
+
+@objcMembers class DialogViewControllerAllocator : NSObject {
+    var viewController: DialogViewController?
+    @objc init(viewModel:DialogScreenViewModel?, nodeFactory:NodeFactory?) {
+        viewController = DialogViewController.init(viewModel:viewModel, nodeFactory:nodeFactory)
+        super.init()
+    }
+    public func getViewController() -> Any? {
+        return viewController
     }
 }

@@ -32,5 +32,7 @@ CF_INLINE bool IsFloatEqual(float a, float b) { return IsEqualFloat(a,b);}
 
 @interface BaseChatViewController : UIViewController
 @end
+@interface DialogViewController : UIViewController
+@end
 
 #endif
