@@ -230,6 +230,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         } else {
             self.visibleCells = [:]
             updateModelClosure()
+            self.tableNode.reloadData()
             NSLog("! needs collectionView reloadData")
             /*
             self.collectionView.reloadData()
