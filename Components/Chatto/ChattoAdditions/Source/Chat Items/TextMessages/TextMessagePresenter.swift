@@ -24,17 +24,9 @@
 
 import UIKit
 import AsyncDisplayKit
+import Chatto
 
-class DummyTextNode : ASCellNode {
-    let textNode = ASTextNode()
-    public override init() {
-        super.init()
-        textNode.attributedText = NSAttributedString.init(string: "DummyTextNode")
-        self.addSubnode(textNode)
-    }
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(10, 10, 10, 10), child: textNode)
-    }
+class DummyTextNode : ChatBaseNodeCell {
 }
 
 open class TextMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
@@ -75,18 +67,9 @@ open class TextMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
         collectionView.register(TextMessageCollectionViewCell.self, forCellWithReuseIdentifier: "text-message-outcoming")
     }
     
-    public final override func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode {
+    public final override func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
         let identifier = self.messageViewModel.isIncoming ? "text-message-incoming" : "text-message-outcoming"
-        return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-    }
-    
-    public final override func dequeueNode(tableNode: ASTableNode, indexPath: IndexPath) -> ASCellNode {
-        let node = DummyTextNode.init()
-        return node
-        /*
-         let identifier = self.messageViewModel.isIncoming ? "text-message-incoming" : "text-message-outcoming"
-        return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-        */
+        return TextMessageCollectionViewCell.init() // collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     }
 
     open override func createViewModel() -> ViewModelBuilderT.ViewModelT {

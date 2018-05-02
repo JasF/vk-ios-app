@@ -25,16 +25,8 @@
 import Foundation
 import AsyncDisplayKit
 
-class DummyNode : ASCellNode {
-    let textNode = ASTextNode()
-    public override init() {
-        super.init()
-        textNode.attributedText = NSAttributedString.init(string: "Dummy")
-        self.addSubnode(textNode)
-    }
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(10, 10, 10, 10), child: textNode)
-    }
+class DummyNode : ChatBaseNodeCell {
+
 }
 // Handles messages that aren't supported so they appear as invisible
 class DummyChatItemPresenter: ChatItemPresenterProtocol {
@@ -54,23 +46,13 @@ class DummyChatItemPresenter: ChatItemPresenterProtocol {
         return 0
     }
 
-    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "cell-id-unhandled-message", for: indexPath)
+    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
+        return DummyNode.init()//collectionView.dequeueReusableCell(withReuseIdentifier: "cell-id-unhandled-message", for: indexPath)
     }
 
-    func configureCell(_ cell: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+    func configureCell(_ cell: ChatBaseNodeCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
         cell.isHidden = true
-    }
-    
-    
-    open func dequeueNode(tableNode: ASTableNode, indexPath: IndexPath) -> ASCellNode {
-        let node = DummyNode.init()
-        return node
-    }
-    
-    open func configureNode(_ node: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
-        
     }
 }
 
-class DummyCollectionViewCell: UICollectionViewCell {}
+class DummyCollectionViewCell: ChatBaseNodeCell {}

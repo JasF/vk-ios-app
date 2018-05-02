@@ -63,14 +63,6 @@ public class SendingStatusPresenterBuilder: ChatItemPresenterBuilderProtocol {
 }
 
 class SendingStatusPresenter: ChatItemPresenterProtocol {
-    func dequeueNode(tableNode: ASTableNode, indexPath: IndexPath) -> ASCellNode {
-        return WallUserActionNode.init("sending-status", number: 0)
-    }
-    
-    func configureNode(_ node: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
-        
-    }
-    
     func getMessageModel() -> Any? {
         return nil
     }
@@ -85,12 +77,12 @@ class SendingStatusPresenter: ChatItemPresenterProtocol {
         collectionView.register(UINib(nibName: "SendingStatusCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SendingStatusCollectionViewCell")
     }
 
-    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SendingStatusCollectionViewCell", for: indexPath)
-        return cell
+    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
+        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SendingStatusCollectionViewCell", for: indexPath)
+        return SendingStatusCollectionViewCell.init() //WallUserActionNode.init("sending status", number: 0) //
     }
 
-    func configureCell(_ cell: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+    func configureCell(_ cell: ChatBaseNodeCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
         guard let statusCell = cell as? SendingStatusCollectionViewCell else {
             assert(false, "expecting status cell")
             return

@@ -25,6 +25,17 @@
 import UIKit
 import AsyncDisplayKit
 
+class TableNodeHolder : ASDisplayNode {
+    let tableNode = ASTableNode()
+    override init() {
+        super.init()
+        self.addSubnode(tableNode)
+    }
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(0, 0, -64, 0), child:tableNode)
+    }
+}
+
 open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDelegate, ASTableDataSource {
 
     public typealias ChatItemCompanionCollection = ReadOnlyOrderedDictionary<ChatItemCompanion>
@@ -35,9 +46,15 @@ open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDeleg
         }
     }
 
-    let tableNode = ASTableNode()
+    var tableNode : ASTableNode {
+        get {
+            return tableNodeHolder.tableNode
+        }
+    }
+    let tableNodeHolder = TableNodeHolder()
     public init() {
-        super.init(node:tableNode)
+        tableNodeHolder.tableNode.inverted = true
+        super.init(node:tableNodeHolder)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -90,7 +107,8 @@ open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDeleg
         self.tableNode.dataSource = nil
     }
 
-    let genericCollectionView = UICollectionView()
+    let genericCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout:UICollectionViewFlowLayout.init())
+    /*
     open override func loadView() {
         if substitutesMainViewAutomatically {
             self.view = BaseChatViewControllerView() // http://stackoverflow.com/questions/24596031/uiviewcontroller-with-inputaccessoryview-is-not-deallocated
@@ -100,6 +118,7 @@ open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDeleg
         }
 
     }
+    */
 
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -262,7 +281,7 @@ open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDeleg
 
     private func adjustCollectionViewInsets(shouldUpdateContentOffset: Bool) {
         NSLog("! adjustCollectionViewInsets")
-        /*
+        
         let isInteracting = self.collectionView.panGestureRecognizer.numberOfTouches > 0
         let isBouncingAtTop = isInteracting && self.collectionView.contentOffset.y < -self.collectionView.contentInset.top
         if isBouncingAtTop { return }
@@ -271,7 +290,7 @@ open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDeleg
         let newInsetBottom = self.layoutConfiguration.contentInsets.bottom + inputHeightWithKeyboard
         let insetBottomDiff = newInsetBottom - self.collectionView.contentInset.bottom
         let newInsetTop = self.topLayoutGuide.length + self.layoutConfiguration.contentInsets.top
-        let contentSize = self.collectionView.collectionViewLayout.collectionViewContentSize
+        let contentSize = self.collectionView.contentSize
 
         let newContentOffsetY: CGFloat = {
             let minOffset = -newInsetTop
@@ -302,7 +321,6 @@ open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDeleg
         } else if !isInteracting || inputIsAtBottom {
             self.collectionView.contentOffset.y = newContentOffsetY
         }
-        */
     }
 
     func rectAtIndexPath(_ indexPath: IndexPath?) -> CGRect? {
@@ -320,8 +338,8 @@ open class BaseChatViewController: ASViewController<ASDisplayNode>, ASTableDeleg
     public private(set) var inputContainer: UIView!
     public private(set) var bottomSpaceView: UIView!
     var presenterFactory: ChatItemPresenterFactoryProtocol!
-    let presentersByCell = NSMapTable<UICollectionViewCell, AnyObject>(keyOptions: .weakMemory, valueOptions: .weakMemory)
-    var visibleCells: [IndexPath: UICollectionViewCell] = [:] // @see visibleCellsAreValid(changes:)
+    let presentersByCell = NSMapTable<ChatBaseNodeCell, AnyObject>(keyOptions: .weakMemory, valueOptions: .weakMemory)
+    var visibleCells: [IndexPath: ChatBaseNodeCell] = [:] // @see visibleCellsAreValid(changes:)
 
     public internal(set) var updateQueue: SerialTaskQueueProtocol = SerialTaskQueue()
 

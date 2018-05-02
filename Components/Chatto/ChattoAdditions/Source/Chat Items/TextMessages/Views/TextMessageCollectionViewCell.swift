@@ -33,7 +33,18 @@ public final class TextMessageCollectionViewCell: BaseMessageCollectionViewCell<
         cell.viewContext = .sizing
         return cell
     }
-
+    
+    public override init() {
+        super.init()
+    }
+    public override init(frame: CGRect) {
+        super.init()
+    }
+    
+    required public override init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: Subclassing (view creation)
 
     public override func createBubbleView() -> TextBubbleView {
@@ -58,18 +69,19 @@ public final class TextMessageCollectionViewCell: BaseMessageCollectionViewCell<
         didSet {
             self.messageViewModel = self.textMessageViewModel
             self.bubbleView.textMessageViewModel = self.textMessageViewModel
+            self.textNode.attributedText = NSAttributedString.init(string: self.textMessageViewModel.text, attributes: [ NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 25) ]) 
         }
     }
 
     public var textMessageStyle: TextMessageCollectionViewCellStyleProtocol! {
         didSet {
-            self.bubbleView.style = self.textMessageStyle
+            self.bubbleView.viewStyle = self.textMessageStyle
         }
     }
 
     override public var isSelected: Bool {
         didSet {
-            self.bubbleView.selected = self.isSelected
+            self.bubbleView.isSelected = self.isSelected
         }
     }
 

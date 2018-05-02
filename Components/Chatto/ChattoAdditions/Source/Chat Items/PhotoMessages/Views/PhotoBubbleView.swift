@@ -23,6 +23,7 @@
 */
 
 import UIKit
+import AsyncDisplayKit
 
 public protocol PhotoBubbleViewStyleProtocol {
     func maskingImage(viewModel: PhotoMessageViewModelProtocol) -> UIImage
@@ -36,27 +37,26 @@ public protocol PhotoBubbleViewStyleProtocol {
     func overlayColor(viewModel: PhotoMessageViewModelProtocol) -> UIColor?
 }
 
-open class PhotoBubbleView: UIView, MaximumLayoutWidthSpecificable, BackgroundSizingQueryable {
+open class PhotoBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable, BackgroundSizingQueryable {
 
     public var viewContext: ViewContext = .normal
     public var animationDuration: CFTimeInterval = 0.33
     public var preferredMaxLayoutWidth: CGFloat = 0
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    public override init() {
+        super.init()
         self.commonInit()
     }
 
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.commonInit()
-    }
 
     private func commonInit() {
         self.autoresizesSubviews = false
+        /*
         self.addSubview(self.imageView)
         self.addSubview(self.placeholderIconView)
         self.addSubview(self.progressIndicatorView)
+ */
+        NSLog("!")
     }
 
     public private(set) lazy var imageView: UIImageView = {
@@ -180,6 +180,7 @@ open class PhotoBubbleView: UIView, MaximumLayoutWidthSpecificable, BackgroundSi
 
     // MARK: Layout
 
+    /*
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         return self.calculateTextBubbleLayout(maximumWidth: size.width).size
     }
@@ -195,6 +196,7 @@ open class PhotoBubbleView: UIView, MaximumLayoutWidthSpecificable, BackgroundSi
         self.overlayView.bma_rect = self.imageView.bounds
         self.borderView.bma_rect = self.imageView.bounds
     }
+    */
 
     private func calculateTextBubbleLayout(maximumWidth: CGFloat) -> PhotoBubbleLayoutModel {
         let layoutContext = PhotoBubbleLayoutModel.LayoutContext(photoMessageViewModel: self.photoMessageViewModel, style: self.photoMessageStyle, containerWidth: maximumWidth)

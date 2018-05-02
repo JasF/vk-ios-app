@@ -11,10 +11,6 @@ import Chatto
 import ChattoAdditions
 
 class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegate {
-    public required init?(coder aDecoder: NSCoder) {
-        self.scrollToBottom = false
-        super.init(coder: aDecoder)
-    }
     
     var nodeFactory: NodeFactory?
     var viewModel: DialogScreenViewModel?
@@ -28,6 +24,10 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         self.viewModel = viewModel!
         self.nodeFactory = nodeFactory!
         self.viewModel!.delegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     var mDataSource: DemoChatDataSource!
@@ -66,7 +66,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     
     var updating: Bool?
     public func batchFetchContent() {
-        if self.updating == true {
+        if self.updating == true || true {
             return
         }
         let message = self.secondMessages?.last
@@ -90,6 +90,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         NSLog("begin chat batch fetch content");
     }
     
+    /*
     @objc(collectionView:willDisplayCell:forItemAtIndexPath:)
     override open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         // Here indexPath should always referer to updated data source.
@@ -105,19 +106,25 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         }
         super.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
     }
-    
+ */
+    var initiallyGetted = false
     override open func viewWillAppear(_ animated: Bool ) {
         super.viewWillAppear(animated)
         
-        self.viewModel?.getMessagesWithOffset(0) {messages in
+        if initiallyGetted == true {
+            return
+        }
+        self.viewModel?.getMessagesWithOffset(0) {[weak self] messages in
             if messages == nil {
                 return
             }
-            if let array = messages! as NSArray as? [Message] {
-                self.messages = array
-                self.secondMessages = array
-                self.scrollToBottom = true
-                self.mDataSource.loadPrevious(count:array.count)
+            self?.initiallyGetted = true
+            if var array = messages! as NSArray as? [Message] {
+                array = array.reversed()
+                self?.messages = array
+                self?.secondMessages = array
+                self?.scrollToBottom = true
+                self?.mDataSource.loadPrevious(count:array.count)
             }
         }
     }

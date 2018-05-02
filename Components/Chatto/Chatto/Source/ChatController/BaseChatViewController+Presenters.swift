@@ -27,6 +27,7 @@ import AsyncDisplayKit
 
 extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
     public func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        NSLog("number of pseudo-bubbles:\(self.chatItemCompanionCollection.count)")
         return self.chatItemCompanionCollection.count
     }
     public func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
@@ -36,15 +37,6 @@ extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
             let decorationAttributes = self.decorationAttributesForIndexPath(indexPath)
             presenter.configureCell(cell, decorationAttributes: decorationAttributes)
             return cell
-            
-            /*
-            let presenter = self.presenterForIndexPath(indexPath)
-            
-            let node = presenter.dequeueNode(tableNode: tableNode, indexPath: indexPath)
-            let decorationAttributes = self.decorationAttributesForIndexPath(indexPath)
-            presenter.configureNode(node, decorationAttributes: decorationAttributes)
-            return node
- */
         }
     }
     
@@ -53,7 +45,7 @@ extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
     }
 
     @objc(collectionView:cellForItemAtIndexPath:)
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ChatBaseNodeCell {
         let presenter = self.presenterForIndexPath(indexPath)
         let cell = presenter.dequeueCell(collectionView: collectionView, indexPath: indexPath)
         let decorationAttributes = self.decorationAttributesForIndexPath(indexPath)
@@ -62,7 +54,7 @@ extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
     }
 
     @objc(collectionView:didEndDisplayingCell:forItemAtIndexPath:)
-    open func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: ChatBaseNodeCell, forItemAt indexPath: IndexPath) {
         // Carefull: this index path can refer to old data source after an update. Don't use it to grab items from the model
         // Instead let's use a mapping presenter <--> cell
         if let oldPresenterForCell = self.presentersByCell.object(forKey: cell) as? ChatItemPresenterProtocol {
@@ -85,7 +77,7 @@ extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
     }
 
     @objc(collectionView:willDisplayCell:forItemAtIndexPath:)
-    open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, willDisplay cell: ChatBaseNodeCell, forItemAt indexPath: IndexPath) {
         // Here indexPath should always referer to updated data source.
 
         let presenter = self.presenterForIndexPath(indexPath)

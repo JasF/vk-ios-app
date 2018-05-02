@@ -39,12 +39,10 @@ public protocol ChatItemPresenterProtocol: class {
     static func registerCells(_ collectionView: UICollectionView)
     var canCalculateHeightInBackground: Bool { get } // Default is false
     func heightForCell(maximumWidth width: CGFloat, decorationAttributes: ChatItemDecorationAttributesProtocol?) -> CGFloat
-    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode
-    func dequeueNode(tableNode: ASTableNode, indexPath: IndexPath) -> ASCellNode
-    func configureCell(_ cell: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?)
-    func configureNode(_ node: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?)
-    func cellWillBeShown(_ cell: UICollectionViewCell) // optional
-    func cellWasHidden(_ cell: UICollectionViewCell) // optional
+    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell
+    func configureCell(_ cell: ChatBaseNodeCell, decorationAttributes: ChatItemDecorationAttributesProtocol?)
+    func cellWillBeShown(_ cell: ChatBaseNodeCell) // optional
+    func cellWasHidden(_ cell: ChatBaseNodeCell) // optional
     func shouldShowMenu() -> Bool // optional. Default is false
     func canPerformMenuControllerAction(_ action: Selector) -> Bool // optional. Default is false
     func performMenuControllerAction(_ action: Selector) // optional
@@ -54,8 +52,8 @@ public protocol ChatItemPresenterProtocol: class {
 
 public extension ChatItemPresenterProtocol { // Optionals
     var canCalculateHeightInBackground: Bool { return false }
-    func cellWillBeShown(_ cell: UICollectionViewCell) {}
-    func cellWasHidden(_ cell: UICollectionViewCell) {}
+    func cellWillBeShown(_ cell: ChatBaseNodeCell) {}
+    func cellWasHidden(_ cell: ChatBaseNodeCell) {}
     func shouldShowMenu() -> Bool { return false }
     func canPerformMenuControllerAction(_ action: Selector) -> Bool { return false }
     func performMenuControllerAction(_ action: Selector) {}

@@ -31,7 +31,7 @@ public enum ChatItemVisibility {
     case visible
 }
 
-open class BaseChatItemPresenter<CellT: ASCellNode>: ChatItemPresenterProtocol {
+open class BaseChatItemPresenter<CellT: ChatBaseNodeCell>: ChatItemPresenterProtocol {
     open func getMessageModel() -> Any? {
         return nil
     }
@@ -53,28 +53,20 @@ open class BaseChatItemPresenter<CellT: ASCellNode>: ChatItemPresenterProtocol {
         return 0
     }
 
-    open func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode {
+    open func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
         assert(false, "Implemenent in subclass")
-        return ASCellNode()
+        return ChatBaseNodeCell()
     }
 
-    open func configureCell(_ cell: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+    open func configureCell(_ cell: ChatBaseNodeCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
         assert(false, "Implemenent in subclass")
     }
-
-    open func dequeueNode(tableNode: ASTableNode, indexPath: IndexPath) -> ASCellNode {
-        assert(false, "Implemenent in subclass")
-    }
-    
-    open func configureNode(_ node: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
-        assert(false, "Implemenent in subclass")
-    }
-    
+  
     final public private(set) var itemVisibility: ChatItemVisibility = .hidden
 
     // Need to override default implementatios. Otherwise subclasses's code won't be executed
     // http://stackoverflow.com/questions/31795158/swift-2-protocol-extension-not-calling-overriden-method-correctly
-    public final func cellWillBeShown(_ cell: UICollectionViewCell) {
+    public final func cellWillBeShown(_ cell: ChatBaseNodeCell) {
         if let cell = cell as? CellT {
             self.cell = cell
             self.itemVisibility = .appearing
@@ -93,7 +85,7 @@ open class BaseChatItemPresenter<CellT: ASCellNode>: ChatItemPresenterProtocol {
         return false
     }
 
-    public final func cellWasHidden(_ cell: UICollectionViewCell) {
+    public final func cellWasHidden(_ cell: ChatBaseNodeCell) {
         // Carefull!! This doesn't mean that this is no longer visible
         // If cell is replaced (due to a reload for instance) we can have the following sequence:
         //   - New cell is taken from the pool and configured. We'll get cellWillBeShown

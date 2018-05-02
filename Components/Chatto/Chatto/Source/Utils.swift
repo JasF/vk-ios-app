@@ -24,6 +24,7 @@
 
 import Foundation
 import UIKit
+import AsyncDisplayKit
 
 private let scale = UIScreen.main.scale
 
@@ -49,4 +50,60 @@ extension UIScrollView {
             viewController.automaticallyAdjustsScrollViewInsets = enabled
         #endif
     }
+}
+
+open class ChatBaseNodeCellInternal : ASCellNode {
+    
+    public let textNode = ASTextNode()
+    public override init() {
+        super.init()
+        textNode.attributedText = NSAttributedString.init(string: String(describing: self))
+        textNode.backgroundColor = UIColor.orange
+        self.addSubnode(textNode)
+    }
+    override open func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(10, 10, 10, 10), child: textNode)
+    }
+    
+    public var window: UIWindow?
+    
+    public init(frame: CGRect) {
+        super.init()
+    }
+    
+    public init?(coder aDecoder: NSCoder) {
+        super.init()
+    }
+    
+    open func prepareForReuse() {
+        
+    }
+    
+    open func layoutSubviews() {
+    }
+    
+    open func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(width: 0, height: 0)
+    }
+    
+    open func addGestureRecognizer(_ gr: Any) {
+        
+    }
+    
+    open func addSubview(_ sb: Any) {
+        
+    }
+    
+    open func didMoveToWindow() {
+        
+    }
+    
+    open func addConstraint(_ c: Any) {
+        
+    }
+}
+
+
+open class ChatBaseNodeCell : ChatBaseNodeCellInternal {
+    public var contentView = ChatBaseNodeCellInternal()
 }

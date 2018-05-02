@@ -48,7 +48,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
     ViewModelBuilderT: ViewModelBuilderProtocol,
     InteractionHandlerT: BaseMessageInteractionHandlerProtocol,
     InteractionHandlerT.ViewModelT == ViewModelBuilderT.ViewModelT,
-    BubbleViewT: UIView,
+    BubbleViewT: ASDisplayNode,
     BubbleViewT: MaximumLayoutWidthSpecificable,
     BubbleViewT: BackgroundSizingQueryable {
 
@@ -84,12 +84,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
         return viewModel
     }
 
-    public final func configureNode(_ node: CellT, decorationAttributes: ChatItemDecorationAttributes) {
-        self.decorationAttributes = decorationAttributes
-        self.configureNode(node, decorationAttributes: decorationAttributes, animated: false, additionalConfiguration: nil)
-    }
-    
-    public final override func configureCell(_ cell: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+    public final override func configureCell(_ cell: ChatBaseNodeCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
         guard let cell = cell as? CellT else {
             assert(false, "Invalid cell given to presenter")
             return
@@ -104,47 +99,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
     }
 
     public var decorationAttributes: ChatItemDecorationAttributes!
-    
-    open func configureNode(_ node: CellT, decorationAttributes: ChatItemDecorationAttributes, animated: Bool, additionalConfiguration: (() -> Void)?) {
-        
-        node.performBatchUpdates({ () -> Void in
-            /*
-            self.messageViewModel.decorationAttributes = decorationAttributes.messageDecorationAttributes
-            // just in case something went wrong while showing UIMenuController
-            self.messageViewModel.isUserInteractionEnabled = true
-            cell.baseStyle = self.cellStyle
-            cell.messageViewModel = self.messageViewModel
-            
-            cell.allowAccessoryViewRevealing = !decorationAttributes.messageDecorationAttributes.isShowingSelectionIndicator
-            cell.onBubbleTapped = { [weak self] (cell) in
-                guard let sSelf = self else { return }
-                sSelf.onCellBubbleTapped()
-            }
-            cell.onBubbleLongPressBegan = { [weak self] (cell) in
-                guard let sSelf = self else { return }
-                sSelf.onCellBubbleLongPressBegan()
-            }
-            cell.onBubbleLongPressEnded = { [weak self] (cell) in
-                guard let sSelf = self else { return }
-                sSelf.onCellBubbleLongPressEnded()
-            }
-            cell.onAvatarTapped = { [weak self] (cell) in
-                guard let sSelf = self else { return }
-                sSelf.onCellAvatarTapped()
-            }
-            cell.onFailedButtonTapped = { [weak self] (cell) in
-                guard let sSelf = self else { return }
-                sSelf.onCellFailedButtonTapped(cell.failedButton)
-            }
-            cell.onSelection = { [weak self] (cell) in
-                guard let sSelf = self else { return }
-                sSelf.onCellSelection()
-            }
-            */
-            additionalConfiguration?()
-        }, animated: animated, completion: nil)
-    }
-    
+
     open func configureCell(_ cell: CellT, decorationAttributes: ChatItemDecorationAttributes, animated: Bool, additionalConfiguration: (() -> Void)?) {
         cell.performBatchUpdates({ () -> Void in
             self.messageViewModel.decorationAttributes = decorationAttributes.messageDecorationAttributes
@@ -223,7 +178,8 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
         }
         cell.bubbleView.isUserInteractionEnabled = true
         menuController.setMenuVisible(false, animated: false)
-        menuController.setTargetRect(cell.bubbleView.bounds, in: cell.bubbleView)
+        NSLog("!")
+        //menuController.setTargetRect(cell.bubbleView.bounds, in: cell.bubbleView)
         menuController.setMenuVisible(true, animated: true)
     }
 

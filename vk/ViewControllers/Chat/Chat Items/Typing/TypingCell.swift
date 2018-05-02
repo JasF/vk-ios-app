@@ -26,18 +26,13 @@ import Foundation
 import UIKit
 import Chatto
 
-class TypingCell: UICollectionViewCell {
+class TypingCell: ChatBaseNodeCell {
     
     private let label: UILabel = UILabel()
     private var imageView: UIImageView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
         self.commonInit()
     }
     
@@ -95,9 +90,4 @@ class TypingCell: UICollectionViewCell {
         self.setNeedsLayout()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.label.bounds.size = self.label.sizeThatFits(self.contentView.bounds.size)
-        self.label.center = self.contentView.center
-    }
 }

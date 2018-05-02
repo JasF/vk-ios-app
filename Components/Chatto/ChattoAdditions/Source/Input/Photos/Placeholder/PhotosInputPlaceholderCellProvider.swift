@@ -23,6 +23,8 @@
 */
 
 import UIKit
+import AsyncDisplayKit
+import Chatto
 
 final class PhotosInputPlaceholderCellProvider: PhotosInputCellProviderProtocol {
     private let reuseIdentifier = "PhotosPlaceholderCellProvider"
@@ -32,8 +34,8 @@ final class PhotosInputPlaceholderCellProvider: PhotosInputCellProviderProtocol 
         self.collectionView.register(PhotosInputPlaceholderCell.self, forCellWithReuseIdentifier: self.reuseIdentifier)
     }
     
-    func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell {
-        return self.collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath)
+    func cellForItem(at indexPath: IndexPath) -> ChatBaseNodeCell {
+        return DummyTextNode.init() // self.collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath)
     }
 
     func configureFullImageLoadingIndicator(at indexPath: IndexPath,

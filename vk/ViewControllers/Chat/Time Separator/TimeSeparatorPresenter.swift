@@ -43,14 +43,6 @@ public class TimeSeparatorPresenterBuilder: ChatItemPresenterBuilderProtocol {
 }
 
 class TimeSeparatorPresenter: ChatItemPresenterProtocol {
-    func dequeueNode(tableNode: ASTableNode, indexPath: IndexPath) -> ASCellNode {
-        return WallUserActionNode.init("time-separator", number: 0)
-    }
-    
-    func configureNode(_ node: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
-        
-    }
-    
     func getMessageModel() -> Any? {
         return nil
     }
@@ -67,11 +59,11 @@ class TimeSeparatorPresenter: ChatItemPresenterProtocol {
         collectionView.register(TimeSeparatorCollectionViewCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
     }
 
-    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: TimeSeparatorPresenter.cellReuseIdentifier, for: indexPath)
+    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
+        return TimeSeparatorCollectionViewCell.init() //collectionView.dequeueReusableCell(withReuseIdentifier: TimeSeparatorPresenter.cellReuseIdentifier, for: indexPath)
     }
 
-    func configureCell(_ cell: ASCellNode, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+    func configureCell(_ cell: ChatBaseNodeCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
         guard let timeSeparatorCell = cell as? TimeSeparatorCollectionViewCell else {
             assert(false, "expecting status cell")
             return

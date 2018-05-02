@@ -24,6 +24,8 @@
 
 import Foundation
 import Photos
+import AsyncDisplayKit
+import Chatto
 
 public struct LiveCameraSettings {
     public let cameraPosition: AVCaptureDevice.Position
@@ -67,13 +69,13 @@ public final class LiveCameraCellPresenter {
         collectionView.register(LiveCameraCell.self, forCellWithReuseIdentifier: Class.reuseIdentifier)
     }
 
-    public func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ASCellNode {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: Class.reuseIdentifier, for: indexPath)
+    public func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
+        return DummyTextNode.init() //collectionView.dequeueReusableCell(withReuseIdentifier: Class.reuseIdentifier, for: indexPath)
     }
 
     private weak var cell: LiveCameraCell?
 
-    public func cellWillBeShown(_ cell: UICollectionViewCell) {
+    public func cellWillBeShown(_ cell: ChatBaseNodeCell) {
         guard let cell = cell as? LiveCameraCell else {
             assertionFailure("Invalid cell given to presenter")
             return
@@ -83,7 +85,7 @@ public final class LiveCameraCellPresenter {
         self.startCapturing()
     }
 
-    public func cellWasHidden(_ cell: UICollectionViewCell) {
+    public func cellWasHidden(_ cell: ChatBaseNodeCell) {
         guard let cell = cell as? LiveCameraCell else {
             assertionFailure("Invalid cell given to presenter")
             return

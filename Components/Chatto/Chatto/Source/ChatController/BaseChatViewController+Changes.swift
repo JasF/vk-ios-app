@@ -117,8 +117,8 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         }
     }
 
-    private func visibleCellsFromCollectionViewApi() -> [IndexPath: ASCellNode] {
-        var visibleCells: [IndexPath: ASCellNode] = [:]
+    private func visibleCellsFromCollectionViewApi() -> [IndexPath: ChatBaseNodeCell] {
+        var visibleCells: [IndexPath: ChatBaseNodeCell] = [:]
         /*
         self.collectionView.indexPathsForVisibleItems.forEach({ (indexPath) in
             if let cell = self.collectionView.cellForItem(at: indexPath) {

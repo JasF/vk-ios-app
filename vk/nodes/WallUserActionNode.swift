@@ -8,16 +8,17 @@
 
 import Foundation
 import NMessenger
+import Chatto
 
-@objcMembers class WallUserActionNode : ASCellNode {
-    let textNode : ASTextNode! = ASTextNode()
+@objcMembers class WallUserActionNode : ChatBaseNodeCell {
+    let aTextNode : ASTextNode! = ASTextNode()
     let numberNode : ASTextNode! = ASTextNode()
     
     init(_ title: String, number: Int) {
         super.init()
-        textNode.attributedText = NSAttributedString.init(string: title, attributes: TextStyles.titleStyle())
+        aTextNode.attributedText = NSAttributedString.init(string: title, attributes: TextStyles.titleStyle())
         setNumber(number)
-        self.addSubnode(textNode)
+        self.addSubnode(aTextNode)
         self.addSubnode(numberNode)
     }
     
@@ -26,9 +27,9 @@ import NMessenger
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        textNode.style.flexGrow = 1
+        aTextNode.style.flexGrow = 1
         numberNode.style.flexGrow = 1
-        let spec = ASStackLayoutSpec.init(direction: .vertical, spacing: 5, justifyContent: .start, alignItems: .center, children: [textNode, numberNode])
+        let spec = ASStackLayoutSpec.init(direction: .vertical, spacing: 5, justifyContent: .start, alignItems: .center, children: [aTextNode, numberNode])
         return spec
     }
 }
