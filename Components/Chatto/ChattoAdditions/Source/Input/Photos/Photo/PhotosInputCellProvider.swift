@@ -23,9 +23,11 @@
 */
 
 import UIKit
+import AsyncDisplayKit
+import Chatto
 
 protocol PhotosInputCellProviderProtocol: class {
-    func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell
+    func cellForItem(at indexPath: IndexPath) -> ChatBaseNodeCell
     func configureFullImageLoadingIndicator(at indexPath: IndexPath,
                                             request: PhotosInputDataProviderImageRequestProtocol)
 }
@@ -40,7 +42,7 @@ final class PhotosInputCellProvider: PhotosInputCellProviderProtocol {
         self.collectionView.register(PhotosInputCell.self, forCellWithReuseIdentifier: self.reuseIdentifier)
     }
 
-    func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell {
+    func cellForItem(at indexPath: IndexPath) -> ChatBaseNodeCell {
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath) as! PhotosInputCell
         self.configureCell(cell, at: indexPath)
         return cell

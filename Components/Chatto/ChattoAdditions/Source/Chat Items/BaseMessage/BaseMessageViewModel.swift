@@ -23,6 +23,7 @@
 */
 
 import Foundation
+import Chatto
 
 public enum MessageViewModelStatus {
     case success
@@ -53,6 +54,7 @@ public protocol MessageViewModelProtocol: class { // why class? https://gist.git
     var externalId: Int { get }
     var status: MessageViewModelStatus { get }
     var avatarImage: Observable<UIImage?> { get set }
+    var node: ChatBaseNodeCell? { get set }
     func willBeShown() // Optional
     func wasHidden() // Optional
 }
@@ -117,6 +119,16 @@ open class MessageViewModel: MessageViewModelProtocol {
         return self.messageModel.readState
     }
     
+    weak var _node : ChatBaseNodeCell?
+    open var node: ChatBaseNodeCell? {
+        get {
+            return _node
+        }
+        set {
+            _node = newValue
+        }
+    }
+    
     open var externalId: Int {
         return self.messageModel.externalId
     }
@@ -147,6 +159,7 @@ open class MessageViewModel: MessageViewModelProtocol {
         self.messageModel = messageModel
         self.avatarImage = Observable<UIImage?>(avatarImage)
         self.decorationAttributes = decorationAttributes
+        self.messageModel.viewModel = self
     }
 
     open var isShowingFailedIcon: Bool {

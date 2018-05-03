@@ -1,8 +1,9 @@
 from vk import LongPoll
-import vk
+import vk, json
 from vk.longpoll import AddMessageProtocol
 from caches.messagesdatabase import MessagesDatabase
 from enum import Flag, auto
+import threading
 
 class MessageFlags(Flag):
     UNREAD = auto()
@@ -22,6 +23,10 @@ class NewMessageProtocol():
     def handleIncomingMessage(self, messageId, flags, peerId, timestamp, text):
         pass
     def handleMessageFlagsChanged(self, message):
+        pass
+    def handleMessagesInReaded(self, peerId, messageId):
+        pass
+    def handleMessagesOutReaded(self, peerId, messageId):
         pass
     def handleTypingInDialog(self, userId, flags):
         pass
@@ -73,6 +78,31 @@ class MessagesService(AddMessageProtocol):
             d.handleIncomingMessage(msg)
         self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state)
 
+    def markReadedMessagesBefore(self, peerId, localId, out):
+        cache = MessagesDatabase()
+        l = cache.unreadedMessagesBefore(peerId, localId, out)
+        for d in l:
+            d['read_state'] = 1
+        cache.update(l)
+        print('markReadedMessagesBefore unreaded: ' + json.dumps(l, indent=4) + '; out: ' + str(out) + '; peer_id: ' + str(peerId))
+        cache.close()
+    
+    def handleMessagesInReaded(self, peerId, localId):
+        try:
+            self.markReadedMessagesBefore(peerId, localId, False)
+            for d in self.newMessageSubscribers:
+                d.handleMessagesInReaded(peerId, localId)
+        except Exception as e:
+            print('handleMessagesInReaded exception: ' + str(e))
+    
+    def handleMessagesOutReaded(self, peerId, localId):
+        try:
+            self.markReadedMessagesBefore(peerId, localId, True)
+            for d in self.newMessageSubscribers:
+                d.handleMessagesOutReaded(peerId, localId)
+        except Exception as e:
+            print('handleMessagesOutReaded exception: ' + str(e))
+
     def handleMessageClearFlags(self, messageId, flags):
         if not MessageFlags(flags) & MessageFlags.UNREAD:
             print('clearing unknown flags: ' + str(MessageFlags(flags)) + ' for msgid: ' + str(messageId))
@@ -87,5 +117,11 @@ class MessagesService(AddMessageProtocol):
             d.handleMessageFlagsChanged(msg)
 
     def handleTyping(self, userId, flags):
+        print('count of subscr: ' + str(len(self.newMessageSubscribers)))
         for d in self.newMessageSubscribers:
-            d.handleTypingInDialog(userId, flags)
+            try:
+                def call():
+                    d.handleTypingInDialog(userId, flags)
+                threading.Thread(target=call).start()
+            except Exception as e:
+                print('handleTyping exception: ' + str(e))

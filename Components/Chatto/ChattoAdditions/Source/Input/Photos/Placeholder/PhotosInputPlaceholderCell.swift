@@ -23,8 +23,10 @@
 */
 
 import UIKit
+import AsyncDisplayKit
+import Chatto
 
-final class PhotosInputPlaceholderCell: UICollectionViewCell {
+final class PhotosInputPlaceholderCell: ChatBaseNodeCell {
 
     private struct Constants {
         static let backgroundColor = UIColor(red: 231.0/255.0, green: 236.0/255.0, blue: 242.0/255.0, alpha: 1)
@@ -33,11 +35,6 @@ final class PhotosInputPlaceholderCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.commonInit()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
         self.commonInit()
     }
 
@@ -55,4 +52,6 @@ final class PhotosInputPlaceholderCell: UICollectionViewCell {
         self.imageView.sizeToFit()
         self.imageView.center = self.contentView.bounds.bma_center
     }
+    
+    
 }

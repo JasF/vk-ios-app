@@ -23,6 +23,7 @@
 */
 
 import Foundation
+import Chatto
 
 open class PhotoMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
 : BaseMessagePresenter<PhotoBubbleView, ViewModelBuilderT, InteractionHandlerT> where
@@ -56,8 +57,8 @@ open class PhotoMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
         collectionView.register(PhotoMessageCollectionViewCell.self, forCellWithReuseIdentifier: "photo-message")
     }
 
-    public final override func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "photo-message", for: indexPath)
+    public final override func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
+        return DummyTextNode.init() // collectionView.dequeueReusableCell(withReuseIdentifier: "photo-message", for: indexPath)
     }
 
     open override func createViewModel() -> ViewModelBuilderT.ViewModelT {

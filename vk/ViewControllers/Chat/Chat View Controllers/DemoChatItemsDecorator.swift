@@ -59,8 +59,8 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
             var isShowingSelectionIndicator = false
 
             if let currentMessage = chatItem as? MessageModelProtocol {
-                if let nextMessage = next as? MessageModelProtocol {
-                    showsTail = currentMessage.senderId != nextMessage.senderId
+                if let prevMessage = prev as? MessageModelProtocol {
+                    showsTail = currentMessage.senderId != prevMessage.senderId
                 } else {
                     showsTail = true
                 }
@@ -72,16 +72,20 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
                 }
 
                 if self.showsStatusForMessage(currentMessage) {
+                    /*
                     additionalItems.append(
                         DecoratedChatItem(
                             chatItem: SendingStatusModel(uid: "\(currentMessage.uid)-decoration-status", status: currentMessage.status),
                             decorationAttributes: nil)
                     )
+                    */
                 }
 
                 if addTimeSeparator {
+                    /*
                     let dateTimeStamp = DecoratedChatItem(chatItem: TimeSeparatorModel(uid: "\(currentMessage.uid)-time-separator", date: currentMessage.date.toWeekDayAndDateString()), decorationAttributes: nil)
                     decoratedChatItems.append(dateTimeStamp)
+                    */
                 }
 
                 isSelected = self.messagesSelector.isMessageSelected(currentMessage)
@@ -107,7 +111,7 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
 
         if self.typingCellEnabled == true {
             let typing = DecoratedChatItem(chatItem: TypingModel(uid: "typing-cell"), decorationAttributes: nil)
-            decoratedChatItems.append(typing)
+            decoratedChatItems.insert(typing, at:0)
         }
         return decoratedChatItems
     }

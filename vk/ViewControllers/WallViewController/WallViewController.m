@@ -12,6 +12,7 @@
 #import <VK-ios-sdk/VKSdk.h>
 #import "WallPost.h"
 #import "vk-Swift.h"
+#import "ScreensManager.h"
 
 @interface WallViewController () <BaseTableViewControllerDataSource, WallUserScrollNodeDelegate, WallUserMessageNodeDelegate, ViewControllerActionsExtension>
 @property (strong, nonatomic) id<WallViewModel> viewModel;

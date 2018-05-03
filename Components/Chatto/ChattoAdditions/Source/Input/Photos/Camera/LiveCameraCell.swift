@@ -25,6 +25,8 @@
 import AVFoundation
 import Foundation
 import UIKit
+import AsyncDisplayKit
+import Chatto
 
 public struct LiveCameraCellAppearance {
     public var backgroundColor: UIColor
@@ -48,7 +50,7 @@ public struct LiveCameraCellAppearance {
     }
 }
 
-class LiveCameraCell: UICollectionViewCell {
+class LiveCameraCell: ChatBaseNodeCell {
 
     private var iconImageView: UIImageView!
 
@@ -63,7 +65,7 @@ class LiveCameraCell: UICollectionViewCell {
         self.commonInit()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required override init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()
     }

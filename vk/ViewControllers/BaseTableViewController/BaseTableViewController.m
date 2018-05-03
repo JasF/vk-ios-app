@@ -135,6 +135,9 @@ static const NSInteger kBatchSize = 20;
     @weakify(self);
     return ^{
         @strongify(self);
+        if (indexPath.row >= self.data.count) {
+            return [ASCellNode new];
+        }
         id object = self.data[indexPath.row];
         ASCellNode *node = (ASCellNode *)[self.nodeFactory nodeForItem:object];
         return node;

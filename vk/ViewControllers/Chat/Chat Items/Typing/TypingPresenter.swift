@@ -26,7 +26,7 @@ public class TypingPresenterBuilder: ChatItemPresenterBuilderProtocol {
     }
 }
 
-class TypingPresenter: ChatItemPresenterProtocol {
+class TypingPresenter: ChatItemPresenterProtocol { 
     func getMessageModel() -> Any? {
         return nil
     }
@@ -43,17 +43,17 @@ class TypingPresenter: ChatItemPresenterProtocol {
         collectionView.register(TypingCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
     }
     
-    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: TypingPresenter.cellReuseIdentifier, for: indexPath)
+    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
+        return TypingCell.init()// WallUserActionNode.init("typing", number: 0) //collectionView.dequeueReusableCell(withReuseIdentifier: TypingPresenter.cellReuseIdentifier, for: indexPath)
     }
     
-    func configureCell(_ cell: UICollectionViewCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+    func configureCell(_ cell: ChatBaseNodeCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
         guard let typingCell = cell as? TypingCell else {
             assert(false, "expecting status cell")
             return
         }
         
-        typingCell.text = "Typing Text"
+        //typingCell.text = "Typing Text"
     }
     
     var canCalculateHeightInBackground: Bool {
@@ -61,6 +61,6 @@ class TypingPresenter: ChatItemPresenterProtocol {
     }
     
     func heightForCell(maximumWidth width: CGFloat, decorationAttributes: ChatItemDecorationAttributesProtocol?) -> CGFloat {
-        return TypingCell.imageSize().height
+        return 30;//TypingCell.imageSize().height
     }
 }

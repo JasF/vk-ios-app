@@ -23,6 +23,11 @@
 */
 
 import UIKit
+import AsyncDisplayKit
+import Chatto
+
+class DummyTextNode : ChatBaseNodeCell {
+}
 
 open class TextMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
 : BaseMessagePresenter<TextBubbleView, ViewModelBuilderT, InteractionHandlerT> where
@@ -61,10 +66,10 @@ open class TextMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
         collectionView.register(TextMessageCollectionViewCell.self, forCellWithReuseIdentifier: "text-message-incoming")
         collectionView.register(TextMessageCollectionViewCell.self, forCellWithReuseIdentifier: "text-message-outcoming")
     }
-
-    public final override func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    
+    public final override func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
         let identifier = self.messageViewModel.isIncoming ? "text-message-incoming" : "text-message-outcoming"
-        return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        return TextMessageCollectionViewCell.init() // collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     }
 
     open override func createViewModel() -> ViewModelBuilderT.ViewModelT {

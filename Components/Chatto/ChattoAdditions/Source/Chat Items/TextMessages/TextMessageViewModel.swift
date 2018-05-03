@@ -23,6 +23,7 @@
 */
 
 import Foundation
+import Chatto
 
 public protocol TextMessageViewModelProtocol: DecoratedMessageViewModelProtocol {
     var text: String { get }
@@ -31,6 +32,16 @@ public protocol TextMessageViewModelProtocol: DecoratedMessageViewModelProtocol 
 open class TextMessageViewModel<TextMessageModelT: TextMessageModelProtocol>: TextMessageViewModelProtocol {
     open var readState: Int {
         return self.messageViewModel.readState
+    }
+    
+    weak var _node : ChatBaseNodeCell?
+    open var node: ChatBaseNodeCell? {
+        get {
+            return self.messageViewModel.node
+        }
+        set {
+            self.messageViewModel.node = newValue
+        }
     }
     
     open var externalId: Int {

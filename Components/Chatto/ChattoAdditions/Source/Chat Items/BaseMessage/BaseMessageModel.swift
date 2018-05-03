@@ -40,6 +40,7 @@ public protocol MessageModelProtocol: ChatItemProtocol {
     var externalId: Int { get }
     func setExternalId(_ id: Int)
     func setReadState(_ id: Int)
+    var viewModel: MessageViewModelProtocol? { get set }
 }
 
 public protocol DecoratedMessageModelProtocol: MessageModelProtocol {
@@ -80,7 +81,15 @@ open class MessageModel: MessageModelProtocol {
     public func setReadState(_ id: Int) {
         self.readState = id
     }
-    
+    weak var _viewModel: MessageViewModelProtocol?
+    open var viewModel: MessageViewModelProtocol? {
+        get {
+            return _viewModel
+        }
+        set {
+            _viewModel = newValue
+        }
+    }
     open var uid: String
     open var senderId: String
     open var type: String

@@ -24,6 +24,7 @@
 
 import Foundation
 import Chatto
+import AsyncDisplayKit
 
 public protocol ViewModelBuilderProtocol {
     associatedtype ModelT: MessageModelProtocol
@@ -47,7 +48,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
     ViewModelBuilderT: ViewModelBuilderProtocol,
     InteractionHandlerT: BaseMessageInteractionHandlerProtocol,
     InteractionHandlerT.ViewModelT == ViewModelBuilderT.ViewModelT,
-    BubbleViewT: UIView,
+    BubbleViewT: ASDisplayNode,
     BubbleViewT: MaximumLayoutWidthSpecificable,
     BubbleViewT: BackgroundSizingQueryable {
 
@@ -83,7 +84,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
         return viewModel
     }
 
-    public final override func configureCell(_ cell: UICollectionViewCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+    public final override func configureCell(_ cell: ChatBaseNodeCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
         guard let cell = cell as? CellT else {
             assert(false, "Invalid cell given to presenter")
             return
@@ -98,6 +99,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
     }
 
     public var decorationAttributes: ChatItemDecorationAttributes!
+
     open func configureCell(_ cell: CellT, decorationAttributes: ChatItemDecorationAttributes, animated: Bool, additionalConfiguration: (() -> Void)?) {
         cell.performBatchUpdates({ () -> Void in
             self.messageViewModel.decorationAttributes = decorationAttributes.messageDecorationAttributes
@@ -125,7 +127,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
             }
             cell.onFailedButtonTapped = { [weak self] (cell) in
                 guard let sSelf = self else { return }
-                sSelf.onCellFailedButtonTapped(cell.failedButton)
+                //sSelf.onCellFailedButtonTapped(cell.failedButton)
             }
             cell.onSelection = { [weak self] (cell) in
                 guard let sSelf = self else { return }
@@ -176,7 +178,8 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
         }
         cell.bubbleView.isUserInteractionEnabled = true
         menuController.setMenuVisible(false, animated: false)
-        menuController.setTargetRect(cell.bubbleView.bounds, in: cell.bubbleView)
+        //NSLog("!")
+        //menuController.setTargetRect(cell.bubbleView.bounds, in: cell.bubbleView)
         menuController.setMenuVisible(true, animated: true)
     }
 

@@ -120,8 +120,8 @@
             }];
 }
 
-- (UIViewController *)dialogViewController:(NSNumber *)userId {
-    return [TyphoonDefinition withClass:[DialogViewController class] configuration:^(TyphoonDefinition *definition)
+- (DialogViewControllerAllocator *)dialogViewController:(NSNumber *)userId {
+    return [TyphoonDefinition withClass:[DialogViewControllerAllocator class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:[self.viewModelsAssembly dialogScreenViewModel:userId]];

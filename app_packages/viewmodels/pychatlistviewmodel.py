@@ -43,6 +43,14 @@ class PyChatListViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         if self.guiDelegate:
             self.guiDelegate.handleMessageFlagsChanged_(args=[message])
 
+    def handleMessagesInReaded(self, peerId, localId):
+        if self.guiDelegate:
+            self.guiDelegate.handleMessagesInReaded_localId_(args=[peerId, localId])
+    
+    def handleMessagesOutReaded(self, peerId, localId):
+        if self.guiDelegate:
+            self.guiDelegate.handleMessagesOutReaded_localId_(args=[peerId, localId])
+
     def handleTypingInDialog(self, userId, flags):
         if self.guiDelegate:
             self.guiDelegate.handleTypingInDialog_flags_end_(args=[userId,flags,False])

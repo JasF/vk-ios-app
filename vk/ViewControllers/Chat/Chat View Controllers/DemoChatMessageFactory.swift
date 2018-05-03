@@ -93,7 +93,7 @@ class DemoChatMessageFactory {
 
     private class func makeMessageModel(_ uid: String, isIncoming: Bool, type: String, readState: Int, externalId: Int) -> MessageModel {
         let senderId = isIncoming ? "1" : "2"
-        let messageStatus = isIncoming || arc4random_uniform(100) % 3 == 0 ? MessageStatus.success : .failed
+        let messageStatus = MessageStatus.success //isIncoming || arc4random_uniform(100) % 3 == 0 ? MessageStatus.success : .failed
         return MessageModel(uid: uid, senderId: senderId, type: type, isIncoming: isIncoming, date: Date(), status: messageStatus, readState: readState, externalId: externalId)
     }
 }

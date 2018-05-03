@@ -9,13 +9,9 @@
 import UIKit
 import Chatto
 import ChattoAdditions
+import CocoaLumberjack
 
 class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegate {
-    public required init?(coder aDecoder: NSCoder) {
-        self.scrollToBottom = false
-        super.init(coder: aDecoder)
-    }
-    
     var nodeFactory: NodeFactory?
     var viewModel: DialogScreenViewModel?
     var messages: Array<Message>?
@@ -24,10 +20,14 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     
     @objc init(viewModel:DialogScreenViewModel?, nodeFactory:NodeFactory?) {
         self.scrollToBottom = false
-        super.init(nibName:nil, bundle:nil)
+        super.init()
         self.viewModel = viewModel!
         self.nodeFactory = nodeFactory!
         self.viewModel!.delegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     var mDataSource: DemoChatDataSource!
@@ -45,7 +45,8 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
             return resultArray
         }
         self.mDataSource.setBatchFetchContent() { [weak self] () -> Void in
-            self?.batchFetchContent()
+            NSLog("! needs batch fetch content");
+            //self?.batchFetchContent()
         }
         self.dataSource = self.mDataSource
         super.viewDidLoad()
@@ -65,8 +66,10 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     }
     
     var updating: Bool?
-    public func batchFetchContent() {
-        if self.updating == true {
+    
+    func tableNode(_ tableNode: ASTableNode, willBeginBatchFetchWith context: ASBatchContext) {
+        if self.updating == true || self.initiallyGetted == false {
+            context.completeBatchFetching(true)
             return
         }
         let message = self.secondMessages?.last
@@ -74,7 +77,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
             self.updating = true
             
             self.viewModel?.getMessagesWithOffset(0, startMessageId: Int(message!.identifier)) {messages in
-                print("hello response!")
+                context.completeBatchFetching(true)
                 if messages == nil {
                     return
                 }
@@ -87,13 +90,13 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
             }
             
         }
-        NSLog("begin chat batch fetch content");
     }
     
-    @objc(collectionView:willDisplayCell:forItemAtIndexPath:)
-    override open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        // Here indexPath should always referer to updated data source.
-        NSLog("willDsiplay: \(indexPath)")
+    @objc override open func tableNode(_ tableNode: ASTableNode, willDisplayRowWith node: ASCellNode) {
+        if !node.isKind(of: ChatBaseNodeCell.self) {
+            return
+        }
+        guard let indexPath = tableNode.indexPath(for: node) else { return }
         let presenter = self.presenterForIndexPath(indexPath)
         let messageModel = presenter.getMessageModel() as! MessageModelProtocol?
         if messageModel != nil {
@@ -103,21 +106,28 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
                 self.viewModel?.willDisplayUnreadedMessage(withIdentifier: identifier!, isOut: isIncoming! ? 0 : 1)
             }
         }
-        super.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
+        super.tableNode(tableNode, willDisplayRowWith: node)
     }
     
+    var initiallyGetted = false
     override open func viewWillAppear(_ animated: Bool ) {
         super.viewWillAppear(animated)
         
-        self.viewModel?.getMessagesWithOffset(0) {messages in
+        if initiallyGetted == true {
+            return
+        }
+        self.updating = true
+        self.viewModel?.getMessagesWithOffset(0) {[weak self] messages in
             if messages == nil {
                 return
             }
-            if let array = messages! as NSArray as? [Message] {
-                self.messages = array
-                self.secondMessages = array
-                self.scrollToBottom = true
-                self.mDataSource.loadPrevious(count:array.count)
+            self?.updating = false
+            self?.initiallyGetted = true
+            if var array = messages! as NSArray as? [Message] {
+                self?.messages = array
+                self?.secondMessages = array
+                self?.scrollToBottom = true
+                self?.mDataSource.loadPrevious(count:array.count)
             }
         }
     }
@@ -129,7 +139,6 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         self.viewModel?.sendTextMessage(text) { messageId in
             NSLog("messageId is: \(messageId)");
             msg?.setExternalId(messageId)
-            NSLog("!");
         }
     }
     
@@ -156,8 +165,30 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         self.setTypingCellEnabled(!end)
     }
     
+    func handleMessages(inReaded messageId: Int) {
+        NSLog("inReaded: \(messageId)")
+        self.mDataSource?.handleMessages(inReaded: messageId, self.tableNode)
+    }
+    
+    func handleMessagesOutReaded(_ messageId: Int) {
+        NSLog("handleMessagesOutReaded: \(messageId)")
+        self.mDataSource?.handleMessagesOutReaded(messageId, self.tableNode)
+    }
+    
     // ChatInputBarDelegate
     override func inputBarDidChangeText(_ inputBar: ChatInputBar) {
         self.viewModel?.inputBarDidChangeText(inputBar.text())
     }
 }
+
+@objcMembers class DialogViewControllerAllocator : NSObject {
+    var viewController: DialogViewController?
+    @objc init(viewModel:DialogScreenViewModel?, nodeFactory:NodeFactory?) {
+        viewController = DialogViewController.init(viewModel:viewModel, nodeFactory:nodeFactory)
+        super.init()
+    }
+    public func getViewController() -> Any? {
+        return viewController
+    }
+}
+

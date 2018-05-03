@@ -23,13 +23,16 @@
 */
 
 import Foundation
+import AsyncDisplayKit
 
+class DummyNode : ChatBaseNodeCell {
+
+}
 // Handles messages that aren't supported so they appear as invisible
 class DummyChatItemPresenter: ChatItemPresenterProtocol {
     func getMessageModel() -> Any? {
         return nil
     }
-    
 
     class func registerCells(_ collectionView: UICollectionView) {
         collectionView.register(DummyCollectionViewCell.self, forCellWithReuseIdentifier: "cell-id-unhandled-message")
@@ -43,13 +46,13 @@ class DummyChatItemPresenter: ChatItemPresenterProtocol {
         return 0
     }
 
-    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "cell-id-unhandled-message", for: indexPath)
+    func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
+        return DummyNode.init()//collectionView.dequeueReusableCell(withReuseIdentifier: "cell-id-unhandled-message", for: indexPath)
     }
 
-    func configureCell(_ cell: UICollectionViewCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
+    func configureCell(_ cell: ChatBaseNodeCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
         cell.isHidden = true
     }
 }
 
-class DummyCollectionViewCell: UICollectionViewCell {}
+class DummyCollectionViewCell: ChatBaseNodeCell {}

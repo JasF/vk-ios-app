@@ -23,6 +23,7 @@
 */
 
 import Foundation
+import AsyncDisplayKit
 
 extension BaseChatViewController: ChatDataSourceDelegateProtocol {
 
@@ -81,6 +82,9 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
 
     // Returns scrolling position in interval [0, 1], 0 top, 1 bottom
     public var focusPosition: Double {
+        NSLog("! focusPosition");
+        return 0.5
+        /*
         if self.isCloseToBottom() {
             return 1
         } else if self.isCloseToTop() {
@@ -95,6 +99,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         // Rough estimation
         let midContentOffset = self.collectionView.contentOffset.y + self.visibleRect().height / 2
         return min(max(0, Double(midContentOffset / contentHeight)), 1.0)
+        */
     }
 
     func updateVisibleCells(_ changes: CollectionChanges) {
@@ -112,13 +117,15 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         }
     }
 
-    private func visibleCellsFromCollectionViewApi() -> [IndexPath: UICollectionViewCell] {
-        var visibleCells: [IndexPath: UICollectionViewCell] = [:]
-        self.collectionView.indexPathsForVisibleItems.forEach({ (indexPath) in
-            if let cell = self.collectionView.cellForItem(at: indexPath) {
+    private func visibleCellsFromCollectionViewApi() -> [IndexPath: ChatBaseNodeCell] {
+        var visibleCells: [IndexPath: ChatBaseNodeCell] = [:]
+        
+        self.tableNode.indexPathsForVisibleRows().forEach({ (indexPath) in
+            if let cell = self.tableNode.nodeForRow(at: indexPath) as! ChatBaseNodeCell? {
                 visibleCells[indexPath] = cell
             }
         })
+ 
         return visibleCells
     }
 
@@ -135,6 +142,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
     }
 
     private enum ScrollAction {
+        case none
         case scrollToBottom
         case preservePosition(rectForReferenceIndexPathBeforeUpdate: CGRect?, referenceIndexPathAfterUpdate: IndexPath?)
     }
@@ -168,14 +176,16 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
             usesBatchUpdates = !wantsReloadData && !mustDoReloadData
         }
 
-        var scrollAction: ScrollAction
+        var scrollAction: ScrollAction = .none
         do { // Scroll action
             if updateType != .pagination && self.isScrolledAtBottom() {
                 scrollAction = .scrollToBottom
             } else {
+                /*
                 let (oldReferenceIndexPath, newReferenceIndexPath) = self.referenceIndexPathsToRestoreScrollPositionOnUpdate(itemsBeforeUpdate: self.chatItemCompanionCollection, changes: changes)
                 let oldRect = self.rectAtIndexPath(oldReferenceIndexPath)
                 scrollAction = .preservePosition(rectForReferenceIndexPathBeforeUpdate: oldRect, referenceIndexPathAfterUpdate: newReferenceIndexPath)
+ */
             }
         }
         if self.needsScrollToBottom() == true {
@@ -196,17 +206,18 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
             }
         }
 
-        if usesBatchUpdates {
-            UIView.animate(withDuration: self.constants.updatesAnimationDuration, animations: { () -> Void in
+        if true {//usesBatchUpdates {
+            ChatAnimation.chatAnimation(withDuration: self.constants.updatesAnimationDuration, animations: { () -> Void in
                 self.unfinishedBatchUpdatesCount += 1
-                self.collectionView.performBatchUpdates({ () -> Void in
+                let animated = (updateType == .pagination) ? false : true
+                self.tableNode.performBatch(animated: animated, updates: { () -> Void in
                     updateModelClosure()
                     self.updateVisibleCells(changes) // For instance, to support removal of tails
 
-                    self.collectionView.deleteItems(at: Array(changes.deletedIndexPaths))
-                    self.collectionView.insertItems(at: Array(changes.insertedIndexPaths))
+                    self.tableNode.deleteRows(at: Array(changes.deletedIndexPaths), with: .none)
+                    self.tableNode.insertRows(at: Array(changes.insertedIndexPaths), with: .none)
                     for move in changes.movedIndexPaths {
-                        self.collectionView.moveItem(at: move.indexPathOld, to: move.indexPathNew)
+                        //self.tableNode.moveRow(at: move.indexPathOld, to: move.indexPathNew)
                     }
                 }, completion: { [weak self] (_) -> Void in
                     defer { myCompletion() }
@@ -220,8 +231,12 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         } else {
             self.visibleCells = [:]
             updateModelClosure()
+            self.tableNode.reloadData()
+            NSLog("! needs collectionView reloadData")
+            /*
             self.collectionView.reloadData()
             self.collectionView.collectionViewLayout.prepare()
+ */
         }
 
         switch scrollAction {
@@ -230,6 +245,8 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         case .preservePosition(rectForReferenceIndexPathBeforeUpdate: let oldRect, referenceIndexPathAfterUpdate: let indexPath):
             let newRect = self.rectAtIndexPath(indexPath)
             self.scrollToPreservePosition(oldRefRect: oldRect, newRefRect: newRect)
+        case .none:
+            break
         }
 
         if !usesBatchUpdates || self.updatesConfig.fastUpdates {
@@ -238,7 +255,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
     }
 
     private func updateModels(newItems: [ChatItemProtocol], oldItems: ChatItemCompanionCollection, updateType: UpdateType, completion: @escaping () -> Void) {
-        let collectionViewWidth = self.collectionView.bounds.width
+        let collectionViewWidth:CGFloat = 0;//self.view.bounds.width
         let updateType = self.isFirstLayout ? .firstLoad : updateType
         let performInBackground = updateType != .firstLoad
 
@@ -342,8 +359,8 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
     }
 
     public func chatCollectionViewLayoutModel() -> ChatCollectionViewLayoutModel {
-        if self.layoutModel.calculatedForWidth != self.collectionView.bounds.width {
-            self.layoutModel = self.createLayoutModel(self.chatItemCompanionCollection, collectionViewWidth: self.collectionView.bounds.width)
+        if self.layoutModel.calculatedForWidth != self.view.bounds.width {
+            self.layoutModel = self.createLayoutModel(self.chatItemCompanionCollection, collectionViewWidth: self.view.bounds.width)
         }
         return self.layoutModel
     }

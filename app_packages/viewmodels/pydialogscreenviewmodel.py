@@ -58,10 +58,21 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         if self.guiDelegate:
             self.guiDelegate.handleMessageFlagsChanged_(args=[message])
 
+    def handleMessagesInReaded(self, peerId, localId):
+        if self.userId != peerId:
+            return
+        if self.guiDelegate:
+            self.guiDelegate.handleMessagesInReaded_(args=[localId])
+    
+    def handleMessagesOutReaded(self, peerId, localId):
+        if self.userId != peerId:
+            return
+        if self.guiDelegate:
+            self.guiDelegate.handleMessagesOutReaded_(args=[localId])
 
     def handleTypingInDialog(self, userId, flags):
+        print('handleTypingInDialog:')
         if self.userId != userId:
-            print('unknown userId: ' + str(userId) + '; current is: ' + str(self.userId))
             return
         if self.guiDelegate:
             self.guiDelegate.handleTypingInDialog_flags_end_(args=[userId,flags,False])

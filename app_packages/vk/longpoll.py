@@ -129,10 +129,22 @@ def parseMessageEdit(eventDescription):
     pass
 
 def parseMessageInReaded(eventDescription):
-    pass
+    if len(eventDescription) < 2:
+        print('parseMessageInReaded too short')
+        return
+    peerId = eventDescription[0]
+    localId = eventDescription[1]
+    for d in _lp.addMessageDelegates:
+        d.handleMessagesInReaded(peerId, localId)
 
 def parseMessageOutReaded(eventDescription):
-    pass
+    if len(eventDescription) < 2:
+        print('parseMessageOutReaded too short')
+        return
+    peerId = eventDescription[0]
+    localId = eventDescription[1]
+    for d in _lp.addMessageDelegates:
+        d.handleMessagesOutReaded(peerId, localId)
 
 def parseUserOnline(eventDescription):
     pass

@@ -25,6 +25,7 @@
 import UIKit
 import Photos
 import Chatto
+import AsyncDisplayKit
 
 public struct PhotosInputViewAppearance {
     public var liveCameraCellAppearence: LiveCameraCellAppearance
@@ -197,12 +198,14 @@ extension PhotosInputView: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell: UICollectionViewCell
+        var cell: UICollectionViewCell = UICollectionViewCell()
+        /*
         if indexPath.item == Constants.liveCameraItemIndex {
             cell = self.liveCameraPresenter.dequeueCell(collectionView: collectionView, indexPath: indexPath)
         } else {
             cell = self.cellProvider.cellForItem(at: indexPath)
         }
+ */
         return cell
     }
 }
@@ -249,13 +252,13 @@ extension PhotosInputView: UICollectionViewDelegateFlowLayout {
         return self.itemSizeCalculator.interitemSpace
     }
 
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: ChatBaseNodeCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == Constants.liveCameraItemIndex {
             self.liveCameraPresenter.cellWillBeShown(cell)
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: ChatBaseNodeCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == Constants.liveCameraItemIndex {
             self.liveCameraPresenter.cellWasHidden(cell)
         }

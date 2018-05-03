@@ -36,15 +36,15 @@ extension CGFloat {
 extension BaseChatViewController {
 
     public func isScrolledAtBottom() -> Bool {
-        guard self.collectionView.numberOfSections > 0 && self.collectionView.numberOfItems(inSection: 0) > 0 else { return true }
+        guard self.collectionView.numberOfSections > 0 && self.collectionView.numberOfRows(inSection: 0) > 0 else { return true }
         let sectionIndex = self.collectionView.numberOfSections - 1
-        let itemIndex = self.collectionView.numberOfItems(inSection: sectionIndex) - 1
+        let itemIndex = self.collectionView.numberOfRows(inSection: sectionIndex) - 1
         let lastIndexPath = IndexPath(item: itemIndex, section: sectionIndex)
         return self.isIndexPathVisible(lastIndexPath, atEdge: .bottom)
     }
 
     public func isScrolledAtTop() -> Bool {
-        guard self.collectionView.numberOfSections > 0 && self.collectionView.numberOfItems(inSection: 0) > 0 else { return true }
+        guard self.collectionView.numberOfSections > 0 && self.collectionView.numberOfRows(inSection: 0) > 0 else { return true }
         let firstIndexPath = IndexPath(item: 0, section: 0)
         return self.isIndexPathVisible(firstIndexPath, atEdge: .top)
     }
@@ -60,6 +60,8 @@ extension BaseChatViewController {
     }
 
     public func isIndexPathVisible(_ indexPath: IndexPath, atEdge edge: CellVerticalEdge) -> Bool {
+        return (self.collectionView.indexPathsForVisibleRows?.contains(indexPath))!
+        /*
         if let attributes = self.collectionView.collectionViewLayout.layoutAttributesForItem(at: indexPath) {
             let visibleRect = self.visibleRect()
             let intersection = visibleRect.intersection(attributes.frame)
@@ -70,17 +72,23 @@ extension BaseChatViewController {
             }
         }
         return false
+        */
     }
 
     public func visibleRect() -> CGRect {
         let contentInset = self.collectionView.contentInset
         let collectionViewBounds = self.collectionView.bounds
+        NSLog("! visibleRect")
+        return CGRect(x: 0, y: 0, width: 0, height: 0)
+        /*
         let contentSize = self.collectionView.collectionViewLayout.collectionViewContentSize
         return CGRect(x: CGFloat(0), y: self.collectionView.contentOffset.y + contentInset.top, width: collectionViewBounds.width, height: min(contentSize.height, collectionViewBounds.height - contentInset.top - contentInset.bottom))
+ */
     }
 
     public func scrollToBottom(animated: Bool) {
         // Cancel current scrolling
+        /*
         self.collectionView.setContentOffset(self.collectionView.contentOffset, animated: false)
 
         // Note that we don't rely on collectionView's contentSize. This is because it won't be valid after performBatchUpdates or reloadData
@@ -96,6 +104,8 @@ extension BaseChatViewController {
         } else {
             self.collectionView.contentOffset = CGPoint(x: 0, y: offsetY)
         }
+ */
+ 
     }
 
     public func scrollToPreservePosition(oldRefRect: CGRect?, newRefRect: CGRect?) {
@@ -108,7 +118,7 @@ extension BaseChatViewController {
 
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.collectionView.isDragging {
-            self.autoLoadMoreContentIfNeeded()
+            //self.autoLoadMoreContentIfNeeded()
         }
     }
 
