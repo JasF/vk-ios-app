@@ -27,7 +27,7 @@ import AsyncDisplayKit
 
 extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
     public func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        NSLog("number of pseudo-bubbles:\(self.chatItemCompanionCollection.count)")
+        //NSLog("number of pseudo-bubbles:\(self.chatItemCompanionCollection.count)")
         return self.chatItemCompanionCollection.count
     }
     public func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {

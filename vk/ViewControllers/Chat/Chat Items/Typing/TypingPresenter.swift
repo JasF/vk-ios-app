@@ -53,7 +53,7 @@ class TypingPresenter: ChatItemPresenterProtocol {
             return
         }
         
-        typingCell.text = "Typing Text"
+        //typingCell.text = "Typing Text"
     }
     
     var canCalculateHeightInBackground: Bool {
@@ -61,6 +61,6 @@ class TypingPresenter: ChatItemPresenterProtocol {
     }
     
     func heightForCell(maximumWidth width: CGFloat, decorationAttributes: ChatItemDecorationAttributesProtocol?) -> CGFloat {
-        return TypingCell.imageSize().height
+        return 30;//TypingCell.imageSize().height
     }
 }

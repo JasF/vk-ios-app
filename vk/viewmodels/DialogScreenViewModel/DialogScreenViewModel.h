@@ -10,6 +10,8 @@
 - (void)handleIncomingMessage:(Message *)message;
 - (void)handleMessageFlagsChanged:(Message *)message;
 - (void)handleTyping:(NSInteger)userId end:(BOOL)end;
+- (void)handleMessagesInReaded:(NSInteger)messageId;
+- (void)handleMessagesOutReaded:(NSInteger)messageId;
 @end
 
 @protocol DialogScreenViewModel <NSObject>

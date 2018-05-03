@@ -14,6 +14,8 @@ static CGFloat const kTypingNotifierInterval = 5.f;
 - (void)handleIncomingMessage:(NSDictionary *)message;
 - (void)handleMessageFlagsChanged:(NSDictionary *)message;
 - (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end;
+- (void)handleMessagesInReaded:(NSNumber *)messageId;
+- (void)handleMessagesOutReaded:(NSNumber *)messageId;
 @end
 
 @interface DialogScreenViewModelImpl () <PyDialogScreenViewModelDelegate>
@@ -62,11 +64,11 @@ static CGFloat const kTypingNotifierInterval = 5.f;
         if (!offset && messages.count) {
             // [self markAsRead:messages.firstObject];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
+      //  dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
                 completion(messages);
             }
-        });
+      //  });
     });
 }
 
@@ -178,6 +180,14 @@ static CGFloat const kTypingNotifierInterval = 5.f;
     dispatch_python(^{
         [self markAsReadMessageWithIdentifier:identifier];
     });
+}
+
+- (void)handleMessagesInReaded:(NSNumber *)messageId {
+    [self.delegate handleMessagesInReaded:messageId.integerValue];
+}
+
+- (void)handleMessagesOutReaded:(NSNumber *)messageId {
+    [self.delegate handleMessagesOutReaded:messageId.integerValue];
 }
 
 @end

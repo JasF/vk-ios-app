@@ -57,7 +57,7 @@ open class BaseChatViewController: ChatInputBarViewController, ASTableDelegate, 
         }
     }
 
-    var tableNode : ASTableNode {
+    open var tableNode : ASTableNode {
         get {
             return tableNodeHolder.tableNode
         }

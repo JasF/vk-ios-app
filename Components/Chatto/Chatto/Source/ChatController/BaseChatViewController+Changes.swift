@@ -119,14 +119,13 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
 
     private func visibleCellsFromCollectionViewApi() -> [IndexPath: ChatBaseNodeCell] {
         var visibleCells: [IndexPath: ChatBaseNodeCell] = [:]
-        /*
-        self.collectionView.indexPathsForVisibleItems.forEach({ (indexPath) in
-            if let cell = self.collectionView.cellForItem(at: indexPath) {
+        
+        self.tableNode.indexPathsForVisibleRows().forEach({ (indexPath) in
+            if let cell = self.tableNode.nodeForRow(at: indexPath) as! ChatBaseNodeCell? {
                 visibleCells[indexPath] = cell
             }
         })
- */
-        NSLog("! visibleCellsFromCollectionViewApi")
+ 
         return visibleCells
     }
 
@@ -143,6 +142,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
     }
 
     private enum ScrollAction {
+        case none
         case scrollToBottom
         case preservePosition(rectForReferenceIndexPathBeforeUpdate: CGRect?, referenceIndexPathAfterUpdate: IndexPath?)
     }
@@ -176,14 +176,16 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
             usesBatchUpdates = !wantsReloadData && !mustDoReloadData
         }
 
-        var scrollAction: ScrollAction
+        var scrollAction: ScrollAction = .none
         do { // Scroll action
             if updateType != .pagination && self.isScrolledAtBottom() {
                 scrollAction = .scrollToBottom
             } else {
+                /*
                 let (oldReferenceIndexPath, newReferenceIndexPath) = self.referenceIndexPathsToRestoreScrollPositionOnUpdate(itemsBeforeUpdate: self.chatItemCompanionCollection, changes: changes)
                 let oldRect = self.rectAtIndexPath(oldReferenceIndexPath)
                 scrollAction = .preservePosition(rectForReferenceIndexPathBeforeUpdate: oldRect, referenceIndexPathAfterUpdate: newReferenceIndexPath)
+ */
             }
         }
         if self.needsScrollToBottom() == true {
@@ -204,12 +206,11 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
             }
         }
 
-        if usesBatchUpdates {
+        if true {//usesBatchUpdates {
             ChatAnimation.chatAnimation(withDuration: self.constants.updatesAnimationDuration, animations: { () -> Void in
                 self.unfinishedBatchUpdatesCount += 1
-                NSLog("needs collectionView performBatchUpdates")
-                
-                self.tableNode.performBatch(animated: true, updates: { () -> Void in
+                let animated = (updateType == .pagination) ? false : true
+                self.tableNode.performBatch(animated: animated, updates: { () -> Void in
                     updateModelClosure()
                     self.updateVisibleCells(changes) // For instance, to support removal of tails
 
@@ -244,6 +245,8 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         case .preservePosition(rectForReferenceIndexPathBeforeUpdate: let oldRect, referenceIndexPathAfterUpdate: let indexPath):
             let newRect = self.rectAtIndexPath(indexPath)
             self.scrollToPreservePosition(oldRefRect: oldRect, newRefRect: newRect)
+        case .none:
+            break
         }
 
         if !usesBatchUpdates || self.updatesConfig.fastUpdates {
@@ -252,7 +255,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
     }
 
     private func updateModels(newItems: [ChatItemProtocol], oldItems: ChatItemCompanionCollection, updateType: UpdateType, completion: @escaping () -> Void) {
-        let collectionViewWidth = self.view.bounds.width
+        let collectionViewWidth:CGFloat = 0;//self.view.bounds.width
         let updateType = self.isFirstLayout ? .firstLoad : updateType
         let performInBackground = updateType != .firstLoad
 

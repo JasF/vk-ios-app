@@ -105,8 +105,13 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         }
     }
 
+    override open func performUpdate() {
+        self.updateViews()
+    }
+    
     open var messageViewModel: MessageViewModelProtocol! {
         didSet {
+            messageViewModel.node = self
             self.updateViews()
         }
     }
@@ -191,13 +196,13 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         //self.avatarView.addGestureRecognizer(self.avatarTapGestureRecognizer)
         self.bubbleView = self.createBubbleView()
         self.bubbleView.isExclusiveTouch = true
-        NSLog("!")
+        //NSLog("!")
         //self.bubbleView.addGestureRecognizer(self.tapGestureRecognizer)
         //self.bubbleView.addGestureRecognizer(self.longPressGestureRecognizer)
         self.contentView.addSubview(self.avatarView)
         //self.contentView.addSubview(self.bubbleView)
         self.addSubnode(self.bubbleView)
-        self.contentView.addSubview(self.failedButton)
+        //self.contentView.addSubview(self.failedButton)
         self.contentView.addSubview(self.selectionIndicator)
         self.contentView.isExclusiveTouch = true
         self.isExclusiveTouch = true
@@ -208,7 +213,7 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
     }
 
     open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        NSLog("!")
+        //NSLog("!")
         return false //self.bubbleView.bounds.contains(touch.location(in: self.bubbleView))
     }
 
@@ -221,11 +226,13 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         self.removeAccessoryView()
     }
 
+    /*
     public private(set) lazy var failedButton: UIButton = {
         let button = UIButton(type: .custom)
         button.addTarget(self, action: #selector(BaseMessageCollectionViewCell.failedButtonTapped), for: .touchUpInside)
         return button
     }()
+    */
 
     // MARK: View model binding
 
@@ -235,11 +242,11 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         guard let viewModel = self.messageViewModel, let style = self.baseStyle else { return }
         self.bubbleView.isUserInteractionEnabled = viewModel.isUserInteractionEnabled
         if self.shouldShowFailedIcon {
-            self.failedButton.setImage(self.baseStyle.failedIcon, for: .normal)
-            self.failedButton.setImage(self.baseStyle.failedIconHighlighted, for: .highlighted)
-            self.failedButton.alpha = 1
+            //self.failedButton.setImage(self.baseStyle.failedIcon, for: .normal)
+            //self.failedButton.setImage(self.baseStyle.failedIconHighlighted, for: .highlighted)
+            //self.failedButton.alpha = 1
         } else {
-            self.failedButton.alpha = 0
+            //self.failedButton.alpha = 0
         }
         if self.messageViewModel.readState == 0 {
             self.backgroundColor = style.unreadBackgroundColor

@@ -109,18 +109,56 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         self.delegate?.chatDataSourceDidUpdate(self, updateType: .pagination)
     }
 
+    func updateDatasource() {
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.delegate?.chatDataSourceDidUpdate(self, updateType: .normal)
+        })
+    }
+    
     public func handleMessageFlagsChanged(_ message: Message!) {
         let items = self.slidingWindow.getItems()
         for item in items as! [DemoMessageModelProtocol] {
             if item.externalId == message.identifier {
                 NSLog("found needed item \(item.externalId) text \(message.body)")
                 item.setReadState(message.read_state)
-                DispatchQueue.main.async(execute: { () -> Void in
-                    self.delegate?.chatDataSourceDidUpdate(self, updateType: .normal)
-                })
+                updateDatasource()
                 break
             }
         }
+    }
+    
+    func markAsReaded(_ messageId: Int, _ isIncoming: Bool, _ tableNode: ASTableNode) {
+        var indexPatches = [IndexPath]()
+        let items = self.slidingWindow.getItems()
+        var ignoredItems = 0
+        for item in items as! [DemoMessageModelProtocol] {
+            if ignoredItems > 5 {
+                break
+            }
+            if item.externalId <= messageId && item.isIncoming == isIncoming && item.readState == 0 {
+                item.setReadState(1)
+                guard let viewModel = item.viewModel else { continue }
+                guard let node = viewModel.node else { continue }
+                guard let indexPath = tableNode.indexPath(for: node) else { continue }
+                indexPatches.append(indexPath)
+            }
+            else {
+                ignoredItems = ignoredItems + 1
+            }
+        }
+        if indexPatches.count > 0 {
+            DispatchQueue.main.async(execute: { () -> Void in
+                tableNode .reloadRows(at: indexPatches, with: .none)
+            })
+        }
+    }
+    
+    public func handleMessages(inReaded messageId: Int, _ tableNode: ASTableNode) {
+        markAsReaded(messageId, true, tableNode)
+    }
+    
+    public func handleMessagesOutReaded(_ messageId: Int, _ tableNode: ASTableNode) {
+        markAsReaded(messageId, false, tableNode)
     }
     
     func addIncomingTextMessage(_ message: Message?) {

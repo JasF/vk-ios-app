@@ -33,6 +33,14 @@ open class TextMessageModel<MessageModelT: MessageModelProtocol>: TextMessageMod
         return self.messageModel.readState
     }
     
+    open var viewModel: MessageViewModelProtocol? {
+        get {
+            return self.messageModel.viewModel
+        }
+        set {
+            self.messageModel.viewModel = newValue
+        }
+    }
     public func setExternalId(_ id: Int) {
         self.messageModel.setExternalId(id)
     }

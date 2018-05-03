@@ -59,7 +59,6 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
             var isShowingSelectionIndicator = false
 
             if let currentMessage = chatItem as? MessageModelProtocol {
-                NSLog("message date: \(currentMessage.externalId)" )
                 if let prevMessage = prev as? MessageModelProtocol {
                     showsTail = currentMessage.senderId != prevMessage.senderId
                 } else {
@@ -112,7 +111,7 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
 
         if self.typingCellEnabled == true {
             let typing = DecoratedChatItem(chatItem: TypingModel(uid: "typing-cell"), decorationAttributes: nil)
-            decoratedChatItems.append(typing)
+            decoratedChatItems.insert(typing, at:0)
         }
         return decoratedChatItems
     }

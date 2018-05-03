@@ -127,7 +127,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
             }
             cell.onFailedButtonTapped = { [weak self] (cell) in
                 guard let sSelf = self else { return }
-                sSelf.onCellFailedButtonTapped(cell.failedButton)
+                //sSelf.onCellFailedButtonTapped(cell.failedButton)
             }
             cell.onSelection = { [weak self] (cell) in
                 guard let sSelf = self else { return }
@@ -178,7 +178,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
         }
         cell.bubbleView.isUserInteractionEnabled = true
         menuController.setMenuVisible(false, animated: false)
-        NSLog("!")
+        //NSLog("!")
         //menuController.setTargetRect(cell.bubbleView.bounds, in: cell.bubbleView)
         menuController.setMenuVisible(true, animated: true)
     }

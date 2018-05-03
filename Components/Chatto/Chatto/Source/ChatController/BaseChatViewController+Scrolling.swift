@@ -88,7 +88,6 @@ extension BaseChatViewController {
 
     public func scrollToBottom(animated: Bool) {
         // Cancel current scrolling
-        NSLog("! scrollToBottom")
         /*
         self.collectionView.setContentOffset(self.collectionView.contentOffset, animated: false)
 
@@ -106,6 +105,7 @@ extension BaseChatViewController {
             self.collectionView.contentOffset = CGPoint(x: 0, y: offsetY)
         }
  */
+ 
     }
 
     public func scrollToPreservePosition(oldRefRect: CGRect?, newRefRect: CGRect?) {

@@ -57,7 +57,6 @@ open class PhotoBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable, Backg
         self.addSubview(self.placeholderIconView)
         self.addSubview(self.progressIndicatorView)
  */
-        NSLog("!")
     }
 
     public private(set) lazy var imageView: UIImageView = {

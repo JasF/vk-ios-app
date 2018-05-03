@@ -86,11 +86,20 @@ public class SlidingDataSource<Element> {
                 self.windowCount += 1
             }
         } else {
+            /*
             let shouldExpandWindow = self.itemsOffset + self.items.count == self.windowOffset + self.windowCount
             if shouldExpandWindow {
                 self.windowCount += 1
             }
+            */
             self.items.append(item)
+            
+            let shouldExpandWindow = self.itemsOffset == self.windowOffset
+            self.itemsOffset -= 1
+            if shouldExpandWindow {
+                self.windowOffset -= 1
+                self.windowCount += 1
+            }
         }
     }
 
@@ -110,7 +119,7 @@ public class SlidingDataSource<Element> {
         let nextWindowOffset = max(0, self.windowOffset - self.pageSize)
         let messagesNeeded = self.itemsOffset - nextWindowOffset
         if messagesNeeded > 0 {
-            self.generateItems(messagesNeeded, position: .top)
+            self.generateItems(messagesNeeded, position: .bottom)
         }
         let newItemsCount = previousWindowOffset - nextWindowOffset
         self.windowOffset = nextWindowOffset

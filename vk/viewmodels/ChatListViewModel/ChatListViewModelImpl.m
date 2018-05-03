@@ -12,6 +12,8 @@
 - (void)handleIncomingMessage:(NSDictionary *)messageDictionary;
 - (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary;
 - (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end;
+- (void)handleMessagesInReaded:(NSNumber *)userId localId:(NSNumber *)messageId;
+- (void)handleMessagesOutReaded:(NSNumber *)userId localId:(NSNumber *)messageId;
 @end
 
 @interface ChatListViewModelImpl () <PyChatListViewModelDelegate>
@@ -69,6 +71,18 @@
 }
 
 - (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate reloadData];
+    });
+}
+
+- (void)handleMessagesInReaded:(NSNumber *)userId localId:(NSNumber *)messageId {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate reloadData];
+    });
+}
+
+- (void)handleMessagesOutReaded:(NSNumber *)userId localId:(NSNumber *)messageId {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate reloadData];
     });

@@ -106,6 +106,9 @@ open class ChatBaseNodeCellInternal : ASCellNode {
 
 open class ChatBaseNodeCell : ChatBaseNodeCellInternal {
     public var contentView = ChatBaseNodeCellInternal()
+    open func performUpdate() {
+        
+    }
 }
 
 

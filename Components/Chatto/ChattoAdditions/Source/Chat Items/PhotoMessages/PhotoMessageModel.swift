@@ -30,6 +30,15 @@ public protocol PhotoMessageModelProtocol: DecoratedMessageModelProtocol {
 }
 
 open class PhotoMessageModel<MessageModelT: MessageModelProtocol>: PhotoMessageModelProtocol {
+    open var viewModel: MessageViewModelProtocol? {
+        get {
+            return self.messageModel.viewModel
+        }
+        set {
+            self.messageModel.viewModel = newValue
+        }
+    }
+    
     public var readState: Int {
         return self.messageModel.readState
     }
