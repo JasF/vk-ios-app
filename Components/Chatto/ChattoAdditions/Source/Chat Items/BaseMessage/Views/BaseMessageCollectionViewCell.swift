@@ -168,7 +168,11 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BaseMessageCollectionViewCell.avatarTapped(_:)))
         return tapGestureRecognizer
     }()
-
+    
+    override open func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(0, 0, 0, 0), child: self.bubbleView)
+    }
+    
     private func commonInit() {
         self.avatarView = self.createAvatarView()
         //self.avatarView.addGestureRecognizer(self.avatarTapGestureRecognizer)
@@ -179,6 +183,7 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         //self.bubbleView.addGestureRecognizer(self.longPressGestureRecognizer)
         self.contentView.addSubview(self.avatarView)
         //self.contentView.addSubview(self.bubbleView)
+        self.addSubnode(self.bubbleView)
         self.contentView.addSubview(self.failedButton)
         self.contentView.addSubview(self.selectionIndicator)
         self.contentView.isExclusiveTouch = true

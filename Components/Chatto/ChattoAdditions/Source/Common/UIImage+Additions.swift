@@ -34,9 +34,15 @@ public extension UIImage {
         self.draw(in: rect, blendMode: .destinationIn, alpha: 1)
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        return image.resizableImage(withCapInsets: self.capInsets)
+        return image.resizableImage(withCapInsets: self.capInsets, resizingMode:.stretch)
     }
 
+    /*
+ 
+     ASDisplayNodeCAssert(image.resizingMode == UIImageResizingModeStretch || UIEdgeInsetsEqualToEdgeInsets(image.capInsets, UIEdgeInsetsZero),
+     @"Image insets must be all-zero or resizingMode has to be UIImageResizingModeStretch. XCode assets default value is UIImageResizingModeTile which is not supported by Texture because of GPU-accelerated CALayer features.");
+ */
+    
     public func bma_blendWithColor(_ color: UIColor) -> UIImage {
         let rect = CGRect(origin: CGPoint.zero, size: self.size)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
@@ -51,7 +57,7 @@ public extension UIImage {
         context.drawPath(using: .fill)
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        return image.resizableImage(withCapInsets: self.capInsets)
+        return image.resizableImage(withCapInsets: self.capInsets, resizingMode:.stretch)
     }
 
     public static func bma_imageWithColor(_ color: UIColor, size: CGSize) -> UIImage {

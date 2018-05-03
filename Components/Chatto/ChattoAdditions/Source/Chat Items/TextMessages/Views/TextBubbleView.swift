@@ -35,7 +35,16 @@ public protocol TextBubbleViewStyleProtocol {
 }
 
 public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable, BackgroundSizingQueryable {
+    let textNode = ASTextNode()
 
+    override public func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        //let spec = ASStackLayoutSpec.init(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [textNode, self.bubbleImageView])
+        let textSpec = ASInsetLayoutSpec.init(insets: textInsets, child: textNode)
+        return ASBackgroundLayoutSpec.init(child: textSpec, background: self.bubbleImageView) //[ASBackgroundLayoutSpec backgroundLayoutSpecWithChild:textNode background:self.bubbleImageView];
+
+        
+        //return
+    }
     public var preferredMaxLayoutWidth: CGFloat = 0
     public var animationDuration: CFTimeInterval = 0.33
     public var viewContext: ViewContext = .normal {
@@ -70,9 +79,14 @@ public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable
         }
     }
 
-
+    override init() {
+        super.init()
+        self.commonInit()
+    }
 
     private func commonInit() {
+        self.addSubnode(self.bubbleImageView)
+        self.addSubnode(textNode)
         //self.addSubview(self.bubbleImageView)
         //self.addSubview(self.textView)
     }
@@ -131,14 +145,19 @@ public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable
         guard let style = self.viewStyle else { return }
 
         self.updateTextView()
-        /*
-        let bubbleImage = style.bubbleImage(viewModel: self.textMessageViewModel, isSelected: self.selected)
-        let borderImage = style.bubbleImageBorder(viewModel: self.textMessageViewModel, isSelected: self.selected)
+        
+        let bubbleImage = style.bubbleImage(viewModel: self.textMessageViewModel, isSelected: self.isSelected)
+        let borderImage = style.bubbleImageBorder(viewModel: self.textMessageViewModel, isSelected: self.isSelected)
         if self.bubbleImageView.image != bubbleImage { self.bubbleImageView.image = bubbleImage }
         if self.borderImageView.image != borderImage { self.borderImageView.image = borderImage }
- */
+ 
     }
 
+    var font: UIFont?
+    var textColor: UIColor?
+    var text: String?
+    var textInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+    
     private func updateTextView() {
         guard let style = self.viewStyle, let viewModel = self.textMessageViewModel else { return }
 
@@ -146,26 +165,28 @@ public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable
         let textColor = style.textColor(viewModel: viewModel, isSelected: self.isSelected)
 
         var needsToUpdateText = false
-/*
-        if self.textView.font != font {
-            self.textView.font = font
+        
+        if self.font != font {
+            self.font = font
             needsToUpdateText = true
         }
 
-        if self.textView.textColor != textColor {
-            self.textView.textColor = textColor
-            self.textView.linkTextAttributes = [
-                NSAttributedStringKey.foregroundColor.rawValue: textColor,
-                NSAttributedStringKey.underlineStyle.rawValue: NSUnderlineStyle.viewStyleSingle.rawValue
-            ]
+        if self.textColor != textColor {
+            self.textColor = textColor
             needsToUpdateText = true
         }
+        
 
-        if needsToUpdateText || self.textView.text != viewModel.text {
-           //self.textView.text = viewModel.text
+        if needsToUpdateText || self.text != viewModel.text {
+            
+            let attrs = [ NSAttributedStringKey.foregroundColor: textColor,
+                          NSAttributedStringKey.font: font ]
+            self.textNode.attributedText = NSAttributedString.init(string: viewModel.text, attributes: attrs)
+            
+            self.setNeedsLayout()
         }
-*/
-       //let textInsets = style.textInsets(viewModel: viewModel, isSelected: self.selected)
+
+       textInsets = style.textInsets(viewModel: viewModel, isSelected: self.isSelected)
        // if self.textView.textContainerInset != textInsets { self.textView.textContainerInset = textInsets }
     }
 
