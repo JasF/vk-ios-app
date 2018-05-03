@@ -9,4 +9,5 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 @interface ChatInputBarViewController : ASViewController
 - (ASTableNode *)getTableNode;
+- (void)sendTappedWithText:(NSString *)text;
 @end

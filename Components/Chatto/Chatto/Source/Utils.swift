@@ -107,3 +107,15 @@ open class ChatBaseNodeCellInternal : ASCellNode {
 open class ChatBaseNodeCell : ChatBaseNodeCellInternal {
     public var contentView = ChatBaseNodeCellInternal()
 }
+
+
+open class ChatAnimation {
+    static public func chatAnimation(withDuration: Double, animations: () -> Void) {
+        animations()
+    }
+    static public func chatAnimation(withDuration: Double, animations: () -> Void, completion: (Bool) -> Void) {
+        animations()
+        completion(true)
+    }
+}
+

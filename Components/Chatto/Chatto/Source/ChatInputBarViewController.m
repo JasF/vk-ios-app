@@ -59,6 +59,7 @@
     _toolbarContainerView = [[MXRMessengerInputToolbarContainerView alloc] initWithMessengerInputToolbar:self.toolbar constrainedSize:ASSizeRangeMake(CGSizeMake(screenWidth, 0), CGSizeMake(screenWidth, CGFLOAT_MAX))];
     _minimumBottomInset = self.toolbarContainerView.toolbarNode.calculatedSize.height;
     _topInset = [self calculateTopInset];
+    [self.toolbar.defaultSendButton addTarget:self action:@selector(tapSend:) forControlEvents:ASControlNodeEventTouchUpInside];
     
     self.getTableNode.view.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.getTableNode.view.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
@@ -159,8 +160,19 @@
 }
 
 #pragma mark - Toolbar
+- (void)tapSend:(id)sender {
+    NSString* text = [self.toolbar clearText];
+    if (text.length == 0) {
+        return;
+    }
+    [self sendTappedWithText:text];
+}
 
 - (BOOL)canBecomeFirstResponder { return YES; }
 - (UIView *)inputAccessoryView { return self.toolbarContainerView; }
+
+- (void)sendTappedWithText:(NSString *)text {
+    
+}
 
 @end

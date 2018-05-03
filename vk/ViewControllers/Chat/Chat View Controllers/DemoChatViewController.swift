@@ -98,6 +98,10 @@ class DemoChatViewController: BaseChatViewController {
         return items
     }
 
+    open override func sendTapped(withText text: String) {
+        self.dataSource.addTextMessage(text)
+    }
+    
     private func createTextInputItem() -> TextChatInputItem {
         let item = TextChatInputItem()
         item.textInputHandler = { [weak self] text in

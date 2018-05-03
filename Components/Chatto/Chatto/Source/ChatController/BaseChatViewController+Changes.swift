@@ -205,18 +205,18 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         }
 
         if usesBatchUpdates {
-            UIView.animate(withDuration: self.constants.updatesAnimationDuration, animations: { () -> Void in
+            ChatAnimation.chatAnimation(withDuration: self.constants.updatesAnimationDuration, animations: { () -> Void in
                 self.unfinishedBatchUpdatesCount += 1
                 NSLog("needs collectionView performBatchUpdates")
-                /*
-                self.collectionView.performBatchUpdates({ () -> Void in
+                
+                self.tableNode.performBatch(animated: true, updates: { () -> Void in
                     updateModelClosure()
                     self.updateVisibleCells(changes) // For instance, to support removal of tails
 
-                    self.collectionView.deleteItems(at: Array(changes.deletedIndexPaths))
-                    self.collectionView.insertItems(at: Array(changes.insertedIndexPaths))
+                    self.tableNode.deleteRows(at: Array(changes.deletedIndexPaths), with: .none)
+                    self.tableNode.insertRows(at: Array(changes.insertedIndexPaths), with: .none)
                     for move in changes.movedIndexPaths {
-                        self.collectionView.moveItem(at: move.indexPathOld, to: move.indexPathNew)
+                        //self.tableNode.moveRow(at: move.indexPathOld, to: move.indexPathNew)
                     }
                 }, completion: { [weak self] (_) -> Void in
                     defer { myCompletion() }
@@ -226,7 +226,6 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
                         DispatchQueue.main.async(execute: onAllBatchUpdatesFinished)
                     }
                 })
- */
             })
         } else {
             self.visibleCells = [:]

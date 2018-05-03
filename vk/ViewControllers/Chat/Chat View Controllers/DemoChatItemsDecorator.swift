@@ -73,16 +73,20 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
                 }
 
                 if self.showsStatusForMessage(currentMessage) {
+                    /*
                     additionalItems.append(
                         DecoratedChatItem(
                             chatItem: SendingStatusModel(uid: "\(currentMessage.uid)-decoration-status", status: currentMessage.status),
                             decorationAttributes: nil)
                     )
+                    */
                 }
 
                 if addTimeSeparator {
+                    /*
                     let dateTimeStamp = DecoratedChatItem(chatItem: TimeSeparatorModel(uid: "\(currentMessage.uid)-time-separator", date: currentMessage.date.toWeekDayAndDateString()), decorationAttributes: nil)
                     decoratedChatItems.append(dateTimeStamp)
+                    */
                 }
 
                 isSelected = self.messagesSelector.isMessageSelected(currentMessage)

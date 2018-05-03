@@ -24,6 +24,7 @@
 
 import UIKit
 import AsyncDisplayKit
+import Chatto
 
 public protocol PhotoBubbleViewStyleProtocol {
     func maskingImage(viewModel: PhotoMessageViewModelProtocol) -> UIImage
@@ -111,7 +112,7 @@ open class PhotoBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable, Backg
             }
         }
         if animated {
-            UIView.animate(withDuration: self.animationDuration, animations: updateAndRefreshViews, completion: { (_) -> Void in
+            ChatAnimation.chatAnimation(withDuration: self.animationDuration, animations: updateAndRefreshViews, completion: { (_) -> Void in
                 completion?()
             })
         } else {

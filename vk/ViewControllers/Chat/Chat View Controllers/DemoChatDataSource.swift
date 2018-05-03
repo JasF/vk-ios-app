@@ -127,7 +127,7 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         self.nextMessageId += 1
         let uid = "\(self.nextMessageId)"
         let model = DemoChatMessageFactory.makeTextMessage(uid, message: message)
-        self.slidingWindow.insertItem(model, position: .bottom)
+        self.slidingWindow.insertItem(model, position: .top)
         self.delegate?.chatDataSourceDidUpdate(self)
     }
     
@@ -136,8 +136,8 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         let uid = "\(self.nextMessageId)"
         let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: false, readState: 0, externalId: 0)
         self.delegate?.willSendTextMessage(text: text, uid:uid, message: message)
-        self.messageSender.sendMessage(message)
-        self.slidingWindow.insertItem(message, position: .bottom)
+        //self.messageSender.sendMessage(message)
+        self.slidingWindow.insertItem(message, position: .top)
         self.delegate?.chatDataSourceDidUpdate(self)
     }
 

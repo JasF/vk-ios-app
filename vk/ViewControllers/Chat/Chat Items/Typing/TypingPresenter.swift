@@ -44,7 +44,7 @@ class TypingPresenter: ChatItemPresenterProtocol {
     }
     
     func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
-        return WallUserActionNode.init("typing", number: 0) //collectionView.dequeueReusableCell(withReuseIdentifier: TypingPresenter.cellReuseIdentifier, for: indexPath)
+        return TypingCell.init()// WallUserActionNode.init("typing", number: 0) //collectionView.dequeueReusableCell(withReuseIdentifier: TypingPresenter.cellReuseIdentifier, for: indexPath)
     }
     
     func configureCell(_ cell: ChatBaseNodeCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {

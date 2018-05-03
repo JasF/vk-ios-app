@@ -28,8 +28,12 @@ import Chatto
 
 class TypingCell: ChatBaseNodeCell {
     
-    private let label: UILabel = UILabel()
-    private var imageView: UIImageView?
+    private var imageView = ASImageNode()
+    
+    override init() {
+        super.init()
+        self.commonInit()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,9 +41,11 @@ class TypingCell: ChatBaseNodeCell {
     }
     
     private func commonInit() {
-        self.label.font = UIFont.systemFont(ofSize: 12)
-        self.label.textAlignment = .center
-        self.label.textColor = UIColor.gray
+        self.addSubnode(imageView)
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(0,0,0,0), child: imageView)
     }
     
     static var gImages: [UIImage]?
@@ -66,12 +72,8 @@ class TypingCell: ChatBaseNodeCell {
     
     var text: String = "" {
         didSet {
-            if self.imageView != nil {
-               self.imageView?.removeFromSuperview()
-                self.imageView = nil
-            }
-            
             guard let images = TypingCell.images() else { return }
+            /*
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: images[0].size.width - 1, height: images[0].size.height - 1))
             imageView.contentMode = UIViewContentMode.center
             imageView.clipsToBounds = true
@@ -80,13 +82,12 @@ class TypingCell: ChatBaseNodeCell {
             imageView.startAnimating()
             imageView.frame = CGRect(x: 0.0, y: 0.0, width: 80, height: 50.0)
             imageView.backgroundColor = UIColor.clear
-            self.contentView.addSubview(imageView)
-            self.imageView = imageView
+            */
+            self.backgroundColor = UIColor.orange
         }
     }
     
     private func setTextOnLabel(_ text: String) {
-        self.label.text = text
         self.setNeedsLayout()
     }
     
