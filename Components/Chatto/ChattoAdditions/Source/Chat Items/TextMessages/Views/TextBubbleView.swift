@@ -39,6 +39,7 @@ public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable
 
     override public func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         //let spec = ASStackLayoutSpec.init(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [textNode, self.bubbleImageView])
+        
         let textSpec = ASInsetLayoutSpec.init(insets: textInsets, child: textNode)
         return ASBackgroundLayoutSpec.init(child: textSpec, background: self.bubbleImageView) //[ASBackgroundLayoutSpec backgroundLayoutSpecWithChild:textNode background:self.bubbleImageView];
 

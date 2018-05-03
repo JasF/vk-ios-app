@@ -26,6 +26,8 @@ import UIKit
 import Chatto
 import AsyncDisplayKit
 
+let kBubblesSpacing = 4
+
 public protocol BaseMessageCollectionViewCellStyleProtocol {
     func avatarSize(viewModel: MessageViewModelProtocol) -> CGSize // .zero => no avatar
     func avatarVerticalAlignment(viewModel: MessageViewModelProtocol) -> VerticalAlignment
@@ -170,7 +172,18 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
     }()
     
     override open func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(0, 0, 0, 0), child: self.bubbleView)
+        let layout = self.calculateLayout(availableWidth: constrainedSize.max.width)
+       // self.bubbleView.style.layoutPosition = layout.bubbleViewFrame.origin;
+       // self.bubbleView.style.preferredSize = layout.bubbleViewFrame.size;
+        
+       // simonVideoNode.style.layoutPosition = CGPointMake(0.0, maxConstrainedSize.height - (maxConstrainedSize.height / 3.0));
+       // simonVideoNode.style.preferredSize = CGSizeMake(maxConstrainedSize.width/2, maxConstrainedSize.height / 3.0);
+
+        //return ASAbsoluteLayoutSpec.init(children: [self.bubbleView])
+        let inset = UIEdgeInsetsMake(0, layout.bubbleViewFrame.origin.x,
+                                     kBubblesSpacing, (constrainedSize.max.width - (layout.bubbleViewFrame.origin.x + layout.bubbleViewFrame.size.width)))
+        let spec = ASInsetLayoutSpec.init(insets: inset, child: self.bubbleView)
+        return spec
     }
     
     private func commonInit() {
@@ -443,16 +456,16 @@ fileprivate struct Layout {
     mutating func calculateLayout(parameters: LayoutParameters) {
         let containerWidth = parameters.containerWidth
         let isIncoming = parameters.isIncoming
-        let isShowingFailedButton = parameters.isShowingFailedButton
+        let isShowingFailedButton = false//parameters.isShowingFailedButton
         let failedButtonSize = parameters.failedButtonSize
         let bubbleView = parameters.bubbleView
         let horizontalMargin = parameters.horizontalMargin
         let horizontalInterspacing = parameters.horizontalInterspacing
-        let avatarSize = parameters.avatarSize
+        let avatarSize = CGSize(width: 0, height: 0) //parameters.avatarSize
         let selectionIndicatorSize = parameters.selectionIndicatorSize
 
         let preferredWidthForBubble = (containerWidth * parameters.maxContainerWidthPercentageForBubbleView).bma_round()
-        let bubbleSize = CGSize(width: 0, height: 0)//bubbleView.sizeThatFits(CGSize(width: preferredWidthForBubble, height: .greatestFiniteMagnitude))
+        let bubbleSize = CGSize(width: preferredWidthForBubble, height: 10)//bubbleView.sizeThatFits(CGSize(width: preferredWidthForBubble, height: .greatestFiniteMagnitude))
         let containerRect = CGRect(origin: CGPoint.zero, size: CGSize(width: containerWidth, height: bubbleSize.height))
 
         self.bubbleViewFrame = bubbleSize.bma_rect(
