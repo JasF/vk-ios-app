@@ -118,7 +118,7 @@ extension BaseChatViewController {
 
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.collectionView.isDragging {
-            self.autoLoadMoreContentIfNeeded()
+            //self.autoLoadMoreContentIfNeeded()
         }
     }
 

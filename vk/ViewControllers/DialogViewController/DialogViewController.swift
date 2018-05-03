@@ -90,6 +90,25 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         NSLog("begin chat batch fetch content");
     }
     
+    //@objc(tableNode:willDisplayRowWithNode:)
+    
+    @objc override open func tableNode(_ tableNode: ASTableNode, willDisplayRowWith node: ASCellNode) {
+        if !node.isKind(of: ChatBaseNodeCell.self) {
+            return
+        }
+        guard let indexPath = tableNode.indexPath(for: node) else { return }
+        let presenter = self.presenterForIndexPath(indexPath)
+        let messageModel = presenter.getMessageModel() as! MessageModelProtocol?
+        if messageModel != nil {
+            if messageModel?.readState == 0 {
+                let identifier = messageModel?.externalId
+                let isIncoming = messageModel?.isIncoming
+                self.viewModel?.willDisplayUnreadedMessage(withIdentifier: identifier!, isOut: isIncoming! ? 0 : 1)
+            }
+        }
+        super.tableNode(tableNode, willDisplayRowWith: node)
+    }
+
     /*
     @objc(collectionView:willDisplayCell:forItemAtIndexPath:)
     override open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

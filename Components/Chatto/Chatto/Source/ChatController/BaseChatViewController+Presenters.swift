@@ -76,24 +76,27 @@ extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
         }
     }
 
-    @objc(collectionView:willDisplayCell:forItemAtIndexPath:)
-    open func collectionView(_ collectionView: UICollectionView, willDisplay cell: ChatBaseNodeCell, forItemAt indexPath: IndexPath) {
+    @objc open func tableNode(_ tableNode: ASTableNode, willDisplayRowWith node: ASCellNode) {
+        if !node.isKind(of: ChatBaseNodeCell.self) {
+            return
+        }
+        let _node = node as! ChatBaseNodeCell
+        guard let indexPath = tableNode.indexPath(for: _node) else { return }
         // Here indexPath should always referer to updated data source.
 
         let presenter = self.presenterForIndexPath(indexPath)
-        self.presentersByCell.setObject(presenter, forKey: cell)
+        self.presentersByCell.setObject(presenter, forKey: _node)
         if self.updatesConfig.fastUpdates {
-            self.visibleCells[indexPath] = cell
+            self.visibleCells[indexPath] = _node
         }
 
         if self.isAdjustingInputContainer {
             UIView.performWithoutAnimation({
                 // See https://github.com/badoo/Chatto/issues/133
-                presenter.cellWillBeShown(cell)
-                cell.layoutIfNeeded()
+                presenter.cellWillBeShown(_node)
             })
         } else {
-            presenter.cellWillBeShown(cell)
+            presenter.cellWillBeShown(_node)
         }
     }
 
