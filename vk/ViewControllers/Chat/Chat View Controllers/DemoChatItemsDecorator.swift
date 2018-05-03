@@ -59,8 +59,9 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
             var isShowingSelectionIndicator = false
 
             if let currentMessage = chatItem as? MessageModelProtocol {
-                if let nextMessage = next as? MessageModelProtocol {
-                    showsTail = currentMessage.senderId != nextMessage.senderId
+                NSLog("message date: \(currentMessage.externalId)" )
+                if let prevMessage = prev as? MessageModelProtocol {
+                    showsTail = currentMessage.senderId != prevMessage.senderId
                 } else {
                     showsTail = true
                 }

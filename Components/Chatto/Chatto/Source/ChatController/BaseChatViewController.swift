@@ -25,14 +25,23 @@
 import UIKit
 import AsyncDisplayKit
 
+class ChatTableNode : ASTableNode {
+    override var contentInset: UIEdgeInsets {
+        didSet {
+            NSLog("contentInset:  \(contentInset)");
+            NSLog("!");
+        }
+    }
+}
+
 @objcMembers class TableNodeHolder : ASDisplayNode {
-    let tableNode = ASTableNode()
+    let tableNode = ChatTableNode()
     override init() {
         super.init()
         self.addSubnode(tableNode)
     }
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(0, 0, -64, 0), child:tableNode)
+        return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(0, 0, 0, 0), child:tableNode)
     }
 }
 

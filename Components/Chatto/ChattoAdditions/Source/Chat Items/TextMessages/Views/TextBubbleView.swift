@@ -38,13 +38,8 @@ public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable
     let textNode = ASTextNode()
 
     override public func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        //let spec = ASStackLayoutSpec.init(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [textNode, self.bubbleImageView])
-        
         let textSpec = ASInsetLayoutSpec.init(insets: textInsets, child: textNode)
-        return ASBackgroundLayoutSpec.init(child: textSpec, background: self.bubbleImageView) //[ASBackgroundLayoutSpec backgroundLayoutSpecWithChild:textNode background:self.bubbleImageView];
-
-        
-        //return
+        return ASBackgroundLayoutSpec.init(child: textSpec, background: self.bubbleImageView)
     }
     public var preferredMaxLayoutWidth: CGFloat = 0
     public var animationDuration: CFTimeInterval = 0.33

@@ -26,7 +26,7 @@ import UIKit
 import Chatto
 import AsyncDisplayKit
 
-let kBubblesSpacing = 4
+let kBubblesSpacing: CGFloat = 4
 
 public protocol BaseMessageCollectionViewCellStyleProtocol {
     func avatarSize(viewModel: MessageViewModelProtocol) -> CGSize // .zero => no avatar
