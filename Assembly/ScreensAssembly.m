@@ -169,8 +169,9 @@
 
 - (UIViewController *)imagesViewerViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
     return [TyphoonDefinition withClass:[ImagesViewerViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithViewModel:) parameters:^(TyphoonMethod *initializer) {
+        [definition useInitializer:@selector(initWithViewModel:photoBrowserViewModel:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[self.viewModelsAssembly imagesViewerViewModel:ownerId albumId:albumId photoId:photoId]];
+            [initializer injectParameterWith:[self.viewModelsAssembly photoBrowserViewModel]];
         }];
     }];
 }

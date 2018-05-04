@@ -31,6 +31,7 @@
 @protocol PyPostsViewModel;
 @protocol PyDialogsManager;
 @protocol PyCreatePostViewModel;
+@protocol PyMWPhotoBrowserViewModel;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
@@ -57,4 +58,5 @@
 - (id<PyPostsViewModel>)postsViewModelHandlerWithDelegate:(id)delegate;
 - (id<PyDialogsManager>)dialogManagerHandlerWithDelegate:(id)delegate;
 - (id<PyCreatePostViewModel>)createPostViewModelHandler:(NSInteger)ownerId;
+- (id<PyMWPhotoBrowserViewModel>)photoBrowserViewModelHandler;
 @end

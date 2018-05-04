@@ -477,6 +477,8 @@
 		C350782720948925000C8FB3 /* WallUserScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782620948925000C8FB3 /* WallUserScrollNode.swift */; };
 		C350782920949C46000C8FB3 /* WallUserImageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782820949C46000C8FB3 /* WallUserImageNode.swift */; };
 		C350782B2094AC9A000C8FB3 /* LastSeen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782A2094AC9A000C8FB3 /* LastSeen.swift */; };
+		C3703B5C209C48E800E879A1 /* MWPhotoBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3703B5B209C48E800E879A1 /* MWPhotoBrowserViewModel.swift */; };
+		C3703B5E209C4C3400E879A1 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3703B5D209C4C3400E879A1 /* utilities.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
 		C3987DD42096F8BF0047A30F /* NSDate+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */; };
 		C3987DD620971B880047A30F /* AlignTopCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */; };
@@ -1618,6 +1620,8 @@
 		C350782820949C46000C8FB3 /* WallUserImageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserImageNode.swift; sourceTree = "<group>"; };
 		C350782A2094AC9A000C8FB3 /* LastSeen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSeen.swift; sourceTree = "<group>"; };
 		C3703B5A209C3C4E00E879A1 /* MWPhotoBrowser.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = MWPhotoBrowser.podspec; path = Components/MWPhotoBrowser/MWPhotoBrowser.podspec; sourceTree = SOURCE_ROOT; };
+		C3703B5B209C48E800E879A1 /* MWPhotoBrowserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWPhotoBrowserViewModel.swift; sourceTree = "<group>"; };
+		C3703B5D209C4C3400E879A1 /* utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
 		C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Utils.swift"; sourceTree = "<group>"; };
@@ -1688,6 +1692,7 @@
 		C398BA6D2094597A0071FA04 /* PostBaseNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostBaseNode.h; sourceTree = "<group>"; };
 		C398BA6E2094597A0071FA04 /* PostBaseNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostBaseNode.m; sourceTree = "<group>"; };
 		C398BA732094743A0071FA04 /* WallUserMessageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserMessageNode.swift; sourceTree = "<group>"; };
+		C39C8B8B209C4E3C00CC23C3 /* pymwphotobrowserviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pymwphotobrowserviewmodel.py; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -3031,6 +3036,7 @@
 				C32304D82080E57400CEC487 /* Functions */,
 				C32304DB2080E57400CEC487 /* LoadingNode.h */,
 				C32304DC2080E57400CEC487 /* PythonBridgeHandler */,
+				C3703B5D209C4C3400E879A1 /* utilities.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -4876,6 +4882,7 @@
 				C3D487422091A54A007EC440 /* pydetailvideoviewmodel.py */,
 				C3A82A3A2093366800C41CA8 /* pypostsviewmodel.py */,
 				C3987E0920999C0A0047A30F /* pycreatepostviewmodel.py */,
+				C39C8B8B209C4E3C00CC23C3 /* pymwphotobrowserviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -5056,6 +5063,7 @@
 				C3B2250D2085D7BF00599E04 /* ChatListViewModel */,
 				C3B225022085BA4A00599E04 /* DialogScreenViewModel */,
 				C3987DF32098B37D0047A30F /* CreatePostViewModel.swift */,
+				C3703B5B209C48E800E879A1 /* MWPhotoBrowserViewModel.swift */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -5649,6 +5657,7 @@
 				C32308C82081AEB100CEC487 /* TyphoonAbstractDetachableComponentFactoryPostProcessor.m in Sources */,
 				C3507825209485DF000C8FB3 /* WallUserActionNode.swift in Sources */,
 				C32308F72081AEB100CEC487 /* TyphoonDefinitionNamespace.m in Sources */,
+				C3703B5E209C4C3400E879A1 /* utilities.swift in Sources */,
 				C343755E208F6B72004EF670 /* AudioNode.m in Sources */,
 				C32308FE2081AEB100CEC487 /* TyphoonInjectionByDictionary.m in Sources */,
 				C3987E3D2099CB480047A30F /* DemoChatMessageFactory.swift in Sources */,
@@ -5707,6 +5716,7 @@
 				C32263072090CD920054789B /* DetailPhotoServiceImpl.m in Sources */,
 				C3987DD620971B880047A30F /* AlignTopCollectionViewFlowLayout.swift in Sources */,
 				C32305DF2080E57500CEC487 /* TextStyles.m in Sources */,
+				C3703B5C209C48E800E879A1 /* MWPhotoBrowserViewModel.swift in Sources */,
 				C32305DE2080E57500CEC487 /* LikesNode.m in Sources */,
 				C3987E4E2099CB480047A30F /* DemoTextMessageModel.swift in Sources */,
 				C3987E0820998D180047A30F /* ASPanningOverriddenUITextView.m in Sources */,

@@ -191,8 +191,7 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
 }
 
 - (id)instantiateHandlerWithProtocol:(Protocol *)protocol {
-    const char *name = protocol_getName(protocol);
-    NSString *protocolName = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+    NSString *protocolName = [self nameByProtocol:protocol];
     PythonBridgeHandler *handler = [self handlerWithProtocol:protocol];
     @synchronized (self) {
         handler.instanceId = ++_instanceId;

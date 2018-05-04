@@ -18,7 +18,7 @@ class DetailVideoService:
         try:
             cache = VideosDatabase()
             items = cache.getVideo(ownerId, videoId)
-            print('single video: ' + str(items))
+            #print('single video: ' + str(items))
             cache.close()
         except Exception as e:
             print('DetailVideoService getVideo exception: ' + str(e))

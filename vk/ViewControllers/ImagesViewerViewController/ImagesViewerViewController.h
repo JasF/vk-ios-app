@@ -10,6 +10,9 @@
 #import "ImagesViewerViewModel.h"
 #import "NodeFactory.h"
 
+@protocol MWPhotoBrowserViewModel;
 @interface ImagesViewerViewController : UIViewController
-- (instancetype)initWithViewModel:(id<ImagesViewerViewModel>)viewModel;
+
+- (instancetype)initWithViewModel:(id<ImagesViewerViewModel>)viewModel
+            photoBrowserViewModel:(id<MWPhotoBrowserViewModel>)photoBrowserViewModel;
 @end

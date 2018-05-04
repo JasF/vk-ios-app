@@ -15,6 +15,7 @@ static NSInteger const kPreloadingBorder = 2;
 
 @interface ImagesViewerViewController () <MWPhotoBrowserDelegate>
 @property id<ImagesViewerViewModel> viewModel;
+@property id<MWPhotoBrowserViewModel> photoBrowserViewModel;
 @property NSMutableArray *photos;
 @property MWPhotoBrowser *browser;
 @property BOOL updating;
@@ -22,9 +23,12 @@ static NSInteger const kPreloadingBorder = 2;
 
 @implementation ImagesViewerViewController
 
-- (instancetype)initWithViewModel:(id<ImagesViewerViewModel>)viewModel {
+- (instancetype)initWithViewModel:(id<ImagesViewerViewModel>)viewModel
+            photoBrowserViewModel:(id<MWPhotoBrowserViewModel>)photoBrowserViewModel {
     NSCParameterAssert(viewModel);
+    NSCParameterAssert(photoBrowserViewModel);
     _viewModel = viewModel;
+    _photoBrowserViewModel = photoBrowserViewModel;
     if (self = [super init]) {
         _viewModel = viewModel;
         self.title = @"VK Images Viewer";
@@ -63,6 +67,7 @@ static NSInteger const kPreloadingBorder = 2;
     [self.photos addObjectsFromArray:photosArray];
     
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.viewModel = _photoBrowserViewModel;
     browser.displayActionButton = displayActionButton;
     browser.displayNavArrows = displayNavArrows;
     browser.displaySelectionButtons = displaySelectionButtons;
@@ -70,7 +75,7 @@ static NSInteger const kPreloadingBorder = 2;
     browser.zoomPhotosToFill = YES;
     browser.enableGrid = enableGrid;
     browser.startOnGrid = startOnGrid;
-    browser.enableSwipeToDismiss = YES;
+    browser.enableSwipeToDismiss = NO;
     browser.autoPlayOnAppear = autoPlayOnAppear;
     [browser setCurrentPhotoIndex:selectedPhotoIndex];
     _browser = browser;
@@ -112,9 +117,12 @@ static NSInteger const kPreloadingBorder = 2;
 }
 
 - (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
+    return nil;
+    /*
     MWPhoto *photo = [self.photos objectAtIndex:index];
     MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
     return captionView;
+    */
 }
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {

@@ -20,6 +20,10 @@
 
 @class MWPhotoBrowser;
 
+@protocol MWPhotoBrowserViewModel <NSObject>
+- (void)getNumberOfCommentsWithPhoto:(MWPhoto *)photo completion:(void(^)(NSInteger commentsCount))completion;
+@end
+
 @protocol MWPhotoBrowserDelegate <NSObject>
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser;
@@ -39,7 +43,7 @@
 @end
 
 @interface MWPhotoBrowser : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate>
-
+@property (nonatomic) id<MWPhotoBrowserViewModel> viewModel;
 @property (nonatomic, weak) IBOutlet id<MWPhotoBrowserDelegate> delegate;
 @property (nonatomic) BOOL zoomPhotosToFill;
 @property (nonatomic) BOOL displayNavArrows;

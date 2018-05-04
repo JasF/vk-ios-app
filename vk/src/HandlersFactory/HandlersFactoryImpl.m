@@ -163,4 +163,8 @@
                                               parameters:@{@"ownerId":@(ownerId)}];
 }
 
+- (id<PyMWPhotoBrowserViewModel>)photoBrowserViewModelHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyMWPhotoBrowserViewModel)];
+}
+
 @end

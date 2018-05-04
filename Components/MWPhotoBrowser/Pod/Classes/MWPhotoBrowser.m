@@ -17,6 +17,10 @@
 
 static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 
+@interface MWPhotoBrowser ()
+@property UIButton *commentsButton;
+@end
+
 @implementation MWPhotoBrowser
 
 #pragma mark - Init
@@ -177,7 +181,10 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
         _nextButton = [[UIBarButtonItem alloc] initWithImage:nextButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(gotoNextPage)];
     }
     if (self.displayActionButton) {
-        _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonPressed:)];
+        _commentsButton = [UIButton new];
+        [_commentsButton setImage:[UIImage imageNamed:@"icon_comment.png"] forState:UIControlStateNormal];
+        [_commentsButton addTarget:self action:@selector(actionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        _actionButton = [[UIBarButtonItem alloc] initWithCustomView:_commentsButton];
     }
     
     // Update
@@ -193,6 +200,15 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 	// Super
     [super viewDidLoad];
 	
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [_commentsButton sizeToFit];
+    CGRect frame = _commentsButton.frame;
+    frame.size.height = _toolbar.frame.size.height;
+    frame.origin.y = 0;
+    _commentsButton.frame = frame;
 }
 
 - (void)performLayout {
@@ -369,6 +385,8 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     if (_currentPageIndex != _pageIndexBeforeRotation) {
         [self jumpToPageAtIndex:_pageIndexBeforeRotation animated:NO];
     }
+    
+    [self updateCommentsCount];
     
     // Layout
     [self.view setNeedsLayout];
@@ -911,7 +929,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 
 // Handle page changes
 - (void)didStartViewingPageAtIndex:(NSUInteger)index {
-    
+    [self updateCommentsCount];
     // Handle 0 photos
     if (![self numberOfPhotos]) {
         // Show controls
@@ -1664,6 +1682,17 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
         [self.progressHUD hide:YES];
     }
     self.navigationController.navigationBar.userInteractionEnabled = YES;
+}
+
+- (void)updateCommentsCount {
+    if ([_viewModel respondsToSelector:@selector(getNumberOfCommentsWithPhoto:completion:)]) {
+        __weak typeof(self) wself = self;
+        MWPhoto *photo = [self photoAtIndex:_currentPageIndex];
+        [_viewModel getNumberOfCommentsWithPhoto:photo completion:^(NSInteger commentsCount) {
+            __strong MWPhotoBrowser *sself = wself;
+            [sself.commentsButton setTitle:(commentsCount >= 0) ? [NSString stringWithFormat:@" %@", @(commentsCount)] : @"" forState:UIControlStateNormal];
+        }];
+    }
 }
 
 @end

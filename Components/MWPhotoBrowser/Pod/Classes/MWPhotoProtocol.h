@@ -19,6 +19,7 @@
 //
 // You can see the MWPhoto class for an example implementation of this protocol
 //
+
 @protocol MWPhoto <NSObject>
 
 @required
