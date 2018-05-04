@@ -32,6 +32,9 @@ class PyChatListViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     
     def becomeActive(self):
         self.isActive = True
+        if self.needsUpdate:
+            self.needsUpdate = False
+            self.guiDelegate.handleNeedsUpdate()
 
     def resignActive(self):
         self.isActive = False
@@ -58,10 +61,16 @@ class PyChatListViewModel(NewMessageProtocol, ObjCBridgeProtocol):
             self.guiDelegate.handleMessageFlagsChanged_(args=[message])
 
     def handleMessagesInReaded(self, peerId, localId):
+        if not self.isActive:
+            self.needsUpdate = True
+            return
         if self.guiDelegate:
             self.guiDelegate.handleMessagesInReaded_localId_(args=[peerId, localId])
     
     def handleMessagesOutReaded(self, peerId, localId):
+        if not self.isActive:
+            self.needsUpdate = True
+            return
         if self.guiDelegate:
             self.guiDelegate.handleMessagesOutReaded_localId_(args=[peerId, localId])
 

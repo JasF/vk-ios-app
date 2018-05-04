@@ -135,7 +135,7 @@ class DemoChatDataSource: ChatDataSourceProtocol {
             if ignoredItems > 5 {
                 break
             }
-            if item.externalId <= messageId && item.isIncoming == isIncoming && item.readState == 0 {
+            if item.externalId <= messageId && item.isIncoming == isIncoming {
                 item.setReadState(1)
                 guard let viewModel = item.viewModel else { continue }
                 guard let node = viewModel.node else { continue }

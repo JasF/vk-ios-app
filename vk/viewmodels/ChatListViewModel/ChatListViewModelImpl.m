@@ -14,6 +14,7 @@
 - (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end;
 - (void)handleMessagesInReaded:(NSNumber *)userId localId:(NSNumber *)messageId;
 - (void)handleMessagesOutReaded:(NSNumber *)userId localId:(NSNumber *)messageId;
+- (void)handleNeedsUpdate;
 @end
 
 @interface ChatListViewModelImpl () <PyChatListViewModelDelegate>
@@ -103,6 +104,12 @@
 - (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate setTypingEnabled:!end.boolValue userId:userId.integerValue];
+    });
+}
+
+- (void)handleNeedsUpdate {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate reloadData];
     });
 }
 
