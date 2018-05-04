@@ -109,7 +109,10 @@
     
     [self observeKeyboardChanges];
     [self observeAppStateChanges];
-    [self reloadInputViews];
+    
+    [UIView performWithoutAnimation:^{
+        [self reloadInputViews];
+    }];
 }
 
 #pragma mark - NSNotificationCenter
