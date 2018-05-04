@@ -19,5 +19,7 @@
 - (void)tappedOnDialogWithUserId:(NSInteger)userId;
 - (void)getDialogsWithOffset:(NSInteger)offset
                   completion:(void(^)(NSArray<Dialog *> *dialogs))completion;
+- (void)becomeActive;
+- (void)resignActive;
 @end
 

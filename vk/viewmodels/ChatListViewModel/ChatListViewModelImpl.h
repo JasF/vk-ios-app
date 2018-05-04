@@ -16,6 +16,8 @@
 - (void)menuTapped;
 - (void)tappedOnDialogWithUserId:(NSNumber *)userId;
 - (NSDictionary *)getDialogs:(NSNumber *)offset;
+- (void)becomeActive;
+- (void)resignActive;
 @end
 
 @interface ChatListViewModelImpl : NSObject <ChatListViewModel>

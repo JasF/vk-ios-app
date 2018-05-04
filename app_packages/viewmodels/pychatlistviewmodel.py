@@ -17,6 +17,8 @@ class PyChatListViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         self.typingUserId = None
         self.messagesService.addNewMessageSubscriber(self)
         self.guiDelegate = PyChatListViewModelDelegate(delegateId)
+        self.isActive = False
+        self.needsUpdate = False
 
     # protocol methods implementation
     def menuTapped(self):
@@ -27,7 +29,13 @@ class PyChatListViewModel(NewMessageProtocol, ObjCBridgeProtocol):
 
     def getDialogs(self, offset):
         return self.chatListService.getDialogs(offset)
+    
+    def becomeActive(self):
+        self.isActive = True
 
+    def resignActive(self):
+        self.isActive = False
+    
     # ObjCBridgeProtocol
     def release(self):
         self.messagesService.removeNewMessageSubscriber(self)
@@ -35,11 +43,17 @@ class PyChatListViewModel(NewMessageProtocol, ObjCBridgeProtocol):
 
     # NewMessageProtocol
     def handleIncomingMessage(self, message):
+        if not self.isActive:
+            self.needsUpdate = True
+            return
         print('chatlist msg: ' + str(message) + '; delegate: ' + str(self.guiDelegate))
         if self.guiDelegate:
             self.guiDelegate.handleIncomingMessage_(args=[message])
 
     def handleMessageFlagsChanged(self, message):
+        if not self.isActive:
+            self.needsUpdate = True
+            return
         if self.guiDelegate:
             self.guiDelegate.handleMessageFlagsChanged_(args=[message])
 
