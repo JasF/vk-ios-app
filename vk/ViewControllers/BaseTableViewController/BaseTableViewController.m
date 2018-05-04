@@ -174,6 +174,9 @@ static const NSInteger kBatchSize = 20;
 }
 
 - (void)addMenuIconWithTarget:(id)target action:(SEL)action {
+    if (self.pushed || self.navigationItem.leftBarButtonItem) {
+        return;
+    }
     UIButton *button = [UIButton new];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     [button setImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];

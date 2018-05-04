@@ -180,12 +180,13 @@
     });
 }
 
-- (void)showPhotoAlbumsViewController:(NSNumber *)ownerId {
+- (void)showPhotoAlbumsViewController:(NSNumber *)ownerId push:(NSNumber *)push {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
         PhotoAlbumsViewController *viewController =(PhotoAlbumsViewController *)[_screensAssembly photoAlbumsViewController:ownerId];
-        [self pushViewController:viewController clean:NO];
+        viewController.pushed = push.boolValue;
+        [self pushViewController:viewController clean:!push.boolValue];
     });
 }
 

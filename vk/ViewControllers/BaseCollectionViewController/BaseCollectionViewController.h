@@ -19,6 +19,7 @@
 @property id<NodeFactory> nodeFactory;
 @property ASCollectionNode *collectionNode;
 @property UICollectionViewFlowLayout *layout;
+@property BOOL pushed;
 - (NSArray *)objectsArray;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory;
 - (void)addMenuIconWithTarget:(id)target action:(SEL)action;

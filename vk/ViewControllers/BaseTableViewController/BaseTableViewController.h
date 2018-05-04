@@ -14,6 +14,7 @@
 @property (weak, nonatomic) id<BaseTableViewControllerDataSource> dataSource;
 @property id<NodeFactory> nodeFactory;
 @property ASTableNode *tableNode;
+@property BOOL pushed;
 - (NSMutableArray *)objectsArray;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory;
 - (void)addMenuIconWithTarget:(id)target action:(SEL)action;

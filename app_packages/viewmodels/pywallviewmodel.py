@@ -50,7 +50,7 @@ class PyWallViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().showFriendsViewController_usersListType_(args=[self.userId, UsersListTypes.FOLLOWERS])
 
     def photosTapped(self):
-        managers.shared().screensManager().showPhotoAlbumsViewController_(args=[self.userId])
+        managers.shared().screensManager().showPhotoAlbumsViewController_push_(args=[self.userId, True])
 
     def videosTapped(self):
         managers.shared().screensManager().showVideosViewController_(args=[self.userId])

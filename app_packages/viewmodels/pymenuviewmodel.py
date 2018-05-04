@@ -15,7 +15,7 @@ class PyMenuViewModel():
         managers.shared().screensManager().showFriendsViewController_usersListType_(args=[vk.userId(), False])
 
     def photosTapped(self):
-        managers.shared().screensManager().showPhotoAlbumsViewController_(args=[vk.userId()])
+        managers.shared().screensManager().showPhotoAlbumsViewController_push_(args=[vk.userId(), False])
 
     def answersTapped(self):
         managers.shared().screensManager().showAnswersViewController()

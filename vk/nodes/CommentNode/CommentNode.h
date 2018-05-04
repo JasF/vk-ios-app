@@ -7,8 +7,15 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "User.h"
+
+@class CommentNode;
+@protocol CommentNodeDelegate <NSObject>
+- (void)commentNode:(CommentNode *)node tappedOnUser:(User *)user;
+@end
 
 @class Comment;
 @interface CommentNode : ASCellNode
+@property (weak, nonatomic) id<CommentNodeDelegate> delegate;
 - (id)initWithComment:(Comment *)comment;
 @end

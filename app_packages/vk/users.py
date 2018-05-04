@@ -79,7 +79,7 @@ class Users():
         if len(ids):
             self.initializeSession()
             idsString = ', '.join(str(e) for e in ids)
-            print('\n\n\n$$$$$self.api.users.get; ids: ' + str(idsString) + '\n\n\n')
+            #print('\n\n\n$$$$$self.api.users.get; ids: ' + str(idsString) + '\n\n\n')
             freshUsersData = self.api.users.get(user_ids=idsString, fields=fields)
             users.update(freshUsersData)
             usersData.extend(freshUsersData)

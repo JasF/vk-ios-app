@@ -19,6 +19,13 @@
 
 @implementation TextStyles
 
++ (NSDictionary *)commentNameStyle {
+    return @{
+             NSFontAttributeName : [UIFont boldSystemFontOfSize:15.0],
+             NSForegroundColorAttributeName: [UIColor blueColor]
+             };
+}
+
 + (NSDictionary *)nameStyle
 {
     return @{

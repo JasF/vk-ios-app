@@ -20,6 +20,7 @@
 
 @interface TextStyles : NSObject
 
++ (NSDictionary *)commentNameStyle;
 + (NSDictionary *)nameStyle;
 + (NSDictionary *)titleStyle;
 + (NSDictionary *)descriptionStyle;

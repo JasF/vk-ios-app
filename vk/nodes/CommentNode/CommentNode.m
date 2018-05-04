@@ -17,6 +17,7 @@ static CGFloat const kMargin = 6.f;
 @property ASTextNode *usernameNode;
 @property ASTextNode *timeNode;
 @property ASNetworkImageNode *avatarNode;
+@property Comment *comment;
 @end
 
 @implementation CommentNode
@@ -24,8 +25,10 @@ static CGFloat const kMargin = 6.f;
     NSCParameterAssert(comment);
     self = [super init];
     if (self) {
+        _comment = comment;
         _usernameNode = [[ASTextNode alloc] init];
-        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:comment.user.nameString ?: @"" attributes:[TextStyles nameStyle]];
+        _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:comment.user.nameString ?: @"" attributes:[TextStyles commentNameStyle]];
+        [_usernameNode addTarget:self action:@selector(tappedOnUsername:) forControlEvents:ASControlNodeEventTouchUpInside];
         _usernameNode.maximumNumberOfLines = 1;
         _usernameNode.truncationMode = NSLineBreakByTruncatingTail;
         [self addSubnode:_usernameNode];
@@ -92,6 +95,13 @@ static CGFloat const kMargin = 6.f;
     
     ASLayoutSpec *spec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(kMargin, kMargin, kMargin, kMargin) child:avatarContentSpec];
     return spec;
+}
+
+#pragma mark - Observsers
+- (void)tappedOnUsername:(id)sender {
+    if ([_delegate respondsToSelector:@selector(commentNode:tappedOnUser:)]) {
+        [_delegate commentNode:self tappedOnUser:self.comment.user];
+    }
 }
 
 @end

@@ -25,7 +25,7 @@ class PyGroupsViewModel(ObjCBridgeProtocol):
     
     def tappedOnGroupWithId(self, groupId):
         print('tappedOnGroupWithId: ' + str(groupId))
-        managers.shared().screensManager().showWallViewController_(args=[groupId])
+        managers.shared().screensManager().showWallViewController_push_(args=[groupId, True])
     
     # ObjCBridgeProtocol
     def release(self):

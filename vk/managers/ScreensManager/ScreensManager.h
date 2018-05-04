@@ -25,7 +25,7 @@
 - (void)showFriendsViewController:(NSNumber *)userId usersListType:(NSNumber *)usersListType;
 - (void)showMenu;
 - (void)showDialogViewController:(NSNumber *)userId;
-- (void)showPhotoAlbumsViewController:(NSNumber *)ownerId;
+- (void)showPhotoAlbumsViewController:(NSNumber *)ownerId push:(NSNumber *)push;
 - (void)showGalleryViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(id)albumId;
 - (void)showImagesViewerViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;
 - (void)showDetailPhotoViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;

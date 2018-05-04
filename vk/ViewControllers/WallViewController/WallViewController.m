@@ -42,9 +42,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (!self.pushed && !self.navigationItem.leftBarButtonItem) {
-        [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
-    }
+    [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
     if (self.needsUpdateContentOnAppear) {
         self.needsUpdateContentOnAppear = NO;
         [self pullToRefreshAction];

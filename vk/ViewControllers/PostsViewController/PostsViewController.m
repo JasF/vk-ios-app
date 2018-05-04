@@ -8,10 +8,11 @@
 
 #import "PostsViewController.h"
 #import "WallPostNode.h"
+#import "CommentNode.h"
 #import "WallPost.h"
 #import "vk-Swift.h"
 
-@interface PostsViewController () <ASTableDelegate, PostsService, WallPostNodeDelegate>
+@interface PostsViewController () <ASTableDelegate, PostsService, WallPostNodeDelegate, CommentNodeDelegate>
 @end
 
 @implementation PostsViewController
@@ -20,6 +21,10 @@
 - (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)aNode {
     if ([aNode isKindOfClass:[WallPostNode class]]) {
         WallPostNode *node = (WallPostNode *)aNode;
+        node.delegate = self;
+    }
+    else if ([aNode isKindOfClass:[CommentNode class]]) {
+        CommentNode *node = (CommentNode *)aNode;
         node.delegate = self;
     }
     if ([aNode conformsToProtocol:@protocol(PostsServiceConsumer)]) {
@@ -102,6 +107,12 @@
 #pragma mark - WallPostNodeDelegate
 - (void)titleNodeTapped:(WallPost *)post {
     [_postsViewModel titleNodeTapped:post];
+}
+
+#pragma mark - CommentNodeDelegate
+- (void)commentNode:(CommentNode *)node
+       tappedOnUser:(User *)user {
+    [_postsViewModel tappedOnCellWithUser:user];
 }
 
 @end
