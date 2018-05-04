@@ -11,7 +11,8 @@
 #import "ASNetworkImageNode.h"
 #import "ASDisplayNodeExtras.h"
 
-static CGFloat const kPhotoMargin = 1.f;
+static CGFloat const kPhotoMargin = 2.f;
+static CGFloat const kNodesMargin = 2.f;
 
 @interface PostImagesChildNode : ASNetworkImageNode
 @property (nonatomic) Photo *photo;
@@ -46,25 +47,8 @@ static CGFloat const kPhotoMargin = 1.f;
             PostImagesChildNode *node = [PostImagesChildNode new];
             node.photo = photo;
             node.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-            node.cornerRadius = 4.0;
             node.URL = [NSURL URLWithString:photo.photo_604];
             node.delegate = self;
-            node.imageModificationBlock = ^UIImage *(UIImage *image) {
-                
-                UIImage *modifiedImage;
-                CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
-                
-                UIGraphicsBeginImageContextWithOptions(image.size, false, [[UIScreen mainScreen] scale]);
-                
-                [[UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:8.0] addClip];
-                [image drawInRect:rect];
-                modifiedImage = UIGraphicsGetImageFromCurrentImageContext();
-                
-                UIGraphicsEndImageContext();
-                
-                return modifiedImage;
-                
-            };
             [self addSubnode:node];
             [_nodes addObject:node];
         }
@@ -113,18 +97,6 @@ NSArray *getFactors(NSArray *sizes, CGFloat wsum) {
     return result;
 }
 
-NSArray *getRects(NSArray *factors, CGFloat csw, CGFloat dh) {
-    CGFloat sumX = 0;
-    NSMutableArray *result = [NSMutableArray new];
-    for (int i=0;i<factors.count;++i) {
-        CGFloat f = [factors[i] floatValue];
-        CGFloat dw = csw * f;
-        [result addObject:[NSValue valueWithCGRect:CGRectMake(sumX, 0, dw, dh)]];
-        sumX += dw;
-    }
-    return result;
-}
-
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
     NSMutableArray *specs = [NSMutableArray new];
@@ -159,14 +131,14 @@ NSArray *getRects(NSArray *factors, CGFloat csw, CGFloat dh) {
                 PostImagesChildNode *node = localNodes[i];
                 CGFloat factor = [factors[i] floatValue];
                 node.style.flexBasis = ASDimensionMake(ASDimensionUnitFraction, factor);
+                node.style.flexShrink = 1;
             }
             ASStackLayoutSpec *contentSpec = [ASStackLayoutSpec
                                               stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
-                                              spacing:0
+                                              spacing:kPhotoMargin
                                               justifyContent:ASStackLayoutJustifyContentStart
                                               alignItems:ASStackLayoutAlignItemsStart
                                               children:localNodes];
-            
             ASRatioLayoutSpec *ratio = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:p1.width/wsum
                                                                              child:contentSpec];
             [specs addObject:ratio];
@@ -178,11 +150,10 @@ NSArray *getRects(NSArray *factors, CGFloat csw, CGFloat dh) {
     }
     ASStackLayoutSpec *contentSpec = [ASStackLayoutSpec
                                       stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-                                      spacing:kPhotoMargin
+                                      spacing:kNodesMargin
                                       justifyContent:ASStackLayoutJustifyContentStart
                                       alignItems:ASStackLayoutAlignItemsStart
                                       children:specs];
-    //contentSpec.style.flexShrink = 1.0;
     return contentSpec;
 }
 
