@@ -127,7 +127,6 @@ NSArray *getRects(NSArray *factors, CGFloat csw, CGFloat dh) {
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    //constrainedSize = ASSizeRangeMake(CGSizeMake(414, CGFLOAT_MAX));
     NSMutableArray *specs = [NSMutableArray new];
     ASRatioLayoutSpec *(^ratioSpecBlock)(PostImagesChildNode *) = ^ASRatioLayoutSpec *(PostImagesChildNode *node) {
         Photo *photo = node.photo;
@@ -156,19 +155,11 @@ NSArray *getRects(NSArray *factors, CGFloat csw, CGFloat dh) {
             NSArray *normalized = getNormalized(sizes);
             CGFloat wsum = getWsum(normalized);
             NSArray *factors = getFactors(normalized, wsum);
-            //CGFloat csw = constrainedSize.max.width;
-            //CGFloat photosHeight = p1.height * (csw / wsum);
-            //NSArray *rects = getRects(factors, csw, photosHeight);
             for (int i=0; i < localNodes.count; ++i) {
                 PostImagesChildNode *node = localNodes[i];
-                //CGRect frame = [rects[i] CGRectValue];
                 CGFloat factor = [factors[i] floatValue];
-                node.style.flexBasis = ASDimensionMake(ASDimensionUnitFraction, factor); // ASRelativeDimensionMakeWithPercent(factor);
-                //node.style.layoutPosition = frame.origin;
-                //node.style.preferredSize = frame.size;
+                node.style.flexBasis = ASDimensionMake(ASDimensionUnitFraction, factor);
             }
-            //ASAbsoluteLayoutSpec *spec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:localNodes];
-            
             ASStackLayoutSpec *contentSpec = [ASStackLayoutSpec
                                               stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
                                               spacing:0
@@ -178,7 +169,6 @@ NSArray *getRects(NSArray *factors, CGFloat csw, CGFloat dh) {
             
             ASRatioLayoutSpec *ratio = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:p1.width/wsum
                                                                              child:contentSpec];
-            //contentSpec.style.preferredSize = CGSizeMake(constrainedSize.max.width, photosHeight);
             [specs addObject:ratio];
         }
         else {
