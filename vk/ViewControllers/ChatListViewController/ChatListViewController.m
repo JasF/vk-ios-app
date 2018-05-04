@@ -69,7 +69,7 @@
 
 - (void)setTypingEnabled:(BOOL)enabled
                   userId:(NSInteger)userId {
-    NSLog(@"chatlist typing: %@ userId: %@", @(enabled), @(userId));
+    //NSLog(@"chatlist typing: %@ userId: %@", @(enabled), @(userId));
     for (Dialog *dialog in [self objectsArray]) {
         if (dialog.message.user_id == userId) {
             dialog.message.isTyping = enabled;
