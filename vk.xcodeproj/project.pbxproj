@@ -1617,6 +1617,7 @@
 		C350782620948925000C8FB3 /* WallUserScrollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserScrollNode.swift; sourceTree = "<group>"; };
 		C350782820949C46000C8FB3 /* WallUserImageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserImageNode.swift; sourceTree = "<group>"; };
 		C350782A2094AC9A000C8FB3 /* LastSeen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSeen.swift; sourceTree = "<group>"; };
+		C3703B5A209C3C4E00E879A1 /* MWPhotoBrowser.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = MWPhotoBrowser.podspec; path = Components/MWPhotoBrowser/MWPhotoBrowser.podspec; sourceTree = SOURCE_ROOT; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
 		C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Utils.swift"; sourceTree = "<group>"; };
@@ -2933,6 +2934,7 @@
 			children = (
 				C3137716208DFABA00F568EA /* entitlements */,
 				C32306FA2080F2DE00CEC487 /* Podfile */,
+				C3703B5A209C3C4E00E879A1 /* MWPhotoBrowser.podspec */,
 				C32304A82080E57400CEC487 /* vk-Bridging-Header.h */,
 				C3987E572099CF910047A30F /* NMessenger.podspec */,
 				C3987E562099CEE20047A30F /* Chatto.podspec */,
