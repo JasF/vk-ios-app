@@ -62,6 +62,9 @@ ASCollectionDelegate, ASCollectionDataSource>
         @strongify(self);
         if (!self.post) {
             self.post = post;
+            if (self.post.comments.canPost) {
+                [self showCommentsToolbar];
+            }
             self.commentsParentItem = post;
         }
         if (completion) {

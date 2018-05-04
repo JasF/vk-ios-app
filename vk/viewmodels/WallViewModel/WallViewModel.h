@@ -15,7 +15,6 @@ typedef void (^CountUpdatedBlock)(NSNumber *);
 - (void)getWallPostsWithOffset:(NSInteger)offset
                     completion:(void(^)(NSArray *posts))completion;
 - (void)menuTapped;
-- (void)tappedOnPost:(WallPost *)post;
 - (void)friendsTapped;
 - (void)commonTapped;
 - (void)subscribtionsTapped;

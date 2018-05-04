@@ -113,19 +113,6 @@
     }
 }
 
-- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (!indexPath.section) {
-        return;
-    }
-    NSArray *objects = [self objectsArray];
-    NSCAssert(indexPath.row < objects.count, @"index out of bounds: %@ %@", indexPath, objects);
-    if (indexPath.row >= objects.count) {
-        return;
-    }
-    
-    [_viewModel tappedOnPost:objects[indexPath.row]];
-}
-
 #pragma mark - WallUserScrollNodeDelegate
 - (void)friendsTapped {
     [_viewModel friendsTapped];

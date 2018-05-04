@@ -52,16 +52,10 @@
       //  self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-    self.toolbar = [MXRMessengerInputToolbar new];
     
-    
-    MXRMessengerIconButtonNode* addPhotosBarButtonButtonNode = [MXRMessengerIconButtonNode buttonWithIcon:[[MXRMessengerPlusIconNode alloc] init] matchingToolbar:self.toolbar];
-    [addPhotosBarButtonButtonNode addTarget:self action:@selector(tapAddPhotos:) forControlEvents:ASControlNodeEventTouchUpInside];
-    //self.toolbar.leftButtonsNode = addPhotosBarButtonButtonNode;
-    [self.toolbar.defaultSendButton addTarget:self action:@selector(tapSend:) forControlEvents:ASControlNodeEventTouchUpInside];
-    
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    _toolbarContainerView = [[MXRMessengerInputToolbarContainerView alloc] initWithMessengerInputToolbar:self.toolbar constrainedSize:ASSizeRangeMake(CGSizeMake(screenWidth, 0), CGSizeMake(screenWidth, CGFLOAT_MAX))];
+}
+
+- (void)updateFrames {
     _minimumBottomInset = self.toolbarContainerView.toolbarNode.calculatedSize.height;
     _topInset = [self calculateTopInset];
     
@@ -69,12 +63,6 @@
     self.tableNode.view.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     self.tableNode.contentInset = UIEdgeInsetsMake(0, 0, _minimumBottomInset, 0);
     self.tableNode.view.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, _minimumBottomInset, 0);
-    
-    
-    [self observeKeyboardChanges];
-    [self observeAppStateChanges];
-    
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -99,6 +87,30 @@
     }
 }
 
+- (void)hideCommentsToolbar {
+    [_toolbarContainerView removeFromSuperview];
+    [self updateFrames];
+}
+
+- (void)showCommentsToolbar {
+    self.toolbar = [MXRMessengerInputToolbar new];
+    
+    
+    MXRMessengerIconButtonNode* addPhotosBarButtonButtonNode = [MXRMessengerIconButtonNode buttonWithIcon:[[MXRMessengerPlusIconNode alloc] init] matchingToolbar:self.toolbar];
+    [addPhotosBarButtonButtonNode addTarget:self action:@selector(tapAddPhotos:) forControlEvents:ASControlNodeEventTouchUpInside];
+    //self.toolbar.leftButtonsNode = addPhotosBarButtonButtonNode;
+    [self.toolbar.defaultSendButton addTarget:self action:@selector(tapSend:) forControlEvents:ASControlNodeEventTouchUpInside];
+    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    _toolbarContainerView = [[MXRMessengerInputToolbarContainerView alloc] initWithMessengerInputToolbar:self.toolbar constrainedSize:ASSizeRangeMake(CGSizeMake(screenWidth, 0), CGSizeMake(screenWidth, CGFLOAT_MAX))];
+    
+    [self updateFrames];
+    
+    
+    [self observeKeyboardChanges];
+    [self observeAppStateChanges];
+    [self reloadInputViews];
+}
 
 #pragma mark - NSNotificationCenter
 

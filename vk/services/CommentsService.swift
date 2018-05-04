@@ -1,4 +1,4 @@
-//
+ //
 //  CommentsServiceImpl.swift
 //  vk
 //
@@ -36,6 +36,9 @@ import EasyMapping
         guard let data = aData else { return [] as NSArray }
         let profiles = parseProfiles(aData)
         let commentsData = data["items"] as? NSArray
+        if commentsData == nil {
+            return [] as NSArray
+        }
         let results = EKMapper.arrayOfObjects(fromExternalRepresentation: commentsData as! [Any], with: Comment.objectMapping())! as? [Comment]
         guard let comments = results else { return NSArray.init() }
         for comment in comments {

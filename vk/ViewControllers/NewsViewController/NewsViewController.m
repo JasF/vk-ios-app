@@ -48,15 +48,4 @@
                         }];
 }
 
-#pragma mark - ASCollectionNodeDelegate
-- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray *objects = [self objectsArray];
-    NSCAssert(indexPath.row < objects.count, @"index out of bounds: %@ %@", indexPath, objects);
-    if (indexPath.row >= objects.count) {
-        return;
-    }
-    
-    [_viewModel tappedOnPost:objects[indexPath.row]];
-}
-
 @end

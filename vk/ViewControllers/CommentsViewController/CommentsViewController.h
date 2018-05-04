@@ -10,4 +10,6 @@
 
 @interface CommentsViewController : SectionsTableViewController
 @property id commentsParentItem;
+- (void)hideCommentsToolbar;
+- (void)showCommentsToolbar;
 @end

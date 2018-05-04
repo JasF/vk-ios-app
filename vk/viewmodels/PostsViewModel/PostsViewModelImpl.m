@@ -260,7 +260,12 @@
          }
          */
     });
-    
+}
+
+- (void)tappedOnPost:(WallPost *)post {
+    dispatch_python(^{
+        [_handler tappedOnPostWithOwnerId:@(post.owner_id) postId:@(post.identifier)];
+    });
 }
 
 @end

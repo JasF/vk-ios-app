@@ -11,5 +11,4 @@
 @protocol NewsViewModel <NSObject>
 - (void)getNewsWithOffset:(NSInteger)offset completion:(void(^)(NSArray *offset))completion;
 - (void)menuTapped;
-- (void)tappedOnPost:(WallPost *)post;
 @end

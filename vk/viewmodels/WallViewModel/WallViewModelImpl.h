@@ -14,7 +14,6 @@
 - (NSDictionary *)getWall:(NSNumber *)offset count:(NSNumber *)count;
 - (void)menuTapped;
 - (NSDictionary *)getUserInfo;
-- (void)tappedOnPostWithId:(NSNumber *)identifier;
 - (void)friendsTapped;
 - (void)commonTapped;
 - (void)subscribtionsTapped;

@@ -13,7 +13,6 @@
 @protocol PyNewsViewModel <NSObject>
 - (NSDictionary *)getNews:(NSNumber *)offset;
 - (void)menuTapped;
-- (void)tappedOnPostWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)identifier;
 @end
 
 @interface NewsViewModelImpl : NSObject <NewsViewModel>

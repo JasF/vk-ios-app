@@ -6,10 +6,10 @@
 //  Copyright © 2018 Freedom. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "PostsViewController.h"
 #import "BookmarksViewModel.h"
 
-@interface BookmarksViewController : BaseTableViewController
+@interface BookmarksViewController : PostsViewController
 - (instancetype)initWithViewModel:(id<BookmarksViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

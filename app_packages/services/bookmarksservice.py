@@ -18,6 +18,13 @@ class BookmarksService:
             print('api.fave.getPosts offset: ' + str(offset))
             response = api.fave.getPosts(offset=offset)
             l = response['items']
+            
+            #print('bookmarks items: ' + json.dumps(l, indent=4))
+            
+            cache = PostsDatabase()
+            cache.update(l)
+            cache.close()
+            
             count = len(l)
             usersData = self.usersDecorator.usersDataFromPosts(l)
         except Exception as e:

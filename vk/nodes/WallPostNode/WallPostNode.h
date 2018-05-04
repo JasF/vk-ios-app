@@ -19,6 +19,7 @@
 @end
 
 @interface WallPostNode : PostBaseNode
+@property (strong, nonatomic) WallPost *post;
 - (instancetype)initWithPost:(WallPost *)post
                  nodeFactory:(id<NodeFactory>)nodeFactory
                     embedded:(NSNumber *)embedded;

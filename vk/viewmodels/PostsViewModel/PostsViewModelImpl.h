@@ -24,6 +24,8 @@
                               ownerId:(NSNumber *)ownerId
                                postId:(NSNumber *)postId
                                  text:(NSString *)text;
+- (void)tappedOnPostWithOwnerId:(NSNumber *)ownerId
+                         postId:(NSNumber *)identifier;
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>

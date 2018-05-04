@@ -37,9 +37,6 @@ class PyWallViewModel(ObjCBridgeProtocol):
     def menuTapped(self):
         managers.shared().screensManager().showMenu()
 
-    def tappedOnPostWithId(self, identifier):
-        managers.shared().screensManager().showWallPostViewControllerWithOwnerId_postId_(args=[self.userId, identifier])
-
     def friendsTapped(self):
         managers.shared().screensManager().showFriendsViewController_usersListType_(args=[self.userId, UsersListTypes.FRIENDS])
 

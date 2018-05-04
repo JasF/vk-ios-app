@@ -73,12 +73,6 @@
     });
 }
 
-- (void)tappedOnPost:(WallPost *)post {
-    dispatch_python(^{
-        [_handler tappedOnPostWithId:@(post.identifier)];
-    });
-}
-
 - (void)friendsTapped {
     dispatch_python(^{
         [_handler friendsTapped];

@@ -22,7 +22,6 @@ extern CGFloat const kControlsSize;
 
 @interface WallPostNode() <ASNetworkImageNodeDelegate, ASTextNodeDelegate, WallPostNodeDelegate>
 
-@property (strong, nonatomic) WallPost *post;
 @property (strong, nonatomic) ASTextNode *nameNode;
 @property (strong, nonatomic) ASTextNode *usernameNode;
 @property (strong, nonatomic) ASTextNode *timeNode;

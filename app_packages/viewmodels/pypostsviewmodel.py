@@ -149,6 +149,9 @@ class PyPostsViewModel(ObjCBridgeProtocol):
                 pass
         return response
     
+    def tappedOnPostWithOwnerIdpostId(self, ownerId, postId):
+        managers.shared().screensManager().showWallPostViewControllerWithOwnerId_postId_(args=[ownerId, postId])
+    
     # ObjCBridgeProtocol
     def release(self):
         pass

@@ -82,6 +82,17 @@
                                      }];
         }];
     }
+    
+    if (indexPath.section < [tableNode numberOfSections] - 1) {
+        return;
+    }
+    if ([cellNode isKindOfClass:[WallPostNode class]]) {
+        WallPostNode *postNode = (WallPostNode *)cellNode;
+        WallPost *post = postNode.post;
+        if (post) {
+            [_postsViewModel tappedOnPost:post];
+        }
+    }
 }
 
 - (void)numberOfCommentsDidUpdated:(NSInteger)numberOfComments {

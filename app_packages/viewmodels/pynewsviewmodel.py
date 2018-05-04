@@ -23,10 +23,7 @@ class PyNewsViewModel(ObjCBridgeProtocol):
     
     def menuTapped(self):
         managers.shared().screensManager().showMenu()
-    
-    def tappedOnPostWithOwnerIdpostId(self, ownerId, postId):
-        managers.shared().screensManager().showWallPostViewControllerWithOwnerId_postId_(args=[ownerId, postId])
-    
+ 
     # ObjCBridgeProtocol
     def release(self):
         pass
