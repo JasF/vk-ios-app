@@ -9,6 +9,7 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 
 @interface PostImagesNode : ASDisplayNode
+@property (nonatomic, copy) void (^tappedOnPhotoHandler)(NSInteger photoIndex);
 - (id)initWithAttachments:(NSArray *)attachments;
 - (id)initWithPhotos:(NSArray *)photos;
 @end

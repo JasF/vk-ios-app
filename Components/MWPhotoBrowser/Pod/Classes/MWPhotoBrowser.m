@@ -1688,6 +1688,9 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     if ([_viewModel respondsToSelector:@selector(getNumberOfCommentsWithPhoto:completion:)]) {
         __weak typeof(self) wself = self;
         MWPhoto *photo = [self photoAtIndex:_currentPageIndex];
+        if (!photo) {
+            return;
+        }
         [_viewModel getNumberOfCommentsWithPhoto:photo completion:^(NSInteger commentsCount) {
             __strong MWPhotoBrowser *sself = wself;
             [sself.commentsButton setTitle:(commentsCount >= 0) ? [NSString stringWithFormat:@" %@", @(commentsCount)] : @"" forState:UIControlStateNormal];

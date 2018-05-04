@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class WallPost;
 @protocol GalleryService <NSObject>
 - (NSArray *)parse:(NSDictionary *)photosData;
+- (WallPost *)parsePost:(NSDictionary *)data;
 @end

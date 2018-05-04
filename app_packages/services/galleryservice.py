@@ -33,4 +33,3 @@ class GalleryService:
         except Exception as e:
             print('getPhotos exception: ' + str(e))
         return response
-

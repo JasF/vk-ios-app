@@ -15,7 +15,9 @@
 @class WallPostNode;
 
 @protocol WallPostNodeDelegate <NSObject>
+@required
 - (void)titleNodeTapped:(WallPost *)post;
+- (void)postNode:(WallPostNode *)node tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post;
 @end
 
 @interface WallPostNode : PostBaseNode

@@ -151,6 +151,9 @@ class PyPostsViewModel(ObjCBridgeProtocol):
     
     def tappedOnPostWithOwnerIdpostId(self, ownerId, postId):
         managers.shared().screensManager().showWallPostViewControllerWithOwnerId_postId_(args=[ownerId, postId])
+
+    def tappedOnPhotoWithIndexwithPostIdownerId(self, photoIndex, postId, ownerId):
+        managers.shared().screensManager().showImagesViewerViewControllerWithOwnerId_postId_photoIndex_(args=[ownerId, postId, photoIndex])
     
     # ObjCBridgeProtocol
     def release(self):

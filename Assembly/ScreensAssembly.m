@@ -167,6 +167,15 @@
     }];
 }
 
+- (UIViewController *)imagesViewerViewController:(NSNumber *)ownerId postId:(NSNumber *)postId photoIndex:(NSNumber *)photoIndex {
+    return [TyphoonDefinition withClass:[ImagesViewerViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:photoBrowserViewModel:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly imagesViewerViewModel:ownerId postId:postId photoIndex:photoIndex]];
+            [initializer injectParameterWith:[self.viewModelsAssembly photoBrowserViewModel]];
+        }];
+    }];
+}
+
 - (UIViewController *)imagesViewerViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
     return [TyphoonDefinition withClass:[ImagesViewerViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:photoBrowserViewModel:) parameters:^(TyphoonMethod *initializer) {

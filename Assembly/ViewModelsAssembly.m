@@ -120,6 +120,20 @@
             }];
 }
 
+
+- (id<DetailPhotoViewModel>)imagesViewerViewModel:(NSNumber *)ownerId postId:(NSNumber *)postId photoIndex:(NSNumber *)photoIndex {
+    return [TyphoonDefinition withClass:[ImagesViewerViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:galleryService:ownerId:postId:photoIndex:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.galleryService];
+                    [initializer injectParameterWith:ownerId];
+                    [initializer injectParameterWith:postId];
+                    [initializer injectParameterWith:photoIndex];
+                }];
+            }];
+}
+
 - (id<ImagesViewerViewModel>)imagesViewerViewModel:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
     return [TyphoonDefinition withClass:[ImagesViewerViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {

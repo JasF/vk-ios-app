@@ -192,11 +192,6 @@
 
 - (void)showGalleryViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(id)albumId {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self showMainViewController];
-        [self closeMenu];
-        if ([self canIgnorePushingViewController:[GalleryViewController class]]) {
-            return;
-        }
         GalleryViewController *viewController =(GalleryViewController *)[_screensAssembly galleryViewController:ownerId albumId:albumId];
         [self pushViewController:viewController clean:NO];
     });
@@ -204,23 +199,21 @@
 
 - (void)showImagesViewerViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self showMainViewController];
-        [self closeMenu];
-        if ([self canIgnorePushingViewController:[ImagesViewerViewController class]]) {
-            return;
-        }
         ImagesViewerViewController *viewController =(ImagesViewerViewController *)[_screensAssembly imagesViewerViewController:ownerId albumId:albumId photoId:photoId];
         [self pushViewController:viewController clean:NO];
     });
 }
 
+- (void)showImagesViewerViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId photoIndex:(NSNumber *)photoIndex {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        ImagesViewerViewController *viewController =(ImagesViewerViewController *)[_screensAssembly imagesViewerViewController:ownerId postId:postId photoIndex:photoIndex];
+        [self pushViewController:viewController clean:NO];
+    });
+}
+
+
 - (void)showDetailPhotoViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self showMainViewController];
-        [self closeMenu];
-        if ([self canIgnorePushingViewController:[DetailPhotoViewController class]]) {
-            return;
-        }
         DetailPhotoViewController *viewController =(DetailPhotoViewController *)[_screensAssembly detailPhotoViewController:ownerId albumId:albumId photoId:photoId];
         [self pushViewController:viewController clean:NO];
     });

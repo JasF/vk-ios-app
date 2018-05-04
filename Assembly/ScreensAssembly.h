@@ -38,6 +38,7 @@
 - (DialogViewControllerAllocator *)dialogViewController:(NSNumber *)userId;
 - (UIViewController *)photoAlbumsViewController:(NSNumber *)ownerId;
 - (UIViewController *)galleryViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId;
+- (UIViewController *)imagesViewerViewController:(NSNumber *)ownerId postId:(NSNumber *)postId photoIndex:(NSNumber *)photoIndex;
 - (UIViewController *)imagesViewerViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;
 - (UIViewController *)detailPhotoViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;
 - (UIViewController *)newsViewController;

@@ -14,6 +14,7 @@
 #import "AvatarNode.h"
 #import "RepostNode.h"
 #import "vk-Swift.h"
+#import "PostImagesNode.h"
 
 extern CGFloat const kMargin;
 extern CGFloat const kNameNodeMargin;
@@ -100,7 +101,6 @@ extern CGFloat const kControlsSize;
             _postNode.linkAttributeNames = @[ kLinkAttributeName ];
             _postNode.attributedText = attrString;
             _postNode.passthroughNonlinkTouches = YES;   // passes touches through when they aren't on a link
-            
         }
         
         WallPost *history = _post.history.firstObject;
@@ -124,7 +124,15 @@ extern CGFloat const kControlsSize;
             [_mediaNodes addObject:node];
         }
         if (_post.photoAttachments.count) {
-            id node = [_nodeFactory nodeForItem:_post.photoAttachments];
+            PostImagesNode *node =(PostImagesNode *)[_nodeFactory nodeForItem:_post.photoAttachments];
+            NSCParameterAssert([node isKindOfClass:[PostImagesNode class]]);
+            if ([node isKindOfClass:[PostImagesNode class]]) {
+                @weakify(self);
+                node.tappedOnPhotoHandler = ^(NSInteger index) {
+                    @strongify(self);
+                    [self.delegate postNode:self tappedOnPhotoWithIndex:index withPost:_post];
+                };
+            }
             [self addSubnode:node];
             [_mediaNodes addObject:node];
         }
@@ -173,7 +181,7 @@ extern CGFloat const kControlsSize;
         for (ASDisplayNode *node in self.subnodes) {
             // ASTextNode with embedded links doesn't support layer backing
             if (node.supportsLayerBacking) {
-                node.layerBacked = YES;
+                //node.layerBacked = YES;
             }
         }
     }
@@ -334,6 +342,10 @@ extern CGFloat const kControlsSize;
 #pragma mark - WallPostNodeDelegate
 - (void)titleNodeTapped:(WallPost *)post {
     [self.delegate titleNodeTapped:post];
+}
+
+- (void)postNode:(WallPostNode *)node tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post {
+    [self.delegate postNode:node tappedOnPhotoWithIndex:index withPost:post];
 }
 
 @end

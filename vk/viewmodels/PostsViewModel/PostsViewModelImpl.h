@@ -26,6 +26,9 @@
                                  text:(NSString *)text;
 - (void)tappedOnPostWithOwnerId:(NSNumber *)ownerId
                          postId:(NSNumber *)identifier;
+- (void)tappedOnPhotoWithIndex:(NSNumber *)index
+                    withPostId:(NSNumber *)postId
+                       ownerId:(NSNumber *)ownerId;
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>

@@ -20,4 +20,5 @@
                                 ownerId:(NSNumber *)ownerId
                                 albumId:(NSNumber *)albumId
                                 photoId:(NSNumber *)photoId;
+
 @end

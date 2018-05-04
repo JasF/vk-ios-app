@@ -49,7 +49,7 @@ Subscriber().setClassAllocator( PyNewsViewModel, lambda: PyNewsViewModel(NewsSer
 Subscriber().setClassAllocator( PyMenuViewModel, lambda: PyMenuViewModel() )
 Subscriber().setClassAllocator( PyPhotoAlbumsViewModel, lambda parameters: PyPhotoAlbumsViewModel(PhotoAlbumsService(), parameters['ownerId']) )
 Subscriber().setClassAllocator( PyGalleryViewModel, lambda parameters: PyGalleryViewModel(GalleryService(), parameters['ownerId'], parameters['albumId']) )
-Subscriber().setClassAllocator( PyImagesViewerViewModel, lambda parameters: PyImagesViewerViewModel(GalleryService(), parameters['ownerId'], parameters['albumId'], parameters['photoId']) )
+Subscriber().setClassAllocator( PyImagesViewerViewModel, lambda parameters: PyImagesViewerViewModel(GalleryService(), parameters) )
 Subscriber().setClassAllocator( PyDetailPhotoViewModel, lambda parameters: PyDetailPhotoViewModel(DetailPhotoService(UsersDecorator(), CommentsService()), parameters['ownerId'], parameters['albumId'], parameters['photoId']) )
 Subscriber().setClassAllocator( PyFriendsViewModel, lambda parameters: PyFriendsViewModel(FriendsService(), parameters['userId'], parameters['usersListType']) )
 Subscriber().setClassAllocatorWithDelegate( PyWallPostViewModel, lambda delegateId, parameters: PyWallPostViewModel(WallPostService(UsersDecorator(), CommentsService()), parameters['ownerId'], parameters['postId']) )

@@ -22,11 +22,11 @@ static CGFloat const kNodesMargin = 2.f;
 @end
 
 @interface PostImagesNode () <ASNetworkImageNodeDelegate>
+@property (nonatomic) NSArray *photos;
 @end
 
 @implementation PostImagesNode {
     NSMutableArray *_nodes;
-    
 }
 
 - (id)initWithAttachments:(NSArray *)attachments {
@@ -42,9 +42,11 @@ static CGFloat const kNodesMargin = 2.f;
 - (id)initWithPhotos:(NSArray *)photos {
     NSCParameterAssert(photos);
     if (self = [super init]) {
+        _photos = photos;
         _nodes = [NSMutableArray new];
         for (Photo *photo in photos) {
             PostImagesChildNode *node = [PostImagesChildNode new];
+            [node addTarget:self action:@selector(didTapOnPhoto:) forControlEvents:ASControlNodeEventTouchUpInside];
             node.photo = photo;
             node.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
             node.URL = [NSURL URLWithString:photo.photo_604];
@@ -163,4 +165,15 @@ NSArray *getFactors(NSArray *sizes, CGFloat wsum) {
     [self setNeedsLayout];
 }
 
+#pragma mark - Observers
+- (void)didTapOnPhoto:(PostImagesChildNode *)node {
+    NSInteger index = [_photos indexOfObject:node.photo];
+    if (index == NSNotFound) {
+        NSCAssert(false, @"something went wrong");
+        return;
+    }
+    if (_tappedOnPhotoHandler) {
+        _tappedOnPhotoHandler(index);
+    }
+}
 @end

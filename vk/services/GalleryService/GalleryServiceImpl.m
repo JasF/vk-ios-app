@@ -8,6 +8,7 @@
 
 #import "GalleryServiceImpl.h"
 #import "Photo.h"
+#import "WallPost.h"
 
 @implementation GalleryServiceImpl
 
@@ -25,4 +26,11 @@
     return objects;
 }
 
+- (WallPost *)parsePost:(NSDictionary *)data {
+    if (![data isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    WallPost *post = [EKMapper objectFromExternalRepresentation:data withMapping:[WallPost objectMapping]];
+    return post;
+}
 @end

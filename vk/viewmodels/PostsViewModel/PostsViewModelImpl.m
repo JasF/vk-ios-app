@@ -268,4 +268,10 @@
     });
 }
 
+- (void)tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post {
+    dispatch_python(^{
+        [_handler tappedOnPhotoWithIndex:@(index) withPostId:@(post.identifier) ownerId:@(post.owner_id)];
+    });
+}
+
 @end

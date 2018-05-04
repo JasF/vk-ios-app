@@ -91,10 +91,18 @@
                                               parameters:@{@"ownerId":@(ownerId)}];
 }
 
-- (id<PyGalleryViewModel>)galleryViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(id)albumId {
+- (id<PyGalleryViewModel>)galleryViewModelHandlerWithOwnerId:(NSInteger)ownerId
+                                                     albumId:(id)albumId {
     NSCParameterAssert(albumId);
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyGalleryViewModel)
                                               parameters:@{@"ownerId":@(ownerId), @"albumId":albumId}];
+}
+
+- (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithOwnerId:(NSInteger)ownerId
+                                                                postId:(NSInteger)postId
+                                                            photoIndex:(NSInteger)photoIndex {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyImagesViewerViewModel)
+                                              parameters:@{@"ownerId":@(ownerId), @"postId":@(postId), @"photoIndex":@(photoIndex)}];
 }
 
 - (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(NSInteger)albumId photoId:(NSInteger)photoId {

@@ -109,6 +109,10 @@
     [_postsViewModel titleNodeTapped:post];
 }
 
+- (void)postNode:(WallPostNode *)node tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post {
+    [_postsViewModel tappedOnPhotoWithIndex:index withPost:post];
+}
+
 #pragma mark - CommentNodeDelegate
 - (void)commentNode:(CommentNode *)node
        tappedOnUser:(User *)user {

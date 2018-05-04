@@ -1,5 +1,5 @@
 from .basedatabase import BaseDatabase
-
+import json
 
 class PostsDatabase(BaseDatabase):
     @staticmethod
@@ -21,9 +21,18 @@ class PostsDatabase(BaseDatabase):
     def update(self, l):
         def safeGet(d,k):
             return str(d.get(k) if d.get(k) else 0)
+        postslist = []
         for d in l:
-            uid = safeGet(d,'date') + '_' + safeGet(d,'owner_id') + '_' + safeGet(d,'source_id') + '_' + safeGet(d,'post_id') + '_' + safeGet(d,'type')
+            uid = safeGet(d,'date') + '_' + safeGet(d,'from_id') + '_' + safeGet(d,'id') + '_' + safeGet(d,'owner_id') + '_' + safeGet(d,'source_id') + '_' + safeGet(d,'post_id') + '_' + safeGet(d,'type')
             d['uid'] = uid
+            historyPost = d.get('copy_history')
+            if isinstance(historyPost, list):
+                postslist.extend([d for d in historyPost])
+    
+        if len(postslist) > 0:
+            self.update(postslist)
+            #print('postslist: ' + json.dumps(postslist, indent=4))
+            
         return BaseDatabase.update(self, l)
 
     def getById(self, ownerId, postId):
