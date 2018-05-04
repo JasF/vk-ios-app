@@ -41,6 +41,15 @@
     [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_viewModel becomeActive];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [_viewModel resignActive];
+}
 #pragma mark - Observers
 - (IBAction)menuTapped:(id)sender {
     [_viewModel menuTapped];

@@ -63,6 +63,18 @@
     });
 }
 
+- (void)becomeActive {
+    dispatch_python(^{
+        [_handler becomeActive];
+    });
+}
+
+- (void)resignActive {
+    dispatch_python(^{
+        [_handler resignActive];
+    });
+}
+
 #pragma mark - PyChatListViewModelDelegate
 - (void)handleIncomingMessage:(NSString *)messageDictionary {
     dispatch_async(dispatch_get_main_queue(), ^{
