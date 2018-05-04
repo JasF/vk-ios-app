@@ -34,16 +34,22 @@ CGFloat const kControlsSize = 40.f;
         _embedded = embedded;
         // Bottom controls
         if (!_embedded) {
-            _likesNode = [[LikesNode alloc] initWithLikesCount:likesCount liked:liked];
-            [_likesNode addTarget:self action:@selector(likesTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
-            [self addSubnode:_likesNode];
+            if (likesCount >= 0) {
+                _likesNode = [[LikesNode alloc] initWithLikesCount:likesCount liked:liked];
+                [_likesNode addTarget:self action:@selector(likesTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
+                [self addSubnode:_likesNode];
+            }
             
-            _commentsNode = [[CommentsNode alloc] initWithCommentsCount:commentsCount];
-            [self addSubnode:_commentsNode];
+            if (commentsCount >= 0) {
+                _commentsNode = [[CommentsNode alloc] initWithCommentsCount:commentsCount];
+                [self addSubnode:_commentsNode];
+            }
             
-            _repostNode = [[RepostNode alloc] initWithRepostsCount:repostsCount reposted:reposted];
-            [_repostNode addTarget:self action:@selector(repostTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
-            [self addSubnode:_repostNode];
+            if (repostsCount >= 0) {
+                _repostNode = [[RepostNode alloc] initWithRepostsCount:repostsCount reposted:reposted];
+                [_repostNode addTarget:self action:@selector(repostTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
+                [self addSubnode:_repostNode];
+            }
         }
     }
     return self;
@@ -51,9 +57,19 @@ CGFloat const kControlsSize = 40.f;
 
 - (ASLayoutSpec *)controlsStack {
     if (!_embedded) {
-        NSArray *array = @[_likesNode,
-                           _commentsNode,
-                           _repostNode];
+        NSMutableArray *array = [NSMutableArray new];
+        if (_likesNode) {
+            [array addObject:_likesNode];
+        }
+        if (_commentsNode) {
+            [array addObject:_commentsNode];
+        }
+        if (_repostNode) {
+            [array addObject:_repostNode];
+        }
+        if (!array.count) {
+            return nil;
+        }
         for (id<ASLayoutElement> el in array) {
             el.style.flexGrow = 1.f;
             el.style.height = ASDimensionMake(kControlsSize);

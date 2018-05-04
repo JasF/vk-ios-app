@@ -26,3 +26,12 @@ class DetailPhotoService:
     def getComments(self, ownerId, photoId, offset, count):
         result = self.commentsService.getPhotoComments(ownerId, photoId, offset, count)
         return result
+
+    def sendComment(self, ownerId, postId, messsage, reply_to_comment=0):
+        result = None
+        try:
+            api = vk.api()
+            result = api.photos.createComment(owner_id=ownerId, photo_id=postId, message=messsage, reply_to_comment=reply_to_comment)
+        except Exception as e:
+            print('DetailPhotoService: sendComment exception: ' + str(e))
+        return result

@@ -41,9 +41,9 @@ class WallPostService:
         return result
 
     def sendComment(self, ownerId, postId, messsage, reply_to_comment=0):
-        api = vk.api()
         result = None
         try:
+            api = vk.api()
             result = api.wall.createComment(owner_id=ownerId, post_id=postId, text=messsage, reply_to_comment=reply_to_comment)
         except Exception as e:
             print('wallService: sendComments exception: ' + str(e))

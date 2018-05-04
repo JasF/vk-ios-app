@@ -127,12 +127,14 @@ class PyPostsViewModel(ObjCBridgeProtocol):
             if type == 'wall':
                 response = self.wallPostService.sendComment(ownerId, postId, text, 0)
             elif type == 'photo':
-                pass#response = self.detailPhotoService.getComments(ownerId, postId, offset, loadCount)
+                response = self.detailPhotoService.sendComment(ownerId, postId, text, 0)
             elif type == 'video':
-                pass#response = self.detailVideoService.getComments(ownerId, postId, offset, loadCount)
+                response = self.detailVideoService.sendComment(ownerId, postId, text, 0)
         except Exception as e:
             print('preloadCommentsWithTypeownerIdpostIdcountloaded exception: ' + str(e))
         commentId = 0
+        if isinstance(response, int):
+            response = {'comment_id': response}
         try:
             commentId = response['comment_id']
         except:

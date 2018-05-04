@@ -20,7 +20,7 @@
 - (id)initWithPhoto:(Photo *)photo {
     NSCParameterAssert(photo);
     _asGallery = photo.asGallery.boolValue;
-    if (self = [super initWithEmbedded:_asGallery likesCount:photo.likes.count liked:photo.likes.user_likes repostsCount:photo.reposts.count reposted:photo.reposts.user_reposted commentsCount:photo.comments.count]) {
+    if (self = [super initWithEmbedded:_asGallery likesCount:photo.likes.count liked:photo.likes.user_likes repostsCount:-1 reposted:photo.reposts.user_reposted commentsCount:-1]) {
         _photo = photo;
         self.item = photo;
         _imageNode = [[ASNetworkImageNode alloc] init];
@@ -44,6 +44,8 @@
     ratioSpec.style.flexGrow = 1.0f;
     ASLayoutSpec *controlsStack = [self controlsStack];
     if (controlsStack) {
+        controlsStack.style.spacingBefore = 12.f;
+        controlsStack.style.spacingAfter = 12.f;
         ASStackLayoutSpec *subnodesStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
                                                                                    spacing:0.0
                                                                             justifyContent:ASStackLayoutJustifyContentStart

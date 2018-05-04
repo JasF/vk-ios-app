@@ -45,7 +45,6 @@ class CommentsService():
             result = api.video.getComments(owner_id=ownerId, video_id=videoId, offset=offset, count=count, extended=1)
             result = self.processResult(result)
             l = result['items']
-            myString.find('s')
             '''
                 cache = CommentsDatabase()
                 cache.update(l)
@@ -77,7 +76,6 @@ class CommentsService():
 
     def processResult(self, result):
         comments = result['items']
-        print('processResult: ' + json.dumps(comments, indent=4))
         for comment in comments:
             comment['text'] = self.cropTags(comment['text'])
         return result

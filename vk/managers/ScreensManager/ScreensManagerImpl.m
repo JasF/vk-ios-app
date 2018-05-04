@@ -184,9 +184,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
-        if ([self canIgnorePushingViewController:[PhotoAlbumsViewController class]]) {
-            return;
-        }
         PhotoAlbumsViewController *viewController =(PhotoAlbumsViewController *)[_screensAssembly photoAlbumsViewController:ownerId];
         [self pushViewController:viewController clean:NO];
     });

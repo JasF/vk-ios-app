@@ -27,3 +27,12 @@ class DetailVideoService:
     def getComments(self, ownerId, videoId, offset, count):
         result = self.commentsService.getVideoComments(ownerId, videoId, offset, count)
         return result
+
+    def sendComment(self, ownerId, postId, messsage, reply_to_comment=0):
+        result = None
+        try:
+            api = vk.api()
+            result = api.video.createComment(owner_id=ownerId, video_id=postId, message=messsage, reply_to_comment=reply_to_comment)
+        except Exception as e:
+            print('DetailVideoService: sendComment exception: ' + str(e))
+        return result
