@@ -14,10 +14,13 @@ class PyWallPostViewModel():
         self.postData = None
     
     # protocol methods implementation
-    def getPostData(self, offset):
-        results = {}
+    def getCachedPost(self):
         if not self.postData:
             self.postData = self.wallPostService.getPostById(self.ownerId, self.postId)
+        return {'postData': self.postData}
+    
+    def getPostData(self, offset):
+        results = {}
         commentsOffset = offset
         if offset == kOffsetForPreloadLatestComments:
             commentsOffset = 0
@@ -36,8 +39,6 @@ class PyWallPostViewModel():
             
         comments = self.wallPostService.getComments(self.ownerId, self.postId, commentsOffset, g_CommentsCount)
         results['comments'] = comments
-        if offset == kOffsetForPreloadLatestComments:
-            results['postData'] = self.postData
         return results
     
     # ObjCBridgeProtocol

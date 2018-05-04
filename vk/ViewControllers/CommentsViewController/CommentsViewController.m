@@ -93,9 +93,10 @@
 }
 
 - (void)showCommentsToolbar {
+    if (self.toolbar) {
+        return;
+    }
     self.toolbar = [MXRMessengerInputToolbar new];
-    
-    
     MXRMessengerIconButtonNode* addPhotosBarButtonButtonNode = [MXRMessengerIconButtonNode buttonWithIcon:[[MXRMessengerPlusIconNode alloc] init] matchingToolbar:self.toolbar];
     [addPhotosBarButtonButtonNode addTarget:self action:@selector(tapAddPhotos:) forControlEvents:ASControlNodeEventTouchUpInside];
     //self.toolbar.leftButtonsNode = addPhotosBarButtonButtonNode;
@@ -110,8 +111,12 @@
     [self observeKeyboardChanges];
     [self observeAppStateChanges];
     
+    _toolbarContainerView.alpha = 0;
     [UIView performWithoutAnimation:^{
         [self reloadInputViews];
+    }];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.toolbarContainerView.alpha = 1.f;
     }];
 }
 
@@ -141,7 +146,8 @@
 #pragma mark - Target-Action Keyboard
 
 - (void)mxr_messenger_didReceiveKeyboardWillChangeFrameNotification:(NSNotification*)notification {
-    if (self.isBeingDismissed || (self.navigationController && self.navigationController.topViewController != self)) {
+    if (self.isBeingDismissed || (self.navigationController && self.navigationController.topViewController != self) ||
+        _toolbarContainerView.alpha == 0) {
         return;
     }
     UITableView* tableView = self.tableNode.view;

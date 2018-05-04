@@ -13,6 +13,7 @@
 
 @protocol PyWallPostViewModel <NSObject>
 - (NSDictionary *)getPostData:(NSNumber *)offset;
+- (NSDictionary *)getCachedPost;
 @end
 
 @interface WallPostViewModelImpl : NSObject <WallPostViewModel>

@@ -21,6 +21,7 @@ ASCollectionDelegate, ASCollectionDataSource>
 @property (strong, nonatomic) id<WallPostViewModel> viewModel;
 @property WallPost *post;
 @property BOOL commentsEmpty;
+@property BOOL didAppear;
 @end
 
 @implementation WallPostViewController {
@@ -46,10 +47,25 @@ ASCollectionDelegate, ASCollectionDataSource>
     [super viewDidLoad];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    _didAppear = YES;
+    [self showCommentsToolbarIfPossible];
+}
+
+- (void)showCommentsToolbarIfPossible {
+    if (!_didAppear) {
+        return;
+    }
+    if (self.post.comments.canPost) {
+        [self showCommentsToolbar];
+    }
+}
+
 #pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
-    if (self.sectionsArray.count || offset || self.commentsEmpty) {
+    if (offset || self.commentsEmpty) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
                 completion(@[]);
@@ -58,18 +74,24 @@ ASCollectionDelegate, ASCollectionDataSource>
         return;
     }
     @weakify(self);
-    [_viewModel getWallPostWithCommentsOffset:kOffsetForPreloadLatestComments completion:^(WallPost *post, NSArray *comments) {
+    void (^postBlock)(WallPost *post) = ^void(WallPost *post) {
         @strongify(self);
-        if (!self.post) {
+        if (!self.post && post) {
             self.post = post;
-            if (self.post.comments.canPost) {
-                [self showCommentsToolbar];
-            }
-            self.commentsParentItem = post;
         }
         if (completion) {
-            completion(comments);
+            completion(@[]);
         }
+    };
+    if (self.post) {
+        postBlock = nil;
+    }
+    [_viewModel getWallPostWithCommentsOffset:kOffsetForPreloadLatestComments
+                                    postBlock:postBlock
+                                   completion:^(NSArray *comments) {
+                                       if (completion) {
+                                           completion(comments);
+                                       }
         if (!offset && !comments.count) {
             self.commentsEmpty = YES;
             return;
@@ -92,6 +114,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     }
     self.sectionsArray = @[section];
     [super performBatchAnimated:animated];
+    [self showCommentsToolbarIfPossible];
 }
 
 - (CommentsPreloadModel *)commentsPreloadModel {

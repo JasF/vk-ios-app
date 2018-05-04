@@ -32,17 +32,28 @@
     return self;
 }
 
-- (void)getWallPostWithCommentsOffset:(NSInteger)offset completion:(void(^)(WallPost *post, NSArray *comments))completion {
-    dispatch_python(^{
+- (void)getWallPostWithCommentsOffset:(NSInteger)offset
+                            postBlock:(void(^)(WallPost *post))postBlock
+                           completion:(void(^)(NSArray *comments))completion {
+    if (postBlock) {
+        dispatch_python(^{
+            NSDictionary *response = [self.handler getCachedPost];
+            WallPost *post = [self.wallPostService parseOne:response[@"postData"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                postBlock(post);
+            });
+        });
+    }
+    else {dispatch_python(^{
         NSDictionary *response = [self.handler getPostData:@(offset)];
-        WallPost *post = [self.wallPostService parseOne:response[@"postData"]];
         NSArray *comments = [self.wallPostService parseComments:response[@"comments"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
-                completion(post, comments);
+                completion(comments);
             }
         });
     });
+    }
 }
 
 @end
