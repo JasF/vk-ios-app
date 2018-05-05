@@ -80,6 +80,95 @@ void extractResourcesIfNeeded() {
     }
 }
 
+struct module_state {
+    PyObject *error;
+};
+
+
+
+#define GETSTATE(m) ((struct module_state*)PyModule_GetState(m))
+
+static PyObject *
+error_out(PyObject *m) {
+    struct module_state *st = GETSTATE(m);
+    PyErr_SetString(st->error, "something bad happened");
+    return NULL;
+}
+char * hello(char * what);
+char * hello(char * what) {
+    NSLog(@"what is: %@", [NSString stringWithUTF8String:what]);
+    return "hello_from_hello";
+}
+
+static PyObject * hello_wrapper(PyObject * self, PyObject * args)
+{
+    char * input;
+    char * result;
+    PyObject * ret;
+    
+    // parse arguments
+    if (!PyArg_ParseTuple(args, "s", &input)) {
+        return NULL;
+    }
+    
+    // run the actual function
+    result = hello(input);
+    
+    // build the resulting string into a Python object.
+    ret = PyUnicode_FromString(result);
+    
+    return ret;
+}
+
+static PyMethodDef myextension_methods[] = {
+    {"error_out", (PyCFunction)error_out, METH_NOARGS, NULL},
+    { "hello", hello_wrapper, METH_VARARGS, "Say hello" },
+    {NULL, NULL}
+};
+
+static int myextension_traverse(PyObject *m, visitproc visit, void *arg) {
+    Py_VISIT(GETSTATE(m)->error);
+    return 0;
+}
+
+static int myextension_clear(PyObject *m) {
+    Py_CLEAR(GETSTATE(m)->error);
+    return 0;
+}
+
+
+static struct PyModuleDef moduledef = {
+    PyModuleDef_HEAD_INIT,
+    "myextension",
+    NULL,
+    sizeof(struct module_state),
+    myextension_methods,
+    NULL,
+    myextension_traverse,
+    myextension_clear,
+    NULL
+};
+
+#define INITERROR return NULL
+
+PyMODINIT_FUNC PyInit_myextension(void);
+PyMODINIT_FUNC
+PyInit_myextension(void)
+{
+    PyObject *module = PyModule_Create(&moduledef);
+    
+    if (module == NULL)
+        INITERROR;
+    struct module_state *st = GETSTATE(module);
+    
+    st->error = PyErr_NewException("myextension.Error", NULL, NULL);
+    if (st->error == NULL) {
+        Py_DECREF(module);
+        INITERROR;
+    }
+    
+    return module;
+}
 int initializePython(int argc, char *argv[]) {
     int ret = 0;
     unsigned int i;
@@ -113,6 +202,7 @@ int initializePython(int argc, char *argv[]) {
         tmp_path = [NSString stringWithFormat:@"TMP=%@/tmp", documentsDirectory, nil];
         putenv((char *)[tmp_path UTF8String]);
         
+        PyImport_AppendInittab("myextension", PyInit_myextension);
         NSLog(@"Initializing Python runtime");
         Py_Initialize();
         
