@@ -17,6 +17,7 @@ class BookmarksService:
         try:
             print('api.fave.getPosts offset: ' + str(offset))
             response = api.fave.getPosts(offset=offset)
+            textpatcher.cropTagsOnPostsResults(response)
             l = response['items']
             
             #print('bookmarks items: ' + json.dumps(l, indent=4))

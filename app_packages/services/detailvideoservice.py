@@ -5,6 +5,7 @@ import traceback
 from vk import users as users
 from caches.videosdatabase import VideosDatabase
 from caches.commentsdatabase import CommentsDatabase
+from postproc import textpatcher
 
 class DetailVideoService:
     def __init__(self, usersDecorator, commentsService):
@@ -32,6 +33,7 @@ class DetailVideoService:
         try:
             api = vk.api()
             result = api.video.get(videos=str(ownerId) + '_' + str(videoId), extended=1)
+            textpatcher.cropTagsInResults(result, 'description')
             items = result['items']
             cache = VideosDatabase()
             cache.update(items)

@@ -104,15 +104,17 @@ NSArray *getFactors(NSArray *sizes, CGFloat wsum) {
     NSMutableArray *specs = [NSMutableArray new];
     ASRatioLayoutSpec *(^ratioSpecBlock)(PostImagesChildNode *) = ^ASRatioLayoutSpec *(PostImagesChildNode *node) {
         Photo *photo = node.photo;
-        CGFloat ratio = photo.height/photo.width;
-        if (ratio == 1) {
-            ratio = 2;
-        }
-        ASRatioLayoutSpec *ratioSpec = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:ratio
-                                                                             child:node];
-        ratioSpec.style.spacingAfter = kPhotoMargin;
-        ratioSpec.style.spacingBefore = kPhotoMargin;
-        return ratioSpec;
+        ASStackLayoutSpec *contentSpec = [ASStackLayoutSpec
+                                          stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+                                          spacing:kPhotoMargin
+                                          justifyContent:ASStackLayoutJustifyContentStart
+                                          alignItems:ASStackLayoutAlignItemsStart
+                                          children:@[node]];
+        node.style.flexBasis = ASDimensionMake(ASDimensionUnitFraction, 1);
+        node.style.flexShrink = 1;
+        ASRatioLayoutSpec *ratio = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:photo.height/photo.width
+                                                                         child:contentSpec];
+        return ratio;
     };
     NSMutableArray *nodes = [_nodes mutableCopy];
     while (nodes.count) {

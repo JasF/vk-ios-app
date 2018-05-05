@@ -3,6 +3,7 @@ import json
 import traceback
 from vk import users as users
 from caches.postsdatabase import PostsDatabase
+from postproc import textpatcher
 
 class NewsService:
     def __init__(self, usersDecorator):
@@ -17,6 +18,7 @@ class NewsService:
                 response = api.newsfeed.get(start_from=next_from)
             else:
                 response = api.newsfeed.get()
+            textpatcher.cropTagsOnPostsResults(response)
             next_from = response.get('next_from')
             l = response["items"]
             #print('news response: ' + json.dumps(l, sort_keys=True, indent=4, separators=(',', ': ')))

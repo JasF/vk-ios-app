@@ -37,7 +37,11 @@ let kMargin : CGFloat = 6.0
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         let spec = ASStackLayoutSpec.init(direction: .vertical, spacing: 6, justifyContent: .start, alignItems: .start, children: [textNode, timeNode])
+        spec.style.flexShrink = 1
+        spec.style.flexGrow = 1
         let imageTextSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 6, justifyContent: .start, alignItems: .center, children: [avatarNode, spec] )
+        imageTextSpec.style.flexShrink = 1
+        imageTextSpec.style.flexGrow = 1
         return ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(kMargin, kMargin, kMargin, kMargin), child: imageTextSpec)
     }
 }

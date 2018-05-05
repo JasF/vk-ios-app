@@ -5,6 +5,7 @@ from vk import users as users
 from caches.postsdatabase import PostsDatabase
 from caches.usersdatabase import UsersDatabase
 import time, threading
+from postproc import textpatcher
 
 class WallService:
     def __init__(self, userId, usersDecorator):
@@ -21,8 +22,9 @@ class WallService:
         try:
             api = vk.api()
             response = api.wall.get(offset=offset, owner_id=userId, count=count)
+            textpatcher.cropTagsOnPostsResults(response)
             l = response["items"]
-            #print('wall response: ' + json.dumps(l, sort_keys=True, indent=4, separators=(',', ': ')))
+            #print('wall response: ' + json.dumps(l, indent=4))
             cache = PostsDatabase()
             cache.update(l)
             cache.close()

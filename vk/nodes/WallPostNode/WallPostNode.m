@@ -207,10 +207,7 @@ extern CGFloat const kControlsSize;
     }
     
     NSMutableArray *mainStackContent = [[NSMutableArray alloc] init];
-    if (_mediaNodes.count == 1) {
-        [mainStackContent addObject:_mediaNodes.firstObject];
-    }
-    else if (_mediaNodes.count > 1) {
+    if (_mediaNodes.count) {
         ASStackLayoutSpec *mediaSpec = [ASStackLayoutSpec
                                           stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
                                           spacing:kMargin

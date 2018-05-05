@@ -1705,6 +1705,8 @@
 		C39C8B9C209D92A400CC23C3 /* ExtendedVideoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedVideoNode.swift; sourceTree = "<group>"; };
 		C39C8BA1209DBDEF00CC23C3 /* PostTextNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostTextNode.h; sourceTree = "<group>"; };
 		C39C8BA2209DBDEF00CC23C3 /* PostTextNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostTextNode.m; sourceTree = "<group>"; };
+		C39C8BA6209DD22A00CC23C3 /* textpatcher.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = textpatcher.py; sourceTree = "<group>"; };
+		C39C8BA8209DD2B000CC23C3 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -3114,6 +3116,7 @@
 		C32304E02080E57400CEC487 /* app_packages */ = {
 			isa = PBXGroup;
 			children = (
+				C39C8BA4209DD1FF00CC23C3 /* postproc */,
 				C3987DDD20984A710047A30F /* constants */,
 				C3036C1E208DF7FC005F086E /* pymanagers */,
 				C3A943FA2084B89E0033355E /* viewmodels */,
@@ -4842,6 +4845,15 @@
 				C39C8BA2209DBDEF00CC23C3 /* PostTextNode.m */,
 			);
 			path = PostTextNode;
+			sourceTree = "<group>";
+		};
+		C39C8BA4209DD1FF00CC23C3 /* postproc */ = {
+			isa = PBXGroup;
+			children = (
+				C39C8BA6209DD22A00CC23C3 /* textpatcher.py */,
+				C39C8BA8209DD2B000CC23C3 /* __init__.py */,
+			);
+			path = postproc;
 			sourceTree = "<group>";
 		};
 		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {

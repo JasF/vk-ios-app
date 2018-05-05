@@ -156,7 +156,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().showImagesViewerViewControllerWithOwnerId_postId_photoIndex_(args=[ownerId, postId, photoIndex])
     
     def tappedOnVideoWithIdownerIdrepresentation(self, videoId, ownerId, representation):
-        print('representation: ' + json.dumps(representation, indent=4))
+        #print('representation: ' + json.dumps(representation, indent=4))
         try:
             cache = VideosDatabase()
             cache.update([representation])
