@@ -98,21 +98,24 @@
                                               parameters:@{@"ownerId":@(ownerId), @"albumId":albumId}];
 }
 
-- (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithOwnerId:(NSInteger)ownerId
-                                                                postId:(NSInteger)postId
-                                                            photoIndex:(NSInteger)photoIndex {
+- (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithDelegate:(id)delegate
+                                                                ownerId:(NSInteger)ownerId
+                                                                 postId:(NSInteger)postId
+                                                             photoIndex:(NSInteger)photoIndex {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyImagesViewerViewModel)
+                                                delegate:delegate
                                               parameters:@{@"ownerId":@(ownerId), @"postId":@(postId), @"photoIndex":@(photoIndex)}];
 }
 
-- (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(NSInteger)albumId photoId:(NSInteger)photoId {
+- (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithDelegate:(id)delegate ownerId:(NSInteger)ownerId albumId:(NSInteger)albumId photoId:(NSInteger)photoId {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyImagesViewerViewModel)
+                                                delegate:delegate
                                               parameters:@{@"ownerId":@(ownerId), @"albumId":@(albumId), @"photoId":@(photoId)}];
 }
 
-- (id<PyDetailPhotoViewModel>)detailPhotoViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(NSInteger)albumId photoId:(NSInteger)photoId {
+- (id<PyDetailPhotoViewModel>)detailPhotoViewModelHandlerWithOwnerId:(NSInteger)ownerId photoId:(NSInteger)photoId {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyDetailPhotoViewModel)
-                                              parameters:@{@"ownerId":@(ownerId), @"albumId":@(albumId), @"photoId":@(photoId)}];
+                                              parameters:@{@"ownerId":@(ownerId), @"photoId":@(photoId)}];
 }
 
 - (id<PyNewsViewModel>)newsViewModelHandler {

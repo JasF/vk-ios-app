@@ -212,9 +212,10 @@
 }
 
 
-- (void)showDetailPhotoViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
+- (void)showDetailPhotoViewControllerWithOwnerId:(NSNumber *)ownerId photoId:(NSNumber *)photoId {
     dispatch_async(dispatch_get_main_queue(), ^{
-        DetailPhotoViewController *viewController =(DetailPhotoViewController *)[_screensAssembly detailPhotoViewController:ownerId albumId:albumId photoId:photoId];
+        DetailPhotoViewController *viewController =(DetailPhotoViewController *)[_screensAssembly detailPhotoViewController:ownerId
+                                                                                                                    photoId:photoId];
         [self pushViewController:viewController clean:NO];
     });
 }

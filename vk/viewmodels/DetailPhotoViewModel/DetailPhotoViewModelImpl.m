@@ -19,15 +19,14 @@
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
                      detailPhotoService:(id<DetailPhotoService>)detailPhotoService
                                 ownerId:(NSNumber *)ownerId
-                                albumId:(NSNumber *)albumId
                                 photoId:(NSNumber *)photoId {
     NSCParameterAssert(handlersFactory);
     NSCParameterAssert(detailPhotoService);
     NSCParameterAssert(ownerId);
-    NSCParameterAssert(albumId);
     NSCParameterAssert(photoId);
     if (self) {
-        _handler = [handlersFactory detailPhotoViewModelHandlerWithOwnerId:ownerId.integerValue albumId:albumId.integerValue photoId:photoId.integerValue];
+        _handler = [handlersFactory detailPhotoViewModelHandlerWithOwnerId:ownerId.integerValue
+                                                                   photoId:photoId.integerValue];
         _detailPhotoService = detailPhotoService;
     }
     return self;

@@ -15,5 +15,5 @@ class PyGalleryViewModel():
 
     def tappedOnPhotoWithId(self, photoId):
         #managers.shared().screensManager().showDetailPhotoViewControllerWithOwnerId_albumId_photoId_(args=[self.ownerId, self.albumId, photoId])
-        managers.shared().screensManager().showImagesViewerViewControllerWithOwnerId_albumId_photoId_(args=[self.ownerId, self.albumId, photoId])
+        managers.shared().screensManager().showImagesViewerViewControllerWithOwnerId_photoId_(args=[self.ownerId, photoId])
 

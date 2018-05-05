@@ -120,7 +120,7 @@ class Subscriber():
             handler = self.handlers.get(key)
             if handler:
                 del self.handlers[key]
-                print('handler with key: ' + str(key) + ' successfully deleted')
+                #print('handler with key: ' + str(key) + ' successfully deleted')
                 try:
                     release = handler.release
                 except:

@@ -1,16 +1,22 @@
 from objc import managers
 from caches.postsdatabase import PostsDatabase
 import json
+import threading
+from objcbridge import BridgeBase, ObjCBridgeProtocol
 
 g_count = 40
 
-class PyImagesViewerViewModel():
-    def __init__(self, galleryService, p):
+class PyImagesViewerViewModelDelegate(BridgeBase):
+    pass
+
+class PyImagesViewerViewModel(ObjCBridgeProtocol):
+    def __init__(self, galleryService, delegateId, p):
         self.galleryService = galleryService
         self.ownerId = p.get('ownerId')
         self.postId = None
         self.albumId = None
         self.photoIndex = None
+        self.guiDelegate = PyImagesViewerViewModelDelegate(delegateId)
         
         postId = p.get('postId')
         if isinstance(postId, int):
@@ -31,7 +37,7 @@ class PyImagesViewerViewModel():
     def navigateWithPhotoId(self, photoId):
         if isinstance(self.postId, int):
             pass
-        managers.shared().screensManager().showDetailPhotoViewControllerWithOwnerId_albumId_photoId_(args=[self.ownerId, self.albumId, photoId])
+        managers.shared().screensManager().showDetailPhotoViewControllerWithOwnerId_photoId_(args=[self.ownerId, photoId])
 
 
     def getPostData(self):
@@ -39,16 +45,22 @@ class PyImagesViewerViewModel():
         try:
             cache = PostsDatabase()
             data = cache.getById(self.ownerId, self.postId)
-            #result['post_data'] = data
+            result['post_data'] = data
             
             att = data['attachments']
             ids = []
             for d in att:
                 if d['type'] == 'photo':
                     ids.append(d['photo']['id'])
-        
-            photosData = self.galleryService.getPhotosByIds(self.ownerId, ids)
-            result['images_data'] = {'items':photosData}
+            def requestPhotos():
+                self.galleryService.getPhotosByIds(self.ownerId, ids)
+                self.guiDelegate.photosDataDidUpdatedFromApi()
+                print('photos requested')
+            threading.Thread(target=requestPhotos).start()
+            
         except Exception as e:
             print('getPostData imageViewer exception: ' + str(e))
         return result
+
+    def release(self):
+        pass

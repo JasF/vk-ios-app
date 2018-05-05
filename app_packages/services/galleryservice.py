@@ -39,7 +39,7 @@ class GalleryService:
         try:
             api = vk.api()
             cache = PhotosDatabase()
-            results = cache.getPhotosByIds(ownerId, ids)
+            #results = cache.getPhotosByIds(ownerId, ids)
             if len(ids) == len(results):
                 print('return cached photos from galleryService:getPhotosByIds')
                 return results
@@ -47,8 +47,9 @@ class GalleryService:
             fullIds = [str(ownerId) + '_' + str(id) for id in ids]
             results = api.photos.getById(photos=','.join(id for id in fullIds), extended=1)
             
+            cache.update(results)
             
-            print('getPhotosByIds result: ' + json.dumps(results, indent=4))
+            #print('getPhotosByIds result: ' + json.dumps(results, indent=4))
             cache.close()
         except Exception as e:
             print('getPhotosByIds exception: ' + str(e))

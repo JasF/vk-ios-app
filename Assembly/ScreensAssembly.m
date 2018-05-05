@@ -185,10 +185,10 @@
     }];
 }
 
-- (UIViewController *)detailPhotoViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
+- (UIViewController *)detailPhotoViewController:(NSNumber *)ownerId photoId:(NSNumber *)photoId {
     return [TyphoonDefinition withClass:[DetailPhotoViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
-            [initializer injectParameterWith:[self.viewModelsAssembly detailPhotoViewModel:ownerId albumId:albumId photoId:photoId]];
+            [initializer injectParameterWith:[self.viewModelsAssembly detailPhotoViewModel:ownerId photoId:photoId]];
             [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
         }];
         [definition injectProperty:@selector(postsViewModel) with:[self.viewModelsAssembly postsViewModel]];

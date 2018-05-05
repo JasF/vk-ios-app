@@ -14,7 +14,6 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         self.wallPostService = wallPostService
         self.detailPhotoService = detailPhotoService
         self.detailVideoService = detailVideoService
-        print('\n\n\nPyPostsViewModel allocated\n\n\n')
 
     def likeObjectWithTypeownerIditemIdaccessKeylike(self, type, ownerId, itemId, accessKey, like):
         try:
@@ -22,7 +21,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
                 type = 'post'
             
             api = vk.api()
-            print('type: ' + str(type) + ' ownerId ' + str(ownerId) + ' itemId ' + str(itemId) + ' accessKey ' + str(accessKey) + ' like ' + str(like))
+            #print('type: ' + str(type) + ' ownerId ' + str(ownerId) + ' itemId ' + str(itemId) + ' accessKey ' + str(accessKey) + ' like ' + str(like))
             if like == True:
                 response = api.likes.add(type=type, owner_id=ownerId, item_id=itemId, access_key=accessKey)
             else:

@@ -14,7 +14,6 @@ class PyDialogsManager(ObjCBridgeProtocol):
 
     def setDelegateId(self, delegateId):
         self.guiDelegate = PyDialogsManagerDelegate(delegateId)
-        print('PyDialogsManager guiDelegate allocated: ' + str(delegateId))
     
     # ObjCBridgeProtocol
     def release(self):

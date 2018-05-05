@@ -6,12 +6,11 @@ from vk import users
 from constants import g_CommentsCount
 
 class PyDetailPhotoViewModel():
-    def __init__(self, detailPhotoService, ownerId, albumId, photoId):
+    def __init__(self, detailPhotoService, ownerId, photoId):
         self.detailPhotoService = detailPhotoService
         self.ownerId = ownerId
-        self.albumId = albumId
         self.photoId = photoId
-        print('PyDetailPhotoViewModel ownerId: ' + str(ownerId) + '; albumId: '+ str(albumId) + ' ' + str(photoId))
+        #print('PyDetailPhotoViewModel ownerId: ' + str(ownerId) + ' ' + str(photoId))
         self.photoData = None
         self.userInfo = None
     

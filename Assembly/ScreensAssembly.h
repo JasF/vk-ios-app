@@ -40,7 +40,7 @@
 - (UIViewController *)galleryViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId;
 - (UIViewController *)imagesViewerViewController:(NSNumber *)ownerId postId:(NSNumber *)postId photoIndex:(NSNumber *)photoIndex;
 - (UIViewController *)imagesViewerViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;
-- (UIViewController *)detailPhotoViewController:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;
+- (UIViewController *)detailPhotoViewController:(NSNumber *)ownerId photoId:(NSNumber *)photoId;
 - (UIViewController *)newsViewController;
 - (UIViewController *)answersViewController;
 - (UIViewController *)groupsViewController:(NSNumber *)userId;

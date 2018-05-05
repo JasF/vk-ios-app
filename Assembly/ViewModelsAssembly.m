@@ -147,14 +147,13 @@
             }];
 }
 
-- (id<DetailPhotoViewModel>)detailPhotoViewModel:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId {
+- (id<DetailPhotoViewModel>)detailPhotoViewModel:(NSNumber *)ownerId photoId:(NSNumber *)photoId {
     return [TyphoonDefinition withClass:[DetailPhotoViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithHandlersFactory:detailPhotoService:ownerId:albumId:photoId:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(initWithHandlersFactory:detailPhotoService:ownerId:photoId:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
                     [initializer injectParameterWith:self.servicesAssembly.detailPhotoService];
                     [initializer injectParameterWith:ownerId];
-                    [initializer injectParameterWith:albumId];
                     [initializer injectParameterWith:photoId];
                 }];
             }];

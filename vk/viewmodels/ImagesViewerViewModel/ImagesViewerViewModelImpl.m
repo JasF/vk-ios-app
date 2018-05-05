@@ -9,6 +9,10 @@
 #import "ImagesViewerViewModelImpl.h"
 #import "WallPost.h"
 
+@protocol PyImagesViewerViewModelDelegate <NSObject>
+- (void)photosDataDidUpdatedFromApi;
+@end
+
 @interface ImagesViewerViewModelImpl ()
 @property id<PyImagesViewerViewModel> handler;
 @property id<GalleryService> galleryService;
@@ -19,6 +23,7 @@
 @implementation ImagesViewerViewModelImpl
 
 @synthesize photoId = _photoId;
+@synthesize delegate = _delegate;
 
 #pragma mark - Initialization
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
@@ -33,9 +38,10 @@
     if (self = [super init]) {
         self.photoId = photoId.integerValue;
         _galleryService = galleryService;
-        _handler = [handlersFactory imagesViewerViewModelHandlerWithOwnerId:ownerId.integerValue
-                                                                    albumId:albumId.integerValue
-                                                                    photoId:photoId.integerValue];
+        _handler = [handlersFactory imagesViewerViewModelHandlerWithDelegate:self
+                                                                     ownerId:ownerId.integerValue
+                                                                     albumId:albumId.integerValue
+                                                                     photoId:photoId.integerValue];
     }
     return self;
 }
@@ -52,9 +58,10 @@
     NSCParameterAssert(photoIndex);
     if (self = [super init]) {
         self.galleryService = galleryService;
-        self.handler = [handlersFactory imagesViewerViewModelHandlerWithOwnerId:ownerId.integerValue
-                                                                         postId:postId.integerValue
-                                                                     photoIndex:photoIndex.integerValue];
+        self.handler = [handlersFactory imagesViewerViewModelHandlerWithDelegate:self
+                                                                         ownerId:ownerId.integerValue
+                                                                          postId:postId.integerValue
+                                                                      photoIndex:photoIndex.integerValue];
         _withPost = YES;
         _photoIndex = photoIndex.integerValue;
     }
@@ -74,15 +81,16 @@
                 return;
             }
             NSDictionary *data = [self.handler getPostData];
-            //NSDictionary *postData = data[@"post_data"];
+            NSDictionary *postData = data[@"post_data"];
+            /*
             NSDictionary *imagesData = data[@"images_data"];
             NSArray *photos = [self.galleryService parse:imagesData];
             if (_photoIndex < photos.count) {
                 Photo *photo = photos[_photoIndex];
                 self.photoId = photo.id;
             }
-            //WallPost *post = [self.galleryService parsePost:postData];
-            /*
+             */
+            WallPost *post = [self.galleryService parsePost:postData];
             NSMutableArray *photos = [NSMutableArray new];
             NSInteger i=0;
             for (Attachments *attachment in post.photoAttachments) {
@@ -92,7 +100,6 @@
                 [photos addObject:attachment.photo];
                 ++i;
             }
-            */
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (completion) {
                     completion(photos);
@@ -116,5 +123,11 @@
         [self.handler navigateWithPhotoId:@(photo.id)];
     });
 }
-    
+
+#pragma mark - PyImagesViewerViewModel
+- (void)photosDataDidUpdatedFromApi {
+    if ([self.delegate respondsToSelector:@selector(photosDataDidUpdatedFromApi)]) {
+        [self.delegate photosDataDidUpdatedFromApi];
+    }
+}
 @end

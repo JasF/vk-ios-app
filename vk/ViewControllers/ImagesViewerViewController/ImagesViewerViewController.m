@@ -13,7 +13,7 @@ static NSInteger const kPreloadingBorder = 2;
 
 @import MWPhotoBrowser;
 
-@interface ImagesViewerViewController () <MWPhotoBrowserDelegate>
+@interface ImagesViewerViewController () <MWPhotoBrowserDelegate, ImagesViewerViewModelDelegate>
 @property id<ImagesViewerViewModel> viewModel;
 @property id<MWPhotoBrowserViewModel> photoBrowserViewModel;
 @property NSMutableArray *photos;
@@ -52,6 +52,7 @@ static NSInteger const kPreloadingBorder = 2;
             });
         });
     }];
+    self.viewModel.delegate = self;
 }
 
 #pragma mark - Private Methods
@@ -177,5 +178,9 @@ static NSInteger const kPreloadingBorder = 2;
     //[self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - ImagesViewerViewModelDelegate
+- (void)photosDataDidUpdatedFromApi {
+    [_browser photosDataDidUpdatedFromApi];
+}
 
 @end

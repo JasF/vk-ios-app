@@ -1698,4 +1698,8 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     }
 }
 
+- (void)photosDataDidUpdatedFromApi {
+    [self updateCommentsCount];
+}
+
 @end
