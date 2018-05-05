@@ -27,5 +27,14 @@ typedef void (^ResultBlock)(id result, NSInteger requestId);
               arguments:(NSArray *)arguments
              withResult:(BOOL)withResult
             resultBlock:(ResultBlock)resultBlock;
+
+
+- (dispatch_block_t)sendAction:(NSString *)action
+                     className:(NSString *)className
+                     arguments:(NSArray *)arguments
+                    withResult:(BOOL)withResult
+                   resultBlock:(ResultBlock)resultBlock
+                     requestId:(NSInteger *)requestId;
+
 - (void)handlerWillRelease:(PythonBridgeHandler *)handler;
 @end

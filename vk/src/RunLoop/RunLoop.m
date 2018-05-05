@@ -33,11 +33,19 @@
 
 #pragma mark - Public Methods
 - (void)exec:(NSInteger)requestId {
+    [self waitForGroup:[self enter:requestId]];
+}
+
+- (dispatch_group_t)enter:(NSInteger)requestId {
     dispatch_group_t group = dispatch_group_create();
     @synchronized(self) {
         [_groups setObject:[NSValue valueWithNonretainedObject:group] forKey:@(requestId)];
     }
     dispatch_group_enter(group);
+    return group;
+}
+
+- (void)waitForGroup:(dispatch_group_t)group {
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 }
 

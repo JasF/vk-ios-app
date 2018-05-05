@@ -55,7 +55,7 @@ class PyImagesViewerViewModel(ObjCBridgeProtocol):
             def requestPhotos():
                 self.galleryService.getPhotosByIds(self.ownerId, ids)
                 self.guiDelegate.photosDataDidUpdatedFromApi()
-                print('photos requested')
+                #print('photos requested')
             threading.Thread(target=requestPhotos).start()
             
         except Exception as e:

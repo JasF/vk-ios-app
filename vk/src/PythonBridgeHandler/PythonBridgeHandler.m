@@ -109,11 +109,13 @@
         };
     }
     NSString *className = _key.length ? _key : _name;
-    NSInteger requestId = [_bridge sendAction:selectorName
-                                    className:className
-                                    arguments:[arguments copy]
-                                   withResult:withResultValue
-                                  resultBlock:resultBlock];
+    NSInteger requestId = 0;
+    dispatch_block_t sendBlock = [_bridge sendAction:selectorName
+                                           className:className
+                                           arguments:[arguments copy]
+                                          withResult:withResultValue
+                                         resultBlock:resultBlock
+                                           requestId:&requestId];
     if (!withResultValue && arguments.count == 1) {
         anInvocation.selector = @selector(voidMethodWithOneArgument:);
     }
@@ -147,7 +149,12 @@
         anInvocation.selector = @selector(voidMethod);
     }
     if (withResultValue) {
-        [_runLoop exec:requestId];
+        dispatch_group_t group = [_runLoop enter:requestId];
+        sendBlock();
+        [_runLoop waitForGroup:group];
+    }
+    else {
+        sendBlock();
     }
     anInvocation.target = self;
     [anInvocation invoke];

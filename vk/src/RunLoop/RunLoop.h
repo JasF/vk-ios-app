@@ -11,5 +11,7 @@
 @interface RunLoop : NSObject
 + (instancetype)shared;
 - (void)exec:(NSInteger)requestId;
+- (dispatch_group_t)enter:(NSInteger)requestId;
+- (void)waitForGroup:(dispatch_group_t)group;
 - (void)exit:(NSInteger)requestId;
 @end

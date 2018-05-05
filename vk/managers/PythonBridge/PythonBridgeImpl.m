@@ -123,11 +123,32 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
               arguments:(NSArray *)arguments
              withResult:(BOOL)withResult
             resultBlock:(ResultBlock)resultBlock {
+    NSInteger requestId = 0;
+    dispatch_block_t block = [self sendAction:action
+                                    className:className
+                                    arguments:(NSArray *)arguments
+                                   withResult:withResult resultBlock:resultBlock
+                                    requestId:&requestId];
+    if (block) {
+        block();
+    }
+    return requestId;
+}
+
+- (dispatch_block_t)sendAction:(NSString *)action
+                     className:(NSString *)className
+                     arguments:(NSArray *)arguments
+                    withResult:(BOOL)withResult
+                   resultBlock:(ResultBlock)resultBlock
+                     requestId:(NSInteger *)storageId {
     NSCParameterAssert(action);
     NSCParameterAssert(className);
     NSInteger result = 0;
     if (!action || !className) {
-        return result;
+        if (storageId) {
+            *storageId = result;
+        }
+        return ^{};
     }
     @synchronized(self) {
         if (resultBlock) {
@@ -143,9 +164,16 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
                                      @"withResult":@(withResult),
                                      @"requestId":@(result)
                                     };
-        [self send:dictionary];
+        if (storageId) {
+            *storageId = result;
+        }
+        @weakify(self);
+        return [^{
+            @strongify(self);
+            [self send:dictionary];
+        } copy];
     }
-    return result;
+    return ^{};
 }
 
 NSArray *px_allProtocolMethods(Protocol *protocol)
