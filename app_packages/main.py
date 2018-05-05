@@ -8,8 +8,6 @@ import traceback
 
 try:
     import pymanagers
-    import myextension
-    print('myextension hello result is: ' + myextension.hello("hello c++ from python"))
 except Exception as e:
     print(traceback.format_exc())
 

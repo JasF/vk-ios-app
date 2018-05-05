@@ -10,6 +10,8 @@ import urllib.request
 import json
 import traceback
 import urllib3
+import pythonbridgeextension
+
 http = urllib3.PoolManager()
 
 logs = []
@@ -25,11 +27,10 @@ storage.socket = None
 results = {}
 events = {}
 
-async def sendText(text):
+def sendText(text):
     try:
-        r = http.request('POST', 'http://127.0.0.1:8765/post',
-                         headers={'Content-Type': 'application/json'},
-                         body=text)
+        response = pythonbridgeextension.post(json.dumps(text))
+        print('python response is: ' + str(response))
     except Exception as e:
         __builtin__.original_print('send exception: ' + str(e))
         print(traceback.format_exc())
@@ -37,29 +38,23 @@ async def sendText(text):
         pass
 
 def send(text):
-    if isinstance(text,dict):
-        try:
-            text = json.dumps(text)
-        except Exception as e:
-            __builtin__.original_print('json.dumps failed: ' + str(e))
-
-    loop = None
-    try:
-        loop = asyncio.get_event_loop()
-    except:
-        pass
-    if not loop:
-        loop = asyncio.new_event_loop()
-    if loop.is_running():
-        def async_print(text):
-            send(text)
-        thread = threading.Thread(target=async_print, args=[text])
-        thread.start()
-        thread.join()
-    else:
-       loop.run_until_complete(sendText(text))
+    sendText(text)
 
 subscriber.send = send
+
+def handleincomingdata():
+    data = '{}'
+    print('hello!!!!')
+    try:
+        dict = json.loads(data)
+        print('dict is: ' + str(dict))
+    except Exception as e:
+        print('handleincomingdata exception: ' + str(e))
+        print(traceback.format_exc())
+
+def hellofromios():
+    print('hello from ios!')
+    return "python_string_on_c++"
 
 def main():
     while True:

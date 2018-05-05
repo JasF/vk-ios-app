@@ -34,6 +34,8 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
     NSInteger _instanceId;
 }
 
+@synthesize bridgeExtension = _bridgeExtension;
+
 + (instancetype)shared {
     static PythonBridgeImpl *shared = nil;
     static dispatch_once_t onceToken;
@@ -55,6 +57,9 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
 }
 
 - (void)send:(NSDictionary *)object {
+    NSCParameterAssert(_bridgeExtension);
+    [_bridgeExtension sendToPython:object];
+    /*
     @synchronized (self) {
         [_sendArray addObject:object];
         if (_groupWaiting) {
@@ -62,6 +67,7 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
             dispatch_group_leave(_group);
         }
     }
+     */
 }
 
 - (void)connect {
@@ -176,6 +182,7 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
     return ^{};
 }
 
+NSArray *px_allProtocolMethods(Protocol *protocol);
 NSArray *px_allProtocolMethods(Protocol *protocol)
 {
     NSMutableArray *methodList = [[NSMutableArray alloc] init];
@@ -279,6 +286,10 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
         message = [message dataUsingEncoding:NSUTF8StringEncoding];
     }
     NSDictionary *object = [NSJSONSerialization JSONObjectWithData:message options:0 error:nil];
+    [self incomingDictionary:object];
+}
+
+- (NSDictionary *)incomingDictionary:(NSDictionary *)object {
     //NSLog(@"handleIncomingPostData: %@", object);
     NSString *value = [self loggingStringWithDictionary:object];
     if (value) {
@@ -291,7 +302,11 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
             if (![args isKindOfClass:[NSArray class]]) {
                 args = @[];
             }
-            [self performAction:object[@"action"] className:object[@"class"] args:args delegateId:object[@"delegateId"]];
+            NSDictionary *resultValue = [self performAction:object[@"action"]
+                                                  className:object[@"class"]
+                                                       args:args
+                                                 delegateId:object[@"delegateId"]];
+            return resultValue;
         }
         else if ([command isEqualToString:@"response"]) {
             id result = object[@"result"];
@@ -310,6 +325,7 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
             NSLog(@"unknown command. data: %@", object);
         }
     }
+    return @{};
 }
 
 - (void)handlerWillRelease:(PythonBridgeHandler *)handler {
@@ -344,14 +360,14 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     return nil;
 }
 
-- (void)performAction:(NSString *)action
-            className:(NSString *)className
-                 args:(NSArray *)args
-           delegateId:(NSNumber *)delegateId {
+- (NSDictionary *)performAction:(NSString *)action
+                      className:(NSString *)className
+                           args:(NSArray *)args
+                     delegateId:(NSNumber *)delegateId {
     NSCParameterAssert(action);
     NSCParameterAssert(className);
     if (!action || !className) {
-        return;
+        return @{};
     }
     if (delegateId) {
         className = [className stringByAppendingFormat:@"_%@", delegateId];
@@ -359,7 +375,7 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     id handler = [_handlers[className] nonretainedObjectValue];
     if (!handler) {
         NSLog(@"handler for protocol \"%@\" not registered", className);
-        return;
+        return @{};
     }
     SEL selector = NSSelectorFromString(action);
     
@@ -396,8 +412,9 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     }
     
     if (hasReturnValue) {
-        [self send:@{@"command":@"response", @"class":className, @"action":action, @"result":returnValue}];
+        return @{@"command":@"response", @"class":className, @"action":action, @"result":returnValue};
     }
+    return @{};
 }
 
 - (id)performSelector:(SEL)selector onHandler:(id)handler hasReturnValue:(BOOL)hasReturnValue {

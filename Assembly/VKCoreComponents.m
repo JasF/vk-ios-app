@@ -14,6 +14,7 @@
 #import "VKSdkManagerImpl.h"
 #import "PythonManagerImpl.h"
 #import "PythonBridgeImpl.h"
+#import "PythonBridgeExtensionImpl.h"
 #import "Typhoon.h"
 
 @implementation VKCoreComponents
@@ -34,9 +35,21 @@
 - (id<PythonManager>)pythonManager {
     return [TyphoonDefinition withClass:[PythonManagerImpl class] configuration:^(TyphoonDefinition *definition)
             {
+                [definition useInitializer:@selector(initWithExtensions:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:@[[self pythonBridgeExtension]]];
+                }];
                 definition.scope = TyphoonScopeSingleton;
             }];
 }
 
+- (id<PythonManagerExtension>)pythonBridgeExtension {
+    return [TyphoonDefinition withClass:[PythonBridgeExtensionImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithPythonBridge:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:[self pythonBridge]];
+                }];
+                definition.scope = TyphoonScopeSingleton;
+            }];
+}
 
 @end

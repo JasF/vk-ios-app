@@ -8,6 +8,11 @@
 
 #import <CoreFoundation/CoreFoundation.h>
 
+@protocol PythonManagerExtension <NSObject>
+- (void)initializeSystem;
+- (void)initializeUser;
+@end
+
 @protocol PythonManager <NSObject>
 - (void)startupPython;
 @end

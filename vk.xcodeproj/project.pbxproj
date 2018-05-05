@@ -534,6 +534,7 @@
 		C39C8B9B209D924000CC23C3 /* VideoPlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8B9A209D924000CC23C3 /* VideoPlayerNode.swift */; };
 		C39C8B9D209D92A400CC23C3 /* ExtendedVideoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8B9C209D92A400CC23C3 /* ExtendedVideoNode.swift */; };
 		C39C8BA3209DBDEF00CC23C3 /* PostTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BA2209DBDEF00CC23C3 /* PostTextNode.m */; };
+		C39C8BAD209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BAC209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1707,6 +1708,9 @@
 		C39C8BA2209DBDEF00CC23C3 /* PostTextNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostTextNode.m; sourceTree = "<group>"; };
 		C39C8BA6209DD22A00CC23C3 /* textpatcher.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = textpatcher.py; sourceTree = "<group>"; };
 		C39C8BA8209DD2B000CC23C3 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		C39C8BAB209DFCA000CC23C3 /* PythonBridgeExtensionImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PythonBridgeExtensionImpl.h; sourceTree = "<group>"; };
+		C39C8BAC209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PythonBridgeExtensionImpl.m; sourceTree = "<group>"; };
+		C39C8BAE209E01B200CC23C3 /* PythonBridgeExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PythonBridgeExtension.h; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -2654,6 +2658,7 @@
 		C32304472080E57400CEC487 /* managers */ = {
 			isa = PBXGroup;
 			children = (
+				C39C8BAA209DFC8D00CC23C3 /* PythonBridgeExtensionImpl */,
 				C398BA5A209358F70071FA04 /* DialogsManager */,
 				C3036C12208DEE8F005F086E /* NotificationsManager */,
 				C32306EC2080E9B700CEC487 /* PythonManager */,
@@ -4856,6 +4861,16 @@
 			path = postproc;
 			sourceTree = "<group>";
 		};
+		C39C8BAA209DFC8D00CC23C3 /* PythonBridgeExtensionImpl */ = {
+			isa = PBXGroup;
+			children = (
+				C39C8BAB209DFCA000CC23C3 /* PythonBridgeExtensionImpl.h */,
+				C39C8BAC209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m */,
+				C39C8BAE209E01B200CC23C3 /* PythonBridgeExtension.h */,
+			);
+			path = PythonBridgeExtensionImpl;
+			sourceTree = "<group>";
+		};
 		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5993,6 +6008,7 @@
 				C32306082080E57500CEC487 /* DialogViewController.swift in Sources */,
 				C32306072080E57500CEC487 /* LeftViewController.m in Sources */,
 				C3D4873F20919BA1007EC440 /* AuthorizationViewModelImpl.m in Sources */,
+				C39C8BAD209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m in Sources */,
 				C32308E42081AEB100CEC487 /* NSLayoutConstraint+TyphoonOutletTransfer.m in Sources */,
 				C32305D52080E57500CEC487 /* ScreensAssembly.m in Sources */,
 				C350782920949C46000C8FB3 /* WallUserImageNode.swift in Sources */,
