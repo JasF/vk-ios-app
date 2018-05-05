@@ -11,8 +11,10 @@
 #import "Reposts.h"
 #import "Comments.h"
 #import "User.h"
+#import "Tags.h"
 
 #import <EasyMapping/EasyMapping.h>
+
 
 @interface Photo : NSObject <EKMappingProtocol>
 @property NSString *access_key;
@@ -33,7 +35,8 @@
 @property Reposts *reposts;
 @property Comments *comments;
 @property NSInteger can_comment;
-@property NSString *tags;
+@property NSInteger can_repost;
+@property Tags *tags;
 
 @property (nonatomic) NSNumber *asGallery;
 @property (nonatomic) User *owner;

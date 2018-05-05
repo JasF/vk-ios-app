@@ -8,12 +8,13 @@
 
 #import "Photo.h"
 
+
 @implementation Photo
 
 +(EKObjectMapping *)objectMapping
 {
     return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
-        [mapping mapPropertiesFromArray:@[@"id", @"album_id", @"owner_id", @"photo_75", @"photo_130", @"photo_604", @"photo_807", @"photo_1280", @"photo_2560", @"width", @"height", @"text", @"date", @"can_comment", @"tags", @"access_key"]];
+        [mapping mapPropertiesFromArray:@[@"id", @"album_id", @"owner_id", @"photo_75", @"photo_130", @"photo_604", @"photo_807", @"photo_1280", @"photo_2560", @"width", @"height", @"text", @"date", @"can_comment", @"can_repost", @"access_key"]];
         
         [mapping mapKeyPath:@"likes" toProperty:@"likes" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
             Likes *likes = [EKMapper objectFromExternalRepresentation:value
@@ -21,6 +22,11 @@
             return likes;
         }];
         
+        [mapping mapKeyPath:@"tags" toProperty:@"tags" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
+            Tags *tags = [EKMapper objectFromExternalRepresentation:value
+                                                          withMapping:[Tags objectMapping]];
+            return tags;
+        }];
         [mapping mapKeyPath:@"reposts" toProperty:@"reposts" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
             Reposts *reposts = [EKMapper objectFromExternalRepresentation:value
                                                               withMapping:[Reposts objectMapping]];

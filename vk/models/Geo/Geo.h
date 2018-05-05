@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Place.h"
-
 #import <EasyMapping/EasyMapping.h>
 
 @interface Geo : NSObject <EKMappingProtocol>

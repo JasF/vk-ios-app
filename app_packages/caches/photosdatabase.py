@@ -30,3 +30,13 @@ class PhotosDatabase(BaseDatabase):
         except Exception as e:
             print('getPhoto from base exception: ' + str(e))
         return result
+
+    def getPhotosByIds(self, ownerId, ids):
+        script = 'SELECT * FROM ' + self.tableName + ' WHERE owner_id = ' + str(ownerId)  + ' AND id IN (' + ','.join(str(id) for id in ids) + ')'
+        result = []
+        try:
+            self.cursor.execute(script)
+            result = self.cursor.fetchall()
+        except Exception as e:
+            print('getPhotosByIds from base exception: ' + str(e) + '; script: ' + str(script))
+        return result

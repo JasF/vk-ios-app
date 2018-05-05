@@ -530,6 +530,7 @@
 		C398BA6F2094597A0071FA04 /* PostBaseNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C398BA6E2094597A0071FA04 /* PostBaseNode.m */; };
 		C398BA742094743A0071FA04 /* WallUserMessageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C398BA732094743A0071FA04 /* WallUserMessageNode.swift */; };
 		C39C8B8D209C862300CC23C3 /* calcrect.py in Resources */ = {isa = PBXBuildFile; fileRef = C39C8B8C209C862200CC23C3 /* calcrect.py */; };
+		C39C8B93209D788300CC23C3 /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8B92209D788300CC23C3 /* Tags.m */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1695,6 +1696,8 @@
 		C398BA732094743A0071FA04 /* WallUserMessageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserMessageNode.swift; sourceTree = "<group>"; };
 		C39C8B8B209C4E3C00CC23C3 /* pymwphotobrowserviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pymwphotobrowserviewmodel.py; sourceTree = "<group>"; };
 		C39C8B8C209C862200CC23C3 /* calcrect.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = calcrect.py; sourceTree = "<group>"; };
+		C39C8B91209D788300CC23C3 /* Tags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
+		C39C8B92209D788300CC23C3 /* Tags.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tags.m; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -2682,6 +2685,7 @@
 		C32304572080E57400CEC487 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C39C8B90209D787600CC23C3 /* Tags */,
 				C3507820209477B4000C8FB3 /* WallUserCellModel.swift */,
 				C3333D4E2091BF11009EBB09 /* Place */,
 				C3333D4A2091BEF6009EBB09 /* Geo */,
@@ -4812,6 +4816,15 @@
 			path = PostBaseNode;
 			sourceTree = "<group>";
 		};
+		C39C8B90209D787600CC23C3 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				C39C8B91209D788300CC23C3 /* Tags.h */,
+				C39C8B92209D788300CC23C3 /* Tags.m */,
+			);
+			path = Tags;
+			sourceTree = "<group>";
+		};
 		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5972,6 +5985,7 @@
 				C32308CF2081AEB100CEC487 /* TyphoonSelector.m in Sources */,
 				C3987E362099CB480047A30F /* CellsViewController.swift in Sources */,
 				C32262DC2090ADF10054789B /* SettingsViewController.m in Sources */,
+				C39C8B93209D788300CC23C3 /* Tags.m in Sources */,
 				C3987DF42098B37D0047A30F /* CreatePostViewModel.swift in Sources */,
 				C3137726208E1FF400F568EA /* PhotoAlbumsViewModelImpl.m in Sources */,
 				C3F170D22090549300C33F2C /* Answer.m in Sources */,

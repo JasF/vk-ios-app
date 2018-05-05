@@ -74,7 +74,15 @@
                 return;
             }
             NSDictionary *data = [self.handler getPostData];
-            WallPost *post = [self.galleryService parsePost:data];
+            //NSDictionary *postData = data[@"post_data"];
+            NSDictionary *imagesData = data[@"images_data"];
+            NSArray *photos = [self.galleryService parse:imagesData];
+            if (_photoIndex < photos.count) {
+                Photo *photo = photos[_photoIndex];
+                self.photoId = photo.id;
+            }
+            //WallPost *post = [self.galleryService parsePost:postData];
+            /*
             NSMutableArray *photos = [NSMutableArray new];
             NSInteger i=0;
             for (Attachments *attachment in post.photoAttachments) {
@@ -84,6 +92,7 @@
                 [photos addObject:attachment.photo];
                 ++i;
             }
+            */
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (completion) {
                     completion(photos);
