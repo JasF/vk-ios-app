@@ -111,13 +111,11 @@
     [self observeKeyboardChanges];
     [self observeAppStateChanges];
     
-    _toolbarContainerView.alpha = 0;
+    CGPoint contentOffset = self.tableNode.contentOffset;
     [UIView performWithoutAnimation:^{
         [self reloadInputViews];
     }];
-    [UIView animateWithDuration:0.3 animations:^{
-        self.toolbarContainerView.alpha = 1.f;
-    }];
+    self.tableNode.contentOffset = contentOffset;
 }
 
 #pragma mark - NSNotificationCenter

@@ -39,7 +39,7 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    ASRatioLayoutSpec *ratioSpec = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:1.f child:_imageNode];
+    ASRatioLayoutSpec *ratioSpec = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:_photo.height/_photo.width child:_imageNode];
     ratioSpec.style.flexShrink = 1.0f;
     ratioSpec.style.flexGrow = 1.0f;
     ASLayoutSpec *controlsStack = [self controlsStack];

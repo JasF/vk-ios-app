@@ -53,6 +53,9 @@ ASCollectionDelegate, ASCollectionDataSource>
         if (!self.photo) {
             self.photo = photo;
             self.commentsParentItem = photo;
+            if (self.photo.can_comment) {
+                [self showCommentsToolbar];
+            }
         }
         if (completion) {
             completion(comments);

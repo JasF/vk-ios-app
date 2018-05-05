@@ -46,7 +46,7 @@ class GalleryService:
         
             fullIds = [str(ownerId) + '_' + str(id) for id in ids]
             results = api.photos.getById(photos=','.join(id for id in fullIds), extended=1)
-            
+            print('getPhotosByIds: ' + json.dumps(results, indent=4))
             cache.update(results)
             
             #print('getPhotosByIds result: ' + json.dumps(results, indent=4))

@@ -89,6 +89,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     [_viewModel getWallPostWithCommentsOffset:kOffsetForPreloadLatestComments
                                     postBlock:postBlock
                                    completion:^(NSArray *comments) {
+                                       @strongify(self);
                                        if (completion) {
                                            completion(comments);
                                        }
@@ -104,7 +105,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     if (self.post) {
         [section addObject:self.post];
     }
-    if (self.post.comments.count > self.objectsArray.count) {
+    if (self.objectsArray.count && self.post.comments.count > self.objectsArray.count) {
         NSInteger remaining = self.post.comments.count - self.objectsArray.count;
         NSInteger preload = MIN(remaining, kNumberOfCommentsForPreload);
         self.commentsPreloadModel.post = self.post;
