@@ -16,6 +16,6 @@
 #import <EasyMapping/EasyMapping.h>
 #import "CommentsViewController.h"
 #import <MWPhotoBrowser/MWPhotoBrowser.h>
+#import "PostBaseNode.h"
+#import "PostTextNode.h"
 
- 
- 

@@ -17,6 +17,24 @@ class TextStyles {
     return [ NSAttributedStringKey.foregroundColor: UIColor.black,
              NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15) ]
     }
+    
+    static public func postLinkStyle() -> [NSAttributedStringKey : Any]! {
+        return [ NSAttributedStringKey.foregroundColor: UIColor(red: 59.0/255.0, green: 89.0/255.0, blue: 152.0/255.0, alpha: 1.0),
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
+                 NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle
+            ]
+    }
+    
+    /*
+    + (NSDictionary *)postLinkStyle
+    {
+    return @{
+    NSFontAttributeName : [UIFont systemFontOfSize:15.0],
+    NSForegroundColorAttributeName: [UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0],
+    NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)
+    };
+    }
+    */
     static public func buttonStyle() -> [NSAttributedStringKey : Any]! {
         return [ NSAttributedStringKey.foregroundColor: UIColor.blue,
                  NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15) ]

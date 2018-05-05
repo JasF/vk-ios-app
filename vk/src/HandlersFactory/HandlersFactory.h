@@ -55,7 +55,7 @@
 - (id<PyDocumentsViewModel>)documentsViewModelHandler:(NSInteger)ownerId;
 - (id<PySettingsViewModel>)settingsViewModelHandler;
 - (id<PyAuthorizationViewModel>)authorizationViewModelHandler;
-- (id<PyDetailVideoViewModel>)detailVideoViewModelHandlerWithOwnerId:(NSInteger)ownerId videoId:(NSInteger)videoId;
+- (id<PyDetailVideoViewModel>)detailVideoViewModelHandlerWithDelegate:(id)delegate ownerId:(NSInteger)ownerId videoId:(NSInteger)videoId;
 - (id<PyPostsViewModel>)postsViewModelHandlerWithDelegate:(id)delegate;
 - (id<PyDialogsManager>)dialogManagerHandlerWithDelegate:(id)delegate;
 - (id<PyCreatePostViewModel>)createPostViewModelHandler:(NSInteger)ownerId;

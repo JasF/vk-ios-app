@@ -13,6 +13,7 @@ import Foundation
     case message
     case actions
     case avatarNameDate
+    case video
 }
 @objcMembers class WallUserCellModel : NSObject {
     var type:WallUserCellModelType

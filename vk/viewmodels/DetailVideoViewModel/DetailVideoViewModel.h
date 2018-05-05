@@ -8,7 +8,13 @@
 
 #import "Video.h"
 
+@class Video;
+@protocol DetailVideoViewModelDelegate <NSObject>
+- (void)videoDidUpdated:(Video *)video;
+@end
+
 @protocol DetailVideoViewModel <NSObject>
+@property (weak, nonatomic) id<DetailVideoViewModelDelegate> delegate;
 - (void)getVideoWithCommentsOffset:(NSInteger)offset completion:(void(^)(Video *video, NSArray *comments))completion;
 - (void)tappedOnVideo:(Video *)video;
 @end

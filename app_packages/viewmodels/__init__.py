@@ -60,7 +60,7 @@ Subscriber().setClassAllocator( PyVideosViewModel, lambda parameters: PyVideosVi
 Subscriber().setClassAllocator( PyDocumentsViewModel, lambda parameters: PyDocumentsViewModel(DocumentsService(), parameters.get('ownerId')) )
 Subscriber().setClassAllocator( PySettingsViewModel, lambda: PySettingsViewModel() )
 Subscriber().setClassAllocator( PyAuthorizationViewModel, lambda: PyAuthorizationViewModel() )
-Subscriber().setClassAllocator( PyDetailVideoViewModel, lambda parameters: PyDetailVideoViewModel(DetailVideoService(UsersDecorator(), CommentsService()), parameters['ownerId'], parameters['videoId']) )
+Subscriber().setClassAllocatorWithDelegate( PyDetailVideoViewModel, lambda delegateId, parameters: PyDetailVideoViewModel(DetailVideoService(UsersDecorator(), CommentsService()), delegateId, parameters['ownerId'], parameters['videoId']) )
 Subscriber().setClassAllocatorWithDelegate( PyPostsViewModel, lambda delegateId: PyPostsViewModel(WallPostService(UsersDecorator(), CommentsService()), DetailPhotoService(UsersDecorator(), CommentsService()), DetailVideoService(UsersDecorator(), CommentsService())) )
 Subscriber().setClassAllocator( PyCreatePostViewModel, lambda parameters: PyCreatePostViewModel(CreatePostService(), parameters['ownerId']) )
 Subscriber().setClassAllocator( PyMWPhotoBrowserViewModel, lambda: PyMWPhotoBrowserViewModel() )

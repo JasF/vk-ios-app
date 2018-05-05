@@ -41,6 +41,7 @@
 - (ASDisplayNode *)friendsNode:(NSArray *)friends;
 - (ASDisplayNode *)answerNode:(Answer *)answer;
 - (ASDisplayNode *)videoNode:(Video *)video;
+- (ASDisplayNode *)extendedVideoNode:(Video *)video;
 - (ASDisplayNode *)documentNode:(Document *)document;
 - (ASDisplayNode *)wallUserMessageNode:(User *)user;
 - (ASDisplayNode *)wallUserScrollNode:(User *)user;

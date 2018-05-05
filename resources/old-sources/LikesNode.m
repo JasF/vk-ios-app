@@ -46,7 +46,7 @@
     _likesCount = likes;
     _liked = (_likesCount > 0) ? liked : NO;
     _iconNode.image = (_liked) ? [UIImage imageNamed:@"icon_liked.png"] : [UIImage imageNamed:@"icon_like.png"];
-    if (_likesCount > 0) {
+    if (_likesCount >= 0) {
         NSDictionary *attributes = _liked ? [TextStyles cellControlColoredStyle] : [TextStyles cellControlStyle];
         _countNode.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld", (long)_likesCount] attributes:attributes];
     }

@@ -106,17 +106,29 @@
 
 #pragma mark - WallPostNodeDelegate
 - (void)titleNodeTapped:(WallPost *)post {
-    [_postsViewModel titleNodeTapped:post];
+    if ([_postsViewModel respondsToSelector:@selector(titleNodeTapped:)]) {
+        [_postsViewModel titleNodeTapped:post];
+    }
 }
 
 - (void)postNode:(WallPostNode *)node tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post {
-    [_postsViewModel tappedOnPhotoWithIndex:index withPost:post];
+    if ([_postsViewModel respondsToSelector:@selector(tappedOnPhotoWithIndex:withPost:)]) {
+        [_postsViewModel tappedOnPhotoWithIndex:index withPost:post];
+    }
+}
+
+- (void)postNode:(WallPostNode *)node tappedOnVideo:(Video *)video {
+    if ([_postsViewModel respondsToSelector:@selector(tappedOnVideo:)]) {
+        [_postsViewModel tappedOnVideo:video];
+    }
 }
 
 #pragma mark - CommentNodeDelegate
 - (void)commentNode:(CommentNode *)node
        tappedOnUser:(User *)user {
-    [_postsViewModel tappedOnCellWithUser:user];
+    if ([_postsViewModel respondsToSelector:@selector(tappedOnCellWithUser:)]) {
+        [_postsViewModel tappedOnCellWithUser:user];
+    }
 }
 
 @end

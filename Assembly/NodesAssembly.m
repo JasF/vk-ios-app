@@ -167,6 +167,16 @@
             }];
 }
 
+- (ASDisplayNode *)extendedVideoNode:(Video *)video {
+    return [TyphoonDefinition withClass:[ExtendedVideoNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:video];
+                 }];
+            }];
+}
+
 - (ASDisplayNode *)documentNode:(Document *)document {
     return [TyphoonDefinition withClass:[DocumentNode class] configuration:^(TyphoonDefinition *definition)
             {

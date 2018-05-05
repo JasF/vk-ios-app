@@ -13,7 +13,7 @@
 #import "vk-Swift.h"
 
 static CGFloat const kMargin = 8.f;
-static CGFloat const kSpacing;
+static CGFloat const kSpacing = 0;
 static CGFloat const kImageWidth = 120.f;
 static CGFloat const kImageHeight = 90.f;
 

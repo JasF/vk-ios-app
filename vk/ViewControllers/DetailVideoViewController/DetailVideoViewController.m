@@ -11,12 +11,15 @@
 #import "User.h"
 
 @interface DetailVideoViewController () <BaseTableViewControllerDataSource,
-ASCollectionDelegate, ASCollectionDataSource>
+ASCollectionDelegate, ASCollectionDataSource, DetailVideoViewModelDelegate>
 @property (strong, nonatomic) id<DetailVideoViewModel> viewModel;
 @property Video *video;
 @end
 
-@implementation DetailVideoViewController
+@implementation DetailVideoViewController {
+    WallUserCellModel *_avatarModel;
+    VideoModel *_videoModel;
+}
 
 - (instancetype)initWithViewModel:(id<DetailVideoViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory {
@@ -26,6 +29,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
+        _viewModel.delegate = self;
         self.title = @"Detail Video";
     }
     return self;
@@ -66,16 +70,34 @@ ASCollectionDelegate, ASCollectionDataSource>
 
 - (void)performBatchAnimated:(BOOL)animated {
     if (!self.sectionsArray && self.video) {
-        NSMutableArray *array = [NSMutableArray new];
-        if (self.video.owner) {
-            [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeAvatarNameDate user:self.video.owner date:self.video.date]];
-        }
-        if (self.video) {
-            [array addObject:self.video];
-        }
-        self.sectionsArray = @[array];
+        [self updateSections];
     }
     [super performBatchAnimated:animated];
+}
+
+- (void)updateSections {
+    NSMutableArray *array = [NSMutableArray new];
+    if (self.video.owner || _avatarModel) {
+        [array addObject:[self avatarModel]];
+    }
+    if (self.video || _videoModel) {
+        [array addObject:[self videoModel]];
+    }
+    self.sectionsArray = @[array];
+}
+
+- (WallUserCellModel *)avatarModel {
+    if (!_avatarModel) {
+        _avatarModel = [[WallUserCellModel alloc] init:WallUserCellModelTypeAvatarNameDate user:self.video.owner date:self.video.date];
+    }
+    return _avatarModel;
+}
+
+- (VideoModel *)videoModel {
+    if (!_videoModel) {
+        _videoModel = [[VideoModel alloc] init:self.video];
+    }
+    return _videoModel;
 }
 
 #pragma mark - ASCollectionNodeDelegate
@@ -92,6 +114,14 @@ ASCollectionDelegate, ASCollectionDataSource>
         }
     }
     [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
+}
+
+#pragma mark -
+- (void)videoDidUpdated:(Video *)video {
+    self.video = video;
+    [self videoModel].video = video;
+    [self updateSections];
+    [self.tableNode reloadData];
 }
 
 @end

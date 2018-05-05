@@ -42,6 +42,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
                     elif type == 'video':
                         cache = VideosDatabase()
                         data = cache.getById(ownerId, itemId)
+                        print('video data: ' + json.dumps(data, indent=4))
                         likes = data['likes']
                         likes['count'] = likesCount
                         likes['user_likes'] = 1 if like == True else 0
@@ -153,6 +154,16 @@ class PyPostsViewModel(ObjCBridgeProtocol):
 
     def tappedOnPhotoWithIndexwithPostIdownerId(self, photoIndex, postId, ownerId):
         managers.shared().screensManager().showImagesViewerViewControllerWithOwnerId_postId_photoIndex_(args=[ownerId, postId, photoIndex])
+    
+    def tappedOnVideoWithIdownerIdrepresentation(self, videoId, ownerId, representation):
+        print('representation: ' + json.dumps(representation, indent=4))
+        try:
+            cache = VideosDatabase()
+            cache.update([representation])
+            cache.close()
+        except Exception as e:
+            print('tappedOnVideoWithIdownerIdrepresentation exception: ' + str(e))
+        managers.shared().screensManager().showDetailVideoViewControllerWithOwnerId_videoId_(args=[ownerId, videoId])
     
     # ObjCBridgeProtocol
     def release(self):

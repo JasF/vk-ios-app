@@ -153,9 +153,10 @@
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyAuthorizationViewModel)];
 }
 
-- (id<PyDetailVideoViewModel>)detailVideoViewModelHandlerWithOwnerId:(NSInteger)ownerId
+- (id<PyDetailVideoViewModel>)detailVideoViewModelHandlerWithDelegate:(id)delegate ownerId:(NSInteger)ownerId
                                                              videoId:(NSInteger)videoId {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyDetailVideoViewModel)
+                                                delegate:delegate
                                               parameters:@{@"ownerId":@(ownerId), @"videoId":@(videoId)}];
 }
 

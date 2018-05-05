@@ -111,6 +111,10 @@
     else if ([item isKindOfClass:[CommentsPreloadModel class]]) {
         return [_assembly commentsPreloadNode:item];
     }
+    else if ([item isKindOfClass:[VideoModel class]]) {
+        VideoModel *model = (VideoModel *)item;
+        return [_assembly extendedVideoNode:model.video];
+    }
     NSCAssert(false, @"Undeterminated item class: %@", item);
     return nil;
 }

@@ -15,18 +15,20 @@
 #import "RepostNode.h"
 #import "vk-Swift.h"
 #import "PostImagesNode.h"
+#import "PostVideoNode.h"
+#import "PostTextNode.h"
 
 extern CGFloat const kMargin;
 extern CGFloat const kNameNodeMargin;
 extern CGFloat const kBottomSeparatorHeight;
 extern CGFloat const kControlsSize;
 
-@interface WallPostNode() <ASNetworkImageNodeDelegate, ASTextNodeDelegate, WallPostNodeDelegate>
+@interface WallPostNode() <ASNetworkImageNodeDelegate, WallPostNodeDelegate>
 
 @property (strong, nonatomic) ASTextNode *nameNode;
 @property (strong, nonatomic) ASTextNode *usernameNode;
 @property (strong, nonatomic) ASTextNode *timeNode;
-@property (strong, nonatomic) ASTextNode *postNode;
+@property (strong, nonatomic) PostTextNode *postNode;
 @property (strong, nonatomic) ASImageNode *viaNode;
 @property (strong, nonatomic) AvatarNode *avatarNode;
 @property (strong, nonatomic) ASImageNode *optionsNode;
@@ -74,33 +76,15 @@ extern CGFloat const kControlsSize;
         
         // Post node
         // Processing URLs in post
-        NSString *kLinkAttributeName = @"TextLinkAttributeName";
         
         NSString *text = _post.text;
         if (text.length) {
-            _postNode = [[ASTextNode alloc] init];
-            _postNode.maximumNumberOfLines = 12;
-            _postNode.truncationMode = NSLineBreakByTruncatingTail;
-            _postNode.truncationAttributedText = [[NSAttributedString alloc] initWithString:@"\n"];
-            _postNode.additionalTruncationMessage = [[NSAttributedString alloc] initWithString:L(@"show_fully")
-                                                                                    attributes:[TextStyles truncationStyle]];
+            _postNode = [PostTextNode new];
             [self addSubnode:_postNode];
             NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:text attributes:[TextStyles postStyle]];
-            NSDataDetector *urlDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
-            [urlDetector enumerateMatchesInString:attrString.string options:kNilOptions range:NSMakeRange(0, attrString.string.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop){
-                if (result.resultType == NSTextCheckingTypeLink) {
-                    NSMutableDictionary *linkAttributes = [[NSMutableDictionary alloc] initWithDictionary:[TextStyles postLinkStyle]];
-                    linkAttributes[kLinkAttributeName] = [NSURL URLWithString:result.URL.absoluteString];
-                    [attrString addAttributes:linkAttributes range:result.range];
-                }
-                
-            }];
+            
             // Configure node to support tappable links
-            _postNode.delegate = self;
-            _postNode.userInteractionEnabled = YES;
-            _postNode.linkAttributeNames = @[ kLinkAttributeName ];
             _postNode.attributedText = attrString;
-            _postNode.passthroughNonlinkTouches = YES;   // passes touches through when they aren't on a link
         }
         
         WallPost *history = _post.history.firstObject;
@@ -130,7 +114,9 @@ extern CGFloat const kControlsSize;
                 @weakify(self);
                 node.tappedOnPhotoHandler = ^(NSInteger index) {
                     @strongify(self);
-                    [self.delegate postNode:self tappedOnPhotoWithIndex:index withPost:_post];
+                    if ([self.delegate respondsToSelector:@selector(postNode:tappedOnPhotoWithIndex:withPost:)]) {
+                        [self.delegate postNode:self tappedOnPhotoWithIndex:index withPost:_post];
+                    }
                 };
             }
             [self addSubnode:node];
@@ -138,6 +124,16 @@ extern CGFloat const kControlsSize;
         }
         for (Attachments *attachment in _post.attachments) {
             id node = [_nodeFactory nodeForItem:attachment];
+            if ([node isKindOfClass:[PostVideoNode class]]) {
+                PostVideoNode *videoNode = (PostVideoNode *)node;
+                @weakify(self);
+                videoNode.tappedOnVideoHandler = ^(Video *video) {
+                    @strongify(self)
+                    if ([self.delegate respondsToSelector:@selector(postNode:tappedOnVideo:)]) {
+                        [self.delegate postNode:self tappedOnVideo:video];
+                    }
+                };
+            }
             if (node) {
                 [self addSubnode:node];
                 [_mediaNodes addObject:node];
@@ -305,25 +301,6 @@ extern CGFloat const kControlsSize;
     [super setSelected:selected];
 }
 
-#pragma mark - <ASTextNodeDelegate>
-
-- (BOOL)textNode:(ASTextNode *)richTextNode shouldHighlightLinkAttribute:(NSString *)attribute value:(id)value atPoint:(CGPoint)point
-{
-    // Opt into link highlighting -- tap and hold the link to try it!  must enable highlighting on a layer, see -didLoad
-    return YES;
-}
-
-- (void)textNode:(ASTextNode *)richTextNode tappedLinkAttribute:(NSString *)attribute value:(NSURL *)URL atPoint:(CGPoint)point textRange:(NSRange)textRange
-{
-    // The node tapped a link, open it
-    [[UIApplication sharedApplication] openURL:URL];
-}
-
-- (void)textNodeTappedTruncationToken:(ASTextNode *)textNode {
-    _postNode.maximumNumberOfLines = 0.f;
-    [self setNeedsLayout];
-}
-
 #pragma mark - ASNetworkImageNodeDelegate methods.
 
 - (void)imageNode:(ASNetworkImageNode *)imageNode didLoadImage:(UIImage *)image
@@ -346,6 +323,10 @@ extern CGFloat const kControlsSize;
 
 - (void)postNode:(WallPostNode *)node tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post {
     [self.delegate postNode:node tappedOnPhotoWithIndex:index withPost:post];
+}
+
+- (void)postNode:(WallPostNode *)node tappedOnVideo:(Video *)video {
+    [self.delegate postNode:node tappedOnVideo:video];
 }
 
 @end

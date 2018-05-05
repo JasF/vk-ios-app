@@ -13,12 +13,11 @@ class DetailVideoService:
         pass
     
     def getVideo(self, ownerId, videoId):
-        api = vk.api()
         items = None
         try:
             cache = VideosDatabase()
             items = cache.getVideo(ownerId, videoId)
-            #print('single video: ' + str(items))
+            #print('single video: ' + str(items) + ' for: ' + str(ownerId) + ' ; videoId: ' + str(videoId))
             cache.close()
         except Exception as e:
             print('DetailVideoService getVideo exception: ' + str(e))
@@ -28,6 +27,22 @@ class DetailVideoService:
         result = self.commentsService.getVideoComments(ownerId, videoId, offset, count)
         return result
 
+    def updateVideo(self, ownerId, videoId):
+        result = {}
+        try:
+            api = vk.api()
+            result = api.video.get(videos=str(ownerId) + '_' + str(videoId), extended=1)
+            items = result['items']
+            cache = VideosDatabase()
+            cache.update(items)
+            cache.close()
+            representation = items[0]
+            if isinstance(representation, dict):
+                result = representation
+        except Exception as e:
+            print('DetailVideoService: updateVideo exception: ' + str(e))
+        return result
+    
     def sendComment(self, ownerId, postId, messsage, reply_to_comment=0):
         result = None
         try:

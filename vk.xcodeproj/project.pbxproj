@@ -531,6 +531,9 @@
 		C398BA742094743A0071FA04 /* WallUserMessageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C398BA732094743A0071FA04 /* WallUserMessageNode.swift */; };
 		C39C8B8D209C862300CC23C3 /* calcrect.py in Resources */ = {isa = PBXBuildFile; fileRef = C39C8B8C209C862200CC23C3 /* calcrect.py */; };
 		C39C8B93209D788300CC23C3 /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8B92209D788300CC23C3 /* Tags.m */; };
+		C39C8B9B209D924000CC23C3 /* VideoPlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8B9A209D924000CC23C3 /* VideoPlayerNode.swift */; };
+		C39C8B9D209D92A400CC23C3 /* ExtendedVideoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8B9C209D92A400CC23C3 /* ExtendedVideoNode.swift */; };
+		C39C8BA3209DBDEF00CC23C3 /* PostTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BA2209DBDEF00CC23C3 /* PostTextNode.m */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1698,6 +1701,10 @@
 		C39C8B8C209C862200CC23C3 /* calcrect.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = calcrect.py; sourceTree = "<group>"; };
 		C39C8B91209D788300CC23C3 /* Tags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
 		C39C8B92209D788300CC23C3 /* Tags.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tags.m; sourceTree = "<group>"; };
+		C39C8B9A209D924000CC23C3 /* VideoPlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerNode.swift; sourceTree = "<group>"; };
+		C39C8B9C209D92A400CC23C3 /* ExtendedVideoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedVideoNode.swift; sourceTree = "<group>"; };
+		C39C8BA1209DBDEF00CC23C3 /* PostTextNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostTextNode.h; sourceTree = "<group>"; };
+		C39C8BA2209DBDEF00CC23C3 /* PostTextNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostTextNode.m; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -2573,6 +2580,7 @@
 		C32304372080E57400CEC487 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				C39C8BA0209DBDDE00CC23C3 /* PostTextNode */,
 				C350782820949C46000C8FB3 /* WallUserImageNode.swift */,
 				C350782620948925000C8FB3 /* WallUserScrollNode.swift */,
 				C3507824209485DF000C8FB3 /* WallUserActionNode.swift */,
@@ -2599,6 +2607,8 @@
 				C3987DD7209733890047A30F /* AvatarNameDateNode.swift */,
 				C3987DD9209756B60047A30F /* CommentsPreloadNode.swift */,
 				C3987DFF2098BD770047A30F /* CreatePostNode.swift */,
+				C39C8B9A209D924000CC23C3 /* VideoPlayerNode.swift */,
+				C39C8B9C209D92A400CC23C3 /* ExtendedVideoNode.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -4825,6 +4835,15 @@
 			path = Tags;
 			sourceTree = "<group>";
 		};
+		C39C8BA0209DBDDE00CC23C3 /* PostTextNode */ = {
+			isa = PBXGroup;
+			children = (
+				C39C8BA1209DBDEF00CC23C3 /* PostTextNode.h */,
+				C39C8BA2209DBDEF00CC23C3 /* PostTextNode.m */,
+			);
+			path = PostTextNode;
+			sourceTree = "<group>";
+		};
 		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5680,6 +5699,7 @@
 				C3987E3D2099CB480047A30F /* DemoChatMessageFactory.swift in Sources */,
 				C32308BC2081AEB100CEC487 /* LGSideMenuController.m in Sources */,
 				C398BA6F2094597A0071FA04 /* PostBaseNode.m in Sources */,
+				C39C8B9D209D92A400CC23C3 /* ExtendedVideoNode.swift in Sources */,
 				C3987E4D2099CB480047A30F /* TypingCell.swift in Sources */,
 				C32262B6209091CE0054789B /* Video.m in Sources */,
 				C32306052080E57500CEC487 /* MainViewController.mm in Sources */,
@@ -5693,6 +5713,7 @@
 				C32309082081AEB100CEC487 /* TyphoonNSNumberTypeConverter.m in Sources */,
 				C313772C208E213B00F568EA /* PhotoAlbumsServiceImpl.m in Sources */,
 				C313DD41208C54430005E29B /* FriendsViewModelImpl.m in Sources */,
+				C39C8BA3209DBDEF00CC23C3 /* PostTextNode.m in Sources */,
 				C3987E442099CB480047A30F /* DemoPhotoMessageViewModel.swift in Sources */,
 				C32306042080E57500CEC487 /* LeftViewCell.m in Sources */,
 				C313DD5C208CA7A10005E29B /* CommentNode.m in Sources */,
@@ -5812,6 +5833,7 @@
 				C32305F72080E57500CEC487 /* Dialog.m in Sources */,
 				C3987E412099CB480047A30F /* TimeSeparatorCollectionViewCell.swift in Sources */,
 				C32308FA2081AEB100CEC487 /* TyphoonInjections.m in Sources */,
+				C39C8B9B209D924000CC23C3 /* VideoPlayerNode.swift in Sources */,
 				C32305D42080E57500CEC487 /* VKApplicationAssembly.m in Sources */,
 				C32308D72081AEB100CEC487 /* TyphoonNibLoader.m in Sources */,
 				C3987E482099CB480047A30F /* SendingStatusCollectionViewCell.swift in Sources */,

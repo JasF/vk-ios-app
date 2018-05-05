@@ -174,6 +174,10 @@
             return;
         }
     }
+    if ([model isKindOfClass:[VideoModel class]]) {
+        VideoModel *vm = (VideoModel *)model;
+        model = vm.video;
+    }
     NSString *type = nil;
     NSInteger ownerId = 0;
     NSInteger postId = 0;
@@ -274,4 +278,11 @@
     });
 }
 
+- (void)tappedOnVideo:(Video *)video {
+    dispatch_python(^{
+        NSDictionary *representation = [EKSerializer serializeObject:video
+                                                         withMapping:[Video objectMapping]];
+        [self.handler tappedOnVideoWithId:@(video.id) ownerId:@(video.owner_id) representation:representation];
+    });
+}
 @end

@@ -30,7 +30,9 @@ import WebKit
         self.view .addSubview(self.webView)
         self.webView.backgroundColor = UIColor.black
         self.view.backgroundColor = UIColor.black
-        let request = URLRequest.init(url: URL.init(string: (viewModel?.videoUrl())!)!)
+        let url = URL.init(string: (viewModel?.videoUrl())!)!
+        NSLog("video url is: \(url)")
+        let request = URLRequest.init(url: url)
         self.webView .load(request)
     }
     

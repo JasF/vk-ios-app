@@ -9,6 +9,8 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "Attachments.h"
 
+@class Video;
 @interface PostVideoNode : ASDisplayNode
+@property (nonatomic, copy) void (^tappedOnVideoHandler)(Video *);
 - (id)initWithVideo:(Video *)video;
 @end
