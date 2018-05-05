@@ -54,6 +54,9 @@ ASCollectionDelegate, ASCollectionDataSource>
         if (!self.video) {
             self.video = video;
             self.commentsParentItem = video;
+            if (self.video.can_comment) {
+                [self showCommentsToolbar];
+            }
         }
         if (completion) {
             completion(comments);
