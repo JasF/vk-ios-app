@@ -25,8 +25,7 @@ class Subscriber():
 
     def performHandler(self, handler):
         try:
-            thread = threading.Thread(target=handler)
-            thread.start()
+            handler()
         except Exception as e:
             print('invoke handler exeption: ' + str(e))
                     

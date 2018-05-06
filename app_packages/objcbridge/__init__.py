@@ -30,9 +30,8 @@ events = {}
 def sendText(text):
     try:
         response = pythonbridgeextension.post(json.dumps(text))
-        print('python response is: ' + str(response))
     except Exception as e:
-        __builtin__.original_print('send exception: ' + str(e))
+        __builtin__.original_print('sendText exception: ' + str(e))
         print(traceback.format_exc())
     finally:
         pass
@@ -42,27 +41,18 @@ def send(text):
 
 subscriber.send = send
 
-def handleincomingdata():
-    data = '{}'
-    print('hello!!!!')
-    try:
-        dict = json.loads(data)
-        print('dict is: ' + str(dict))
-    except Exception as e:
-        print('handleincomingdata exception: ' + str(e))
-        print(traceback.format_exc())
-
-def hellofromios():
-    print('hello from ios!')
-    return "python_string_on_c++"
-
-def main():
-    while True:
-        message = urllib.request.urlopen("http://127.0.0.1:8765/grep").read()
+def handleincomingdata(message):
+    def doParse():
         try:
             parse(message)
         except Exception as e:
-            __builtin__.original_print('parse exc: ' + str(e))
+            print('handleincomingdata c++2python exception: ' + str(e))
+            print(traceback.format_exc())
+    threading.Thread(target=doParse).start()
+
+def main():
+    parse('{"command":"startSession"}') # Magic launch command
+    asyncio.get_event_loop().run_forever()
 
 def subscribe(command, handler):
     subscriber.subscribe(command, handler)
@@ -119,6 +109,7 @@ class BridgeRequest(object):
         handler = method_args.get('handler')
         args = method_args.get('args')
         withResult = method_args.get('withResult')
+        print('pre sendCommandWithHandler')
         result = sendCommandWithHandler(self._class_name, self._method_name, handler, args=args, withResult=withResult, delegateId=self._delegate_id)
         return result
 

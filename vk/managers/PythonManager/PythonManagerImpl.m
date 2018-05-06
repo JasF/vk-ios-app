@@ -169,6 +169,7 @@ int initializePython(int argc, char *argv[], PythonManagerImpl *self) {
         for (id<PythonManagerExtension> extension in self.extensions) {
             [extension initializeUser];
         }
+        
         // Start the main.py script
         NSLog(@"Running %s", main_script);
         @try {

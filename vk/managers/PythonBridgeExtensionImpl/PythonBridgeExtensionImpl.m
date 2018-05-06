@@ -11,6 +11,11 @@
 
 @interface PythonBridgeExtensionImpl () <PythonManagerExtension, PythonBridgeExtension>
 @property (nonatomic) id<PythonBridge> pythonBridge;
+@property (strong, nonatomic) dispatch_queue_t queue;
+@property (strong, nonatomic) NSMutableArray *sendArray;
+@property (strong, nonatomic) dispatch_group_t group;
+@property BOOL groupWaiting;
+@property BOOL sessionStartedSended;
 - (NSDictionary *)incomingDictionary:(NSDictionary *)dictionary;
 @end
 
@@ -29,7 +34,7 @@ error_out(PyObject *m) {
     PyErr_SetString(st->error, "om");
     return NULL;
 }
-char * hello(char * what);
+
 static PyObject * post_wrapper(PyObject * self, PyObject * args)
 {
     char * input;
@@ -117,6 +122,9 @@ PyInit_pythonbridgeextension(void)
         _pythonBridge = pythonBridge;
         _pythonBridge.bridgeExtension = self;
         g_extension = self;
+        _queue = dispatch_queue_create("python.bridge.queue.serial", DISPATCH_QUEUE_SERIAL);
+        _sendArray = [NSMutableArray new];
+        _group = dispatch_group_create();
     }
     return self;
 }
@@ -127,6 +135,8 @@ PyInit_pythonbridgeextension(void)
 }
 
 - (void)initializeUser {
+    _objcbridgeModule = PyImport_Import(PyUnicode_FromString("objcbridge"));
+    _handleincomingdataFunction = PyObject_GetAttrString(_objcbridgeModule,"handleincomingdata");
 }
 
 #pragma mark - Private Methods
@@ -135,24 +145,14 @@ PyInit_pythonbridgeextension(void)
 }
 
 #pragma mark - PythonBridgeExtension
-- (NSDictionary *)sendToPython:(NSDictionary *)object {
-    // здесь нужно спускаться на уровень до main.py, в том же потоке, в котором крутится главный питон.
-    _objcbridgeModule = PyImport_Import(PyUnicode_FromString("objcbridge"));
-    _handleincomingdataFunction = PyObject_GetAttrString(_objcbridgeModule,"handleincomingdata");
+- (void)sendToPython:(NSDictionary *)object {
     NSData *data = [NSJSONSerialization dataWithJSONObject:object options:0 error:nil];
+    PyGILState_STATE state = PyGILState_Ensure();
     PyObject *stringData = PyUnicode_FromStringAndSize(data.bytes, data.length);
     PyObject *args = PyTuple_Pack(1,stringData);
-    PyObject *argsZero = PyTuple_Pack(0);
-    PyObject* resultString = PyObject_CallObject(_handleincomingdataFunction, argsZero);
-    Py_ssize_t size=0;
+    PyObject_CallObject(_handleincomingdataFunction, args);
     Py_DECREF(args);
-    Py_DECREF(resultString);
-    char *utf8string = _PyUnicode_AsStringAndSize(resultString, &size);
-    NSData *resultData = [NSData dataWithBytes:(const void *)utf8string length:size];
-    NSDictionary *resultObject = [NSJSONSerialization JSONObjectWithData:resultData
-                                                                 options:0
-                                                                   error:nil];
-    return resultObject;
+    PyGILState_Release(state);
 }
 
 @end

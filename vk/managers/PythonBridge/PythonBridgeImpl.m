@@ -9,27 +9,18 @@
 #import "PythonBridgeImpl.h"
 #import "PythonBridgeHandler.h"
 #import <objc/runtime.h>
-#import <GCDWebServer/GCDWebServerDataResponse.h>
-#import <GCDWebServer/GCDWebServerDataRequest.h>
 #import "DeallocSubscriber.h"
-
-@import GCDWebServer;
 
 NSString * const PXProtocolMethodListMethodNameKey = @"methodName";
 NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
 
-@interface PythonBridgeImpl ()
+@interface PythonBridgeImpl () <PythonBridge>
 @property (strong, nonatomic) NSMutableDictionary *handlers;
-@property (strong, nonatomic) dispatch_queue_t queue;
-@property (strong, nonatomic) GCDWebServer *webServer;
-@property (strong, nonatomic) NSMutableArray *sendArray;
 @property (strong, nonatomic) NSMutableDictionary *resultBlocks;
 @end
 
 @implementation PythonBridgeImpl {
     BOOL _sessionStartedSended;
-    dispatch_group_t _group;
-    BOOL _groupWaiting;
     NSInteger _currentRequestId;
     NSInteger _instanceId;
 }
@@ -49,9 +40,6 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
     if (self = [super init]) {
         _resultBlocks = [NSMutableDictionary new];
         _handlers = [NSMutableDictionary new];
-        _queue = dispatch_queue_create("python.bridge.queue.serial", DISPATCH_QUEUE_SERIAL);
-        _sendArray = [NSMutableArray new];
-        _group = dispatch_group_create();
     }
     return self;
 }
@@ -59,61 +47,6 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
 - (void)send:(NSDictionary *)object {
     NSCParameterAssert(_bridgeExtension);
     [_bridgeExtension sendToPython:object];
-    /*
-    @synchronized (self) {
-        [_sendArray addObject:object];
-        if (_groupWaiting) {
-            _groupWaiting = NO;
-            dispatch_group_leave(_group);
-        }
-    }
-     */
-}
-
-- (void)connect {
-    _webServer = [[GCDWebServer alloc] init];
-    [_webServer addDefaultHandlerForMethod:@"GET"
-                              requestClass:[GCDWebServerRequest class]
-                              processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
-                                  NSDictionary *dictionary = @{};
-                                  if ([request.path isEqualToString:@"/grep"]) {
-                                      dictionary = [self handleGrepRequest:request];
-                                  }
-                                  NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary options:0 error:nil];
-                                  return [GCDWebServerDataResponse responseWithData:data contentType:@"application/json"];
-                              }];
-    
-    @weakify(self);
-    [_webServer addDefaultHandlerForMethod:@"POST"
-                              requestClass:[GCDWebServerDataRequest class]
-                              processBlock:^GCDWebServerResponse *(GCDWebServerDataRequest* request) {
-                                  @strongify(self);
-                                  if ([request.path isEqualToString:@"/post"]) {
-                                      [self handleIncomingPostData:request.data];
-                                  }
-                                  return nil;
-                              }];
-    [_webServer startWithPort:8765 bonjourName:nil];
-}
-
-- (NSDictionary *)handleGrepRequest:(GCDWebServerRequest *)request {
-    if (!_sessionStartedSended) {
-        _sessionStartedSended = YES;
-        return @{@"command":@"startSession"};
-    }
-    
-    while (YES) {
-        @synchronized (self) {
-            if (_sendArray.count) {
-                NSDictionary *object = _sendArray.firstObject;
-                [_sendArray removeObjectAtIndex:0];
-                return object;
-            }
-            _groupWaiting = YES;
-        }
-        dispatch_group_enter(_group);
-        dispatch_group_wait(_group, DISPATCH_TIME_FOREVER);
-    }
 }
 
 - (id)handlerWithActions:(NSDictionary *)actions
@@ -412,7 +345,9 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     }
     
     if (hasReturnValue) {
-        return @{@"command":@"response", @"class":className, @"action":action, @"result":returnValue};
+        NSDictionary *result = @{@"command":@"response", @"class":className, @"action":action, @"result":returnValue};
+        [self send:result];
+        return result;
     }
     return @{};
 }

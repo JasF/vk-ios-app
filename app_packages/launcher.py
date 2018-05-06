@@ -6,7 +6,6 @@ launched = False
 def performLaunch():
     launched = True
     try:
-        print('launched!')
         import main
         main.launch()
     except Exception as e:

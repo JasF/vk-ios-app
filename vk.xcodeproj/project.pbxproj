@@ -81,7 +81,6 @@
 		C32305CE2080E57500CEC487 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304132080E57300CEC487 /* JGProgressHUD.framework */; };
 		C32305CF2080E57500CEC487 /* libxz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304142080E57300CEC487 /* libxz.a */; };
 		C32305D02080E57500CEC487 /* VK-ios-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304152080E57300CEC487 /* VK-ios-sdk.framework */; };
-		C32305D12080E57500CEC487 /* GCDWebServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304162080E57300CEC487 /* GCDWebServer.framework */; };
 		C32305D22080E57500CEC487 /* VKThemeAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304182080E57400CEC487 /* VKThemeAssembly.m */; };
 		C32305D32080E57500CEC487 /* NodesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304192080E57400CEC487 /* NodesAssembly.m */; };
 		C32305D42080E57500CEC487 /* VKApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C323041B2080E57400CEC487 /* VKApplicationAssembly.m */; };
@@ -877,7 +876,6 @@
 		C32304132080E57300CEC487 /* JGProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JGProgressHUD.framework; sourceTree = "<group>"; };
 		C32304142080E57300CEC487 /* libxz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libxz.a; sourceTree = "<group>"; };
 		C32304152080E57300CEC487 /* VK-ios-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "VK-ios-sdk.framework"; sourceTree = "<group>"; };
-		C32304162080E57300CEC487 /* GCDWebServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GCDWebServer.framework; sourceTree = "<group>"; };
 		C32304182080E57400CEC487 /* VKThemeAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKThemeAssembly.m; sourceTree = "<group>"; };
 		C32304192080E57400CEC487 /* NodesAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodesAssembly.m; sourceTree = "<group>"; };
 		C323041A2080E57400CEC487 /* ServicesAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesAssembly.h; sourceTree = "<group>"; };
@@ -1906,7 +1904,6 @@
 				C32305CC2080E57500CEC487 /* EasyMapping.framework in Frameworks */,
 				C32305BB2080E57500CEC487 /* libbz2.a in Frameworks */,
 				C32305CA2080E57500CEC487 /* libPython-arm64.a in Frameworks */,
-				C32305D12080E57500CEC487 /* GCDWebServer.framework in Frameworks */,
 				C32305D02080E57500CEC487 /* VK-ios-sdk.framework in Frameworks */,
 				C32305B92080E57500CEC487 /* libOpenSSL.a in Frameworks */,
 				C32305C92080E57500CEC487 /* libPython.a in Frameworks */,
@@ -2473,7 +2470,6 @@
 				C32304132080E57300CEC487 /* JGProgressHUD.framework */,
 				C32304142080E57300CEC487 /* libxz.a */,
 				C32304152080E57300CEC487 /* VK-ios-sdk.framework */,
-				C32304162080E57300CEC487 /* GCDWebServer.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
