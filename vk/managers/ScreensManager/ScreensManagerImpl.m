@@ -386,4 +386,10 @@
     return captcha;
 }
 
+- (NSNumber *)getValidationResponse:(NSDictionary *)response {
+    BOOL success = [_vkSdkManager getValidationResponseWithResponse:response
+                                                       inViewController:[self navigationController].topViewController];
+    return @(success);
+}
+
 @end

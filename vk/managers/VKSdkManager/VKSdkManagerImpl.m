@@ -7,24 +7,24 @@
 //
 
 #import "VKSdkManagerImpl.h"
-#import <VK-ios-sdk/VKSdk.h>
+#import "RSSwizzle.h"
 #import "RunLoop.h"
 
-static NSInteger kCaptchaRequestId = 7777777;
+@import VKSdkFramework;
+@import SafariServices;
+
+static NSInteger const kCaptchaRequestId = 7777777;
+static NSInteger const kValidationResponseId = kCaptchaRequestId + 1;
+
 static NSString *kVkAppId = @"6442149";
 static NSInteger const kUserCancelledErrorCode = -999;
 
+
 @interface VKSdkManagerImpl () <VKSdkDelegate, VKSdkUIDelegate>
 @property (strong, nonatomic) VKSdk *sdk;
-@end
-
-@interface PatchedVkSdk : VKSdk
-@end
-
-@implementation PatchedVkSdk
-+ (BOOL)vkAppMayExists {
-    return NO;
-}
+@property (strong, nonatomic) NSString *captchaInput;
+@property NSError *validationError;
+@property BOOL validationSuccess;
 @end
 
 @implementation VKSdkManagerImpl
@@ -32,6 +32,26 @@ static NSInteger const kUserCancelledErrorCode = -999;
 @synthesize getTokenSuccess = _getTokenSuccess;
 @synthesize getTokenFailed = _getTokenFailed;
 @synthesize viewController = _viewController;
+
+static BOOL g_needs_block_vkapp = NO;
+
++ (void)load {
+    SEL selector = @selector(vkAppMayExists);
+    [RSSwizzle swizzleClassMethod:selector
+                          inClass:[VKSdk class]
+                    newImpFactory:^id(RSSwizzleInfo *swizzleInfo) {
+         return ^BOOL(__unsafe_unretained id self){
+             if (g_needs_block_vkapp) {
+                 g_needs_block_vkapp = NO;
+                 return NO;
+             }
+             BOOL (*originalIMP)(__unsafe_unretained id, SEL);
+             originalIMP = (__typeof(originalIMP))[swizzleInfo getOriginalImplementation];
+             BOOL result = originalIMP(self,selector);
+             return result;
+         };
+     }];
+}
 
 - (id)init {
     if (self = [super init]) {
@@ -85,8 +105,9 @@ static NSInteger const kUserCancelledErrorCode = -999;
 }
 
 - (void)authorizeByLogin {
+    g_needs_block_vkapp = YES;
     [VKSdk forceLogout];
-    [PatchedVkSdk authorize:[self scope]];
+    [VKSdk authorize:[self scope]];
 }
 
 - (BOOL)isAuthorizationOverAppAvailable {
@@ -97,11 +118,50 @@ static NSInteger const kUserCancelledErrorCode = -999;
                              inViewController:(UIViewController *)viewController {
     dispatch_async(dispatch_get_main_queue(), ^{
         VKError *captchaError = [VKError errorWithJson:response];
-        VKCaptchaViewController *vc = [VKCaptchaViewController captchaControllerWithError:captchaError];
+        @weakify(self);
+        captchaError.apiError.captchaHandler = ^(NSString *captchaInput) {
+            @strongify(self);
+            self.captchaInput = captchaInput;
+            [[RunLoop shared] exit:kCaptchaRequestId];
+        };
+        VKCaptchaViewController *vc = [VKCaptchaViewController captchaControllerWithError:captchaError.apiError];
         [vc presentIn:viewController];
     });
     [[RunLoop shared] exec:kCaptchaRequestId];
-    return @"";
+    NSString *result = self.captchaInput;
+    self.captchaInput = nil;
+    return result;
+}
+
+- (BOOL)getValidationResponseWithResponse:(NSDictionary *)response
+                               inViewController:(UIViewController *)viewController {
+    self.viewController = viewController;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        VKError *validationError = [VKError errorWithJson:response];
+        @weakify(self);
+        validationError.apiError.validationErrorBlock = ^(NSError *error) {
+            @strongify(self);
+            self.validationError = error;
+            [[RunLoop shared] exit:kValidationResponseId];
+        };
+        validationError.apiError.validationSuccessBlock = ^() {
+            @strongify(self);
+            self.validationSuccess = YES;
+            self.validationError = nil;
+            [[RunLoop shared] exit:kValidationResponseId];
+        };
+        [VKAuthorizeController presentForValidation:validationError.apiError];
+    });
+    [[RunLoop shared] exec:kValidationResponseId];
+    self.viewController = nil;
+    if (self.validationError) {
+        return NO;
+    }
+    else if (self.validationSuccess) {
+        self.validationSuccess = NO;
+        return YES;
+    }
+    return NO;
 }
 
 @end

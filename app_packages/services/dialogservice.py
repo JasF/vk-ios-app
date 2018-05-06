@@ -68,4 +68,5 @@ class DialogService:
     
     def sendTextMessageuserId(self, text, userId):
         self.initializeIfNeeded()
+        #self.api.captcha.force()
         return self.api.messages.send(user_id=userId, peer_id=userId, message=text)

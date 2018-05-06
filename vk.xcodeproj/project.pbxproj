@@ -80,7 +80,6 @@
 		C32305CD2080E57500CEC487 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304122080E57300CEC487 /* CocoaLumberjack.framework */; };
 		C32305CE2080E57500CEC487 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304132080E57300CEC487 /* JGProgressHUD.framework */; };
 		C32305CF2080E57500CEC487 /* libxz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304142080E57300CEC487 /* libxz.a */; };
-		C32305D02080E57500CEC487 /* VK-ios-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304152080E57300CEC487 /* VK-ios-sdk.framework */; };
 		C32305D22080E57500CEC487 /* VKThemeAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304182080E57400CEC487 /* VKThemeAssembly.m */; };
 		C32305D32080E57500CEC487 /* NodesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304192080E57400CEC487 /* NodesAssembly.m */; };
 		C32305D42080E57500CEC487 /* VKApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C323041B2080E57400CEC487 /* VKApplicationAssembly.m */; };
@@ -537,6 +536,8 @@
 		C39C8BB0209EE62300CC23C3 /* AuthorizationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BAF209EE62300CC23C3 /* AuthorizationNode.swift */; };
 		C39C8BB3209F076600CC23C3 /* settings.py in Resources */ = {isa = PBXBuildFile; fileRef = C39C8BB2209F02FE00CC23C3 /* settings.py */; };
 		C39C8BB6209F109500CC23C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C39C8BB5209F109500CC23C3 /* LaunchScreen.storyboard */; };
+		C39C8BE1209F304800CC23C3 /* VKSdkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39C8BDE209F303E00CC23C3 /* VKSdkFramework.framework */; };
+		C39C8BE2209F304800CC23C3 /* VKSdkFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C39C8BDE209F303E00CC23C3 /* VKSdkFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -676,6 +677,58 @@
 		C3FF542E2095AF7F007275D4 /* VideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF542D2095AF7F007275D4 /* VideoPlayerViewModel.swift */; };
 		C3FF543020961326007275D4 /* NameTimeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF542F20961326007275D4 /* NameTimeNode.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C39C8BD9209F303E00CC23C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C39C8BD2209F303E00CC23C3 /* VK-ios-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F3C7542D182133CC00964716;
+			remoteInfo = VKSdk;
+		};
+		C39C8BDB209F303E00CC23C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C39C8BD2209F303E00CC23C3 /* VK-ios-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F3BACC401865905B003158DA;
+			remoteInfo = VKSdkResources;
+		};
+		C39C8BDD209F303E00CC23C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C39C8BD2209F303E00CC23C3 /* VK-ios-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F34670311B8B7C5A003EF74B;
+			remoteInfo = VKSdkFramework;
+		};
+		C39C8BDF209F303E00CC23C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C39C8BD2209F303E00CC23C3 /* VK-ios-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F3C58CCD1D213B2C005E94B5;
+			remoteInfo = VKSdkTests;
+		};
+		C39C8BE3209F304800CC23C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C39C8BD2209F303E00CC23C3 /* VK-ios-sdk.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F34670301B8B7C5A003EF74B;
+			remoteInfo = VKSdkFramework;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C39C8BE5209F304900CC23C3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C39C8BE2209F304800CC23C3 /* VKSdkFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		030C5587B34B49B1F718D13D /* Pods-MessageGroupsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsUITests/Pods-MessageGroupsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -878,7 +931,6 @@
 		C32304122080E57300CEC487 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = "<group>"; };
 		C32304132080E57300CEC487 /* JGProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JGProgressHUD.framework; sourceTree = "<group>"; };
 		C32304142080E57300CEC487 /* libxz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libxz.a; sourceTree = "<group>"; };
-		C32304152080E57300CEC487 /* VK-ios-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "VK-ios-sdk.framework"; sourceTree = "<group>"; };
 		C32304182080E57400CEC487 /* VKThemeAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKThemeAssembly.m; sourceTree = "<group>"; };
 		C32304192080E57400CEC487 /* NodesAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodesAssembly.m; sourceTree = "<group>"; };
 		C323041A2080E57400CEC487 /* ServicesAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesAssembly.h; sourceTree = "<group>"; };
@@ -1716,6 +1768,7 @@
 		C39C8BB2209F02FE00CC23C3 /* settings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = settings.py; sourceTree = "<group>"; };
 		C39C8BB4209F0DFC00CC23C3 /* screenshow.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = screenshow.py; sourceTree = "<group>"; };
 		C39C8BB5209F109500CC23C3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C39C8BD2209F303E00CC23C3 /* VK-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "VK-ios-sdk.xcodeproj"; path = "vk-ios-sdk/VK-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -1911,8 +1964,8 @@
 				C32305CC2080E57500CEC487 /* EasyMapping.framework in Frameworks */,
 				C32305BB2080E57500CEC487 /* libbz2.a in Frameworks */,
 				C32305CA2080E57500CEC487 /* libPython-arm64.a in Frameworks */,
-				C32305D02080E57500CEC487 /* VK-ios-sdk.framework in Frameworks */,
 				C32305B92080E57500CEC487 /* libOpenSSL.a in Frameworks */,
+				C39C8BE1209F304800CC23C3 /* VKSdkFramework.framework in Frameworks */,
 				C32305C92080E57500CEC487 /* libPython.a in Frameworks */,
 				C32305CB2080E57500CEC487 /* libPython-armv7.a in Frameworks */,
 				C32305CE2080E57500CEC487 /* JGProgressHUD.framework in Frameworks */,
@@ -2476,7 +2529,6 @@
 				C32304122080E57300CEC487 /* CocoaLumberjack.framework */,
 				C32304132080E57300CEC487 /* JGProgressHUD.framework */,
 				C32304142080E57300CEC487 /* libxz.a */,
-				C32304152080E57300CEC487 /* VK-ios-sdk.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -3608,6 +3660,7 @@
 		C32306FB2081AE8F00CEC487 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C39C8BD2209F303E00CC23C3 /* VK-ios-sdk.xcodeproj */,
 				C3987E0520998D000047A30F /* TexturePatches */,
 				C3987E0120998B9E0047A30F /* RSSwizzle */,
 				C3A82A2A20931F7100C41CA8 /* Categories */,
@@ -3615,7 +3668,6 @@
 				C32308AA2081AEB000CEC487 /* NanoFrame */,
 				C32306FC2081AEB000CEC487 /* Python */,
 				C32307762081AEB000CEC487 /* Typhoon */,
-				C323089E2081AEB000CEC487 /* vk-ios-sdk */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -4371,101 +4423,6 @@
 			path = OCLogTemplate;
 			sourceTree = "<group>";
 		};
-		C323089E2081AEB000CEC487 /* vk-ios-sdk */ = {
-			isa = PBXGroup;
-			children = (
-				C323089F2081AEB000CEC487 /* library */,
-			);
-			path = "vk-ios-sdk";
-			sourceTree = "<group>";
-		};
-		C323089F2081AEB000CEC487 /* library */ = {
-			isa = PBXGroup;
-			children = (
-				C32308A02081AEB000CEC487 /* Resources */,
-				C32308A12081AEB000CEC487 /* Source */,
-			);
-			path = library;
-			sourceTree = "<group>";
-		};
-		C32308A02081AEB000CEC487 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		C32308A12081AEB000CEC487 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				C32308A22081AEB000CEC487 /* Core */,
-				C32308A32081AEB000CEC487 /* Utils */,
-				C32308A42081AEB000CEC487 /* Image */,
-				C32308A52081AEB000CEC487 /* API */,
-				C32308A92081AEB000CEC487 /* Views */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		C32308A22081AEB000CEC487 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		C32308A32081AEB000CEC487 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		C32308A42081AEB000CEC487 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Image;
-			sourceTree = "<group>";
-		};
-		C32308A52081AEB000CEC487 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				C32308A62081AEB000CEC487 /* methods */,
-				C32308A72081AEB000CEC487 /* models */,
-				C32308A82081AEB000CEC487 /* upload */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		C32308A62081AEB000CEC487 /* methods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = methods;
-			sourceTree = "<group>";
-		};
-		C32308A72081AEB000CEC487 /* models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = models;
-			sourceTree = "<group>";
-		};
-		C32308A82081AEB000CEC487 /* upload */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = upload;
-			sourceTree = "<group>";
-		};
-		C32308A92081AEB000CEC487 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		C32308AA2081AEB000CEC487 /* NanoFrame */ = {
 			isa = PBXGroup;
 			children = (
@@ -4877,6 +4834,17 @@
 			path = PythonBridgeExtensionImpl;
 			sourceTree = "<group>";
 		};
+		C39C8BD3209F303E00CC23C3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C39C8BDA209F303E00CC23C3 /* libVKSdk.a */,
+				C39C8BDC209F303E00CC23C3 /* VKSdkResources.bundle */,
+				C39C8BDE209F303E00CC23C3 /* VKSdkFramework.framework */,
+				C39C8BE0209F303E00CC23C3 /* VKSdkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5229,10 +5197,12 @@
 				197D8B091D64BA50004630AE /* Resources */,
 				D538704BF25A1A41EF7E2A0B /* [CP] Embed Pods Frameworks */,
 				44D577DDE443F67572C355B7 /* [CP] Copy Pods Resources */,
+				C39C8BE5209F304900CC23C3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C39C8BE4209F304800CC23C3 /* PBXTargetDependency */,
 			);
 			name = vk;
 			productName = MessageGroups;
@@ -5274,12 +5244,49 @@
 			mainGroup = 197D8B021D64BA50004630AE;
 			productRefGroup = 197D8B0C1D64BA50004630AE /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C39C8BD3209F303E00CC23C3 /* Products */;
+					ProjectRef = C39C8BD2209F303E00CC23C3 /* VK-ios-sdk.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				197D8B0A1D64BA50004630AE /* vk */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C39C8BDA209F303E00CC23C3 /* libVKSdk.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libVKSdk.a;
+			remoteRef = C39C8BD9209F303E00CC23C3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C39C8BDC209F303E00CC23C3 /* VKSdkResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = VKSdkResources.bundle;
+			remoteRef = C39C8BDB209F303E00CC23C3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C39C8BDE209F303E00CC23C3 /* VKSdkFramework.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VKSdkFramework.framework;
+			remoteRef = C39C8BDD209F303E00CC23C3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C39C8BE0209F303E00CC23C3 /* VKSdkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = VKSdkTests.xctest;
+			remoteRef = C39C8BDF209F303E00CC23C3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		197D8B091D64BA50004630AE /* Resources */ = {
@@ -6054,6 +6061,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C39C8BE4209F304800CC23C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VKSdkFramework;
+			targetProxy = C39C8BE3209F304800CC23C3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		197D8B121D64BA50004630AE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -6169,7 +6184,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = vk/vk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -6204,7 +6218,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 39C2FA56395FE4C8F46CEEF9 /* Pods-vk.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = vk/vk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

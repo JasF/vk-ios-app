@@ -147,9 +147,15 @@ class Session(object):
             elif 'error' in response_or_error:
                 error_data = response_or_error['error']
                 error = VkAPIError(error_data)
-                error.response = response
-                if error.is_captcha_needed():
-                    captcha_key = self.get_captcha_key(response.json())
+                if error.is_validation_required():
+                    response = self.get_validation(error_data)
+                    if response == False:
+                        print('validation failed')
+                        return response_or_error
+                    print('response from validation: ' + str(response))
+                    return self.make_request(request)
+                elif error.is_captcha_needed():
+                    captcha_key = self.get_captcha_key(error_data)
                     if not captcha_key:
                         raise error
 
@@ -182,16 +188,18 @@ class Session(object):
         response = self.requests_session.post(url, method_args, timeout=self.timeout)
         return response
 
+    def get_validation(self, response):
+        result = managers.shared().screensManager().getValidationResponse_(args=[response], withResult=True)
+        return result
+    
     def get_captcha_key(self, response):
-        
         result = managers.shared().screensManager().getCaptchaInput_(args=[response], withResult=True)
-        print('captcha result is: ' + str())
+        #print('captcha result is: ' + str())
         return result
         """
         Default behavior on CAPTCHA is to raise exception
         Reload this in child
         """
-        return None
 
     def auth_code_is_needed(self, content, session):
         """

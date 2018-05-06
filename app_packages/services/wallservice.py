@@ -21,9 +21,6 @@ class WallService:
         usersData = None
         try:
             api = vk.api()
-            forceResponse = api.captcha.force()
-            print('forceResponse for captch: ' + str(forceResponse))
-            
             response = api.wall.get(offset=offset, owner_id=userId, count=count)
             textpatcher.cropTagsOnPostsResults(response)
             l = response["items"]

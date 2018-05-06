@@ -20,6 +20,7 @@ class VkAPIError(VkException):
 
     CAPTCHA_NEEDED = 14
     ACCESS_DENIED = -1
+    VALIDATION_REQUIRED = 17
 
     def __init__(self, error_data):
         super(VkAPIError, self).__init__()
@@ -38,6 +39,9 @@ class VkAPIError(VkException):
     def is_access_token_incorrect(self):
         return self.code == self.ACCESS_DENIED and 'access_token' in self.message
 
+    def is_validation_required(self):
+        return self.code == self.VALIDATION_REQUIRED
+    
     def is_captcha_needed(self):
         return self.code == self.CAPTCHA_NEEDED
 

@@ -42,5 +42,6 @@
 - (void)presentAddPostViewController:(NSNumber *)ownerId;
 - (void)dismissCreatePostViewController:(NSNumber *)isPostPublished;
 - (NSString *)getCaptchaInput:(NSDictionary *)response;
+- (NSNumber *)getValidationResponse:(NSDictionary *)response;
 - (UIViewController *)topViewController;
 @end

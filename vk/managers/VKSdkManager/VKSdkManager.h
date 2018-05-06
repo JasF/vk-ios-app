@@ -18,4 +18,6 @@
 - (BOOL)isAuthorizationOverAppAvailable;
 - (NSString *)getCaptchaInputTextWithResponse:(NSDictionary *)response
                              inViewController:(UIViewController *)viewController;
+- (BOOL)getValidationResponseWithResponse:(NSDictionary *)response
+                               inViewController:(UIViewController *)viewController;
 @end

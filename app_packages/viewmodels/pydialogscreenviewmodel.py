@@ -30,6 +30,8 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     
     def sendTextMessageuserId(self, text, userId):
         messageId = self.dialogService.sendTextMessageuserId(text, userId)
+        if not isinstance(messageId, int):
+            messageId = -1;
         timestamp = int(time.time())
         self.messagesService.saveMessageToCache(messageId, 1, vk.userId(), vk.userId(), timestamp, text, 0)
         return messageId
