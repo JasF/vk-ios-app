@@ -35,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.pythonManager?.startupPython()
         self.screensManager?.createWindowIfNeeded()
-        self.pythonBridge?.connect()
         
         return true
     }

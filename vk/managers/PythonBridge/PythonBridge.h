@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PythonBridgeExtension.h"
 @class PythonBridgeHandler;
 typedef void (^ResultBlock)(id result, NSInteger requestId);
 @protocol PythonBridge <NSObject>
+@property (weak) <PythonBridgeExtension> bridgeExtension;
 - (void)send:(NSDictionary *)object;
-- (void)connect;
 - (void)setClassHandler:(id)handler name:(NSString *)className;
 - (id)handlerWithProtocol:(Protocol *)protocol;
 - (id)instantiateHandlerWithProtocol:(Protocol *)protocol;
@@ -37,4 +38,5 @@ typedef void (^ResultBlock)(id result, NSInteger requestId);
                      requestId:(NSInteger *)requestId;
 
 - (void)handlerWillRelease:(PythonBridgeHandler *)handler;
+- (NSDictionary *)incomingDictionary:(NSDictionary *)dictionary;
 @end

@@ -12,10 +12,23 @@
 
 @import SSZipArchive;
 
+@interface PythonManagerImpl ()
+@property (strong, nonatomic) NSArray *extensions;
+@end
+
 @implementation PythonManagerImpl
 
 void ASDisableLogging(); // Look inside
-    
+
+- (id)initWithExtensions:(NSArray<id<PythonManagerExtension>> *)extensions {
+    if (self = [super init]) {
+        _extensions = extensions;
+    }
+    return self;
+}
+
+int initializePython(int argc, char *argv[], PythonManagerImpl *self);
+
 - (void)startupPython {
     //ASDisableLogging();
     __block int ret = 0;
@@ -23,12 +36,11 @@ void ASDisableLogging(); // Look inside
     __block int argc = 1;
     dispatch_async(queue, ^{
         char *argv[1];
-        ret = initializePython(argc, argv);
+        ret = initializePython(argc, argv, self);
         exit(ret);
     });
 }
 
-int initializePython(int argc, char *argv[]);
 
 void extractResourcesIfNeeded() {
     NSString *documentsDirectory = getDocumentsDirectory();
@@ -80,7 +92,8 @@ void extractResourcesIfNeeded() {
     }
 }
 
-int initializePython(int argc, char *argv[]) {
+
+int initializePython(int argc, char *argv[], PythonManagerImpl *self) {
     int ret = 0;
     unsigned int i;
     NSString *tmp_path;
@@ -114,6 +127,10 @@ int initializePython(int argc, char *argv[]) {
         putenv((char *)[tmp_path UTF8String]);
         
         NSLog(@"Initializing Python runtime");
+        
+        for (id<PythonManagerExtension> extension in self.extensions) {
+            [extension initializeSystem];
+        }
         Py_Initialize();
         
         // Set the name of the main script
@@ -149,9 +166,12 @@ int initializePython(int argc, char *argv[]) {
         // If other modules are using threads, we need to initialize them.
         PyEval_InitThreads();
         
+        for (id<PythonManagerExtension> extension in self.extensions) {
+            [extension initializeUser];
+        }
+        
         // Start the main.py script
         NSLog(@"Running %s", main_script);
-        
         @try {
             FILE* fd = fopen(main_script, "r");
             if (fd == NULL) {

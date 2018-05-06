@@ -81,7 +81,6 @@
 		C32305CE2080E57500CEC487 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304132080E57300CEC487 /* JGProgressHUD.framework */; };
 		C32305CF2080E57500CEC487 /* libxz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304142080E57300CEC487 /* libxz.a */; };
 		C32305D02080E57500CEC487 /* VK-ios-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304152080E57300CEC487 /* VK-ios-sdk.framework */; };
-		C32305D12080E57500CEC487 /* GCDWebServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32304162080E57300CEC487 /* GCDWebServer.framework */; };
 		C32305D22080E57500CEC487 /* VKThemeAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304182080E57400CEC487 /* VKThemeAssembly.m */; };
 		C32305D32080E57500CEC487 /* NodesAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304192080E57400CEC487 /* NodesAssembly.m */; };
 		C32305D42080E57500CEC487 /* VKApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = C323041B2080E57400CEC487 /* VKApplicationAssembly.m */; };
@@ -534,6 +533,7 @@
 		C39C8B9B209D924000CC23C3 /* VideoPlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8B9A209D924000CC23C3 /* VideoPlayerNode.swift */; };
 		C39C8B9D209D92A400CC23C3 /* ExtendedVideoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8B9C209D92A400CC23C3 /* ExtendedVideoNode.swift */; };
 		C39C8BA3209DBDEF00CC23C3 /* PostTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BA2209DBDEF00CC23C3 /* PostTextNode.m */; };
+		C39C8BAD209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BAC209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -876,7 +876,6 @@
 		C32304132080E57300CEC487 /* JGProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JGProgressHUD.framework; sourceTree = "<group>"; };
 		C32304142080E57300CEC487 /* libxz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libxz.a; sourceTree = "<group>"; };
 		C32304152080E57300CEC487 /* VK-ios-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "VK-ios-sdk.framework"; sourceTree = "<group>"; };
-		C32304162080E57300CEC487 /* GCDWebServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GCDWebServer.framework; sourceTree = "<group>"; };
 		C32304182080E57400CEC487 /* VKThemeAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKThemeAssembly.m; sourceTree = "<group>"; };
 		C32304192080E57400CEC487 /* NodesAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodesAssembly.m; sourceTree = "<group>"; };
 		C323041A2080E57400CEC487 /* ServicesAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesAssembly.h; sourceTree = "<group>"; };
@@ -1707,6 +1706,9 @@
 		C39C8BA2209DBDEF00CC23C3 /* PostTextNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostTextNode.m; sourceTree = "<group>"; };
 		C39C8BA6209DD22A00CC23C3 /* textpatcher.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = textpatcher.py; sourceTree = "<group>"; };
 		C39C8BA8209DD2B000CC23C3 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		C39C8BAB209DFCA000CC23C3 /* PythonBridgeExtensionImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PythonBridgeExtensionImpl.h; sourceTree = "<group>"; };
+		C39C8BAC209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PythonBridgeExtensionImpl.m; sourceTree = "<group>"; };
+		C39C8BAE209E01B200CC23C3 /* PythonBridgeExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PythonBridgeExtension.h; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -1902,7 +1904,6 @@
 				C32305CC2080E57500CEC487 /* EasyMapping.framework in Frameworks */,
 				C32305BB2080E57500CEC487 /* libbz2.a in Frameworks */,
 				C32305CA2080E57500CEC487 /* libPython-arm64.a in Frameworks */,
-				C32305D12080E57500CEC487 /* GCDWebServer.framework in Frameworks */,
 				C32305D02080E57500CEC487 /* VK-ios-sdk.framework in Frameworks */,
 				C32305B92080E57500CEC487 /* libOpenSSL.a in Frameworks */,
 				C32305C92080E57500CEC487 /* libPython.a in Frameworks */,
@@ -2469,7 +2470,6 @@
 				C32304132080E57300CEC487 /* JGProgressHUD.framework */,
 				C32304142080E57300CEC487 /* libxz.a */,
 				C32304152080E57300CEC487 /* VK-ios-sdk.framework */,
-				C32304162080E57300CEC487 /* GCDWebServer.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -2654,6 +2654,7 @@
 		C32304472080E57400CEC487 /* managers */ = {
 			isa = PBXGroup;
 			children = (
+				C39C8BAA209DFC8D00CC23C3 /* PythonBridgeExtensionImpl */,
 				C398BA5A209358F70071FA04 /* DialogsManager */,
 				C3036C12208DEE8F005F086E /* NotificationsManager */,
 				C32306EC2080E9B700CEC487 /* PythonManager */,
@@ -4856,6 +4857,16 @@
 			path = postproc;
 			sourceTree = "<group>";
 		};
+		C39C8BAA209DFC8D00CC23C3 /* PythonBridgeExtensionImpl */ = {
+			isa = PBXGroup;
+			children = (
+				C39C8BAB209DFCA000CC23C3 /* PythonBridgeExtensionImpl.h */,
+				C39C8BAC209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m */,
+				C39C8BAE209E01B200CC23C3 /* PythonBridgeExtension.h */,
+			);
+			path = PythonBridgeExtensionImpl;
+			sourceTree = "<group>";
+		};
 		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5993,6 +6004,7 @@
 				C32306082080E57500CEC487 /* DialogViewController.swift in Sources */,
 				C32306072080E57500CEC487 /* LeftViewController.m in Sources */,
 				C3D4873F20919BA1007EC440 /* AuthorizationViewModelImpl.m in Sources */,
+				C39C8BAD209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m in Sources */,
 				C32308E42081AEB100CEC487 /* NSLayoutConstraint+TyphoonOutletTransfer.m in Sources */,
 				C32305D52080E57500CEC487 /* ScreensAssembly.m in Sources */,
 				C350782920949C46000C8FB3 /* WallUserImageNode.swift in Sources */,

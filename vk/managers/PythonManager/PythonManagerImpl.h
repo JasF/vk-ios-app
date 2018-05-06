@@ -10,4 +10,5 @@
 #import "PythonManager.h"
 
 @interface PythonManagerImpl : NSObject <PythonManager>
+- (id)initWithExtensions:(NSArray<id<PythonManagerExtension>> *)extensions;
 @end

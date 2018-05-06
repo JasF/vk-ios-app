@@ -10,6 +10,8 @@ import urllib.request
 import json
 import traceback
 import urllib3
+import pythonbridgeextension
+
 http = urllib3.PoolManager()
 
 logs = []
@@ -25,49 +27,32 @@ storage.socket = None
 results = {}
 events = {}
 
-async def sendText(text):
+def sendText(text):
     try:
-        r = http.request('POST', 'http://127.0.0.1:8765/post',
-                         headers={'Content-Type': 'application/json'},
-                         body=text)
+        response = pythonbridgeextension.post(json.dumps(text))
     except Exception as e:
-        __builtin__.original_print('send exception: ' + str(e))
+        __builtin__.original_print('sendText exception: ' + str(e))
         print(traceback.format_exc())
     finally:
         pass
 
 def send(text):
-    if isinstance(text,dict):
-        try:
-            text = json.dumps(text)
-        except Exception as e:
-            __builtin__.original_print('json.dumps failed: ' + str(e))
-
-    loop = None
-    try:
-        loop = asyncio.get_event_loop()
-    except:
-        pass
-    if not loop:
-        loop = asyncio.new_event_loop()
-    if loop.is_running():
-        def async_print(text):
-            send(text)
-        thread = threading.Thread(target=async_print, args=[text])
-        thread.start()
-        thread.join()
-    else:
-       loop.run_until_complete(sendText(text))
+    sendText(text)
 
 subscriber.send = send
 
-def main():
-    while True:
-        message = urllib.request.urlopen("http://127.0.0.1:8765/grep").read()
+def handleincomingdata(message):
+    def doParse():
         try:
             parse(message)
         except Exception as e:
-            __builtin__.original_print('parse exc: ' + str(e))
+            print('handleincomingdata c++2python exception: ' + str(e))
+            print(traceback.format_exc())
+    threading.Thread(target=doParse).start()
+
+def main():
+    parse('{"command":"startSession"}') # Magic launch command
+    asyncio.get_event_loop().run_forever()
 
 def subscribe(command, handler):
     subscriber.subscribe(command, handler)
@@ -124,6 +109,7 @@ class BridgeRequest(object):
         handler = method_args.get('handler')
         args = method_args.get('args')
         withResult = method_args.get('withResult')
+        print('pre sendCommandWithHandler')
         result = sendCommandWithHandler(self._class_name, self._method_name, handler, args=args, withResult=withResult, delegateId=self._delegate_id)
         return result
 
