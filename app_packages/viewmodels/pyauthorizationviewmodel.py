@@ -12,7 +12,6 @@ class PyAuthorizationViewModel(ObjCBridgeProtocol):
         vk.setToken(aAccessToken)
         vk.setUserId(aUserId)
         screenshow.showScreenAfterAuthorization()
-        self.processCredentials(aAccessToken, aUserId)
     
     # ObjCBridgeProtocol
     def release(self):

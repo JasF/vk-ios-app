@@ -19,7 +19,7 @@ class VkAPIError(VkException):
     __slots__ = ['error', 'code', 'message', 'request_params', 'redirect_uri']
 
     CAPTCHA_NEEDED = 14
-    ACCESS_DENIED = 15
+    ACCESS_DENIED = -1
 
     def __init__(self, error_data):
         super(VkAPIError, self).__init__()

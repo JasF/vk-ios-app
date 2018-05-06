@@ -78,10 +78,12 @@ static NSInteger const kUserCancelledErrorCode = -999;
 
 #pragma mark - VKSdkManager
 - (void)authorizeByApp {
+    [VKSdk forceLogout];
     [VKSdk authorize:[self scope]];
 }
 
 - (void)authorizeByLogin {
+    [VKSdk forceLogout];
     [PatchedVkSdk authorize:[self scope]];
 }
 

@@ -1,6 +1,9 @@
 import logging
+from objc import managers
+import settings
 
 from .session import Session
+from .exceptions import VkAuthError, VkAPIError
 
 logger = logging.getLogger('vk')
 
@@ -28,4 +31,15 @@ class Request(object):
 
     def __call__(self, **method_args):
         self._method_args = method_args
-        return self._api.session.make_request(self)
+        result = {}
+        try:
+            result = self._api.session.make_request(self)
+        except VkAPIError as e:
+            print('VkAPIError exception: ' + str(e))
+            if e.code == 15 or e.code == 5:
+                settings.set('access_token', '')
+                settings.set('user_id', 0)
+                settings.write()
+                managers.shared().screensManager().showAuthorizationViewController()
+            raise
+        return result

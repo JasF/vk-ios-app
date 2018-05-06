@@ -71,7 +71,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.window.rootViewController = self.rootNavigationController;
         UIViewController *viewController = [self.screensAssembly authorizationViewController];
-        [self.rootNavigationController pushViewController:viewController animated:NO];
+        self.rootNavigationController.viewControllers = @[viewController];
     });
 }
 
