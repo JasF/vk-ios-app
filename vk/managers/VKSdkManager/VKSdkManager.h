@@ -13,5 +13,7 @@
 @property (nonatomic, copy) void (^getTokenSuccess)(VKAccessToken *token);
 @property (nonatomic, copy) void (^getTokenFailed)(NSError *error, BOOL cancelled);
 @property (strong, nonatomic) UIViewController *viewController;
-- (void)authorize;
+- (void)authorizeByApp;
+- (void)authorizeByLogin;
+- (BOOL)isAuthorizationOverAppAvailable;
 @end

@@ -109,7 +109,6 @@ class BridgeRequest(object):
         handler = method_args.get('handler')
         args = method_args.get('args')
         withResult = method_args.get('withResult')
-        print('pre sendCommandWithHandler')
         result = sendCommandWithHandler(self._class_name, self._method_name, handler, args=args, withResult=withResult, delegateId=self._delegate_id)
         return result
 

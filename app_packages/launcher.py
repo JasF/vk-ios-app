@@ -1,6 +1,6 @@
-print('Hello Python vk-world!')
 import traceback
 from objc import printpatch
+import settings, sys
 
 launched = False
 def performLaunch():
@@ -14,6 +14,8 @@ def performLaunch():
 
 try:
     import objcbridge
+    settings.setDocumentsDirectory(sys.argv[1])
+    settings.load()
     
     def startSessionHandler():
         if launched == False:

@@ -18,6 +18,6 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "AuthorizationViewModel.h"
 
-@interface AuthorizationViewController : UIViewController
+@interface AuthorizationViewController : ASViewController
 - (id)initWithViewModel:(id<AuthorizationViewModel>)viewModel;
 @end

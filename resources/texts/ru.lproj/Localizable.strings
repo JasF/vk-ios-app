@@ -50,3 +50,5 @@
 "create_post_what_is_new"="Что у вас нового";
 "error_create_post"="Не удалось опубликовать пост";
 "typing"="Печатает";
+"authorize_with_app"="Авторизация через приложение";
+"authorize_with_login"="Авторизация по логину и паролю";

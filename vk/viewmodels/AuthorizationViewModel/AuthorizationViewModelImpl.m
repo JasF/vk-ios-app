@@ -63,7 +63,7 @@
         // @strongify(self);
         
     };
-    
+    /*
     dispatch_block_t simulateBlock = ^{
         VKAccessToken *token = [VKAccessToken tokenWithToken:@"4c0638c47d2fb5c57fadfc995d123a1337c41781af7b1521e8d5fbd8d972ba0e63a9387677cb91cf8538e"
                                                       secret:@""
@@ -71,6 +71,8 @@
         self.vkManager.getTokenSuccess(token);
     };
     dispatch_async(dispatch_get_main_queue(), ^{
+        //[self.vkManager authorize];
+        
 #ifdef DEBUG
         simulateBlock();
         
@@ -81,6 +83,19 @@
         [self.vkManager authorize];
 #endif
     });
+     */
 }
-    
+
+- (void)authorizeByApp {
+    [self.vkManager authorizeByApp];
+}
+
+- (void)authorizeByLogin {
+    [self.vkManager authorizeByLogin];
+}
+
+- (BOOL)isAuthorizationOverAppAvailable {
+    return [VKSdk vkAppMayExists];
+}
+
 @end

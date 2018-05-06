@@ -25,6 +25,12 @@ class TextStyles {
             ]
     }
     
+    static public func authorizationButtonStyle() -> [NSAttributedStringKey : Any]! {
+        return [ NSAttributedStringKey.foregroundColor: UIColor(red: 10.0/255.0, green: 43.0/255.0, blue: 57.0/255.0, alpha: 1.0),
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
+        ]
+    }
+    
     /*
     + (NSDictionary *)postLinkStyle
     {

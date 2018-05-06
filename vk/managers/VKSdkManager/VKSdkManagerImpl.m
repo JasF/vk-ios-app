@@ -16,6 +16,14 @@ static NSInteger const kUserCancelledErrorCode = -999;
 @property (strong, nonatomic) VKSdk *sdk;
 @end
 
+@interface PatchedVkSdk : VKSdk
+@end
+
+@implementation PatchedVkSdk
++ (BOOL)vkAppMayExists {
+    return NO;
+}
+@end
 
 @implementation VKSdkManagerImpl
 
@@ -69,8 +77,16 @@ static NSInteger const kUserCancelledErrorCode = -999;
 }
 
 #pragma mark - VKSdkManager
-- (void)authorize {
+- (void)authorizeByApp {
     [VKSdk authorize:[self scope]];
 }
-    
+
+- (void)authorizeByLogin {
+    [PatchedVkSdk authorize:[self scope]];
+}
+
+- (BOOL)isAuthorizationOverAppAvailable {
+    return [VKSdk vkAppMayExists];
+}
+
 @end

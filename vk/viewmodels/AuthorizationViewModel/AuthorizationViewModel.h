@@ -10,4 +10,7 @@
 
 @protocol AuthorizationViewModel <NSObject>
 @property (weak, nonatomic) UIViewController *viewController;
+- (void)authorizeByApp;
+- (void)authorizeByLogin;
+- (BOOL)isAuthorizationOverAppAvailable;
 @end

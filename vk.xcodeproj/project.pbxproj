@@ -534,6 +534,8 @@
 		C39C8B9D209D92A400CC23C3 /* ExtendedVideoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8B9C209D92A400CC23C3 /* ExtendedVideoNode.swift */; };
 		C39C8BA3209DBDEF00CC23C3 /* PostTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BA2209DBDEF00CC23C3 /* PostTextNode.m */; };
 		C39C8BAD209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BAC209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m */; };
+		C39C8BB0209EE62300CC23C3 /* AuthorizationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BAF209EE62300CC23C3 /* AuthorizationNode.swift */; };
+		C39C8BB3209F076600CC23C3 /* settings.py in Resources */ = {isa = PBXBuildFile; fileRef = C39C8BB2209F02FE00CC23C3 /* settings.py */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1709,6 +1711,9 @@
 		C39C8BAB209DFCA000CC23C3 /* PythonBridgeExtensionImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PythonBridgeExtensionImpl.h; sourceTree = "<group>"; };
 		C39C8BAC209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PythonBridgeExtensionImpl.m; sourceTree = "<group>"; };
 		C39C8BAE209E01B200CC23C3 /* PythonBridgeExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PythonBridgeExtension.h; sourceTree = "<group>"; };
+		C39C8BAF209EE62300CC23C3 /* AuthorizationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationNode.swift; sourceTree = "<group>"; };
+		C39C8BB2209F02FE00CC23C3 /* settings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = settings.py; sourceTree = "<group>"; };
+		C39C8BB4209F0DFC00CC23C3 /* screenshow.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = screenshow.py; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -2839,6 +2844,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3D4873820919A4F007EC440 /* AuthorizationViewController */,
 				C3987E0B2099CB480047A30F /* Chat */,
 				C3987DFB2098B9280047A30F /* CreatePostViewController */,
 				C3987DEE209871EB0047A30F /* CommentsViewController */,
@@ -2849,7 +2855,6 @@
 				C3A82A23209304F300C41CA8 /* BaseTableViewController */,
 				C323049D2080E57400CEC487 /* BaseCollectionViewController */,
 				C3333D462091A98D009EBB09 /* DetailVideoViewController */,
-				C3D4873820919A4F007EC440 /* AuthorizationViewController */,
 				C32262FA2090CB070054789B /* DetailPhotoViewController */,
 				C313DD5D208CAEFB0005E29B /* WallPostViewController */,
 				C32262D92090ADD60054789B /* SettingsViewController */,
@@ -3117,6 +3122,8 @@
 		C32304E02080E57400CEC487 /* app_packages */ = {
 			isa = PBXGroup;
 			children = (
+				C39C8BB4209F0DFC00CC23C3 /* screenshow.py */,
+				C39C8BB2209F02FE00CC23C3 /* settings.py */,
 				C39C8BA4209DD1FF00CC23C3 /* postproc */,
 				C3987DDD20984A710047A30F /* constants */,
 				C3036C1E208DF7FC005F086E /* pymanagers */,
@@ -5180,6 +5187,7 @@
 			children = (
 				C3D4873920919A83007EC440 /* AuthorizationViewController.h */,
 				C3D4873A20919A83007EC440 /* AuthorizationViewController.m */,
+				C39C8BAF209EE62300CC23C3 /* AuthorizationNode.swift */,
 			);
 			path = AuthorizationViewController;
 			sourceTree = "<group>";
@@ -5300,6 +5308,7 @@
 				C39C8B8D209C862300CC23C3 /* calcrect.py in Resources */,
 				C323062D2080E57500CEC487 /* langthaimodel.py in Resources */,
 				C3B0EEE8208B14E8008802BB /* loadBubble_0016_Layer-23@2x.png in Resources */,
+				C39C8BB3209F076600CC23C3 /* settings.py in Resources */,
 				C3B0EF10208B14E8008802BB /* loadBubble_0017_Layer-22@1x.png in Resources */,
 				C3B0EF07208B14E8008802BB /* loadBubble_0005_Layer-34@1x.png in Resources */,
 				C323068D2080E57500CEC487 /* __main__.py in Resources */,
@@ -5937,6 +5946,7 @@
 				C3987E4C2099CB480047A30F /* TypingPresenter.swift in Sources */,
 				C32309222081AEB100CEC487 /* TyphoonAssemblyPropertyInjectionPostProcessor.m in Sources */,
 				C32308F92081AEB100CEC487 /* TyphoonInjectionContext.m in Sources */,
+				C39C8BB0209EE62300CC23C3 /* AuthorizationNode.swift in Sources */,
 				C32309012081AEB100CEC487 /* TyphoonInjectionByRuntimeArgument.m in Sources */,
 				C3B225092085BA8300599E04 /* ViewModelsAssembly.m in Sources */,
 				C32308E22081AEB100CEC487 /* TyphoonStoryboardProvider.m in Sources */,

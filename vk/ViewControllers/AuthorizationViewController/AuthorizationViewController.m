@@ -16,9 +16,11 @@
 //
 
 #import "AuthorizationViewController.h"
+#import "vk-Swift.h"
 
 @interface AuthorizationViewController ()
 @property id<AuthorizationViewModel> viewModel;
+@property AuthorizationNode *authorizationNode;
 @end
 
 #pragma mark - Lifecycle
@@ -27,17 +29,42 @@
 - (id)initWithViewModel:(id<AuthorizationViewModel>)viewModel
 {
     NSCParameterAssert(viewModel);
-    if (self = [super init]) {
-        self.viewModel = viewModel;
+    AuthorizationNode *node = [[AuthorizationNode alloc] init:[viewModel isAuthorizationOverAppAvailable]];
+    if (self = [super initWithNode:node]) {
+        _authorizationNode = node;
+        _viewModel = viewModel;
         self.title = @"Authorization";
     }
-  
     return self;
+}
+
+- (void)dealloc {
+    
 }
     
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.viewModel.viewController = self;
+    
+    @weakify(self);
+    self.authorizationNode.authorizeByAppHandler = ^{
+        @strongify(self);
+        [self.viewModel authorizeByApp];
+    };
+    self.authorizationNode.authorizeByLoginHandler = ^{
+        @strongify(self);
+        [self.viewModel authorizeByLogin];
+    };
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
 }
     
 @end
