@@ -52,6 +52,7 @@
                      [initializer injectParameterWith:self];
                  }];
                 [definition injectProperty:@selector(window) with:[self window]];
+                [definition injectProperty:@selector(rootNavigationController) with:[self rootNavigationController]];
                 [definition injectProperty:@selector(dialogsManager) with:[self dialogsManager]];
                 [definition injectProperty:@selector(mainViewController) with:[self createMainViewController]];
                 definition.scope = TyphoonScopeSingleton;

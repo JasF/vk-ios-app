@@ -37,6 +37,7 @@
 @property (strong, nonatomic) id<PythonBridge> pythonBridge;
 @property (strong, nonatomic) ScreensAssembly *screensAssembly;
 @property (strong, nonatomic) id<DialogsManager> dialogsManager;
+@property (strong, nonatomic) UINavigationController *rootNavigationController;
 @end
 
 @implementation ScreensManagerImpl
@@ -68,9 +69,9 @@
 
 - (void)showAuthorizationViewController {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+        self.window.rootViewController = self.rootNavigationController;
         UIViewController *viewController = [self.screensAssembly authorizationViewController];
-        [navigationController pushViewController:viewController animated:NO];
+        [self.rootNavigationController pushViewController:viewController animated:NO];
     });
 }
 
