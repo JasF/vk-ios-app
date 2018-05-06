@@ -16,4 +16,6 @@
 - (void)authorizeByApp;
 - (void)authorizeByLogin;
 - (BOOL)isAuthorizationOverAppAvailable;
+- (NSString *)getCaptchaInputTextWithResponse:(NSDictionary *)response
+                             inViewController:(UIViewController *)viewController;
 @end

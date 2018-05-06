@@ -41,5 +41,6 @@
 - (void)showVideoPlayerViewControllerWithVideo:(Video *)video;
 - (void)presentAddPostViewController:(NSNumber *)ownerId;
 - (void)dismissCreatePostViewController:(NSNumber *)isPostPublished;
+- (NSString *)getCaptchaInput:(NSDictionary *)response;
 - (UIViewController *)topViewController;
 @end

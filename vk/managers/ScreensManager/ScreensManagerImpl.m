@@ -380,4 +380,10 @@
     return NO;
 }
 
+- (NSString *)getCaptchaInput:(NSDictionary *)response {
+    NSString *captcha = [_vkSdkManager getCaptchaInputTextWithResponse:response
+                                                      inViewController:[self navigationController].topViewController];
+    return captcha;
+}
+
 @end

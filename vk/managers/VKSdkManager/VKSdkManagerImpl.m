@@ -8,7 +8,9 @@
 
 #import "VKSdkManagerImpl.h"
 #import <VK-ios-sdk/VKSdk.h>
+#import "RunLoop.h"
 
+static NSInteger kCaptchaRequestId = 7777777;
 static NSString *kVkAppId = @"6442149";
 static NSInteger const kUserCancelledErrorCode = -999;
 
@@ -89,6 +91,17 @@ static NSInteger const kUserCancelledErrorCode = -999;
 
 - (BOOL)isAuthorizationOverAppAvailable {
     return [VKSdk vkAppMayExists];
+}
+
+- (NSString *)getCaptchaInputTextWithResponse:(NSDictionary *)response
+                             inViewController:(UIViewController *)viewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        VKError *captchaError = [VKError errorWithJson:response];
+        VKCaptchaViewController *vc = [VKCaptchaViewController captchaControllerWithError:captchaError];
+        [vc presentIn:viewController];
+    });
+    [[RunLoop shared] exec:kCaptchaRequestId];
+    return @"";
 }
 
 @end

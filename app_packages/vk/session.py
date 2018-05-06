@@ -1,5 +1,8 @@
 from __future__ import absolute_import
 
+from objc import managers
+import settings
+
 import logging
 
 import requests
@@ -144,9 +147,9 @@ class Session(object):
             elif 'error' in response_or_error:
                 error_data = response_or_error['error']
                 error = VkAPIError(error_data)
-
+                error.response = response
                 if error.is_captcha_needed():
-                    captcha_key = self.get_captcha_key(error.captcha_img)
+                    captcha_key = self.get_captcha_key(response.json())
                     if not captcha_key:
                         raise error
 
@@ -179,7 +182,11 @@ class Session(object):
         response = self.requests_session.post(url, method_args, timeout=self.timeout)
         return response
 
-    def get_captcha_key(self, captcha_image_url):
+    def get_captcha_key(self, response):
+        
+        result = managers.shared().screensManager().getCaptchaInput_(args=[response], withResult=True)
+        print('captcha result is: ' + str())
+        return result
         """
         Default behavior on CAPTCHA is to raise exception
         Reload this in child
