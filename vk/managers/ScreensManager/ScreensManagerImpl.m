@@ -60,6 +60,8 @@
 #pragma mark - overriden methods ScreensManager
 - (void)createWindowIfNeeded {
     if (!self.window.isKeyWindow) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil];
+        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
         [self.window makeKeyAndVisible];
     }
 }

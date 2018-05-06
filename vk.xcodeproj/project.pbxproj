@@ -536,6 +536,7 @@
 		C39C8BAD209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BAC209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m */; };
 		C39C8BB0209EE62300CC23C3 /* AuthorizationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BAF209EE62300CC23C3 /* AuthorizationNode.swift */; };
 		C39C8BB3209F076600CC23C3 /* settings.py in Resources */ = {isa = PBXBuildFile; fileRef = C39C8BB2209F02FE00CC23C3 /* settings.py */; };
+		C39C8BB6209F109500CC23C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C39C8BB5209F109500CC23C3 /* LaunchScreen.storyboard */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1714,6 +1715,7 @@
 		C39C8BAF209EE62300CC23C3 /* AuthorizationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationNode.swift; sourceTree = "<group>"; };
 		C39C8BB2209F02FE00CC23C3 /* settings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = settings.py; sourceTree = "<group>"; };
 		C39C8BB4209F0DFC00CC23C3 /* screenshow.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = screenshow.py; sourceTree = "<group>"; };
+		C39C8BB5209F109500CC23C3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -2961,6 +2963,7 @@
 		C32304A72080E57400CEC487 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C39C8BB5209F109500CC23C3 /* LaunchScreen.storyboard */,
 				C3137716208DFABA00F568EA /* entitlements */,
 				C32306FA2080F2DE00CEC487 /* Podfile */,
 				C3703B5A209C3C4E00E879A1 /* MWPhotoBrowser.podspec */,
@@ -5460,6 +5463,7 @@
 				C3B0EF0C208B14E8008802BB /* loadBubble_0037_Layer-2@1x.png in Resources */,
 				C32306A32080E57500CEC487 /* url.py in Resources */,
 				C323068E2080E57500CEC487 /* launcher.py in Resources */,
+				C39C8BB6209F109500CC23C3 /* LaunchScreen.storyboard in Resources */,
 				C32306A92080E57500CEC487 /* response.cpython-34.pyc in Resources */,
 				C3B0EF08208B14E8008802BB /* loadBubble_0008_Layer-31@1x.png in Resources */,
 				C32306D52080E57500CEC487 /* exceptions.py in Resources */,

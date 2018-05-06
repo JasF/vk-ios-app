@@ -28,6 +28,7 @@ class Subscriber():
             handler()
         except Exception as e:
             print('invoke handler exeption: ' + str(e))
+            print(traceback.format_exc())
                     
     def performCommand(self, cmd, object):
         if cmd == 'classAction':

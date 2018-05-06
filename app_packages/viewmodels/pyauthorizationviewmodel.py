@@ -1,6 +1,6 @@
 from objc import managers
 from objcbridge import BridgeBase, ObjCBridgeProtocol
-import vk, screenshow
+import vk, screenshow, settings
 from .pyfriendsviewmodel import UsersListTypes
 
 class PyAuthorizationViewModel(ObjCBridgeProtocol):
