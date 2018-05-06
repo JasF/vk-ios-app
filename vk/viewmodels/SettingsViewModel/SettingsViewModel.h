@@ -13,4 +13,5 @@
 - (void)menuTapped;
 - (void)getSettingsWithCompletion:(void(^)(Settings *settings))completion;
 - (void)notificationsSettingsChanged:(BOOL)on;
+- (void)exitTapped;
 @end

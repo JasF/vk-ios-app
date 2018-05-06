@@ -10,4 +10,5 @@
 
 @interface TextNode : ASCellNode
 - (id)initWithText:(NSString *)text;
+- (id)initWithText:(NSString *)text color:(UIColor *)color;
 @end

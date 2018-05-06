@@ -13,7 +13,7 @@
 #import "TextNode.h"
 
 typedef NS_ENUM(NSInteger, SettingsRow) {
-    NotificationsRow,
+    //NotificationsRow,
     ExitRow,
     RowsCount
 };
@@ -73,12 +73,13 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
     }];
 }
 
-- (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
+- (ASCellNodeBlock)tableNode:(ASCollectionNode *)collectionNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     @weakify(self);
     return ^ASCellNode *{
         @strongify(self);
         switch (indexPath.row) {
+                /*
             case NotificationsRow: {
                 @weakify(self);
                 return [[SwitchNode alloc] initWithTitle:L(@"notifications")
@@ -89,7 +90,9 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
                                              }];
                 break;
             }
-            case ExitRow: return [[TextNode alloc] initWithText:L(@"exit")];
+                 */
+            case ExitRow: return [[TextNode alloc] initWithText:L(@"exit")
+                                                          color:[UIColor redColor]];
             default: {
                 NSCAssert(false, @"Unhandled cell");
                 break;
@@ -99,17 +102,21 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
     };
 }
 
-- (id)collectionNode:(ASCollectionNode *)collectionNode nodeModelForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return @(0);
-}
-
-- (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
+- (NSInteger)tableNode:(ASCollectionNode *)collectionNode numberOfRowsInSection:(NSInteger)section
 {
     if (!_settings) {
         return 0;
     }
     return RowsCount;
+}
+
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case ExitRow: {
+            [_viewModel exitTapped];
+            break;
+        }
+    }
 }
 
 @end

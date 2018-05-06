@@ -34,6 +34,14 @@
     };
 }
 
++ (NSDictionary *)textNodeStyle
+{
+    return @{
+             NSFontAttributeName : [UIFont boldSystemFontOfSize:20.0],
+             NSForegroundColorAttributeName: [UIColor blackColor]
+             };
+}
+
 + (NSDictionary *)titleStyle {
     return @{
              NSFontAttributeName : [UIFont systemFontOfSize:15.0],

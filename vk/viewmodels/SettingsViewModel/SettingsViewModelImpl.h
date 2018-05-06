@@ -14,6 +14,7 @@
 - (NSDictionary *)getSettings;
 - (void)menuTapped;
 - (void)notificationsSettingsChanged:(NSNumber *)on;
+- (void)exitTapped;
 @end
 
 @interface SettingsViewModelImpl : NSObject <SettingsViewModel>

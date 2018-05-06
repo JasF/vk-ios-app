@@ -35,8 +35,12 @@
         @weakify(self);
         NSInteger index = 0;
         for (NSString *title in titles) {
+            UIAlertActionStyle style = UIAlertActionStyleDefault;
+            if ([title isEqualToString:@"settings_exit"]) {
+                style = UIAlertActionStyleDestructive;
+            }
             UIAlertAction *button = [UIAlertAction actionWithTitle:L(title)
-                                                             style:UIAlertActionStyleDefault
+                                                             style:style
                                                            handler:^(UIAlertAction * _Nonnull action) {
                                                                   @strongify(self);
                                                                   dispatch_async(dispatch_get_global_queue(0, DISPATCH_QUEUE_PRIORITY_DEFAULT), ^{

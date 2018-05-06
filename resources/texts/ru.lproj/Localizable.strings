@@ -52,3 +52,4 @@
 "typing"="Печатает";
 "authorize_with_app"="Авторизация через приложение";
 "authorize_with_login"="Авторизация по логину и паролю";
+"settings_exit"="Выйти";

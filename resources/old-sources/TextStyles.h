@@ -31,5 +31,5 @@
 + (NSDictionary *)postLinkStyle;
 + (NSDictionary *)cellControlStyle;
 + (NSDictionary *)cellControlColoredStyle;
-
++ (NSDictionary *)textNodeStyle;
 @end

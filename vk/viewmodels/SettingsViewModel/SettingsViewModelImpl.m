@@ -52,5 +52,11 @@
     });
 }
 
+- (void)exitTapped {
+    dispatch_python(^{
+        [self.handler exitTapped];
+    });
+}
+
 @end
 
