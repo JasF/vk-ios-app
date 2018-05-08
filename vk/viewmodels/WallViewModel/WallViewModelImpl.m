@@ -51,19 +51,31 @@
                     completion:(void(^)(NSArray *posts))completion {
     dispatch_python(^{
         NSDictionary *data = [self.handler getWall:@(offset) count:@(count)];
-        if (!offset && !self.currentUser) {
-            NSDictionary *currentUserData = [self.handler getUserInfo];
-            User *user = [self.wallService parseUserInfo:currentUserData];
-            if (user) {
-                self.currentUser = user;
-            }
-        }
         NSArray<WallPost *> *posts = [self.wallService parse:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
                 completion(posts);
             }
         });
+    });
+}
+
+- (void)getUserInfo:(void(^)(User *user))completion {
+    dispatch_python(^{
+        void (^block)(BOOL cached) = ^void(BOOL cached) {
+            NSDictionary *currentUserData = (cached) ? [self.handler getUserInfoCached] : [self.handler getUserInfo];
+            User *user = [self.wallService parseUserInfo:currentUserData];
+            if (user) {
+                self.currentUser = user;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) {
+                    completion(user);
+                }
+            });
+        };
+        block(YES);
+        block(NO);
     });
 }
 

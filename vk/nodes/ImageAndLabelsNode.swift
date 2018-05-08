@@ -15,14 +15,18 @@ import Foundation
     
     init(_ imageURL : String, topLine: String, bottomLine: String) {
         super.init()
-        self.topLine.attributedText = NSAttributedString.init(string: topLine, attributes: TextStyles.titleStyle())
-        self.bottomLine.attributedText = NSAttributedString.init(string: bottomLine, attributes: TextStyles.titleLightStyle())
         self.addSubnode(imageNode)
         self.addSubnode(self.topLine)
         self.addSubnode(self.bottomLine)
         imageNode.style.width = ASDimensionMake(80)
         imageNode.style.height = ASDimensionMake(80)
+        set(imageURL, topLine:topLine, bottomLine:bottomLine)
+    }
+    
+    func set(_ imageURL : String, topLine: String, bottomLine: String) {
         imageNode.url = URL.init(string: imageURL)
+        self.topLine.attributedText = NSAttributedString.init(string: topLine, attributes: TextStyles.titleStyle())
+        self.bottomLine.attributedText = NSAttributedString.init(string: bottomLine, attributes: TextStyles.titleLightStyle())
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

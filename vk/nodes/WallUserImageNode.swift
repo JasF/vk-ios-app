@@ -44,9 +44,14 @@ class WallUserImageUsernameNode : ASDisplayNode {
     var pageNode : ImageAndLabelsNode?
     var coverRatio : CGFloat = 1.0
     var usernameNode: WallUserImageUsernameNode?
-    init(_ user: User?) {
+    var model: WallUserCellModel? = nil
+    
+    init(_ model: WallUserCellModel?) {
         super.init()
-        if user?.type != nil && (user?.type == "group" || user?.type == "page") {
+        let user = model?.user
+        self.model = model
+        self.model?.delegate = self
+        if user?.type != nil && (user?.isGroup())! {
             let cover = user?.getCover()
             if let url = cover?.url {
                 coverNode = ASNetworkImageNode.init()
@@ -66,7 +71,6 @@ class WallUserImageUsernameNode : ASDisplayNode {
     }
     
     override func didLoad() {
-        //self.imageNode.layer.addSublayer(self.view.gradient(color1: UIColor.black.withAlphaComponent(0), color2: UIColor.black.withAlphaComponent(1)))
         self.usernameNode?.layer.insertSublayer(self.view.gradient(color1: UIColor.black.withAlphaComponent(0), color2: UIColor.black.withAlphaComponent(1)), at: 0)
     }
     
@@ -81,29 +85,31 @@ class WallUserImageUsernameNode : ASDisplayNode {
             let verSpec = ASStackLayoutSpec.init(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .start, children: array)
             return verSpec
         }
-        /*
-        if let node = coverNode {
-            let coverPlace = ASRatioLayoutSpec.init(ratio: coverRatio, child: node)
-            let imagePlace = ASRatioLayoutSpec.init(ratio: 1, child: imageNode)
-            
-            imagePlace.style.spacingBefore = 8
-            imagePlace.style.spacingAfter = 8
-            imagePlace.style.width = ASDimensionMake(.fraction, 0.2)
-            let spacing = ASLayoutSpec()
-            spacing.style.flexGrow = 1
-            let horSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .start, alignItems: .start, children: [imagePlace, spacing])
-
-            horSpec.style.height = ASDimensionMake(80.0)
-            imagePlace.style.spacingBefore = 8
-            imagePlace.style.spacingAfter = 8
-            let verSpec = ASStackLayoutSpec.init(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .start, children: [coverPlace, pageNode])
-            return verSpec
-        }
-         */
         let imagePlace = ASRatioLayoutSpec.init(ratio: 0.5, child: imageNode)
         usernameNode?.style.flexGrow = 1.0
         let horSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .center, alignItems: .end, children: [usernameNode!])
         let spec = ASOverlayLayoutSpec.init(child: imagePlace, overlay: horSpec)
         return spec
+    }
+}
+
+extension WallUserImageNode : WallUserCellModelDelegate {
+    func modelDidUpdated() {
+        if let user = self.model?.user {
+            if user.isGroup() {
+                if let coverNode = self.coverNode {
+                    let cover = user.getCover()
+                    if let url = cover?.url {
+                        coverNode.setURL(URL.init(string: url as String), resetToDefault: false)
+                    }
+                }
+                if let pageNode = self.pageNode {
+                    pageNode.set(user.bigAvatarURLString(), topLine:user.nameString(), bottomLine:user.status)
+                }
+            }
+            else {
+                imageNode.setURL(URL.init(string: user.bigAvatarURLString()), resetToDefault: false)
+            }
+        }
     }
 }

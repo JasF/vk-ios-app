@@ -57,13 +57,17 @@ class ActionModel : NSObject {
     var collectionNode: ASCollectionNode
     var elementSize: CGSize = CGSize(width: 80, height: 60)
     weak var delegate: WallUserScrollNodeDelegate?
-    init(_ user: User?) {
+    var model: WallUserCellModel? = nil
+    init(_ model: WallUserCellModel?) {
+        let user = model?.user
+        self.model = model
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 12;
         layout.minimumLineSpacing = 1000;
         collectionNode = ASCollectionNode.init(collectionViewLayout: layout)
         super.init()
+        self.model?.delegate = self
         configureActions(user);
         collectionNode.delegate = self
         collectionNode.dataSource = self
@@ -71,6 +75,7 @@ class ActionModel : NSObject {
     }
     
     func configureActions(_ user: User?) {
+        actions = [ActionModel]()
         if user?.isGroup() == true {
             if let counters = user?.counters {
                 actions.append(ActionModel.init("photos".localized, number:counters.photos, action:.photos))
@@ -135,5 +140,12 @@ extension WallUserScrollNode : ASCollectionDelegate, ASCollectionDataSource {
         size.min.height = 40
         size.max.height = 40
         return size
+    }
+}
+
+extension WallUserScrollNode : WallUserCellModelDelegate {
+    func modelDidUpdated() {
+        configureActions(self.model?.user);
+        self.collectionNode.reloadData()
     }
 }

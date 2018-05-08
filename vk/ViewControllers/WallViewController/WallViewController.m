@@ -17,6 +17,12 @@
 @interface WallViewController () <BaseTableViewControllerDataSource, WallUserScrollNodeDelegate, WallUserMessageNodeDelegate, ViewControllerActionsExtension>
 @property (strong, nonatomic) id<WallViewModel> viewModel;
 @property (weak, nonatomic) WallUserScrollNode *scrollNode;
+
+@property (nonatomic) WallUserCellModel *imageModel;
+@property (nonatomic) WallUserCellModel *messageModel;
+@property (nonatomic) WallUserCellModel *actionsModel;
+@property (nonatomic) BOOL updating;
+@property (nonatomic) BOOL needsReload;
 @end
 
 @implementation WallViewController
@@ -38,6 +44,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    @weakify(self);
+    [_viewModel getUserInfo:^(User *user) {
+        @strongify(self);
+        if (!user) {
+            return;
+        }
+        if (!self.sectionsArray) {
+            [self.tableNode reloadData];
+            return;
+        }
+        [self.imageModel setUser:user];
+        [self.messageModel setUser:user];
+        [self.actionsModel setUser:user];
+        NSLog(@"latest user friends_count: %@", @(self.viewModel.currentUser.friends_count));
+       // if (self.updating) {
+        //    self.needsReload = YES;
+       // }
+        //else {
+       //     [self.tableNode reloadData];
+       // }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,6 +100,14 @@
 #pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
+    if (!self.sectionsArray) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(@[]);
+            }
+        });
+        return;
+    }
     @weakify(self);
     [_viewModel getWallPostsWithOffset:offset
                             completion:^(NSArray *objects) {
@@ -88,14 +123,35 @@
 
 - (void)performBatchAnimated:(BOOL)animated {
     if (!self.sectionsArray && self.viewModel.currentUser) {
-        NSMutableArray *array = [@[[[WallUserCellModel alloc] init:WallUserCellModelTypeImage user:self.viewModel.currentUser]] mutableCopy];
+        NSMutableArray *array = [@[[self imageModel]] mutableCopy];
         if (!self.viewModel.currentUser.currentUser) {
-            [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeMessage user:self.viewModel.currentUser]];
+            [array addObject:[self messageModel]];
         }
-        [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeActions user:self.viewModel.currentUser]];
+        [array addObject:[self actionsModel]];
         self.sectionsArray = @[array];
     }
     [super performBatchAnimated:animated];
+}
+
+- (WallUserCellModel *)imageModel {
+    if (!_imageModel) {
+        _imageModel = [[WallUserCellModel alloc] init:WallUserCellModelTypeImage user:self.viewModel.currentUser];
+    }
+    return _imageModel;
+}
+
+- (WallUserCellModel *)messageModel {
+    if (!_messageModel) {
+        _messageModel = [[WallUserCellModel alloc] init:WallUserCellModelTypeMessage user:self.viewModel.currentUser];
+    }
+    return _messageModel;
+}
+
+- (WallUserCellModel *)actionsModel {
+    if (!_actionsModel) {
+        _actionsModel = [[WallUserCellModel alloc] init:WallUserCellModelTypeActions user:self.viewModel.currentUser];
+    }
+    return _actionsModel;
 }
 
 #pragma mark - ASCollectionNodeDelegate

@@ -96,13 +96,13 @@
     else if ([item isKindOfClass:[WallUserCellModel class]]) {
         WallUserCellModel *model = (WallUserCellModel *)item;
         if (model.type == WallUserCellModelTypeMessage) {
-            return [_assembly wallUserMessageNode:model.user];
+            return [_assembly wallUserMessageNode:model];
         }
         else if (model.type == WallUserCellModelTypeActions) {
-            return [_assembly wallUserScrollNode:model.user];
+            return [_assembly wallUserScrollNode:model];
         }
         else if (model.type == WallUserCellModelTypeImage) {
-            return [_assembly wallUserImageNode:model.user];
+            return [_assembly wallUserImageNode:model];
         }
         else if (model.type == WallUserCellModelTypeAvatarNameDate) {
             return [_assembly avatarNameDateNode:model.user date:@(model.date)];

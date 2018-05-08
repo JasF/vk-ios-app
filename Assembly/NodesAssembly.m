@@ -187,32 +187,32 @@
             }];
 }
 
-- (ASDisplayNode *)wallUserMessageNode:(User *)user {
+- (ASDisplayNode *)wallUserMessageNode:(WallUserCellModel *)model {
     return [TyphoonDefinition withClass:[WallUserMessageNode class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer)
                  {
-                     [initializer injectParameterWith:user];
+                     [initializer injectParameterWith:model];
                  }];
             }];
 }
 
-- (ASDisplayNode *)wallUserScrollNode:(User *)user {
+- (ASDisplayNode *)wallUserScrollNode:(WallUserCellModel *)model {
     return [TyphoonDefinition withClass:[WallUserScrollNode class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer)
                  {
-                     [initializer injectParameterWith:user];
+                     [initializer injectParameterWith:model];
                  }];
             }];
 }
 
-- (ASDisplayNode *)wallUserImageNode:(User *)user {
+- (ASDisplayNode *)wallUserImageNode:(WallUserCellModel *)model {
     return [TyphoonDefinition withClass:[WallUserImageNode class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer)
                  {
-                     [initializer injectParameterWith:user];
+                     [initializer injectParameterWith:model];
                  }];
             }];
 }

@@ -20,9 +20,12 @@ import NMessenger
     let leftButton: ASButtonNode! = ASButtonNode()
     let rightButton: ASButtonNode! = ASButtonNode()
     var delegate: WallUserMessageNodeDelegate? = nil
-    init(_ user: User?) {
+    var model: WallUserCellModel? = nil
+    init(_ model: WallUserCellModel?) {
         super.init()
-        self.user = user
+        self.user = model?.user
+        self.model = model
+        self.model?.delegate = self
         self.addSubnode(leftButton)
         self.addSubnode(rightButton)
         leftButton.style.height = ASDimensionMake(30)
@@ -161,5 +164,11 @@ import NMessenger
     }
 }
 
+extension WallUserMessageNode : WallUserCellModelDelegate {
+    func modelDidUpdated() {
+        self.user = self.model?.user
+        self.updateFriendStatus()
+    }
+}
 
 

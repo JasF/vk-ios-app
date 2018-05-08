@@ -8,6 +8,10 @@
 
 import Foundation
 
+@objc protocol WallUserCellModelDelegate {
+    func modelDidUpdated()
+}
+
 @objc enum WallUserCellModelType: Int {
     case image
     case message
@@ -17,16 +21,29 @@ import Foundation
 }
 @objcMembers class WallUserCellModel : NSObject {
     var type:WallUserCellModelType
-    var user: User?
+    var _user: User? = nil
+    var user: User? {
+        set {
+            _user = newValue
+            if let delegate = self.delegate {
+                delegate.modelDidUpdated()
+            }
+        }
+        get {
+            return _user
+        }
+    }
     var date: Int = 0
+    weak var delegate : WallUserCellModelDelegate? = nil
     init(_ type:WallUserCellModelType, user: User?) {
         self.type = type
-        self.user = user
         super.init()
+        self.user = user
     }
     init(_ type:WallUserCellModelType, user: User?, date: Int) {
         self.type = type
-        self.user = user
         self.date = date
+        super.init()
+        self.user = user
     }
 }

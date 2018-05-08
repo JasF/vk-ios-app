@@ -14,6 +14,7 @@
 - (NSDictionary *)getWall:(NSNumber *)offset count:(NSNumber *)count;
 - (void)menuTapped;
 - (NSDictionary *)getUserInfo;
+- (NSDictionary *)getUserInfoCached;
 - (void)friendsTapped;
 - (void)commonTapped;
 - (void)subscribtionsTapped;

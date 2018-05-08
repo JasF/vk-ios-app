@@ -24,6 +24,7 @@
 @class WallPostNode;
 @class ASDisplayNode;
 @class CommentsPreloadModel;
+@class WallUserCellModel;
 
 @interface NodesAssembly : TyphoonAssembly
 @property ServicesAssembly *servicesAssembly;
@@ -43,9 +44,9 @@
 - (ASDisplayNode *)videoNode:(Video *)video;
 - (ASDisplayNode *)extendedVideoNode:(Video *)video;
 - (ASDisplayNode *)documentNode:(Document *)document;
-- (ASDisplayNode *)wallUserMessageNode:(User *)user;
-- (ASDisplayNode *)wallUserScrollNode:(User *)user;
-- (ASDisplayNode *)wallUserImageNode:(User *)user;
+- (ASDisplayNode *)wallUserMessageNode:(WallUserCellModel *)model;
+- (ASDisplayNode *)wallUserScrollNode:(WallUserCellModel *)model;
+- (ASDisplayNode *)wallUserImageNode:(WallUserCellModel *)model;
 - (ASDisplayNode *)avatarNameDateNode:(User *)user date:(NSNumber *)date;
 - (ASDisplayNode *)commentsPreloadNode:(CommentsPreloadModel *)model;
 @end

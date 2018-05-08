@@ -14,7 +14,7 @@ class Users():
     
     def getShortUsersByIds(self, ids):
         idsSet = ids if isinstance(ids, set) else set(ids)
-        result = self.getFieldsByIds(idsSet, fields='photo_100')
+        result = self.getFieldsByIds(idsSet, fields='photo_100,photo_400_orig,photo_max_orig,friend_status')
         if isinstance(ids, list):
             result = sorted(result,key=lambda x:ids.index(x['id']))
         return result
@@ -41,7 +41,7 @@ class Users():
             scriptCode = scriptCode.replace("{0}", str(id))
             scriptCode = scriptCode.replace("{1}", fields)
             response = self.api.execute(code=scriptCode)
-            print('getBigFieldsById response: ' + str(response))
+            #print('getBigFieldsById response: ' + str(response))
             freshUsersData = response.get('user_info')
             if len(freshUsersData) > 0:
                 def s_set(k):
@@ -92,12 +92,10 @@ class Users():
             freshGroupsData = self.api.groups.getById(group_ids=idsString,fields='cover,activity,status,counters')
             for d in freshGroupsData:
                 d['id'] = -d['id']
-            print('groups response:  ' + json.dumps(freshGroupsData, indent=4))
+            #print('groups response:  ' + json.dumps(freshGroupsData, indent=4))
             users.update(freshGroupsData)
             usersData.extend(freshGroupsData)
-
-
-        print(traceback.format_exc())
+            #print(traceback.format_exc())
 
         users.close()
         return usersData

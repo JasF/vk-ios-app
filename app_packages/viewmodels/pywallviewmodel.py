@@ -4,6 +4,7 @@ from services.wallservice import WallService
 import vk, json
 from .pyfriendsviewmodel import UsersListTypes
 from pymanagers.pydialogsmanager import PyDialogsManager
+from caches.usersdatabase import UsersDatabase
 
 g_WallPostsCount = 20
 
@@ -24,11 +25,21 @@ class PyWallViewModel(ObjCBridgeProtocol):
             count = g_WallPostsCount
         response = self.wallService.getWall(offset, self.userId, count)
         return response
+            
+    def getUserInfoCached(self):
+        result = {}
+        try:
+            cache = UsersDatabase()
+            result = cache.getById(self.userId)
+        except Exception as e:
+            print('wallviewmodel.py getUserInfoCached exception: ' + str(e))
+        if result and vk.userId() == self.userId:
+            result['currentUser'] = 1
+        return result
     
     def getUserInfo(self):
-        if self.userId <0:
+        if self.userId < 0:
             results = self.wallService.getUserInfo()
-            #print('getUserInfo result: ' + json.dumps(results, indent=4))
             return results
         elif self.userId > 0:
             results = self.wallService.getBigUserInfo()
