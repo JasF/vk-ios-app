@@ -28,8 +28,8 @@ import AsyncDisplayKit
 class ChatTableNode : ASTableNode {
     override var contentInset: UIEdgeInsets {
         didSet {
-            NSLog("contentInset:  \(contentInset)");
-            NSLog("!");
+            //NSLog("contentInset:  \(contentInset)");
+            //NSLog("!");
         }
     }
 }
@@ -146,7 +146,7 @@ open class BaseChatViewController: ChatInputBarViewController, ASTableDelegate, 
     }
 
     private func setupTapGestureRecognizer() {
-        NSLog("! missing gesture recognizer");
+        //NSLog("! missing gesture recognizer");
         /*
          
         self.collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(BaseChatViewController.userDidTapOnCollectionView)))
@@ -162,7 +162,7 @@ open class BaseChatViewController: ChatInputBarViewController, ASTableDelegate, 
     }
 
     private func addCollectionView() {
-        NSLog("! addCollectionView createPresenterFactory");
+        //NSLog("! addCollectionView createPresenterFactory");
         self.presenterFactory = self.createPresenterFactory()
         self.tableNode.delegate = self
         self.tableNode.dataSource = self

@@ -289,42 +289,6 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         }
     }
 
-    // MARK: layout
-    open override func layoutSubviews() {
-        super.layoutSubviews()
-
-        //let layout = self.calculateLayout(availableWidth: self.contentView.bounds.width)
-        //self.failedButton.bma_rect = layout.failedButtonFrame
-        //NSLog("!")
-        //self.bubbleView.bma_rect = layout.bubbleViewFrame
-        //self.bubbleView.preferredMaxLayoutWidth = layout.preferredMaxWidthForBubble
-        //self.bubbleView.layoutIfNeeded()
-
-        //self.avatarView.bma_rect = layout.avatarViewFrame
-        //self.selectionIndicator.bma_rect = layout.selectionIndicatorFrame
-
-        /*
-        if self.accessoryTimestampView.superview != nil {
-            let layoutConstants = baseStyle.layoutConstants(viewModel: messageViewModel)
-            self.accessoryTimestampView.bounds = CGRect(origin: CGPoint.zero, size: self.accessoryTimestampView.intrinsicContentSize)
-            let accessoryViewWidth = self.accessoryTimestampView.bounds.width
-            let leftOffsetForContentView = max(0, offsetToRevealAccessoryView)
-            let leftOffsetForAccessoryView = min(leftOffsetForContentView, accessoryViewWidth + layoutConstants.horizontalTimestampMargin)
-            var contentViewframe = self.contentView.frame
-            if self.messageViewModel.isIncoming {
-                contentViewframe.origin = CGPoint.zero
-            } else {
-                contentViewframe.origin.x = -leftOffsetForContentView
-            }
-            self.contentView.frame = contentViewframe
-            NSLog("! accessoryTimestampView")
- 
-            self.accessoryTimestampView.center = CGPoint(x: self.bounds.width - leftOffsetForAccessoryView + accessoryViewWidth / 2, y: self.contentView.center.y)
- 
-        }
- */
-    }
-
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         return self.calculateLayout(availableWidth: size.width).size
     }

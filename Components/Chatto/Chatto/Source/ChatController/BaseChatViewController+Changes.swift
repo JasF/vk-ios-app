@@ -81,7 +81,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
 
     // Returns scrolling position in interval [0, 1], 0 top, 1 bottom
     public var focusPosition: Double {
-        NSLog("! focusPosition");
+        //NSLog("! focusPosition");
         return 0.5
         /*
         if self.isCloseToBottom() {
@@ -235,11 +235,6 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
             self.visibleCells = [:]
             updateModelClosure()
             self.tableNode.reloadData()
-            NSLog("! needs collectionView reloadData")
-            /*
-            self.collectionView.reloadData()
-            self.collectionView.collectionViewLayout.prepare()
- */
         }
 
         switch scrollAction {

@@ -45,7 +45,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
             return resultArray
         }
         self.mDataSource.setBatchFetchContent() { [weak self] () -> Void in
-            NSLog("! needs batch fetch content");
+            //NSLog("! needs batch fetch content");
             //self?.batchFetchContent()
         }
         self.dataSource = self.mDataSource

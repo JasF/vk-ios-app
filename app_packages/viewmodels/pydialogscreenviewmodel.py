@@ -1,5 +1,5 @@
 from objcbridge import BridgeBase, ObjCBridgeProtocol
-import vk
+import vk, json
 from services.messagesservice import NewMessageProtocol, MessageFlags
 from random import randint
 import sched, time
@@ -44,6 +44,9 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     
     # NewMessageProtocol
     def handleIncomingMessage(self, message):
+        user_id = message.get('user_id')
+        if user_id != self.userId:
+            return
         isOut = message.get('out')
         id = message.get('id')
         if isOut:
