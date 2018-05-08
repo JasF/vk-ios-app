@@ -2,7 +2,7 @@ from objc import managers
 import vk
 
 def showScreenAfterAuthorization():
-    #managers.shared().screensManager().showFriendsViewController_usersListType_(args=[vk.userId(), UsersListTypes.FRIENDS])
+    #managers.shared().screensManager().showFriendsViewController_usersListType_push_(args=[vk.userId(), UsersListTypes.FRIENDS, False])
     #managers.shared().screensManager().showChatListViewController()
     managers.shared().screensManager().showWallViewController()
     #managers.shared().screensManager().showWallViewController_(args=[19649085]) # Andrei Vayavoda Second

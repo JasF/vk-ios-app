@@ -459,6 +459,10 @@
 		C3333D492091A9A4009EBB09 /* DetailVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D482091A9A4009EBB09 /* DetailVideoViewController.m */; };
 		C3333D4D2091BF0E009EBB09 /* Geo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D4C2091BF0E009EBB09 /* Geo.m */; };
 		C3333D512091BF1C009EBB09 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D502091BF1C009EBB09 /* Place.m */; };
+		C338CA4F20A1BF6600F30B77 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C338CA4D20A1BF6600F30B77 /* FacebookSDKStrings.bundle */; };
+		C338CA5020A1BF6600F30B77 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C338CA4E20A1BF6600F30B77 /* FBSDKCoreKit.framework */; };
+		C338CA5220A1C05300F30B77 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338CA5120A1C05300F30B77 /* Analytics.swift */; };
+		C338CA5520A1C66F00F30B77 /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338CA5420A1C66F00F30B77 /* Modules.swift */; };
 		C3437545208EFDEE004EF670 /* ImagesViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437544208EFDEE004EF670 /* ImagesViewerViewController.m */; };
 		C343754A208EFEA0004EF670 /* ImagesViewerViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437549208EFEA0004EF670 /* ImagesViewerViewModelImpl.m */; };
 		C343754F208F31A5004EF670 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C343754E208F31A5004EF670 /* NewsViewController.m */; };
@@ -1647,6 +1651,11 @@
 		C3372F912081F68E0080DA75 /* basedatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = basedatabase.py; sourceTree = "<group>"; };
 		C3372F922081FAEA0080DA75 /* messagesdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messagesdatabase.py; sourceTree = "<group>"; };
 		C3372F932081FB330080DA75 /* gensqlkeys.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = gensqlkeys.py; sourceTree = "<group>"; };
+		C338CA4920A1BD5B00F30B77 /* analytics.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = analytics.py; sourceTree = "<group>"; };
+		C338CA4D20A1BF6600F30B77 /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKStrings.bundle; sourceTree = "<group>"; };
+		C338CA4E20A1BF6600F30B77 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		C338CA5120A1C05300F30B77 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		C338CA5420A1C66F00F30B77 /* Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
 		C3437543208EFDEE004EF670 /* ImagesViewerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagesViewerViewController.h; sourceTree = "<group>"; };
 		C3437544208EFDEE004EF670 /* ImagesViewerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagesViewerViewController.m; sourceTree = "<group>"; };
 		C3437547208EFE17004EF670 /* ImagesViewerViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagesViewerViewModel.h; sourceTree = "<group>"; };
@@ -1966,6 +1975,7 @@
 				C32306E72080E64B00CEC487 /* MobileCoreServices.framework in Frameworks */,
 				C32306E52080E64400CEC487 /* libz.tbd in Frameworks */,
 				C32306E32080E63D00CEC487 /* libsqlite3.tbd in Frameworks */,
+				C338CA5020A1BF6600F30B77 /* FBSDKCoreKit.framework in Frameworks */,
 				C32305C62080E57500CEC487 /* libPython-x86_64.a in Frameworks */,
 				C32305CD2080E57500CEC487 /* CocoaLumberjack.framework in Frameworks */,
 				C32305C72080E57500CEC487 /* libPython-armv7s.a in Frameworks */,
@@ -2524,6 +2534,8 @@
 		C32303EB2080E57300CEC487 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C338CA4D20A1BF6600F30B77 /* FacebookSDKStrings.bundle */,
+				C338CA4E20A1BF6600F30B77 /* FBSDKCoreKit.framework */,
 				C32306F52080F1C600CEC487 /* Pods_vk.framework */,
 				C32306E82080E64F00CEC487 /* SafariServices.framework */,
 				C32306E62080E64B00CEC487 /* MobileCoreServices.framework */,
@@ -2731,6 +2743,8 @@
 				C32304482080E57400CEC487 /* ScreensManager */,
 				C323044C2080E57400CEC487 /* PythonBridge */,
 				C32304502080E57400CEC487 /* VKSdkManager */,
+				C338CA5120A1C05300F30B77 /* Analytics.swift */,
+				C338CA5420A1C66F00F30B77 /* Modules.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -3192,6 +3206,7 @@
 		C32304E02080E57400CEC487 /* app_packages */ = {
 			isa = PBXGroup;
 			children = (
+				C338CA4920A1BD5B00F30B77 /* analytics.py */,
 				C39C8BB4209F0DFC00CC23C3 /* screenshow.py */,
 				C39C8BB2209F02FE00CC23C3 /* settings.py */,
 				C39C8BA4209DD1FF00CC23C3 /* postproc */,
@@ -5368,6 +5383,7 @@
 				C3B0EF0A208B14E8008802BB /* loadBubble_0028_Layer-11@1x.png in Resources */,
 				C323065E2080E57500CEC487 /* core.cpython-34.pyc in Resources */,
 				C323060F2080E57500CEC487 /* Common.xcassets in Resources */,
+				C338CA4F20A1BF6600F30B77 /* FacebookSDKStrings.bundle in Resources */,
 				C323062F2080E57500CEC487 /* compat.py in Resources */,
 				C3B0EF3B208B14E8008802BB /* loadBubble_0018_Layer-21@3x.png in Resources */,
 				C32306342080E57500CEC487 /* __init__.py in Resources */,
@@ -5978,6 +5994,7 @@
 				C32308E02081AEB100CEC487 /* TyphoonStoryboardResolver.m in Sources */,
 				C32305FC2080E57500CEC487 /* Photo.m in Sources */,
 				C32308D22081AEB100CEC487 /* TyphoonIntrospectionUtils.m in Sources */,
+				C338CA5220A1C05300F30B77 /* Analytics.swift in Sources */,
 				C323090B2081AEB100CEC487 /* TyphoonNSURLTypeConverter.m in Sources */,
 				C32305E72080E57500CEC487 /* WallPostNode.m in Sources */,
 				C3987E4C2099CB480047A30F /* TypingPresenter.swift in Sources */,
@@ -5994,6 +6011,7 @@
 				C32308D12081AEB100CEC487 /* NSObject+PropertyInjection.m in Sources */,
 				C32309202081AEB100CEC487 /* TyphoonCircularDependencyTerminator.m in Sources */,
 				C32308CC2081AEB100CEC487 /* TyphoonPatcher.m in Sources */,
+				C338CA5520A1C66F00F30B77 /* Modules.swift in Sources */,
 				C32308DC2081AEB100CEC487 /* TyphoonComponentFactory+Storyboard.m in Sources */,
 				C323061B2080E57500CEC487 /* DialogServiceImpl.m in Sources */,
 				C3987E452099CB480047A30F /* DemoPhotoMessageModel.swift in Sources */,

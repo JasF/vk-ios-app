@@ -28,6 +28,10 @@
 - (id<PythonBridge>)pythonBridge {
     return [TyphoonDefinition withClass:[PythonBridgeImpl class] configuration:^(TyphoonDefinition *definition)
             {
+                [definition useInitializer:@selector(initWithExtension:modules:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:[self pythonBridgeExtension]];
+                    [initializer injectParameterWith:[self.applicationAssembly modules]];
+                }];
                 definition.scope = TyphoonScopeSingleton;
             }];
 }
@@ -45,9 +49,6 @@
 - (id<PythonManagerExtension>)pythonBridgeExtension {
     return [TyphoonDefinition withClass:[PythonBridgeExtensionImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithPythonBridge:) parameters:^(TyphoonMethod *initializer) {
-                    [initializer injectParameterWith:[self pythonBridge]];
-                }];
                 definition.scope = TyphoonScopeSingleton;
             }];
 }

@@ -179,4 +179,10 @@
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyMWPhotoBrowserViewModel)];
 }
 
+- (id<PyAnalytics>)analyticsHandlerWithDelegate:(id)delegate {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyAnalytics)
+                                                delegate:delegate
+                                              parameters:nil];
+}
+
 @end

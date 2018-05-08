@@ -1,7 +1,7 @@
 from objc import managers
 from services.wallservice import WallService
 from objcbridge import BridgeBase, ObjCBridgeProtocol
-import vk, json
+import vk, json, analytics
 
 class PyPhotoAlbumsViewModel():
     def __init__(self, photoAlbumsService, ownerId):
@@ -17,4 +17,5 @@ class PyPhotoAlbumsViewModel():
         managers.shared().screensManager().showMenu()
 
     def tappedOnAlbumWithId(self, albumId):
+        analytics.log('PhotoAlbum_segue')
         managers.shared().screensManager().showGalleryViewControllerWithOwnerId_albumId_(args=[self.ownerId, albumId]);

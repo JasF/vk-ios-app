@@ -112,7 +112,11 @@ NSArray *getFactors(NSArray *sizes, CGFloat wsum) {
                                           children:@[node]];
         node.style.flexBasis = ASDimensionMake(ASDimensionUnitFraction, 1);
         node.style.flexShrink = 1;
-        ASRatioLayoutSpec *ratio = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:photo.height/photo.width
+        CGFloat aspectRatio = 1.f;
+        if (photo.height > 0 && photo.width > 0) {
+            aspectRatio = photo.height/photo.width;
+        }
+        ASRatioLayoutSpec *ratio = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:aspectRatio
                                                                          child:contentSpec];
         return ratio;
     };

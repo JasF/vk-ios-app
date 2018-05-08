@@ -12,12 +12,16 @@
 
 #import <Foundation/Foundation.h>
 #import "TyphoonAssembly.h"
+#import "VKApplicationAssembly.h"
 
 @protocol ScreensManager;
 @protocol VKSdkManager;
 @protocol PythonBridge;
 @protocol PythonManager;
+@class VKApplicationAssembly;
+
 @interface VKCoreComponents : TyphoonAssembly
+@property VKApplicationAssembly *applicationAssembly;
 - (id<VKSdkManager>)vkManager;
 - (id<PythonBridge>)pythonBridge;
 - (id<PythonManager>)pythonManager;

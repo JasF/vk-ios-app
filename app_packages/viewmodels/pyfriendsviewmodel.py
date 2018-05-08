@@ -1,6 +1,7 @@
 from objc import managers
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 from enum import IntEnum
+import analytics
 
 class UsersListTypes(IntEnum):
     FRIENDS = 1
@@ -25,6 +26,7 @@ class PyFriendsViewModel(ObjCBridgeProtocol):
         return self.friendsService.getFriends(self.userId, offset)
 
     def tappedOnUserWithId(self, userId):
+        analytics.log('Friends_segue')
         managers.shared().screensManager().showWallViewController_push_(args=[userId, True])
     
     # ObjCBridgeProtocol

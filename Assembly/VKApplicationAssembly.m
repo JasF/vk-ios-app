@@ -66,4 +66,22 @@
             }];
 }
 
+- (id<Analytics>)analytics {
+    return [TyphoonDefinition withClass:[AnalyticsImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                }];
+            }];
+}
+
+- (id<Analytics>)modules {
+    return [TyphoonDefinition withClass:[ModulesImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self];
+                }];
+            }];
+}
+
 @end

@@ -22,7 +22,7 @@
 - (void)showWallViewController:(NSNumber *)userId push:(NSNumber *)push;
 - (void)showWallPostViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId;
 - (void)showChatListViewController;
-- (void)showFriendsViewController:(NSNumber *)userId usersListType:(NSNumber *)usersListType;
+- (void)showFriendsViewController:(NSNumber *)userId usersListType:(NSNumber *)usersListType push:(NSNumber *)push;
 - (void)showMenu;
 - (void)showDialogViewController:(NSNumber *)userId;
 - (void)showPhotoAlbumsViewController:(NSNumber *)ownerId push:(NSNumber *)push;

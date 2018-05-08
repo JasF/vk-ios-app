@@ -10,7 +10,6 @@
 #import "Python.h"
 
 @interface PythonBridgeExtensionImpl () <PythonManagerExtension, PythonBridgeExtension>
-@property (nonatomic) id<PythonBridge> pythonBridge;
 @property (strong, nonatomic) dispatch_queue_t queue;
 @property (strong, nonatomic) NSMutableArray *sendArray;
 @property (strong, nonatomic) dispatch_group_t group;
@@ -117,10 +116,8 @@ PyInit_pythonbridgeextension(void)
     PyObject* _handleincomingdataFunction;
 }
 
-- (id)initWithPythonBridge:(id<PythonBridge>)pythonBridge {
+- (id)init {
     if (self = [super init]) {
-        _pythonBridge = pythonBridge;
-        _pythonBridge.bridgeExtension = self;
         g_extension = self;
         _queue = dispatch_queue_create("python.bridge.queue.serial", DISPATCH_QUEUE_SERIAL);
         _sendArray = [NSMutableArray new];

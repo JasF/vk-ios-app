@@ -8,4 +8,5 @@
 
 @protocol PythonBridgeExtension <NSObject>
 - (void)sendToPython:(NSDictionary *)data;
+- (void)setPythonBridge:(id)pythonBridge;
 @end

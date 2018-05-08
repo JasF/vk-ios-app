@@ -2,6 +2,7 @@ from objc import managers
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 from services.wallservice import WallService
 import vk, json
+import analytics
 
 class PyGroupsViewModel(ObjCBridgeProtocol):
     def __init__(self, groupsService, userId):
@@ -25,6 +26,7 @@ class PyGroupsViewModel(ObjCBridgeProtocol):
     
     def tappedOnGroupWithId(self, groupId):
         print('tappedOnGroupWithId: ' + str(groupId))
+        analytics.log('Groups_segue')
         managers.shared().screensManager().showWallViewController_push_(args=[groupId, True])
     
     # ObjCBridgeProtocol

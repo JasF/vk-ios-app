@@ -1,7 +1,7 @@
 from objc import managers
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 from services.wallservice import WallService
-import vk, json
+import vk, json, analytics
 from .pyfriendsviewmodel import UsersListTypes
 from pymanagers.pydialogsmanager import PyDialogsManager
 from caches.usersdatabase import UsersDatabase
@@ -49,33 +49,42 @@ class PyWallViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().showMenu()
 
     def friendsTapped(self):
-        managers.shared().screensManager().showFriendsViewController_usersListType_(args=[self.userId, UsersListTypes.FRIENDS])
+        analytics.log('Wall_friends')
+        managers.shared().screensManager().showFriendsViewController_usersListType_push_(args=[self.userId, UsersListTypes.FRIENDS, True])
 
     def commonTapped(self):
         pass
 
     def subscribtionsTapped(self):
-        managers.shared().screensManager().showFriendsViewController_usersListType_(args=[self.userId, UsersListTypes.SUBSCRIPTIONS])
+        analytics.log('Wall_subscribtions')
+        managers.shared().screensManager().showFriendsViewController_usersListType_push_(args=[self.userId, UsersListTypes.SUBSCRIPTIONS, True])
     
     def followersTapped(self):
-        managers.shared().screensManager().showFriendsViewController_usersListType_(args=[self.userId, UsersListTypes.FOLLOWERS])
+        analytics.log('Wall_followers')
+        managers.shared().screensManager().showFriendsViewController_usersListType_push_(args=[self.userId, UsersListTypes.FOLLOWERS, True])
 
     def photosTapped(self):
+        analytics.log('Wall_photos')
         managers.shared().screensManager().showPhotoAlbumsViewController_push_(args=[self.userId, True])
 
     def videosTapped(self):
+        analytics.log('Wall_videos')
         managers.shared().screensManager().showVideosViewController_push_(args=[self.userId, True])
     
     def groupsTapped(self):
+        analytics.log('Wall_groups')
         managers.shared().screensManager().showGroupsViewController_push_(args=[self.userId, True])
 
     def messageButtonTapped(self):
+        analytics.log('Wall_message_button')
         managers.shared().screensManager().showDialogViewController_(args=[self.userId])
     
     def addPostTapped(self):
+        analytics.log('Wall_add_post')
         managers.shared().screensManager().presentAddPostViewController_(args=[self.userId])
     
     def friendButtonTapped(self, friend_status):
+        analytics.log('Wall_friend_Button')
         response = {}
         try:
             api = vk.api()

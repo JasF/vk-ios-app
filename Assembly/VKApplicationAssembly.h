@@ -18,7 +18,10 @@
 @class VKThemeAssembly;
 @class ScreensAssembly;
 @class ServicesAssembly;
+@class VKCoreComponents;
 @protocol NotificationsManager;
+@protocol Analytics;
+@protocol Modules;
 
 
 /**
@@ -34,4 +37,6 @@
 @property(nonatomic, strong, readonly) ServicesAssembly *servicesAssembly;
 - (AppDelegate *)appDelegate;
 - (id<NotificationsManager>)notificationsManager;
+- (id<Analytics>)analytics;
+- (id<Modules>)modules;
 @end

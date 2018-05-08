@@ -12,5 +12,5 @@
 #import "PythonBridge.h"
 
 @interface PythonBridgeExtensionImpl : NSObject <PythonManagerExtension, PythonBridgeExtension>
-- (id)initWithPythonBridge:(id<PythonBridge>)pythonBridge;
+@property (nonatomic) id<PythonBridge> pythonBridge;
 @end

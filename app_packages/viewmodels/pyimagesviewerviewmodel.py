@@ -3,6 +3,7 @@ from caches.postsdatabase import PostsDatabase
 import json
 import threading
 from objcbridge import BridgeBase, ObjCBridgeProtocol
+import analytics
 
 g_count = 40
 
@@ -35,6 +36,7 @@ class PyImagesViewerViewModel(ObjCBridgeProtocol):
         return photosData
 
     def navigateWithPhotoId(self, photoId):
+        analytics.log('ImageViewer_segue')
         if isinstance(self.postId, int):
             pass
         managers.shared().screensManager().showDetailPhotoViewControllerWithOwnerId_photoId_(args=[self.ownerId, photoId])

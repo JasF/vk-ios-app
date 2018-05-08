@@ -7,6 +7,11 @@
 //
 
 #import "PythonBridge.h"
+#import "PythonBridgeExtension.h"
+
+@protocol Modules;
 
 @interface PythonBridgeImpl : NSObject <PythonBridge>
+- (id)initWithExtension:(id<PythonBridgeExtension>)extension
+                modules:(id<Modules>)modules;
 @end

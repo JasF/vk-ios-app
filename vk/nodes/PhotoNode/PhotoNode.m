@@ -39,7 +39,11 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    ASRatioLayoutSpec *ratioSpec = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:(_asGallery) ? 1.f : _photo.height/_photo.width child:_imageNode];
+    CGFloat aspectRatio = 1.f;
+    if (_photo.height > 0 && _photo.width > 0) {
+        aspectRatio = _photo.height/_photo.width;
+    }
+    ASRatioLayoutSpec *ratioSpec = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:(_asGallery) ? 1.f : aspectRatio child:_imageNode];
     ratioSpec.style.flexShrink = 1.0f;
     ratioSpec.style.flexGrow = 1.0f;
     ASLayoutSpec *controlsStack = [self controlsStack];

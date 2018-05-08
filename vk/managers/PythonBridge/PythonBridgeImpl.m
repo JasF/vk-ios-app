@@ -9,6 +9,7 @@
 #import "PythonBridgeImpl.h"
 #import "PythonBridgeHandler.h"
 #import <objc/runtime.h>
+#import "vk-Swift.h"
 #import "DeallocSubscriber.h"
 
 NSString * const PXProtocolMethodListMethodNameKey = @"methodName";
@@ -17,12 +18,14 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
 @interface PythonBridgeImpl () <PythonBridge>
 @property (strong, nonatomic) NSMutableDictionary *handlers;
 @property (strong, nonatomic) NSMutableDictionary *resultBlocks;
+@property (strong, nonatomic) id<Modules> modules;
 @end
 
 @implementation PythonBridgeImpl {
     BOOL _sessionStartedSended;
     NSInteger _currentRequestId;
     NSInteger _instanceId;
+    BOOL _initialized;
 }
 
 @synthesize bridgeExtension = _bridgeExtension;
@@ -36,10 +39,16 @@ NSString * const PXProtocolMethodListArgumentTypesKey = @"types";
     return shared;
 }
 
-- (id)init {
+- (id)initWithExtension:(id<PythonBridgeExtension>)extension
+                modules:(id<Modules>)modules {
+    NSCParameterAssert(extension);
+    NSCParameterAssert(modules);
     if (self = [super init]) {
+        [extension setPythonBridge:self];
+        _bridgeExtension = extension;
         _resultBlocks = [NSMutableDictionary new];
         _handlers = [NSMutableDictionary new];
+        _modules = modules;
     }
     return self;
 }
@@ -223,7 +232,10 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
 }
 
 - (NSDictionary *)incomingDictionary:(NSDictionary *)object {
-    //NSLog(@"handleIncomingPostData: %@", object);
+    if (!_initialized) {
+        _initialized = YES;
+        [_modules performInitializationOfSubmodulesAfterPythonLoaded];
+    }
     NSString *value = [self loggingStringWithDictionary:object];
     if (value) {
         NSLog(@"%@", value);

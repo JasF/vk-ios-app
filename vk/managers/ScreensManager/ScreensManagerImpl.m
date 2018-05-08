@@ -114,7 +114,7 @@
     });
 }
 
-- (void)showFriendsViewController:(NSNumber *)userId usersListType:(NSNumber *)usersListType {
+- (void)showFriendsViewController:(NSNumber *)userId usersListType:(NSNumber *)usersListType push:(NSNumber *)push {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
@@ -122,7 +122,8 @@
             return;
         }
         FriendsViewController *viewController =(FriendsViewController *)[_screensAssembly friendsViewController:userId usersListType:usersListType];
-        [self pushViewController:viewController];
+        viewController.pushed = push.boolValue;
+        [self pushViewController:viewController clean:!push.boolValue];
     });
 }
 

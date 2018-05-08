@@ -1,7 +1,7 @@
 from objc import managers
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 from pymanagers.pydialogsmanager import PyDialogsManager
-import settings
+import settings, analytics
 
 class PySettingsViewModel(ObjCBridgeProtocol):
     def getSettings(self):
@@ -17,6 +17,7 @@ class PySettingsViewModel(ObjCBridgeProtocol):
         dialogsManager = PyDialogsManager()
         index, cancelled = dialogsManager.showRowsDialogWithTitles(['settings_exit'])
         if index == 0 and not cancelled:
+            analytics.log('Settings_do_exit')
             settings.set('access_token', '')
             settings.set('user_id', 0)
             settings.write()

@@ -1,7 +1,7 @@
 from objc import managers
 from services.wallservice import WallService
 from objcbridge import BridgeBase, ObjCBridgeProtocol
-import vk, json
+import vk, json, analytics
 from caches.postsdatabase import PostsDatabase
 from caches.videosdatabase import VideosDatabase
 import threading
@@ -16,6 +16,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         self.detailVideoService = detailVideoService
 
     def likeObjectWithTypeownerIditemIdaccessKeylike(self, type, ownerId, itemId, accessKey, like):
+        analytics.log('Posts_like')
         try:
             if type == 'wall':
                 type = 'post'
@@ -85,6 +86,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         return response
     
     def repostObjectWithIdentifier(self, identifier):
+        analytics.log('Posts_repost')
         dialogsManager = PyDialogsManager()
         index, cancelled = dialogsManager.showRowsDialogWithTitles(['repost_for_friends'])
         if cancelled:
@@ -97,9 +99,11 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         return {}
     
     def titleNodeTapped(self, ownerId):
+        analytics.log('Posts_title_node_tapped')
         managers.shared().screensManager().showWallViewController_push_(args=[ownerId, True])
 
     def tappedOnCellWithUserId(self, userId):
+        analytics.log('Posts_tapped_on_cell_with_userid')
         managers.shared().screensManager().showWallViewController_push_(args=[userId, True])
 
     def preloadCommentsWithTypeownerIdpostIdcountloaded(self, type, ownerId, postId, count, loaded):
@@ -122,6 +126,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         return comments
 
     def sendCommentWithTypeownerIdpostIdtext(self, type, ownerId, postId, text):
+        analytics.log('Posts_send_comment')
         response = {}
         try:
             if type == 'wall':
@@ -150,12 +155,15 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         return response
     
     def tappedOnPostWithOwnerIdpostId(self, ownerId, postId):
+        analytics.log('Posts_tapped_on_post')
         managers.shared().screensManager().showWallPostViewControllerWithOwnerId_postId_(args=[ownerId, postId])
 
     def tappedOnPhotoWithIndexwithPostIdownerId(self, photoIndex, postId, ownerId):
+        analytics.log('Posts_tapped_on_photo_with_index')
         managers.shared().screensManager().showImagesViewerViewControllerWithOwnerId_postId_photoIndex_(args=[ownerId, postId, photoIndex])
     
     def tappedOnVideoWithIdownerIdrepresentation(self, videoId, ownerId, representation):
+        analytics.log('Posts_tapped_on_video')
         #print('representation: ' + json.dumps(representation, indent=4))
         try:
             cache = VideosDatabase()
