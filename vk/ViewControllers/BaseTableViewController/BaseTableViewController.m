@@ -51,6 +51,7 @@ static const NSInteger kBatchSize = 20;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _tableNode.leadingScreensForBatching = 2;
+    _tableNode.view.separatorColor = [UIColor clearColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -100,7 +101,7 @@ static const NSInteger kBatchSize = 20;
                 }
             }
             else {
-                [self.tableNode performBatchAnimated:YES updates:^{
+                [self.tableNode performBatchAnimated:NO updates:^{
                     @strongify(self);
                     [self.data addObjectsFromArray:objects];
                     [self performBatchAnimated:YES];

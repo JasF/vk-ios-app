@@ -18,6 +18,7 @@ import WebKit
         super.init();
         self.setViewBlock { [weak self] () -> UIView in
             self?.webView = WKWebView.init()
+            self?.webView?.backgroundColor = UIColor.black
             if let urlString = video.player {
                 (self?.webView)!.backgroundColor = UIColor.black
                 let url = URL.init(string: urlString)!

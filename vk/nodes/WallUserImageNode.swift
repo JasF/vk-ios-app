@@ -85,7 +85,7 @@ class WallUserImageUsernameNode : ASDisplayNode {
             let verSpec = ASStackLayoutSpec.init(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .start, children: array)
             return verSpec
         }
-        let imagePlace = ASRatioLayoutSpec.init(ratio: 0.5, child: imageNode)
+        let imagePlace = ASRatioLayoutSpec.init(ratio: 0.65, child: imageNode)
         usernameNode?.style.flexGrow = 1.0
         let horSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .center, alignItems: .end, children: [usernameNode!])
         let spec = ASOverlayLayoutSpec.init(child: imagePlace, overlay: horSpec)
