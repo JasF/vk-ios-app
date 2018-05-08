@@ -18,5 +18,5 @@
 #import <MWPhotoBrowser/MWPhotoBrowser.h>
 #import "PostBaseNode.h"
 #import "PostTextNode.h"
-
+#import "Cover.h"
  

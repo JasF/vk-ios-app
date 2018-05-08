@@ -40,13 +40,29 @@ class WallUserImageUsernameNode : ASDisplayNode {
 
 @objcMembers class WallUserImageNode : ASCellNode {
     let imageNode : ASNetworkImageNode = ASNetworkImageNode()
+    var coverNode : ASNetworkImageNode?
+    var pageNode : ImageAndLabelsNode?
+    var coverRatio : CGFloat = 1.0
     var usernameNode: WallUserImageUsernameNode?
     init(_ user: User?) {
-        imageNode.setURL(URL.init(string: user!.bigAvatarURLString()), resetToDefault: false)
-        usernameNode = WallUserImageUsernameNode.init(user)
         super.init()
-        self.addSubnode(imageNode)
-        self.addSubnode(usernameNode!)
+        if user?.type != nil && (user?.type == "group" || user?.type == "page") {
+            let cover = user?.getCover()
+            if let url = cover?.url {
+                coverNode = ASNetworkImageNode.init()
+                coverRatio = CGFloat((cover?.height)!) / CGFloat((cover?.width)!)
+                coverNode?.setURL(URL.init(string: url as String), resetToDefault: false)
+                addSubnode(coverNode!)
+            }
+            pageNode = ImageAndLabelsNode.init(user!.bigAvatarURLString(), topLine: user!.nameString(), bottomLine: user!.status)
+            addSubnode(pageNode!)
+        }
+        else {
+            usernameNode = WallUserImageUsernameNode.init(user)
+            imageNode.setURL(URL.init(string: user!.bigAvatarURLString()), resetToDefault: false)
+            self.addSubnode(imageNode)
+            self.addSubnode(usernameNode!)
+        }
     }
     
     override func didLoad() {
@@ -55,6 +71,35 @@ class WallUserImageUsernameNode : ASDisplayNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        if let pageNode = self.pageNode {
+            var array = [ASLayoutElement]()
+            if let node = coverNode {
+                let coverPlace = ASRatioLayoutSpec.init(ratio: coverRatio, child: node)
+                array.append(coverPlace)
+            }
+            array.append(pageNode)
+            let verSpec = ASStackLayoutSpec.init(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .start, children: array)
+            return verSpec
+        }
+        /*
+        if let node = coverNode {
+            let coverPlace = ASRatioLayoutSpec.init(ratio: coverRatio, child: node)
+            let imagePlace = ASRatioLayoutSpec.init(ratio: 1, child: imageNode)
+            
+            imagePlace.style.spacingBefore = 8
+            imagePlace.style.spacingAfter = 8
+            imagePlace.style.width = ASDimensionMake(.fraction, 0.2)
+            let spacing = ASLayoutSpec()
+            spacing.style.flexGrow = 1
+            let horSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .start, alignItems: .start, children: [imagePlace, spacing])
+
+            horSpec.style.height = ASDimensionMake(80.0)
+            imagePlace.style.spacingBefore = 8
+            imagePlace.style.spacingAfter = 8
+            let verSpec = ASStackLayoutSpec.init(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .start, children: [coverPlace, pageNode])
+            return verSpec
+        }
+         */
         let imagePlace = ASRatioLayoutSpec.init(ratio: 0.5, child: imageNode)
         usernameNode?.style.flexGrow = 1.0
         let horSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .center, alignItems: .end, children: [usernameNode!])

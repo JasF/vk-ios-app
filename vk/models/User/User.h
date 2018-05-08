@@ -10,6 +10,8 @@
 
 #import <EasyMapping/EasyMapping.h>
 
+@class Covers, Cover;
+
 @interface UserId : NSObject <EKMappingProtocol>
 @property NSInteger user_id;
 + (instancetype)userId:(NSInteger)userId;
@@ -90,6 +92,7 @@
 @property NSInteger is_closed;
 @property NSInteger is_member;
 @property NSString *type;
+@property Covers *cover;
 
 @property NSInteger friends_count;
 @property NSInteger photos_count;
@@ -100,6 +103,7 @@
 - (NSString *)nameString;
 - (NSString *)avatarURLString;
 - (NSString *)bigAvatarURLString;
+- (Cover *)getCover;
 
 @property BOOL currentUser;
 @end

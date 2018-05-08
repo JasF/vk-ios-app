@@ -538,6 +538,10 @@
 		C39C8BB6209F109500CC23C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C39C8BB5209F109500CC23C3 /* LaunchScreen.storyboard */; };
 		C39C8BE1209F304800CC23C3 /* VKSdkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39C8BDE209F303E00CC23C3 /* VKSdkFramework.framework */; };
 		C39C8BE2209F304800CC23C3 /* VKSdkFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C39C8BDE209F303E00CC23C3 /* VKSdkFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C39C8BEE20A1766B00CC23C3 /* Covers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BED20A1766B00CC23C3 /* Covers.swift */; };
+		C39C8BF020A178D800CC23C3 /* Counters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BEF20A178D800CC23C3 /* Counters.swift */; };
+		C39C8BF320A1813E00CC23C3 /* Cover.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BF220A1813E00CC23C3 /* Cover.m */; };
+		C39C8BF520A1881100CC23C3 /* ImageAndLabelsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BF420A1881100CC23C3 /* ImageAndLabelsNode.swift */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1769,6 +1773,11 @@
 		C39C8BB4209F0DFC00CC23C3 /* screenshow.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = screenshow.py; sourceTree = "<group>"; };
 		C39C8BB5209F109500CC23C3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C39C8BD2209F303E00CC23C3 /* VK-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "VK-ios-sdk.xcodeproj"; path = "vk-ios-sdk/VK-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
+		C39C8BED20A1766B00CC23C3 /* Covers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Covers.swift; sourceTree = "<group>"; };
+		C39C8BEF20A178D800CC23C3 /* Counters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counters.swift; sourceTree = "<group>"; };
+		C39C8BF120A1813E00CC23C3 /* Cover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cover.h; sourceTree = "<group>"; };
+		C39C8BF220A1813E00CC23C3 /* Cover.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cover.m; sourceTree = "<group>"; };
+		C39C8BF420A1881100CC23C3 /* ImageAndLabelsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAndLabelsNode.swift; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -2670,6 +2679,7 @@
 				C3987DFF2098BD770047A30F /* CreatePostNode.swift */,
 				C39C8B9A209D924000CC23C3 /* VideoPlayerNode.swift */,
 				C39C8B9C209D92A400CC23C3 /* ExtendedVideoNode.swift */,
+				C39C8BF420A1881100CC23C3 /* ImageAndLabelsNode.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -2783,6 +2793,10 @@
 				C323047C2080E57400CEC487 /* PostType */,
 				C350782A2094AC9A000C8FB3 /* LastSeen.swift */,
 				C3987DDB209756FE0047A30F /* CommentsPreloadModel.swift */,
+				C39C8BED20A1766B00CC23C3 /* Covers.swift */,
+				C39C8BEF20A178D800CC23C3 /* Counters.swift */,
+				C39C8BF120A1813E00CC23C3 /* Cover.h */,
+				C39C8BF220A1813E00CC23C3 /* Cover.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -5780,6 +5794,7 @@
 				C32309342081AEB100CEC487 /* UIScreen+NanoFrame.m in Sources */,
 				C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */,
 				C32305BF2080E57500CEC487 /* EXTScope.m in Sources */,
+				C39C8BF520A1881100CC23C3 /* ImageAndLabelsNode.swift in Sources */,
 				C3226291209081060054789B /* BookmarksViewController.m in Sources */,
 				C3987E4A2099CB480047A30F /* TypingModel.swift in Sources */,
 				C32308C02081AEB100CEC487 /* TyphoonOptionMatcher.m in Sources */,
@@ -5819,6 +5834,7 @@
 				C32305BD2080E57500CEC487 /* EXTSelectorChecking.m in Sources */,
 				C323060C2080E57500CEC487 /* BaseCollectionViewController.m in Sources */,
 				C3A82A342093342400C41CA8 /* PostsViewController.m in Sources */,
+				C39C8BEE20A1766B00CC23C3 /* Covers.swift in Sources */,
 				C32305C12080E57500CEC487 /* EXTADT.m in Sources */,
 				197D8B0F1D64BA50004630AE /* AppDelegate.swift in Sources */,
 				C32305E92080E57500CEC487 /* CommentsNode.m in Sources */,
@@ -5935,6 +5951,7 @@
 				C3FF542C2095AF0C007275D4 /* VideoPlayerViewController.swift in Sources */,
 				C398BA742094743A0071FA04 /* WallUserMessageNode.swift in Sources */,
 				C32309352081AEB100CEC487 /* UIImage+NanoFrame.m in Sources */,
+				C39C8BF020A178D800CC23C3 /* Counters.swift in Sources */,
 				C32308DE2081AEB100CEC487 /* UIView+TyphoonDefinitionKey.m in Sources */,
 				C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */,
 				C323091C2081AEB100CEC487 /* TyphoonMemoryManagementUtils.m in Sources */,
@@ -6024,6 +6041,7 @@
 				C32309192081AEB100CEC487 /* TyphoonParentReferenceHydratingPostProcessor.m in Sources */,
 				C32306082080E57500CEC487 /* DialogViewController.swift in Sources */,
 				C32306072080E57500CEC487 /* LeftViewController.m in Sources */,
+				C39C8BF320A1813E00CC23C3 /* Cover.m in Sources */,
 				C3D4873F20919BA1007EC440 /* AuthorizationViewModelImpl.m in Sources */,
 				C39C8BAD209DFCA000CC23C3 /* PythonBridgeExtensionImpl.m in Sources */,
 				C32308E42081AEB100CEC487 /* NSLayoutConstraint+TyphoonOutletTransfer.m in Sources */,

@@ -1,6 +1,7 @@
 import vk
 import json
 from caches.usersdatabase import UsersDatabase
+import traceback
 
 class Users():
     def __init__(self):
@@ -40,6 +41,7 @@ class Users():
             scriptCode = scriptCode.replace("{0}", str(id))
             scriptCode = scriptCode.replace("{1}", fields)
             response = self.api.execute(code=scriptCode)
+            print('getBigFieldsById response: ' + str(response))
             freshUsersData = response.get('user_info')
             if len(freshUsersData) > 0:
                 def s_set(k):
@@ -87,12 +89,16 @@ class Users():
         if len(groupIds):
             self.initializeSession()
             idsString = ', '.join(str(e) for e in groupIds)
-            freshGroupsData = self.api.groups.getById(group_ids=idsString)
+            freshGroupsData = self.api.groups.getById(group_ids=idsString,fields='cover,activity,status,counters')
             for d in freshGroupsData:
                 d['id'] = -d['id']
+            print('groups response:  ' + json.dumps(freshGroupsData, indent=4))
             users.update(freshGroupsData)
             usersData.extend(freshGroupsData)
-        
+
+
+        print(traceback.format_exc())
+
         users.close()
         return usersData
 
