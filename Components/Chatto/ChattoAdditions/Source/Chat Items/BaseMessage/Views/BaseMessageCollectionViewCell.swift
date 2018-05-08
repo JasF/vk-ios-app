@@ -27,6 +27,7 @@ import Chatto
 import AsyncDisplayKit
 
 let kBubblesSpacing: CGFloat = 4
+let kGreatestBubbleWidthFraction: CGFloat = 0.72
 
 public protocol BaseMessageCollectionViewCellStyleProtocol {
     func avatarSize(viewModel: MessageViewModelProtocol) -> CGSize // .zero => no avatar
@@ -177,18 +178,27 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
     }()
     
     override open func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let layout = self.calculateLayout(availableWidth: constrainedSize.max.width)
-       // self.bubbleView.style.layoutPosition = layout.bubbleViewFrame.origin;
-       // self.bubbleView.style.preferredSize = layout.bubbleViewFrame.size;
-        
-       // simonVideoNode.style.layoutPosition = CGPointMake(0.0, maxConstrainedSize.height - (maxConstrainedSize.height / 3.0));
-       // simonVideoNode.style.preferredSize = CGSizeMake(maxConstrainedSize.width/2, maxConstrainedSize.height / 3.0);
-
-        //return ASAbsoluteLayoutSpec.init(children: [self.bubbleView])
-        let inset = UIEdgeInsetsMake(0, layout.bubbleViewFrame.origin.x,
-                                     kBubblesSpacing, (constrainedSize.max.width - (layout.bubbleViewFrame.origin.x + layout.bubbleViewFrame.size.width)))
-        let spec = ASInsetLayoutSpec.init(insets: inset, child: self.bubbleView)
-        return spec
+        //let layout = self.calculateLayout(availableWidth: constrainedSize.max.width)
+        self.bubbleView.style.flexShrink = 1
+        var array = [ASLayoutElement]()
+        let insetSpec = ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(0, 0, kBubblesSpacing, 0), child: self.bubbleView)
+        insetSpec.style.flexShrink = 1
+        let spacing = ASLayoutSpec()
+        spacing.style.flexGrow = 1
+        if self.messageViewModel.isIncoming {
+            array.append(insetSpec)
+            array.append(spacing)
+        }
+        else {
+            array.append(spacing)
+            array.append(insetSpec)
+            if self.messageViewModel.isShowingFailedIcon {
+                array.append(self.failedButton)
+            }
+        }
+        self.bubbleView.style.maxSize = CGSize(width: constrainedSize.max.width*kGreatestBubbleWidthFraction, height: constrainedSize.max.height)
+        let horSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .start, alignItems: .center, children: array)
+        return ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, 6, 0, 6), child: horSpec)
     }
     
     private func commonInit() {
@@ -199,11 +209,12 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         //NSLog("!")
         //self.bubbleView.addGestureRecognizer(self.tapGestureRecognizer)
         //self.bubbleView.addGestureRecognizer(self.longPressGestureRecognizer)
-        self.contentView.addSubview(self.avatarView)
+        //self.contentView.addSubview(self.avatarView)
         //self.contentView.addSubview(self.bubbleView)
         self.addSubnode(self.bubbleView)
+        self.addSubnode(self.failedButton)
         //self.contentView.addSubview(self.failedButton)
-        self.contentView.addSubview(self.selectionIndicator)
+        //self.contentView.addSubview(self.selectionIndicator)
         self.contentView.isExclusiveTouch = true
         self.isExclusiveTouch = true
 
@@ -226,13 +237,15 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         self.removeAccessoryView()
     }
 
-    /*
-    public private(set) lazy var failedButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.addTarget(self, action: #selector(BaseMessageCollectionViewCell.failedButtonTapped), for: .touchUpInside)
+    public private(set) lazy var failedButton: ASButtonNode = {
+        let button = ASButtonNode()
+        button.addTarget(self, action: #selector(BaseMessageCollectionViewCell.failedButtonTapped), forControlEvents: .touchUpInside)
+        button.style.spacingBefore = 12
+        button.style.spacingAfter = 12
+        //button.style.width = ASDimensionMake(40)
+        //button.style.height = ASDimensionMake(40)
         return button
     }()
-    */
 
     // MARK: View model binding
 
@@ -242,11 +255,11 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         guard let viewModel = self.messageViewModel, let style = self.baseStyle else { return }
         self.bubbleView.isUserInteractionEnabled = viewModel.isUserInteractionEnabled
         if self.shouldShowFailedIcon {
-            //self.failedButton.setImage(self.baseStyle.failedIcon, for: .normal)
-            //self.failedButton.setImage(self.baseStyle.failedIconHighlighted, for: .highlighted)
-            //self.failedButton.alpha = 1
+            self.failedButton.setImage(self.baseStyle.failedIcon, for: .normal)
+            self.failedButton.setImage(self.baseStyle.failedIconHighlighted, for: .highlighted)
+            self.failedButton.alpha = 1
         } else {
-            //self.failedButton.alpha = 0
+            self.failedButton.alpha = 0
         }
         if self.messageViewModel.readState == 0 {
             self.backgroundColor = style.unreadBackgroundColor

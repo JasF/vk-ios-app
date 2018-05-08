@@ -35,7 +35,7 @@ public protocol ViewModelBuilderProtocol {
 
 public protocol BaseMessageInteractionHandlerProtocol {
     associatedtype ViewModelT
-    func userDidTapOnFailIcon(viewModel: ViewModelT, failIconView: UIView)
+    func userDidTapOnFailIcon(viewModel: ViewModelT, failIconView: ASButtonNode)
     func userDidTapOnAvatar(viewModel: ViewModelT)
     func userDidTapOnBubble(viewModel: ViewModelT)
     func userDidBeginLongPressOnBubble(viewModel: ViewModelT)
@@ -127,7 +127,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
             }
             cell.onFailedButtonTapped = { [weak self] (cell) in
                 guard let sSelf = self else { return }
-                //sSelf.onCellFailedButtonTapped(cell.failedButton)
+                sSelf.onCellFailedButtonTapped(cell.failedButton)
             }
             cell.onSelection = { [weak self] (cell) in
                 guard let sSelf = self else { return }
@@ -204,7 +204,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
         self.interactionHandler?.userDidTapOnAvatar(viewModel: self.messageViewModel)
     }
 
-    open func onCellFailedButtonTapped(_ failedButtonView: UIView) {
+    open func onCellFailedButtonTapped(_ failedButtonView: ASButtonNode) {
         self.interactionHandler?.userDidTapOnFailIcon(viewModel: self.messageViewModel, failIconView: failedButtonView)
     }
 

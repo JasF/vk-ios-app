@@ -63,6 +63,10 @@ class DemoChatDataSource: ChatDataSourceProtocol {
 
     lazy var messageSender: DemoChatMessageSender = {
         let sender = DemoChatMessageSender()
+        sender.onSendMessage = { [weak self] (message) in
+            guard let sSelf = self else { return }
+            sSelf.delegate?.repeatSendMessage(message)
+        }
         sender.onMessageChanged = { [weak self] (message) in
             guard let sSelf = self else { return }
             sSelf.delegate?.chatDataSourceDidUpdate(sSelf)

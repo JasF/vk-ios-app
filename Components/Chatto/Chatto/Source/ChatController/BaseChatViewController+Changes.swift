@@ -26,7 +26,6 @@ import Foundation
 import AsyncDisplayKit
 
 extension BaseChatViewController: ChatDataSourceDelegateProtocol {
-
     public func chatDataSourceDidUpdate(_ chatDataSource: ChatDataSourceProtocol, updateType: UpdateType) {
         self.enqueueModelUpdate(updateType: updateType)
     }

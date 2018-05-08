@@ -134,11 +134,27 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     
     override func willSendTextMessage(text: String?, uid: String?, message: Any?) {
         NSLog("will send text message: \(String(describing: text))");
-        let msg = message as! DemoMessageModelProtocol?
-        self.scrollToBottom(animated: true)
+        if let msg = message as? DemoMessageModelProtocol {
+            self.scrollToBottom(animated: true)
+            sendMessage(text, msg, completion:{ (success) in
+                
+            })
+        }
+    }
+    
+    func sendMessage(_ text: String?, _ msg: DemoMessageModelProtocol, completion: @escaping (Bool) -> Void) {
         self.viewModel?.sendTextMessage(text) { messageId in
             NSLog("messageId is: \(messageId)");
-            msg?.setExternalId(messageId)
+            msg.setExternalId(messageId)
+            completion((messageId > 0) ? true : false )
+        }
+    }
+    
+    override func repeatSendMessage(_ message: ChatItemProtocol) {
+        if let msg = message as? DemoTextMessageModel {
+            sendMessage(msg.text, msg) { success in
+                
+            }
         }
     }
     

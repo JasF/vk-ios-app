@@ -31,8 +31,11 @@ public protocol DemoMessageModelProtocol: MessageModelProtocol {
 }
 
 public class DemoChatMessageSender {
+    init() {
+    }
 
     public var onMessageChanged: ((_ message: DemoMessageModelProtocol) -> Void)?
+    public var onSendMessage: ((_ message: DemoMessageModelProtocol) -> Void)?
 
     public func sendMessages(_ messages: [DemoMessageModelProtocol]) {
         for message in messages {
@@ -41,7 +44,11 @@ public class DemoChatMessageSender {
     }
 
     public func sendMessage(_ message: DemoMessageModelProtocol) {
-        self.fakeMessageStatus(message)
+        //self.fakeMessageStatus(message)
+        if onSendMessage != nil {
+            self.updateMessage(message, status: .sending)
+            onSendMessage?(message)
+        }
     }
 
     private func fakeMessageStatus(_ message: DemoMessageModelProtocol) {

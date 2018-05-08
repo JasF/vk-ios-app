@@ -88,6 +88,10 @@ open class BaseChatViewController: ChatInputBarViewController, ASTableDelegate, 
 
     public var updatesConfig =  UpdatesConfig()
 
+    open func repeatSendMessage(_ message: ChatItemProtocol) {
+        
+    }
+    
     
     public final internal(set) var chatItemCompanionCollection: ChatItemCompanionCollection = ReadOnlyOrderedDictionary(items: [])
     private var _chatDataSource: ChatDataSourceProtocol?

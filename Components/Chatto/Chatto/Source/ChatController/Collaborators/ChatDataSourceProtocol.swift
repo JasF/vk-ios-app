@@ -34,6 +34,7 @@ public enum UpdateType {
 
 public protocol ChatDataSourceDelegateProtocol: class {
     func chatDataSourceDidUpdate(_ chatDataSource: ChatDataSourceProtocol)
+    func repeatSendMessage(_ message: ChatItemProtocol)
     func chatDataSourceDidUpdate(_ chatDataSource: ChatDataSourceProtocol, updateType: UpdateType)
     func willSendTextMessage(text: String?, uid: String?, message: Any?)
     func needsScrollToBottom() -> Bool

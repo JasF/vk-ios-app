@@ -10,7 +10,7 @@ class ChatListService:
         try:
             response = api.messages.getDialogs(offset=offset)
             l = response["items"]
-            #print('response dialogs: ' + str(response))
+            print('response dialogs: ' + json.dumps(response, indent=4))
             ids = set([d['message']['user_id'] for d in l])
             usersData = users.getShortUsersByIds(ids)
         
