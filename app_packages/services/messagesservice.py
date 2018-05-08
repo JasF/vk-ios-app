@@ -84,7 +84,7 @@ class MessagesService(AddMessageProtocol):
         for d in l:
             d['read_state'] = 1
         cache.update(l)
-        print('markReadedMessagesBefore unreaded: ' + json.dumps(l, indent=4) + '; out: ' + str(out) + '; peer_id: ' + str(peerId))
+        #print('markReadedMessagesBefore unreaded: ' + json.dumps(l, indent=4) + '; out: ' + str(out) + ('; peer_id: ' if out == False else '; user_id: ') + str(peerId))
         cache.close()
     
     def handleMessagesInReaded(self, peerId, localId):

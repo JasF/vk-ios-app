@@ -27,7 +27,7 @@ class MessagesDatabase(BaseDatabase):
         return result
 
     def unreadedMessagesBefore(self, peerId, messageId, isOut):
-        script = 'SELECT * FROM messages WHERE id <= ' + str(messageId) + ' AND out = ' + ('1' if isOut else '0') + ' AND read_state = 0 AND from_id = ' + str(peerId) + ';'
+        script = 'SELECT * FROM messages WHERE id <= ' + str(messageId) + ' AND out = ' + ('1' if isOut else '0') + ' AND read_state = 0 AND user_id = ' + str(peerId) + ';'
         print('script is :' + script)
         self.cursor.execute(script)
         result = self.cursor.fetchall()
