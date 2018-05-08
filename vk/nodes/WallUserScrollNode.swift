@@ -71,15 +71,23 @@ class ActionModel : NSObject {
     }
     
     func configureActions(_ user: User?) {
-        actions.append(ActionModel.init("friends".localized, number:(user?.friends_count)!, action:.friends))
-        actions.append(ActionModel.init("followers".localized, number:(user?.followers_count)!, action:.followers))
-        if (user?.currentUser)! == false {
-            //actions.append(ActionModel.init("common", number:(user?.common_count)!, action:.common))
+        if user?.isGroup() == true {
+            if let counters = user?.counters {
+                actions.append(ActionModel.init("photos".localized, number:counters.photos, action:.photos))
+                actions.append(ActionModel.init("videos".localized, number:counters.videos, action:.videos))
+            }
         }
-        actions.append(ActionModel.init("groups".localized, number:(user?.groups_count)!, action:.groups))
-        actions.append(ActionModel.init("photos".localized, number:(user?.photos_count)!, action:.photos))
-        actions.append(ActionModel.init("videos".localized, number:(user?.videos_count)!, action:.videos))
-        actions.append(ActionModel.init("interest_pages".localized, number:(user?.subscriptions_count)!, action:.subscribers))
+        else {
+            actions.append(ActionModel.init("friends".localized, number:(user?.friends_count)!, action:.friends))
+            actions.append(ActionModel.init("followers".localized, number:(user?.followers_count)!, action:.followers))
+            if (user?.currentUser)! == false {
+                //actions.append(ActionModel.init("common", number:(user?.common_count)!, action:.common))
+            }
+            actions.append(ActionModel.init("groups".localized, number:(user?.groups_count)!, action:.groups))
+            actions.append(ActionModel.init("photos".localized, number:(user?.photos_count)!, action:.photos))
+            actions.append(ActionModel.init("videos".localized, number:(user?.videos_count)!, action:.videos))
+            actions.append(ActionModel.init("interest_pages".localized, number:(user?.subscriptions_count)!, action:.subscribers))
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

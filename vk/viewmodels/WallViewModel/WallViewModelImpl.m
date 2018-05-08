@@ -123,7 +123,19 @@
 
 - (void)friendButtonTapped:(void(^)(NSInteger resultCode))callback {
     dispatch_python(^{
-        NSNumber *response = [_handler friendButtonTapped:@(self.currentUser.friend_status)];
+        NSInteger value = 0;
+        if (self.currentUser.isGroup) {
+            if (self.currentUser.is_member || self.currentUser.you_are_send_request) {
+                value = 1;
+            }
+            else {
+                value = 0;
+            }
+        }
+        else {
+            value = self.currentUser.friend_status;
+        }
+        NSNumber *response = [_handler friendButtonTapped: @(value)];
         if (!response || [response isKindOfClass:[NSNumber class]]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (callback) {

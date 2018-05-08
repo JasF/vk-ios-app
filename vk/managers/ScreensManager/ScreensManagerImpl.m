@@ -247,15 +247,13 @@
     });
 }
 
-- (void)showGroupsViewController:(NSNumber *)userId {
+- (void)showGroupsViewController:(NSNumber *)userId push:(NSNumber *)push {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
-        if ([self canIgnorePushingViewController:[GroupsViewController class]]) {
-            return;
-        }
         GroupsViewController *viewController =(GroupsViewController *)[_screensAssembly groupsViewController:userId];
-        [self pushViewController:viewController];
+        viewController.pushed = push.boolValue;
+        [self pushViewController:viewController clean:!push.boolValue];
     });
 }
 
@@ -271,15 +269,13 @@
     });
 }
 
-- (void)showVideosViewController:(NSNumber *)ownerId {
+- (void)showVideosViewController:(NSNumber *)ownerId push:(NSNumber *)push {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showMainViewController];
         [self closeMenu];
-        if ([self canIgnorePushingViewController:[VideosViewController class]]) {
-            return;
-        }
         VideosViewController *viewController =(VideosViewController *)[_screensAssembly videosViewController:ownerId];
-        [self pushViewController:viewController];
+        viewController.pushed = push.boolValue;
+        [self pushViewController:viewController clean:!push.boolValue];
     });
 }
 

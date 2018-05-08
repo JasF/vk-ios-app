@@ -53,10 +53,10 @@ class PyWallViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().showPhotoAlbumsViewController_push_(args=[self.userId, True])
 
     def videosTapped(self):
-        managers.shared().screensManager().showVideosViewController_(args=[self.userId])
+        managers.shared().screensManager().showVideosViewController_push_(args=[self.userId, True])
     
     def groupsTapped(self):
-        managers.shared().screensManager().showGroupsViewController_(args=[self.userId])
+        managers.shared().screensManager().showGroupsViewController_push_(args=[self.userId, True])
 
     def messageButtonTapped(self):
         managers.shared().screensManager().showDialogViewController_(args=[self.userId])
@@ -65,21 +65,41 @@ class PyWallViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().presentAddPostViewController_(args=[self.userId])
     
     def friendButtonTapped(self, friend_status):
-        api = vk.api()
-        if friend_status == 1 or friend_status == 3:
-            if friend_status == 3:
-                # Пользователь друг или есть входящая заявка
-                dialogsManager = PyDialogsManager()
-                index, cancelled = dialogsManager.showRowsDialogWithTitles(['delete_from_friends'])
-                if cancelled:
-                    return -1
-            response = api.friends.delete(user_id=self.userId)
-            print('friends.delete response: ' + str(response))
-            if response.get('success') == 1:
-                return 5 if friend_status == 3 else 0
-            return -1
-        response = api.friends.add(user_id=self.userId)
+        response = {}
+        try:
+            api = vk.api()
+            if self.userId < 0:
+                # работа с группой
+                return self.joinOrLeaveGroup(friend_status)
+            elif friend_status == 1 or friend_status == 3:
+                if friend_status == 3:
+                    # Пользователь друг или есть входящая заявка
+                    dialogsManager = PyDialogsManager()
+                    index, cancelled = dialogsManager.showRowsDialogWithTitles(['delete_from_friends'])
+                    if cancelled:
+                        return -1
+                response = api.friends.delete(user_id=self.userId)
+                print('friends.delete response: ' + str(response))
+                if response.get('success') == 1:
+                    return 5 if friend_status == 3 else 0
+                return -1
+            response = api.friends.add(user_id=self.userId)
+        except Exception as e:
+            print('wallviewmodel.py friendButtonTapped exception: ' + str(e))
         return response
+            
+    def joinOrLeaveGroup(self, is_member):
+        response = {}
+        try:
+            api = vk.api()
+            if is_member == 0:
+                response = api.groups.join(group_id=abs(self.userId))
+            else:
+                response = api.groups.leave(group_id=abs(self.userId))
+        except Exception as e:
+            print('wallviewmodel.py joinOrLeaveGroup exception: ' + str(e))
+        return response
+    
         
     # ObjCBridgeProtocol
     def release(self):

@@ -34,7 +34,7 @@
 - (void)showAnswersViewController;
 - (void)showGroupsViewController:(NSNumber *)userId;
 - (void)showBookmarksViewController;
-- (void)showVideosViewController:(NSNumber *)ownerId;
+- (void)showVideosViewController:(NSNumber *)ownerId push:(NSNumber *)push;
 - (void)showDocumentsViewController:(NSNumber *)ownerId;
 - (void)showSettingsViewController;
 - (void)showDetailVideoViewControllerWithOwnerId:(NSNumber *)ownerId videoId:(NSNumber *)videoId;

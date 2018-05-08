@@ -26,7 +26,7 @@
         _imageNode = [[ASNetworkImageNode alloc] init];
         _imageNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
         if (_asGallery) {
-            _imageNode.URL = [NSURL URLWithString:photo.photo_604];
+            _imageNode.URL = [NSURL URLWithString:photo.photo_130];
         }
         else {
             _imageNode.URL = [NSURL URLWithString:photo.photo_807];

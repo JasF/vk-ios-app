@@ -9,7 +9,7 @@
 #import "GalleryViewController.h"
 
 static CGFloat const kItemSpacing = 2.f;
-static NSInteger const kColumnsCount = 3;
+static NSInteger const kColumnsCount = 4;
 
 @interface GalleryViewController () <BaseTableViewControllerDataSource>
 @property id<GalleryViewModel> viewModel;

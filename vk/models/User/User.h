@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Counters.h"
 #import <EasyMapping/EasyMapping.h>
 
 @class Covers, Cover;
@@ -91,8 +91,10 @@
 @property NSInteger is_admin;
 @property NSInteger is_closed;
 @property NSInteger is_member;
+@property NSInteger you_are_send_request;
 @property NSString *type;
 @property Covers *cover;
+@property Counters *counters;
 
 @property NSInteger friends_count;
 @property NSInteger photos_count;
@@ -104,6 +106,7 @@
 - (NSString *)avatarURLString;
 - (NSString *)bigAvatarURLString;
 - (Cover *)getCover;
+- (BOOL)isGroup;
 
 @property BOOL currentUser;
 @end

@@ -539,9 +539,9 @@
 		C39C8BE1209F304800CC23C3 /* VKSdkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39C8BDE209F303E00CC23C3 /* VKSdkFramework.framework */; };
 		C39C8BE2209F304800CC23C3 /* VKSdkFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C39C8BDE209F303E00CC23C3 /* VKSdkFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C39C8BEE20A1766B00CC23C3 /* Covers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BED20A1766B00CC23C3 /* Covers.swift */; };
-		C39C8BF020A178D800CC23C3 /* Counters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BEF20A178D800CC23C3 /* Counters.swift */; };
 		C39C8BF320A1813E00CC23C3 /* Cover.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BF220A1813E00CC23C3 /* Cover.m */; };
 		C39C8BF520A1881100CC23C3 /* ImageAndLabelsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BF420A1881100CC23C3 /* ImageAndLabelsNode.swift */; };
+		C39C8BF920A19BC400CC23C3 /* Counters.m in Sources */ = {isa = PBXBuildFile; fileRef = C39C8BF820A19BC400CC23C3 /* Counters.m */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1774,10 +1774,11 @@
 		C39C8BB5209F109500CC23C3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C39C8BD2209F303E00CC23C3 /* VK-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "VK-ios-sdk.xcodeproj"; path = "vk-ios-sdk/VK-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 		C39C8BED20A1766B00CC23C3 /* Covers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Covers.swift; sourceTree = "<group>"; };
-		C39C8BEF20A178D800CC23C3 /* Counters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counters.swift; sourceTree = "<group>"; };
 		C39C8BF120A1813E00CC23C3 /* Cover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cover.h; sourceTree = "<group>"; };
 		C39C8BF220A1813E00CC23C3 /* Cover.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cover.m; sourceTree = "<group>"; };
 		C39C8BF420A1881100CC23C3 /* ImageAndLabelsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAndLabelsNode.swift; sourceTree = "<group>"; };
+		C39C8BF720A19BC400CC23C3 /* Counters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Counters.h; sourceTree = "<group>"; };
+		C39C8BF820A19BC400CC23C3 /* Counters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Counters.m; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -2767,6 +2768,7 @@
 		C32304572080E57400CEC487 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C39C8BF620A19BB400CC23C3 /* Counters */,
 				C39C8B90209D787600CC23C3 /* Tags */,
 				C3507820209477B4000C8FB3 /* WallUserCellModel.swift */,
 				C3333D4E2091BF11009EBB09 /* Place */,
@@ -2794,7 +2796,6 @@
 				C350782A2094AC9A000C8FB3 /* LastSeen.swift */,
 				C3987DDB209756FE0047A30F /* CommentsPreloadModel.swift */,
 				C39C8BED20A1766B00CC23C3 /* Covers.swift */,
-				C39C8BEF20A178D800CC23C3 /* Counters.swift */,
 				C39C8BF120A1813E00CC23C3 /* Cover.h */,
 				C39C8BF220A1813E00CC23C3 /* Cover.m */,
 			);
@@ -4859,6 +4860,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C39C8BF620A19BB400CC23C3 /* Counters */ = {
+			isa = PBXGroup;
+			children = (
+				C39C8BF720A19BC400CC23C3 /* Counters.h */,
+				C39C8BF820A19BC400CC23C3 /* Counters.m */,
+			);
+			path = Counters;
+			sourceTree = "<group>";
+		};
 		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5951,7 +5961,6 @@
 				C3FF542C2095AF0C007275D4 /* VideoPlayerViewController.swift in Sources */,
 				C398BA742094743A0071FA04 /* WallUserMessageNode.swift in Sources */,
 				C32309352081AEB100CEC487 /* UIImage+NanoFrame.m in Sources */,
-				C39C8BF020A178D800CC23C3 /* Counters.swift in Sources */,
 				C32308DE2081AEB100CEC487 /* UIView+TyphoonDefinitionKey.m in Sources */,
 				C313DD46208C578B0005E29B /* FriendsServiceImpl.m in Sources */,
 				C323091C2081AEB100CEC487 /* TyphoonMemoryManagementUtils.m in Sources */,
@@ -6033,6 +6042,7 @@
 				C3987E342099CB480047A30F /* BaseMessagesSelector.swift in Sources */,
 				C3B225062085BA6800599E04 /* DialogScreenViewModelImpl.m in Sources */,
 				C32306032080E57500CEC487 /* BaseNavigationController.mm in Sources */,
+				C39C8BF920A19BC400CC23C3 /* Counters.m in Sources */,
 				C3987E432099CB480047A30F /* ChatWithTabBarExamplesViewController.swift in Sources */,
 				C32309292081AEB100CEC487 /* TyphoonStackElement.m in Sources */,
 				C3A82A392093350600C41CA8 /* PostsViewModelImpl.m in Sources */,

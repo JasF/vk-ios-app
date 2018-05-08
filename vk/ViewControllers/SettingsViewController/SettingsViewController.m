@@ -38,8 +38,8 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
 }
 

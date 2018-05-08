@@ -53,3 +53,9 @@
 "authorize_with_app"="Авторизация через приложение";
 "authorize_with_login"="Авторизация по логину и паролю";
 "settings_exit"="Выйти";
+"page_subscribe"="Подписаться";
+"page_unsubscribe"="Отписаться";
+"group_enter"="Вступить в группу";
+"group_leave"="Выйти из группы";
+"group_add_request"="Подать заявку";
+"group_you_are_send_request"="Вы подали заявку";

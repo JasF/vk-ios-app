@@ -38,12 +38,12 @@
 - (void)viewDidLoad {
     NSCParameterAssert(_viewModel);
     [super viewDidLoad];
-    [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [_viewModel becomeActive];
+    [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

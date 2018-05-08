@@ -21,13 +21,13 @@ class PyMenuViewModel():
         managers.shared().screensManager().showAnswersViewController()
 
     def groupsTapped(self):
-        managers.shared().screensManager().showGroupsViewController_(args=[vk.userId()])
+        managers.shared().screensManager().showGroupsViewController_push_(args=[vk.userId(), False])
 
     def bookmarksTapped(self):
         managers.shared().screensManager().showBookmarksViewController()
 
     def videosTapped(self):
-        managers.shared().screensManager().showVideosViewController_(args=[vk.userId()])
+        managers.shared().screensManager().showVideosViewController_push_(args=[vk.userId(), False])
 
     def documentsTapped(self):
         managers.shared().screensManager().showDocumentsViewController_(args=[vk.userId()])

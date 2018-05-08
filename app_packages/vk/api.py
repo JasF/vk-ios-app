@@ -36,7 +36,7 @@ class Request(object):
             result = self._api.session.make_request(self)
         except VkAPIError as e:
             print('VkAPIError exception: ' + str(e))
-            if e.code == 15 or e.code == 5:
+            if e.code == 5:
                 settings.set('access_token', '')
                 settings.set('user_id', 0)
                 settings.write()
