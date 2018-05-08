@@ -88,7 +88,7 @@ open class BaseChatViewController: ChatInputBarViewController, ASTableDelegate, 
 
     public var updatesConfig =  UpdatesConfig()
 
-    open func repeatSendMessage(_ message: ChatItemProtocol) {
+    open func repeatSendMessage(_ message: ChatItemProtocol, completion: @escaping (Bool) -> Void) {
         
     }
     

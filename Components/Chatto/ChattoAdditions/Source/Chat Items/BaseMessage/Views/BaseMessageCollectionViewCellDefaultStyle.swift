@@ -26,7 +26,7 @@ import UIKit
 
 open class BaseMessageCollectionViewCellDefaultStyle: BaseMessageCollectionViewCellStyleProtocol {
     public var unreadBackgroundColor: UIColor {
-        return UIColor.yellow
+        return UIColor(red: 237.0/255.0, green: 240.0/255.0, blue: 245.0/255.0, alpha: 1.0)
     }
     
     public var readedBackgroundColor: UIColor {

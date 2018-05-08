@@ -63,9 +63,11 @@ class DemoChatDataSource: ChatDataSourceProtocol {
 
     lazy var messageSender: DemoChatMessageSender = {
         let sender = DemoChatMessageSender()
-        sender.onSendMessage = { [weak self] (message) in
+        sender.onSendMessage = { [weak self] (message, completion) in
             guard let sSelf = self else { return }
-            sSelf.delegate?.repeatSendMessage(message)
+            sSelf.delegate?.repeatSendMessage(message) { (success) in
+                completion(success)
+            }
         }
         sender.onMessageChanged = { [weak self] (message) in
             guard let sSelf = self else { return }
@@ -176,7 +178,7 @@ class DemoChatDataSource: ChatDataSourceProtocol {
     func addTextMessage(_ text: String) {
         self.nextMessageId += 1
         let uid = "\(self.nextMessageId)"
-        let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: false, readState: 0, externalId: 0)
+        let message = DemoChatMessageFactory.makeTextMessage(uid, text: text, isIncoming: false, readState: 0, externalId: 0, sending: true)
         self.delegate?.willSendTextMessage(text: text, uid:uid, message: message)
         //self.messageSender.sendMessage(message)
         self.slidingWindow.insertItem(message, position: .top)

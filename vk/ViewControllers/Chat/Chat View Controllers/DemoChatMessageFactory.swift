@@ -44,7 +44,11 @@ class DemoChatMessageFactory {
     }
 
     class func makeTextMessage(_ uid: String, text: String, isIncoming: Bool, readState: Int, externalId: Int) -> DemoTextMessageModel {
-        let messageModel = self.makeMessageModel(uid, isIncoming: isIncoming, type: TextMessageModel<MessageModel>.chatItemType, readState: readState, externalId: externalId)
+        return makeTextMessage(uid, text:text, isIncoming:isIncoming, readState:readState, externalId:externalId, sending:false)
+    }
+    
+    class func makeTextMessage(_ uid: String, text: String, isIncoming: Bool, readState: Int, externalId: Int, sending: Bool) -> DemoTextMessageModel {
+        let messageModel = self.makeMessageModel(uid, isIncoming: isIncoming, type: TextMessageModel<MessageModel>.chatItemType, readState: readState, externalId: externalId, sending:sending)
         let textMessageModel = DemoTextMessageModel(messageModel: messageModel, text: text)
         return textMessageModel
     }
@@ -92,8 +96,12 @@ class DemoChatMessageFactory {
     }
 
     private class func makeMessageModel(_ uid: String, isIncoming: Bool, type: String, readState: Int, externalId: Int) -> MessageModel {
+        return makeMessageModel(uid, isIncoming: isIncoming, type: type, readState: readState, externalId: externalId, sending: false)
+    }
+    
+    private class func makeMessageModel(_ uid: String, isIncoming: Bool, type: String, readState: Int, externalId: Int, sending: Bool) -> MessageModel {
         let senderId = isIncoming ? "1" : "2"
-        let messageStatus = MessageStatus.failed// MessageStatus.success //isIncoming || arc4random_uniform(100) % 3 == 0 ? MessageStatus.success : .failed
+        let messageStatus = (sending == true) ? MessageStatus.sending : MessageStatus.success
         return MessageModel(uid: uid, senderId: senderId, type: type, isIncoming: isIncoming, date: Date(), status: messageStatus, readState: readState, externalId: externalId)
     }
 }

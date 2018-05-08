@@ -137,23 +137,26 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         if let msg = message as? DemoMessageModelProtocol {
             self.scrollToBottom(animated: true)
             sendMessage(text, msg, completion:{ (success) in
-                
+                self.dataSource.messageSender.updateMessage(msg, success)
             })
         }
     }
     
     func sendMessage(_ text: String?, _ msg: DemoMessageModelProtocol, completion: @escaping (Bool) -> Void) {
-        self.viewModel?.sendTextMessage(text) { messageId in
-            NSLog("messageId is: \(messageId)");
-            msg.setExternalId(messageId)
-            completion((messageId > 0) ? true : false )
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
+            
+            self.viewModel?.sendTextMessage(text) { messageId in
+                msg.setExternalId(messageId)
+                completion((messageId > 0) ? true : false )
+            }
         }
     }
     
-    override func repeatSendMessage(_ message: ChatItemProtocol) {
+    override func repeatSendMessage(_ message: ChatItemProtocol, completion: @escaping (Bool) -> Void) {
         if let msg = message as? DemoTextMessageModel {
             sendMessage(msg.text, msg) { success in
-                
+                completion(success)
             }
         }
     }

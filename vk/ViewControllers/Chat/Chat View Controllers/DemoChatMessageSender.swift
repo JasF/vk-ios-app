@@ -35,7 +35,7 @@ public class DemoChatMessageSender {
     }
 
     public var onMessageChanged: ((_ message: DemoMessageModelProtocol) -> Void)?
-    public var onSendMessage: ((_ message: DemoMessageModelProtocol) -> Void)?
+    public var onSendMessage: ((_ message: DemoMessageModelProtocol, _ completion: @escaping (Bool)->Void) -> Void)?
 
     public func sendMessages(_ messages: [DemoMessageModelProtocol]) {
         for message in messages {
@@ -47,7 +47,9 @@ public class DemoChatMessageSender {
         //self.fakeMessageStatus(message)
         if onSendMessage != nil {
             self.updateMessage(message, status: .sending)
-            onSendMessage?(message)
+            onSendMessage?(message) { [weak self] (success) in
+                self?.updateMessage(message, success)
+            }
         }
     }
 
@@ -76,6 +78,10 @@ public class DemoChatMessageSender {
         }
     }
 
+    public func updateMessage(_ message: DemoMessageModelProtocol, _ success: Bool) {
+        self.updateMessage(message, status: (success == true) ? .success : .failed)
+    }
+    
     private func updateMessage(_ message: DemoMessageModelProtocol, status: MessageStatus) {
         if message.status != status {
             message.status = status

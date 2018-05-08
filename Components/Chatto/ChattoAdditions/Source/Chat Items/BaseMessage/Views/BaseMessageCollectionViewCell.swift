@@ -26,8 +26,9 @@ import UIKit
 import Chatto
 import AsyncDisplayKit
 
-let kBubblesSpacing: CGFloat = 4
+let kBubblesSpacing: CGFloat = 6
 let kGreatestBubbleWidthFraction: CGFloat = 0.72
+let kBubblesMargin: CGFloat = 10
 
 public protocol BaseMessageCollectionViewCellStyleProtocol {
     func avatarSize(viewModel: MessageViewModelProtocol) -> CGSize // .zero => no avatar
@@ -181,7 +182,7 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         //let layout = self.calculateLayout(availableWidth: constrainedSize.max.width)
         self.bubbleView.style.flexShrink = 1
         var array = [ASLayoutElement]()
-        let insetSpec = ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(0, 0, kBubblesSpacing, 0), child: self.bubbleView)
+        let insetSpec = ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(kBubblesSpacing/2, 0, kBubblesSpacing/2, 0), child: self.bubbleView)
         insetSpec.style.flexShrink = 1
         let spacing = ASLayoutSpec()
         spacing.style.flexGrow = 1
@@ -198,7 +199,7 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         }
         self.bubbleView.style.maxSize = CGSize(width: constrainedSize.max.width*kGreatestBubbleWidthFraction, height: constrainedSize.max.height)
         let horSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .start, alignItems: .center, children: array)
-        return ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, 6, 0, 6), child: horSpec)
+        return ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, kBubblesMargin, 0, kBubblesMargin), child: horSpec)
     }
     
     private func commonInit() {
