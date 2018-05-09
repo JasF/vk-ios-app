@@ -215,6 +215,12 @@
     });
 }
 
+- (void)showImagesViewerViewControllerWithMessageId:(NSNumber *)messageId index:(NSNumber *)photoIndex {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        ImagesViewerViewController *viewController =(ImagesViewerViewController *)[_screensAssembly imagesViewerViewController:messageId photoIndex:photoIndex];
+        [self pushViewController:viewController clean:NO];
+    });
+}
 
 - (void)showDetailPhotoViewControllerWithOwnerId:(NSNumber *)ownerId photoId:(NSNumber *)photoId {
     dispatch_async(dispatch_get_main_queue(), ^{

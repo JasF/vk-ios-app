@@ -23,3 +23,4 @@
 #import "ChatInputBarViewController.h"
 #import "PostImagesNode.h"
 #import "PostVideoNode.h"
+#import "Video.h"

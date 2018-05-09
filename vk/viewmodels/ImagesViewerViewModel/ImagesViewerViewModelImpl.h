@@ -29,4 +29,9 @@
                                  postId:(NSNumber *)postId
                              photoIndex:(NSNumber *)photoIndex;
 
+- (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
+                         galleryService:(id<GalleryService>)galleryService
+                              messageId:(NSNumber *)messageId
+                             photoIndex:(NSNumber *)photoIndex;
+
 @end

@@ -186,6 +186,15 @@
     }];
 }
 
+- (UIViewController *)imagesViewerViewController:(NSNumber *)messageId photoIndex:(NSNumber *)photoIndex {
+    return [TyphoonDefinition withClass:[ImagesViewerViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:photoBrowserViewModel:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.viewModelsAssembly imagesViewerViewModel:messageId photoIndex:photoIndex]];
+            [initializer injectParameterWith:[self.viewModelsAssembly photoBrowserViewModel]];
+        }];
+    }];
+}
+
 - (UIViewController *)detailPhotoViewController:(NSNumber *)ownerId photoId:(NSNumber *)photoId {
     return [TyphoonDefinition withClass:[DetailPhotoViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {

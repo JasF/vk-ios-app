@@ -38,6 +38,14 @@ class DemoTextMessageHandler: BaseMessageInteractionHandlerProtocol {
     func userDidTapOnAvatar(viewModel: DemoTextMessageViewModel) {
         self.baseHandler.userDidTapOnAvatar(viewModel: viewModel)
     }
+    
+    func userDidTappedOnPhoto(viewModel: DemoTextMessageViewModel, index: Int) {
+        self.baseHandler.userDidTappedOnPhoto(viewModel: viewModel, index: index)
+    }
+    
+    func userDidTappedOnVideo(viewModel: DemoTextMessageViewModel, video: Video) {
+        self.baseHandler.userDidTappedOnVideo(viewModel: viewModel, video: video)
+    }
 
     func userDidTapOnBubble(viewModel: DemoTextMessageViewModel) {
         self.baseHandler.userDidTapOnBubble(viewModel: viewModel)

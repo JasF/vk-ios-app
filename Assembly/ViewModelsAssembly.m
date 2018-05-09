@@ -120,7 +120,6 @@
             }];
 }
 
-
 - (id<DetailPhotoViewModel>)imagesViewerViewModel:(NSNumber *)ownerId postId:(NSNumber *)postId photoIndex:(NSNumber *)photoIndex {
     return [TyphoonDefinition withClass:[ImagesViewerViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
@@ -143,6 +142,18 @@
                     [initializer injectParameterWith:ownerId];
                     [initializer injectParameterWith:albumId];
                     [initializer injectParameterWith:photoId];
+                }];
+            }];
+}
+
+- (id<DetailPhotoViewModel>)imagesViewerViewModel:(NSNumber *)messageId photoIndex:(NSNumber *)photoIndex {
+    return [TyphoonDefinition withClass:[ImagesViewerViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(initWithHandlersFactory:galleryService:messageId:photoIndex:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.galleryService];
+                    [initializer injectParameterWith:messageId];
+                    [initializer injectParameterWith:photoIndex];
                 }];
             }];
 }

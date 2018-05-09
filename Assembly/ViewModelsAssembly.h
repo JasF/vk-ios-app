@@ -51,6 +51,7 @@
 - (id<GalleryViewModel>)galleryViewModel:(NSNumber *)ownerId albumId:(NSNumber *)albumId;
 - (id<DetailPhotoViewModel>)imagesViewerViewModel:(NSNumber *)ownerId postId:(NSNumber *)postId photoIndex:(NSNumber *)photoIndex;
 - (id<ImagesViewerViewModel>)imagesViewerViewModel:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;
+- (id<DetailPhotoViewModel>)imagesViewerViewModel:(NSNumber *)messageId photoIndex:(NSNumber *)photoIndex;
 - (id<DetailPhotoViewModel>)detailPhotoViewModel:(NSNumber *)ownerId photoId:(NSNumber *)photoId;
 - (id<NewsViewModel>)newsViewModel;
 - (id<AnswersViewModel>)answersViewModel;

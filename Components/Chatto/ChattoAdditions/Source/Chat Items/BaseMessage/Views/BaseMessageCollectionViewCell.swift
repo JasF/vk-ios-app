@@ -124,13 +124,15 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
                     let block: (Any) -> Void = { (att) in
                         if let node = nodeFactory.node(forItem: att) {
                             if let imagesNode = node as? PostImagesNode {
-                                imagesNode.tappedOnPhotoHandler = { (index) in
-                                    NSLog("tapped on photo in chat cell")
+                                imagesNode.tappedOnPhotoHandler = { [weak self] (index) in
+                                    guard let sSelf = self else { return }
+                                    sSelf.onPhotoTapped?(sSelf, index)
                                 }
                             }
                             else if let videoNode = node as? PostVideoNode {
-                                videoNode.tappedOnVideoHandler = { (video) in
-                                    NSLog("tapped on video in chat cell")
+                                videoNode.tappedOnVideoHandler = { [weak self] (video) in
+                                    guard let sSelf = self else { return }
+                                    sSelf.onVideoTapped?(sSelf, video!)
                                 }
                             }
                             self.mediaNodes.append(node)
@@ -232,7 +234,7 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         }
         
         self.bubbleView.style.maxSize = CGSize(width: constrainedSize.max.width*kGreatestBubbleWidthFraction, height: constrainedSize.max.height)
-        var horSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .start, alignItems: .center, children: array)
+        let horSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .start, alignItems: .center, children: array)
         return ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, kBubblesMargin, 0, kBubblesMargin), child: horSpec)
     }
     
@@ -432,6 +434,8 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
     // MARK: User interaction
 
     public var onFailedButtonTapped: ((_ cell: BaseMessageCollectionViewCell) -> Void)?
+    public var onPhotoTapped: ((_ cell: BaseMessageCollectionViewCell, _ index: Int) -> Void)?
+    public var onVideoTapped: ((_ cell: BaseMessageCollectionViewCell, _ video: Video) -> Void)?
     @objc
     func failedButtonTapped() {
         self.onFailedButtonTapped?(self)

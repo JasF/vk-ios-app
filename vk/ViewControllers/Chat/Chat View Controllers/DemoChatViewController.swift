@@ -26,7 +26,14 @@ import UIKit
 
 
 
-class DemoChatViewController: BaseChatViewController {
+class DemoChatViewController: BaseChatViewController, BaseMessageHandlerDelegate {
+    open func didTappedOnPhoto(_ message: Message, index: Int) {
+        
+    }
+    
+    open func didTappedOnVideo(_ message: Message, video: Video) {
+        
+    }
     
     var messageSender: DemoChatMessageSender!
     let messagesSelector = BaseMessagesSelector()
@@ -39,7 +46,7 @@ class DemoChatViewController: BaseChatViewController {
     }
 
     lazy private var baseMessageHandler: BaseMessageHandler = {
-        return BaseMessageHandler(messageSender: self.messageSender, messagesSelector: self.messagesSelector)
+        return BaseMessageHandler(messageSender: self.messageSender, messagesSelector: self.messagesSelector, delegate: self)
     }()
 
     override func viewDidLoad() {

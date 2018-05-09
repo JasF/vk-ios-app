@@ -12,4 +12,5 @@
 @protocol GalleryService <NSObject>
 - (NSArray *)parse:(NSDictionary *)photosData;
 - (WallPost *)parsePost:(NSDictionary *)data;
+- (NSArray *)parseAttachments:(NSDictionary *)data;
 @end

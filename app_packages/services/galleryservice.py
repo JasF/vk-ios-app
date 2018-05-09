@@ -3,7 +3,7 @@ import json
 from vk import users
 import traceback
 from caches.photosdatabase import PhotosDatabase
-
+from caches.messagesdatabase import MessagesDatabase
 
 class GalleryService:
     def __init__(self):
@@ -54,3 +54,16 @@ class GalleryService:
         except Exception as e:
             print('getPhotosByIds exception: ' + str(e))
         return results
+
+    def photosForMessage(self, messageId):
+        result = []
+        try:
+            cache = MessagesDatabase()
+            msg = cache.messageWithId(messageId)
+            for att in msg['attachments']:
+                if att['type'] == 'photo':
+                    result.append(att)
+            cache.close()
+        except Exception as e:
+            print('photosForMessage: ' + str(e))
+        return result

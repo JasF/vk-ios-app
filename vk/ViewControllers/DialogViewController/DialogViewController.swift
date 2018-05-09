@@ -192,6 +192,14 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     override func inputBarDidChangeText(_ inputBar: ChatInputBar) {
         self.viewModel?.inputBarDidChangeText(inputBar.text())
     }
+    
+    override func didTappedOnPhoto(_ message: Message, index: Int) {
+        self.viewModel?.userDidTappedOnPhoto(with: index, message: message)
+    }
+    
+    override func didTappedOnVideo(_ message: Message, video: Video) {
+        self.viewModel?.userDidTapped(on: video, message: message)
+    }
 }
 
 @objcMembers class DialogViewControllerAllocator : NSObject {

@@ -1,5 +1,6 @@
+from objc import managers
 from objcbridge import BridgeBase, ObjCBridgeProtocol
-import vk, json
+import vk, json, analytics
 from services.messagesservice import NewMessageProtocol, MessageFlags
 from random import randint
 import sched, time
@@ -100,6 +101,14 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         self.typingEvent = self.scheduler.enterabs(time.time() + kTypingInterval, 1, cancelTyping, (self,))
         self.scheduler.run()
 
+    def tappedOnVideoWithIdownerId(self, videoId, ownerId):
+        analytics.log('Dialog_video_segue')
+        managers.shared().screensManager().showDetailVideoViewControllerWithOwnerId_videoId_(args=[ownerId, videoId])
+
+    def tappedOnPhotoWithIndexmessageId(self, index, messageId):
+        analytics.log('Dialog_photo_segue')
+        managers.shared().screensManager().showImagesViewerViewControllerWithMessageId_index_(args=[messageId, index])
+        
     # ObjCBridgeProtocol
     def release(self):
         self.messagesService.removeNewMessageSubscriber(self)

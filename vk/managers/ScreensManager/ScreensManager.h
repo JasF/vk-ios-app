@@ -29,6 +29,7 @@
 - (void)showGalleryViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(id)albumId;
 - (void)showImagesViewerViewControllerWithOwnerId:(NSNumber *)ownerId albumId:(NSNumber *)albumId photoId:(NSNumber *)photoId;
 - (void)showImagesViewerViewControllerWithOwnerId:(NSNumber *)ownerId postId:(NSNumber *)postId photoIndex:(NSNumber *)photoIndex;
+- (void)showImagesViewerViewControllerWithMessageId:(NSNumber *)messageId index:(NSNumber *)photoIndex;
 - (void)showDetailPhotoViewControllerWithOwnerId:(NSNumber *)ownerId photoId:(NSNumber *)photoId;
 - (void)showNewsViewController;
 - (void)showAnswersViewController;

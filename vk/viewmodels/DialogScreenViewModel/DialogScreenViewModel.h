@@ -26,4 +26,6 @@
 - (void)willDisplayUnreadedMessageWithIdentifier:(NSInteger)identifier
                                            isOut:(NSInteger)isOut;
 - (void)inputBarDidChangeText:(NSString *)text;
+- (void)userDidTappedOnPhotoWithIndex:(NSInteger)index message:(Message *)message;
+- (void)userDidTappedOnVideo:(Video *)video message:(Message *)message;
 @end

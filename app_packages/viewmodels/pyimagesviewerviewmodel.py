@@ -17,9 +17,14 @@ class PyImagesViewerViewModel(ObjCBridgeProtocol):
         self.postId = None
         self.albumId = None
         self.photoIndex = None
+        self.messageId = None
         self.guiDelegate = PyImagesViewerViewModelDelegate(delegateId)
         
         postId = p.get('postId')
+        messageId = p.get('messageId')
+        if isinstance(messageId, int):
+            self.messageId = messageId
+            self.photoIndex = p.get('photoIndex')
         if isinstance(postId, int):
             self.postId = postId
             self.photoIndex = p.get('photoIndex')
@@ -29,6 +34,9 @@ class PyImagesViewerViewModel(ObjCBridgeProtocol):
     
     def getPhotos(self, offset):
         photosData = None
+        if isinstance(self.messageId, int):
+            photosData = self.galleryService.photosForMessage(self.messageId)
+            return {'items': photosData}
         if offset == 0:
             photosData = self.galleryService.getAllFromCache(self.ownerId, self.albumId)
         else:

@@ -33,4 +33,18 @@
     WallPost *post = [EKMapper objectFromExternalRepresentation:data withMapping:[WallPost objectMapping]];
     return post;
 }
+
+- (NSArray *)parseAttachments:(NSDictionary *)data {
+    if (![data isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    NSArray *items = data[@"items"];
+    if (![items isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    NSArray *objects = [EKMapper arrayOfObjectsFromExternalRepresentation:items
+                                                              withMapping:[Attachments objectMapping]];
+    return objects;
+}
+
 @end

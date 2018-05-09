@@ -126,6 +126,18 @@ static CGFloat const kTypingNotifierInterval = 5.f;
     _typingNotifier = nil;
 }
 
+- (void)userDidTappedOnPhotoWithIndex:(NSInteger)index message:(Message *)message {
+    dispatch_python(^{
+        [_handler tappedOnPhotoWithIndex:@(index) messageId:@(message.identifier)];
+    });
+}
+
+- (void)userDidTappedOnVideo:(Video *)video message:(Message *)message {
+    dispatch_python(^{
+        [self.handler tappedOnVideoWithId:@(video.id) ownerId:@(video.owner_id)];
+    });
+}
+
 #pragma mark - PyDialogScreenViewModelDelegate
 - (void)handleIncomingMessage:(NSDictionary *)messageDictionary {
     Message *message = [_dialogService parseOne:messageDictionary];

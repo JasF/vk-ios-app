@@ -23,6 +23,8 @@
 - (NSNumber *)sendTextMessage:(NSString *)text userId:(NSNumber *)userId;
 - (NSNumber *)markAsRead:(NSNumber *)userId messageId:(NSNumber *)messageId;
 - (void)handleTypingActivity;
+- (void)tappedOnPhotoWithIndex:(NSNumber *)index messageId:(NSNumber *)messageId;
+- (void)tappedOnVideoWithId:(NSNumber *)videoId ownerId:(NSNumber *)ownerId;
 @end
 
 @interface DialogScreenViewModelImpl : NSObject <DialogScreenViewModel>

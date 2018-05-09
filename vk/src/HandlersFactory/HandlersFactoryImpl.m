@@ -118,6 +118,12 @@
                                               parameters:@{@"ownerId":@(ownerId), @"photoId":@(photoId)}];
 }
 
+- (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithDelegate:(id)delegate messageId:(NSInteger)messageId photoIndex:(NSInteger)photoIndex {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyImagesViewerViewModel)
+                                                delegate:delegate
+                                              parameters:@{@"messageId":@(messageId), @"photoIndex":@(photoIndex)}];
+}
+
 - (id<PyNewsViewModel>)newsViewModelHandler {
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyNewsViewModel)];
 }

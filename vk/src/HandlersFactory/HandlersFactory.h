@@ -47,6 +47,7 @@
 - (id<PyGalleryViewModel>)galleryViewModelHandlerWithOwnerId:(NSInteger)ownerId albumId:(id)albumId;
 - (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithDelegate:(id)delegate ownerId:(NSInteger)ownerId postId:(NSInteger)postId photoIndex:(NSInteger)photoIndex;
 - (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithDelegate:(id)delegate ownerId:(NSInteger)ownerId albumId:(NSInteger)albumId photoId:(NSInteger)photoId;
+- (id<PyImagesViewerViewModel>)imagesViewerViewModelHandlerWithDelegate:(id)delegate messageId:(NSInteger)messageId photoIndex:(NSInteger)photoIndex;
 - (id<PyDetailPhotoViewModel>)detailPhotoViewModelHandlerWithOwnerId:(NSInteger)ownerId photoId:(NSInteger)photoId;
 - (id<PyNewsViewModel>)newsViewModelHandler;
 - (id<PyAnswersViewModel>)answersViewModelHandler;

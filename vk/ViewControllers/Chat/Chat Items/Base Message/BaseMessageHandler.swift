@@ -30,20 +30,43 @@ public protocol DemoMessageViewModelProtocol {
     var messageModel: DemoMessageModelProtocol { get }
 }
 
+protocol BaseMessageHandlerDelegate: class {
+    func didTappedOnPhoto(_ message: Message, index: Int)
+    func didTappedOnVideo(_ message: Message, video: Video)
+}
+
 class BaseMessageHandler {
 
     private let messageSender: DemoChatMessageSender
     private let messagesSelector: MessagesSelectorProtocol
+    weak var delegate: BaseMessageHandlerDelegate? = nil
 
-    init(messageSender: DemoChatMessageSender, messagesSelector: MessagesSelectorProtocol) {
+    init(messageSender: DemoChatMessageSender, messagesSelector: MessagesSelectorProtocol, delegate: BaseMessageHandlerDelegate) {
         self.messageSender = messageSender
         self.messagesSelector = messagesSelector
+        self.delegate = delegate
     }
     func userDidTapOnFailIcon(viewModel: DemoMessageViewModelProtocol) {
         print("userDidTapOnFailIcon")
         self.messageSender.sendMessage(viewModel.messageModel)
     }
 
+    func userDidTappedOnPhoto(viewModel: DemoMessageViewModelProtocol, index: Int) {
+        if let delegate = self.delegate {
+            if let message = viewModel.messageModel.message {
+                delegate.didTappedOnPhoto(message, index: index)
+            }
+        }
+    }
+    
+    func userDidTappedOnVideo(viewModel: DemoMessageViewModelProtocol, video: Video) {
+        if let delegate = self.delegate {
+            if let message = viewModel.messageModel.message {
+                delegate.didTappedOnVideo(message, video: video)
+            }
+        }
+    }
+    
     func userDidTapOnAvatar(viewModel: MessageViewModelProtocol) {
         print("userDidTapOnAvatar")
     }

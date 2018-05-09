@@ -37,6 +37,8 @@ public protocol BaseMessageInteractionHandlerProtocol {
     associatedtype ViewModelT
     func userDidTapOnFailIcon(viewModel: ViewModelT, failIconView: ASButtonNode)
     func userDidTapOnAvatar(viewModel: ViewModelT)
+    func userDidTappedOnPhoto(viewModel: ViewModelT, index: Int)
+    func userDidTappedOnVideo(viewModel: ViewModelT, video: Video)
     func userDidTapOnBubble(viewModel: ViewModelT)
     func userDidBeginLongPressOnBubble(viewModel: ViewModelT)
     func userDidEndLongPressOnBubble(viewModel: ViewModelT)
@@ -130,6 +132,14 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
                 guard let sSelf = self else { return }
                 sSelf.onCellFailedButtonTapped(cell.failedButton)
             }
+            cell.onPhotoTapped = { [weak self] (cell, index) in
+                guard let sSelf = self else { return }
+                sSelf.onCellPhotoTapped(index)
+            }
+            cell.onVideoTapped = { [weak self] (cell, video) in
+                guard let sSelf = self else { return }
+                sSelf.onCellVideoTapped(video)
+            }
             cell.onSelection = { [weak self] (cell) in
                 guard let sSelf = self else { return }
                 sSelf.onCellSelection()
@@ -203,6 +213,14 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
 
     open func onCellAvatarTapped() {
         self.interactionHandler?.userDidTapOnAvatar(viewModel: self.messageViewModel)
+    }
+    
+    open func onCellPhotoTapped(_ index: Int) {
+        self.interactionHandler?.userDidTappedOnPhoto(viewModel: self.messageViewModel, index:index)
+    }
+    
+    open func onCellVideoTapped(_ video: Video) {
+        self.interactionHandler?.userDidTappedOnVideo(viewModel: self.messageViewModel, video:video)
     }
 
     open func onCellFailedButtonTapped(_ failedButtonView: ASButtonNode) {

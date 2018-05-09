@@ -17,6 +17,7 @@
 @property id<PyImagesViewerViewModel> handler;
 @property id<GalleryService> galleryService;
 @property (nonatomic) BOOL withPost;
+@property (nonatomic) BOOL withMessage;
 @property (nonatomic) NSInteger photoIndex;
 @end
 
@@ -68,52 +69,71 @@
     return self;
 }
 
+
+- (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
+                         galleryService:(id<GalleryService>)galleryService
+                              messageId:(NSNumber *)messageId
+                             photoIndex:(NSNumber *)photoIndex {
+    NSCParameterAssert(handlersFactory);
+    NSCParameterAssert(galleryService);
+    NSCParameterAssert(photoIndex);
+    NSCParameterAssert(photoIndex);
+    if (self = [super init]) {
+        self.galleryService = galleryService;
+        self.handler = [handlersFactory imagesViewerViewModelHandlerWithDelegate:self
+                                                                       messageId:messageId.integerValue
+                                                                      photoIndex:photoIndex.integerValue];
+        _photoIndex = photoIndex.integerValue;
+        self.withMessage = YES;
+    }
+    return self;
+}
+
+#pragma mark - Private Methods
+- (NSArray *)photosWithAttachments:(NSArray *)attachments {
+    NSMutableArray *photos = [NSMutableArray new];
+    NSInteger i=0;
+    for (Attachments *attachment in attachments) {
+        if (i == _photoIndex) {
+            self.photoId = attachment.photo.id;
+        }
+        [photos addObject:attachment.photo];
+        ++i;
+    }
+    return photos;
+}
+
 #pragma mark - ImagesViewerViewModel
 - (void)getPhotos:(NSInteger)offset completion:(void(^)(NSArray *photos))completion {
     dispatch_python(^{
-        if (self.withPost) {
-            if (offset) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (completion) {
-                        completion(@[]);
-                    }
-                });
-                return;
-            }
-            NSDictionary *data = [self.handler getPostData];
-            NSDictionary *postData = data[@"post_data"];
-            /*
-            NSDictionary *imagesData = data[@"images_data"];
-            NSArray *photos = [self.galleryService parse:imagesData];
-            if (_photoIndex < photos.count) {
-                Photo *photo = photos[_photoIndex];
-                self.photoId = photo.id;
-            }
-             */
-            WallPost *post = [self.galleryService parsePost:postData];
-            NSMutableArray *photos = [NSMutableArray new];
-            NSInteger i=0;
-            for (Attachments *attachment in post.photoAttachments) {
-                if (i == _photoIndex) {
-                    self.photoId = attachment.photo.id;
-                }
-                [photos addObject:attachment.photo];
-                ++i;
-            }
+        void (^doCallback)(NSArray *) = ^void(NSArray *block) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (completion) {
-                    completion(photos);
+                    completion(block);
                 }
             });
+        };
+        if (offset && (self.withMessage || self.withPost)) {
+            doCallback(@[]);
+            return;
+        }
+        if (self.withMessage) {
+            NSDictionary *data = [self.handler getPhotos:@(0)];
+            NSArray *attachments = [self.galleryService parseAttachments:data];
+            NSArray *photos = [self photosWithAttachments:attachments];
+            doCallback(photos);
+        }
+        else if (self.withPost) {
+            NSDictionary *data = [self.handler getPostData];
+            NSDictionary *postData = data[@"post_data"];
+            WallPost *post = [self.galleryService parsePost:postData];
+            NSArray *photos = [self photosWithAttachments:post.photoAttachments];
+            doCallback(photos);
         }
         else {
             NSDictionary *data = [self.handler getPhotos:@(offset)];
             NSArray *photos = [self.galleryService parse:data];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (completion) {
-                    completion(photos);
-                }
-            });
+            doCallback(photos);
         }
     });
 }
