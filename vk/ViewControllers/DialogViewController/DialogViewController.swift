@@ -189,8 +189,8 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     }
     
     // ChatInputBarDelegate
-    override func inputBarDidChangeText(_ inputBar: ChatInputBar) {
-        self.viewModel?.inputBarDidChangeText(inputBar.text())
+    override func inputBarDidChangeText(_ text: String) {
+        self.viewModel?.inputBarDidChangeText(text)
     }
     
     override func didTappedOnPhoto(_ message: Message, index: Int) {

@@ -9,7 +9,7 @@
 #import "ChatInputBarViewController.h"
 #import "_MXRMessengerInputToolbarContainerView.h"
 
-@interface ChatInputBarViewController ()
+@interface ChatInputBarViewController () <ASTableDelegate>
 @property (nonatomic, strong) NSNumber* calculatedOffsetFromInteractiveKeyboardDismissal;
 @property (nonatomic, strong) MXRMessengerInputToolbar* toolbar;
 @property (nonatomic, strong) MXRMessengerInputToolbarContainerView *toolbarContainerView;
@@ -55,6 +55,11 @@
     }
     
     _toolbar = [[MXRMessengerInputToolbar alloc] init];
+    @weakify(self);
+    self.toolbar.didChangeTextBlock = ^(NSString *text) {
+        @strongify(self);
+        [self inputBarDidChangeText:text];
+    };
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     _toolbarContainerView = [[MXRMessengerInputToolbarContainerView alloc] initWithMessengerInputToolbar:self.toolbar constrainedSize:ASSizeRangeMake(CGSizeMake(screenWidth, 0), CGSizeMake(screenWidth, CGFLOAT_MAX))];
     _minimumBottomInset = self.toolbarContainerView.toolbarNode.calculatedSize.height;
@@ -86,6 +91,11 @@
     [self becomeFirstResponder];
 }
 
+//override func inputBarDidChangeText(_ text: String) {
+
+- (void)inputBarDidChangeText:(NSString *)text {
+    
+}
 
 #pragma mark - NSNotificationCenter
 

@@ -28,7 +28,7 @@ public protocol ChatInputBarDelegate: class {
     func inputBarShouldBeginTextEditing(_ inputBar: ChatInputBar) -> Bool
     func inputBarDidBeginEditing(_ inputBar: ChatInputBar)
     func inputBarDidEndEditing(_ inputBar: ChatInputBar)
-    func inputBarDidChangeText(_ inputBar: ChatInputBar)
+    func inputBarDidChangeText(_ text: String)
     func inputBarSendButtonPressed(_ inputBar: ChatInputBar)
     func inputBar(_ inputBar: ChatInputBar, shouldFocusOnItem item: ChatInputItemProtocol) -> Bool
     func inputBar(_ inputBar: ChatInputBar, didReceiveFocusOnItem item: ChatInputItemProtocol)
@@ -274,7 +274,7 @@ extension ChatInputBar: UITextViewDelegate {
 
     public func textViewDidChange(_ textView: UITextView) {
         self.updateSendButton()
-        self.delegate?.inputBarDidChangeText(self)
+        self.delegate?.inputBarDidChangeText(self.text())
     }
 
     public func textView(_ textView: UITextView, shouldChangeTextIn nsRange: NSRange, replacementText text: String) -> Bool {

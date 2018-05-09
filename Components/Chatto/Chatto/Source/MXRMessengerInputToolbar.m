@@ -8,6 +8,8 @@
 
 #import "MXRMessengerInputToolbar.h"
 
+@interface MXRMessengerInputToolbar () <ASEditableTextNodeDelegate>
+@end
 
 @implementation MXRMessengerInputToolbar {
     ASImageNode* _textInputBackgroundNode;
@@ -53,6 +55,7 @@
         _textInputNode.style.flexGrow = 1.0f;
         _textInputNode.style.flexShrink = 1.0f;
         _textInputNode.clipsToBounds = YES;
+        _textInputNode.delegate = self;
         
         _defaultSendButton = [MXRMessengerIconButtonNode buttonWithIcon:[[MXRMessengerSendIconNode alloc] init] matchingToolbar:self];
         _rightButtonsNode = _defaultSendButton;
@@ -87,6 +90,15 @@
     NSString* text = [_textInputNode.attributedText.string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     _textInputNode.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:_textInputNode.typingAttributes];
     return text;
+}
+
+#pragma mark - ASEditableTextNodeDelegate
+- (BOOL)editableTextNode:(ASEditableTextNode *)editableTextNode shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    NSString *newString = [_textInputNode.attributedText.string stringByReplacingCharactersInRange:range withString:text];
+    if (_didChangeTextBlock) {
+        _didChangeTextBlock(newString);
+    }
+    return YES;
 }
 
 @end

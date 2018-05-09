@@ -24,7 +24,7 @@ extension DemoChatViewController : ChatInputBarDelegate {
         
     }
     
-    @objc open func inputBarDidChangeText(_ inputBar: ChatInputBar) {
+    @objc open func inputBarDidChangeText(_ text: String) {
         
     }
     

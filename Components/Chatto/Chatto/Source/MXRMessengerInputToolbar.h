@@ -14,6 +14,7 @@
 
 @interface MXRMessengerInputToolbar : ASDisplayNode
 
+@property (nonatomic, copy) void (^didChangeTextBlock)(NSString *text);
 @property (nonatomic, strong, readonly) MXRGrowingEditableTextNode* textInputNode;
 @property (nonatomic, strong) ASDisplayNode* leftButtonsNode;
 @property (nonatomic, strong) ASDisplayNode* rightButtonsNode;
