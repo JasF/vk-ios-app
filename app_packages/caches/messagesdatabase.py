@@ -37,3 +37,10 @@ class MessagesDatabase(BaseDatabase):
         if not isinstance(result, list):
             result = []
         return result
+
+    def changeId(self, oldId, newId):
+        script = 'UPDATE ' + self.tableName + ' SET ' + self.rowid + ' = ? WHERE ' + self.rowid + ' = ' + str(oldId)
+        print('changeId script: ' + str(script))
+        parameters = [newId]
+        self.cursor.execute(script, parameters)
+        self.conn.commit()

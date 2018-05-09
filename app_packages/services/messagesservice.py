@@ -50,13 +50,13 @@ class MessagesService(AddMessageProtocol):
         self.longPoll = longPoll
         self.longPoll.addAddMessageDelegate(self)
     
-    def messageDictionary(self, messageId, isOut, userId, fromId, timestamp, text, read_state):
-        dict = {'id':messageId, 'user_id': userId, 'from_id': fromId, 'date': timestamp, 'read_state': read_state, 'out': isOut, 'body': text}
+    def messageDictionary(self, messageId, isOut, userId, fromId, timestamp, text, read_state, randomId):
+        dict = {'id':messageId, 'user_id': userId, 'from_id': fromId, 'date': timestamp, 'read_state': read_state, 'out': isOut, 'body': text, 'random_id': randomId}
         return dict
 
-    def saveMessageToCache(self, messageId, isOut, userId, fromId, timestamp, text, read_state):
-        dict = self.messageDictionary(messageId, isOut, userId, fromId, timestamp, text, read_state)
-        print('updating dict: ' + str(dict))
+    def saveMessageToCache(self, messageId, isOut, userId, fromId, timestamp, text, read_state, randomId):
+        dict = self.messageDictionary(messageId, isOut, userId, fromId, timestamp, text, read_state, randomId)
+        #print('updating dict: ' + str(dict))
         messages = MessagesDatabase()
         messages.update([dict])
         messages.close()
@@ -68,15 +68,24 @@ class MessagesService(AddMessageProtocol):
         return result
 
     # AddMessageProtocol
-    def handleMessageAdd(self, messageId, flags, peerId, timestamp, text):
+    def handleMessageAdd(self, messageId, flags, peerId, timestamp, text, randomId):
         isOut = 1 if MessageFlags(flags) & MessageFlags.OUTBOX else 0
         read_state = 0 if MessageFlags(flags) & MessageFlags.UNREAD else 1
         fromId = vk.userId() if isOut == True else peerId
-        print('handle incoming message: peerId: ' + str(peerId) + '; fromId: ' + str(fromId))
-        msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state)
+        #print('handle incoming message: peerId: ' + str(peerId) + '; fromId: ' + str(fromId) + '; randomId: ' + str(randomId))
+        try:
+            cache = MessagesDatabase()
+            msg = cache.messageWithId(randomId)
+            cache.close()
+            if isinstance(msg.get('id'), int):
+                #print('message exists!')
+                return
+        except:
+            pass
+        msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId)
         for d in self.newMessageSubscribers:
             d.handleIncomingMessage(msg)
-        self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state)
+        self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId)
 
     def markReadedMessagesBefore(self, peerId, localId, out):
         cache = MessagesDatabase()
@@ -125,3 +134,20 @@ class MessagesService(AddMessageProtocol):
                 threading.Thread(target=call).start()
             except Exception as e:
                 print('handleTyping exception: ' + str(e))
+
+    def remove(self, id):
+        try:
+            messages = MessagesDatabase()
+            messages.remove(id)
+            messages.close()
+        except Exception as e:
+            print('remove message exception: ' + str(e))
+
+    def changeId(self, oldId, newId):
+        try:
+            messages = MessagesDatabase()
+            messages.changeId(oldId, newId)
+            messages.close()
+        except Exception as e:
+            print('changeId message exception: ' + str(e))
+

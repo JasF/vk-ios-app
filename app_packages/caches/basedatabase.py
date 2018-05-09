@@ -110,3 +110,7 @@ class BaseDatabase():
     def selectIdsByKeys(self, ids, keys):
         return self.selectIds(ids, ','.join(k for k in keys))
 
+    def remove(self, id):
+        script = 'DELETE FROM ' + self.tableName + ' WHERE id = ' + str(id)
+        self.cursor.execute(script)
+        self.conn.commit()

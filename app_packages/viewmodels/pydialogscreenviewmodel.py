@@ -3,7 +3,9 @@ from objcbridge import BridgeBase, ObjCBridgeProtocol
 import vk, json, analytics
 from services.messagesservice import NewMessageProtocol, MessageFlags
 from random import randint
-import sched, time
+import sched, time, random
+import threading
+from threading import Lock
 
 kTypingInterval = 5
 
@@ -30,11 +32,19 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         return self.dialogService.getMessagesuserIdstartMessageId(offset, userId, startMessageId)
     
     def sendTextMessageuserId(self, text, userId):
-        messageId = self.dialogService.sendTextMessageuserId(text, userId)
-        if not isinstance(messageId, int):
-            messageId = -1;
-        timestamp = int(time.time())
-        self.messagesService.saveMessageToCache(messageId, 1, vk.userId(), vk.userId(), timestamp, text, 0)
+        messageId = 0
+        try:
+            randomId = random.randint(0,2200000000)
+            timestamp = int(time.time())
+            self.messagesService.saveMessageToCache(randomId, 1, userId, vk.userId(), timestamp, text, 0, randomId)
+            messageId = self.dialogService.sendTextMessageuserId(text, userId, randomId)
+            if not isinstance(messageId, int):
+                messageId = -1;
+            self.messagesService.saveMessageToCache(messageId, 1, userId, vk.userId(), timestamp, text, 0, randomId)
+            self.messagesService.remove(randomId)
+            #self.messagesService.changeId(randomId, messageId)
+        except Exception as e:
+            print('sendTextMessageuserId exception: ' + str(e))
         return messageId
     
     def markAsReadmessageId(self, userId, readedMessageId):
@@ -45,20 +55,24 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     
     # NewMessageProtocol
     def handleIncomingMessage(self, message):
-        user_id = message.get('user_id')
-        if user_id != self.userId:
-            return
-        isOut = message.get('out')
-        id = message.get('id')
-        if isOut:
-            msg = self.messagesService.messageWithId(id)
-            if msg:
-                print('msg already exists!')
+        self.doHandleIncomingMessage(message)
+    
+    def doHandleIncomingMessage(self, message):
+        try:
+            user_id = message.get('user_id')
+            if user_id != self.userId:
                 return
-        if self.guiDelegate:
-            self.guiDelegate.handleIncomingMessage_(args=[message])
-        pass
-                
+            isOut = message.get('out')
+            id = message.get('id')
+            if isOut:
+                msg = self.messagesService.messageWithId(id)
+                if msg:
+                    #print('msg already exists! - but what first occurence missing?')
+                    return
+            if self.guiDelegate:
+                self.guiDelegate.handleIncomingMessage_(args=[message])
+        except Exception as e:
+            print('doHandleIncomingMessage exception: ' + str(e))
     
     def handleMessageFlagsChanged(self, message):
         if self.guiDelegate:

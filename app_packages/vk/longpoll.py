@@ -4,7 +4,8 @@ import requests
 from functools import partial
 import functools
 from enum import Enum
-import inspect
+import inspect, json
+import traceback
 
 class Event(Enum): # https://vk.com/dev/using_longpoll?f=3.%20Структура%20событий
     MESSAGE_SET_FLAGS = 1
@@ -49,7 +50,7 @@ class LongPoll:
         requests_session = requests.Session()
         
         while True:
-            url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=25&mode=2&version=2'
+            url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=25&mode=130&version=2'
             response = requests_session.get(url)
             json = response.json()
             #print('LongPoll response: ' + str(json))
@@ -76,12 +77,13 @@ class LongPoll:
 _lp = LongPoll()
 
 def parseUpdates(updates):
-    #print('updates: ' + str(updates))
+    #print('updates: ' + json.dumps(updates, indent=4))
     for eventDescription in updates:
         try:
             parseEvent(eventDescription)
         except Exception as e:
             print('parse event exception: ' + str(e) + '; event: ' + str(eventDescription))
+            print(traceback.format_exc())
 
 def parseEvent(eventDescription):
     if len(eventDescription) == 0:
@@ -111,7 +113,7 @@ def parseMessageClearFlags(eventDescription):
         d.handleMessageClearFlags(messageId, flags)
 
 def parseMessageAdd(eventDescription):
-    if len(eventDescription) < 5:
+    if len(eventDescription) < 7:
         print('parseMessageAdd too short')
         return
     messageId = eventDescription[0]
@@ -119,11 +121,13 @@ def parseMessageAdd(eventDescription):
     peerId = eventDescription[2]
     timestamp = eventDescription[3]
     text = eventDescription[4]
+    extra = eventDescription[5]
+    random_id = eventDescription[6]
 
-    #print('msg add desc: ' + str(eventDescription))
+    print('msg add desc: ' + json.dumps(eventDescription, indent=4))
     
     for d in _lp.addMessageDelegates:
-        d.handleMessageAdd(messageId, flags, peerId, timestamp, text)
+        d.handleMessageAdd(messageId, flags, peerId, timestamp, text, random_id)
 
 def parseMessageEdit(eventDescription):
     pass

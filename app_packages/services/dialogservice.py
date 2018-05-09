@@ -48,7 +48,7 @@ class DialogService:
             
     def getMessagesuserIdstartMessageId(self, offset, userId, startMessageId):
         self.initializeIfNeeded()
-        print('offset: ' + str(offset) + '; userId: ' + str(userId) + '; startMessageId: ' + str(startMessageId))
+        #print('offset: ' + str(offset) + '; userId: ' + str(userId) + '; startMessageId: ' + str(startMessageId))
         response = None
         usersData = None
         try:
@@ -67,8 +67,8 @@ class DialogService:
             print('get messages exception: ' + str(e))
         return {'response':response, 'users':usersData}
     
-    def sendTextMessageuserId(self, text, userId):
+    def sendTextMessageuserId(self, text, userId, random_id):
         self.initializeIfNeeded()
         #self.api.captcha.force()
-        return self.api.messages.send(user_id=userId, peer_id=userId, message=text)
+        return self.api.messages.send(user_id=userId, peer_id=userId, message=text, random_id=random_id)
 
