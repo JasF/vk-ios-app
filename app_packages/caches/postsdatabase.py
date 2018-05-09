@@ -7,10 +7,10 @@ class PostsDatabase(BaseDatabase):
         return 'posts'
     
     def params(self):
-        return {'id': 'integer', 'from_id': 'integer', 'owner_id': 'integer', 'date': 'integer', 'post_type': 'text', 'text': 'text', 'can_delete': 'integer', 'can_pin': 'integer', 'attachments': 'text', 'post_source': 'text', 'comments': 'text', 'likes': 'text', 'reposts': 'text', 'views': 'text', 'copy_history': 'text', 'source_id': 'integer', 'post_id': 'integer', 'audio': 'text', 'geo': 'text'}
+        return {'id': 'integer', 'from_id': 'integer', 'owner_id': 'integer', 'date': 'integer', 'post_type': 'text', 'text': 'text', 'can_delete': 'integer', 'can_pin': 'integer', 'attachments': 'text', 'post_source': 'text', 'comments': 'text', 'likes': 'text', 'reposts': 'text', 'views': 'text', 'copy_history': 'text', 'source_id': 'integer', 'post_id': 'integer', 'audio': 'text', 'geo': 'text', 'photos': 'text'}
 
     def objects(self):
-        return ['attachments', 'post_source', 'comments', 'likes', 'reposts', 'views', 'copy_history', 'audio', 'geo']
+        return ['attachments', 'post_source', 'comments', 'likes', 'reposts', 'views', 'copy_history', 'audio', 'geo', 'photos']
 
     def primaryKeyName(self):
         return 'uid'

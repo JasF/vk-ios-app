@@ -103,7 +103,17 @@ extern CGFloat const kControlsSize;
         
         // Media
         if (_post.photos) {
-            id node = [_nodeFactory nodeForItem:_post.photos];
+            PostImagesNode *node = [_nodeFactory nodeForItem:_post.photos];
+            NSCParameterAssert([node isKindOfClass:[PostImagesNode class]]);
+            if ([node isKindOfClass:[PostImagesNode class]]) {
+                @weakify(self);
+                node.tappedOnPhotoHandler = ^(NSInteger index) {
+                    @strongify(self);
+                    if ([self.delegate respondsToSelector:@selector(postNode:tappedOnPhotoItemWithIndex:withPost:)]) {
+                        [self.delegate postNode:self tappedOnPhotoItemWithIndex:index withPost:_post];
+                    }
+                };
+            }
             [self addSubnode:node];
             [_mediaNodes addObject:node];
         }

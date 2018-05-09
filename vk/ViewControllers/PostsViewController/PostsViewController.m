@@ -117,6 +117,12 @@
     }
 }
 
+- (void)postNode:(WallPostNode *)node tappedOnPhotoItemWithIndex:(NSInteger)index withPost:(WallPost *)post {
+    if ([_postsViewModel respondsToSelector:@selector(tappedOnPhotoItemWithIndex:withPost:)]) {
+        [_postsViewModel tappedOnPhotoItemWithIndex:index withPost:post];
+    }
+}
+
 - (void)postNode:(WallPostNode *)node tappedOnVideo:(Video *)video {
     if ([_postsViewModel respondsToSelector:@selector(tappedOnVideo:)]) {
         [_postsViewModel tappedOnVideo:video];

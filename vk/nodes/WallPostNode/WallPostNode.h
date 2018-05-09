@@ -19,6 +19,7 @@
 @required
 - (void)titleNodeTapped:(WallPost *)post;
 - (void)postNode:(WallPostNode *)node tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post;
+- (void)postNode:(WallPostNode *)node tappedOnPhotoItemWithIndex:(NSInteger)index withPost:(WallPost *)post;
 - (void)postNode:(WallPostNode *)node tappedOnVideo:(Video *)video;
 @end
 

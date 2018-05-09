@@ -21,5 +21,6 @@
 - (void)sendCommentWithText:(NSString *)text item:(id)item completion:(void(^)(NSInteger commentId, NSInteger ownerId, NSInteger postId, NSInteger reply_to_commentId, User *user))completion;
 - (void)tappedOnPost:(WallPost *)post;
 - (void)tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post;
+- (void)tappedOnPhotoItemWithIndex:(NSInteger)index withPost:(WallPost *)post;
 - (void)tappedOnVideo:(Video *)video;
 @end

@@ -25,6 +25,7 @@
 @synthesize photoId = _photoId;
 @synthesize delegate = _delegate;
 @synthesize withMessage = _withMessage;
+@synthesize withPhotoItems = _withPhotoItems;
 
 #pragma mark - Initialization
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
@@ -61,10 +62,13 @@
         self.galleryService = galleryService;
         self.handler = [handlersFactory imagesViewerViewModelHandlerWithDelegate:self
                                                                          ownerId:ownerId.integerValue
-                                                                          postId:postId.integerValue
+                                                                          postId:ABS(postId.integerValue)
                                                                       photoIndex:photoIndex.integerValue];
         _withPost = YES;
         _photoIndex = photoIndex.integerValue;
+        if (postId.integerValue < 0) {
+            self.withPhotoItems = YES;
+        }
     }
     return self;
 }
@@ -127,7 +131,17 @@
             NSDictionary *data = [self.handler getPostData];
             NSDictionary *postData = data[@"post_data"];
             WallPost *post = [self.galleryService parsePost:postData];
-            NSArray *photos = [self photosWithAttachments:post.photoAttachments];
+            NSArray *photos = nil;
+            if (_withPhotoItems) {
+                photos = post.photos;
+                if (_photoIndex < photos.count) {
+                    Photo *photo = photos[_photoIndex];
+                    self.photoId = photo.id;
+                }
+            }
+            else {
+                photos = [self photosWithAttachments:post.photoAttachments];
+            }
             doCallback(photos);
         }
         else {

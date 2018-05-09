@@ -278,6 +278,12 @@
     });
 }
 
+- (void)tappedOnPhotoItemWithIndex:(NSInteger)index withPost:(WallPost *)post {
+    dispatch_python(^{
+        [_handler tappedOnPhotoItemWithIndex:@(index) withPostId:@(post.identifier) ownerId:@(post.owner_id)];
+    });
+}
+
 - (void)tappedOnVideo:(Video *)video {
     dispatch_python(^{
         NSDictionary *representation = [EKSerializer serializeObject:video

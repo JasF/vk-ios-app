@@ -162,6 +162,10 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         analytics.log('Posts_tapped_on_photo_with_index')
         managers.shared().screensManager().showImagesViewerViewControllerWithOwnerId_postId_photoIndex_(args=[ownerId, postId, photoIndex])
     
+    def tappedOnPhotoItemWithIndexwithPostIdownerId(self, photoIndex, postId, ownerId):
+        analytics.log('Posts_tapped_on_photoitem_with_index')
+        managers.shared().screensManager().showImagesViewerViewControllerWithOwnerId_postId_photoIndex_(args=[ownerId, -postId, photoIndex])
+    
     def tappedOnVideoWithIdownerIdrepresentation(self, videoId, ownerId, representation):
         analytics.log('Posts_tapped_on_video')
         #print('representation: ' + json.dumps(representation, indent=4))

@@ -21,6 +21,7 @@ class PyDetailPhotoViewModel():
         commentsOffset = offset
         if not self.photoData:
             self.userInfo = users.getShortUserById(self.ownerId)
+            print('self.userInfo for ' + str(self.ownerId) + ' is ' + json.dumps(self.userInfo, indent=4))
             self.photoData = self.detailPhotoService.getPhoto(self.ownerId, self.photoId)
             if offset == kOffsetForPreloadLatestComments:
                 commentsOffset = 0
@@ -32,7 +33,7 @@ class PyDetailPhotoViewModel():
                         commentsOffset = 0
                 except:
                     print('failed get comments count for photo')
-            comments = self.detailPhotoService.getComments(self.ownerId, self.photoId, commentsOffset, g_CommentsCount)
+            comments = self.detailPhotoService.getComments(self.ownerId, abs(self.photoId), commentsOffset, g_CommentsCount)
             results['comments'] = comments
     
         self.photoData['owner'] = self.userInfo

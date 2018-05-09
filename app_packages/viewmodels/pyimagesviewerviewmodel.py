@@ -18,6 +18,7 @@ class PyImagesViewerViewModel(ObjCBridgeProtocol):
         self.albumId = None
         self.photoIndex = None
         self.messageId = None
+        self.withPhotoItems = False
         self.guiDelegate = PyImagesViewerViewModelDelegate(delegateId)
         
         postId = p.get('postId')
@@ -27,7 +28,7 @@ class PyImagesViewerViewModel(ObjCBridgeProtocol):
             self.photoIndex = p.get('photoIndex')
         if isinstance(postId, int):
             self.postId = postId
-            self.photoIndex = p.get('photoIndex')
+            self.photoIndex = p.get('photoIndex')    
         else:
             self.albumId = p.get('albumId')
             self.photoId = p.get('photoId')

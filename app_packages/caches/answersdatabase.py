@@ -1,6 +1,6 @@
 from .basedatabase import BaseDatabase
 
-class PhotosDatabase(BaseDatabase):
+class AnswersDatabase(BaseDatabase):
     @staticmethod
     def filename():
         return 'answers'
