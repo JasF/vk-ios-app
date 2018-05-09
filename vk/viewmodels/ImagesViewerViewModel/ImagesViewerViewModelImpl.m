@@ -17,7 +17,6 @@
 @property id<PyImagesViewerViewModel> handler;
 @property id<GalleryService> galleryService;
 @property (nonatomic) BOOL withPost;
-@property (nonatomic) BOOL withMessage;
 @property (nonatomic) NSInteger photoIndex;
 @end
 
@@ -25,6 +24,7 @@
 
 @synthesize photoId = _photoId;
 @synthesize delegate = _delegate;
+@synthesize withMessage = _withMessage;
 
 #pragma mark - Initialization
 - (instancetype)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory

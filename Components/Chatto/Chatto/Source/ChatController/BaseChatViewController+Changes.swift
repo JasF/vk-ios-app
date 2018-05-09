@@ -212,7 +212,7 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         if true {//usesBatchUpdates {
             ChatAnimation.chatAnimation(withDuration: self.constants.updatesAnimationDuration, animations: { () -> Void in
                 self.unfinishedBatchUpdatesCount += 1
-                let animated = (updateType == .pagination) ? false : true
+                let animated = false//(updateType == .pagination) ? false : true
                 self.tableNode.performBatch(animated: animated, updates: { () -> Void in
                     updateModelClosure()
                     self.updateVisibleCells(changes) // For instance, to support removal of tails

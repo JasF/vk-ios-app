@@ -1694,6 +1694,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
         [_viewModel getNumberOfCommentsWithPhoto:photo completion:^(NSInteger commentsCount) {
             __strong MWPhotoBrowser *sself = wself;
             [sself.commentsButton setTitle:(commentsCount >= 0) ? [NSString stringWithFormat:@" %@", @(commentsCount)] : @"" forState:UIControlStateNormal];
+            [sself.commentsButton sizeToFit];
         }];
     }
 }

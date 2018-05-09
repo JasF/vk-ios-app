@@ -221,12 +221,10 @@ open class BaseChatViewController: ChatInputBarViewController, ASTableDelegate, 
         let contentSize = self.collectionView.collectionViewLayout.collectionViewContentSize
         return availableHeight >= contentSize.height
  */
-        NSLog("! allContentFits")
         return false
     }
 
     func rectAtIndexPath(_ indexPath: IndexPath?) -> CGRect? {
-        NSLog("! rectAtIndexPath")
         /*
         if let indexPath = indexPath {
             return self.collectionView.collectionViewLayout.layoutAttributesForItem(at: indexPath)?.frame

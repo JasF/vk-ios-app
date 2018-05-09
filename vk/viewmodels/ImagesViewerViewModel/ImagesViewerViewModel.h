@@ -16,6 +16,7 @@
 @protocol ImagesViewerViewModel <NSObject>
 @property (weak, nonatomic) id<ImagesViewerViewModelDelegate> delegate;
 @property NSInteger photoId;
+@property (nonatomic) BOOL withMessage;
 - (void)getPhotos:(NSInteger)offset completion:(void(^)(NSArray *photos))completion;
 - (void)navigateWithPhoto:(Photo *)photo;
 @end

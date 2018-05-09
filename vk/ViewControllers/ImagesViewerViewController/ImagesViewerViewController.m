@@ -57,7 +57,7 @@ static NSInteger const kPreloadingBorder = 2;
 
 #pragma mark - Private Methods
 - (void)showPhotoBrowserWithPhotos:(NSArray *)photosArray selectedPhotoIndex:(NSInteger)selectedPhotoIndex {
-    BOOL displayActionButton = YES;
+    BOOL displayActionButton = !(_viewModel.withMessage);
     BOOL displaySelectionButtons = NO;
     BOOL displayNavArrows = NO;
     BOOL enableGrid = NO;
