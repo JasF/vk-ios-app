@@ -1638,14 +1638,10 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
                 self.activityViewController.popoverPresentationController.barButtonItem = _actionButton;
             }
             [self presentViewController:self.activityViewController animated:YES completion:nil];
-
         }
-        
         // Keep controls hidden
         [self setControlsHidden:NO animated:YES permanent:YES];
-
     }
-    
 }
 
 #pragma mark - Action Progress

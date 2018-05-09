@@ -9,10 +9,12 @@
 #import "DetailPhotoViewController.h"
 #import "vk-Swift.h"
 
+static NSInteger const kOffsetForPreloadLatestComments = -1;
 @interface DetailPhotoViewController () <BaseTableViewControllerDataSource,
 ASCollectionDelegate, ASCollectionDataSource>
 @property (strong, nonatomic) id<DetailPhotoViewModel> viewModel;
 @property Photo *photo;
+@property (nonatomic) WallUserCellModel *avatarModel;
 @end
 
 @implementation DetailPhotoViewController
@@ -33,23 +35,22 @@ ASCollectionDelegate, ASCollectionDataSource>
 #pragma mark - BaseTableViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
-    if (offset) {
+    dispatch_block_t completionBlock = ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
                 completion(@[]);
             }
         });
+    };
+    if (offset) {
+        completionBlock();
         return;
     }
     if (self.sectionsArray.count) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (completion) {
-                completion(@[]);
-            }
-        });
+        completionBlock();
         return;
     }
-    [_viewModel getPhotoWithCommentsOffset:offset completion:^(Photo *photo, NSArray *comments) {
+    [_viewModel getPhotoWithCommentsOffset:kOffsetForPreloadLatestComments completion:^(Photo *photo, NSArray *comments) {
         if (!self.photo) {
             self.photo = photo;
             self.commentsParentItem = photo;
@@ -64,31 +65,26 @@ ASCollectionDelegate, ASCollectionDataSource>
 }
 
 - (void)performBatchAnimated:(BOOL)animated {
-    if (!self.sectionsArray && self.photo) {
-        NSMutableArray *array = [NSMutableArray new];
-        if (self.photo.owner) {
-            [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeAvatarNameDate user:self.photo.owner date:self.photo.date]];
-        }
-        if (self.photo) {
-            [array addObject:self.photo];
-        }
-        self.sectionsArray = @[array];
+    NSMutableArray *array = [NSMutableArray new];
+    if (self.avatarModel) {
+        [array addObject:self.avatarModel];
     }
-    
-    /*
-    - (void)performBatchAnimated:(BOOL)animated {
-        if (!self.sectionsArray && self.viewModel.currentUser) {
-            NSMutableArray *array = [@[[[WallUserCellModel alloc] init:WallUserCellModelTypeImage user:self.viewModel.currentUser]] mutableCopy];
-            if (!self.viewModel.currentUser.currentUser) {
-                [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeMessage user:self.viewModel.currentUser]];
-            }
-            [array addObject:[[WallUserCellModel alloc] init:WallUserCellModelTypeActions user:self.viewModel.currentUser]];
-            self.sectionsArray = @[array];
-        }
-        [super performBatchAnimated:animated];
+    if (self.photo) {
+        [array addObject:self.photo];
     }
-*/
+    if (self.objectsArray.count && self.photo.comments.count > self.objectsArray.count) {
+        [self showPreloadCommentsCellWithCount:self.photo.comments.count item:self.photo section:array];
+    }
+    self.sectionsArray = @[array];
     [super performBatchAnimated:animated];
+}
+
+#pragma mark - Private Methods
+- (WallUserCellModel *)avatarModel {
+    if (!_avatarModel && self.photo.owner) {
+        _avatarModel = [[WallUserCellModel alloc] init:WallUserCellModelTypeAvatarNameDate user:self.photo.owner date:self.photo.date];
+    }
+    return _avatarModel;
 }
 
 @end

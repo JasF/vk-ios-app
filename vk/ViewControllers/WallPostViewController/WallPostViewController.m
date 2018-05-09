@@ -14,7 +14,6 @@
 #import "vk-Swift.h"
 
 static NSInteger const kOffsetForPreloadLatestComments = -1;
-static NSInteger const kNumberOfCommentsForPreload = 40;
 
 @interface WallPostViewController () <BaseTableViewControllerDataSource,
 ASCollectionDelegate, ASCollectionDataSource>
@@ -26,7 +25,6 @@ ASCollectionDelegate, ASCollectionDataSource>
 
 @implementation WallPostViewController {
     BOOL _hasHeaderSection;
-    CommentsPreloadModel *_commentsPreloadModel;
 }
 
 - (instancetype)initWithViewModel:(id<WallPostViewModel>)viewModel
@@ -106,23 +104,11 @@ ASCollectionDelegate, ASCollectionDataSource>
         [section addObject:self.post];
     }
     if (self.objectsArray.count && self.post.comments.count > self.objectsArray.count) {
-        NSInteger remaining = self.post.comments.count - self.objectsArray.count;
-        NSInteger preload = MIN(remaining, kNumberOfCommentsForPreload);
-        self.commentsPreloadModel.post = self.post;
-        self.commentsPreloadModel.loaded = self.objectsArray.count;
-        [self.commentsPreloadModel set:preload remaining:remaining];
-        [section addObject:self.commentsPreloadModel];
+        [self showPreloadCommentsCellWithCount:self.post.comments.count item:self.post section:section];
     }
     self.sectionsArray = @[section];
     [super performBatchAnimated:animated];
     [self showCommentsToolbarIfPossible];
-}
-
-- (CommentsPreloadModel *)commentsPreloadModel {
-    if (!_commentsPreloadModel) {
-        _commentsPreloadModel = [[CommentsPreloadModel alloc] init:0 remaining:0];
-    }
-    return _commentsPreloadModel;
 }
 
 #pragma mark - PostsViewController

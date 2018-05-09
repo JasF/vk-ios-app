@@ -9,6 +9,9 @@
 #import "CommentsViewController.h"
 #import "_MXRMessengerInputToolbarContainerView.h"
 #import "Comment.h"
+#import "vk-Swift.h"
+
+static NSInteger const kNumberOfCommentsForPreload = 40;
 
 @interface CommentsViewController ()
 @property (nonatomic, strong) NSNumber* calculatedOffsetFromInteractiveKeyboardDismissal;
@@ -16,6 +19,7 @@
 @property (nonatomic, strong) MXRMessengerInputToolbarContainerView *toolbarContainerView;
 @property (nonatomic, assign) CGFloat minimumBottomInset;
 @property (nonatomic, assign) CGFloat topInset;
+@property (nonatomic, strong) CommentsPreloadModel *commentsPreloadModel;
 @end
 
 @implementation CommentsViewController
@@ -87,6 +91,7 @@
     }
 }
 
+#pragma mark - Public Methods
 - (void)hideCommentsToolbar {
     [_toolbarContainerView removeFromSuperview];
     [self updateFrames];
@@ -116,6 +121,30 @@
         [self reloadInputViews];
     }];
     self.tableNode.contentOffset = contentOffset;
+}
+
+- (CommentsPreloadModel *)commentsPreloadModel {
+    if (!_commentsPreloadModel) {
+        _commentsPreloadModel = [[CommentsPreloadModel alloc] init:0 remaining:0];
+    }
+    return _commentsPreloadModel;
+}
+
+- (void)showPreloadCommentsCellWithCount:(NSInteger)count item:(id)item section:(NSMutableArray *)section {
+    NSInteger remaining = count - self.objectsArray.count;
+    NSInteger preload = MIN(remaining, kNumberOfCommentsForPreload);
+    if ([item isKindOfClass:[WallPost class]]) {
+        self.commentsPreloadModel.post = (WallPost *)item;
+    }
+    else if ([item isKindOfClass:[Video class]]) {
+        self.commentsPreloadModel.video = (Video *)item;
+    }
+    else if ([item isKindOfClass:[Photo class]]) {
+        self.commentsPreloadModel.photo = (Photo *)item;
+    }
+    self.commentsPreloadModel.loaded = self.objectsArray.count;
+    [self.commentsPreloadModel set:preload remaining:remaining];
+    [section addObject:self.commentsPreloadModel];
 }
 
 #pragma mark - NSNotificationCenter

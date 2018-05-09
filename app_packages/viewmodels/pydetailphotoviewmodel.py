@@ -5,6 +5,7 @@ import vk, json
 from vk import users
 from constants import g_CommentsCount
 
+kOffsetForPreloadLatestComments = -1
 class PyDetailPhotoViewModel():
     def __init__(self, detailPhotoService, ownerId, photoId):
         self.detailPhotoService = detailPhotoService
@@ -17,15 +18,25 @@ class PyDetailPhotoViewModel():
     # protocol methods implementation
     def getPhotoData(self, offset):
         results = {}
+        commentsOffset = offset
         if not self.photoData:
             self.userInfo = users.getShortUserById(self.ownerId)
-            
             self.photoData = self.detailPhotoService.getPhoto(self.ownerId, self.photoId)
-            comments = self.detailPhotoService.getComments(self.ownerId, self.photoId, offset, g_CommentsCount)
+            if offset == kOffsetForPreloadLatestComments:
+                commentsOffset = 0
+                count = 0
+                try:
+                    count = self.photoData['comments']['count']
+                    commentsOffset = count - g_CommentsCount
+                    if commentsOffset < 0:
+                        commentsOffset = 0
+                except:
+                    print('failed get comments count for photo')
+            comments = self.detailPhotoService.getComments(self.ownerId, self.photoId, commentsOffset, g_CommentsCount)
             results['comments'] = comments
-        if offset == 0:
-            self.photoData['owner'] = self.userInfo
-            results['photoData'] = self.photoData
+    
+        self.photoData['owner'] = self.userInfo
+        results['photoData'] = self.photoData
         return results
     
     # ObjCBridgeProtocol

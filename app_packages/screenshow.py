@@ -3,7 +3,7 @@ import vk
 
 def showScreenAfterAuthorization():
     #managers.shared().screensManager().showFriendsViewController_usersListType_push_(args=[vk.userId(), UsersListTypes.FRIENDS, False])
-    managers.shared().screensManager().showChatListViewController()
+    #managers.shared().screensManager().showChatListViewController()
     #managers.shared().screensManager().showWallViewController()
     #managers.shared().screensManager().showWallViewController_(args=[19649085]) # Andrei Vayavoda Second
     #managers.shared().screensManager().showWallViewController_(args=[82108968]) # Aleksandr Kruglov
@@ -11,7 +11,7 @@ def showScreenAfterAuthorization():
     #managers.shared().screensManager().showNewsViewController()
     #managers.shared().screensManager().showAnswersViewController()
     #managers.shared().screensManager().showWallViewController_(args=[-166181313]) # Daddy Pasha
-    #managers.shared().screensManager().showWallViewController_(args=[-63294313]) # Уроки Медитации [Публичная страница]
+    managers.shared().screensManager().showWallViewController_(args=[-63294313]) # Уроки Медитации [Публичная страница]
     #managers.shared().screensManager().showWallViewController_(args=[-20550925]) # Oum.Ru Здравый Образ Жизни
     #managers.shared().screensManager().showGroupsViewController_push_(args=[vk.userId(), False])
     #managers.shared().screensManager().showBookmarksViewController()

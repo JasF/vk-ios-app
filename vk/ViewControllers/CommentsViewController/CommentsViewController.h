@@ -12,4 +12,5 @@
 @property id commentsParentItem;
 - (void)hideCommentsToolbar;
 - (void)showCommentsToolbar;
+- (void)showPreloadCommentsCellWithCount:(NSInteger)count item:(id)item section:(NSMutableArray *)section;
 @end
