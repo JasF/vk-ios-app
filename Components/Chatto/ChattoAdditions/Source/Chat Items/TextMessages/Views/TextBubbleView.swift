@@ -42,6 +42,9 @@ public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable
             return _mediaNodes
         }
         set {
+            if _mediaNodes != nil && (_mediaNodes?.count)! > 0 {
+                return
+            }
             if let array = _mediaNodes {
                 for node in array {
                     node.removeFromSupernode()

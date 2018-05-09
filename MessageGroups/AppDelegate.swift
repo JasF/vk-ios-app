@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKCoreKit
+import HockeySDK
 
 extension Data {
     struct HexEncodingOptions: OptionSet {
@@ -34,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        BITHockeyManager.shared().configure(withIdentifier: "b3125c1736c24cafbd158dd12bbf4af7")
+        BITHockeyManager.shared().start()
         self.pythonManager?.startupPython()
         self.screensManager?.createWindowIfNeeded()
         

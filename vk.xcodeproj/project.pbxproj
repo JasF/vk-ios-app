@@ -637,6 +637,7 @@
 		C39D471920A2CD7600C6CC99 /* BaseChatViewController+Scrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D46FD20A2CD7500C6CC99 /* BaseChatViewController+Scrolling.swift */; };
 		C39D471A20A2CD7600C6CC99 /* ReadOnlyOrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D470020A2CD7600C6CC99 /* ReadOnlyOrderedDictionary.swift */; };
 		C39D471B20A2CD7600C6CC99 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D470120A2CD7600C6CC99 /* Utils.swift */; };
+		C39D471D20A33D5B00C6CC99 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39D471C20A33D5B00C6CC99 /* HockeySDK.framework */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1979,6 +1980,7 @@
 		C39D470020A2CD7600C6CC99 /* ReadOnlyOrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadOnlyOrderedDictionary.swift; path = Chatto/Chatto/Source/ReadOnlyOrderedDictionary.swift; sourceTree = "<group>"; };
 		C39D470120A2CD7600C6CC99 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Chatto/Chatto/Source/Utils.swift; sourceTree = "<group>"; };
 		C39D470220A2CD7600C6CC99 /* Chatto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chatto.h; path = Chatto/Chatto/Source/Chatto.h; sourceTree = "<group>"; };
+		C39D471C20A33D5B00C6CC99 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -2181,6 +2183,7 @@
 				C32305CB2080E57500CEC487 /* libPython-armv7.a in Frameworks */,
 				C32305CE2080E57500CEC487 /* JGProgressHUD.framework in Frameworks */,
 				C32305C82080E57500CEC487 /* libPython-i386.a in Frameworks */,
+				C39D471D20A33D5B00C6CC99 /* HockeySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2725,6 +2728,7 @@
 		C32303EB2080E57300CEC487 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C39D471C20A33D5B00C6CC99 /* HockeySDK.framework */,
 				C338CA4D20A1BF6600F30B77 /* FacebookSDKStrings.bundle */,
 				C338CA4E20A1BF6600F30B77 /* FBSDKCoreKit.framework */,
 				C32306F52080F1C600CEC487 /* Pods_vk.framework */,

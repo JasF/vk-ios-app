@@ -22,4 +22,5 @@ typedef NS_ENUM(NSInteger, AttachmentTypes) {
 @property AttachmentTypes type;
 @property Photo *photo;
 @property Video *video;
+- (NSString *)uid;
 @end

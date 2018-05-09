@@ -7,6 +7,7 @@
 //
 
 #import "Attachments.h"
+#import <zlib.h>
 
 @implementation Attachments
 
@@ -29,6 +30,19 @@
     NSDictionary *dictionary = @{@"photo":@(AttachmentPhoto),
                                  @"video":@(AttachmentVideo)};
     _type = [dictionary[typeString] integerValue];
+}
+
+- (NSString *)uid {
+    NSString *string = @"";
+    if (self.photo) {
+        string = [NSString stringWithFormat:@"p%@", @(self.photo.id)];
+    }
+    else if (self.video) {
+        string = [NSString stringWithFormat:@"v%@", @(self.video.id)];
+    }
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    uInt crc = crc32(0, data.bytes, data.length);
+    return [NSString stringWithFormat:@"%@", @(crc)];
 }
 
 @end

@@ -114,13 +114,37 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         self.updateViews()
     }
     
+    func attributesUid(_ atts: [Attachments]) -> String {
+        var uid = ""
+        for att in atts {
+            uid += att.uid()
+        }
+        return uid
+    }
+    
     var mediaNodes = [ASDisplayNode]()
+    var mediaNodesUid = ""
     open var messageViewModel: MessageViewModelProtocol! {
         didSet {
             messageViewModel.node = self
             mediaNodes.removeAll()
             if let nodeFactory = self.nodeFactory {
                 if let message = messageViewModel.message {
+                    var uid = ""
+                    if let atts = message.photoAttachments {
+                        uid += attributesUid(atts)
+                    }
+                    if let atts = message.attachments {
+                        uid += attributesUid(atts)
+                    }
+                    if uid.count == 0 {
+                        return
+                    }
+                    if mediaNodesUid == uid {
+                        return;
+                    }
+                    mediaNodesUid = uid
+                    
                     let block: (Any) -> Void = { (att) in
                         if let node = nodeFactory.node(forItem: att) {
                             if let imagesNode = node as? PostImagesNode {
@@ -138,6 +162,7 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
                             self.mediaNodes.append(node)
                         }
                     }
+                    
                     if let atts = message.photoAttachments {
                         block(atts)
                     }
