@@ -34,6 +34,8 @@ need_pts=1
 class AddMessageProtocol(object):
     def handleMessageAdd(self, messageId, flags, peerId, timestamp, text):
         pass
+    def handleMessageEdit(self, messageId, flags, peerId, timestamp, text):
+        pass
     def handleMessageClearFlags(self, messageId, flags):
         pass
     def handleTyping(self, userId, flags):
@@ -130,7 +132,20 @@ def parseMessageAdd(eventDescription):
         d.handleMessageAdd(messageId, flags, peerId, timestamp, text, random_id)
 
 def parseMessageEdit(eventDescription):
-    pass
+    if len(eventDescription) < 7:
+        print('parseMessageAdd too short')
+        return
+    messageId = eventDescription[0]
+    flags = eventDescription[1]
+    peerId = eventDescription[2]
+    timestamp = eventDescription[3]
+    text = eventDescription[4]
+    extra = eventDescription[5]
+    random_id = eventDescription[6]
+
+    print('msg EDIT desc: ' + json.dumps(eventDescription, indent=4))
+    for d in _lp.addMessageDelegates:
+        d.handleMessageEdit(messageId, flags, peerId, timestamp, text, random_id)
 
 def parseMessageInReaded(eventDescription):
     if len(eventDescription) < 2:

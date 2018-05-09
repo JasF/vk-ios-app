@@ -74,6 +74,11 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         except Exception as e:
             print('doHandleIncomingMessage exception: ' + str(e))
     
+    def handleEditMessage(self, message):
+        if self.guiDelegate:
+            self.guiDelegate.handleEditMessage_(args=[message])
+        pass
+    
     def handleMessageFlagsChanged(self, message):
         if self.guiDelegate:
             self.guiDelegate.handleMessageFlagsChanged_(args=[message])

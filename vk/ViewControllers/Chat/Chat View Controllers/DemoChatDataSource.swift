@@ -175,6 +175,20 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         self.delegate?.chatDataSourceDidUpdate(self)
     }
     
+    func handleEditMessage(_ message: Message!) {
+        let items = self.slidingWindow.getItems()
+        for item in items as! [DemoMessageModelProtocol] {
+            if item.externalId == message.identifier {
+                if let textItem = item as? DemoTextMessageModel {
+                    textItem.text = message.body
+                    item.message = message
+                    updateDatasource()
+                    break
+                }
+            }
+        }
+    }
+    
     func addTextMessage(_ text: String) {
         self.nextMessageId += 1
         let uid = "\(self.nextMessageId)"

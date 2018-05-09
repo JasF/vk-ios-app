@@ -55,7 +55,7 @@ open class TextMessageViewModel<TextMessageModelT: TextMessageModelProtocol>: Te
     }
     
     open var text: String {
-        return self.textMessage.text
+        return self.textMessage.text!
     }
     public let textMessage: TextMessageModelT
     public let messageViewModel: MessageViewModelProtocol

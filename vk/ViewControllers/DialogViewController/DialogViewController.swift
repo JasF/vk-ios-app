@@ -169,6 +169,10 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         self.mDataSource?.addIncomingTextMessage(message)
     }
     
+    func handleEdit(_ message: Message!) {
+        self.mDataSource?.handleEditMessage(message)
+    }
+    
     func handleMessageFlagsChanged(_ message: Message!) {
         self.mDataSource?.handleMessageFlagsChanged(message)
     }

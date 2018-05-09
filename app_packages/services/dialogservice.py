@@ -26,7 +26,7 @@ class DialogService:
             messages.update(l)
             messages.close()
     
-            print('messages history: ' + json.dumps(response, indent=4))
+            #print('messages history: ' + json.dumps(response, indent=4))
         except Exception as e:
             print('get messages exception: ' + str(e))
         return {'response':response, 'users':usersData}

@@ -12,6 +12,7 @@ static CGFloat const kTypingNotifierInterval = 5.f;
 
 @protocol PyDialogScreenViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(NSDictionary *)message;
+- (void)handleEditMessage:(NSDictionary *)message;
 - (void)handleMessageFlagsChanged:(NSDictionary *)message;
 - (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end;
 - (void)handleMessagesInReaded:(NSNumber *)messageId;
@@ -147,6 +148,17 @@ static CGFloat const kTypingNotifierInterval = 5.f;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate handleIncomingMessage:message];
+    });
+}
+
+- (void)handleEditMessage:(NSDictionary *)messageDictionary {
+    Message *message = [_dialogService parseOne:messageDictionary];
+    NSCParameterAssert(message);
+    if (!message) {
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_delegate handleEditMessage:message];
     });
 }
 

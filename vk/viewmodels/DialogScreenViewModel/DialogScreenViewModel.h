@@ -8,6 +8,7 @@
 
 @protocol DialogScreenViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(Message *)message;
+- (void)handleEditMessage:(Message *)message;
 - (void)handleMessageFlagsChanged:(Message *)message;
 - (void)handleTyping:(NSInteger)userId end:(BOOL)end;
 - (void)handleMessagesInReaded:(NSInteger)messageId;

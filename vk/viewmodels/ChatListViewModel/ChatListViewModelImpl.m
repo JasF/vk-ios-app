@@ -10,6 +10,7 @@
 
 @protocol PyChatListViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(NSDictionary *)messageDictionary;
+- (void)handleEditMessage:(NSDictionary *)messageDictionary;
 - (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary;
 - (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end;
 - (void)handleMessagesInReaded:(NSNumber *)userId localId:(NSNumber *)messageId;
@@ -77,7 +78,13 @@
 }
 
 #pragma mark - PyChatListViewModelDelegate
-- (void)handleIncomingMessage:(NSString *)messageDictionary {
+- (void)handleIncomingMessage:(NSDictionary *)messageDictionary {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate reloadData];
+    });
+}
+
+- (void)handleEditMessage:(NSDictionary *)messageDictionary {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate reloadData];
     });

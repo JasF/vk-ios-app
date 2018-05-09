@@ -87,6 +87,18 @@ class MessagesService(AddMessageProtocol):
             d.handleIncomingMessage(msg)
         self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId)
 
+    def handleMessageEdit(self, messageId, flags, peerId, timestamp, text, randomId):
+        isOut = 1 if MessageFlags(flags) & MessageFlags.OUTBOX else 0
+        read_state = 0 if MessageFlags(flags) & MessageFlags.UNREAD else 1
+        fromId = vk.userId() if isOut == True else peerId
+        try:
+            self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId)
+            msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId)
+            for d in self.newMessageSubscribers:
+                d.handleEditMessage(msg)
+        except:
+            pass
+
     def markReadedMessagesBefore(self, peerId, localId, out):
         cache = MessagesDatabase()
         l = cache.unreadedMessagesBefore(peerId, localId, out)
