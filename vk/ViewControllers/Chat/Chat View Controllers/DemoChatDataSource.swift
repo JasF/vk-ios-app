@@ -189,6 +189,17 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         }
     }
     
+    func handleMessageDelete(_ messageId: Int) {
+        var items = self.slidingWindow.getItems()
+        for item in items as! [DemoMessageModelProtocol] {
+            if item.externalId == messageId {
+                let index: NSInteger = (items as NSArray).index(of: item)
+                self.slidingWindow.removeItemAtIndex(index)
+                updateDatasource()
+            }
+        }
+    }
+    
     func addTextMessage(_ text: String) {
         self.nextMessageId += 1
         let uid = "\(self.nextMessageId)"

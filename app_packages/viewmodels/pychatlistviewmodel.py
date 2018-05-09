@@ -60,6 +60,13 @@ class PyChatListViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         if self.guiDelegate:
             self.guiDelegate.handleEditMessage_(args=[message])
 
+    def handleMessageDeleted(self, messageId):
+        if not self.isActive:
+            self.needsUpdate = True
+            return
+        if self.guiDelegate:
+            self.guiDelegate.handleMessageDelete_(args=[messageId])
+
     def handleMessageFlagsChanged(self, message):
         if not self.isActive:
             self.needsUpdate = True

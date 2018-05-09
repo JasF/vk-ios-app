@@ -30,6 +30,8 @@ class NewMessageProtocol():
         pass
     def handleTypingInDialog(self, userId, flags):
         pass
+    def handleMessageDeleted(self, messageId):
+        pass
 
 class MessagesService(AddMessageProtocol):
     def __new__(cls):
@@ -136,6 +138,20 @@ class MessagesService(AddMessageProtocol):
         messages.close()
         for d in self.newMessageSubscribers:
             d.handleMessageFlagsChanged(msg)
+
+
+    def handleMessageAddFlags(self, messageId, flags):
+        if MessageFlags(flags) & MessageFlags.DELETED_FOR_ALL:
+            try:
+                messages = MessagesDatabase()
+                messages.remove(messageId)
+                messages.close()
+                for d in self.newMessageSubscribers:
+                    d.handleMessageDeleted(messageId)
+            except Exception as e:
+                print('delete message exception: ' + str(e))
+            return
+        print('added unknown flag for message: ' + str(messageId))
 
     def handleTyping(self, userId, flags):
         print('count of subscr: ' + str(len(self.newMessageSubscribers)))

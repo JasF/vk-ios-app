@@ -77,7 +77,10 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     def handleEditMessage(self, message):
         if self.guiDelegate:
             self.guiDelegate.handleEditMessage_(args=[message])
-        pass
+
+    def handleMessageDeleted(self, messageId):
+        if self.guiDelegate:
+            self.guiDelegate.handleMessageDelete_(args=[messageId])
     
     def handleMessageFlagsChanged(self, message):
         if self.guiDelegate:

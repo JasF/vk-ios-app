@@ -61,6 +61,15 @@ public class SlidingDataSource<Element> {
     public func getItems() -> [Element] {
         return self.items
     }
+    
+    public func setItems(_ items: [Element]) {
+        self.items = items
+    }
+    
+    public func removeItemAtIndex(_ index: Int) {
+        self.items.remove(at: index)
+        windowCount = windowCount - 1
+    }
 
     private func generateItems(_ count: Int, position: InsertPosition) {
         guard count > 0 else { return }

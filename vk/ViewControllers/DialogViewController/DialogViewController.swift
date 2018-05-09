@@ -173,6 +173,10 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         self.mDataSource?.handleEditMessage(message)
     }
     
+    func handleMessageDelete(_ messageId: NSNumber!) {
+        self.mDataSource?.handleMessageDelete(messageId.intValue)
+    }
+    
     func handleMessageFlagsChanged(_ message: Message!) {
         self.mDataSource?.handleMessageFlagsChanged(message)
     }

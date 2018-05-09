@@ -103,6 +103,13 @@ def parseMessageSetFlags(eventDescription):
     pass
 
 def parseMessageAddFlags(eventDescription):
+    if len(eventDescription) < 2:
+        print('parseMessageAddFlags too short')
+        return
+    messageId = eventDescription[0]
+    flags = eventDescription[1]
+    for d in _lp.addMessageDelegates:
+        d.handleMessageAddFlags(messageId, flags)
     pass
 
 def parseMessageClearFlags(eventDescription):
