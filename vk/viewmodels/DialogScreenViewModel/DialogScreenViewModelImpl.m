@@ -158,15 +158,11 @@ static CGFloat const kTypingNotifierInterval = 5.f;
     if (!message) {
         return;
     }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_delegate handleEditMessage:message];
-    });
+    [_delegate handleEditMessage:message];
 }
 
 - (void)handleMessageDelete:(NSNumber *)messageId {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_delegate handleMessageDelete:messageId];
-    });
+    [_delegate handleMessageDelete:messageId];
 }
 
 - (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary {
