@@ -23,7 +23,7 @@
 */
 
 import Foundation
-import Chatto
+
 
 public struct BaseMessageDecorationAttributes {
     public var canShowFailedIcon: Bool

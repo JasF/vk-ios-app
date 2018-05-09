@@ -23,8 +23,8 @@
 */
 
 import UIKit
-import Chatto
-import ChattoAdditions
+
+
 
 // This is a dirty implementation that shows what's needed to add a new type of element
 // @see DemoChatItemsDecorator
@@ -63,6 +63,8 @@ public class SendingStatusPresenterBuilder: ChatItemPresenterBuilderProtocol {
 }
 
 class SendingStatusPresenter: ChatItemPresenterProtocol {
+    var nodeFactory: NodeFactory?
+    
     func getMessageModel() -> Any? {
         return nil
     }

@@ -24,7 +24,7 @@
 
 import UIKit
 import AsyncDisplayKit
-import Chatto
+
 
 protocol PhotosInputCellProviderProtocol: class {
     func cellForItem(at indexPath: IndexPath) -> ChatBaseNodeCell

@@ -1,5 +1,4 @@
-import vk
-import json
+import vk, json
 from caches.messagesdatabase import MessagesDatabase
 
 class DialogService:
@@ -26,6 +25,8 @@ class DialogService:
             l = response["items"]
             messages.update(l)
             messages.close()
+    
+            print('messages history: ' + json.dumps(response, indent=4))
         except Exception as e:
             print('get messages exception: ' + str(e))
         return {'response':response, 'users':usersData}

@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Chatto
+
 
 class TypingModel: ChatItemProtocol {
     let uid: String

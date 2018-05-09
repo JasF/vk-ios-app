@@ -23,7 +23,7 @@
 */
 
 import Foundation
-import Chatto
+
 import AsyncDisplayKit
 
 public protocol ViewModelBuilderProtocol {
@@ -50,7 +50,8 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
     InteractionHandlerT.ViewModelT == ViewModelBuilderT.ViewModelT,
     BubbleViewT: ASDisplayNode,
     BubbleViewT: MaximumLayoutWidthSpecificable,
-    BubbleViewT: BackgroundSizingQueryable {
+    BubbleViewT: BackgroundSizingQueryable,
+    BubbleViewT: BaseBubbleViewProtocol {
 
     public typealias CellT = BaseMessageCollectionViewCell<BubbleViewT>
     public typealias ModelT = ViewModelBuilderT.ModelT

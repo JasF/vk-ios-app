@@ -23,8 +23,8 @@
 */
 
 import Foundation
-import Chatto
-import ChattoAdditions
+
+
 
 public protocol DemoMessageModelProtocol: MessageModelProtocol {
     var status: MessageStatus { get set }

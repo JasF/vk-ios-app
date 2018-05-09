@@ -23,8 +23,8 @@
 */
 
 import Foundation
-import Chatto
-import ChattoAdditions
+
+
 
 class DemoChatMessageFactory {
     private static let demoText =
@@ -55,7 +55,9 @@ class DemoChatMessageFactory {
     
     class func makeTextMessage(_ uid: String, message: Message?) -> DemoTextMessageModel {
         let incoming = message?.isOut == 0 ? true : false
-        return self.makeTextMessage(uid, text:(message?.body)!, isIncoming:incoming, readState:(message?.read_state)!, externalId:(message?.identifier)!)
+        let model = self.makeTextMessage(uid, text:(message?.body)!, isIncoming:incoming, readState:(message?.read_state)!, externalId:(message?.identifier)!)
+        model.message = message
+        return model
     }
 
     class func makePhotoMessage(_ uid: String, image: UIImage, size: CGSize, isIncoming: Bool) -> DemoPhotoMessageModel {

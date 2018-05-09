@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Chatto
+
 
 public class TypingPresenterBuilder: ChatItemPresenterBuilderProtocol {
     
@@ -26,7 +26,9 @@ public class TypingPresenterBuilder: ChatItemPresenterBuilderProtocol {
     }
 }
 
-class TypingPresenter: ChatItemPresenterProtocol { 
+class TypingPresenter: ChatItemPresenterProtocol {
+    var nodeFactory: NodeFactory?
+    
     func getMessageModel() -> Any? {
         return nil
     }

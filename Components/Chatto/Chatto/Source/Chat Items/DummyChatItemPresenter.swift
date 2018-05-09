@@ -30,6 +30,8 @@ class DummyNode : ChatBaseNodeCell {
 }
 // Handles messages that aren't supported so they appear as invisible
 class DummyChatItemPresenter: ChatItemPresenterProtocol {
+    var nodeFactory: NodeFactory?
+    
     func getMessageModel() -> Any? {
         return nil
     }

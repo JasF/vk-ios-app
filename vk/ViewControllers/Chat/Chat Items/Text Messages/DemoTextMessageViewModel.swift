@@ -23,7 +23,7 @@
 */
 
 import Foundation
-import ChattoAdditions
+
 
 public class DemoTextMessageViewModel: TextMessageViewModel<DemoTextMessageModel>, DemoMessageViewModelProtocol {
 

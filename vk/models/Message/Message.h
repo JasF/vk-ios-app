@@ -22,7 +22,7 @@
 @property NSInteger user_id;
 @property NSInteger from_id;
 @property BOOL isTyping;
-@property NSArray<Attachments *> *photoAttachments;
-@property NSArray<Attachments *> *attachments;
+@property (nonatomic) NSArray<Attachments *> *photoAttachments;
+@property (nonatomic) NSArray<Attachments *> *attachments;
 
 @end

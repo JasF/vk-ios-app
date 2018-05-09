@@ -23,7 +23,7 @@
 */
 
 import UIKit
-import Chatto
+
 
 open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewCellStyleProtocol {
     typealias Class = TextMessageCollectionViewCellDefaultStyle
@@ -148,9 +148,9 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
         var hashValue: Int {
             switch self {
             case let .template(isIncoming: isIncoming, showsTail: showsTail):
-                return Chatto.bma_combine(hashes: [1 /*template*/, isIncoming.hashValue, showsTail.hashValue])
+                return bma_combine(hashes: [1 /*template*/, isIncoming.hashValue, showsTail.hashValue])
             case let .normal(isIncoming: isIncoming, status: status, showsTail: showsTail, isSelected: isSelected):
-                return Chatto.bma_combine(hashes: [2 /*normal*/, isIncoming.hashValue, status.hashValue, showsTail.hashValue, isSelected.hashValue])
+                return bma_combine(hashes: [2 /*normal*/, isIncoming.hashValue, status.hashValue, showsTail.hashValue, isSelected.hashValue])
             }
         }
 

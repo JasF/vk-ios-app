@@ -31,15 +31,18 @@ public protocol ChatItemPresenterFactoryProtocol {
 
 final class ChatItemPresenterFactory: ChatItemPresenterFactoryProtocol {
     var presenterBuildersByType = [ChatItemType: [ChatItemPresenterBuilderProtocol]]()
-
-    init(presenterBuildersByType: [ChatItemType: [ChatItemPresenterBuilderProtocol]]) {
+    var nodeFactory: NodeFactory
+    init(presenterBuildersByType: [ChatItemType: [ChatItemPresenterBuilderProtocol]], nodeFactory: NodeFactory) {
         self.presenterBuildersByType = presenterBuildersByType
+        self.nodeFactory = nodeFactory
     }
 
     func createChatItemPresenter(_ chatItem: ChatItemProtocol) -> ChatItemPresenterProtocol {
         for builder in self.presenterBuildersByType[chatItem.type] ?? [] {
             if builder.canHandleChatItem(chatItem) {
-                return builder.createPresenterWithChatItem(chatItem)
+                let presenter = builder.createPresenterWithChatItem(chatItem)
+                presenter.nodeFactory = nodeFactory
+                return presenter
             }
         }
         return DummyChatItemPresenter()

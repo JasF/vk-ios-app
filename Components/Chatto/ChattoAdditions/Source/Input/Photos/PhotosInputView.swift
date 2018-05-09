@@ -24,7 +24,7 @@
 
 import UIKit
 import Photos
-import Chatto
+
 import AsyncDisplayKit
 
 public struct PhotosInputViewAppearance {

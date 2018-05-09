@@ -37,6 +37,7 @@ public protocol ChatItemDecorationAttributesProtocol {
 
 public protocol ChatItemPresenterProtocol: class {
     static func registerCells(_ collectionView: UICollectionView)
+    var nodeFactory: NodeFactory? { get set }
     var canCalculateHeightInBackground: Bool { get } // Default is false
     func heightForCell(maximumWidth width: CGFloat, decorationAttributes: ChatItemDecorationAttributesProtocol?) -> CGFloat
     func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell

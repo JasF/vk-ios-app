@@ -23,7 +23,7 @@
 */
 
 import UIKit
-import Chatto
+
 
 public enum TransferDirection {
     case upload
@@ -46,6 +46,8 @@ public protocol PhotoMessageViewModelProtocol: DecoratedMessageViewModelProtocol
 }
 
 open class PhotoMessageViewModel<PhotoMessageModelT: PhotoMessageModelProtocol>: PhotoMessageViewModelProtocol {
+    public var message: Message?
+    
     public var readState: Int {
         return self.messageViewModel.readState
     }

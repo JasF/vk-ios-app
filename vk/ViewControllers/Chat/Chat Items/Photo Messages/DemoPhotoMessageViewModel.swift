@@ -23,7 +23,7 @@
 */
 
 import Foundation
-import ChattoAdditions
+
 
 class DemoPhotoMessageViewModel: PhotoMessageViewModel<DemoPhotoMessageModel> {
 

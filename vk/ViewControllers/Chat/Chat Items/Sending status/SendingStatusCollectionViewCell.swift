@@ -23,7 +23,7 @@
 */
 
 import UIKit
-import Chatto
+
 
 class SendingStatusCollectionViewCell: ChatBaseNodeCell {
 

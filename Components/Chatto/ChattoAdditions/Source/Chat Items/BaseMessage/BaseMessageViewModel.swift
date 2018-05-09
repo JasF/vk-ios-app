@@ -23,7 +23,7 @@
 */
 
 import Foundation
-import Chatto
+
 
 public enum MessageViewModelStatus {
     case success
@@ -55,6 +55,7 @@ public protocol MessageViewModelProtocol: class { // why class? https://gist.git
     var status: MessageViewModelStatus { get }
     var avatarImage: Observable<UIImage?> { get set }
     var node: ChatBaseNodeCell? { get set }
+    var message: Message? { get }
     func willBeShown() // Optional
     func wasHidden() // Optional
 }
@@ -115,6 +116,12 @@ extension DecoratedMessageViewModelProtocol {
 }
 
 open class MessageViewModel: MessageViewModelProtocol {
+    public var message: Message? {
+        get {
+            return self.messageModel.message
+        }
+    }
+    
     open var readState: Int {
         return self.messageModel.readState
     }

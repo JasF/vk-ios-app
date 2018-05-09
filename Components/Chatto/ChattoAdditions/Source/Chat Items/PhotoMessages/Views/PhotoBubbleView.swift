@@ -24,7 +24,7 @@
 
 import UIKit
 import AsyncDisplayKit
-import Chatto
+
 
 public protocol PhotoBubbleViewStyleProtocol {
     func maskingImage(viewModel: PhotoMessageViewModelProtocol) -> UIImage
@@ -38,8 +38,8 @@ public protocol PhotoBubbleViewStyleProtocol {
     func overlayColor(viewModel: PhotoMessageViewModelProtocol) -> UIColor?
 }
 
-open class PhotoBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable, BackgroundSizingQueryable {
-
+open class PhotoBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable, BackgroundSizingQueryable, BaseBubbleViewProtocol {
+    public var mediaNodes: [ASDisplayNode]?
     public var viewContext: ViewContext = .normal
     public var animationDuration: CFTimeInterval = 0.33
     public var preferredMaxLayoutWidth: CGFloat = 0

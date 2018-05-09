@@ -24,7 +24,7 @@
 
 import Foundation
 import UIKit
-import Chatto
+
 
 class TimeSeparatorCollectionViewCell: ChatBaseNodeCell {
 

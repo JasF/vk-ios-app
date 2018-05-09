@@ -23,7 +23,7 @@
 */
 
 import UIKit
-import Chatto
+
 import AsyncDisplayKit
 
 public protocol TextBubbleViewStyleProtocol {
@@ -34,12 +34,41 @@ public protocol TextBubbleViewStyleProtocol {
     func textInsets(viewModel: TextMessageViewModelProtocol, isSelected: Bool) -> UIEdgeInsets
 }
 
-public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable, BackgroundSizingQueryable {
+public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable, BackgroundSizingQueryable, BaseBubbleViewProtocol {
     let textNode = ASTextNode()
-
+    var _mediaNodes: [ASDisplayNode]? = nil
+    public var mediaNodes:[ASDisplayNode]?  {
+        get {
+            return _mediaNodes
+        }
+        set {
+            if let array = _mediaNodes {
+                for node in array {
+                    node.removeFromSupernode()
+                }
+            }
+            _mediaNodes = newValue
+            if let array = _mediaNodes {
+                for node in array {
+                    self.addSubnode(node)
+                }
+            }
+        }
+    }
+    
     override public func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let textSpec = ASInsetLayoutSpec.init(insets: textInsets, child: textNode)
-        return ASBackgroundLayoutSpec.init(child: textSpec, background: self.bubbleImageView)
+        var spec: ASLayoutSpec? = ASInsetLayoutSpec.init(insets: textInsets, child: textNode)
+        if let mediaNodes = self.mediaNodes {
+            if mediaNodes.count > 0 {
+                var mediaSpecs = [ASLayoutElement]()
+                mediaSpecs.append(spec!)
+                for node in mediaNodes {
+                    mediaSpecs.append(node)
+                }
+                spec = ASStackLayoutSpec(direction: .vertical, spacing: kMediaNodeMargin, justifyContent: .start, alignItems: .start, children: mediaSpecs)
+            }
+        }
+        return ASBackgroundLayoutSpec.init(child: spec!, background: self.bubbleImageView)
     }
     public var preferredMaxLayoutWidth: CGFloat = 0
     public var animationDuration: CFTimeInterval = 0.33
@@ -245,7 +274,7 @@ private final class TextBubbleLayoutModel {
         let preferredMaxLayoutWidth: CGFloat
 
         var hashValue: Int {
-            return Chatto.bma_combine(hashes: [self.text.hashValue, self.textInsets.bma_hashValue, self.preferredMaxLayoutWidth.hashValue, self.font.hashValue])
+            return bma_combine(hashes: [self.text.hashValue, self.textInsets.bma_hashValue, self.preferredMaxLayoutWidth.hashValue, self.font.hashValue])
         }
 
         static func == (lhs: TextBubbleLayoutModel.LayoutContext, rhs: TextBubbleLayoutModel.LayoutContext) -> Bool {

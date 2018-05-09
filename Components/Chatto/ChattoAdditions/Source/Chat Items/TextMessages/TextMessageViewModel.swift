@@ -23,13 +23,19 @@
 */
 
 import Foundation
-import Chatto
+
 
 public protocol TextMessageViewModelProtocol: DecoratedMessageViewModelProtocol {
     var text: String { get }
 }
 
 open class TextMessageViewModel<TextMessageModelT: TextMessageModelProtocol>: TextMessageViewModelProtocol {
+    public var message: Message? {
+        get {
+            return self.messageViewModel.message
+        }
+    }
+    
     open var readState: Int {
         return self.messageViewModel.readState
     }

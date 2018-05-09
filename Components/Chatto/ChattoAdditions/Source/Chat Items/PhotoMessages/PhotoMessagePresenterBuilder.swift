@@ -23,7 +23,7 @@
 */
 
 import Foundation
-import Chatto
+
 
 open class PhotoMessagePresenterBuilder<ViewModelBuilderT, InteractionHandlerT>: ChatItemPresenterBuilderProtocol where
     ViewModelBuilderT: ViewModelBuilderProtocol,

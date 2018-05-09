@@ -8,7 +8,7 @@
 
 import Foundation
 import NMessenger
-import Chatto
+
 
 @objcMembers class WallUserActionNode : ChatBaseNodeCell {
     let aTextNode : ASTextNode! = ASTextNode()

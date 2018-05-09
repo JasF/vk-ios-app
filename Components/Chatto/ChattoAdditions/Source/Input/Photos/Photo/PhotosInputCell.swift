@@ -24,7 +24,7 @@
 
 import UIKit
 import AsyncDisplayKit
-import Chatto
+
 
 final class PhotosInputCell: ChatBaseNodeCell {
 

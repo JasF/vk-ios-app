@@ -10,8 +10,8 @@ target 'vk' do
   # Pods for MessageGroups
   pod 'Texture', :path => 'Components/Texture'
   pod 'NMessenger', :path => 'Components/nMessenger'
-  pod 'Chatto', :path => 'Components/Chatto'
-  pod 'ChattoAdditions', :path => 'Components/Chatto'
+  #pod 'Chatto', :path => 'Components/Chatto'
+  #pod 'ChattoAdditions', :path => 'Components/Chatto'
   pod 'LoremIpsum', '= 1.0.0'
   pod 'MWPhotoBrowser', :path => 'Components/MWPhotoBrowser'
 end

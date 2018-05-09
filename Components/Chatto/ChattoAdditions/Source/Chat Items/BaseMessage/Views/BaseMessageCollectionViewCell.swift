@@ -23,12 +23,13 @@
 */
 
 import UIKit
-import Chatto
+
 import AsyncDisplayKit
 
 let kBubblesSpacing: CGFloat = 6
 let kGreatestBubbleWidthFraction: CGFloat = 0.72
 let kBubblesMargin: CGFloat = 10
+let kMediaNodeMargin: CGFloat = 6
 
 public protocol BaseMessageCollectionViewCellStyleProtocol {
     func avatarSize(viewModel: MessageViewModelProtocol) -> CGSize // .zero => no avatar
@@ -78,12 +79,14 @@ public struct BaseMessageCollectionViewCellLayoutConstants {
 open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, BackgroundSizingQueryable, AccessoryViewRevealable, UIGestureRecognizerDelegate where
     BubbleViewType: ASDisplayNode,
     BubbleViewType: MaximumLayoutWidthSpecificable,
-    BubbleViewType: BackgroundSizingQueryable {
+    BubbleViewType: BackgroundSizingQueryable,
+    BubbleViewType: BaseBubbleViewProtocol {
 
     public override init() {
         super.init()
         commonInit()
     }
+    open var nodeFactory: NodeFactory? = nil
     public var animationDuration: CFTimeInterval = 0.33
     open var viewContext: ViewContext = .normal
 
@@ -111,9 +114,39 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
         self.updateViews()
     }
     
+    var mediaNodes = [ASDisplayNode]()
     open var messageViewModel: MessageViewModelProtocol! {
         didSet {
             messageViewModel.node = self
+            mediaNodes.removeAll()
+            if let nodeFactory = self.nodeFactory {
+                if let message = messageViewModel.message {
+                    let block: (Any) -> Void = { (att) in
+                        if let node = nodeFactory.node(forItem: att) {
+                            if let imagesNode = node as? PostImagesNode {
+                                imagesNode.tappedOnPhotoHandler = { (index) in
+                                    NSLog("tapped on photo in chat cell")
+                                }
+                            }
+                            else if let videoNode = node as? PostVideoNode {
+                                videoNode.tappedOnVideoHandler = { (video) in
+                                    NSLog("tapped on video in chat cell")
+                                }
+                            }
+                            self.mediaNodes.append(node)
+                        }
+                    }
+                    if let atts = message.photoAttachments {
+                        block(atts)
+                    }
+                    if let atts = message.attachments {
+                        for att in atts {
+                            block(att)
+                        }
+                    }
+                }
+            }
+            self.bubbleView.mediaNodes = mediaNodes
             self.updateViews()
         }
     }
@@ -197,8 +230,9 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
                 array.append(self.failedButton)
             }
         }
+        
         self.bubbleView.style.maxSize = CGSize(width: constrainedSize.max.width*kGreatestBubbleWidthFraction, height: constrainedSize.max.height)
-        let horSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .start, alignItems: .center, children: array)
+        var horSpec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .start, alignItems: .center, children: array)
         return ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, kBubblesMargin, 0, kBubblesMargin), child: horSpec)
     }
     

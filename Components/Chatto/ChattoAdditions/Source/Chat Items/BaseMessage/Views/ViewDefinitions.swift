@@ -36,3 +36,7 @@ public protocol MaximumLayoutWidthSpecificable {
 public protocol BackgroundSizingQueryable {
     var canCalculateSizeInBackground: Bool { get }
 }
+
+public protocol BaseBubbleViewProtocol {
+    var mediaNodes:[ASDisplayNode]? { get set }
+}

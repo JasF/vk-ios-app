@@ -24,7 +24,7 @@
 
 import UIKit
 import AsyncDisplayKit
-import Chatto
+
 
 class DummyTextNode : ChatBaseNodeCell {
 }
@@ -68,8 +68,10 @@ open class TextMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
     }
     
     public final override func dequeueCell(collectionView: UICollectionView, indexPath: IndexPath) -> ChatBaseNodeCell {
-        let identifier = self.messageViewModel.isIncoming ? "text-message-incoming" : "text-message-outcoming"
-        return TextMessageCollectionViewCell.init() // collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        //let identifier = self.messageViewModel.isIncoming ? "text-message-incoming" : "text-message-outcoming"
+        let cell = TextMessageCollectionViewCell.init() // collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        cell.nodeFactory = self.nodeFactory
+        return cell
     }
 
     open override func createViewModel() -> ViewModelBuilderT.ViewModelT {

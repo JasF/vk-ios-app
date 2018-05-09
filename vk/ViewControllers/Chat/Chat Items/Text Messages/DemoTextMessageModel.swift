@@ -23,7 +23,7 @@
 */
 
 import Foundation
-import ChattoAdditions
+
 
 public class DemoTextMessageModel: TextMessageModel<MessageModel>, DemoMessageModelProtocol {
     public override init(messageModel: MessageModel, text: String) {

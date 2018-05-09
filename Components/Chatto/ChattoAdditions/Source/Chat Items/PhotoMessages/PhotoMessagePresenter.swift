@@ -23,7 +23,7 @@
 */
 
 import Foundation
-import Chatto
+
 
 open class PhotoMessagePresenter<ViewModelBuilderT, InteractionHandlerT>
 : BaseMessagePresenter<PhotoBubbleView, ViewModelBuilderT, InteractionHandlerT> where

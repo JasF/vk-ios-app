@@ -29,7 +29,7 @@ public typealias TextMessageCollectionViewCellStyleProtocol = TextBubbleViewStyl
 public final class TextMessageCollectionViewCell: BaseMessageCollectionViewCell<TextBubbleView> {
 
     public static func sizingCell() -> TextMessageCollectionViewCell {
-        let cell = TextMessageCollectionViewCell(frame: CGRect.zero)
+        let cell = TextMessageCollectionViewCell()
         cell.viewContext = .sizing
         return cell
     }
@@ -37,11 +37,8 @@ public final class TextMessageCollectionViewCell: BaseMessageCollectionViewCell<
     public override init() {
         super.init()
     }
-    public override init(frame: CGRect) {
-        super.init()
-    }
     
-    required public override init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

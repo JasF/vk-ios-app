@@ -7,22 +7,20 @@
 //
 
 import UIKit
-import Chatto
-import ChattoAdditions
+
+
 import CocoaLumberjack
 
 class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegate {
-    var nodeFactory: NodeFactory?
     var viewModel: DialogScreenViewModel?
     var messages: Array<Message>?
     var secondMessages: Array<Message>?
     var scrollToBottom: Bool
     
-    @objc init(viewModel:DialogScreenViewModel?, nodeFactory:NodeFactory?) {
+    @objc init(viewModel:DialogScreenViewModel?, nodeFactory:NodeFactory) {
         self.scrollToBottom = false
-        super.init()
+        super.init(nodeFactory)
         self.viewModel = viewModel!
-        self.nodeFactory = nodeFactory!
         self.viewModel!.delegate = self
     }
     
@@ -143,13 +141,9 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     }
     
     func sendMessage(_ text: String?, _ msg: DemoMessageModelProtocol, completion: @escaping (Bool) -> Void) {
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
-            
-            self.viewModel?.sendTextMessage(text) { messageId in
-                msg.setExternalId(messageId)
-                completion((messageId > 0) ? true : false )
-            }
+        self.viewModel?.sendTextMessage(text) { messageId in
+            msg.setExternalId(messageId)
+            completion((messageId > 0) ? true : false )
         }
     }
     
@@ -203,7 +197,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
 @objcMembers class DialogViewControllerAllocator : NSObject {
     var viewController: DialogViewController?
     @objc init(viewModel:DialogScreenViewModel?, nodeFactory:NodeFactory?) {
-        viewController = DialogViewController.init(viewModel:viewModel, nodeFactory:nodeFactory)
+        viewController = DialogViewController.init(viewModel:viewModel, nodeFactory:nodeFactory!)
         super.init()
     }
     public func getViewController() -> Any? {

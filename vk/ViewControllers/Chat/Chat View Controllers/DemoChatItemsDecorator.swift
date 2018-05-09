@@ -23,8 +23,8 @@
 */
 
 import Foundation
-import Chatto
-import ChattoAdditions
+
+
 
 final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
     var typingCellEnabled: Bool = false

@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Chatto
-import ChattoAdditions
+
+
 
 extension DemoChatViewController : ChatInputBarDelegate {
     

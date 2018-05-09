@@ -24,7 +24,7 @@
 
 import Foundation
 import UIKit
-import Chatto
+
 
 public class TimeSeparatorPresenterBuilder: ChatItemPresenterBuilderProtocol {
 
@@ -43,6 +43,8 @@ public class TimeSeparatorPresenterBuilder: ChatItemPresenterBuilderProtocol {
 }
 
 class TimeSeparatorPresenter: ChatItemPresenterProtocol {
+    var nodeFactory: NodeFactory?
+    
     func getMessageModel() -> Any? {
         return nil
     }

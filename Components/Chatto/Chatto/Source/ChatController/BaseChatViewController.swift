@@ -62,8 +62,10 @@ open class BaseChatViewController: ChatInputBarViewController, ASTableDelegate, 
             return tableNodeHolder.tableNode
         }
     }
+    var nodeFactory: NodeFactory
     let tableNodeHolder = TableNodeHolder()
-    public init() {
+    public init(_ nodeFactory: NodeFactory) {
+        self.nodeFactory = nodeFactory
         tableNodeHolder.tableNode.inverted = true
         super.init(node:tableNodeHolder)
     }
@@ -261,7 +263,7 @@ open class BaseChatViewController: ChatInputBarViewController, ASTableDelegate, 
 
     open func createPresenterFactory() -> ChatItemPresenterFactoryProtocol {
         // Default implementation
-        return ChatItemPresenterFactory(presenterBuildersByType: self.createPresenterBuilders())
+        return ChatItemPresenterFactory(presenterBuildersByType: self.createPresenterBuilders(), nodeFactory: nodeFactory)
     }
 
     open func createPresenterBuilders() -> [ChatItemType: [ChatItemPresenterBuilderProtocol]] {

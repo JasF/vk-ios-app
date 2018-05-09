@@ -23,8 +23,8 @@
 */
 
 import Foundation
-import Chatto
-import ChattoAdditions
+
+
 
 public protocol DemoMessageViewModelProtocol {
     var messageModel: DemoMessageModelProtocol { get }

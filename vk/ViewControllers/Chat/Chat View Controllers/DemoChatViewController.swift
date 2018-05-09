@@ -23,8 +23,8 @@
 */
 
 import UIKit
-import Chatto
-import ChattoAdditions
+
+
 
 class DemoChatViewController: BaseChatViewController {
     

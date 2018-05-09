@@ -23,7 +23,7 @@
 */
 
 import Foundation
-import Chatto
+
 
 public enum MessageStatus {
     case failed
@@ -41,6 +41,7 @@ public protocol MessageModelProtocol: ChatItemProtocol {
     func setExternalId(_ id: Int)
     func setReadState(_ id: Int)
     var viewModel: MessageViewModelProtocol? { get set }
+    var message: Message? { get set }
 }
 
 public protocol DecoratedMessageModelProtocol: MessageModelProtocol {
@@ -74,6 +75,8 @@ public extension DecoratedMessageModelProtocol {
 }
 
 open class MessageModel: MessageModelProtocol {
+    public var message: Message?
+    
     public func setExternalId(_ id: Int) {
         self.externalId = id
     }

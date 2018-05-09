@@ -6,7 +6,10 @@ class MessagesDatabase(BaseDatabase):
         return 'messages'
     
     def params(self):
-        return {'body': 'text', 'user_id': 'integer', 'from_id': 'integer', 'date': 'integer', 'read_state': 'integer', 'out': 'integer'}
+        return {'body': 'text', 'user_id': 'integer', 'from_id': 'integer', 'date': 'integer', 'read_state': 'integer', 'out': 'integer', 'random_id': 'integer', 'attachments': 'text'}
+    
+    def objects(self):
+        return ['attachments']
 
     def getFromMessageId(self, user_id, startMessageId, batchSize):
         script = 'SELECT * FROM messages WHERE user_id = ' + str(user_id) + ' AND id <= ' + str(startMessageId) + ' ORDER BY id DESC LIMIT ' + str(batchSize) + ';'

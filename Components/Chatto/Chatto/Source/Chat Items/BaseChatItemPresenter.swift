@@ -32,6 +32,8 @@ public enum ChatItemVisibility {
 }
 
 open class BaseChatItemPresenter<CellT: ChatBaseNodeCell>: ChatItemPresenterProtocol {
+    public var nodeFactory: NodeFactory?
+    
     open func getMessageModel() -> Any? {
         return nil
     }

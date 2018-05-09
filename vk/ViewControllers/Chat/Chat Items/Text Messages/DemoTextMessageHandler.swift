@@ -23,7 +23,7 @@
 */
 
 import Foundation
-import ChattoAdditions
+
 
 class DemoTextMessageHandler: BaseMessageInteractionHandlerProtocol {
     private let baseHandler: BaseMessageHandler
