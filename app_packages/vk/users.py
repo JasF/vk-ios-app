@@ -32,7 +32,7 @@ class Users():
             self.initializeSession()
             
             scriptCode = """var friends = API.friends.get({ "count": 1, "user_id": {0} });
-            var photos = API.photos.getAll({ "count": 0, "user_id": {0} });
+            var photos = API.photos.getAll({ "count": 0, "owner_id": {0} });
             var video = API.video.get({ "owner_id": 0, "user_id": {0} });
             var users = API.users.getSubscriptions({ "count": 0, "user_id": {0}, "extended": 1});
             var groups = API.groups.get({ "count": 0, "user_id": {0} });
