@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Message.h"
+#import "User.h"
 
 #import <EasyMapping/EasyMapping.h>
 
@@ -16,6 +17,7 @@
 @property NSInteger in_read;
 @property NSInteger out_read;
 @property Message *message;
+@property User *user;
 
 @property NSString *username;
 @property NSString *avatarURLString;

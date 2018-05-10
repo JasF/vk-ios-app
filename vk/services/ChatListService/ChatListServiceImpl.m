@@ -50,6 +50,7 @@
     for (Dialog *dialog in dialogs) {
         User *user = usersDictionary[@(ABS(dialog.message.user_id))];
         if (user) {
+            dialog.user = user;
             dialog.username = [user nameString];
             dialog.avatarURLString = user.photo_100;
         }

@@ -11,15 +11,21 @@
 #import "CommentNode.h"
 #import "WallPost.h"
 #import "vk-Swift.h"
+#import "DialogNode.h"
 
-@interface PostsViewController () <ASTableDelegate, PostsService, WallPostNodeDelegate, CommentNodeDelegate>
+
+@interface PostsViewController () <ASTableDelegate, PostsService, WallPostNodeDelegate, CommentNodeDelegate, DialogNodeDelegate>
 @end
 
 @implementation PostsViewController
 
 #pragma mark - ASTableDelegate
 - (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)aNode {
-    if ([aNode isKindOfClass:[WallPostNode class]]) {
+    if ([aNode isKindOfClass:[DialogNode class]]) {
+        DialogNode *node = (DialogNode *)aNode;
+        node.delegate = self;
+    }
+    else if ([aNode isKindOfClass:[WallPostNode class]]) {
         WallPostNode *node = (WallPostNode *)aNode;
         node.delegate = self;
     }
@@ -132,6 +138,12 @@
 #pragma mark - CommentNodeDelegate
 - (void)commentNode:(CommentNode *)node
        tappedOnUser:(User *)user {
+    if ([_postsViewModel respondsToSelector:@selector(tappedOnCellWithUser:)]) {
+        [_postsViewModel tappedOnCellWithUser:user];
+    }
+}
+
+- (void)dialogNode:(DialogNode *)node tappedWithUser:(User *)user {
     if ([_postsViewModel respondsToSelector:@selector(tappedOnCellWithUser:)]) {
         [_postsViewModel tappedOnCellWithUser:user];
     }

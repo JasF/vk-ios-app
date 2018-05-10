@@ -8,10 +8,10 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "NodeFactory.h"
-#import "BaseTableViewController.h"
+#import "PostsViewController.h"
 #import "ChatListViewModel.h"
 
-@interface ChatListViewController : BaseTableViewController
+@interface ChatListViewController : PostsViewController
 - (instancetype)initWithViewModel:(id<ChatListViewModel>)viewModel
                       nodeFactory:(id<NodeFactory>)nodeFactory;
 @end

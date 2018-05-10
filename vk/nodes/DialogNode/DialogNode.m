@@ -19,6 +19,7 @@ static CGFloat const kTextCornerRadius = 3.f;
 @property ASTextNode *usernameNode;
 @property ASTextNode *timeNode;
 @property ASNetworkImageNode *avatarNode;
+@property User *user;
 @end
 
 @implementation DialogNode
@@ -28,6 +29,7 @@ static CGFloat const kTextCornerRadius = 3.f;
     NSCParameterAssert(dialog);
     self = [super init];
     if (self) {
+        _user = dialog.user;
         _usernameNode = [[ASTextNode alloc] init];
         _usernameNode.attributedText = [[NSAttributedString alloc] initWithString:dialog.username ?: @"" attributes:[TextStyles nameStyle]];
         _usernameNode.maximumNumberOfLines = 1;
@@ -60,6 +62,7 @@ static CGFloat const kTextCornerRadius = 3.f;
         [self addSubnode:_timeNode];
         
         _avatarNode = [[ASNetworkImageNode alloc] init];
+        [_avatarNode addTarget:self action:@selector(didTappedOnAvatar:) forControlEvents:ASControlNodeEventTouchUpInside];
         _avatarNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
         _avatarNode.style.width = ASDimensionMakeWithPoints(60);
         _avatarNode.style.height = ASDimensionMakeWithPoints(60);
@@ -111,4 +114,12 @@ static CGFloat const kTextCornerRadius = 3.f;
     return spec;
 }
 
+- (void)didTappedOnAvatar:(id)sender {
+    if (!_user) {
+        return;
+    }
+    if ([_delegate respondsToSelector:@selector(dialogNode:tappedWithUser:)]) {
+        [_delegate dialogNode:self tappedWithUser:self.user];
+    }
+}
 @end

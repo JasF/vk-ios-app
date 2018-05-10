@@ -138,6 +138,7 @@
                     [initializer injectParameterWith:self.viewModelsAssembly.chatListScreenViewModel];
                     [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
                 }];
+                [definition injectProperty:@selector(postsViewModel) with:[self.viewModelsAssembly postsViewModel]];
             }];
 }
 
