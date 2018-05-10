@@ -136,7 +136,12 @@ static CGFloat const kTypingNotifierInterval = 5.f;
 
 - (void)userDidTappedOnVideo:(Video *)video message:(Message *)message {
     dispatch_python(^{
-        [self.handler tappedOnVideoWithId:@(video.id) ownerId:@(video.owner_id)];
+        NSDictionary *representation = [EKSerializer serializeObject:video
+                                                         withMapping:[Video objectMapping]];
+        if (!representation) {
+            representation = @{};
+        }
+        [self.handler tappedOnVideoWithId:@(video.id) ownerId:@(video.owner_id) representation:representation];
     });
 }
 

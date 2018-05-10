@@ -6,6 +6,7 @@ from random import randint
 import sched, time, random
 import threading
 from threading import Lock
+from caches.videosdatabase import VideosDatabase
 
 kTypingInterval = 5
 
@@ -123,8 +124,14 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         self.typingEvent = self.scheduler.enterabs(time.time() + kTypingInterval, 1, cancelTyping, (self,))
         self.scheduler.run()
 
-    def tappedOnVideoWithIdownerId(self, videoId, ownerId):
+    def tappedOnVideoWithIdownerIdrepresentation(self, videoId, ownerId, representation):
         analytics.log('Dialog_video_segue')
+        cache = VideosDatabase()
+        try:
+            cache.update([representation])
+        except:
+            pass
+        cache.close()
         managers.shared().screensManager().showDetailVideoViewControllerWithOwnerId_videoId_(args=[ownerId, videoId])
 
     def tappedOnPhotoWithIndexmessageId(self, index, messageId):
