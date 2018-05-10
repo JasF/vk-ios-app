@@ -1,6 +1,7 @@
 import vk, json
 from caches.messagesdatabase import MessagesDatabase
 from services.usersdecorator import UsersDecorator
+from postproc import textpatcher
 
 def updateMessagesResponseWithUsers(response):
     try:
@@ -10,6 +11,7 @@ def updateMessagesResponseWithUsers(response):
             for att in d['attachments']:
                 if att['type'] == 'wall':
                     walldict = att['wall']
+                    textpatcher.cropTagsOnPostsResults({'items':[walldict]})
                     usersData = ud.usersDataFromPosts([walldict])
                     usersDict = {}
                     for ud in usersData:

@@ -25,4 +25,6 @@
 #import "PostVideoNode.h"
 #import "Video.h"
 #import "NodeFactoryImpl.h"
+#import "WallPostNode.h"
+#import "PostVideoNode.h"
  

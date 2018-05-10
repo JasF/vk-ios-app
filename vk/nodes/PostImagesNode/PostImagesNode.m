@@ -57,6 +57,10 @@ static CGFloat const kNodesMargin = 2.f;
     return self;
 }
 
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    [super setBackgroundColor:backgroundColor];
+}
+
 NSArray *getPhotoSizes(NSArray *photos);
 NSArray *getPhotoSizes(NSArray *photos) {
     NSMutableArray *result = [NSMutableArray new];

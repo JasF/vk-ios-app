@@ -51,6 +51,9 @@ public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable
             if let array = _mediaNodes {
                 for node in array {
                     self.addSubnode(node)
+                    if node.isKind(of: WallPostNode.self) || node.isKind(of: PostVideoNode.self) {
+                        node.backgroundColor = UIColor.white
+                    }
                 }
             }
         }
