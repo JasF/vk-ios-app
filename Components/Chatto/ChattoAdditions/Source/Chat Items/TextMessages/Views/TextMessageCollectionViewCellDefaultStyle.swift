@@ -105,23 +105,30 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
     open func bubbleImageBorder(viewModel: TextMessageViewModelProtocol, isSelected: Bool) -> UIImage? {
         return self.baseStyle.borderImage(viewModel: viewModel)
     }
-
+    func synced(_ lock: Any, closure: () -> (UIImage)) -> UIImage {
+        objc_sync_enter(lock)
+        let result = closure()
+        objc_sync_exit(lock)
+        return result
+    }
     open func bubbleImage(viewModel: TextMessageViewModelProtocol, isSelected: Bool) -> UIImage {
         let key = ImageKey.normal(isIncoming: viewModel.isIncoming, status: viewModel.status, showsTail: viewModel.decorationAttributes.isShowingTail, isSelected: isSelected)
 
-        if let image = self.images[key] {
-            return image
-        } else {
-            let templateKey = ImageKey.template(isIncoming: viewModel.isIncoming, showsTail: viewModel.decorationAttributes.isShowingTail)
-            if let image = self.images[templateKey] {
-                let image = self.createImage(templateImage: image, isIncoming: viewModel.isIncoming, status: viewModel.status, isSelected: isSelected)
-                self.images[key] = image
+        return synced(self) { () -> (UIImage) in
+            if let image = self.images[key] {
                 return image
+            } else {
+                let templateKey = ImageKey.template(isIncoming: viewModel.isIncoming, showsTail: viewModel.decorationAttributes.isShowingTail)
+                if let image = self.images[templateKey] {
+                    let image = self.createImage(templateImage: image, isIncoming: viewModel.isIncoming, status: viewModel.status, isSelected: isSelected)
+                    self.images[key] = image
+                    return image
+                }
             }
+            assert(false, "coulnd't find image for this status. ImageKey: \(key)")
+            return UIImage()
         }
 
-        assert(false, "coulnd't find image for this status. ImageKey: \(key)")
-        return UIImage()
     }
 
     open func createImage(templateImage image: UIImage, isIncoming: Bool, status: MessageViewModelStatus, isSelected: Bool) -> UIImage {
