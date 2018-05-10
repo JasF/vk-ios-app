@@ -48,7 +48,6 @@ static CGFloat const kNodesMargin = 2.f;
             PostImagesChildNode *node = [PostImagesChildNode new];
             [node addTarget:self action:@selector(didTapOnPhoto:) forControlEvents:ASControlNodeEventTouchUpInside];
             node.photo = photo;
-            node.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
             node.URL = [NSURL URLWithString:photo.photo_604];
             node.delegate = self;
             [self addSubnode:node];
@@ -58,6 +57,7 @@ static CGFloat const kNodesMargin = 2.f;
     return self;
 }
 
+NSArray *getPhotoSizes(NSArray *photos);
 NSArray *getPhotoSizes(NSArray *photos) {
     NSMutableArray *result = [NSMutableArray new];
     for (Photo *photo in photos) {
@@ -66,6 +66,7 @@ NSArray *getPhotoSizes(NSArray *photos) {
     return result;
 }
 
+NSArray *getNormalized(NSArray *sizes);
 NSArray *getNormalized(NSArray *sizes) {
     if (!sizes.count) {
         return @[];
@@ -80,6 +81,7 @@ NSArray *getNormalized(NSArray *sizes) {
     return result;
 }
 
+CGFloat getWsum(NSArray *sizes);
 CGFloat getWsum(NSArray *sizes) {
     CGFloat result = 0.f;
     for (NSValue *v in sizes) {
@@ -89,6 +91,7 @@ CGFloat getWsum(NSArray *sizes) {
     return result;
 }
 
+NSArray *getFactors(NSArray *sizes, CGFloat wsum);
 NSArray *getFactors(NSArray *sizes, CGFloat wsum) {
     NSMutableArray *result = [NSMutableArray new];
     for (NSValue *v in sizes) {

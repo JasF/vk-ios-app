@@ -20,6 +20,7 @@
 #import "Answer.h"
 #import "Video.h"
 #import "Document.h"
+#import "Sticker.h"
 
 @class WallPostNode;
 @class ASDisplayNode;
@@ -49,4 +50,5 @@
 - (ASDisplayNode *)wallUserImageNode:(WallUserCellModel *)model;
 - (ASDisplayNode *)avatarNameDateNode:(User *)user date:(NSNumber *)date;
 - (ASDisplayNode *)commentsPreloadNode:(CommentsPreloadModel *)model;
+- (ASDisplayNode *)stickerNode:(Sticker *)sticker;
 @end

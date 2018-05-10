@@ -9,18 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "Photo.h"
 #import "Video.h"
+#import "Sticker.h"
 
 #import <EasyMapping/EasyMapping.h>
 
 typedef NS_ENUM(NSInteger, AttachmentTypes) {
     AttachmentUnknown,
     AttachmentPhoto,
-    AttachmentVideo
+    AttachmentVideo,
+    AttachmentSticker
 };
 
 @interface Attachments : NSObject <EKMappingProtocol>
 @property AttachmentTypes type;
 @property Photo *photo;
 @property Video *video;
+@property (nonatomic) Sticker *sticker;
 - (NSString *)uid;
 @end

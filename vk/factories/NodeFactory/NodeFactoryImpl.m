@@ -58,12 +58,19 @@
     }
     else if ([item isKindOfClass:[Attachments class]]) {
         Attachments *attachment = (Attachments *)item;
-        if (attachment.type == AttachmentVideo) {
+        if (attachment.type == AttachmentSticker) {
+            return [_assembly stickerNode:attachment.sticker];
+        }
+        else if (attachment.type == AttachmentVideo) {
             return [_assembly postVideoNodeWithVideo:attachment.video];
         }
-        else {
+        else if (attachment.type == AttachmentUnknown) {
+            // AV: Possible type is not recognized
             return nil;
+        }
+        else {
             NSCAssert(false, @"Unknown attachment type: %@", @(attachment.type));
+            return nil;
         }
     }
     else if ([item isKindOfClass:[Dialog class]]) {

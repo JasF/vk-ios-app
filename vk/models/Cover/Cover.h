@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import <EasyMapping/EasyMapping.h>
+
 @interface Cover : NSObject <EKMappingProtocol>
 @property NSInteger width;
 @property NSInteger height;

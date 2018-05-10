@@ -14,7 +14,7 @@
 +(EKObjectMapping *)objectMapping
 {
     return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
-        [mapping mapPropertiesFromArray:@[@"id", @"album_id", @"owner_id", @"photo_75", @"photo_130", @"photo_604", @"photo_807", @"photo_1280", @"photo_2560", @"width", @"height", @"text", @"date", @"can_comment", @"can_repost", @"access_key"]];
+        [mapping mapPropertiesFromArray:@[@"id", @"album_id", @"owner_id", @"photo_75", @"photo_130", @"photo_604", @"photo_807", @"photo_1280", @"photo_2560", @"width", @"height", @"text", @"date", @"can_comment", @"can_repost", @"access_key", @"url"]];
         
         [mapping mapKeyPath:@"likes" toProperty:@"likes" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
             Likes *likes = [EKMapper objectFromExternalRepresentation:value
@@ -62,6 +62,9 @@
     if (!imageURL.length) {
         imageURL = _photo_75;
     }
+    if (!imageURL.length) {
+        imageURL = _url;
+    }
     return imageURL;
 }
 
@@ -69,6 +72,9 @@
     NSString *imageURL = _photo_130;
     if (!imageURL.length) {
         imageURL = _photo_75;
+    }
+    if (!imageURL.length) {
+        imageURL = _url;
     }
     return imageURL;
 }
@@ -80,6 +86,9 @@
     }
     if (!imageURL.length) {
         imageURL = _photo_75;
+    }
+    if (!imageURL.length) {
+        imageURL = _url;
     }
     return imageURL;
 }
@@ -94,6 +103,9 @@
     }
     if (!imageURL.length) {
         imageURL = _photo_75;
+    }
+    if (!imageURL.length) {
+        imageURL = _url;
     }
     return imageURL;
 }

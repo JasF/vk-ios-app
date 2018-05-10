@@ -22,14 +22,26 @@
             return [EKMapper objectFromExternalRepresentation:value
                                                   withMapping:[Video objectMapping]];
         }];
+        [mapping mapKeyPath:@"sticker" toProperty:@"sticker" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
+            return [EKMapper objectFromExternalRepresentation:value
+                                                  withMapping:[Sticker objectMapping]];
+        }];
         [mapping mapKeyPath:@"type" toProperty:@"typeString"];
     }];
 }
 
 - (void)setTypeString:(NSString *)typeString {
     NSDictionary *dictionary = @{@"photo":@(AttachmentPhoto),
-                                 @"video":@(AttachmentVideo)};
+                                 @"video":@(AttachmentVideo),
+                                 @"sticker":@(AttachmentSticker)};
     _type = [dictionary[typeString] integerValue];
+}
+
+- (void)setSticker:(Sticker *)sticker {
+    _sticker = sticker;
+    if (sticker) {
+        NSLog(@"!");
+    }
 }
 
 - (NSString *)uid {
@@ -40,8 +52,11 @@
     else if (self.video) {
         string = [NSString stringWithFormat:@"v%@", @(self.video.id)];
     }
+    else if (self.sticker) {
+        string = [NSString stringWithFormat:@"s%@%@", @(self.sticker.product_id), @(self.sticker.sticker_id)];
+    }
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    uInt crc = crc32(0, data.bytes, data.length);
+    unsigned long crc =(unsigned long)crc32(0, data.bytes, (uInt)data.length);
     return [NSString stringWithFormat:@"%@", @(crc)];
 }
 

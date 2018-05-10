@@ -237,4 +237,15 @@
                  }];
             }];
 }
+
+- (ASDisplayNode *)stickerNode:(Sticker *)sticker {
+    return [TyphoonDefinition withClass:[StickerNode class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer)
+                 {
+                     [initializer injectParameterWith:sticker];
+                 }];
+            }];
+}
+
 @end

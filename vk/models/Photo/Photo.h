@@ -21,6 +21,7 @@
 @property NSInteger id;
 @property NSInteger album_id;
 @property NSInteger owner_id;
+@property (nonatomic) NSString *url;
 @property (nonatomic) NSString *photo_75;
 @property (nonatomic) NSString *photo_130;
 @property (nonatomic) NSString *photo_604;

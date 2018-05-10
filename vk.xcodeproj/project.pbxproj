@@ -638,6 +638,8 @@
 		C39D471A20A2CD7600C6CC99 /* ReadOnlyOrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D470020A2CD7600C6CC99 /* ReadOnlyOrderedDictionary.swift */; };
 		C39D471B20A2CD7600C6CC99 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D470120A2CD7600C6CC99 /* Utils.swift */; };
 		C39D471D20A33D5B00C6CC99 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39D471C20A33D5B00C6CC99 /* HockeySDK.framework */; };
+		C39D473520A424C400C6CC99 /* Sticker.m in Sources */ = {isa = PBXBuildFile; fileRef = C39D473420A424C400C6CC99 /* Sticker.m */; };
+		C39D473820A429FE00C6CC99 /* StickerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D473720A429FE00C6CC99 /* StickerNode.swift */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1981,6 +1983,9 @@
 		C39D470120A2CD7600C6CC99 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Chatto/Chatto/Source/Utils.swift; sourceTree = "<group>"; };
 		C39D470220A2CD7600C6CC99 /* Chatto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chatto.h; path = Chatto/Chatto/Source/Chatto.h; sourceTree = "<group>"; };
 		C39D471C20A33D5B00C6CC99 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
+		C39D473320A424C400C6CC99 /* Sticker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sticker.h; sourceTree = "<group>"; };
+		C39D473420A424C400C6CC99 /* Sticker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sticker.m; sourceTree = "<group>"; };
+		C39D473720A429FE00C6CC99 /* StickerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerNode.swift; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -2888,6 +2893,7 @@
 				C39C8B9A209D924000CC23C3 /* VideoPlayerNode.swift */,
 				C39C8B9C209D92A400CC23C3 /* ExtendedVideoNode.swift */,
 				C39C8BF420A1881100CC23C3 /* ImageAndLabelsNode.swift */,
+				C39D473720A429FE00C6CC99 /* StickerNode.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -2977,6 +2983,8 @@
 		C32304572080E57400CEC487 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C39D472F20A424B700C6CC99 /* Sticker */,
+				C39D473620A424CF00C6CC99 /* Cover */,
 				C39C8BF620A19BB400CC23C3 /* Counters */,
 				C39C8B90209D787600CC23C3 /* Tags */,
 				C3507820209477B4000C8FB3 /* WallUserCellModel.swift */,
@@ -3005,8 +3013,6 @@
 				C350782A2094AC9A000C8FB3 /* LastSeen.swift */,
 				C3987DDB209756FE0047A30F /* CommentsPreloadModel.swift */,
 				C39C8BED20A1766B00CC23C3 /* Covers.swift */,
-				C39C8BF120A1813E00CC23C3 /* Cover.h */,
-				C39C8BF220A1813E00CC23C3 /* Cover.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -5377,6 +5383,24 @@
 			path = Collaborators;
 			sourceTree = "<group>";
 		};
+		C39D472F20A424B700C6CC99 /* Sticker */ = {
+			isa = PBXGroup;
+			children = (
+				C39D473320A424C400C6CC99 /* Sticker.h */,
+				C39D473420A424C400C6CC99 /* Sticker.m */,
+			);
+			path = Sticker;
+			sourceTree = "<group>";
+		};
+		C39D473620A424CF00C6CC99 /* Cover */ = {
+			isa = PBXGroup;
+			children = (
+				C39C8BF120A1813E00CC23C3 /* Cover.h */,
+				C39C8BF220A1813E00CC23C3 /* Cover.m */,
+			);
+			path = Cover;
+			sourceTree = "<group>";
+		};
 		C3A82A23209304F300C41CA8 /* BaseTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -6430,6 +6454,7 @@
 				C32308F42081AEB100CEC487 /* TyphoonBlockDefinition.m in Sources */,
 				C350782320948114000C8FB3 /* TextStyles.swift in Sources */,
 				C313774D208E3AC500F568EA /* PhotoNode.m in Sources */,
+				C39D473520A424C400C6CC99 /* Sticker.m in Sources */,
 				C3137721208E1FC900F568EA /* PhotoAlbumsViewController.m in Sources */,
 				C39D46BB20A2CD6900C6CC99 /* Alignment.swift in Sources */,
 				C32308BD2081AEB100CEC487 /* LGSideMenuGesturesHandler.m in Sources */,
@@ -6502,6 +6527,7 @@
 				C32308D62081AEB100CEC487 /* TyphoonViewControllerNibResolver.m in Sources */,
 				C32306252080E57500CEC487 /* PythonBridgeHandler.m in Sources */,
 				C32308D52081AEB100CEC487 /* TyphoonViewControllerInjector.m in Sources */,
+				C39D473820A429FE00C6CC99 /* StickerNode.swift in Sources */,
 				C39D470B20A2CD7600C6CC99 /* ChatItemProtocolDefinitions.swift in Sources */,
 				C39D46AE20A2CD6900C6CC99 /* TextMessagePresenterBuilder.swift in Sources */,
 				C39D46B620A2CD6900C6CC99 /* CircleProgressIndicatorView.m in Sources */,
