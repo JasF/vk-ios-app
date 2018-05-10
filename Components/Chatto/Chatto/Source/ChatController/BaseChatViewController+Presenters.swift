@@ -33,6 +33,13 @@ extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
     public func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         return {
             let presenter = self.presenterForIndexPath(indexPath)
+            if let model = presenter.getMessageModel() as! DemoTextMessageModel? {
+                if let viewModel = model.viewModel {
+                    if let node = viewModel.node {
+                        return node
+                    }
+                }
+            }
             let cell = presenter.dequeueCell(collectionView:self.genericCollectionView, indexPath: indexPath)
             let decorationAttributes = self.decorationAttributesForIndexPath(indexPath)
             presenter.configureCell(cell, decorationAttributes: decorationAttributes)

@@ -126,7 +126,7 @@ open class MessageViewModel: MessageViewModelProtocol {
         return self.messageModel.readState
     }
     
-    weak var _node : ChatBaseNodeCell?
+    weak var _node : ChatBaseNodeCell? = nil
     open var node: ChatBaseNodeCell? {
         get {
             return _node

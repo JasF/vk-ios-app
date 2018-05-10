@@ -293,9 +293,9 @@ extension BaseChatViewController: ChatDataSourceDelegateProtocol {
         let newDecoratedItems = self.chatItemsDecorator?.decorateItems(newItems) ?? newItems.map { DecoratedChatItem(chatItem: $0, decorationAttributes: nil) }
         let changes = generateChanges(oldCollection: oldItems.lazy.map { $0 }, newCollection: newDecoratedItems.lazy.map { $0 })
         let itemCompanionCollection = self.createCompanionCollection(fromChatItems: newDecoratedItems, previousCompanionCollection: oldItems)
-        let layoutModel = self.createLayoutModel(itemCompanionCollection, collectionViewWidth: collectionViewWidth)
+        //let layoutModel = self.createLayoutModel(itemCompanionCollection, collectionViewWidth: collectionViewWidth)
         let updateModelClosure : () -> Void = { [weak self] in
-            self?.layoutModel = layoutModel
+            //self?.layoutModel = layoutModel
             self?.chatItemCompanionCollection = itemCompanionCollection
         }
         return (changes, updateModelClosure)
