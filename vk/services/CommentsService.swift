@@ -34,6 +34,9 @@ import EasyMapping
     
     public func parseComments(_ aData: NSDictionary?) -> NSArray {
         guard let data = aData else { return [] as NSArray }
+        if !data.isKind(of: NSDictionary.self) {
+            return []
+        }
         let profiles = parseProfiles(aData)
         let commentsData = data["items"] as? NSArray
         if commentsData == nil {
