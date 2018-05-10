@@ -10,22 +10,7 @@
 #import "TextStyles.h"
 
 extern CGFloat const kMargin;
-/*
-@interface VideoNetworkImageNode : ASNetworkImageNode
-@end
-
-@implementation VideoNetworkImageNode
-- (id)init {
-    if (self = [super init]) {
-    }
-    return self;
-}
-- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
-    ASCenterLayoutSpec *spec = [ASCenterLayoutSpec centerLayoutSpecWithCenteringOptions:0 sizingOptions:0 child:_videoPlayNode];
-    return spec;
-}
-@end
-*/
+static CGFloat const kSpacing = 4;
 
 @interface PostVideoNode () <ASNetworkImageNodeDelegate>
 @property (strong, nonatomic) ASNetworkImageNode *mediaNode;
@@ -41,7 +26,7 @@ extern CGFloat const kMargin;
     if (self = [super init]) {
         _video = video;
         _titleNode = [[ASTextNode alloc] init];
-        _titleNode.attributedText = [[NSAttributedString alloc] initWithString:video.title ?: @"" attributes:[TextStyles titleStyle]];
+        _titleNode.attributedText = [[NSAttributedString alloc] initWithString:video.title ? : @"" attributes:[TextStyles titleStyle]];
         _titleNode.maximumNumberOfLines = 0;
         [self addSubnode:_titleNode];
         
@@ -104,15 +89,14 @@ extern CGFloat const kMargin;
     ASOverlayLayoutSpec *overlay = [ASOverlayLayoutSpec overlayLayoutSpecWithChild:imagePlace
                                                                            overlay:centerSpec];
     
+    ASInsetLayoutSpec *titleSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(0, kMargin, 0, kMargin) child:_titleNode];
+    ASInsetLayoutSpec *viewsSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(0, kMargin, 0, kMargin) child:_viewsNode];
     ASStackLayoutSpec *contentSpec = [ASStackLayoutSpec
                                       stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
-                                      spacing:0.0
+                                      spacing:kSpacing
                                       justifyContent:ASStackLayoutJustifyContentStart
                                       alignItems:ASStackLayoutAlignItemsStart
-                                      children:@[overlay, _titleNode, _viewsNode]];
-    ASStackLayoutSpec *spec = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal spacing:0 justifyContent:ASStackLayoutJustifyContentStart alignItems:ASStackLayoutAlignItemsStart children:@[contentSpec]];
-    spec.style.spacingBefore = kMargin;
-    spec.style.spacingAfter = kMargin;
+                                      children:@[overlay, titleSpec, viewsSpec]];
     return contentSpec;
 }
 

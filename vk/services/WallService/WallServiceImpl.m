@@ -60,13 +60,13 @@
                 [friends addObject:user];
             }
             else {
-                NSCAssert(user, @"User data must be exists");
+                //NSCAssert(user, @"User data must be exists");
             }
         }
         post.friends = friends;
     };
     NSMutableArray *results = [NSMutableArray new];
-    NSArray *excludedTypes = @[@"wall_photo"];
+    NSArray *excludedTypes = @[@"wall_photo", @"audio"];
     for (WallPost *post in posts) {
         if ([excludedTypes containsObject:post.type]) {
             continue;
