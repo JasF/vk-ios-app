@@ -825,6 +825,10 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 			MWZoomingScrollView *page = [self dequeueRecycledPage];
 			if (!page) {
 				page = [[MWZoomingScrollView alloc] initWithPhotoBrowser:self];
+                __weak typeof(self) wself = self;
+                page.exitHandler = ^{
+                    [wself.navigationController popViewControllerAnimated:YES];
+                };
 			}
 			[_visiblePages addObject:page];
 			[self configurePage:page forIndex:index];

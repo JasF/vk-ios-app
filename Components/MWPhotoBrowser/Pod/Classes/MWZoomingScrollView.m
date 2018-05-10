@@ -468,14 +468,32 @@ static CGFloat const kAnimationDuration = 0.1f;
             break;
         }
         case UIGestureRecognizerStateEnded: {
+            CGPoint location = [_panGestureRecognizer locationInView:self];
+            CGFloat patchForExit = self.frame.size.height / 3.5;
+            CGFloat delta = _panStartPosition.y - location.y;
+            BOOL exiting = NO;
             CGRect frame = _photoImageView.frame;
             frame.origin = _panPhotoStartPosition;
+            if (ABS(delta) >= patchForExit) {
+                exiting = YES;
+                if (delta < 0.f) {
+                    frame.origin.y = self.frame.size.height;
+                }
+                else {
+                    frame.origin.y = -_photoImageView.frame.size.height;
+                }
+            }
             _animating = YES;
             [UIView animateWithDuration:kAnimationDuration animations:^{
                 _photoImageView.frame = frame;
             }
                              completion:^(BOOL finished) {
                                  self.animating = NO;
+                                 if (exiting) {
+                                     if (self.exitHandler) {
+                                         self.exitHandler();
+                                     }
+                                 }
                              }];
             break;
         }
@@ -498,8 +516,5 @@ CF_INLINE bool IsEqualFloat(float a, float b) { return ABS(a - b) < pow(10, -10)
     return YES;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
 
 @end
