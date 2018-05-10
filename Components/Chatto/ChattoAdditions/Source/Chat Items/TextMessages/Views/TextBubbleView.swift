@@ -35,6 +35,8 @@ public protocol TextBubbleViewStyleProtocol {
 }
 
 public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable, BackgroundSizingQueryable, BaseBubbleViewProtocol {
+    let kBaseInsetValue: CGFloat = 6
+    let kTileInsetValue: CGFloat = 13
     let textNode = ASTextNode()
     var _mediaNodes: [ASDisplayNode]? = nil
     public var mediaNodes:[ASDisplayNode]?  {
@@ -67,14 +69,26 @@ public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable
         if let mediaNodes = self.mediaNodes {
             if mediaNodes.count > 0 {
                 var mediaSpecs = [ASLayoutElement]()
-                mediaSpecs.append(spec!)
+                if (textNode.attributedText?.string.count)! > 0 {
+                    mediaSpecs.append(ASInsetLayoutSpec.init(insets: UIEdgeInsetsMake(4, 0, 4, 0), child: textNode))
+                }
                 for node in mediaNodes {
                     mediaSpecs.append(node)
                 }
                 spec = ASStackLayoutSpec(direction: .vertical, spacing: kMediaNodeMargin, justifyContent: .start, alignItems: .start, children: mediaSpecs)
+                var inset:UIEdgeInsets? = nil
+                if textMessageViewModel.isIncoming {
+                    inset = UIEdgeInsetsMake(kBaseInsetValue, kTileInsetValue, kBaseInsetValue, kBaseInsetValue)
+                }
+                else {
+                    inset = UIEdgeInsetsMake(kBaseInsetValue, kBaseInsetValue, kBaseInsetValue, kTileInsetValue)
+                }
+                spec = ASInsetLayoutSpec(insets: inset!, child: spec!)
             }
         }
-        return ASBackgroundLayoutSpec.init(child: spec!, background: self.bubbleImageView)
+        
+        let bgspec = ASBackgroundLayoutSpec.init(child: spec!, background: self.bubbleImageView)
+        return bgspec
     }
     public var preferredMaxLayoutWidth: CGFloat = 0
     public var animationDuration: CFTimeInterval = 0.33

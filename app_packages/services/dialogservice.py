@@ -5,48 +5,59 @@ from postproc import textpatcher
 
 def updateMessagesResponseWithUsers(response):
     try:
-        ud = UsersDecorator()
         l = response['items']
+        print('updateMessagesResponseWithUsers content: ' + json.dumps(l, indent=4))
         for d in l:
-            for att in d['attachments']:
-                if att['type'] == 'wall':
-                    walldict = att['wall']
-                    textpatcher.cropTagsOnPostsResults({'items':[walldict]})
-                    usersData = ud.usersDataFromPosts([walldict])
-                    usersDict = {}
-                    for ud in usersData:
-                        id = ud.get('id')
+            atts = d.get('attachments')
+            if not isinstance(atts, list):
+                continue
+            for att in atts:
+                try:
+                    if not isinstance(att, dict):
+                        continue
+                    if att['type'] == 'wall':
+                        print('\n\n\nWALL: \n\n\n' + json.dumps(att, indent=4))
+                        walldict = att['wall']
+                        textpatcher.cropTagsOnPostsResults({'items':[walldict]})
+                        ud = UsersDecorator()
+                        usersData = ud.usersDataFromPosts([walldict])
+                        usersDict = {}
+                        for ud in usersData:
+                            id = ud.get('id')
+                            if isinstance(id, int):
+                                usersDict[id] = ud
+                        id = walldict.get('from_id')
                         if isinstance(id, int):
-                            usersDict[id] = ud
-                    id = walldict.get('from_id')
-                    if isinstance(id, int):
-                        userdict = usersDict.get(id)
-                        if isinstance(userdict, dict):
-                            walldict['user'] = userdict
-                        else:
-                            id = walldict.get('to_id')
-                            if isinstance(id, int):
-                                userdict = usersDict.get(id)
-                                if isinstance(userdict, dict):
-                                    walldict['user'] = userdict
+                            userdict = usersDict.get(id)
+                            if isinstance(userdict, dict):
+                                walldict['user'] = userdict
+                            else:
+                                id = walldict.get('to_id')
+                                if isinstance(id, int):
+                                    userdict = usersDict.get(id)
+                                    if isinstance(userdict, dict):
+                                        walldict['user'] = userdict
 
-                    copy_history = walldict.get('copy_history')
-                    if isinstance(copy_history, list):
-                        for h in copy_history:
-                            id = h.get('owner_id')
-                            if isinstance(id, int):
-                                userdict = usersDict.get(id)
-                                if isinstance(userdict, dict):
-                                    h['user'] = userdict
-                                else:
-                                    id = usersDict.get('from_id')
-                                    if isinstance(id, int):
-                                        userdict = usersDict.get(id)
-                                        if isinstance(userdict, dict):
-                                            h['user'] = userdict
+                        copy_history = walldict.get('copy_history')
+                        if isinstance(copy_history, list):
+                            for h in copy_history:
+                                id = h.get('owner_id')
+                                if isinstance(id, int):
+                                    userdict = usersDict.get(id)
+                                    if isinstance(userdict, dict):
+                                        h['user'] = userdict
+                                    else:
+                                        id = usersDict.get('from_id')
+                                        if isinstance(id, int):
+                                            userdict = usersDict.get(id)
+                                            if isinstance(userdict, dict):
+                                                h['user'] = userdict
 
-                    print('usersData is: ' + json.dumps(usersData, indent=4))
-                    #walldict['users_data'] = usersData
+                        print('usersData is: ' + json.dumps(usersData, indent=4))
+                        #walldict['users_data'] = usersData
+                except Exception as e:
+                    print('updateMessagesResponseWithUsers deep exception: ' + str(e))
+                    pass
     except Exception as e:
         print('updateMessagesResponseWithUsers exception: ' + str(e))
 
