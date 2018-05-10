@@ -109,6 +109,22 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         return newImage
     }
     var initiallyGetted = false
+    var didAppear: Bool = false
+    var needsShowAvatarButtonItem: Bool = false
+    override open func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        didAppear = true
+        if needsShowAvatarButtonItem == true {
+            needsShowAvatarButtonItem = false
+            if let user = viewModel?.user {
+                showUserAvatarOnNavigationBar(user)
+            }
+        }
+    }
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        didAppear = false
+    }
     override open func viewWillAppear(_ animated: Bool ) {
         super.viewWillAppear(animated)
         
@@ -117,8 +133,14 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         }
         self.updating = true
         self.viewModel?.getMessagesWithOffset(0) {[weak self] messages in
-            if let user = self?.viewModel?.user {
-                self?.showUserAvatarOnNavigationBar(user)
+            guard let sself = self else { return }
+            if sself.didAppear {
+                if let user = self?.viewModel?.user {
+                    self?.showUserAvatarOnNavigationBar(user)
+                }
+            }
+            else {
+                sself.needsShowAvatarButtonItem = true
             }
             if messages == nil {
                 return
@@ -147,9 +169,17 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
                     button.imageView?.contentMode = .scaleAspectFit
                     let buttonItem = UIBarButtonItem(customView: button)
                     let view = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 8))
-                    let spacerButtonItem = UIBarButtonItem(customView: view)
+                    var spacerButtonItem: UIBarButtonItem? = nil
+                    if #available(iOS 11, *) {
+                        spacerButtonItem = UIBarButtonItem(customView: view)
+                    }
+                    else {
+                        spacerButtonItem = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+                        //spacerButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+                        spacerButtonItem?.width = -8;
+                    }
                     button.addTarget(self, action: #selector(sself.avatarTapped), for: .touchUpInside)
-                    sself.navigationItem.rightBarButtonItems = [spacerButtonItem,buttonItem]
+                    sself.navigationItem.rightBarButtonItems = [spacerButtonItem!,buttonItem]
                     button.frame = CGRect(x: 0.0, y: 0.0, width: kAvatarImageSize, height: kAvatarImageSize)
                     button.layer.cornerRadius = kAvatarImageSize/2
                     button.clipsToBounds = true
