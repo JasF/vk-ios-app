@@ -7,6 +7,7 @@
 //
 
 #import "DialogServiceImpl.h"
+#import "User.h"
 
 @implementation DialogServiceImpl
 #pragma mark - Private Methods
@@ -35,4 +36,16 @@
     return message;
 }
 
+- (User *)parseUser:(NSDictionary *)userDictionary {
+    if (![userDictionary isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    NSDictionary *data = userDictionary[@"user_data"];
+    if (![data isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    User *user = [EKMapper objectFromExternalRepresentation:data
+                                                withMapping:[User objectMapping]];
+    return user;
+}
 @end

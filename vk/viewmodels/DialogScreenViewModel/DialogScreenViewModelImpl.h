@@ -11,6 +11,7 @@
 #import "PythonBridge.h"
 #import "HandlersFactory.h"
 #import "DialogScreenViewModel.h"
+#import "PostsViewModel.h"
 
 @protocol PyDialogScreenViewModel <NSObject>
 - (NSDictionary *)getMessages:(NSNumber *)offset
@@ -31,5 +32,6 @@
 - (instancetype)initWithDialogService:(id<DialogService>)dialogService
                       handlersFactory:(id<HandlersFactory>)handlersFactory
                                userId:(NSNumber *)userId
-                         pythonBridge:(id<PythonBridge>)pythonBridge;
+                         pythonBridge:(id<PythonBridge>)pythonBridge
+                       postsViewModel:(id<PostsViewModel>)postsViewModel;
 @end

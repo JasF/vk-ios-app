@@ -28,27 +28,32 @@ static CGFloat const kTypingNotifierInterval = 5.f;
 @property (assign, nonatomic) BOOL allMessagesLoaded;
 @property (strong, nonatomic) NSMutableArray *markAsReadIds;
 @property (strong, nonatomic) NSTimer *typingNotifier;
+@property (strong, nonatomic) id<PostsViewModel> postsViewModel;
 @end
 
 @implementation DialogScreenViewModelImpl
 
 @synthesize delegate = _delegate;
+@synthesize user = _user;
 
 #pragma mark - Initialization
 - (instancetype)initWithDialogService:(id<DialogService>)dialogService
                       handlersFactory:(id<HandlersFactory>)handlersFactory
                                userId:(NSNumber *)userId
-                         pythonBridge:(id<PythonBridge>)pythonBridge {
+                         pythonBridge:(id<PythonBridge>)pythonBridge
+                       postsViewModel:(id<PostsViewModel>)postsViewModel {
     NSCParameterAssert(dialogService);
     NSCParameterAssert(handlersFactory);
     NSCParameterAssert(userId);
     NSCParameterAssert(pythonBridge);
+    NSCParameterAssert(postsViewModel);
     if (self) {
         _dialogService = dialogService;
         _handler = [handlersFactory dialogViewModelHandler:self parameters:@{@"userId":userId}];
         _userId = userId;
         _pythonBridge = pythonBridge;
         _markAsReadIds = [NSMutableArray new];
+        _postsViewModel = postsViewModel;
     }
     return self;
 }
@@ -62,6 +67,9 @@ static CGFloat const kTypingNotifierInterval = 5.f;
                    completion:(void(^)(NSArray<Message *> *messages))completion {
     dispatch_python(^{
         NSDictionary *data = [self.handler getMessages:@(offset) userId:self.userId];
+        if (!self.user) {
+            self.user = [self.dialogService parseUser:data];
+        }
         NSArray<Message *> *messages = [_dialogService parse:data];
         if (!offset && messages.count) {
             // [self markAsRead:messages.firstObject];
@@ -85,7 +93,7 @@ static CGFloat const kTypingNotifierInterval = 5.f;
     }
     dispatch_python(^{
         NSDictionary *data = [self.handler getMessages:@(offset) userId:self.userId startMessageId:@(startMessageId)];
-        NSArray<Message *> *messages = [_dialogService parse:data];
+        NSArray<Message *> *messages = [self.dialogService parse:data];
         NSMutableArray *mutableMessages = [messages mutableCopy];
         if (mutableMessages.count) {
             [mutableMessages removeObjectAtIndex:0];
@@ -143,6 +151,14 @@ static CGFloat const kTypingNotifierInterval = 5.f;
         }
         [self.handler tappedOnVideoWithId:@(video.id) ownerId:@(video.owner_id) representation:representation];
     });
+}
+
+- (void)avatarTapped {
+    NSCParameterAssert(self.user);
+    if (!self.user) {
+        return;
+    }
+    [self.postsViewModel tappedOnCellWithUser:self.user];
 }
 
 #pragma mark - PyDialogScreenViewModelDelegate

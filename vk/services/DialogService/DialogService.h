@@ -12,5 +12,6 @@
 @protocol DialogService <NSObject>
 - (NSArray<Message *> *)parse:(NSDictionary *)messagesData;
 - (Message *)parseOne:(NSDictionary *)messageDictionary;
+- (User *)parseUser:(NSDictionary *)userDictionary;
 @end
 

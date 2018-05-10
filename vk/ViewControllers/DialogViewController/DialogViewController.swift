@@ -7,11 +7,12 @@
 //
 
 import UIKit
-
-
+import PINRemoteImage
 import CocoaLumberjack
 
+let kAvatarImageSize:CGFloat = 40.0
 class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegate {
+    
     var viewModel: DialogScreenViewModel?
     var messages: Array<Message>?
     var secondMessages: Array<Message>?
@@ -42,25 +43,19 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
             sSelf.messages?.removeAll()
             return resultArray
         }
+        /*
         self.mDataSource.setBatchFetchContent() { [weak self] () -> Void in
             //NSLog("! needs batch fetch content");
             //self?.batchFetchContent()
         }
+ */
         self.dataSource = self.mDataSource
         super.viewDidLoad()
-        
-        let button = UIBarButtonItem(
-            title: "Show typing",
-            style: .plain,
-            target: self,
-            action: #selector(showTypingCell)
-        )
-        self.navigationItem.rightBarButtonItem = button
     }
     
     @objc
-    private func showTypingCell() {
-        NSLog("Deprecated");
+    private func avatarTapped() {
+        self.viewModel?.avatarTapped()
     }
     
     var updating: Bool?
@@ -106,7 +101,13 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         }
         super.tableNode(tableNode, willDisplayRowWith: node)
     }
-    
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
+    }
     var initiallyGetted = false
     override open func viewWillAppear(_ animated: Bool ) {
         super.viewWillAppear(animated)
@@ -116,17 +117,45 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         }
         self.updating = true
         self.viewModel?.getMessagesWithOffset(0) {[weak self] messages in
+            if let user = self?.viewModel?.user {
+                self?.showUserAvatarOnNavigationBar(user)
+            }
             if messages == nil {
                 return
             }
             self?.updating = false
             self?.initiallyGetted = true
-            if var array = messages! as NSArray as? [Message] {
+            if let array = messages! as NSArray as? [Message] {
                 self?.messages = array
                 self?.secondMessages = array
                 self?.scrollToBottom = true
                 self?.mDataSource.loadPrevious(count:array.count)
             }
+        }
+    }
+    
+    func showUserAvatarOnNavigationBar(_ user: User) {
+        if let urlString = user.avatarURLString() {
+            PINRemoteImageManager.shared().downloadImage(with: URL.init(string: urlString)!, completion: { [weak self] (result) in
+                guard let sself = self else { return }
+                guard let image = result.image else { return }
+                let resizedImage = sself.imageWithImage(image: image, scaledToSize: CGSize(width: kAvatarImageSize, height: kAvatarImageSize))
+                DispatchQueue.main.async { [weak self] in
+                    guard let sself = self else { return }
+                    let button = UIButton()
+                    button.setImage(resizedImage, for: .normal)
+                    button.imageView?.contentMode = .scaleAspectFit
+                    let buttonItem = UIBarButtonItem(customView: button)
+                    let view = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 8))
+                    let spacerButtonItem = UIBarButtonItem(customView: view)
+                    button.addTarget(self, action: #selector(sself.avatarTapped), for: .touchUpInside)
+                    sself.navigationItem.rightBarButtonItems = [spacerButtonItem,buttonItem]
+                    button.frame = CGRect(x: 0.0, y: 0.0, width: kAvatarImageSize, height: kAvatarImageSize)
+                    button.layer.cornerRadius = kAvatarImageSize/2
+                    button.clipsToBounds = true
+                    button.backgroundColor = UIColor.green
+                }
+            })
         }
     }
     

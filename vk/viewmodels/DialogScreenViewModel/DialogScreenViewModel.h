@@ -18,6 +18,7 @@
 
 @protocol DialogScreenViewModel <NSObject>
 @property (weak) id<DialogScreenViewModelDelegate> delegate;
+@property (nonatomic) User *user;
 - (void)getMessagesWithOffset:(NSInteger)offset
                    completion:(void(^)(NSArray<Message *> *messages))completion;
 - (void)getMessagesWithOffset:(NSInteger)offset
@@ -30,4 +31,5 @@
 - (void)inputBarDidChangeText:(NSString *)text;
 - (void)userDidTappedOnPhotoWithIndex:(NSInteger)index message:(Message *)message;
 - (void)userDidTappedOnVideo:(Video *)video message:(Message *)message;
+- (void)avatarTapped;
 @end

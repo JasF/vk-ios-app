@@ -6,6 +6,7 @@ from random import randint
 import sched, time, random
 import threading
 from threading import Lock
+from vk import users
 from caches.videosdatabase import VideosDatabase
 
 kTypingInterval = 5
@@ -27,6 +28,8 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     # protocol methods from objc
     def getMessagesuserId(self, offset, userId):
         results = self.dialogService.getMessagesuserId(offset, userId)
+        if isinstance(results, dict):
+            results['user_data'] = users.getShortUserById(self.userId)
         return results
     
     def getMessagesuserIdstartMessageId(self, offset, userId, startMessageId):
@@ -37,11 +40,11 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         try:
             randomId = random.randint(0,2200000000)
             timestamp = int(time.time())
-            self.messagesService.saveMessageToCache(randomId, 1, userId, vk.userId(), timestamp, text, 0, randomId)
+            self.messagesService.saveMessageToCache(randomId, 1, userId, vk.userId(), timestamp, text, 0, randomId, [])
             messageId = self.dialogService.sendTextMessageuserId(text, userId, randomId)
             if not isinstance(messageId, int):
                 messageId = -1;
-            self.messagesService.saveMessageToCache(messageId, 1, userId, vk.userId(), timestamp, text, 0, randomId)
+            self.messagesService.saveMessageToCache(messageId, 1, userId, vk.userId(), timestamp, text, 0, randomId, [])
             self.messagesService.remove(randomId)
             #self.messagesService.changeId(randomId, messageId)
         except Exception as e:
