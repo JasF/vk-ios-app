@@ -3,6 +3,7 @@ import json
 import traceback
 from vk import users as users
 from caches.postsdatabase import PostsDatabase
+from postproc import textpatcher
 
 class BookmarksService:
     def __init__(self, usersDecorator):

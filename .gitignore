@@ -1,3 +1,5 @@
+build/*
+vk-build/*
 app_packages.zip
 Frameworks/Python.framework
 *xcuserstate
