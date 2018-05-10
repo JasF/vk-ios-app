@@ -473,6 +473,7 @@
 		C3437569208F816C004EF670 /* AnswersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437568208F816C004EF670 /* AnswersViewController.m */; };
 		C343756E208F81DB004EF670 /* AnswersViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C343756D208F81DB004EF670 /* AnswersViewModelImpl.m */; };
 		C3437573208F83AD004EF670 /* AnswersServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437572208F83AD004EF670 /* AnswersServiceImpl.m */; };
+		C34A577120A48E4600DBAF4A /* send-adhoc-to-hockeyapp.sh in Resources */ = {isa = PBXBuildFile; fileRef = C34A577020A48E4600DBAF4A /* send-adhoc-to-hockeyapp.sh */; };
 		C3507821209477B4000C8FB3 /* WallUserCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3507820209477B4000C8FB3 /* WallUserCellModel.swift */; };
 		C350782320948114000C8FB3 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782220948114000C8FB3 /* TextStyles.swift */; };
 		C3507825209485DF000C8FB3 /* WallUserActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3507824209485DF000C8FB3 /* WallUserActionNode.swift */; };
@@ -1780,6 +1781,7 @@
 		C3437572208F83AD004EF670 /* AnswersServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswersServiceImpl.m; sourceTree = "<group>"; };
 		C3437574208F8678004EF670 /* answersservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = answersservice.py; sourceTree = "<group>"; };
 		C3437575208F8687004EF670 /* pyanswersviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyanswersviewmodel.py; sourceTree = "<group>"; };
+		C34A577020A48E4600DBAF4A /* send-adhoc-to-hockeyapp.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "send-adhoc-to-hockeyapp.sh"; path = "scripts/send-adhoc-to-hockeyapp.sh"; sourceTree = SOURCE_ROOT; };
 		C3507820209477B4000C8FB3 /* WallUserCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserCellModel.swift; sourceTree = "<group>"; };
 		C350782220948114000C8FB3 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		C3507824209485DF000C8FB3 /* WallUserActionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserActionNode.swift; sourceTree = "<group>"; };
@@ -3248,6 +3250,7 @@
 		C32304A72080E57400CEC487 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C34A577020A48E4600DBAF4A /* send-adhoc-to-hockeyapp.sh */,
 				C39C8BB5209F109500CC23C3 /* LaunchScreen.storyboard */,
 				C3137716208DFABA00F568EA /* entitlements */,
 				C32306FA2080F2DE00CEC487 /* Podfile */,
@@ -6040,6 +6043,7 @@
 				C32306A92080E57500CEC487 /* response.cpython-34.pyc in Resources */,
 				C3B0EF08208B14E8008802BB /* loadBubble_0008_Layer-31@1x.png in Resources */,
 				C32306D52080E57500CEC487 /* exceptions.py in Resources */,
+				C34A577120A48E4600DBAF4A /* send-adhoc-to-hockeyapp.sh in Resources */,
 				C3B0EEDA208B14E8008802BB /* loadBubble_0011_Layer-28@2x.png in Resources */,
 				C3B0EF14208B14E8008802BB /* loadBubble_0023_Layer-16@1x.png in Resources */,
 				C32306C82080E57500CEC487 /* six.cpython-34.pyc in Resources */,
