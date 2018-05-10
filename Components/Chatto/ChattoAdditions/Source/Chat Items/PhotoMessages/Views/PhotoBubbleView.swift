@@ -39,6 +39,10 @@ public protocol PhotoBubbleViewStyleProtocol {
 }
 
 open class PhotoBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable, BackgroundSizingQueryable, BaseBubbleViewProtocol {
+    public func disableBackground() {
+        
+    }
+    
     public var mediaNodes: [ASDisplayNode]?
     public var viewContext: ViewContext = .normal
     public var animationDuration: CFTimeInterval = 0.33

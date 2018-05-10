@@ -42,9 +42,6 @@ public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable
             return _mediaNodes
         }
         set {
-            if _mediaNodes != nil && (_mediaNodes?.count)! > 0 {
-                return
-            }
             if let array = _mediaNodes {
                 for node in array {
                     node.removeFromSupernode()
@@ -57,6 +54,9 @@ public final class TextBubbleView: ASDisplayNode, MaximumLayoutWidthSpecificable
                 }
             }
         }
+    }
+    public func disableBackground() {
+        self.bubbleImageView.alpha = 0.0
     }
     
     override public func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

@@ -36,6 +36,11 @@ static CGFloat const kTextCornerRadius = 3.f;
         
         _textNode = [[ASTextNode alloc] init];
         NSString *body = dialog.message.body ?: @"";
+        if (!body.length) {
+            if (dialog.message.attachments.count || dialog.message.photoAttachments.count) {
+                body = L(@"dialog_attachments");
+            }
+        }
         if (dialog.message.isTyping) {
             body = [NSString stringWithFormat:@"%@: %@", L(@"typing"), body];
         }

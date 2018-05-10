@@ -168,6 +168,9 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: ChatBaseNodeCell, Back
                     }
                     if let atts = message.attachments {
                         for att in atts {
+                            if att.sticker != nil {
+                                self.bubbleView.disableBackground()
+                            }
                             block(att)
                         }
                     }

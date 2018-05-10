@@ -39,4 +39,5 @@ public protocol BackgroundSizingQueryable {
 
 public protocol BaseBubbleViewProtocol {
     var mediaNodes:[ASDisplayNode]? { get set }
+    func disableBackground()
 }

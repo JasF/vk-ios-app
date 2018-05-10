@@ -53,7 +53,7 @@ class LongPoll:
         
         while True:
             try:
-                url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=25&mode=130&version=2'
+                url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=25&mode=' + str(2+128) + '&version=2'
                 #print('longpoll request: ' + str(url))
                 response = requests_session.get(url)
                 jsonDict = response.json()
@@ -141,7 +141,7 @@ def parseMessageAdd(eventDescription):
     print('msg add desc: ' + json.dumps(eventDescription, indent=4))
     
     for d in _lp.addMessageDelegates:
-        d.handleMessageAdd(messageId, flags, peerId, timestamp, text, random_id)
+        d.handleMessageAdd(messageId, flags, peerId, timestamp, text, random_id, extra)
 
 def parseMessageEdit(eventDescription):
     if len(eventDescription) < 7:
@@ -157,7 +157,7 @@ def parseMessageEdit(eventDescription):
 
     print('msg EDIT desc: ' + json.dumps(eventDescription, indent=4))
     for d in _lp.addMessageDelegates:
-        d.handleMessageEdit(messageId, flags, peerId, timestamp, text, random_id)
+        d.handleMessageEdit(messageId, flags, peerId, timestamp, text, random_id, extra)
 
 def parseMessageInReaded(eventDescription):
     if len(eventDescription) < 2:

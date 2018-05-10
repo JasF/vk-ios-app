@@ -37,13 +37,6 @@
     _type = [dictionary[typeString] integerValue];
 }
 
-- (void)setSticker:(Sticker *)sticker {
-    _sticker = sticker;
-    if (sticker) {
-        NSLog(@"!");
-    }
-}
-
 - (NSString *)uid {
     NSString *string = @"";
     if (self.photo) {

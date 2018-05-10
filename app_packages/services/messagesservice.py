@@ -38,6 +38,11 @@ class MessagesService(AddMessageProtocol):
         if not hasattr(cls, 'instance') or not cls.instance:
             cls.instance = super().__new__(cls)
             cls.newMessageSubscribers = []
+        '''
+        cls.instance.parseLongPollAttachments({"attach1_product_id": "4","attach1_type": "sticker","attach1": "148","title": " ... "})
+        cls.instance.parseLongPollAttachments({"attach1_type": "photo","attach1": "7162990_350884834","attach2_type": "photo","attach2": "7162990_347207608","title": " ... "})
+        cls.instance.parseLongPollAttachments({"attach1_type": "video","attach1": "113132980_456239168","title": " ... "})
+        '''
         return cls.instance
 
     def addNewMessageSubscriber(self, subscriber):
@@ -52,25 +57,53 @@ class MessagesService(AddMessageProtocol):
         self.longPoll = longPoll
         self.longPoll.addAddMessageDelegate(self)
     
-    def messageDictionary(self, messageId, isOut, userId, fromId, timestamp, text, read_state, randomId):
-        dict = {'id':messageId, 'user_id': userId, 'from_id': fromId, 'date': timestamp, 'read_state': read_state, 'out': isOut, 'body': text, 'random_id': randomId}
+    def messageDictionary(self, messageId, isOut, userId, fromId, timestamp, text, read_state, randomId, attachments):
+        dict = {'id':messageId, 'user_id': userId, 'from_id': fromId, 'date': timestamp, 'read_state': read_state, 'out': isOut, 'body': text, 'random_id': randomId, 'attachments': attachments}
         return dict
 
-    def saveMessageToCache(self, messageId, isOut, userId, fromId, timestamp, text, read_state, randomId):
-        dict = self.messageDictionary(messageId, isOut, userId, fromId, timestamp, text, read_state, randomId)
+    def saveMessageToCache(self, messageId, isOut, userId, fromId, timestamp, text, read_state, randomId, attachments):
+        dict = self.messageDictionary(messageId, isOut, userId, fromId, timestamp, text, read_state, randomId, attachments)
         #print('updating dict: ' + str(dict))
         messages = MessagesDatabase()
         messages.update([dict])
         messages.close()
     
-    def messageWithId(sekf, messageId):
+    def messageWithId(self, messageId):
         database = MessagesDatabase()
         result = database.messageWithId(messageId)
         database.close()
         return result
 
+    def downloadMessageById(self, messageId):
+        msg = {}
+        try:
+            api = vk.api()
+            response = api.messages.getById(message_ids=str(messageId))
+            if isinstance(response, dict):
+                l = response.get('items')
+                if isinstance(l, list) and len(l) > 0:
+                    msg = l[0]
+            print('downloaded msg: ' + json.dumps(msg, indent=4))
+        except Exception as e:
+            print('downloadMessageById exception: ' + str(e))
+        return msg
+    
+    def downloadAttachments(self, messageId):
+        attachments = []
+        msg = self.downloadMessageById(messageId)
+        atts = msg.get('attachments')
+        if isinstance(atts, list):
+            attachments = atts
+            #print('attachments is: ' + json.dumps(attachments, indent=4))
+        return attachments
+    
     # AddMessageProtocol
-    def handleMessageAdd(self, messageId, flags, peerId, timestamp, text, randomId):
+    def handleMessageAdd(self, messageId, flags, peerId, timestamp, text, randomId, attachments):
+        attslist = self.parseLongPollAttachments(attachments)
+        attachments = []
+        if len(attslist) > 0:
+            attachments = self.downloadAttachments(messageId)
+    
         isOut = 1 if MessageFlags(flags) & MessageFlags.OUTBOX else 0
         read_state = 0 if MessageFlags(flags) & MessageFlags.UNREAD else 1
         fromId = vk.userId() if isOut == True else peerId
@@ -84,18 +117,23 @@ class MessagesService(AddMessageProtocol):
                 return
         except:
             pass
-        msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId)
+        msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
         for d in self.newMessageSubscribers:
             d.handleIncomingMessage(msg)
-        self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId)
+        self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
 
-    def handleMessageEdit(self, messageId, flags, peerId, timestamp, text, randomId):
+    def handleMessageEdit(self, messageId, flags, peerId, timestamp, text, randomId, attachments):
+        attslist = self.parseLongPollAttachments(attachments)
+        attachments = []
+        if len(attslist) > 0:
+            attachments = self.downloadAttachments(messageId)
+        
         isOut = 1 if MessageFlags(flags) & MessageFlags.OUTBOX else 0
         read_state = 0 if MessageFlags(flags) & MessageFlags.UNREAD else 1
         fromId = vk.userId() if isOut == True else peerId
         try:
-            self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId)
-            msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId)
+            self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
+            msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
             for d in self.newMessageSubscribers:
                 d.handleEditMessage(msg)
         except:
@@ -179,3 +217,39 @@ class MessagesService(AddMessageProtocol):
         except Exception as e:
             print('changeId message exception: ' + str(e))
 
+    def parseLongPollAttachments(self, attachments):
+        result = []
+        #print('\n\nbegin parsing:\n\n' + json.dumps(attachments, indent=4))
+        try:
+            if not isinstance(attachments, dict):
+                return result
+            atts = {}
+            for k in attachments.keys():
+                if len(k) < 6:
+                    continue
+                if k[:6] != 'attach':
+                    continue
+                v = attachments[k]
+                attdata = k[6:]
+                attid = 0
+                attkey = 'id'
+                index = attdata.find('_')
+                if index < 0:
+                    attid = int(attdata)
+                else:
+                    attid = int(attdata[:index])
+                    attkey = attdata[index+1:]
+                if attid == 0:
+                    continue
+                attdict = atts.get(attid)
+                if not isinstance(attdict, dict):
+                    attdict = {}
+                    atts[attid] = attdict
+                attdict[attkey] = v
+                #print('attid is: ' + str(attid) + '; key: ' + attkey + '; value: ' + str(v))
+            #print('attachs:' + json.dumps(atts, indent=4))
+            for k in atts.keys():
+                result.append(atts[k])
+        except Exception as e:
+            print('parseLongPollAttachments exception: ' + str(e))
+        return result
