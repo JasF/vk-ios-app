@@ -9,15 +9,14 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "BaseCollectionViewController.h"
 #import "NodeFactory.h"
+#import "UIViewController+Utils.h"
 
 @interface BaseTableViewController : ASViewController <ASTableDelegate, ASTableDataSource>
 @property (weak, nonatomic) id<BaseTableViewControllerDataSource> dataSource;
 @property id<NodeFactory> nodeFactory;
 @property ASTableNode *tableNode;
-@property BOOL pushed;
 - (NSMutableArray *)objectsArray;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory;
-- (void)addMenuIconWithTarget:(id)target action:(SEL)action;
 - (void)reloadData;
 - (void)performBatchAnimated:(BOOL)animated;
 @end

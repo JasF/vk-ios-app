@@ -226,18 +226,6 @@ static const NSInteger kBatchSize = 20;
     return _data;
 }
 
-- (void)addMenuIconWithTarget:(id)target action:(SEL)action {
-    if (self.pushed || self.navigationItem.leftBarButtonItem) {
-        return;
-    }
-    UIButton *button = [UIButton new];
-    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    [button setImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.leftBarButtonItem = backButton;
-    [button sizeToFit];
-}
-
 - (void)simpleReloadCollectionView {
     [self.collectionNode reloadData];
 }

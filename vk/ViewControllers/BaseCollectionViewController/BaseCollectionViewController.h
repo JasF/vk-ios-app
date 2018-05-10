@@ -8,6 +8,7 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "NodeFactory.h"
+#import "UIViewController+Utils.h"
 
 @protocol BaseTableViewControllerDataSource <NSObject>
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
@@ -18,11 +19,9 @@
 @property (weak, nonatomic) id<BaseTableViewControllerDataSource> dataSource;
 @property id<NodeFactory> nodeFactory;
 @property ASCollectionNode *collectionNode;
-@property UICollectionViewFlowLayout *layout;
-@property BOOL pushed;
+@property (nonatomic) UICollectionViewFlowLayout *layout;
 - (NSArray *)objectsArray;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory;
-- (void)addMenuIconWithTarget:(id)target action:(SEL)action;
 - (void)reloadData;
 - (void)simpleReloadCollectionView;
 - (void)performBatchAnimated:(BOOL)animated;

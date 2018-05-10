@@ -640,6 +640,7 @@
 		C39D471D20A33D5B00C6CC99 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39D471C20A33D5B00C6CC99 /* HockeySDK.framework */; };
 		C39D473520A424C400C6CC99 /* Sticker.m in Sources */ = {isa = PBXBuildFile; fileRef = C39D473420A424C400C6CC99 /* Sticker.m */; };
 		C39D473820A429FE00C6CC99 /* StickerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D473720A429FE00C6CC99 /* StickerNode.swift */; };
+		C39D473B20A44B1100C6CC99 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C39D473A20A44B1100C6CC99 /* UIViewController+Utils.m */; };
 		C3A82A292093053500C41CA8 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A282093053500C41CA8 /* BaseTableViewController.m */; };
 		C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */; };
 		C3A82A3020932DAC00C41CA8 /* RepostNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A82A2F20932DAC00C41CA8 /* RepostNode.m */; };
@@ -1986,6 +1987,8 @@
 		C39D473320A424C400C6CC99 /* Sticker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sticker.h; sourceTree = "<group>"; };
 		C39D473420A424C400C6CC99 /* Sticker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sticker.m; sourceTree = "<group>"; };
 		C39D473720A429FE00C6CC99 /* StickerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerNode.swift; sourceTree = "<group>"; };
+		C39D473920A44B1100C6CC99 /* UIViewController+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
+		C39D473A20A44B1100C6CC99 /* UIViewController+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
 		C3A82A272093053500C41CA8 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		C3A82A282093053500C41CA8 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASInsetLayoutSpec+Utils.h"; sourceTree = "<group>"; };
@@ -5416,6 +5419,8 @@
 				C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */,
 				C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */,
 				C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */,
+				C39D473920A44B1100C6CC99 /* UIViewController+Utils.h */,
+				C39D473A20A44B1100C6CC99 /* UIViewController+Utils.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -6306,6 +6311,7 @@
 				C39D46E120A2CD6900C6CC99 /* PhotosInputDataProvider.swift in Sources */,
 				C32308BC2081AEB100CEC487 /* LGSideMenuController.m in Sources */,
 				C398BA6F2094597A0071FA04 /* PostBaseNode.m in Sources */,
+				C39D473B20A44B1100C6CC99 /* UIViewController+Utils.m in Sources */,
 				C39C8B9D209D92A400CC23C3 /* ExtendedVideoNode.swift in Sources */,
 				C3987E4D2099CB480047A30F /* TypingCell.swift in Sources */,
 				C32262B6209091CE0054789B /* Video.m in Sources */,
@@ -6781,7 +6787,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -6823,7 +6829,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
