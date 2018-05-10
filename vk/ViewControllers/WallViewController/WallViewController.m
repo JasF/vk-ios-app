@@ -14,6 +14,8 @@
 #import "vk-Swift.h"
 #import "ScreensManager.h"
 
+static CGFloat const kButtonSize = 44.f;
+
 @interface WallViewController () <BaseTableViewControllerDataSource, WallUserScrollNodeDelegate, WallUserMessageNodeDelegate, ViewControllerActionsExtension>
 @property (strong, nonatomic) id<WallViewModel> viewModel;
 @property (weak, nonatomic) WallUserScrollNode *scrollNode;
@@ -54,6 +56,7 @@
             [self.tableNode reloadData];
             return;
         }
+        [self addRightIconIfNeeded];
         [self.imageModel setUser:user];
         [self.messageModel setUser:user];
         [self.actionsModel setUser:user];
@@ -92,8 +95,16 @@
         [button addTarget:self action:@selector(addPostTapped:) forControlEvents:UIControlEventTouchUpInside];
         [button setImage:[UIImage imageNamed:@"add_post"] forState:UIControlStateNormal];
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-        self.navigationItem.rightBarButtonItem = backButton;
-        [button sizeToFit];
+        
+        button.size = CGSizeMake(kButtonSize, kButtonSize);
+        CGFloat spacerWidth = -10;
+        if (@available(iOS 11, *)) {
+            spacerWidth = 6;
+        }
+        UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        negativeSpacer.width = spacerWidth;
+        
+        self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
     }
 }
 
