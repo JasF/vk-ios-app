@@ -58,7 +58,10 @@
     }
     else if ([item isKindOfClass:[Attachments class]]) {
         Attachments *attachment = (Attachments *)item;
-        if (attachment.type == AttachmentSticker) {
+        if (attachment.type == AttachmentWall && attachment.wall) {
+            return [_assembly wallPostNodeWithData:attachment.wall embedded:@(YES)];
+        }
+        else if (attachment.type == AttachmentSticker) {
             return [_assembly stickerNode:attachment.sticker];
         }
         else if (attachment.type == AttachmentVideo) {

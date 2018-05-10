@@ -63,7 +63,7 @@
 @property NSArray<UserId *> *friendsIds;
 @property NSArray<User *> *friends;
 
-@property User *user;
+@property (nonatomic) User *user;
 
 - (NSInteger)validId;
 @end

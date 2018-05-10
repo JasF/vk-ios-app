@@ -7,6 +7,7 @@
 //
 
 #import "Attachments.h"
+#import "WallPost.h"
 #import <zlib.h>
 
 @implementation Attachments
@@ -26,6 +27,10 @@
             return [EKMapper objectFromExternalRepresentation:value
                                                   withMapping:[Sticker objectMapping]];
         }];
+        [mapping mapKeyPath:@"wall" toProperty:@"wall" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
+            return [EKMapper objectFromExternalRepresentation:value
+                                                  withMapping:[WallPost objectMapping]];
+        }];
         [mapping mapKeyPath:@"type" toProperty:@"typeString"];
     }];
 }
@@ -33,7 +38,8 @@
 - (void)setTypeString:(NSString *)typeString {
     NSDictionary *dictionary = @{@"photo":@(AttachmentPhoto),
                                  @"video":@(AttachmentVideo),
-                                 @"sticker":@(AttachmentSticker)};
+                                 @"sticker":@(AttachmentSticker),
+                                 @"wall":@(AttachmentWall)};
     _type = [dictionary[typeString] integerValue];
 }
 
@@ -47,6 +53,9 @@
     }
     else if (self.sticker) {
         string = [NSString stringWithFormat:@"s%@%@", @(self.sticker.product_id), @(self.sticker.sticker_id)];
+    }
+    else if (self.wall) {
+        string = [NSString stringWithFormat:@"w%@%@", @(self.wall.identifier), @(self.wall.owner_id)];
     }
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     unsigned long crc =(unsigned long)crc32(0, data.bytes, (uInt)data.length);

@@ -48,6 +48,12 @@
             return photos;
         }];
         
+        [mapping mapKeyPath:@"user" toProperty:@"user" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
+            User *user = [EKMapper objectFromExternalRepresentation:value
+                                                        withMapping:[User objectMapping]];
+            return user;
+        }];
+        
         [mapping mapKeyPath:@"attachments" toProperty:@"attachments" withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
             return [EKMapper arrayOfObjectsFromExternalRepresentation:value
                                                           withMapping:[Attachments objectMapping]];
@@ -133,6 +139,13 @@
         return self.validId;
     }
     return _owner_id;
+}
+
+- (void)setUser:(User *)user {
+    if (!user) {
+        return;
+    }
+    _user = user;
 }
 
 @end

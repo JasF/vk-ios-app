@@ -1,5 +1,52 @@
 import vk, json
 from caches.messagesdatabase import MessagesDatabase
+from services.usersdecorator import UsersDecorator
+
+def updateMessagesResponseWithUsers(response):
+    try:
+        ud = UsersDecorator()
+        l = response['items']
+        for d in l:
+            for att in d['attachments']:
+                if att['type'] == 'wall':
+                    walldict = att['wall']
+                    usersData = ud.usersDataFromPosts([walldict])
+                    usersDict = {}
+                    for ud in usersData:
+                        id = ud.get('id')
+                        if isinstance(id, int):
+                            usersDict[id] = ud
+                    id = walldict.get('from_id')
+                    if isinstance(id, int):
+                        userdict = usersDict.get(id)
+                        if isinstance(userdict, dict):
+                            walldict['user'] = userdict
+                        else:
+                            id = walldict.get('to_id')
+                            if isinstance(id, int):
+                                userdict = usersDict.get(id)
+                                if isinstance(userdict, dict):
+                                    walldict['user'] = userdict
+
+                    copy_history = walldict.get('copy_history')
+                    if isinstance(copy_history, list):
+                        for h in copy_history:
+                            id = h.get('owner_id')
+                            if isinstance(id, int):
+                                userdict = usersDict.get(id)
+                                if isinstance(userdict, dict):
+                                    h['user'] = userdict
+                                else:
+                                    id = usersDict.get('from_id')
+                                    if isinstance(id, int):
+                                        userdict = usersDict.get(id)
+                                        if isinstance(userdict, dict):
+                                            h['user'] = userdict
+
+                    print('usersData is: ' + json.dumps(usersData, indent=4))
+                    #walldict['users_data'] = usersData
+    except Exception as e:
+        print('updateMessagesResponseWithUsers exception: ' + str(e))
 
 class DialogService:
     def __init__(self):
@@ -22,6 +69,7 @@ class DialogService:
                 return {'response':{'items':localcache}}
             
             response = self.api.messages.getHistory(user_id=userId, offset=offset, count=self.batchSize)
+            updateMessagesResponseWithUsers(response)
             l = response["items"]
             messages.update(l)
             messages.close()

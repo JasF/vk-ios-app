@@ -32,9 +32,7 @@ class NewsService:
                         l.append(d)
             if isinstance(response, dict):
                 response['items'] = l
-            if len(l) == 0:
-                print('response is: ' + json.dumps(response, indent=4))
-            print('l response: ' + json.dumps(l, sort_keys=True, indent=4, separators=(',', ': ')))
+            #print('l response: ' + json.dumps(l, sort_keys=True, indent=4, separators=(',', ': ')))
             '''
             ids = [d['post_id'] for d in l if isinstance(d.get('post_id'), int) == True]
             print('ids: ' + json.dumps(ids, indent=4))

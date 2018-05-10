@@ -17,13 +17,17 @@ typedef NS_ENUM(NSInteger, AttachmentTypes) {
     AttachmentUnknown,
     AttachmentPhoto,
     AttachmentVideo,
-    AttachmentSticker
+    AttachmentSticker,
+    AttachmentWall
 };
+
+@class WallPost;
 
 @interface Attachments : NSObject <EKMappingProtocol>
 @property AttachmentTypes type;
 @property Photo *photo;
 @property Video *video;
+@property WallPost *wall;
 @property (nonatomic) Sticker *sticker;
 - (NSString *)uid;
 @end

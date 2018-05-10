@@ -4,6 +4,7 @@ from vk.longpoll import AddMessageProtocol
 from caches.messagesdatabase import MessagesDatabase
 from enum import Flag, auto
 import threading
+from services import dialogservice
 
 class MessageFlags(Flag):
     UNREAD = auto()
@@ -79,6 +80,7 @@ class MessagesService(AddMessageProtocol):
         try:
             api = vk.api()
             response = api.messages.getById(message_ids=str(messageId))
+            updateMessagesResponseWithUsers(response)
             if isinstance(response, dict):
                 l = response.get('items')
                 if isinstance(l, list) and len(l) > 0:
