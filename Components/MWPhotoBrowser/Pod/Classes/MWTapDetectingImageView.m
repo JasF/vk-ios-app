@@ -65,4 +65,11 @@
 		[_tapDelegate imageView:self tripleTapDetected:touch];
 }
 
+- (void)setFrame:(CGRect)frame {
+    //if (frame.origin.y < self.frame.origin.y) {
+    //    NSLog(@"!");
+    //}
+    [super setFrame:frame];
+    //NSLog(@"ImageView frame: %@", NSStringFromCGRect(frame));
+}
 @end

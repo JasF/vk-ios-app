@@ -14,24 +14,29 @@
 #import "MWPhotoBrowserPrivate.h"
 #import "UIImage+MWPhotoBrowser.h"
 
+static CGFloat const kAnimationDuration = 0.1f;
 // Private methods and properties
-@interface MWZoomingScrollView () {
+@interface MWZoomingScrollView () <UIGestureRecognizerDelegate> {
     
     MWPhotoBrowser __weak *_photoBrowser;
 	MWTapDetectingView *_tapView; // for background taps
 	MWTapDetectingImageView *_photoImageView;
 	DACircularProgressView *_loadingIndicator;
     UIImageView *_loadingError;
-    
+    UIPanGestureRecognizer *_panGestureRecognizer;
+    CGPoint _panPhotoStartPosition;
+    CGPoint _panStartPosition;
 }
-
+@property BOOL animating;
 @end
 
 @implementation MWZoomingScrollView
 
 - (id)initWithPhotoBrowser:(MWPhotoBrowser *)browser {
     if ((self = [super init])) {
-        
+        _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+        _panGestureRecognizer.delegate = self;
+        //[self addGestureRecognizer:_panGestureRecognizer];
         // Setup
         _index = NSUIntegerMax;
         _photoBrowser = browser;
@@ -72,7 +77,6 @@
 		self.showsVerticalScrollIndicator = NO;
 		self.decelerationRate = UIScrollViewDecelerationRateFast;
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
     }
     return self;
 }
@@ -346,7 +350,7 @@
 	}
     
 	// Center
-	if (!CGRectEqualToRect(_photoImageView.frame, frameToCenter))
+	if (!CGRectEqualToRect(_photoImageView.frame, frameToCenter) && _panGestureRecognizer.state == UIGestureRecognizerStatePossible && !_animating)
 		_photoImageView.frame = frameToCenter;
 	
 }
@@ -442,4 +446,68 @@
     [self handleDoubleTap:CGPointMake(touchX, touchY)];
 }
 
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    NSLog(@"setFrame is: %@", NSStringFromCGRect(frame));
+}
+
+- (void)handlePan:(id)sender {
+    switch (_panGestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan: {
+            _panPhotoStartPosition = _photoImageView.frame.origin;
+            _panStartPosition = [_panGestureRecognizer locationInView:self];
+            break;
+        }
+        case UIGestureRecognizerStateChanged: {
+            CGPoint location = [_panGestureRecognizer locationInView:self];
+            CGFloat delta = _panStartPosition.y - location.y;
+            CGRect frame = _photoImageView.frame;
+            frame.origin.y = _panPhotoStartPosition.y -  delta;
+            _photoImageView.frame = frame;
+            break;
+        }
+        case UIGestureRecognizerStateEnded: {
+            CGRect frame = _photoImageView.frame;
+            frame.origin = _panPhotoStartPosition;
+            _animating = YES;
+            [UIView animateWithDuration:kAnimationDuration animations:^{
+                _photoImageView.frame = frame;
+            }
+                             completion:^(BOOL finished) {
+                                 self.animating = NO;
+                             }];
+            break;
+        }
+        default: break;
+    }
+    
+    /*
+    NSLog(@"panning: %@", @(_panGestureRecognizer.state));
+    CGPoint location = [_panGestureRecognizer locationInView:self];
+    NSLog(@"panning: %@: %@: %@", @(_panGestureRecognizer.state), NSStringFromCGPoint(location), NSStringFromCGRect(_photoImageView.frame));
+    CGRect frame = _photoImageView.frame;
+    frame.origin.y = location.y;
+    _photoImageView.frame = frame;
+    */
+}
+/*
+CF_INLINE bool IsEqualFloat(float a, float b) { return ABS(a - b) < pow(10, -10); }
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if ([gestureRecognizer isEqual:_panGestureRecognizer]) {
+        if (IsEqualFloat(_photoImageView.frame.size.width, self.frame.size.width)) {
+            CGPoint velocity = [_panGestureRecognizer velocityInView:self];
+            if (fabs(velocity.y) > fabs(velocity.x)) {
+                return YES;
+            }
+            return NO;
+        }
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+ */
 @end

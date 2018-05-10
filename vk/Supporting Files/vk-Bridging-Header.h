@@ -24,3 +24,5 @@
 #import "PostImagesNode.h"
 #import "PostVideoNode.h"
 #import "Video.h"
+#import "NodeFactoryImpl.h"
+ 
