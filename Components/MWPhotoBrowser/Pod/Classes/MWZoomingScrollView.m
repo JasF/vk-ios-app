@@ -34,9 +34,9 @@ static CGFloat const kAnimationDuration = 0.1f;
 
 - (id)initWithPhotoBrowser:(MWPhotoBrowser *)browser {
     if ((self = [super init])) {
-        _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+        _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanning:)];
         _panGestureRecognizer.delegate = self;
-        //[self addGestureRecognizer:_panGestureRecognizer];
+        [self addGestureRecognizer:_panGestureRecognizer];
         // Setup
         _index = NSUIntegerMax;
         _photoBrowser = browser;
@@ -349,8 +349,9 @@ static CGFloat const kAnimationDuration = 0.1f;
         frameToCenter.origin.y = 0;
 	}
     
+    NSArray *excludedStates = @[@(UIGestureRecognizerStateBegan), @(UIGestureRecognizerStateChanged), @(UIGestureRecognizerStateEnded)];
 	// Center
-	if (!CGRectEqualToRect(_photoImageView.frame, frameToCenter) && _panGestureRecognizer.state == UIGestureRecognizerStatePossible && !_animating)
+	if (!CGRectEqualToRect(_photoImageView.frame, frameToCenter) && (![excludedStates containsObject:@(_panGestureRecognizer.state)]) && !_animating)
 		_photoImageView.frame = frameToCenter;
 	
 }
@@ -451,7 +452,7 @@ static CGFloat const kAnimationDuration = 0.1f;
     NSLog(@"setFrame is: %@", NSStringFromCGRect(frame));
 }
 
-- (void)handlePan:(id)sender {
+- (void)handlePanning:(id)sender {
     switch (_panGestureRecognizer.state) {
         case UIGestureRecognizerStateBegan: {
             _panPhotoStartPosition = _photoImageView.frame.origin;
@@ -480,17 +481,8 @@ static CGFloat const kAnimationDuration = 0.1f;
         }
         default: break;
     }
-    
-    /*
-    NSLog(@"panning: %@", @(_panGestureRecognizer.state));
-    CGPoint location = [_panGestureRecognizer locationInView:self];
-    NSLog(@"panning: %@: %@: %@", @(_panGestureRecognizer.state), NSStringFromCGPoint(location), NSStringFromCGRect(_photoImageView.frame));
-    CGRect frame = _photoImageView.frame;
-    frame.origin.y = location.y;
-    _photoImageView.frame = frame;
-    */
 }
-/*
+
 CF_INLINE bool IsEqualFloat(float a, float b) { return ABS(a - b) < pow(10, -10); }
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if ([gestureRecognizer isEqual:_panGestureRecognizer]) {
@@ -509,5 +501,5 @@ CF_INLINE bool IsEqualFloat(float a, float b) { return ABS(a - b) < pow(10, -10)
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
 }
- */
+
 @end
