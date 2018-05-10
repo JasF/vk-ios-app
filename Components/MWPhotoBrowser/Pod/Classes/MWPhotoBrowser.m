@@ -794,11 +794,13 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 	CGRect visibleBounds = _pagingScrollView.bounds;
 	NSInteger iFirstIndex = (NSInteger)floorf((CGRectGetMinX(visibleBounds)+PADDING*2) / CGRectGetWidth(visibleBounds));
 	NSInteger iLastIndex  = (NSInteger)floorf((CGRectGetMaxX(visibleBounds)-PADDING*2-1) / CGRectGetWidth(visibleBounds));
+    
     if (iFirstIndex < 0) iFirstIndex = 0;
     if (iFirstIndex > [self numberOfPhotos] - 1) iFirstIndex = [self numberOfPhotos] - 1;
     if (iLastIndex < 0) iLastIndex = 0;
-    if (iLastIndex > [self numberOfPhotos] - 1) iLastIndex = [self numberOfPhotos] - 1;
-	
+    if (iLastIndex > [self numberOfPhotos] - 1) {
+        iLastIndex = [self numberOfPhotos] - 1;
+    }
 	// Recycle no longer needed pages
     NSInteger pageIndex;
 	for (MWZoomingScrollView *page in _visiblePages) {
@@ -1073,7 +1075,9 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 	
 	// Tile pages
 	[self tilePages];
-	
+}
+
+- (void)updateCurrentPageIndex {
 	// Calculate current page
 	CGRect visibleBounds = _pagingScrollView.bounds;
 	NSInteger index = (NSInteger)(floorf(CGRectGetMidX(visibleBounds) / CGRectGetWidth(visibleBounds)));
@@ -1094,6 +1098,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 	// Update nav when page changes
+    [self updateCurrentPageIndex];
 	[self updateNavigation];
 }
 

@@ -15,6 +15,7 @@
 #import "UIImage+MWPhotoBrowser.h"
 
 static CGFloat const kAnimationDuration = 0.1f;
+CF_INLINE bool IsEqualFloat(float a, float b) { return ABS(a - b) < pow(10, -10); }
 // Private methods and properties
 @interface MWZoomingScrollView () <UIGestureRecognizerDelegate> {
     
@@ -447,11 +448,6 @@ static CGFloat const kAnimationDuration = 0.1f;
     [self handleDoubleTap:CGPointMake(touchX, touchY)];
 }
 
-- (void)setFrame:(CGRect)frame {
-    [super setFrame:frame];
-    NSLog(@"setFrame is: %@", NSStringFromCGRect(frame));
-}
-
 - (void)handlePanning:(id)sender {
     switch (_panGestureRecognizer.state) {
         case UIGestureRecognizerStateBegan: {
@@ -501,7 +497,6 @@ static CGFloat const kAnimationDuration = 0.1f;
     }
 }
 
-CF_INLINE bool IsEqualFloat(float a, float b) { return ABS(a - b) < pow(10, -10); }
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if ([gestureRecognizer isEqual:_panGestureRecognizer]) {
         if (IsEqualFloat(_photoImageView.frame.size.width, self.frame.size.width)) {
