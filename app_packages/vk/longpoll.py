@@ -7,6 +7,7 @@ from enum import Enum
 from systemevents import SystemEvents
 import inspect, json
 import traceback
+from caches.messagesdatabase import MessagesDatabase
 
 class Event(Enum): # https://vk.com/dev/using_longpoll?f=3.%20Структура%20событий
     MESSAGE_SET_FLAGS = 1
@@ -32,6 +33,10 @@ handlers = {}
 lp_version=3
 need_pts=1
 
+FLAG_ATTACHMENTS = 2
+FLAG_PTS = 32
+FLAG_RANDOM_D = 128
+
 class AddMessageProtocol(object):
     def handleMessageAdd(self, messageId, flags, peerId, timestamp, text):
         pass
@@ -49,6 +54,7 @@ class LongPoll:
             cls.addMessageDelegates = []
             cls.longPollThread = None
             cls.ts = 0
+            cls.pts = 0
             SystemEvents().addHandler(cls.instance)
         return cls.instance
 
@@ -58,11 +64,11 @@ class LongPoll:
         while True:
             try:
                 timeout = 25
-                url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=' + str(timeout) + '&mode=' + str(2+128) + '&version=2'
-                print('longpoll request: ' + str(url))
+                url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=' + str(timeout) + '&mode=' + str(FLAG_ATTACHMENTS+FLAG_PTS+FLAG_RANDOM_D) + '&version=2'
+                #print('longpoll request: ' + str(url))
                 response = requests_session.get(url, timeout=timeout+5)
                 jsonDict = response.json()
-                print('longpoll response: ' + json.dumps(jsonDict, indent=4))
+                #print('longpoll response: ' + json.dumps(jsonDict, indent=4))
                 if self.longPollThread != currentThread:
                     print('LongPollThread is changed. Current session is invalid! Returning...')
                     return
@@ -75,11 +81,17 @@ class LongPoll:
                     if len(vk.token()) == 0:
                         print('token not found. stopping longpoll')
                         return
-                    print('needs restart long poll. stopping current longpoll and creating new loop')
+                    #print('needs restart long poll. stopping current longpoll and creating new loop')
                     self.connect_after_error()
                     return
                 
                 newTs = jsonDict.get('ts')
+                pts = jsonDict.get('new_pts')
+                #print('NEXT LINE FOR DELETE')
+                #self.performLongPollHistory()
+                #print('PREVIOUS LINE FOR DELETE')
+                if isinstance(pts, int):
+                    self.pts = pts
                 updates = jsonDict.get('updates')
                 if newTs and newTs > 0:
                     ts = newTs
@@ -90,6 +102,25 @@ class LongPoll:
                 print('longpoll exception: ' + str(e))
                 pass
 
+    def performLongPollHistory(self):
+        try:
+            api = vk.api()
+            response = api.messages.getLongPollHistory(ts=self.ts, pts=self.pts)
+            history = response.get('history')
+            messages = response.get('messages')
+            print('longpoll response is: ' + str(response))
+            if isinstance(messages, dict):
+                l = messages.get('items')
+                if isinstance(l, list):
+                    cache = MessagesDatabase()
+                    cache.update(l)
+                    cache.close()
+            if isinstance(history, list):
+                threading.Thread(target=partial(parseUpdates, history)).start()
+        except Exception as e:
+            print('performLongPollHistory exception: ' + str(e))
+        pass
+    
     def doConnect(self):
         currentThread = self.longPollThread
         api = vk.api()
@@ -97,11 +128,16 @@ class LongPoll:
         self.connectToLongPollServer(response['key'], response['server'], response['ts'], response['pts'], currentThread)
 
     def connect_after_error(self):
-        print('connect_after_error')
+        if self.pts > 0 and self.ts > 0:
+            print('connect_after_error with longPollHistory')
+            self.performLongPollHistory()
+        else:
+            print('connect_after_error without pts: ' + str(self.pts) + ' or ts: ' + str(self.ts))
         self.connect()
     
     def connect(self):
-        traceback.print_stack()
+        self.ts = 0
+        self.pts = 0
         def performConnect():
             self.doConnect()
         self.longPollThread = threading.Thread(target=performConnect)
@@ -120,9 +156,6 @@ class LongPoll:
             if self.longPollThread.isAlive():
                 print('longpoll thread is alive')
                 return
-    
-        print('longpoll thread NOT alive or no allocated. Needs reconnect!')
-        print('but history for ts(' + str(self.ts) + ') is missing! needs support of longPollHistory to this ts!')
         self.connect()
         pass
 
@@ -141,13 +174,15 @@ def parseEvent(eventDescription):
     if len(eventDescription) == 0:
         return
     id = eventDescription.pop(0)
-    event = Event(id)
-    print('Incoming event: ' + str(event))
-    handler = handlers.get(event)
-    if handler:
-        handler(eventDescription)
-    else:
-        print('handler missing')
+    try:
+        event = Event(id)
+        handler = handlers.get(event)
+        if handler:
+            handler(eventDescription)
+        else:
+            print('handler missing')
+    except:
+        print('unknown longpoll id: ' + str(id))
 
 def parseMessageSetFlags(eventDescription):
     pass
@@ -172,18 +207,25 @@ def parseMessageClearFlags(eventDescription):
         d.handleMessageClearFlags(messageId, flags)
 
 def parseMessageAdd(eventDescription):
-    if len(eventDescription) < 7:
+    if len(eventDescription) < 3:
         print('parseMessageAdd too short')
         return
     messageId = eventDescription[0]
     flags = eventDescription[1]
     peerId = eventDescription[2]
-    timestamp = eventDescription[3]
-    text = eventDescription[4]
-    extra = eventDescription[5]
-    random_id = eventDescription[6]
 
-    print('msg add desc: ' + json.dumps(eventDescription, indent=4))
+    timestamp = 0
+    text = ""
+    extra = {}
+    random_id = 0
+
+    if len(eventDescription) >= 7:
+        timestamp = eventDescription[3]
+        text = eventDescription[4]
+        extra = eventDescription[5]
+        random_id = eventDescription[6]
+
+    print('msg add desc: ' + json.dumps(eventDescription, indent=4) + ' and delegates: ' + str(_lp.addMessageDelegates))
     
     for d in _lp.addMessageDelegates:
         d.handleMessageAdd(messageId, flags, peerId, timestamp, text, random_id, extra)

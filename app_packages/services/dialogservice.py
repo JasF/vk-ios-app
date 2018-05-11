@@ -6,7 +6,7 @@ from postproc import textpatcher
 def updateMessagesResponseWithUsers(response):
     try:
         l = response['items']
-        print('updateMessagesResponseWithUsers content: ' + json.dumps(l, indent=4))
+        #print('updateMessagesResponseWithUsers content: ' + json.dumps(l, indent=4))
         for d in l:
             atts = d.get('attachments')
             if not isinstance(atts, list):

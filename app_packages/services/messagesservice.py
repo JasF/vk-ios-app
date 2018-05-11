@@ -101,31 +101,33 @@ class MessagesService(AddMessageProtocol):
     
     # AddMessageProtocol
     def handleMessageAdd(self, messageId, flags, peerId, timestamp, text, randomId, attachments):
-        attslist = self.parseLongPollAttachments(attachments)
-        attachments = []
-        if len(attslist) > 0:
-            attachments = self.downloadAttachments(messageId)
-    
-        isOut = 1 if MessageFlags(flags) & MessageFlags.OUTBOX else 0
-        read_state = 0 if MessageFlags(flags) & MessageFlags.UNREAD else 1
-        fromId = vk.userId() if isOut == True else peerId
-        #print('handle incoming message: peerId: ' + str(peerId) + '; fromId: ' + str(fromId) + '; randomId: ' + str(randomId))
-        ''' # Пусть окно чата решает, добавлять или нет это сообщение в список отображения, поскольку окон чата может быть открыто несколько
         try:
-            cache = MessagesDatabase()
-            msg = cache.messageWithId(randomId)
-            cache.close()
-            if isinstance(msg.get('id'), int):
-                #print('message exists!')
-                return
-        except:
-            pass
-        '''
-        msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
-        for d in self.newMessageSubscribers:
-            d.handleIncomingMessage(msg)
-        self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
-
+            attslist = self.parseLongPollAttachments(attachments)
+            msg = self.messageWithId(messageId)
+            msgExists = False if not isinstance(msg, dict) or not isinstance(msg.get('id'), int) else True
+            attachments = []
+            if msgExists:
+                #print('messageservice msg exists!')
+                attachments = msg.get('attachments')
+                if not isinstance(attachments, list):
+                    attachments = []
+            elif len(attslist) > 0:
+                #print('messageservice msg not exists id! ' + str(messageId) + '; msg:  '+ json.dumps(msg, indent=4))
+                attachments = self.downloadAttachments(messageId)
+        
+            isOut = 1 if MessageFlags(flags) & MessageFlags.OUTBOX else 0
+            read_state = 0 if MessageFlags(flags) & MessageFlags.UNREAD else 1
+            fromId = vk.userId() if isOut == True else peerId
+            #print('handle incoming message: peerId: ' + str(peerId) + '; fromId: ' + str(fromId) + '; randomId: ' + str(randomId))
+            if not msgExists:
+                msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
+            for d in self.newMessageSubscribers:
+                d.handleIncomingMessage(msg)
+            if not msgExists:
+                self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
+        except Exception as e:
+            print('messagesservice handleMessageAdd exception: ' + str(e))
+    
     def handleMessageEdit(self, messageId, flags, peerId, timestamp, text, randomId, attachments):
         attslist = self.parseLongPollAttachments(attachments)
         attachments = []
