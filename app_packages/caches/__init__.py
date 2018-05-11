@@ -8,11 +8,14 @@ from .photosdatabase import PhotosDatabase
 from .videosdatabase import VideosDatabase
 from .documentsdatabase import DocumentsDatabase
 
-MessagesDatabase.deleteDatabaseFile(MessagesDatabase)
-UsersDatabase.deleteDatabaseFile(UsersDatabase)
-FriendsDatabase.deleteDatabaseFile(FriendsDatabase)
-PostsDatabase.deleteDatabaseFile(PostsDatabase)
-PhotoAlbumsDatabase.deleteDatabaseFile(PhotoAlbumsDatabase)
-PhotosDatabase.deleteDatabaseFile(PhotosDatabase)
-VideosDatabase.deleteDatabaseFile(VideosDatabase)
-DocumentsDatabase.deleteDatabaseFile(DocumentsDatabase)
+def cleanDatabases():
+    MessagesDatabase.deleteDatabaseFile(MessagesDatabase)
+    UsersDatabase.deleteDatabaseFile(UsersDatabase)
+    FriendsDatabase.deleteDatabaseFile(FriendsDatabase)
+    PostsDatabase.deleteDatabaseFile(PostsDatabase)
+    PhotoAlbumsDatabase.deleteDatabaseFile(PhotoAlbumsDatabase)
+    PhotosDatabase.deleteDatabaseFile(PhotosDatabase)
+    VideosDatabase.deleteDatabaseFile(VideosDatabase)
+    DocumentsDatabase.deleteDatabaseFile(DocumentsDatabase)
+
+cleanDatabases()

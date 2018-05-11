@@ -2,6 +2,7 @@ from objc import managers
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 from pymanagers.pydialogsmanager import PyDialogsManager
 import settings, analytics
+import vk
 
 class PySettingsViewModel(ObjCBridgeProtocol):
     def getSettings(self):
@@ -20,6 +21,8 @@ class PySettingsViewModel(ObjCBridgeProtocol):
             analytics.log('Settings_do_exit')
             settings.set('access_token', '')
             settings.set('user_id', 0)
+            vk.setToken('')
+            vk.setUserId(0)
             settings.write()
             managers.shared().screensManager().showAuthorizationViewController()
         pass

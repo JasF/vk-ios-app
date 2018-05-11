@@ -3,6 +3,7 @@
 from .api import API
 from .session import Session
 from .longpoll import LongPoll
+import caches
 
 # API errors should process in try-catch blocks
 class Token:
@@ -13,8 +14,11 @@ class Token:
 tokenObject = Token()
 
 def setToken(token):
+    prevToken = tokenObject.token
     tokenObject.token = token
-    LongPoll().connect()
+    if len(token) > 0 and token != prevToken:
+        caches.cleanDatabases()
+        LongPoll().connect()
 
 def setUserId(userId):
     tokenObject.userId = userId

@@ -52,7 +52,7 @@ class LongPoll:
             SystemEvents().addHandler(cls.instance)
         return cls.instance
 
-    def connectToLongPollServer(self, key, server, ts, pts):
+    def connectToLongPollServer(self, key, server, ts, pts, currentThread):
         requests_session = requests.Session()
         
         while True:
@@ -62,6 +62,22 @@ class LongPoll:
                 response = requests_session.get(url)
                 jsonDict = response.json()
                 print('longpoll response: ' + json.dumps(jsonDict, indent=4))
+                if self.longPollThread != currentThread:
+                    print('LongPollThread is changed. Current session is invalid! Returning...')
+                    return
+                if not isinstance(jsonDict, dict):
+                    print('unknown output from longPollServer. possible connection lost. repeating...')
+                    continue
+                failedCode = jsonDict.get('failed')
+                if isinstance(failedCode, int):
+                    print('longpoll failed with: ' + str(failedCode))
+                    if len(vk.token()) == 0:
+                        print('token not found. stopping longpoll')
+                        return
+                    print('needs restart long poll. stopping current longpoll and creating new loop')
+                    self.connect_after_error()
+                    return
+                
                 newTs = jsonDict.get('ts')
                 updates = jsonDict.get('updates')
                 if newTs and newTs > 0:
@@ -74,11 +90,17 @@ class LongPoll:
                 pass
 
     def doConnect(self):
+        currentThread = self.longPollThread
         api = vk.api()
         response = api.messages.getLongPollServer(need_pts=need_pts, lp_version=lp_version)
-        self.connectToLongPollServer(response['key'], response['server'], response['ts'], response['pts'])
+        self.connectToLongPollServer(response['key'], response['server'], response['ts'], response['pts'], currentThread)
 
+    def connect_after_error(self):
+        print('connect_after_error')
+        self.connect()
+    
     def connect(self):
+        traceback.print_stack()
         def performConnect():
             self.doConnect()
         self.longPollThread = threading.Thread(target=performConnect)

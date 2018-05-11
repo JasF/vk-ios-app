@@ -21,6 +21,7 @@ def updateMessagesResponseWithUsers(response):
                         textpatcher.cropTagsOnPostsResults({'items':[walldict]})
                         ud = UsersDecorator()
                         usersData = ud.usersDataFromPosts([walldict])
+                        print('USERS_DATA_FROM_POSTS: ' + json.dumps(usersData, indent=4))
                         usersDict = {}
                         for ud in usersData:
                             id = ud.get('id')
@@ -121,6 +122,7 @@ class DialogService:
             
             
             response = self.api.messages.getHistory(user_id=userId, offset=offset, count=20, start_message_id=startMessageId)
+            updateMessagesResponseWithUsers(response)
             l = response["items"]
             messages.update(l)
             messages.close()
