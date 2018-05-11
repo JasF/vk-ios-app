@@ -474,6 +474,7 @@
 		C343756E208F81DB004EF670 /* AnswersViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C343756D208F81DB004EF670 /* AnswersViewModelImpl.m */; };
 		C3437573208F83AD004EF670 /* AnswersServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437572208F83AD004EF670 /* AnswersServiceImpl.m */; };
 		C34A577120A48E4600DBAF4A /* send-adhoc-to-hockeyapp.sh in Resources */ = {isa = PBXBuildFile; fileRef = C34A577020A48E4600DBAF4A /* send-adhoc-to-hockeyapp.sh */; };
+		C34A577820A57B3600DBAF4A /* UIApplication+BSMobileProvision.m in Sources */ = {isa = PBXBuildFile; fileRef = C34A577720A57B3600DBAF4A /* UIApplication+BSMobileProvision.m */; };
 		C3507821209477B4000C8FB3 /* WallUserCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3507820209477B4000C8FB3 /* WallUserCellModel.swift */; };
 		C350782320948114000C8FB3 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782220948114000C8FB3 /* TextStyles.swift */; };
 		C3507825209485DF000C8FB3 /* WallUserActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3507824209485DF000C8FB3 /* WallUserActionNode.swift */; };
@@ -1782,6 +1783,8 @@
 		C3437574208F8678004EF670 /* answersservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = answersservice.py; sourceTree = "<group>"; };
 		C3437575208F8687004EF670 /* pyanswersviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyanswersviewmodel.py; sourceTree = "<group>"; };
 		C34A577020A48E4600DBAF4A /* send-adhoc-to-hockeyapp.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "send-adhoc-to-hockeyapp.sh"; path = "scripts/send-adhoc-to-hockeyapp.sh"; sourceTree = SOURCE_ROOT; };
+		C34A577620A57B3500DBAF4A /* UIApplication+BSMobileProvision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+BSMobileProvision.h"; sourceTree = "<group>"; };
+		C34A577720A57B3600DBAF4A /* UIApplication+BSMobileProvision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+BSMobileProvision.m"; sourceTree = "<group>"; };
 		C3507820209477B4000C8FB3 /* WallUserCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserCellModel.swift; sourceTree = "<group>"; };
 		C350782220948114000C8FB3 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		C3507824209485DF000C8FB3 /* WallUserActionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserActionNode.swift; sourceTree = "<group>"; };
@@ -5419,6 +5422,8 @@
 		C3A82A2A20931F7100C41CA8 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				C34A577620A57B3500DBAF4A /* UIApplication+BSMobileProvision.h */,
+				C34A577720A57B3600DBAF4A /* UIApplication+BSMobileProvision.m */,
 				C3A82A2B20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.h */,
 				C3A82A2C20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m */,
 				C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */,
@@ -6320,6 +6325,7 @@
 				C3987E4D2099CB480047A30F /* TypingCell.swift in Sources */,
 				C32262B6209091CE0054789B /* Video.m in Sources */,
 				C32306052080E57500CEC487 /* MainViewController.mm in Sources */,
+				C34A577820A57B3600DBAF4A /* UIApplication+BSMobileProvision.m in Sources */,
 				C32308BE2081AEB100CEC487 /* UIViewController+LGSideMenuController.m in Sources */,
 				C32308EE2081AEB100CEC487 /* TyphoonFactoryDefinition.m in Sources */,
 				C3987E3F2099CB480047A30F /* TimeSeparatorModel.swift in Sources */,
@@ -6775,6 +6781,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -6823,6 +6830,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

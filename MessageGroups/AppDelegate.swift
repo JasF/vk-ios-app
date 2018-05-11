@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKCoreKit
 import HockeySDK
+import CocoaLumberjack
 
 extension Data {
     struct HexEncodingOptions: OptionSet {
@@ -34,6 +35,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc dynamic var notificationsManager: NotificationsManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        DDLog.add(DDTTYLogger.sharedInstance) // TTY = Xcode console
+        switch UIApplication.shared.releaseMode() {
+        case .adHoc, .dev, .enterprise, .sim:
+            if let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first {
+                let path = docsDir + "/logs"
+                do {
+                    try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+                } catch {}
+                let logsFileManager = DDLogFileManagerDefault(logsDirectory: path)
+                let fileLogger: DDFileLogger = DDFileLogger(logFileManager: logsFileManager) // File Logger
+                fileLogger.rollingFrequency = TimeInterval(60*60*24)  // 24 hours
+                fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+                DDLog.add(fileLogger)
+            }
+            break
+        default: break;
+        }
+        
         // Override point for customization after application launch.
         BITHockeyManager.shared().configure(withIdentifier: "b3125c1736c24cafbd158dd12bbf4af7")
         BITHockeyManager.shared().start()

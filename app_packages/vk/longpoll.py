@@ -54,10 +54,10 @@ class LongPoll:
         while True:
             try:
                 url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=25&mode=' + str(2+128) + '&version=2'
-                #print('longpoll request: ' + str(url))
+                print('longpoll request: ' + str(url))
                 response = requests_session.get(url)
                 jsonDict = response.json()
-                #print('longpoll response: ' + json.dumps(jsonDict, indent=4))
+                print('longpoll response: ' + json.dumps(jsonDict, indent=4))
                 newTs = jsonDict.get('ts')
                 updates = jsonDict.get('updates')
                 if newTs and newTs > 0:
@@ -65,7 +65,7 @@ class LongPoll:
                 if isinstance(updates, list):
                     threading.Thread(target=partial(parseUpdates, updates)).start()
             except Exception as e:
-                #print('longpoll exception: ' + str(e))
+                print('longpoll exception: ' + str(e))
                 pass
 
     def doConnect(self):

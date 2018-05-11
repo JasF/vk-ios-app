@@ -27,4 +27,4 @@
 #import "NodeFactoryImpl.h"
 #import "WallPostNode.h"
 #import "PostVideoNode.h"
- 
+#import "UIApplication+BSMobileProvision.h"

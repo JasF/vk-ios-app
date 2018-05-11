@@ -58,9 +58,25 @@ static PyObject * post_wrapper(PyObject * self, PyObject * args)
     return ret;
 }
 
+static PyObject * print_wrapper(PyObject * self, PyObject * args)
+{
+    char * input;
+    PyObject *ret = PyUnicode_FromStringAndSize(NULL, 0);
+    // parse arguments
+    if (!PyArg_ParseTuple(args, "s", &input)) {
+        return ret;
+    }
+    NSString *string = [[NSString alloc] initWithData:[NSData dataWithBytes:input length:strlen(input)] encoding:NSUTF8StringEncoding];
+    DDLogInfo(@"p: %@", string);
+    
+    return ret;
+}
+
+
 static PyMethodDef pythonbridgeextension_methods[] = {
     {"error_out", (PyCFunction)error_out, METH_NOARGS, NULL},
     { "post", post_wrapper, METH_VARARGS, "s" },
+    { "print", print_wrapper, METH_VARARGS, "s" },
     {NULL, NULL}
 };
 
