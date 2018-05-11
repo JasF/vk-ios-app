@@ -47,6 +47,8 @@ class LongPoll:
         if not hasattr(cls, 'instance') or not cls.instance:
             cls.instance = super().__new__(cls)
             cls.addMessageDelegates = []
+            cls.longPollThread = None
+            cls.ts = 0
             SystemEvents().addHandler(cls.instance)
         return cls.instance
 
@@ -64,6 +66,7 @@ class LongPoll:
                 updates = jsonDict.get('updates')
                 if newTs and newTs > 0:
                     ts = newTs
+                self.ts = ts
                 if isinstance(updates, list):
                     threading.Thread(target=partial(parseUpdates, updates)).start()
             except Exception as e:
@@ -78,7 +81,8 @@ class LongPoll:
     def connect(self):
         def performConnect():
             self.doConnect()
-        threading.Thread(target=performConnect).start()
+        self.longPollThread = threading.Thread(target=performConnect)
+        self.longPollThread.start()
 
     def addAddMessageDelegate(self, delegate):
         self.addMessageDelegates.append(delegate)
@@ -86,9 +90,18 @@ class LongPoll:
     # SystemEvents
     def applicationDidEnterBackground(self):
         print('longpoll applicationDidEnterBackground')
+        pass
     
     def applicationWillEnterForeground(self):
-        print('longpoll applicationWillEnterForeground')
+        if isinstance(self.longPollThread, threading.Thread):
+            if self.longPollThread.isAlive():
+                print('longpoll thread is alive')
+                return
+    
+        print('longpoll thread NOT alive or no allocated. Needs reconnect!')
+        print('but history for ts(' + str(self.ts) + ') is missing! needs support of longPollHistory to this ts!')
+        self.connect()
+        pass
 
 _lp = LongPoll()
 
