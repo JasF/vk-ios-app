@@ -22,7 +22,7 @@
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
-        self.title = @"Answers";
+        [self setTitle:L(@"title_answers")];
     }
     return self;
 }

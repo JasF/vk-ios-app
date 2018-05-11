@@ -19,6 +19,7 @@
 @protocol DialogScreenViewModel <NSObject>
 @property (weak) id<DialogScreenViewModelDelegate> delegate;
 @property (nonatomic) User *user;
+- (void)getUser:(void(^)(User *user))completion;
 - (void)getMessagesWithOffset:(NSInteger)offset
                    completion:(void(^)(NSArray<Message *> *messages))completion;
 - (void)getMessagesWithOffset:(NSInteger)offset

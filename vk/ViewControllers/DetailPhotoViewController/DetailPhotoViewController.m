@@ -27,7 +27,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
-        self.title = @"Detail Photo";
+        [self setTitle:L(@"title_detail_photo")];
     }
     return self;
 }

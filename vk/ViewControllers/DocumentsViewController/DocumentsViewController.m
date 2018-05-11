@@ -26,7 +26,7 @@
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
-        self.title = @"Documents";
+        [self setTitle:L(@"title_documents")];
     }
     return self;
 }

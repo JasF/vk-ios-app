@@ -29,7 +29,7 @@
     self = [super initWithNodeFactory:nodeFactory];
     
     if (self) {
-        self.title = @"VK Dialogs";
+        [self setTitle:L(@"title_dialogs")];
     }
     
     return self;

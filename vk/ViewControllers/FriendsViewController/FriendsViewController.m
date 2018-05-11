@@ -24,7 +24,7 @@
     self = [super initWithNodeFactory:nodeFactory];
     
     if (self) {
-        self.title = @"VK Friends";
+        [self setTitle:L(@"title_friends")];
     }
     
     return self;

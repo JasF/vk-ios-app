@@ -36,7 +36,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     self = [super initWithNodeFactory:nodeFactory];
     
     if (self) {
-        self.title = @"VK Post & Comments";
+        [self setTitle:L(@"title_detail_post")];
     }
     return self;
 }

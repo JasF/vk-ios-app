@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
-        self.title = @"Settings";
+        [self setTitle:L(@"title_settings")];
     }
     return self;
 }

@@ -31,7 +31,7 @@ static NSInteger const kPreloadingBorder = 2;
     _photoBrowserViewModel = photoBrowserViewModel;
     if (self = [super init]) {
         _viewModel = viewModel;
-        self.title = @"VK Images Viewer";
+        [self setTitle:L(@"title_images_viewer")];
     }
     return self;
 }

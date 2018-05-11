@@ -197,6 +197,16 @@ static CGFloat const kTypingNotifierInterval = 5.f;
     });
 }
 
+- (void)getUser:(void(^)(User *user))completion {
+    dispatch_python(^{
+        NSDictionary *data = [self.handler getUserData];
+        self.user = [self.dialogService parseUser:data];
+        if (completion) {
+            completion(self.user);
+        }
+    });
+}
+
 #pragma mark - Private Methods
 - (void)markAsRead:(Message *)message {
     NSCParameterAssert(message);

@@ -26,7 +26,7 @@ static NSInteger const kColumnsCount = 4;
     self.layout.minimumInteritemSpacing = 0.f;
     self.layout.minimumLineSpacing = kItemSpacing;
     if (self = [super initWithNodeFactory:nodeFactory]) {
-        self.title = @"VK Photos";
+        [self setTitle:L(@"title_gallery")];
     }
     return self;
 }

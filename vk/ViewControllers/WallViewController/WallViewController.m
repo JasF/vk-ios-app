@@ -39,7 +39,6 @@ static CGFloat const kButtonSize = 44.f;
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
-        self.title = @"VK Wall";
     }
     return self;
 }
@@ -51,6 +50,9 @@ static CGFloat const kButtonSize = 44.f;
         @strongify(self);
         if (!user) {
             return;
+        }
+        if (!self.title.length) {
+            self.title = (user.first_name.length > 0) ? user.first_name : user.nameString;
         }
         if (!self.sectionsArray) {
             [self.tableNode reloadData];

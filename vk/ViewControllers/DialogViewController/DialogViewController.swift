@@ -23,6 +23,11 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
         super.init(nodeFactory)
         self.viewModel = viewModel!
         self.viewModel!.delegate = self
+        self.viewModel?.getUser() { [weak self] (user) in
+            guard let sself = self else { return }
+            guard let suser = user else { return }
+            sself.title = suser.nameString()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

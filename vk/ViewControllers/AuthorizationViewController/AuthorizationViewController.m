@@ -33,7 +33,6 @@
     if (self = [super initWithNode:node]) {
         _authorizationNode = node;
         _viewModel = viewModel;
-        self.title = @"Authorization";
     }
     return self;
 }

@@ -30,7 +30,7 @@ static CGFloat const kInteritemSpacing = 12.f;
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
-        self.title = @"VK Photo Albums";
+        [self setTitle:L(@"title_photo_albums")];
     }
     return self;
 }

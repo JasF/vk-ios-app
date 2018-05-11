@@ -21,6 +21,8 @@
                        userId:(NSNumber *)userId
                startMessageId:(NSNumber *)startMessageId;
 
+- (NSDictionary *)getUserData;
+
 - (NSNumber *)sendTextMessage:(NSString *)text userId:(NSNumber *)userId randomId:(NSNumber *)randomId;
 - (NSNumber *)markAsRead:(NSNumber *)userId messageId:(NSNumber *)messageId;
 - (void)handleTypingActivity;

@@ -30,7 +30,7 @@ ASCollectionDelegate, ASCollectionDataSource, DetailVideoViewModelDelegate>
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
         _viewModel.delegate = self;
-        self.title = @"Detail Video";
+        [self setTitle:L(@"title_detail_video")];
     }
     return self;
 }

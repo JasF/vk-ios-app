@@ -52,7 +52,6 @@ class DemoChatViewController: BaseChatViewController, BaseMessageHandlerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Chat"
         self.messagesSelector.delegate = self
         self.chatItemsDecorator = DemoChatItemsDecorator(messagesSelector: self.messagesSelector)
     }
@@ -61,7 +60,6 @@ class DemoChatViewController: BaseChatViewController, BaseMessageHandlerDelegate
         self.chatItemsDecorator?.setTypingCellEnabled(enabled)
         self.chatDataSourceDidUpdate(self.dataSource)
     }
-    
     
     var chatInputPresenter: BasicChatInputBarPresenter!
     override func createChatInputView() -> UIView {

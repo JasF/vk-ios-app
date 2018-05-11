@@ -22,7 +22,7 @@
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
-        self.title = @"Groups";
+        [self setTitle:L(@"title_groups")];
     }
     return self;
 }

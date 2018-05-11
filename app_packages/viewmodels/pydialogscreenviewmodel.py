@@ -35,6 +35,14 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     def getMessagesuserIdstartMessageId(self, offset, userId, startMessageId):
         return self.dialogService.getMessagesuserIdstartMessageId(offset, userId, startMessageId)
     
+    def getUserData(self):
+        results = {}
+        try:
+            results['user_data'] = users.getShortUserById(self.userId)
+        except:
+            pass
+        return results
+    
     def sendTextMessageuserIdrandomId(self, text, userId, randomId):
         messageId = 0
         try:

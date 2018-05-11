@@ -22,7 +22,7 @@
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
-        self.title = @"VK News";
+        [self setTitle:L(@"title_news")];
     }
     return self;
 }
