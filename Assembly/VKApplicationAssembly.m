@@ -30,6 +30,7 @@
                 [definition injectProperty:@selector(pythonBridge) with:[self.coreComponents pythonBridge]];
                 [definition injectProperty:@selector(pythonManager) with:[self.coreComponents pythonManager]];
                 [definition injectProperty:@selector(notificationsManager) with:[self notificationsManager]];
+                [definition injectProperty:@selector(modules) with:[self modules]];
             }];
 }
 
@@ -75,12 +76,22 @@
             }];
 }
 
-- (id<Analytics>)modules {
+- (id<SystemEvents>)systemEvents {
+    return [TyphoonDefinition withClass:[SystemEventsImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                }];
+            }];
+}
+
+- (id<Modules>)modules {
     return [TyphoonDefinition withClass:[ModulesImpl class] configuration:^(TyphoonDefinition *definition)
             {
                 [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self];
                 }];
+                definition.scope = TyphoonScopeSingleton;
             }];
 }
 

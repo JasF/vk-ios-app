@@ -22,7 +22,7 @@
 @protocol NotificationsManager;
 @protocol Analytics;
 @protocol Modules;
-
+@protocol SystemEvents;
 
 /**
 * This is the assembly for the PocketForecast application. We'll be bootstrapping Typhoon using the iOS way, by declaring the list of
@@ -39,4 +39,5 @@
 - (id<NotificationsManager>)notificationsManager;
 - (id<Analytics>)analytics;
 - (id<Modules>)modules;
+- (id<SystemEvents>)systemEvents;
 @end

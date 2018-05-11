@@ -4,6 +4,7 @@ import requests
 from functools import partial
 import functools
 from enum import Enum
+from systemevents import SystemEvents
 import inspect, json
 import traceback
 
@@ -46,6 +47,7 @@ class LongPoll:
         if not hasattr(cls, 'instance') or not cls.instance:
             cls.instance = super().__new__(cls)
             cls.addMessageDelegates = []
+            SystemEvents().addHandler(cls.instance)
         return cls.instance
 
     def connectToLongPollServer(self, key, server, ts, pts):
@@ -80,6 +82,13 @@ class LongPoll:
 
     def addAddMessageDelegate(self, delegate):
         self.addMessageDelegates.append(delegate)
+
+    # SystemEvents
+    def applicationDidEnterBackground(self):
+        print('longpoll applicationDidEnterBackground')
+    
+    def applicationWillEnterForeground(self):
+        print('longpoll applicationWillEnterForeground')
 
 _lp = LongPoll()
 

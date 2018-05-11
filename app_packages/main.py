@@ -3,7 +3,7 @@ import caches
 import services
 import viewmodels
 import traceback, objcbridge
-import settings, vk, screenshow, analytics
+import settings, vk, screenshow, analytics, systemevents
 
 try:
     import pymanagers

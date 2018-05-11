@@ -191,4 +191,8 @@
                                               parameters:nil];
 }
 
+- (id<PySystemEvents>)systemEventsHandler {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PySystemEvents)];
+}
+
 @end

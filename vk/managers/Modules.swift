@@ -11,11 +11,13 @@ import Foundation
 @objc protocol Modules {
     func performInitializationOfSubmodulesAfterPythonLoaded()
     func analyticsModule() -> Analytics?
+    var systemEvents: SystemEvents? { get }
 }
 
 @objcMembers class ModulesImpl : NSObject {
     let applicationAssembly: VKApplicationAssembly
     var analytics: Analytics? = nil
+    var systemEvents: SystemEvents? = nil
     init(_ applicationAssembly: VKApplicationAssembly) {
         self.applicationAssembly = applicationAssembly
         super.init()
@@ -25,6 +27,7 @@ import Foundation
 extension ModulesImpl : Modules {
     func performInitializationOfSubmodulesAfterPythonLoaded() {
         self.analytics = self.applicationAssembly.analytics()
+        self.systemEvents = self.applicationAssembly.systemEvents()
     }
     func analyticsModule() -> Analytics? {
         return self.analytics

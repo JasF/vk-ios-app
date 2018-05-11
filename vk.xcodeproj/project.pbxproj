@@ -475,6 +475,7 @@
 		C3437573208F83AD004EF670 /* AnswersServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437572208F83AD004EF670 /* AnswersServiceImpl.m */; };
 		C34A577120A48E4600DBAF4A /* send-adhoc-to-hockeyapp.sh in Resources */ = {isa = PBXBuildFile; fileRef = C34A577020A48E4600DBAF4A /* send-adhoc-to-hockeyapp.sh */; };
 		C34A577820A57B3600DBAF4A /* UIApplication+BSMobileProvision.m in Sources */ = {isa = PBXBuildFile; fileRef = C34A577720A57B3600DBAF4A /* UIApplication+BSMobileProvision.m */; };
+		C34A577C20A5865600DBAF4A /* SystemEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A577B20A5865600DBAF4A /* SystemEvents.swift */; };
 		C3507821209477B4000C8FB3 /* WallUserCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3507820209477B4000C8FB3 /* WallUserCellModel.swift */; };
 		C350782320948114000C8FB3 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782220948114000C8FB3 /* TextStyles.swift */; };
 		C3507825209485DF000C8FB3 /* WallUserActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3507824209485DF000C8FB3 /* WallUserActionNode.swift */; };
@@ -1785,6 +1786,8 @@
 		C34A577020A48E4600DBAF4A /* send-adhoc-to-hockeyapp.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "send-adhoc-to-hockeyapp.sh"; path = "scripts/send-adhoc-to-hockeyapp.sh"; sourceTree = SOURCE_ROOT; };
 		C34A577620A57B3500DBAF4A /* UIApplication+BSMobileProvision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+BSMobileProvision.h"; sourceTree = "<group>"; };
 		C34A577720A57B3600DBAF4A /* UIApplication+BSMobileProvision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+BSMobileProvision.m"; sourceTree = "<group>"; };
+		C34A577B20A5865600DBAF4A /* SystemEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemEvents.swift; sourceTree = "<group>"; };
+		C34A578020A5892400DBAF4A /* systemevents.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = systemevents.py; sourceTree = "<group>"; };
 		C3507820209477B4000C8FB3 /* WallUserCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserCellModel.swift; sourceTree = "<group>"; };
 		C350782220948114000C8FB3 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		C3507824209485DF000C8FB3 /* WallUserActionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserActionNode.swift; sourceTree = "<group>"; };
@@ -2954,6 +2957,7 @@
 				C32304502080E57400CEC487 /* VKSdkManager */,
 				C338CA5120A1C05300F30B77 /* Analytics.swift */,
 				C338CA5420A1C66F00F30B77 /* Modules.swift */,
+				C34A577B20A5865600DBAF4A /* SystemEvents.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -3417,6 +3421,7 @@
 			isa = PBXGroup;
 			children = (
 				C338CA4920A1BD5B00F30B77 /* analytics.py */,
+				C34A578020A5892400DBAF4A /* systemevents.py */,
 				C39C8BB4209F0DFC00CC23C3 /* screenshow.py */,
 				C39C8BB2209F02FE00CC23C3 /* settings.py */,
 				C39C8BA4209DD1FF00CC23C3 /* postproc */,
@@ -6488,6 +6493,7 @@
 				C39D471A20A2CD7600C6CC99 /* ReadOnlyOrderedDictionary.swift in Sources */,
 				C32308F22081AEB100CEC487 /* TyphoonFactoryAutoInjectionPostProcessor.m in Sources */,
 				C32305F72080E57500CEC487 /* Dialog.m in Sources */,
+				C34A577C20A5865600DBAF4A /* SystemEvents.swift in Sources */,
 				C3987E412099CB480047A30F /* TimeSeparatorCollectionViewCell.swift in Sources */,
 				C32308FA2081AEB100CEC487 /* TyphoonInjections.m in Sources */,
 				C39C8B9B209D924000CC23C3 /* VideoPlayerNode.swift in Sources */,

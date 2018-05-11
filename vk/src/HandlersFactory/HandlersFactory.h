@@ -33,6 +33,7 @@
 @protocol PyCreatePostViewModel;
 @protocol PyMWPhotoBrowserViewModel;
 @protocol PyAnalytics;
+@protocol PySystemEvents;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
@@ -63,4 +64,5 @@
 - (id<PyCreatePostViewModel>)createPostViewModelHandler:(NSInteger)ownerId;
 - (id<PyMWPhotoBrowserViewModel>)photoBrowserViewModelHandler;
 - (id<PyAnalytics>)analyticsHandlerWithDelegate:(id)delegate;
+- (id<PySystemEvents>)systemEventsHandler;
 @end
