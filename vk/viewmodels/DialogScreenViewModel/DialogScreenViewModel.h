@@ -25,6 +25,7 @@
                startMessageId:(NSInteger)startMessageId
                    completion:(void(^)(NSArray<Message *> *messages))completion;
 - (void)sendTextMessage:(NSString *)text
+               randomId:(NSInteger)randomId
              completion:(void(^)(NSInteger messageId))completion;
 - (void)willDisplayUnreadedMessageWithIdentifier:(NSInteger)identifier
                                            isOut:(NSInteger)isOut;

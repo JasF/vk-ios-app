@@ -200,7 +200,9 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     }
     
     func sendMessage(_ text: String?, _ msg: DemoMessageModelProtocol, completion: @escaping (Bool) -> Void) {
-        self.viewModel?.sendTextMessage(text) { messageId in
+        let randomId:Int = Int(arc4random_uniform(1999999999))
+        msg.randomId = randomId
+        self.viewModel?.sendTextMessage(text, randomId: randomId) { messageId in
             msg.setExternalId(messageId)
             completion((messageId > 0) ? true : false )
         }

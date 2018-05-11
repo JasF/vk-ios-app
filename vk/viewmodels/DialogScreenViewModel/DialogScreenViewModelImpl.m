@@ -111,10 +111,12 @@ static CGFloat const kTypingNotifierInterval = 5.f;
 }
 
 - (void)sendTextMessage:(NSString *)text
+               randomId:(NSInteger)randomId
              completion:(void(^)(NSInteger messageId))completion {
     dispatch_python(^{
         NSNumber *identifier = [self.handler sendTextMessage:text
-                                                      userId:_userId];
+                                                      userId:_userId
+                                                    randomId:@(randomId)];
         if (completion) {
             completion(identifier.integerValue);
         }
@@ -168,9 +170,7 @@ static CGFloat const kTypingNotifierInterval = 5.f;
     if (!message) {
         return;
     }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_delegate handleIncomingMessage:message];
-    });
+    [_delegate handleIncomingMessage:message];
 }
 
 - (void)handleEditMessage:(NSDictionary *)messageDictionary {

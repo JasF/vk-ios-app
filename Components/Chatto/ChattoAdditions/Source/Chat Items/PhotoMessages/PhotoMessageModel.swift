@@ -30,6 +30,8 @@ public protocol PhotoMessageModelProtocol: DecoratedMessageModelProtocol {
 }
 
 open class PhotoMessageModel<MessageModelT: MessageModelProtocol>: PhotoMessageModelProtocol {
+    public var randomId: Int
+    
     public var message: Message?
     
     open var viewModel: MessageViewModelProtocol? {
@@ -67,5 +69,6 @@ open class PhotoMessageModel<MessageModelT: MessageModelProtocol>: PhotoMessageM
         self._messageModel = messageModel
         self.imageSize = imageSize
         self.image = image
+        self.randomId = 0
     }
 }

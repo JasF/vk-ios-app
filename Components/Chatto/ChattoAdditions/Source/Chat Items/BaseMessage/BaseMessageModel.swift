@@ -37,6 +37,7 @@ public protocol MessageModelProtocol: ChatItemProtocol {
     var date: Date { get }
     var status: MessageStatus { get }
     var readState: Int { get }
+    var randomId: Int { get set }
     var externalId: Int { get }
     func setExternalId(_ id: Int)
     func setReadState(_ id: Int)
@@ -75,6 +76,8 @@ public extension DecoratedMessageModelProtocol {
 }
 
 open class MessageModel: MessageModelProtocol {
+    public var randomId: Int
+    
     public var message: Message?
     
     public func setExternalId(_ id: Int) {
@@ -111,5 +114,6 @@ open class MessageModel: MessageModelProtocol {
         self.status = status
         self.readState = readState
         self.externalId = externalId
+        self.randomId = 0
     }
 }

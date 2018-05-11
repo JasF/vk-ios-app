@@ -29,6 +29,8 @@ public protocol TextMessageModelProtocol: DecoratedMessageModelProtocol {
 }
 
 open class TextMessageModel<MessageModelT: MessageModelProtocol>: TextMessageModelProtocol {
+    public var randomId: Int
+    
     public var message: Message?
     
     public var readState: Int {
@@ -63,5 +65,6 @@ open class TextMessageModel<MessageModelT: MessageModelProtocol>: TextMessageMod
     public init(messageModel: MessageModelT, text: String) {
         self._messageModel = messageModel
         self.text = text
+        self.randomId = 0
     }
 }

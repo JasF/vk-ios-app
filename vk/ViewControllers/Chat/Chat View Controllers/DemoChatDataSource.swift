@@ -168,6 +168,17 @@ class DemoChatDataSource: ChatDataSourceProtocol {
     }
     
     func addIncomingTextMessage(_ message: Message?) {
+        if let random_id = message?.random_id {
+            if random_id > 0 {
+                let items = self.slidingWindow.getItems()
+                for item in items as! [DemoMessageModelProtocol] {
+                    if item.randomId == message?.random_id {
+                        return
+                    }
+                }
+            }
+        }
+ 
         self.nextMessageId += 1
         let uid = "\(self.nextMessageId)"
         let model = DemoChatMessageFactory.makeTextMessage(uid, message: message)

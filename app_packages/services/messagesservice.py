@@ -110,6 +110,7 @@ class MessagesService(AddMessageProtocol):
         read_state = 0 if MessageFlags(flags) & MessageFlags.UNREAD else 1
         fromId = vk.userId() if isOut == True else peerId
         #print('handle incoming message: peerId: ' + str(peerId) + '; fromId: ' + str(fromId) + '; randomId: ' + str(randomId))
+        ''' # Пусть окно чата решает, добавлять или нет это сообщение в список отображения, поскольку окон чата может быть открыто несколько
         try:
             cache = MessagesDatabase()
             msg = cache.messageWithId(randomId)
@@ -119,6 +120,7 @@ class MessagesService(AddMessageProtocol):
                 return
         except:
             pass
+        '''
         msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
         for d in self.newMessageSubscribers:
             d.handleIncomingMessage(msg)

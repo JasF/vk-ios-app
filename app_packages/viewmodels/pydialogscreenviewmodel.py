@@ -35,10 +35,9 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     def getMessagesuserIdstartMessageId(self, offset, userId, startMessageId):
         return self.dialogService.getMessagesuserIdstartMessageId(offset, userId, startMessageId)
     
-    def sendTextMessageuserId(self, text, userId):
+    def sendTextMessageuserIdrandomId(self, text, userId, randomId):
         messageId = 0
         try:
-            randomId = random.randint(0,2200000000)
             timestamp = int(time.time())
             self.messagesService.saveMessageToCache(randomId, 1, userId, vk.userId(), timestamp, text, 0, randomId, [])
             messageId = self.dialogService.sendTextMessageuserId(text, userId, randomId)
@@ -68,11 +67,13 @@ class PyDialogScreenViewModel(NewMessageProtocol, ObjCBridgeProtocol):
                 return
             isOut = message.get('out')
             id = message.get('id')
+            '''
             if isOut:
                 msg = self.messagesService.messageWithId(id)
                 if msg:
                     #print('msg already exists! - but what first occurence missing?')
                     return
+            '''
             if self.guiDelegate:
                 self.guiDelegate.handleIncomingMessage_(args=[message])
         except Exception as e:
