@@ -57,9 +57,10 @@ class LongPoll:
         
         while True:
             try:
-                url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=25&mode=' + str(2+128) + '&version=2'
+                timeout = 25
+                url = 'https://' + server + '?act=a_check&key=' + str(key) + '&ts=' + str(ts) + '&wait=' + str(timeout) + '&mode=' + str(2+128) + '&version=2'
                 print('longpoll request: ' + str(url))
-                response = requests_session.get(url)
+                response = requests_session.get(url, timeout=timeout+5)
                 jsonDict = response.json()
                 print('longpoll response: ' + json.dumps(jsonDict, indent=4))
                 if self.longPollThread != currentThread:
