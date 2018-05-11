@@ -68,7 +68,7 @@ class LongPoll:
                 #print('longpoll request: ' + str(url))
                 response = requests_session.get(url, timeout=timeout+5)
                 jsonDict = response.json()
-                #print('longpoll response: ' + json.dumps(jsonDict, indent=4))
+                print('longpoll response: ' + json.dumps(jsonDict, indent=4))
                 if self.longPollThread != currentThread:
                     print('LongPollThread is changed. Current session is invalid! Returning...')
                     return
@@ -86,7 +86,9 @@ class LongPoll:
                     return
                 
                 newTs = jsonDict.get('ts')
-                pts = jsonDict.get('new_pts')
+                pts = jsonDict.get('pts')
+                if not isinstance(pts, int):
+                    pts = jsonDict.get('new_pts')
                 #print('NEXT LINE FOR DELETE')
                 #self.performLongPollHistory()
                 #print('PREVIOUS LINE FOR DELETE')
