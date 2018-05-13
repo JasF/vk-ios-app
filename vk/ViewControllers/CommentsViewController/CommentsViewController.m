@@ -10,10 +10,11 @@
 #import "_MXRMessengerInputToolbarContainerView.h"
 #import "Comment.h"
 #import "vk-Swift.h"
+#import "RSSwizzle.h"
 
 static NSInteger const kNumberOfCommentsForPreload = 40;
 
-@interface CommentsViewController ()
+@interface CommentsViewController () <UITableViewDelegate>
 @property (nonatomic, strong) NSNumber* calculatedOffsetFromInteractiveKeyboardDismissal;
 @property (nonatomic, strong) MXRMessengerInputToolbar* toolbar;
 @property (nonatomic, strong) MXRMessengerInputToolbarContainerView *toolbarContainerView;
@@ -50,13 +51,42 @@ static NSInteger const kNumberOfCommentsForPreload = 40;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (@available(iOS 11, *)) {
-       // self.tableNode.view.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {
-      //  self.automaticallyAdjustsScrollViewInsets = NO;
+    if (@available(iOS 11, *)) {} else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        [self updateFrames];
+        self.tableNode.contentOffset = CGPointMake(0, -self.topInset);
     }
-    
-    
+}
+
+/*
++ (void)load {
+    SEL selector = @selector(setContentOffset:);
+    [RSSwizzle
+     swizzleInstanceMethod:selector
+     inClass:[ASTableView class]
+     newImpFactory:^id(RSSwizzleInfo *swizzleInfo) {
+         // This block will be used as the new implementation.
+         return ^(__unsafe_unretained id self, CGPoint contentOffset){
+             // You MUST always cast implementation to the correct function pointer.
+             void (*originalIMP)(__unsafe_unretained id, SEL, CGPoint);
+             originalIMP = (__typeof(originalIMP))[swizzleInfo getOriginalImplementation];
+             // Calling original implementation.
+             originalIMP(self,selector,contentOffset);
+             // Returning modified return value.
+             DDLogInfo(@"swizzled: %@", NSStringFromCGPoint(contentOffset));
+         };
+     }
+     mode:RSSwizzleModeAlways
+     key:NULL];
+}
+ */
+
+- (CGFloat)topInset {
+    if (@available(iOS 11, *)) {
+        return 0.f;
+    } else {
+        return 64.f;
+    }
 }
 
 - (void)updateFrames {
@@ -65,8 +95,8 @@ static NSInteger const kNumberOfCommentsForPreload = 40;
     
     self.tableNode.view.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableNode.view.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
-    self.tableNode.contentInset = UIEdgeInsetsMake(0, 0, _minimumBottomInset, 0);
-    self.tableNode.view.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, _minimumBottomInset, 0);
+    self.tableNode.contentInset = UIEdgeInsetsMake(self.topInset, 0, _minimumBottomInset, 0);
+    self.tableNode.view.scrollIndicatorInsets = UIEdgeInsetsMake(self.topInset, 0, _minimumBottomInset, 0);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -194,8 +224,8 @@ static NSInteger const kNumberOfCommentsForPreload = 40;
     } else {
         tableView.contentOffset = CGPointMake(0, newOffset);
     }
-    tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardEndHeight, 0);
-    tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, keyboardEndHeight, 0);
+    tableView.contentInset = UIEdgeInsetsMake(self.topInset, 0, keyboardEndHeight, 0);
+    tableView.scrollIndicatorInsets = UIEdgeInsetsMake(self.topInset, 0, keyboardEndHeight, 0);
 }
 
 - (void)dismissKeyboard {
@@ -267,4 +297,8 @@ static NSInteger const kNumberOfCommentsForPreload = 40;
                                   }];
 }
 
+#pragma mark - UITableViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    DDLogInfo(@"scds: %@", NSStringFromCGPoint(scrollView.contentOffset));
+}
 @end
