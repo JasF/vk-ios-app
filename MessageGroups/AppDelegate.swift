@@ -37,9 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         DDLog.add(DDTTYLogger.sharedInstance) // TTY = Xcode console
-        DDLog.add(DDASLLogger.sharedInstance) // TTY = Xcode console
         switch UIApplication.shared.releaseMode() {
-        case .adHoc, .dev, .enterprise, .sim, .appStore:
+        case .adHoc, .dev, .enterprise, .sim:
+            DDLog.add(DDASLLogger.sharedInstance) // TTY = Xcode console
             if let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first {
                 let path = docsDir + "/logs"
                 do {
