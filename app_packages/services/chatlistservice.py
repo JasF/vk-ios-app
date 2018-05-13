@@ -1,6 +1,7 @@
 import vk
 import json
 from vk import users as users
+from constants import g_LoadingElements
 
 class ChatListService:
     def getDialogs(self, offset):
@@ -8,7 +9,7 @@ class ChatListService:
         response = None
         usersData = None
         try:
-            response = api.messages.getDialogs(offset=offset)
+            response = api.messages.getDialogs(offset=offset, count=g_LoadingElements)
             l = response["items"]
             #print('response dialogs: ' + json.dumps(response, indent=4))
             ids = set([d['message']['user_id'] for d in l])

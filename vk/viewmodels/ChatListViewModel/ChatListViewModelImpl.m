@@ -8,6 +8,8 @@
 
 #import "ChatListViewModelImpl.h"
 
+static CGFloat const kReloadDataDelay = 0.6f;
+
 @protocol PyChatListViewModelDelegate <NSObject>
 - (void)handleIncomingMessage:(NSDictionary *)messageDictionary;
 - (void)handleEditMessage:(NSDictionary *)messageDictionary;
@@ -80,51 +82,47 @@
 
 #pragma mark - PyChatListViewModelDelegate
 - (void)handleIncomingMessage:(NSDictionary *)messageDictionary {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate reloadData];
-    });
+    [self reloadData];
 }
 
 - (void)handleEditMessage:(NSDictionary *)messageDictionary {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate reloadData];
-    });
+    [self reloadData];
 }
 
 - (void)handleMessageDelete:(NSNumber *)messageId {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate reloadData];
-    });
+    [self reloadData];
 }
 
 - (void)handleMessageFlagsChanged:(NSDictionary *)messageDictionary {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate reloadData];
-    });
+    [self reloadData];
 }
 
 - (void)handleMessagesInReaded:(NSNumber *)userId localId:(NSNumber *)messageId {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate reloadData];
-    });
+    [self reloadData];
 }
 
 - (void)handleMessagesOutReaded:(NSNumber *)userId localId:(NSNumber *)messageId {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate reloadData];
-    });
+    [self reloadData];
 }
 
 - (void)handleTypingInDialog:(NSNumber *)userId flags:(NSNumber *)flags end:(NSNumber *)end {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_delegate setTypingEnabled:!end.boolValue userId:userId.integerValue];
-    });
+    [self reloadData];
 }
 
 - (void)handleNeedsUpdate {
+    [self reloadData];
+}
+
+- (void)reloadData {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate reloadData];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(doReloadData) object:nil];
+        [self performSelector:@selector(doReloadData) withObject:nil afterDelay:kReloadDataDelay];
     });
+}
+
+- (void)doReloadData {
+    //DDLogInfo(@"chatlist doReloadData");
+    [self.delegate reloadData];
 }
 
 @end

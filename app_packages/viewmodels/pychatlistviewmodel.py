@@ -19,6 +19,8 @@ class PyChatListViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         self.guiDelegate = PyChatListViewModelDelegate(delegateId)
         self.isActive = False
         self.needsUpdate = False
+        self.count = 0
+        self.dialogsCountReceived = False
 
     # protocol methods implementation
     def menuTapped(self):
@@ -28,7 +30,16 @@ class PyChatListViewModel(NewMessageProtocol, ObjCBridgeProtocol):
         managers.shared().screensManager().showDialogViewController_(args=[userId])
 
     def getDialogs(self, offset):
-        return self.chatListService.getDialogs(offset)
+        if self.dialogsCountReceived == True and offset > 0 and self.count == offset:
+            return {}
+        
+        result = self.chatListService.getDialogs(offset)
+        try:
+            self.count = result['response']['count']
+            self.dialogsCountReceived = True
+        except Exception as e:
+            print('getDialogs exception: ' + str(e))
+        return result
     
     def becomeActive(self):
         self.isActive = True
