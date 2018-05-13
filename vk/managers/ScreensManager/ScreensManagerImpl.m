@@ -38,6 +38,7 @@
 @property (strong, nonatomic) ScreensAssembly *screensAssembly;
 @property (strong, nonatomic) id<DialogsManager> dialogsManager;
 @property (strong, nonatomic) UINavigationController *rootNavigationController;
+@property (strong, nonatomic) id<NotificationsManager> notificationsManager;
 @end
 
 @implementation ScreensManagerImpl
@@ -45,14 +46,17 @@
 #pragma mark - Initialization
 - (id)initWithVKSdkManager:(id<VKSdkManager>)vkSdkManager
               pythonBridge:(id<PythonBridge>)pythonBridge
-           screensAssembly:(ScreensAssembly *)screensAssembly {
+           screensAssembly:(ScreensAssembly *)screensAssembly
+      notificationsManager:(id<NotificationsManager>)notificationsManager {
     NSCParameterAssert(vkSdkManager);
     NSCParameterAssert(pythonBridge);
     NSCParameterAssert(screensAssembly);
+    NSCParameterAssert(notificationsManager);
     if (self = [super init]) {
         _vkSdkManager = vkSdkManager;
         _pythonBridge = pythonBridge;
         _screensAssembly = screensAssembly;
+        _notificationsManager = notificationsManager;
         [_pythonBridge setClassHandler:self name:@"ScreensManager"];
     }
     return self;
@@ -170,6 +174,7 @@
         return;
     }
     [_dialogsManager initialize];
+    [_notificationsManager initialize];
     MenuViewController *menuViewController = (MenuViewController *)_mainViewController.leftViewController;
     NSCAssert([menuViewController isKindOfClass:[MenuViewController class]], @"menuViewController has unknown class: %@", menuViewController);
     if ([menuViewController isKindOfClass:[MenuViewController class]]) {

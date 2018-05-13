@@ -53,6 +53,10 @@
 }
 
 - (void)initialize {
+    if (_initialized) {
+        return;
+    }
+    _initialized = YES;
     if (@available (iOS 11, *)) {
         [self currentNotificationCenter].delegate = self;
         [self registerForUserNotification];
@@ -62,7 +66,6 @@
         [self registerForRemoteNotifications]; // ios10 ipad support
         [self registerForUserNotification];
     }
-    _initialized = YES;
     for (NSDictionary *userInfo in _delayedPushes) {
         [self didReceiveRemoteNotification:userInfo];
     }

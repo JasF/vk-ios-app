@@ -54,9 +54,6 @@
             dispatch_python(^{
                 [self.handler accessTokenGathered:token.accessToken userId:[NSNumberFormatter.new numberFromString:token.userId]];
             });
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.notificationsManager initialize];
-            });
         });
     };
     _vkManager.getTokenFailed = ^(NSError *error, BOOL cancelled) {

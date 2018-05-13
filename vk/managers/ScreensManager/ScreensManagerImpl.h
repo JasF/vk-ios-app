@@ -11,6 +11,7 @@
 #import "PythonBridge.h"
 #import "NodeFactory.h"
 #import "DialogsManager.h"
+#import "NotificationsManager.h"
 
 @class ScreensAssembly;
 @class MainViewController;
@@ -21,5 +22,6 @@
 + (id)new NS_UNAVAILABLE;
 - (id)initWithVKSdkManager:(id<VKSdkManager>)vkSdkManager
               pythonBridge:(id<PythonBridge>)pythonBridge
-           screensAssembly:(ScreensAssembly *)screensAssembly;
+           screensAssembly:(ScreensAssembly *)screensAssembly
+      notificationsManager:(id<NotificationsManager>)notificationsManager;
 @end

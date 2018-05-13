@@ -45,11 +45,12 @@
 - (id<ScreensManager>)screensManager {
     return [TyphoonDefinition withClass:[ScreensManagerImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(initWithVKSdkManager:pythonBridge:screensAssembly:) parameters:^(TyphoonMethod *initializer)
+                [definition useInitializer:@selector(initWithVKSdkManager:pythonBridge:screensAssembly:notificationsManager:) parameters:^(TyphoonMethod *initializer)
                  {
                      [initializer injectParameterWith:[self.coreComponents vkManager]];
                      [initializer injectParameterWith:[self.coreComponents pythonBridge]];
                      [initializer injectParameterWith:self];
+                     [initializer injectParameterWith:[self.applicationAssembly notificationsManager]];
                  }];
                 [definition injectProperty:@selector(window) with:[self window]];
                 [definition injectProperty:@selector(rootNavigationController) with:[self rootNavigationController]];
