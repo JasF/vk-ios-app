@@ -25,7 +25,7 @@
 import Foundation
 import AsyncDisplayKit
 
-extension BaseChatViewController: ASTableDelegate, ASTableDataSource {
+extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
     public func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         //NSLog("number of pseudo-bubbles:\(self.chatItemCompanionCollection.count)")
         return self.chatItemCompanionCollection.count
