@@ -279,7 +279,7 @@ static CGFloat const kBlurMaximumFraction = 0.4f;
 }
 
 - (void)dealloc {
-    NSLog(@"MainViewController deallocated");
+    DDLogInfo(@"MainViewController deallocated");
 }
 
 @end

@@ -50,7 +50,7 @@
         @strongify(self);
         dispatch_python(^{
             @strongify(self);
-            NSLog(@"received vk token: %@", token.accessToken);
+            DDLogInfo(@"received vk token: %@", token.accessToken);
             dispatch_python(^{
                 [self.handler accessTokenGathered:token.accessToken userId:[NSNumberFormatter.new numberFromString:token.userId]];
             });

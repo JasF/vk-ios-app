@@ -31,7 +31,7 @@
 		\
 		ext_propertyAttributes *attributes = ext_copyPropertyAttributes(property); \
 		if (!attributes) { \
-			NSLog(@"*** Could not copy property attributes for %@.%s", cls, # PROPERTY); \
+			DDLogInfo(@"*** Could not copy property attributes for %@.%s", cls, # PROPERTY); \
 			return; \
 		} \
 		\

@@ -78,18 +78,18 @@ static BOOL g_needs_block_vkapp = NO;
 }
     
 - (void)vkSdkUserAuthorizationFailed {
-    NSLog(@"vkSdkUserAuthorizationFailed");
+    DDLogInfo(@"vkSdkUserAuthorizationFailed");
 }
     
 #pragma mark - VKSdkUIDelegate
 - (void)vkSdkShouldPresentViewController:(UIViewController *)controller {
     NSCParameterAssert(_viewController);
     [_viewController presentViewController:controller animated:YES completion:nil];
-    NSLog(@"vkSdkShouldPresentViewController");
+    DDLogInfo(@"vkSdkShouldPresentViewController");
 }
     
 - (void)vkSdkNeedCaptchaEnter:(VKError *)captchaError {
-    NSLog(@"vkSdkNeedCaptchaEnter");
+    DDLogInfo(@"vkSdkNeedCaptchaEnter");
 }
     
 #pragma mark - Private Methods

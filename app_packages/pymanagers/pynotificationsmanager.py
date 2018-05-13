@@ -2,11 +2,11 @@ import vk, json, traceback
 from objc import managers
 
 class PyNotificationsManager:
-    def didRegisterForRemoteNotificationsWithDeviceToken(self, token):
-        print('didRegisterForRemoteNotificationsWithDeviceToken: ' + str(token))
+    def didRegisterForRemoteNotificationsWithDeviceTokendeviceId(self, token, deviceId):
+        print('didRegisterForRemoteNotificationsWithDeviceToken: ' + str(token) + '; deviceId: ' + str(deviceId))
         api = vk.api()
         try:
-            response = api.account.registerDevice(token=token, device_model='iPhone7,2', device_year='2017', device_id='9238dhf029hfg2739fn', system_version='ios11.3', settings=json.dumps({'msg':'on'}))
+            response = api.account.registerDevice(token=token, device_id=deviceId, sandbox=0, settings=json.dumps({'msg':'on'}))
             print('registerDevice response: ' + str(response))
         except Exception as e:
             print('send device token exception: ' + str(e))

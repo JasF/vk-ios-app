@@ -62,7 +62,7 @@ static CGFloat const kButtonSize = 44.f;
         [self.imageModel setUser:user];
         [self.messageModel setUser:user];
         [self.actionsModel setUser:user];
-        NSLog(@"latest user friends_count: %@", @(self.viewModel.currentUser.friends_count));
+        DDLogInfo(@"latest user friends_count: %@", @(self.viewModel.currentUser.friends_count));
        // if (self.updating) {
         //    self.needsReload = YES;
        // }

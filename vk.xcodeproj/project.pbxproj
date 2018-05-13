@@ -859,7 +859,6 @@
 		C3036C18208DEF12005F086E /* NotificationsManagerImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationsManagerImpl.m; sourceTree = "<group>"; };
 		C3036C1F208DF809005F086E /* pynotificationsmanager.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pynotificationsmanager.py; sourceTree = "<group>"; };
 		C3036C20208DF966005F086E /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
-		C3137717208DFABA00F568EA /* vk.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = vk.entitlements; sourceTree = "<group>"; };
 		C3137718208DFAE800F568EA /* vk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vk.entitlements; sourceTree = "<group>"; };
 		C313771F208E1FC900F568EA /* PhotoAlbumsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAlbumsViewController.h; sourceTree = "<group>"; };
 		C3137720208E1FC900F568EA /* PhotoAlbumsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbumsViewController.m; sourceTree = "<group>"; };
@@ -2309,7 +2308,6 @@
 		C3137716208DFABA00F568EA /* entitlements */ = {
 			isa = PBXGroup;
 			children = (
-				C3137717208DFABA00F568EA /* vk.entitlements */,
 			);
 			path = entitlements;
 			sourceTree = "<group>";
@@ -5797,7 +5795,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 5892LD7JW5;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -6863,9 +6861,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = vk/vk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5892LD7JW5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -6896,9 +6894,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = vk/vk.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5892LD7JW5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6916,7 +6914,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = by.vk.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "b2044f0a-04d0-401d-b325-fbdb23fb05ff";
+				PROVISIONING_PROFILE_SPECIFIER = Oxy_Feed_AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = "vk/Supporting Files/vk-Bridging-Header.h";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
 				SWIFT_VERSION = 4.0;

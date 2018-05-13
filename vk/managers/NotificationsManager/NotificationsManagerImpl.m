@@ -32,7 +32,9 @@
 #pragma mark - NotificationsManager
 - (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSString *)token {
     dispatch_python(^{
-        [self.handler didRegisterForRemoteNotificationsWithDeviceToken:token];
+        NSString *deviceId = [UIDevice currentDevice].identifierForVendor.UUIDString;
+        [self.handler didRegisterForRemoteNotificationsWithDeviceToken:token
+                                                              deviceId:deviceId];
     });
 }
 

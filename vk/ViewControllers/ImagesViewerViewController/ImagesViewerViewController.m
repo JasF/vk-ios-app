@@ -137,7 +137,7 @@ static NSInteger const kPreloadingBorder = 2;
 }
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index {
-    NSLog(@"Did start viewing photo at index %lu", (unsigned long)index);
+    DDLogInfo(@"Did start viewing photo at index %lu", (unsigned long)index);
     if (self.updating) {
         return;
     }
@@ -169,12 +169,12 @@ static NSInteger const kPreloadingBorder = 2;
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index selectedChanged:(BOOL)selected {
    //[_selections replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:selected]];
-    NSLog(@"Photo at index %lu selected %@", (unsigned long)index, selected ? @"YES" : @"NO");
+    DDLogInfo(@"Photo at index %lu selected %@", (unsigned long)index, selected ? @"YES" : @"NO");
 }
 
 - (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
     // If we subscribe to this method we must dismiss the view controller ourselves
-    NSLog(@"Did finish modal presentation");
+    DDLogInfo(@"Did finish modal presentation");
     //[self dismissViewControllerAnimated:YES completion:nil];
 }
 

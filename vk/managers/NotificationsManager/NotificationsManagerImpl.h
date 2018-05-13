@@ -11,7 +11,7 @@
 #import "HandlersFactory.h"
 
 @protocol PyNotificationsManager <NSObject>
-- (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSString *)token;
+- (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSString *)token deviceId:(NSString *)deviceId;
 - (void)didFailToRegisterForRemoteNotifications:(NSString *)error;
 - (void)didReceiveRemoteNotification:(NSDictionary *)userInfo;
 @end

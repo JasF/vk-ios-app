@@ -83,7 +83,7 @@
         }
         identifier = [NSString stringWithFormat:@"%@%@_%@", identifier, @(ownerId), @(itemId)];
         NSDictionary *response = [self.handler repostObjectWithIdentifier:identifier];
-        NSLog(@"resp: %@", response);
+        DDLogInfo(@"resp: %@", response);
         NSInteger likes = 0;
         NSInteger reposts = 0;
         BOOL error = YES;
@@ -257,7 +257,7 @@
                 completion(commentId, ownerId, postId, 0, user);
             }
         });
-        NSLog(@"Response from send comment is: %@", response);
+        DDLogInfo(@"Response from send comment is: %@", response);
         /*
          2018-05-01 14:33:31.078273+0300 vk[73878:19462853] Response from send comment is: {
          "comment_id" = 1971;

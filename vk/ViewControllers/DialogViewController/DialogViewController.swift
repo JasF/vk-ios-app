@@ -195,7 +195,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     }
     
     override func willSendTextMessage(text: String?, uid: String?, message: Any?) {
-        NSLog("will send text message: \(String(describing: text))");
+        //NSLog("will send text message: \(String(describing: text))");
         if let msg = message as? DemoMessageModelProtocol {
             self.scrollToBottom(animated: true)
             sendMessage(text, msg, completion:{ (success) in
@@ -248,17 +248,17 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     }
     
     func handleTyping(_ userId: Int, end: Bool) {
-        NSLog("typing: \(userId)");
+        //NSLog("typing: \(userId)");
         self.setTypingCellEnabled(!end)
     }
     
     func handleMessages(inReaded messageId: Int) {
-        NSLog("inReaded: \(messageId)")
+        //NSLog("inReaded: \(messageId)")
         self.mDataSource?.handleMessages(inReaded: messageId, self.tableNode)
     }
     
     func handleMessagesOutReaded(_ messageId: Int) {
-        NSLog("handleMessagesOutReaded: \(messageId)")
+        //NSLog("handleMessagesOutReaded: \(messageId)")
         self.mDataSource?.handleMessagesOutReaded(messageId, self.tableNode)
     }
     

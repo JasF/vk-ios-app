@@ -1214,19 +1214,19 @@ rightViewBackgroundImageFinalScale = _rightViewBackgroundImageFinalScale;
     if (!delegate) return;
 
     if ([delegate respondsToSelector:@selector(showAnimationsBlockForLeftView:sideMenuController:duration:)]) {
-        NSLog(@"WARNING: delegate method \"showAnimationsBlockForLeftView:sideMenuController:duration:\" is DEPRECATED, use \"showAnimationsForLeftView:sideMenuController:duration:\" instead");
+        DDLogInfo(@"WARNING: delegate method \"showAnimationsBlockForLeftView:sideMenuController:duration:\" is DEPRECATED, use \"showAnimationsForLeftView:sideMenuController:duration:\" instead");
     }
 
     if ([delegate respondsToSelector:@selector(hideAnimationsBlockForLeftView:sideMenuController:duration:)]) {
-        NSLog(@"WARNING: delegate method \"hideAnimationsBlockForLeftView:sideMenuController:duration:\" is DEPRECATED, use \"hideAnimationsForLeftView:sideMenuController:duration:\" instead");
+        DDLogInfo(@"WARNING: delegate method \"hideAnimationsBlockForLeftView:sideMenuController:duration:\" is DEPRECATED, use \"hideAnimationsForLeftView:sideMenuController:duration:\" instead");
     }
 
     if ([delegate respondsToSelector:@selector(showAnimationsBlockForRightView:sideMenuController:duration:)]) {
-        NSLog(@"WARNING: delegate method \"showAnimationsBlockForRightView:sideMenuController:duration:\" is DEPRECATED, use \"showAnimationsForRightView:sideMenuController:duration:\" instead");
+        DDLogInfo(@"WARNING: delegate method \"showAnimationsBlockForRightView:sideMenuController:duration:\" is DEPRECATED, use \"showAnimationsForRightView:sideMenuController:duration:\" instead");
     }
 
     if ([delegate respondsToSelector:@selector(hideAnimationsBlockForRightView:sideMenuController:duration:)]) {
-        NSLog(@"WARNING: delegate method \"hideAnimationsBlockForRightView:sideMenuController:duration:\" is DEPRECATED, use \"hideAnimationsForRightView:sideMenuController:duration:\" instead");
+        DDLogInfo(@"WARNING: delegate method \"hideAnimationsBlockForRightView:sideMenuController:duration:\" is DEPRECATED, use \"hideAnimationsForRightView:sideMenuController:duration:\" instead");
     }
 }
 

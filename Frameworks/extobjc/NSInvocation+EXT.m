@@ -176,19 +176,19 @@ typedef union { int i; } *empty_union_ptr_t;
             break;
         
         case '[':
-            NSLog(@"Unexpected array within method argument type code \"%s\", cannot set invocation argument!", type);
+            DDLogInfo(@"Unexpected array within method argument type code \"%s\", cannot set invocation argument!", type);
             return NO;
         
         case 'b':
-            NSLog(@"Unexpected bitfield within method argument type code \"%s\", cannot set invocation argument!", type);
+            DDLogInfo(@"Unexpected bitfield within method argument type code \"%s\", cannot set invocation argument!", type);
             return NO;
         
         case '{':
-            NSLog(@"Cannot get variable argument for a method that takes a struct argument!");
+            DDLogInfo(@"Cannot get variable argument for a method that takes a struct argument!");
             return NO;
             
         case '(':
-            NSLog(@"Cannot get variable argument for a method that takes a union argument!");
+            DDLogInfo(@"Cannot get variable argument for a method that takes a union argument!");
             return NO;
         
         case '^':
@@ -321,7 +321,7 @@ typedef union { int i; } *empty_union_ptr_t;
             
             case 'b':
             default:
-                NSLog(@"Pointer to unexpected type within method argument type code \"%s\", cannot set method invocation!", type);
+                DDLogInfo(@"Pointer to unexpected type within method argument type code \"%s\", cannot set method invocation!", type);
                 return NO;
             }
             
@@ -331,7 +331,7 @@ typedef union { int i; } *empty_union_ptr_t;
             {
                 // this is PROBABLY a function pointer, but the documentation
                 // leaves room open for uncertainty, so at least log a message
-                NSLog(@"Assuming method argument type code \"%s\" is a function pointer", type);
+                DDLogInfo(@"Assuming method argument type code \"%s\" is a function pointer", type);
 
                 IMP ptr = va_arg(args, IMP);
                 [self setArgument:&ptr atIndex:i];
@@ -340,7 +340,7 @@ typedef union { int i; } *empty_union_ptr_t;
             break;
             
         default:
-            NSLog(@"Unexpected method argument type code \"%s\", cannot set method invocation!", type);
+            DDLogInfo(@"Unexpected method argument type code \"%s\", cannot set method invocation!", type);
             return NO;
         }
     }

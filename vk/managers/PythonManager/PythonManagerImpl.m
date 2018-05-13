@@ -44,7 +44,7 @@ int initializePython(int argc, char *argv[], PythonManagerImpl *self);
 
 void extractResourcesIfNeeded() {
     NSString *documentsDirectory = getDocumentsDirectory();
-    NSLog(@"%@", documentsDirectory);
+    DDLogInfo(@"%@", documentsDirectory);
     documentsDirectory = [documentsDirectory stringByAppendingString:@"/Library"];
     
     [[NSFileManager defaultManager] removeItemAtPath:documentsDirectory error:nil];
@@ -59,7 +59,7 @@ void extractResourcesIfNeeded() {
                                    withIntermediateDirectories:YES
                                                     attributes:nil
                                                          error:&error]) {
-        NSLog(@"create directory error is: %@", error);
+        DDLogInfo(@"create directory error is: %@", error);
         return;
     }
     
@@ -81,13 +81,13 @@ void extractResourcesIfNeeded() {
                                                                   ofType:@"zip"];
     
     if (![SSZipArchive unzipFileAtPath:frameworkZipPath toDestination:destination]) {
-        NSLog(@"unarchive python failed");
+        DDLogInfo(@"unarchive python failed");
         return;
     }
     NSString *sourcesZipPath = [[NSBundle mainBundle] pathForResource:@"app_packages"
                                                                ofType:@"zip"];
     if (![SSZipArchive unzipFileAtPath:sourcesZipPath toDestination:packagesDestinationPath]) {
-        NSLog(@"unarchive sources failed");
+        DDLogInfo(@"unarchive sources failed");
         return;
     }
 }
@@ -126,7 +126,7 @@ int initializePython(int argc, char *argv[], PythonManagerImpl *self) {
         tmp_path = [NSString stringWithFormat:@"TMP=%@/tmp", documentsDirectory, nil];
         putenv((char *)[tmp_path UTF8String]);
         
-        NSLog(@"Initializing Python runtime");
+        DDLogInfo(@"Initializing Python runtime");
         
         for (id<PythonManagerExtension> extension in self.extensions) {
             [extension initializeSystem];
@@ -139,7 +139,7 @@ int initializePython(int argc, char *argv[], PythonManagerImpl *self) {
                                                        ofType:@"py"] cStringUsingEncoding:NSUTF8StringEncoding];
         
         if (main_script == NULL) {
-            NSLog(@"Unable to locate HelloBee main module file");
+            DDLogInfo(@"Unable to locate HelloBee main module file");
             exit(-1);
         }
         
@@ -171,16 +171,16 @@ int initializePython(int argc, char *argv[], PythonManagerImpl *self) {
         }
         
         // Start the main.py script
-        NSLog(@"Running %s", main_script);
+        DDLogInfo(@"Running %s", main_script);
         @try {
             FILE* fd = fopen(main_script, "r");
             if (fd == NULL) {
                 ret = 1;
-                NSLog(@"Unable to open main.py, abort.");
+                DDLogInfo(@"Unable to open main.py, abort.");
             } else {
                 ret = PyRun_SimpleFileEx(fd, main_script, 1);
                 if (ret != 0) {
-                    NSLog(@"Application quit abnormally!");
+                    DDLogInfo(@"Application quit abnormally!");
                 } else {
                     // In a normal iOS application, the following line is what
                     // actually runs the application. It requires that the
@@ -197,7 +197,7 @@ int initializePython(int argc, char *argv[], PythonManagerImpl *self) {
             }
         }
         @catch (NSException *exception) {
-            NSLog(@"Python runtime error: %@", [exception reason]);
+            DDLogInfo(@"Python runtime error: %@", [exception reason]);
         }
         @finally {
             Py_Finalize();
@@ -210,7 +210,7 @@ int initializePython(int argc, char *argv[], PythonManagerImpl *self) {
             }
             PyMem_RawFree(python_argv);
         }
-        NSLog(@"Leaving");
+        DDLogInfo(@"Leaving");
     }
     
     return ret;

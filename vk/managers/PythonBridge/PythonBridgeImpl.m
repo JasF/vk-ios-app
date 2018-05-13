@@ -238,7 +238,7 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     }
     NSString *value = [self loggingStringWithDictionary:object];
     if (value) {
-        NSLog(@"%@", value);
+        DDLogInfo(@"%@", value);
     }
     else {
         NSString *command = object[@"command"];
@@ -267,7 +267,7 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
             }
         }
         else {
-            NSLog(@"unknown command. data: %@", object);
+            DDLogInfo(@"unknown command. data: %@", object);
         }
     }
     return @{};
@@ -319,7 +319,7 @@ NSArray *px_allProtocolMethods(Protocol *protocol)
     }
     id handler = [_handlers[className] nonretainedObjectValue];
     if (!handler) {
-        NSLog(@"handler for protocol \"%@\" not registered", className);
+        DDLogInfo(@"handler for protocol \"%@\" not registered", className);
         return @{};
     }
     SEL selector = NSSelectorFromString(action);

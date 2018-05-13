@@ -48,10 +48,10 @@
 		}
 		NSScanner *scanner = [NSScanner scannerWithString:binaryString];
 		BOOL ok = [scanner scanUpToString:@"<plist" intoString:nil];
-		if (!ok) { NSLog(@"unable to find beginning of plist"); return UIApplicationReleaseUnknown; }
+		if (!ok) { DDLogInfo(@"unable to find beginning of plist"); return UIApplicationReleaseUnknown; }
 		NSString *plistString;
 		ok = [scanner scanUpToString:@"</plist>" intoString:&plistString];
-		if (!ok) { NSLog(@"unable to find end of plist"); return UIApplicationReleaseUnknown; }
+		if (!ok) { DDLogInfo(@"unable to find end of plist"); return UIApplicationReleaseUnknown; }
 		plistString = [NSString stringWithFormat:@"%@</plist>",plistString];
 		// juggle latin1 back to utf-8!
 		NSData *plistdata_latin1 = [plistString dataUsingEncoding:NSISOLatin1StringEncoding];
@@ -60,7 +60,7 @@
 		NSError *error = nil;
 		mobileProvision = [NSPropertyListSerialization propertyListWithData:plistdata_latin1 options:NSPropertyListImmutable format:NULL error:&error];
 		if (error) {
-			NSLog(@"error parsing extracted plist — %@",error);
+			DDLogInfo(@"error parsing extracted plist — %@",error);
 			if (mobileProvision) {
 				mobileProvision = nil;
 			}
