@@ -1,7 +1,7 @@
 rm -rf build
 rm -rf vk-build
 xcodebuild -workspace "./vk.xcworkspace" -scheme vk TEST_AFTER_BUILD=NO clean build -configuration 'Release' SYMROOT="$(PWD)/build"
-sh ./Scripts/package.sh "build/Release-iphoneos/vk.app" "build/Release-iphoneos/vk.app.dSYM" "vk-build"
+sh ./Scripts/package.sh "build/Release-iphoneos/Oxy Feed.app" "build/Release-iphoneos/Oxy Feed.app.dSYM" "vk-build"
 
 echo ">>>zip & send"
 
