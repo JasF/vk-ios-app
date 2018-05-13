@@ -8,7 +8,7 @@
 
 #import "WallPostServiceImpl.h"
 #import "Comment.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface WallPostServiceImpl ()
 @property id<CommentsService> commentsService;

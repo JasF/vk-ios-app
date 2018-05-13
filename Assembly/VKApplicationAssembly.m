@@ -13,7 +13,7 @@
 #import "VKCoreComponents.h"
 #import "VKThemeAssembly.h"
 #import "ScreensAssembly.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 #import "NotificationsManagerImpl.h"
 #import "ServicesAssembly.h"
 @implementation VKApplicationAssembly

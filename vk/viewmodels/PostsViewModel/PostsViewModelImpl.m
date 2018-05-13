@@ -11,7 +11,7 @@
 #import "PostsService.h"
 #import "Video.h"
 #import "Photo.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface PostsViewModelImpl () <PostsViewModel>
 @property id<PyPostsViewModel> handler;

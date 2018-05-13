@@ -8,7 +8,7 @@
 
 #import "DetailVideoServiceImpl.h"
 #import "Comment.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface DetailVideoServiceImpl ()
 @property id<CommentsService> commentsService;

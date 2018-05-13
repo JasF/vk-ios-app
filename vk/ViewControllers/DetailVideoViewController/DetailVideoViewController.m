@@ -7,7 +7,7 @@
 //
 
 #import "DetailVideoViewController.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 #import "User.h"
 
 @interface DetailVideoViewController () <BaseTableViewControllerDataSource,

@@ -8,7 +8,7 @@
 
 #import "DetailPhotoServiceImpl.h"
 #import "Comment.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface DetailPhotoServiceImpl ()
 @property id<GalleryService> galleryService;

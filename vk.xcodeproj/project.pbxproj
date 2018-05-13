@@ -838,7 +838,7 @@
 
 /* Begin PBXFileReference section */
 		030C5587B34B49B1F718D13D /* Pods-MessageGroupsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsUITests/Pods-MessageGroupsUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		197D8B0B1D64BA50004630AE /* vk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		197D8B0B1D64BA50004630AE /* Oxy Feed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Oxy Feed.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		197D8B0E1D64BA50004630AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		197D8B131D64BA50004630AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		38AECA0C6C974586CB50DEA4 /* Pods_MessageGroups.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageGroups.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2228,7 +2228,7 @@
 		197D8B0C1D64BA50004630AE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				197D8B0B1D64BA50004630AE /* vk.app */,
+				197D8B0B1D64BA50004630AE /* Oxy Feed.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5759,9 +5759,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		197D8B0A1D64BA50004630AE /* vk */ = {
+		197D8B0A1D64BA50004630AE /* Oxy Feed */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 197D8B331D64BA51004630AE /* Build configuration list for PBXNativeTarget "vk" */;
+			buildConfigurationList = 197D8B331D64BA51004630AE /* Build configuration list for PBXNativeTarget "Oxy Feed" */;
 			buildPhases = (
 				F9B43EDBD18901077B12E011 /* [CP] Check Pods Manifest.lock */,
 				C32306EA2080E69300CEC487 /* Refresh Python Sources */,
@@ -5778,9 +5778,9 @@
 			dependencies = (
 				C39C8BE4209F304800CC23C3 /* PBXTargetDependency */,
 			);
-			name = vk;
+			name = "Oxy Feed";
 			productName = MessageGroups;
-			productReference = 197D8B0B1D64BA50004630AE /* vk.app */;
+			productReference = 197D8B0B1D64BA50004630AE /* Oxy Feed.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -5826,7 +5826,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				197D8B0A1D64BA50004630AE /* vk */,
+				197D8B0A1D64BA50004630AE /* Oxy Feed */,
 			);
 		};
 /* End PBXProject section */
@@ -6936,7 +6936,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		197D8B331D64BA51004630AE /* Build configuration list for PBXNativeTarget "vk" */ = {
+		197D8B331D64BA51004630AE /* Build configuration list for PBXNativeTarget "Oxy Feed" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				197D8B341D64BA51004630AE /* Debug */,

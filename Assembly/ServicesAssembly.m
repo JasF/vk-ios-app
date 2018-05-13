@@ -24,7 +24,7 @@
 #import "DetailPhotoServiceImpl.h"
 #import "DetailVideoServiceImpl.h"
 #import "PostsServiceImpl.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 @implementation ServicesAssembly
 

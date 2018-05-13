@@ -13,7 +13,7 @@
 #import "WallViewController.h"
 #import "ChatListViewController.h"
 #import "BaseNavigationController.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 #import "MenuViewController.h"
 #import "ViewModelsAssembly.h"
 #import "FriendsViewController.h"

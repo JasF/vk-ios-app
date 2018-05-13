@@ -9,7 +9,7 @@
 #import "DialogNode.h"
 #import "Dialog.h"
 #import "TextStyles.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 static CGFloat const kMargin = 6.f;
 static CGFloat const kTextCornerRadius = 3.f;

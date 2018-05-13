@@ -9,7 +9,7 @@
 #import "PythonBridgeImpl.h"
 #import "PythonBridgeHandler.h"
 #import <objc/runtime.h>
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 #import "DeallocSubscriber.h"
 
 NSString * const PXProtocolMethodListMethodNameKey = @"methodName";

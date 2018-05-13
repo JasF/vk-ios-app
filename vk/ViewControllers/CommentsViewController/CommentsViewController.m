@@ -9,7 +9,7 @@
 #import "CommentsViewController.h"
 #import "_MXRMessengerInputToolbarContainerView.h"
 #import "Comment.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 #import "RSSwizzle.h"
 
 static NSInteger const kNumberOfCommentsForPreload = 40;

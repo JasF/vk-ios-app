@@ -13,7 +13,7 @@
 #import "CommentsNode.h"
 #import "AvatarNode.h"
 #import "RepostNode.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 #import "PostImagesNode.h"
 #import "PostVideoNode.h"
 #import "PostTextNode.h"

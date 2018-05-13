@@ -7,7 +7,7 @@
 //
 
 #import "DetailPhotoViewController.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 static NSInteger const kOffsetForPreloadLatestComments = -1;
 @interface DetailPhotoViewController () <BaseTableViewControllerDataSource,

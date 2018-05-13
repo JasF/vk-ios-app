@@ -36,7 +36,7 @@
 #import "DialogsManagerImpl.h"
 #import "RowsDialogImpl.h"
 #import "CreatePostViewController.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 @implementation ScreensAssembly
 

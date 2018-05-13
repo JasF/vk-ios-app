@@ -7,7 +7,7 @@
 //
 
 #import "User.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 #import "Counters.h"
 
 @implementation WallUser

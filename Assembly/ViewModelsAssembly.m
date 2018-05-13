@@ -27,7 +27,7 @@
 #import "AuthorizationViewModelImpl.h"
 #import "DetailVideoViewModelImpl.h"
 #import "PostsViewModelImpl.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 @implementation ViewModelsAssembly
 

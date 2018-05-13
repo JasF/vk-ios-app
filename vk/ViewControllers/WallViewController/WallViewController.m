@@ -11,7 +11,7 @@
 #import "VKSdkManager.h"
 #import <VK-ios-sdk/VKSdk.h>
 #import "WallPost.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 #import "ScreensManager.h"
 
 static CGFloat const kButtonSize = 44.f;

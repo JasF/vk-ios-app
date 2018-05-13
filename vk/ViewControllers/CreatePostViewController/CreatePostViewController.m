@@ -7,7 +7,7 @@
 //
 
 #import "CreatePostViewController.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 @import MBProgressHUD;
 

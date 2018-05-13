@@ -8,7 +8,7 @@
 
 #import "LGSideMenuController.h"
 #import "MenuViewController.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 typedef NS_ENUM(NSInteger, MenuRows) {
     LentaRow,

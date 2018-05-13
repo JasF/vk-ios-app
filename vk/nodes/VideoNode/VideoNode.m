@@ -10,7 +10,7 @@
 #import "TextStyles.h"
 #import "UserNode.h"
 #import "User.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 static CGFloat const kMargin = 8.f;
 static CGFloat const kSpacing = 0;

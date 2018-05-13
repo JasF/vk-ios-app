@@ -11,7 +11,7 @@
 #import "WallViewController.h"
 #import "ChatListViewController.h"
 #import "ChatListServiceImpl.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 #import "DialogServiceImpl.h"
 #import "ChatListViewModelImpl.h"
 #import "DialogScreenViewModelImpl.h"

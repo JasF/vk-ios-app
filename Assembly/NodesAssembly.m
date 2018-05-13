@@ -21,7 +21,7 @@
 #import "AnswerNode.h"
 #import "VideoNode.h"
 #import "DocumentNode.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 @implementation NodesAssembly
 

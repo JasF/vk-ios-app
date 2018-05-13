@@ -12,7 +12,7 @@ import AsyncDisplayKit
 
 @objcMembers class AuthorizationNode : ASDisplayNode {
     let kAuthorizationButtonsSpacing: CGFloat = 30.0
-    let kAuthorizationButtonMargin: CGFloat = 30.0
+    let kAuthorizationButtonMargin: CGFloat = 40.0
     let kButtonCornerRadius: CGFloat = 4.0
     let kBottomSpacing: CGFloat = 60
     let kBottomSpacingWithoutApp: CGFloat = 90
@@ -27,16 +27,15 @@ import AsyncDisplayKit
         super.init()
         self.addSubnode(appAuthorizationButton)
         self.addSubnode(loginAuthorizationButton)
-        self.backgroundColor = UIColor(red: 41.0/255.0, green: 171.0/255.0, blue: 226.0/255.0, alpha: 1.0)
-        appAuthorizationButton.backgroundColor = UIColor(red: 169.0/255.0, green: 221.0/255.0, blue: 243.0/255.0, alpha: 1.0)
-        loginAuthorizationButton.backgroundColor = UIColor(red: 169.0/255.0, green: 221.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+        self.backgroundColor = UIColor(red: 130.0/255.0, green: 158.0/255.0, blue: 191.0/255.0, alpha: 1.0)
+        appAuthorizationButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        loginAuthorizationButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         appAuthorizationButton.setAttributedTitle(NSAttributedString.init(string: "authorize_with_app".localized, attributes: TextStyles.authorizationButtonStyle()), for: .normal)
         loginAuthorizationButton.setAttributedTitle(NSAttributedString.init(string: "authorize_with_login".localized, attributes: TextStyles.authorizationButtonStyle()), for: .normal)
         appAuthorizationButton.addTarget(self, action: #selector(authorizeByApp), forControlEvents: .touchUpInside)
         loginAuthorizationButton.addTarget(self, action: #selector(authorizeByLogin), forControlEvents: .touchUpInside)
         for button in [appAuthorizationButton, loginAuthorizationButton] {
             button.style.height = ASDimensionMake(kAuthorizationButtonMargin)
-            button.cornerRadius = kButtonCornerRadius
             button.style.flexGrow = 1
             button.style.flexShrink = 1
         }

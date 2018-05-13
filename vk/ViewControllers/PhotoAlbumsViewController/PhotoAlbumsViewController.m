@@ -8,7 +8,7 @@
 
 #import "PhotoAlbumsViewController.h"
 #import "PhotoAlbum.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 static NSInteger const kNumberOfColumns = 2;
 static CGFloat const kInteritemSpacing = 12.f;

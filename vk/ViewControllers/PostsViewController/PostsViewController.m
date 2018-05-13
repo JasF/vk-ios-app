@@ -10,7 +10,7 @@
 #import "WallPostNode.h"
 #import "CommentNode.h"
 #import "WallPost.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 #import "DialogNode.h"
 
 

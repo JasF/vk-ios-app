@@ -7,7 +7,7 @@
 //
 
 #import "PostsServiceImpl.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 #import "Comment.h"
 
 @import EasyMapping;

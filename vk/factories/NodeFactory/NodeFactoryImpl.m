@@ -15,7 +15,7 @@
 #import "Answer.h"
 #import "Video.h"
 #import "Document.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 @implementation NodeFactoryImpl {
     NodesAssembly *_assembly;

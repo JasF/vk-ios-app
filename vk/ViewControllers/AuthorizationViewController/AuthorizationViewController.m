@@ -16,7 +16,7 @@
 //
 
 #import "AuthorizationViewController.h"
-#import "vk-Swift.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface AuthorizationViewController ()
 @property id<AuthorizationViewModel> viewModel;
