@@ -29,6 +29,7 @@ CF_INLINE bool IsEqualFloat(float a, float b) { return ABS(a - b) < pow(10, -10)
     CGPoint _panStartPosition;
 }
 @property BOOL animating;
+@property CGFloat initialZoomScale;
 @end
 
 @implementation MWZoomingScrollView
@@ -284,8 +285,9 @@ CF_INLINE bool IsEqualFloat(float a, float b) { return ABS(a - b) < pow(10, -10)
     self.maximumZoomScale = maxScale;
     self.minimumZoomScale = minScale;
     
+    self.initialZoomScale = [self initialZoomScaleWithMinScale];
     // Initial zoom
-    self.zoomScale = [self initialZoomScaleWithMinScale];
+    self.zoomScale = self.initialZoomScale;
     
     // If we're zooming to fill then centralise
     if (self.zoomScale != minScale) {
@@ -499,7 +501,7 @@ CF_INLINE bool IsEqualFloat(float a, float b) { return ABS(a - b) < pow(10, -10)
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if ([gestureRecognizer isEqual:_panGestureRecognizer]) {
-        if (IsEqualFloat(_photoImageView.frame.size.width, self.frame.size.width)) {
+        if (IsEqualFloat(_photoImageView.frame.size.width, self.frame.size.width) || _photoImageView.frame.size.width < self.frame.size.width  || IsEqualFloat(self.zoomScale, self.initialZoomScale)) {
             CGPoint velocity = [_panGestureRecognizer velocityInView:self];
             if (fabs(velocity.y) > fabs(velocity.x)) {
                 return YES;

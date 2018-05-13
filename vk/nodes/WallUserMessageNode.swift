@@ -104,10 +104,8 @@ import NMessenger
             }
             return "group_enter"
         }
-        else if user?.type == "event" {
-            return ""
-        }
-        return "";
+        else if user?.type == "event" {}
+        return "add_to_friends"
     }
     
     func leaveString() -> String {
