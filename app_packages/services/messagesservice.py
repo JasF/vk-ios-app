@@ -121,6 +121,7 @@ class MessagesService(AddMessageProtocol):
             #print('handle incoming message: peerId: ' + str(peerId) + '; fromId: ' + str(fromId) + '; randomId: ' + str(randomId))
             if not msgExists:
                 msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
+                dialogservice.parseTagsOnItems([msg])
             for d in self.newMessageSubscribers:
                 d.handleIncomingMessage(msg)
             if not msgExists:
@@ -140,6 +141,7 @@ class MessagesService(AddMessageProtocol):
         try:
             self.saveMessageToCache(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
             msg = self.messageDictionary(messageId, isOut, peerId, fromId, timestamp, text, read_state, randomId, attachments)
+            dialogservice.parseTagsOnItems([msg])
             for d in self.newMessageSubscribers:
                 d.handleEditMessage(msg)
         except:

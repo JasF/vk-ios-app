@@ -3,9 +3,23 @@ from caches.messagesdatabase import MessagesDatabase
 from services.usersdecorator import UsersDecorator
 from postproc import textpatcher
 
+def parseTagsOnItems(l):
+    try:
+        if not isinstance(l, list):
+            raise ValueError('incorrect usage of parseTagsOnItems')
+            return
+        print('parseTagsOnItems l: ' + json.dumps(l, indent=4))
+        for d in l:
+            text = d.get('body')
+            if isinstance(text, str):
+                d['body'] = text.replace('<br>', '\n')
+    except Exception as e:
+        print('parseTagsOnItems exception: ' + str(e))
+
 def updateMessagesResponseWithUsers(response):
     try:
         l = response['items']
+        parseTagsOnItems(l)
         #print('updateMessagesResponseWithUsers content: ' + json.dumps(l, indent=4))
         for d in l:
             atts = d.get('attachments')
@@ -62,6 +76,7 @@ def updateMessagesResponseWithUsers(response):
     except Exception as e:
         print('updateMessagesResponseWithUsers exception: ' + str(e))
 
+
 class DialogService:
     def __init__(self):
         self.batchSize = 20
@@ -85,6 +100,7 @@ class DialogService:
             response = self.api.messages.getHistory(user_id=userId, offset=offset, count=self.batchSize)
             updateMessagesResponseWithUsers(response)
             l = response["items"]
+            parseTagsOnItems(l)
             messages.update(l)
             messages.close()
     
