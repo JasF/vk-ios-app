@@ -24,11 +24,7 @@
 "repost_enter_message"="Введите комментарий";
 "repost_for_friends"="Рассказать друзьям";
 "repost_as_message"="Отправить сообщением";
-"friends"="Друзья";
 "followers"="Подписчики";
-"groups"="Группы";
-"photos"="Фотографии";
-"videos"="Видео";
 "interest_pages"="Страниц";
 "send_message"="Сообщение";
 "is_your_friend"="У Вас в друзьях";
@@ -40,7 +36,6 @@
 "today_at_"="сегодня в ";
 "photoalbum_photos"="фото";
 "video_views"="Просмотров";
-"preload_\(preload)_from_\(remaining)_comments"="Показать \(preload) из \(remaining) комментариев";
 "preload_comments_first"="Показать ";
 "preload_comments_second"=" из ";
 "preload_comments_third"=" комментариев";
