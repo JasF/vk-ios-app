@@ -43,6 +43,7 @@ extension BaseChatViewController: ChatCollectionViewLayoutDelegate {
             let cell = presenter.dequeueCell(collectionView:self.genericCollectionView, indexPath: indexPath)
             let decorationAttributes = self.decorationAttributesForIndexPath(indexPath)
             presenter.configureCell(cell, decorationAttributes: decorationAttributes)
+            cell.selectionStyle = .none
             return cell
         }
     }
