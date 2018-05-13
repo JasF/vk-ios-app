@@ -111,6 +111,7 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
 }
 
 - (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
     switch (indexPath.row) {
         case ExitRow: {
             [_viewModel exitTapped];

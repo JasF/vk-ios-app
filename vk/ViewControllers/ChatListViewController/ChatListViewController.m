@@ -64,6 +64,7 @@
 
 #pragma mark - ASCollectionNodeDelegate
 - (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
     Dialog *item = self.objectsArray[indexPath.row];
     if (!item) {
         return;

@@ -19,4 +19,5 @@
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory;
 - (void)reloadData;
 - (void)performBatchAnimated:(BOOL)animated;
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 @end

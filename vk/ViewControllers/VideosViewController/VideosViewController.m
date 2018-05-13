@@ -56,6 +56,7 @@
 
 #pragma mark - ASCollectionNodeDelegate
 - (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
     Video *video = self.objectsArray[indexPath.row];
     if (!video) {
         return;

@@ -16,6 +16,7 @@ static const NSInteger kBatchSize = 20;
 @interface BaseTableViewController () <ASTableDelegate, ASTableDataSource>
 @property NSMutableArray *data;
 @property (assign, nonatomic) BOOL updating;
+@property NSIndexPath *selectedIndexPath;
 @end
 
 @implementation BaseTableViewController {
@@ -52,6 +53,14 @@ static const NSInteger kBatchSize = 20;
     [super viewDidLoad];
     _tableNode.leadingScreensForBatching = 2;
     _tableNode.view.separatorColor = [UIColor clearColor];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    if (self.selectedIndexPath) {
+        [self.tableNode deselectRowAtIndexPath:self.selectedIndexPath animated:NO];
+        self.selectedIndexPath = nil;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -169,6 +178,11 @@ static const NSInteger kBatchSize = 20;
         self.updating = NO;
     }];
 }
+
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedIndexPath = indexPath;
+}
+
 #pragma mark - Public Methods
 - (NSArray *)objectsArray {
     return _data;

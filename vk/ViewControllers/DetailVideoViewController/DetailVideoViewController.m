@@ -102,6 +102,7 @@ ASCollectionDelegate, ASCollectionDataSource, DetailVideoViewModelDelegate>
 
 #pragma mark - ASCollectionNodeDelegate
 - (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
     if (!indexPath.section && self.sectionsArray) {
         NSArray *section = self.sectionsArray[0];
         NSCAssert(indexPath.row < section.count, @"Unknown indexPath: %@", indexPath);

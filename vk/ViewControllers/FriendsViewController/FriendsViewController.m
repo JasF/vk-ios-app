@@ -54,6 +54,7 @@
 
 #pragma mark - ASCollectionNodeDelegate
 - (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
     User *user = self.objectsArray[indexPath.row];
     if (!user) {
         return;

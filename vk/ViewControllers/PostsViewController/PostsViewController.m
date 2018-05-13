@@ -62,6 +62,7 @@
 }
 
 - (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
     ASCellNode *cellNode = [tableNode nodeForRowAtIndexPath:indexPath];
     if ([cellNode isKindOfClass:[AvatarNameDateNode class]]) {
         AvatarNameDateNode *node = (AvatarNameDateNode *)cellNode;
