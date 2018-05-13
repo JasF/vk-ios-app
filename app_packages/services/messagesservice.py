@@ -185,7 +185,7 @@ class MessagesService(AddMessageProtocol):
 
 
     def handleMessageAddFlags(self, messageId, flags):
-        if MessageFlags(flags) & MessageFlags.DELETED_FOR_ALL:
+        if MessageFlags(flags) & MessageFlags.DELETED_FOR_ALL or MessageFlags(flags) & MessageFlags.DELETED:
             try:
                 messages = MessagesDatabase()
                 messages.remove(messageId)

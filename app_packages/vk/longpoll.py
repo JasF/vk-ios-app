@@ -68,7 +68,7 @@ class LongPoll:
                 #print('longpoll request: ' + str(url))
                 response = requests_session.get(url, timeout=timeout+5)
                 jsonDict = response.json()
-                print('longpoll response: ' + json.dumps(jsonDict, indent=4))
+                #print('longpoll response: ' + json.dumps(jsonDict, indent=4))
                 if self.longPollThread != currentThread:
                     print('LongPollThread is changed. Current session is invalid! Returning...')
                     return
@@ -110,7 +110,7 @@ class LongPoll:
             response = api.messages.getLongPollHistory(ts=self.ts, pts=self.pts)
             history = response.get('history')
             messages = response.get('messages')
-            print('longpoll response is: ' + str(response))
+            #print('longpoll response is: ' + str(response))
             if isinstance(messages, dict):
                 l = messages.get('items')
                 if isinstance(l, list):
