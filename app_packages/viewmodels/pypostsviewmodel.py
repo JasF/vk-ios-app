@@ -202,9 +202,9 @@ class PyPostsViewModel(ObjCBridgeProtocol):
             elif items[index] == 'it_is_not_interesting':
                 self.guiDelegate.hideOptionsNode()
                 self.ignoreItem('post', ownerId, postId)
-                pass
             elif items[index] == 'hide_source_news':
-                pass
+                self.guiDelegate.hideOptionsNode()
+                self.hideSource(ownerId)
         except Exception as e:
             print('optionsTappedWithPostIdownerId exception: ' + str(e))
 
@@ -223,11 +223,28 @@ class PyPostsViewModel(ObjCBridgeProtocol):
             results = api.newsfeed.ignoreItem(type=type, owner_id=ownerId, item_id=itemId)
             print('ignoreItem result: ' + str(results) + '; ownerId: ' + str(ownerId) + '; itemId: ' + str(itemId))
         except Exception as e:
-            print('exception: ' + str(e))
+            print('ignoreItem exception: ' + str(e))
         if not isinstance(results, int) or results != 1:
             dialogsManager = PyDialogsManager()
             dialogsManager.showDialogWithMessage('error_ignore_item')
 
+    def hideSource(self, userId):
+        results = 0
+        try:
+            api = vk.api()
+            if userId > 0:
+                results = api.newsfeed.addBan(user_ids=userId)
+            elif userId < 0:
+                results = api.newsfeed.addBan(group_ids=abs(userId))
+            else:
+                raise ValueError('userId on hideSource is 0')
+        except Exception as e:
+            print('hideSource exception: ' + str(e))
+    
+        if not isinstance(results, int) or results != 1:
+            dialogsManager = PyDialogsManager()
+            dialogsManager.showDialogWithMessage('error_ignore_item')
+                
     def report(self, type, ownerId, itemId):
         response = False
         results = 0
