@@ -13,6 +13,10 @@
 #import "Photo.h"
 #import "Oxy_Feed-Swift.h"
 
+@protocol PyPostsViewModelDelegate <NSObject>
+- (void)copyUrl:(NSString *)url;
+@end
+
 @interface PostsViewModelImpl () <PostsViewModel>
 @property id<PyPostsViewModel> handler;
 @property id<PostsService> postsService;
@@ -291,4 +295,17 @@
         [self.handler tappedOnVideoWithId:@(video.id) ownerId:@(video.owner_id) representation:representation];
     });
 }
+
+- (void)optionsTappedWithPost:(WallPost *)post {
+    dispatch_python(^{
+        [self.handler optionsTappedWithPostId:@(post.identifier) ownerId:@(post.owner_id)];
+    });
+}
+
+#pragma mark - PyPostsViewModelDelegate
+- (void)copyUrl:(NSString *)url {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = url;
+}
+
 @end

@@ -21,6 +21,7 @@
 - (void)postNode:(WallPostNode *)node tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post;
 - (void)postNode:(WallPostNode *)node tappedOnPhotoItemWithIndex:(NSInteger)index withPost:(WallPost *)post;
 - (void)postNode:(WallPostNode *)node tappedOnVideo:(Video *)video;
+- (void)postNode:(WallPostNode *)node optionsTappedWithPost:(WallPost *)post;
 @end
 
 @interface WallPostNode : PostBaseNode

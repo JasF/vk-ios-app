@@ -4,16 +4,20 @@ from objcbridge import BridgeBase, ObjCBridgeProtocol
 import vk, json, analytics
 from caches.postsdatabase import PostsDatabase
 from caches.videosdatabase import VideosDatabase
-import threading
+import threading, traceback
 from pymanagers.pydialogsmanager import PyDialogsManager
 from constants import g_CommentsCount
 from vk import users
 
+class PyPostsViewModelDelegate(BridgeBase):
+    pass
+
 class PyPostsViewModel(ObjCBridgeProtocol):
-    def __init__(self, wallPostService, detailPhotoService, detailVideoService):
+    def __init__(self, wallPostService, detailPhotoService, detailVideoService, delegateId):
         self.wallPostService = wallPostService
         self.detailPhotoService = detailPhotoService
         self.detailVideoService = detailVideoService
+        self.guiDelegate = PyPostsViewModelDelegate(delegateId)
 
     def likeObjectWithTypeownerIditemIdaccessKeylike(self, type, ownerId, itemId, accessKey, like):
         analytics.log('Posts_like')
@@ -176,6 +180,74 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         except Exception as e:
             print('tappedOnVideoWithIdownerIdrepresentation exception: ' + str(e))
         managers.shared().screensManager().showDetailVideoViewControllerWithOwnerId_videoId_(args=[ownerId, videoId])
+
+    def optionsTappedWithPostIdownerId(self, postId, ownerId):
+        try:
+            dialogsManager = PyDialogsManager()
+            items = ['copy_url']
+            if ownerId != vk.userId():
+                items.append('report')
+                # если новостная лента, скрываем новости источника (опционально)
+                items.append('ignore_item')
+            index, cancelled = dialogsManager.showRowsDialogWithTitles(items)
+            if cancelled:
+                return
+            if items[index] == 'copy_url':
+                self.guiDelegate.copyUrl_(args=['https://vk.com/id' + str(ownerId)])
+                pass
+            elif items[index] == 'report':
+                self.report('post', ownerId, postId)
+                pass
+            elif items[index] == 'ignore_item':
+                pass
+        except Exception as e:
+            print('optionsTappedWithPostIdownerId exception: ' + str(e))
+
+    def report(self, type, ownerId, itemId):
+        response = False
+        results = {}
+        dialogsManager = PyDialogsManager()
+        try:
+            api = vk.api()
+            if type == 'post':
+                results = api.wall.reportPost(owner_id=ownerId, post_id=itemId)
+            elif type == 'user':
+                items = ['porn','spam','insult','advertisment']
+                index, cancelled = dialogsManager.showRowsDialogWithTitles(items)
+                if cancelled:
+                    return
+                type = items[index]
+                message, cancelled = dialogsManager.showTextFieldDialogWithText('enter_report_message')
+                if cancelled:
+                    return
+                results = api.users.report(user_id=ownerId, type=type, comment=message)
+            elif type == 'photo':
+                results = api.photos.report(owner_id=ownerId, photo_id=itemId)
+            elif type == 'video':
+                message, cancelled = dialogsManager.showTextFieldDialogWithText('enter_report_message')
+                if cancelled:
+                    return
+                results = api.video.report(owner_id=ownerId, video_id=itemId, comment=message)
+            elif type == 'post_comment':
+                results = api.wall.reportComment(owner_id=ownerId, comment_id=itemId)
+            elif type == 'photo_comment':
+                results = api.photos.reportComment(owner_id=ownerId, comment_id=itemId)
+            elif type == 'video_comment':
+                results = api.video.reportComment(owner_id=ownerId, comment_id=itemId)
+
+            if results['response'] == 1:
+                response = True
+        
+        except Exception as e:
+            print('posts report exception: ' + str(e))
+
+        if response == False:
+            print('report send failed with results: ' + str(results))
+            dialogsManager = PyDialogsManager()
+            dialogsManager.showDialogWithMessage('error_reporting')
+        else:
+            print('report sended successfully for type: ' + str(type))
+        pass
     
     # ObjCBridgeProtocol
     def release(self):

@@ -35,6 +35,8 @@
 - (void)tappedOnVideoWithId:(NSNumber *)videoId
                     ownerId:(NSNumber *)ownerId
              representation:(NSDictionary *)representation;
+- (void)optionsTappedWithPostId:(NSNumber *)postId
+                        ownerId:(NSNumber *)ownerId;
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>

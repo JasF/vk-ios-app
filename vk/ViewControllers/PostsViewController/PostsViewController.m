@@ -136,6 +136,12 @@
     }
 }
 
+- (void)postNode:(WallPostNode *)node optionsTappedWithPost:(WallPost *)post {
+    if ([_postsViewModel respondsToSelector:@selector(optionsTappedWithPost:)]) {
+        [_postsViewModel optionsTappedWithPost:post];
+    }
+}
+
 #pragma mark - CommentNodeDelegate
 - (void)commentNode:(CommentNode *)node
        tappedOnUser:(User *)user {

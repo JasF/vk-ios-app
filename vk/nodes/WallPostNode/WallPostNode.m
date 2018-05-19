@@ -56,6 +56,7 @@ extern CGFloat const kControlsSize;
 {
     NSCParameterAssert(post);
     NSCParameterAssert(nodeFactory);
+
     
     self = [super initWithEmbedded:embedded.boolValue likesCount:post.likes.count liked:post.likes.user_likes repostsCount:post.reposts.count reposted:post.reposts.user_reposted commentsCount:post.comments.count];
     if (self) {
@@ -170,14 +171,11 @@ extern CGFloat const kControlsSize;
         
         // Bottom controls
         if (!_embedded) {
-            
-            /*
             _optionsNode = [[ASImageNode alloc] init];
             _optionsNode.image = [UIImage imageNamed:@"icon_more"];
             _optionsNode.contentMode = UIViewContentModeCenter;
             [_optionsNode addTarget:self action:@selector(optionsTapped:) forControlEvents:ASControlNodeEventTouchUpInside];
             [self addSubnode:_optionsNode];
-            */
             
             _bottomSeparator = [ASDisplayNode new];
             _bottomSeparator.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
@@ -316,24 +314,40 @@ extern CGFloat const kControlsSize;
 }
 
 - (void)optionsTapped:(id)sender {
-    
+    if ([self.delegate respondsToSelector:@selector(postNode:optionsTappedWithPost:)]) {
+        [self.delegate postNode:self optionsTappedWithPost:self.post];
+    }
 }
 
 - (void)titleNodeClicked:(id)sender {
-    [self.delegate titleNodeTapped:self.post];
+    if ([self.delegate respondsToSelector:@selector(titleNodeTapped:)]) {
+        [self.delegate titleNodeTapped:self.post];
+    }
 }
 
 #pragma mark - WallPostNodeDelegate
 - (void)titleNodeTapped:(WallPost *)post {
-    [self.delegate titleNodeTapped:post];
+    if ([self.delegate respondsToSelector:@selector(titleNodeTapped:)]) {
+        [self.delegate titleNodeTapped:post];
+    }
 }
 
 - (void)postNode:(WallPostNode *)node tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post {
-    [self.delegate postNode:node tappedOnPhotoWithIndex:index withPost:post];
+    if ([self.delegate respondsToSelector:@selector(postNode:tappedOnPhotoWithIndex:withPost:)]) {
+        [self.delegate postNode:node tappedOnPhotoWithIndex:index withPost:post];
+    }
 }
 
 - (void)postNode:(WallPostNode *)node tappedOnVideo:(Video *)video {
-    [self.delegate postNode:node tappedOnVideo:video];
+    if ([self.delegate respondsToSelector:@selector(postNode:tappedOnVideo:)]) {
+        [self.delegate postNode:node tappedOnVideo:video];
+    }
+}
+
+- (void)postNode:(WallPostNode *)node optionsTappedWithPost:(WallPost *)post {
+    if ([self.delegate respondsToSelector:@selector(postNode:optionsTappedWithPost:)]) {
+        [self.delegate postNode:self optionsTappedWithPost:post];
+    }
 }
 
 @end

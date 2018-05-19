@@ -69,3 +69,16 @@
 "title_images_viewer"="Photo";
 "title_gallery"="Photos";
 "title_photo_albums"="Photo albums";
+"copy_url"="Copy Link";
+"report"="Report";
+"porn"="Порнография";
+"spam"="Спам";
+"insult"="Оскорбительное поведение";
+"advertisment"="Реклама";
+"enter_report_message"="Комментарий";
+"porn"="Adult material";
+"spam"="Spam";
+"insult"="Insult";
+"advertisment"="Advertisement";
+"enter_report_message"="Comment";
+"error_reporting"="An unknown error has ocurred";

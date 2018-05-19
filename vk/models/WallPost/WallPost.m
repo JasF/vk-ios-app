@@ -118,6 +118,9 @@
 }
 
 - (NSInteger)validId {
+    if (_from_id) {
+        return _from_id;
+    }
     if (_source_id) {
         return _source_id;
     }

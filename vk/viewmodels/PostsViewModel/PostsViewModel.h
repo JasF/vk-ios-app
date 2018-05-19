@@ -23,4 +23,5 @@
 - (void)tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post;
 - (void)tappedOnPhotoItemWithIndex:(NSInteger)index withPost:(WallPost *)post;
 - (void)tappedOnVideo:(Video *)video;
+- (void)optionsTappedWithPost:(WallPost *)post;
 @end
