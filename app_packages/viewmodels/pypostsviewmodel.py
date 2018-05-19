@@ -292,18 +292,40 @@ class PyPostsViewModel(ObjCBridgeProtocol):
             print('report sended successfully for type: ' + str(type))
         pass
 
-    def tappedOnCommentWithOwnerIdcommentIdtype(self, ownerId, commentId, type):
+    def tappedOnCommentWithOwnerIdcommentIdtypeparentItemOwnerId(self, ownerId, commentId, type, parentItemOwnerId):
         try:
             items = []
             dialogsManager = PyDialogsManager()
             items.append('report')
+            if parentItemOwnerId == vk.userId():
+                items.append('comment_delete')
             index, cancelled = dialogsManager.showRowsDialogWithTitles(items)
             if cancelled:
                 return
             if index == 0:
                 self.report(type, ownerId, commentId)
+            elif index == 1:
+                self.deleteComment(type, ownerId, commentId, parentItemOwnerId)
         except Exception as e:
             print('tappedOnCommentWithOwnerIdcommentId exception: ' + str(e))
+
+    def deleteComment(self, type, ownerId, commentId, parentItemOwnerId):
+        results = 0
+        try:
+            api = vk.api()
+            if type == 'post_comment':
+                results = api.wall.deleteComment(owner_id=parentItemOwnerId, comment_id=commentId)
+            elif type == 'photo_comment':
+                results = api.photos.deleteComment(owner_id=parentItemOwnerId, comment_id=commentId)
+            elif type == 'video_comment':
+                results = api.video.deleteComment(owner_id=parentItemOwnerId, comment_id=commentId)
+        except Exception as e:
+            print('deleteComment exception: ' + str(e))
+        if not isinstance(results, int) or results != 1:
+            dialogsManager = PyDialogsManager()
+            dialogsManager.showDialogWithMessage('error_delete_comment')
+        else:
+            self.guiDelegate.commentDeleted()
 
     # ObjCBridgeProtocol
     def release(self):

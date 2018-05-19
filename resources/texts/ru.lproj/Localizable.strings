@@ -82,3 +82,5 @@
 "it_is_not_interesting"="Это не интересно";
 "hide_source_news"="Скрыть новости источника";
 "error_ignore_item"="При скрытии записи произошла ошибка";
+"comment_delete"="Удалить комментарий";
+"error_delete_comment"="Не удалось удалить комментарий";

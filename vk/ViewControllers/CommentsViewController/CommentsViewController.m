@@ -318,9 +318,11 @@ static NSInteger const kNumberOfCommentsForPreload = 40;
         }
         CommentNode *commentsCell = (CommentNode *)cell;
         Comment *comment = commentsCell.comment;
-        [self.postsViewModel tappedOnCommentWithOwnerId:comment.from_id
-                                              commentId:comment.id
-                                                   type:type];
+        
+        [self.postsViewModel tappedOnComment:comment
+                                  parentItem:self.commentsParentItem
+                                        type:type
+                                   indexPath:indexPath];
     }
     [tableNode deselectRowAtIndexPath:indexPath animated:NO];
 }

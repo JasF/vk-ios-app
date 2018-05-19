@@ -81,3 +81,5 @@
 "it_is_not_interesting"="It is not interesting";
 "hide_source_news"="Hide all records";
 "error_ignore_item"="An unknown error has ocurred";
+"comment_delete"="Delete";
+"error_delete_comment"="Unable to delete comment";

@@ -40,7 +40,8 @@
            isNewsViewController:(NSNumber *)isNewsViewController;
 - (void)tappedOnCommentWithOwnerId:(NSNumber *)ownerId
                          commentId:(NSNumber *)commentId
-                              type:(NSString *)type;
+                              type:(NSString *)type
+                 parentItemOwnerId:(NSNumber *)parentItemOwnerId;
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>

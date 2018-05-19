@@ -16,12 +16,14 @@
 @protocol PyPostsViewModelDelegate <NSObject>
 - (void)copyUrl:(NSString *)url;
 - (void)hideOptionsNode;
+- (void)commentDeleted;
 @end
 
 @interface PostsViewModelImpl () <PostsViewModel>
 @property id<PyPostsViewModel> handler;
 @property id<PostsService> postsService;
 @property (strong, nonatomic) NSIndexPath *optionsCellIndexPath;
+@property (strong, nonatomic) id optionsParentItem;
 @end
 
 @implementation PostsViewModelImpl
@@ -313,14 +315,37 @@
     });
 }
 
-- (void)tappedOnCommentWithOwnerId:(NSInteger)ownerId
-                         commentId:(NSInteger)commentId
-                              type:(NSString *)type {
+- (void)tappedOnComment:(Comment *)comment
+             parentItem:(id)parentItem
+                   type:(NSString *)type
+              indexPath:(NSIndexPath *)indexPath {
+    NSCParameterAssert(comment);
+    NSCParameterAssert(parentItem);
     NSCParameterAssert(type);
+    NSNumber *ownerId = nil;
+    if ([parentItem isKindOfClass:[WallPost class]]) {
+        WallPost *post = (WallPost *)parentItem;
+        ownerId = @(post.getOwnerId);
+    }
+    else if ([parentItem isKindOfClass:[Photo class]]) {
+        Photo *photo = (Photo *)parentItem;
+        ownerId = @(photo.owner_id);
+    }
+    else if ([parentItem isKindOfClass:[Video class]]) {
+        Video *video = (Video *)parentItem;
+        ownerId = @(video.owner_id);
+    }
+    NSCAssert(ownerId, @"cannot determine owner_id from: %@", parentItem);
+    if (!ownerId) {
+        return;
+    }
+    _optionsParentItem = parentItem;
+    _optionsCellIndexPath = indexPath;
     dispatch_python(^{
-        [self.handler tappedOnCommentWithOwnerId:@(ownerId)
-                                       commentId:@(commentId)
-                                            type:type];
+        [self.handler tappedOnCommentWithOwnerId:@(comment.from_id)
+                                       commentId:@(comment.id)
+                                            type:type
+                               parentItemOwnerId:ownerId];
     });
 }
 
@@ -340,4 +365,32 @@
     });
     _optionsCellIndexPath = nil;
 }
+
+- (void)commentDeleted {
+    NSIndexPath *indexPath = _optionsCellIndexPath;
+    
+    if ([_optionsParentItem isKindOfClass:[WallPost class]]) {
+        WallPost *post = (WallPost *)_optionsParentItem;
+        post.comments.count = post.comments.count - 1;
+    }
+    else if ([_optionsParentItem isKindOfClass:[Photo class]]) {
+        Photo *photo = (Photo *)_optionsParentItem;
+        photo.comments.count = photo.comments.count - 1;
+    }
+    else if ([_optionsParentItem isKindOfClass:[Video class]]) {
+        Video *video = (Video *)_optionsParentItem;
+        video.comments = video.comments - 1;
+    }
+    else {
+        NSCAssert(false, @"unknown parent item for deleted comment");
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self.delegate respondsToSelector:@selector(hideNodeAtIndexPath:)]) {
+            [self.delegate hideNodeAtIndexPath:indexPath];
+        }
+    });
+    _optionsCellIndexPath = nil;
+    _optionsParentItem = nil;
+}
+
 @end
