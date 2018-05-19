@@ -16,7 +16,7 @@
 
 static CGFloat const kButtonSize = 44.f;
 
-@interface WallViewController () <BaseTableViewControllerDataSource, WallUserScrollNodeDelegate, WallUserMessageNodeDelegate, ViewControllerActionsExtension>
+@interface WallViewController () <BaseViewControllerDataSource, WallUserScrollNodeDelegate, WallUserMessageNodeDelegate, ViewControllerActionsExtension>
 @property (strong, nonatomic) id<WallViewModel> viewModel;
 @property (weak, nonatomic) WallUserScrollNode *scrollNode;
 
@@ -110,7 +110,7 @@ static CGFloat const kButtonSize = 44.f;
     }
 }
 
-#pragma mark - BaseTableViewControllerDataSource
+#pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     if (!self.sectionsArray) {

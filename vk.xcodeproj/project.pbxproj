@@ -485,6 +485,7 @@
 		C3703B5C209C48E800E879A1 /* MWPhotoBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3703B5B209C48E800E879A1 /* MWPhotoBrowserViewModel.swift */; };
 		C3703B5E209C4C3400E879A1 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3703B5D209C4C3400E879A1 /* utilities.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
+		C392C49F20B0456800FF8390 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C392C49E20B0456800FF8390 /* BaseViewController.m */; };
 		C3987DD42096F8BF0047A30F /* NSDate+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */; };
 		C3987DD620971B880047A30F /* AlignTopCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */; };
 		C3987DD8209733890047A30F /* AvatarNameDateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD7209733890047A30F /* AvatarNameDateNode.swift */; };
@@ -1798,6 +1799,8 @@
 		C3703B5D209C4C3400E879A1 /* utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
 		C37C0BFA2086F8140086A875 /* AvatarNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvatarNode.h; sourceTree = "<group>"; };
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
+		C392C49D20B0456800FF8390 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		C392C49E20B0456800FF8390 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Utils.swift"; sourceTree = "<group>"; };
 		C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignTopCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		C3987DD7209733890047A30F /* AvatarNameDateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarNameDateNode.swift; sourceTree = "<group>"; };
@@ -3138,6 +3141,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C392C49C20B0455800FF8390 /* BaseViewController */,
 				C3D4873820919A4F007EC440 /* AuthorizationViewController */,
 				C3987E0B2099CB480047A30F /* Chat */,
 				C3987DFB2098B9280047A30F /* CreatePostViewController */,
@@ -4855,6 +4859,15 @@
 			path = AvatarNode;
 			sourceTree = "<group>";
 		};
+		C392C49C20B0455800FF8390 /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C392C49D20B0456800FF8390 /* BaseViewController.h */,
+				C392C49E20B0456800FF8390 /* BaseViewController.m */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
 		C3987DDD20984A710047A30F /* constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -6384,6 +6397,7 @@
 				C32308CB2081AEB100CEC487 /* TyphoonStartup.m in Sources */,
 				C323091B2081AEB100CEC487 /* TyphoonCollaboratingAssembliesCollector.m in Sources */,
 				C32308C52081AEB100CEC487 /* TyphoonPlistStyleConfiguration.m in Sources */,
+				C392C49F20B0456800FF8390 /* BaseViewController.m in Sources */,
 				C3987DD42096F8BF0047A30F /* NSDate+Utils.swift in Sources */,
 				C3987E512099CB480047A30F /* BaseMessageHandler.swift in Sources */,
 				C32263072090CD920054789B /* DetailPhotoServiceImpl.m in Sources */,

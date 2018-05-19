@@ -7,12 +7,12 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "BaseCollectionViewController.h"
+#import "BaseViewController.h"
 #import "NodeFactory.h"
 #import "UIViewController+Utils.h"
 
-@interface BaseTableViewController : ASViewController <ASTableDelegate, ASTableDataSource>
-@property (weak, nonatomic) id<BaseTableViewControllerDataSource> dataSource;
+@interface BaseTableViewController : BaseViewController <ASTableDelegate, ASTableDataSource>
+@property (weak, nonatomic) id<BaseViewControllerDataSource> dataSource;
 @property id<NodeFactory> nodeFactory;
 @property ASTableNode *tableNode;
 - (NSMutableArray *)objectsArray;

@@ -144,6 +144,13 @@
     return _owner_id;
 }
 
+- (NSInteger)getOwnerId {
+    if (_owner_id != 0) {
+        return _owner_id;
+    }
+    return self.validId;
+}
+
 - (void)setUser:(User *)user {
     if (!user) {
         return;

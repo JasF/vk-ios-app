@@ -16,6 +16,7 @@
 
 @class Comment;
 @interface CommentNode : ASCellNode
+@property Comment *comment;
 @property (weak, nonatomic) id<CommentNodeDelegate> delegate;
 - (id)initWithComment:(Comment *)comment;
 @end

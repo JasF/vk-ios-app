@@ -10,7 +10,7 @@
 #import "Oxy_Feed-Swift.h"
 #import "User.h"
 
-@interface DetailVideoViewController () <BaseTableViewControllerDataSource,
+@interface DetailVideoViewController () <BaseViewControllerDataSource,
 ASCollectionDelegate, ASCollectionDataSource, DetailVideoViewModelDelegate>
 @property (strong, nonatomic) id<DetailVideoViewModel> viewModel;
 @property Video *video;
@@ -35,7 +35,7 @@ ASCollectionDelegate, ASCollectionDataSource, DetailVideoViewModelDelegate>
     return self;
 }
 
-#pragma mark - BaseTableViewControllerDataSource
+#pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     if (offset) {
@@ -114,7 +114,6 @@ ASCollectionDelegate, ASCollectionDataSource, DetailVideoViewModelDelegate>
             return;
         }
     }
-    [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
 }
 
 #pragma mark -
@@ -123,6 +122,11 @@ ASCollectionDelegate, ASCollectionDataSource, DetailVideoViewModelDelegate>
     [self videoModel].video = video;
     [self updateSections];
     [self.tableNode reloadData];
+}
+
+#pragma mark - BaseViewController
+- (ScreenType)screenType {
+    return ScreenDetailVideo;
 }
 
 @end

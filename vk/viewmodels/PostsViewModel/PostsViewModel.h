@@ -31,4 +31,5 @@
 - (void)tappedOnPhotoItemWithIndex:(NSInteger)index withPost:(WallPost *)post;
 - (void)tappedOnVideo:(Video *)video;
 - (void)optionsTappedWithPost:(WallPost *)post indexPath:(NSIndexPath *)indexPath;
+- (void)tappedOnCommentWithOwnerId:(NSInteger)ownerId commentId:(NSInteger)commentId type:(NSString *)type;
 @end

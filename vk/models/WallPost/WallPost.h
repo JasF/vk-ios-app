@@ -66,4 +66,5 @@
 @property (nonatomic) User *user;
 
 - (NSInteger)validId;
+- (NSInteger)getOwnerId;
 @end

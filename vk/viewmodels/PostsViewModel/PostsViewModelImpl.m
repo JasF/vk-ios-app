@@ -276,7 +276,7 @@
 
 - (void)tappedOnPost:(WallPost *)post {
     dispatch_python(^{
-        [_handler tappedOnPostWithOwnerId:@(post.owner_id) postId:@(post.identifier)];
+        [_handler tappedOnPostWithOwnerId:@(post.getOwnerId) postId:@(post.identifier)];
     });
 }
 
@@ -310,6 +310,17 @@
         [self.handler optionsTappedWithPostId:@(post.identifier)
                                       ownerId:@(post.owner_id)
                          isNewsViewController:@(isNewsViewController)];
+    });
+}
+
+- (void)tappedOnCommentWithOwnerId:(NSInteger)ownerId
+                         commentId:(NSInteger)commentId
+                              type:(NSString *)type {
+    NSCParameterAssert(type);
+    dispatch_python(^{
+        [self.handler tappedOnCommentWithOwnerId:@(ownerId)
+                                       commentId:@(commentId)
+                                            type:type];
     });
 }
 

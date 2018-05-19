@@ -11,6 +11,11 @@
 #import "Comment.h"
 #import "Oxy_Feed-Swift.h"
 #import "RSSwizzle.h"
+#import "WallPostViewController.h"
+#import "DetailVideoViewController.h"
+#import "DetailPhotoViewController.h"
+#import "CommentNode.h"
+#import "Comment.h"
 
 static NSInteger const kNumberOfCommentsForPreload = 40;
 
@@ -295,6 +300,29 @@ static NSInteger const kNumberOfCommentsForPreload = 40;
                                                                }];
                                       
                                   }];
+}
+
+
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSCAssert(self.postsViewModel, @"PostsViewModel must be exists");
+    [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
+    ASCellNode *cell = [tableNode nodeForRowAtIndexPath:indexPath];
+    if ([cell isKindOfClass:[CommentNode class]]) {
+        NSDictionary *types = @{@(ScreenWallPost): @"post_comment",
+                                @(ScreenDetailPhoto): @"photo_comment",
+                                @(ScreenDetailVideo): @"video_comment"};
+        NSString *type = types[@(self.screenType)];
+        NSCAssert(type, @"This view controller currently unsupported");
+        if (!type) {
+            return;
+        }
+        CommentNode *commentsCell = (CommentNode *)cell;
+        Comment *comment = commentsCell.comment;
+        [self.postsViewModel tappedOnCommentWithOwnerId:comment.from_id
+                                              commentId:comment.id
+                                                   type:type];
+    }
+    [tableNode deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - UITableViewDelegate

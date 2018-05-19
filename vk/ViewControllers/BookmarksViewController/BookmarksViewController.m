@@ -8,7 +8,7 @@
 
 #import "BookmarksViewController.h"
 
-@interface BookmarksViewController ()<BaseTableViewControllerDataSource>
+@interface BookmarksViewController ()<BaseViewControllerDataSource>
 @property id<BookmarksViewModel> viewModel;
 @end
 
@@ -42,7 +42,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - BaseTableViewControllerDataSource
+#pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getBookmarks:offset

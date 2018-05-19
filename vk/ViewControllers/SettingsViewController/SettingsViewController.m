@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
     RowsCount
 };
 
-@interface SettingsViewController () <BaseTableViewControllerDataSource>
+@interface SettingsViewController () <BaseViewControllerDataSource>
 @property id<SettingsViewModel> viewModel;
 @property Settings *settings;
 @end
@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - BaseTableViewControllerDataSource
+#pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     if (offset || self.settings) {

@@ -38,6 +38,9 @@
 - (void)optionsTappedWithPostId:(NSNumber *)postId
                         ownerId:(NSNumber *)ownerId
            isNewsViewController:(NSNumber *)isNewsViewController;
+- (void)tappedOnCommentWithOwnerId:(NSNumber *)ownerId
+                         commentId:(NSNumber *)commentId
+                              type:(NSString *)type;
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>

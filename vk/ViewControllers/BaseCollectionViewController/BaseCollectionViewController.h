@@ -7,16 +7,12 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "BaseViewController.h"
 #import "NodeFactory.h"
 #import "UIViewController+Utils.h"
 
-@protocol BaseTableViewControllerDataSource <NSObject>
-- (void)getModelObjets:(void(^)(NSArray *objects))completion
-                offset:(NSInteger)offset;
-@end
-
-@interface BaseCollectionViewController : ASViewController <ASCollectionDelegate, ASCollectionDataSource>
-@property (weak, nonatomic) id<BaseTableViewControllerDataSource> dataSource;
+@interface BaseCollectionViewController : BaseViewController <ASCollectionDelegate, ASCollectionDataSource>
+@property (weak, nonatomic) id<BaseViewControllerDataSource> dataSource;
 @property id<NodeFactory> nodeFactory;
 @property ASCollectionNode *collectionNode;
 @property (nonatomic) UICollectionViewFlowLayout *layout;

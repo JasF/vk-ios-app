@@ -15,7 +15,7 @@
 
 static NSInteger const kOffsetForPreloadLatestComments = -1;
 
-@interface WallPostViewController () <BaseTableViewControllerDataSource,
+@interface WallPostViewController () <BaseViewControllerDataSource,
 ASCollectionDelegate, ASCollectionDataSource>
 @property (strong, nonatomic) id<WallPostViewModel> viewModel;
 @property WallPost *post;
@@ -61,7 +61,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     }
 }
 
-#pragma mark - BaseTableViewControllerDataSource
+#pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     if (offset || self.commentsEmpty) {
@@ -115,6 +115,11 @@ ASCollectionDelegate, ASCollectionDataSource>
 #pragma mark - PostsViewController
 - (void)numberOfCommentsDidUpdated:(NSInteger)numberOfComments {
    
+}
+
+#pragma mark - BaseViewController
+- (ScreenType)screenType {
+    return ScreenWallPost;
 }
 
 @end

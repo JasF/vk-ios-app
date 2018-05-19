@@ -276,7 +276,8 @@ class PyPostsViewModel(ObjCBridgeProtocol):
                 results = api.photos.reportComment(owner_id=ownerId, comment_id=itemId)
             elif type == 'video_comment':
                 results = api.video.reportComment(owner_id=ownerId, comment_id=itemId)
-
+            else:
+                raise ValueError('unsupported type of item for report')
             if isinstance(results, int) and results == 1:
                 response = True
         
@@ -290,7 +291,20 @@ class PyPostsViewModel(ObjCBridgeProtocol):
             dialogsManager.showDialogWithMessage('report_sended_successfully')
             print('report sended successfully for type: ' + str(type))
         pass
-    
+
+    def tappedOnCommentWithOwnerIdcommentIdtype(self, ownerId, commentId, type):
+        try:
+            items = []
+            dialogsManager = PyDialogsManager()
+            items.append('report')
+            index, cancelled = dialogsManager.showRowsDialogWithTitles(items)
+            if cancelled:
+                return
+            if index == 0:
+                self.report(type, ownerId, commentId)
+        except Exception as e:
+            print('tappedOnCommentWithOwnerIdcommentId exception: ' + str(e))
+
     # ObjCBridgeProtocol
     def release(self):
         pass

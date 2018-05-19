@@ -8,7 +8,7 @@
 
 #import "NewsViewController.h"
 
-@interface NewsViewController () <BaseTableViewControllerDataSource, PostsViewModelDelegate>
+@interface NewsViewController () <BaseViewControllerDataSource, PostsViewModelDelegate>
 @property id<NewsViewModel> viewModel;
 @end
 
@@ -37,7 +37,7 @@
     [_viewModel menuTapped];
 }
 
-#pragma mark - BaseTableViewControllerDataSource
+#pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getNewsWithOffset:offset

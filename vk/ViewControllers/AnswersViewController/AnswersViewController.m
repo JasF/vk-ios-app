@@ -8,7 +8,7 @@
 
 #import "AnswersViewController.h"
 
-@interface AnswersViewController () <BaseTableViewControllerDataSource>
+@interface AnswersViewController () <BaseViewControllerDataSource>
 @property id<AnswersViewModel> viewModel;
 @end
 
@@ -42,7 +42,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - BaseTableViewControllerDataSource
+#pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getAnswers:offset

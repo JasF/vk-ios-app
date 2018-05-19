@@ -17,7 +17,6 @@ static CGFloat const kMargin = 6.f;
 @property ASTextNode *usernameNode;
 @property ASTextNode *timeNode;
 @property ASNetworkImageNode *avatarNode;
-@property Comment *comment;
 @end
 
 @implementation CommentNode

@@ -10,7 +10,7 @@
 #import "Oxy_Feed-Swift.h"
 
 static NSInteger const kOffsetForPreloadLatestComments = -1;
-@interface DetailPhotoViewController () <BaseTableViewControllerDataSource,
+@interface DetailPhotoViewController () <BaseViewControllerDataSource,
 ASCollectionDelegate, ASCollectionDataSource>
 @property (strong, nonatomic) id<DetailPhotoViewModel> viewModel;
 @property Photo *photo;
@@ -32,7 +32,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     return self;
 }
 
-#pragma mark - BaseTableViewControllerDataSource
+#pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     dispatch_block_t completionBlock = ^{
@@ -85,6 +85,11 @@ ASCollectionDelegate, ASCollectionDataSource>
         _avatarModel = [[WallUserCellModel alloc] init:WallUserCellModelTypeAvatarNameDate user:self.photo.owner date:self.photo.date];
     }
     return _avatarModel;
+}
+
+#pragma mark - BaseViewController
+- (ScreenType)screenType {
+    return ScreenDetailPhoto;
 }
 
 @end

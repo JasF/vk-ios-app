@@ -9,7 +9,7 @@
 #import "VideosViewController.h"
 
 
-@interface VideosViewController () <BaseTableViewControllerDataSource>
+@interface VideosViewController () <BaseViewControllerDataSource>
 @property id<VideosViewModel> viewModel;
 @end
 
@@ -43,7 +43,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - BaseTableViewControllerDataSource
+#pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getVideos:offset

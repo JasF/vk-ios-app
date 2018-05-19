@@ -13,7 +13,7 @@
 static NSInteger const kNumberOfColumns = 2;
 static CGFloat const kInteritemSpacing = 12.f;
 
-@interface PhotoAlbumsViewController () <BaseTableViewControllerDataSource>
+@interface PhotoAlbumsViewController () <BaseViewControllerDataSource>
 @property id<PhotoAlbumsViewModel> viewModel;
 @end
 

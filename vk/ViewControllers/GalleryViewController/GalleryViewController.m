@@ -11,7 +11,7 @@
 static CGFloat const kItemSpacing = 2.f;
 static NSInteger const kColumnsCount = 4;
 
-@interface GalleryViewController () <BaseTableViewControllerDataSource>
+@interface GalleryViewController () <BaseViewControllerDataSource>
 @property id<GalleryViewModel> viewModel;
 @end
 
@@ -49,7 +49,7 @@ static NSInteger const kColumnsCount = 4;
     return result;
 }
 
-#pragma mark - BaseTableViewControllerDataSource
+#pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getPhotos:offset completion:^(NSArray *photos) {
