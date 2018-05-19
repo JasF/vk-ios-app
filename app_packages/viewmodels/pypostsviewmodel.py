@@ -185,10 +185,10 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         try:
             dialogsManager = PyDialogsManager()
             items = ['copy_url']
-            if ownerId != vk.userId():
-                items.append('report')
-                # если новостная лента, скрываем новости источника (опционально)
-                items.append('ignore_item')
+            #if ownerId != vk.userId():
+            items.append('report')
+            # если новостная лента, скрываем новости источника (опционально)
+            #items.append('ignore_item')
             index, cancelled = dialogsManager.showRowsDialogWithTitles(items)
             if cancelled:
                 return
@@ -205,7 +205,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
 
     def report(self, type, ownerId, itemId):
         response = False
-        results = {}
+        results = 0
         dialogsManager = PyDialogsManager()
         try:
             api = vk.api()
@@ -235,7 +235,7 @@ class PyPostsViewModel(ObjCBridgeProtocol):
             elif type == 'video_comment':
                 results = api.video.reportComment(owner_id=ownerId, comment_id=itemId)
 
-            if results['response'] == 1:
+            if isinstance(results, int) and results == 1:
                 response = True
         
         except Exception as e:
@@ -243,9 +243,9 @@ class PyPostsViewModel(ObjCBridgeProtocol):
 
         if response == False:
             print('report send failed with results: ' + str(results))
-            dialogsManager = PyDialogsManager()
             dialogsManager.showDialogWithMessage('error_reporting')
         else:
+            dialogsManager.showDialogWithMessage('report_sended_successfully')
             print('report sended successfully for type: ' + str(type))
         pass
     
