@@ -55,6 +55,7 @@ ASCollectionDelegate, ASCollectionDataSource>
     if (!_didAppear) {
         return;
     }
+    self.commentsParentItem = self.post;
     if (self.post.comments.canPost) {
         [self showCommentsToolbar];
     }
