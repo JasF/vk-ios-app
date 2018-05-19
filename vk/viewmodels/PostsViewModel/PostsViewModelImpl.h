@@ -36,7 +36,8 @@
                     ownerId:(NSNumber *)ownerId
              representation:(NSDictionary *)representation;
 - (void)optionsTappedWithPostId:(NSNumber *)postId
-                        ownerId:(NSNumber *)ownerId;
+                        ownerId:(NSNumber *)ownerId
+           isNewsViewController:(NSNumber *)isNewsViewController;
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>

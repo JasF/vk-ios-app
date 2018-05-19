@@ -9,7 +9,7 @@
 #import "BaseTableViewController.h"
 #import "PostsViewModel.h"
 
-@interface PostsViewController : BaseTableViewController
+@interface PostsViewController : BaseTableViewController <PostsViewModelDelegate>
 @property id<PostsViewModel> postsViewModel;
 @property (nonatomic) BOOL commentsPreloading;
 - (void)numberOfCommentsDidUpdated:(NSInteger)numberOfComments;

@@ -15,14 +15,18 @@
 
 @protocol PyPostsViewModelDelegate <NSObject>
 - (void)copyUrl:(NSString *)url;
+- (void)hideOptionsNode;
 @end
 
 @interface PostsViewModelImpl () <PostsViewModel>
 @property id<PyPostsViewModel> handler;
 @property id<PostsService> postsService;
+@property (strong, nonatomic) NSIndexPath *optionsCellIndexPath;
 @end
 
 @implementation PostsViewModelImpl
+
+@synthesize delegate = _delegate;
 
 #pragma mark - Initialization
 - (id)initWithHandlersFactory:(id<HandlersFactory>)handlersFactory
@@ -296,9 +300,16 @@
     });
 }
 
-- (void)optionsTappedWithPost:(WallPost *)post {
+- (void)optionsTappedWithPost:(WallPost *)post indexPath:(NSIndexPath *)indexPath {
+    self.optionsCellIndexPath = indexPath;
+    BOOL isNewsViewController = NO;
+    if ([self.delegate respondsToSelector:@selector(isNewsViewController)]) {
+        isNewsViewController = [self.delegate isNewsViewController];
+    }
     dispatch_python(^{
-        [self.handler optionsTappedWithPostId:@(post.identifier) ownerId:@(post.owner_id)];
+        [self.handler optionsTappedWithPostId:@(post.identifier)
+                                      ownerId:@(post.owner_id)
+                         isNewsViewController:@(isNewsViewController)];
     });
 }
 
@@ -308,4 +319,14 @@
     pasteboard.string = url;
 }
 
+- (void)hideOptionsNode {
+    NSCAssert(_optionsCellIndexPath, @"options node index path missing");
+    NSIndexPath *indexPath = _optionsCellIndexPath;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self.delegate respondsToSelector:@selector(hideNodeAtIndexPath:)]) {
+            [self.delegate hideNodeAtIndexPath:indexPath];
+        }
+    });
+    _optionsCellIndexPath = nil;
+}
 @end

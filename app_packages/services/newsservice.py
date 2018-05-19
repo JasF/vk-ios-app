@@ -18,7 +18,7 @@ class NewsService:
             if isinstance(next_from, str):
                 response = api.newsfeed.get(start_from=next_from,filters=','.join(allowed))
             else:
-                response = api.newsfeed.get()
+                response = api.newsfeed.get(filters=','.join(allowed))
             textpatcher.cropTagsOnPostsResults(response)
             next_from = response.get('next_from')
             rawl = response["items"]

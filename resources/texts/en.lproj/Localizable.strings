@@ -71,11 +71,6 @@
 "title_photo_albums"="Photo albums";
 "copy_url"="Copy Link";
 "report"="Report";
-"porn"="Порнография";
-"spam"="Спам";
-"insult"="Оскорбительное поведение";
-"advertisment"="Реклама";
-"enter_report_message"="Комментарий";
 "porn"="Adult material";
 "spam"="Spam";
 "insult"="Insult";
@@ -83,3 +78,6 @@
 "enter_report_message"="Comment";
 "error_reporting"="An unknown error has ocurred";
 "report_sended_successfully"="Report sent successfully";
+"it_is_not_interesting"="It is not interesting";
+"hide_source_news"="Hide all records";
+"error_ignore_item"="An unknown error has ocurred";

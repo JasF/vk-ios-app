@@ -12,7 +12,14 @@
 @class User, CommentsPreloadModel;
 @class Video;
 
+@protocol PostsViewModelDelegate <NSObject>
+@optional
+- (BOOL)isNewsViewController;
+- (void)hideNodeAtIndexPath:(NSIndexPath *)indexPath;
+@end
+
 @protocol PostsViewModel <NSObject>
+@property id<PostsViewModelDelegate> delegate;
 - (void)likeActionWithItem:(id)item completion:(void(^)(NSInteger likesCount, BOOL liked, BOOL error))completion;
 - (void)repostActionWithItem:(id)item completion:(void(^)(NSInteger likes, NSInteger reposts, BOOL error))completion;
 - (void)titleNodeTapped:(WallPost *)post;
@@ -23,5 +30,5 @@
 - (void)tappedOnPhotoWithIndex:(NSInteger)index withPost:(WallPost *)post;
 - (void)tappedOnPhotoItemWithIndex:(NSInteger)index withPost:(WallPost *)post;
 - (void)tappedOnVideo:(Video *)video;
-- (void)optionsTappedWithPost:(WallPost *)post;
+- (void)optionsTappedWithPost:(WallPost *)post indexPath:(NSIndexPath *)indexPath;
 @end

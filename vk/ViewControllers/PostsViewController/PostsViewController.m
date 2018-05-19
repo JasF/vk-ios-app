@@ -14,10 +14,15 @@
 #import "DialogNode.h"
 
 
-@interface PostsViewController () <ASTableDelegate, PostsService, WallPostNodeDelegate, CommentNodeDelegate, DialogNodeDelegate>
+@interface PostsViewController () <ASTableDelegate, PostsService, WallPostNodeDelegate, CommentNodeDelegate, DialogNodeDelegate, PostsViewModelDelegate>
 @end
 
 @implementation PostsViewController
+
+- (void)setPostsViewModel:(id<PostsViewModel>)postsViewModel {
+    _postsViewModel = postsViewModel;
+    _postsViewModel.delegate = self;
+}
 
 #pragma mark - ASTableDelegate
 - (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)aNode {
@@ -137,8 +142,10 @@
 }
 
 - (void)postNode:(WallPostNode *)node optionsTappedWithPost:(WallPost *)post {
-    if ([_postsViewModel respondsToSelector:@selector(optionsTappedWithPost:)]) {
-        [_postsViewModel optionsTappedWithPost:post];
+    NSIndexPath *indexPath = [self.tableNode indexPathForNode:node];
+    NSCAssert(indexPath, @"index path for visible node missing");
+    if ([_postsViewModel respondsToSelector:@selector(optionsTappedWithPost:indexPath:)]) {
+        [_postsViewModel optionsTappedWithPost:post indexPath:indexPath];
     }
 }
 
@@ -156,4 +163,13 @@
     }
 }
 
+#pragma mark - PostsViewModelDelegate
+- (void)hideNodeAtIndexPath:(NSIndexPath *)indexPath {
+    NSCAssert(indexPath.row < self.objectsArray.count, @"indexPath for hide out of bounds");
+    if (self.objectsArray.count <= indexPath.row) {
+        return;
+    }
+    [self.objectsArray removeObjectAtIndex:indexPath.row];
+    [self.tableNode deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
 @end

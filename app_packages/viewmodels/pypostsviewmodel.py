@@ -181,27 +181,52 @@ class PyPostsViewModel(ObjCBridgeProtocol):
             print('tappedOnVideoWithIdownerIdrepresentation exception: ' + str(e))
         managers.shared().screensManager().showDetailVideoViewControllerWithOwnerId_videoId_(args=[ownerId, videoId])
 
-    def optionsTappedWithPostIdownerId(self, postId, ownerId):
+    def optionsTappedWithPostIdownerIdisNewsViewController(self, postId, ownerId, isNewsViewController):
         try:
             dialogsManager = PyDialogsManager()
             items = ['copy_url']
             #if ownerId != vk.userId():
             items.append('report')
             # если новостная лента, скрываем новости источника (опционально)
-            #items.append('ignore_item')
+            if isNewsViewController == True:
+                items.append('it_is_not_interesting')
+                items.append('hide_source_news')
+            
             index, cancelled = dialogsManager.showRowsDialogWithTitles(items)
             if cancelled:
                 return
             if items[index] == 'copy_url':
                 self.guiDelegate.copyUrl_(args=['https://vk.com/id' + str(ownerId)])
-                pass
             elif items[index] == 'report':
                 self.report('post', ownerId, postId)
+            elif items[index] == 'it_is_not_interesting':
+                self.guiDelegate.hideOptionsNode()
+                self.ignoreItem('post', ownerId, postId)
                 pass
-            elif items[index] == 'ignore_item':
+            elif items[index] == 'hide_source_news':
                 pass
         except Exception as e:
             print('optionsTappedWithPostIdownerId exception: ' + str(e))
+
+    def ignoreItem(self, aType, ownerId, itemId):
+        results = 0
+        if aType == 'post':
+            type = 'wall'
+        elif aType == 'photo':
+            type = 'photo'
+        elif aType == 'video':
+            type = 'video'
+        else:
+            raise ValueError('unknown type for ignoreItem: ' + str(aType))
+        try:
+            api = vk.api()
+            results = api.newsfeed.ignoreItem(type=type, owner_id=ownerId, item_id=itemId)
+            print('ignoreItem result: ' + str(results) + '; ownerId: ' + str(ownerId) + '; itemId: ' + str(itemId))
+        except Exception as e:
+            print('exception: ' + str(e))
+        if not isinstance(results, int) or results != 1:
+            dialogsManager = PyDialogsManager()
+            dialogsManager.showDialogWithMessage('error_ignore_item')
 
     def report(self, type, ownerId, itemId):
         response = False

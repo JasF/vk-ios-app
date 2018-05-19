@@ -8,7 +8,7 @@
 
 #import "NewsViewController.h"
 
-@interface NewsViewController () <BaseTableViewControllerDataSource>
+@interface NewsViewController () <BaseTableViewControllerDataSource, PostsViewModelDelegate>
 @property id<NewsViewModel> viewModel;
 @end
 
@@ -46,6 +46,11 @@
                                 completion(objects);
                             }
                         }];
+}
+
+#pragma mark - PostsViewModelDelegate
+- (BOOL)isNewsViewController {
+    return YES;
 }
 
 @end
