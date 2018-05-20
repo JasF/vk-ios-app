@@ -22,6 +22,7 @@
 
 @protocol MWPhotoBrowserViewModel <NSObject>
 - (void)getNumberOfCommentsWithPhoto:(MWPhoto *)photo completion:(void(^)(NSInteger commentsCount))completion;
+- (void)optionsButtonTappedWithPhoto:(MWPhoto *)photo;
 @end
 
 @protocol MWPhotoBrowserDelegate <NSObject>
@@ -77,5 +78,6 @@
 - (void)showPreviousPhotoAnimated:(BOOL)animated;
 
 - (void)photosDataDidUpdatedFromApi;
+- (id<MWPhoto>)photoAtIndex:(NSUInteger)index;
 
 @end

@@ -327,6 +327,30 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         else:
             self.guiDelegate.commentDeleted()
 
+    def optionsTappedWithPhotoIdownerId(self, photoId, ownerId):
+        try:
+            dialogsManager = PyDialogsManager()
+            items = []
+            items.append('report')
+            index, cancelled = dialogsManager.showRowsDialogWithTitles(items)
+            if cancelled:
+                return
+            self.report('photo', ownerId, photoId)
+        except Exception as e:
+            print('optionsTappedWithPhotoId exception: ' + str(e))
+
+    def optionsTappedWithVideoIdownerId(self, videoId, ownerId):
+        try:
+            dialogsManager = PyDialogsManager()
+            items = []
+            items.append('report')
+            index, cancelled = dialogsManager.showRowsDialogWithTitles(items)
+            if cancelled:
+                return
+            self.report('video', ownerId, videoId)
+        except Exception as e:
+            print('optionsTappedWithVideoIdownerId exception: ' + str(e))
+
     # ObjCBridgeProtocol
     def release(self):
         pass

@@ -393,4 +393,24 @@
     _optionsParentItem = nil;
 }
 
+- (void)optionsTappedWithPhoto:(Photo *)photo {
+    NSCParameterAssert(photo);
+    if (!photo) {
+        return;
+    }
+    dispatch_python(^{
+        [self.handler optionsTappedWithPhotoId:@(photo.id) ownerId:@(photo.owner_id)];
+    });
+}
+
+- (void)optionsTappedWithVideo:(Video *)video {
+    NSCParameterAssert(video);
+    if (!video) {
+        return;
+    }
+    dispatch_python(^{
+        [self.handler optionsTappedWithPhotoId:@(video.id) ownerId:@(video.owner_id)];
+    });
+}
+
 @end

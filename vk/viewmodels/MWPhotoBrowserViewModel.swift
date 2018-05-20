@@ -14,8 +14,10 @@ import Foundation
 
 @objcMembers class MWPhotoBrowserViewModelImpl : NSObject, MWPhotoBrowserViewModel {
     var handler : PyMWPhotoBrowserViewModel!
-    init(_ handlersFactory: HandlersFactory) {
+    var postsViewModel: PostsViewModel!
+    init(_ handlersFactory: HandlersFactory, postsViewModel: PostsViewModel!) {
         handler = handlersFactory.photoBrowserViewModelHandler()
+        self.postsViewModel = postsViewModel
         super.init()
     }
     func getNumberOfComments(with photo: MWPhoto!, completion: ((Int) -> Void)!) {
@@ -34,4 +36,11 @@ import Foundation
             }
         }
     }
+    func optionsButtonTapped(with photo: MWPhoto!) {
+        guard let model = photo.model as! Photo? else {
+            return
+        }
+        postsViewModel.optionsTapped(with: model)
+    }
+    
 }

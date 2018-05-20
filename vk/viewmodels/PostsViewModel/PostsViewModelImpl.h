@@ -42,6 +42,10 @@
                          commentId:(NSNumber *)commentId
                               type:(NSString *)type
                  parentItemOwnerId:(NSNumber *)parentItemOwnerId;
+- (void)optionsTappedWithPhotoId:(NSNumber *)photoId
+                         ownerId:(NSNumber *)ownerId;
+- (void)optionsTappedWithVideoId:(NSNumber *)videoId
+                         ownerId:(NSNumber *)ownerId;
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>

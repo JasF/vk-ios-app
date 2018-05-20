@@ -301,8 +301,9 @@
 - (id<MWPhotoBrowserViewModel>)photoBrowserViewModel {
     return [TyphoonDefinition withClass:[MWPhotoBrowserViewModelImpl class] configuration:^(TyphoonDefinition *definition)
             {
-                [definition useInitializer:@selector(init:) parameters:^(TyphoonMethod *initializer) {
+                [definition useInitializer:@selector(init:postsViewModel:) parameters:^(TyphoonMethod *initializer) {
                     [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.postsViewModel];
                 }];
             }];
 }

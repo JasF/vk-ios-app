@@ -10,7 +10,7 @@
 
 @class WallPost;
 @class User, CommentsPreloadModel;
-@class Video, Comment;
+@class Video, Comment, Photo;
 
 @protocol PostsViewModelDelegate <NSObject>
 @optional
@@ -31,5 +31,7 @@
 - (void)tappedOnPhotoItemWithIndex:(NSInteger)index withPost:(WallPost *)post;
 - (void)tappedOnVideo:(Video *)video;
 - (void)optionsTappedWithPost:(WallPost *)post indexPath:(NSIndexPath *)indexPath;
+- (void)optionsTappedWithPhoto:(Photo *)photo;
+- (void)optionsTappedWithVideo:(Video *)video;
 - (void)tappedOnComment:(Comment *)comment parentItem:(id)parentItem type:(NSString *)type indexPath:(NSIndexPath *)indexPath;
 @end

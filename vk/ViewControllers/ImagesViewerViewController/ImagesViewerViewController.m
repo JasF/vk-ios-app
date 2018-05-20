@@ -38,6 +38,15 @@ static NSInteger const kPreloadingBorder = 2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIImage *iconImage = [UIImage imageNamed:@"icon_more"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:iconImage forState:UIControlStateNormal];
+    button.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 16);
+    [button sizeToFit];
+    [button addTarget:self action:@selector(optionsButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = buttonItem;
+        
     self.view.backgroundColor = [UIColor blackColor];
     [self.viewModel getPhotos:0 completion:^(NSArray *photos) {
         dispatch_async(dispatch_get_global_queue(0, DISPATCH_QUEUE_PRIORITY_DEFAULT), ^{
@@ -181,6 +190,16 @@ static NSInteger const kPreloadingBorder = 2;
 #pragma mark - ImagesViewerViewModelDelegate
 - (void)photosDataDidUpdatedFromApi {
     [_browser photosDataDidUpdatedFromApi];
+}
+
+#pragma mark - Observers
+- (void)optionsButtonTapped:(id)sender {
+    MWPhoto *photo = [_browser photoAtIndex:_browser.currentIndex];
+    NSCParameterAssert(photo);
+    if (!photo) {
+        return;
+    }
+    [_photoBrowserViewModel optionsButtonTappedWithPhoto:photo];
 }
 
 @end
