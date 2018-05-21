@@ -152,6 +152,10 @@
     }];
 }
 
+- (UIViewController *)eulaViewController {
+    return [TyphoonDefinition withClass:[EulaViewController class]];
+}
+
 - (UIViewController *)photoAlbumsViewController:(NSNumber *)ownerId {
     return [TyphoonDefinition withClass:[PhotoAlbumsViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {

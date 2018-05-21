@@ -54,6 +54,10 @@
         @strongify(self);
         [self.viewModel authorizeByLogin];
     };
+    self.authorizationNode.eulaHandler = ^{
+        @strongify(self);
+        [self.viewModel showEula];
+    };
 }
 
 - (void)viewWillAppear:(BOOL)animated {

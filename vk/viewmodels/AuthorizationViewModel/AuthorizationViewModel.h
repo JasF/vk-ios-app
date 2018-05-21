@@ -12,5 +12,6 @@
 @property (weak, nonatomic) UIViewController *viewController;
 - (void)authorizeByApp;
 - (void)authorizeByLogin;
+- (void)showEula;
 - (BOOL)isAuthorizationOverAppAvailable;
 @end

@@ -14,6 +14,7 @@
 @protocol PyAuthorizationViewModel <NSObject>
 - (void)accessTokenGathered:(NSString *)accessToken
                      userId:(NSNumber *)userId;
+- (void)showEula;
 @end
 
 @interface AuthorizationViewModelImpl : NSObject <AuthorizationViewModel>

@@ -91,6 +91,12 @@
     [self.vkManager authorizeByLogin];
 }
 
+- (void)showEula {
+    dispatch_python(^{
+        [self.handler showEula];
+    });
+}
+
 - (BOOL)isAuthorizationOverAppAvailable {
     return [VKSdk vkAppMayExists];
 }

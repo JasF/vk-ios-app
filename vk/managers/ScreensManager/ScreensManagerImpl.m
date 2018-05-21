@@ -131,6 +131,13 @@
     });
 }
 
+- (void)showEulaViewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        EulaViewController *viewController = (EulaViewController *)[_screensAssembly eulaViewController];
+        [self.rootNavigationController pushViewController:viewController animated:YES];
+    });
+}
+
 - (void)presentAddPostViewController:(NSNumber *)ownerId {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIViewController *viewController =(UIViewController *)[_screensAssembly createPostViewController:ownerId];

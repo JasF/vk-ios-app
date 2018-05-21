@@ -13,6 +13,9 @@ class PyAuthorizationViewModel(ObjCBridgeProtocol):
         vk.setUserId(aUserId)
         screenshow.showScreenAfterAuthorization()
     
+    def showEula(self):
+        managers.shared().screensManager().showEulaViewController()
+    
     # ObjCBridgeProtocol
     def release(self):
         pass

@@ -459,6 +459,7 @@
 		C3333D492091A9A4009EBB09 /* DetailVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D482091A9A4009EBB09 /* DetailVideoViewController.m */; };
 		C3333D4D2091BF0E009EBB09 /* Geo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D4C2091BF0E009EBB09 /* Geo.m */; };
 		C3333D512091BF1C009EBB09 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D502091BF1C009EBB09 /* Place.m */; };
+		C334281F20B292CE00F5228A /* EulaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C334281E20B292CE00F5228A /* EulaViewController.swift */; };
 		C338CA4F20A1BF6600F30B77 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C338CA4D20A1BF6600F30B77 /* FacebookSDKStrings.bundle */; };
 		C338CA5020A1BF6600F30B77 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C338CA4E20A1BF6600F30B77 /* FBSDKCoreKit.framework */; };
 		C338CA5220A1C05300F30B77 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338CA5120A1C05300F30B77 /* Analytics.swift */; };
@@ -1745,6 +1746,7 @@
 		C3333D4C2091BF0E009EBB09 /* Geo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Geo.m; sourceTree = "<group>"; };
 		C3333D4F2091BF1C009EBB09 /* Place.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		C3333D502091BF1C009EBB09 /* Place.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		C334281E20B292CE00F5228A /* EulaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulaViewController.swift; sourceTree = "<group>"; };
 		C3372F902081D7480080DA75 /* dialogservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogservice.py; sourceTree = "<group>"; };
 		C3372F912081F68E0080DA75 /* basedatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = basedatabase.py; sourceTree = "<group>"; };
 		C3372F922081FAEA0080DA75 /* messagesdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messagesdatabase.py; sourceTree = "<group>"; };
@@ -3141,6 +3143,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C334281E20B292CE00F5228A /* EulaViewController.swift */,
 				C392C49C20B0455800FF8390 /* BaseViewController */,
 				C3D4873820919A4F007EC440 /* AuthorizationViewController */,
 				C3987E0B2099CB480047A30F /* Chat */,
@@ -6713,6 +6716,7 @@
 				C32308E42081AEB100CEC487 /* NSLayoutConstraint+TyphoonOutletTransfer.m in Sources */,
 				C32305D52080E57500CEC487 /* ScreensAssembly.m in Sources */,
 				C350782920949C46000C8FB3 /* WallUserImageNode.swift in Sources */,
+				C334281F20B292CE00F5228A /* EulaViewController.swift in Sources */,
 				C39D46DA20A2CD6900C6CC99 /* PhotosInputView.swift in Sources */,
 				C3987DFE2098B9390047A30F /* CreatePostViewController.m in Sources */,
 				C32306212080E57500CEC487 /* RunLoop.m in Sources */,
