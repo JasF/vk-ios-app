@@ -403,6 +403,16 @@
     });
 }
 
+- (void)optionsTappedWithUser:(User *)user {
+    NSCParameterAssert(user);
+    if (!user) {
+        return;
+    }
+    dispatch_python(^{
+        [self.handler optionsTappedWithUserId:@(user.id)];
+    });
+}
+
 - (void)optionsTappedWithVideo:(Video *)video {
     NSCParameterAssert(video);
     if (!video) {

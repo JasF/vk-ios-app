@@ -33,5 +33,6 @@
 - (void)optionsTappedWithPost:(WallPost *)post indexPath:(NSIndexPath *)indexPath;
 - (void)optionsTappedWithPhoto:(Photo *)photo;
 - (void)optionsTappedWithVideo:(Video *)video;
+- (void)optionsTappedWithUser:(User *)user;
 - (void)tappedOnComment:(Comment *)comment parentItem:(id)parentItem type:(NSString *)type indexPath:(NSIndexPath *)indexPath;
 @end

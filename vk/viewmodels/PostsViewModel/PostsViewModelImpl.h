@@ -46,6 +46,7 @@
                          ownerId:(NSNumber *)ownerId;
 - (void)optionsTappedWithVideoId:(NSNumber *)videoId
                          ownerId:(NSNumber *)ownerId;
+- (void)optionsTappedWithUserId:(NSNumber *)userId;
 @end
 
 @interface PostsViewModelImpl : NSObject <PostsViewModel>

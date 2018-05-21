@@ -351,6 +351,20 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         except Exception as e:
             print('optionsTappedWithVideoIdownerId exception: ' + str(e))
 
+
+    def optionsTappedWithUserId(self, userId):
+        try:
+            dialogsManager = PyDialogsManager()
+            items = []
+            items.append('report')
+            index, cancelled = dialogsManager.showRowsDialogWithTitles(items)
+            if cancelled:
+                return
+            self.report('user', userId, 0)
+        except Exception as e:
+            print('optionsTappedWithUserId exception: ' + str(e))
+
+
     # ObjCBridgeProtocol
     def release(self):
         pass
