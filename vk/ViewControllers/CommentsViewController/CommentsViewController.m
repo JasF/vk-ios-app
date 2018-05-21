@@ -19,7 +19,7 @@
 
 static NSInteger const kNumberOfCommentsForPreload = 40;
 
-@interface CommentsViewController () <UITableViewDelegate>
+@interface CommentsViewController () <UITableViewDelegate, AvatarNameDateDelegate>
 @property (nonatomic, strong) NSNumber* calculatedOffsetFromInteractiveKeyboardDismissal;
 @property (nonatomic, strong) MXRMessengerInputToolbar* toolbar;
 @property (nonatomic, strong) MXRMessengerInputToolbarContainerView *toolbarContainerView;
@@ -123,6 +123,14 @@ static NSInteger const kNumberOfCommentsForPreload = 40;
     if (self.calculatedOffsetFromInteractiveKeyboardDismissal) {
         *targetContentOffset = CGPointMake(0, self.calculatedOffsetFromInteractiveKeyboardDismissal.doubleValue);
         self.calculatedOffsetFromInteractiveKeyboardDismissal = nil;
+    }
+}
+    
+- (void)tableNode:(ASTableNode *)tableNode willDisplayRowWithNode:(ASCellNode *)aNode {
+    [super tableNode:tableNode willDisplayRowWithNode:aNode];
+    if ([aNode isKindOfClass:[AvatarNameDateNode class]]) {
+        AvatarNameDateNode *node = (AvatarNameDateNode *)aNode;
+        node.delegate = self;
     }
 }
 
@@ -329,6 +337,20 @@ static NSInteger const kNumberOfCommentsForPreload = 40;
 
 #pragma mark - UITableViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    DDLogInfo(@"scds: %@", NSStringFromCGPoint(scrollView.contentOffset));
+    //DDLogInfo(@"scds: %@", NSStringFromCGPoint(scrollView.contentOffset));
 }
+
+#pragma mark - AvatarNameDateDelegate
+- (void)optionsTappedOnAvatarNameDateNode:(AvatarNameDateNode *)node {
+    if ([self.commentsParentItem isKindOfClass:[Photo class]]) {
+        [self.postsViewModel optionsTappedWithPhoto:self.commentsParentItem];
+    }
+    else if ([self.commentsParentItem isKindOfClass:[Video class]]) {
+        [self.postsViewModel optionsTappedWithPhoto:self.commentsParentItem];
+    }
+    else {
+        NSCAssert(false, @"Unknown commentsParentItem for options menu: %@", self.commentsParentItem);
+    }
+}
+
 @end
