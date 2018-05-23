@@ -97,7 +97,7 @@ static CGFloat const kButtonSize = 44.f;
 
 - (void)addRightIconIfNeeded {
     User *user = self.viewModel.currentUser;
-    if (!self.navigationItem.rightBarButtonItem && user.can_post && user.id > 0) {
+    if (!self.navigationItem.rightBarButtonItem && user.id > 0) {
         UIButton *button = [UIButton new];
         [button addTarget:self action:@selector(addPostTapped:) forControlEvents:UIControlEventTouchUpInside];
         [button setImage:[UIImage imageNamed:@"add_post"] forState:UIControlStateNormal];
@@ -110,6 +110,7 @@ static CGFloat const kButtonSize = 44.f;
         }
         UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
         negativeSpacer.width = spacerWidth;
+        NSMutableArray *array = [@[negativeSpacer] mutableCopy];
         
         if (!user.currentUser) {
             UIButton *button = [UIButton new];
@@ -117,12 +118,12 @@ static CGFloat const kButtonSize = 44.f;
             [button setImage:[UIImage imageNamed:@"icon_more"] forState:UIControlStateNormal];
             button.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 16);
             UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithCustomView:button];
-            
-            self.navigationItem.rightBarButtonItems = @[negativeSpacer, more, addPost];
+            [array addObject:more];
         }
-        else {
-            self.navigationItem.rightBarButtonItems = @[negativeSpacer, addPost];
+        if (user.can_post) {
+            [array addObject:addPost];
         }
+        self.navigationItem.rightBarButtonItems = array;
     }
 }
 
