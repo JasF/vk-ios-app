@@ -464,6 +464,7 @@
 		C338CA5020A1BF6600F30B77 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C338CA4E20A1BF6600F30B77 /* FBSDKCoreKit.framework */; };
 		C338CA5220A1C05300F30B77 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338CA5120A1C05300F30B77 /* Analytics.swift */; };
 		C338CA5520A1C66F00F30B77 /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338CA5420A1C66F00F30B77 /* Modules.swift */; };
+		C33A1B1820B5300C00DD4D12 /* EulaAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33A1B1720B5300C00DD4D12 /* EulaAlertController.swift */; };
 		C3437545208EFDEE004EF670 /* ImagesViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437544208EFDEE004EF670 /* ImagesViewerViewController.m */; };
 		C343754A208EFEA0004EF670 /* ImagesViewerViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3437549208EFEA0004EF670 /* ImagesViewerViewModelImpl.m */; };
 		C343754F208F31A5004EF670 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C343754E208F31A5004EF670 /* NewsViewController.m */; };
@@ -483,6 +484,9 @@
 		C350782720948925000C8FB3 /* WallUserScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782620948925000C8FB3 /* WallUserScrollNode.swift */; };
 		C350782920949C46000C8FB3 /* WallUserImageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782820949C46000C8FB3 /* WallUserImageNode.swift */; };
 		C350782B2094AC9A000C8FB3 /* LastSeen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350782A2094AC9A000C8FB3 /* LastSeen.swift */; };
+		C36CD86E20B52486002703D1 /* UIAlertController+CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CD86D20B52486002703D1 /* UIAlertController+CustomView.swift */; };
+		C36CD87320B52722002703D1 /* EulaAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C36CD87220B52722002703D1 /* EulaAlertView.xib */; };
+		C36CD87520B527D6002703D1 /* EulaAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36CD87420B527D6002703D1 /* EulaAlertView.swift */; };
 		C3703B5C209C48E800E879A1 /* MWPhotoBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3703B5B209C48E800E879A1 /* MWPhotoBrowserViewModel.swift */; };
 		C3703B5E209C4C3400E879A1 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3703B5D209C4C3400E879A1 /* utilities.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
@@ -784,6 +788,7 @@
 		C3FF542C2095AF0C007275D4 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF542B2095AF0C007275D4 /* VideoPlayerViewController.swift */; };
 		C3FF542E2095AF7F007275D4 /* VideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF542D2095AF7F007275D4 /* VideoPlayerViewModel.swift */; };
 		C3FF543020961326007275D4 /* NameTimeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF542F20961326007275D4 /* NameTimeNode.swift */; };
+		FB941F17E1D15D12DB7C844B /* Pods_Oxy_Feed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9ED72539B8F2C65006FDA0D /* Pods_Oxy_Feed.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -846,6 +851,8 @@
 		38AECA0C6C974586CB50DEA4 /* Pods_MessageGroups.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageGroups.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39C2FA56395FE4C8F46CEEF9 /* Pods-vk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.release.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.release.xcconfig"; sourceTree = "<group>"; };
 		4C6D6E13E451852DB917CDA3 /* Pods-MessageGroups.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroups.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroups/Pods-MessageGroups.release.xcconfig"; sourceTree = "<group>"; };
+		6106DB23EE85EB4A9022D83C /* Pods-Oxy Feed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Oxy Feed.release.xcconfig"; path = "Pods/Target Support Files/Pods-Oxy Feed/Pods-Oxy Feed.release.xcconfig"; sourceTree = "<group>"; };
+		7BC0D4DDF0651D3711FA95C6 /* Pods-Oxy Feed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Oxy Feed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Oxy Feed/Pods-Oxy Feed.debug.xcconfig"; sourceTree = "<group>"; };
 		9BE313985D8E6E3C9E7F130B /* Pods_vk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EDB068BB4F3800BEE9E047F /* Pods-MessageGroupsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsUITests/Pods-MessageGroupsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A3EFD1DB3DB35D26BD34A97F /* Pods_MessageGroupsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageGroupsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1756,6 +1763,7 @@
 		C338CA4E20A1BF6600F30B77 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C338CA5120A1C05300F30B77 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		C338CA5420A1C66F00F30B77 /* Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
+		C33A1B1720B5300C00DD4D12 /* EulaAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulaAlertController.swift; sourceTree = "<group>"; };
 		C3437543208EFDEE004EF670 /* ImagesViewerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagesViewerViewController.h; sourceTree = "<group>"; };
 		C3437544208EFDEE004EF670 /* ImagesViewerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagesViewerViewController.m; sourceTree = "<group>"; };
 		C3437547208EFE17004EF670 /* ImagesViewerViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagesViewerViewModel.h; sourceTree = "<group>"; };
@@ -1796,6 +1804,9 @@
 		C350782620948925000C8FB3 /* WallUserScrollNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserScrollNode.swift; sourceTree = "<group>"; };
 		C350782820949C46000C8FB3 /* WallUserImageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallUserImageNode.swift; sourceTree = "<group>"; };
 		C350782A2094AC9A000C8FB3 /* LastSeen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSeen.swift; sourceTree = "<group>"; };
+		C36CD86D20B52486002703D1 /* UIAlertController+CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+CustomView.swift"; sourceTree = "<group>"; };
+		C36CD87220B52722002703D1 /* EulaAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EulaAlertView.xib; sourceTree = "<group>"; };
+		C36CD87420B527D6002703D1 /* EulaAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulaAlertView.swift; sourceTree = "<group>"; };
 		C3703B5A209C3C4E00E879A1 /* MWPhotoBrowser.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = MWPhotoBrowser.podspec; path = Components/MWPhotoBrowser/MWPhotoBrowser.podspec; sourceTree = SOURCE_ROOT; };
 		C3703B5B209C48E800E879A1 /* MWPhotoBrowserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWPhotoBrowserViewModel.swift; sourceTree = "<group>"; };
 		C3703B5D209C4C3400E879A1 /* utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
@@ -2174,6 +2185,7 @@
 		C3FF542D2095AF7F007275D4 /* VideoPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewModel.swift; sourceTree = "<group>"; };
 		C3FF542F20961326007275D4 /* NameTimeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTimeNode.swift; sourceTree = "<group>"; };
 		E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vk/Pods-vk.debug.xcconfig"; sourceTree = "<group>"; };
+		E9ED72539B8F2C65006FDA0D /* Pods_Oxy_Feed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Oxy_Feed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA13F2494D45D4FE5E319D6 /* Pods-MessageGroupsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0D613A92790A124CBD92B36 /* Pods-MessageGroups.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroups.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroups/Pods-MessageGroups.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2204,6 +2216,7 @@
 				C32305CE2080E57500CEC487 /* JGProgressHUD.framework in Frameworks */,
 				C32305C82080E57500CEC487 /* libPython-i386.a in Frameworks */,
 				C39D471D20A33D5B00C6CC99 /* HockeySDK.framework in Frameworks */,
+				FB941F17E1D15D12DB7C844B /* Pods_Oxy_Feed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2268,6 +2281,8 @@
 				9EDB068BB4F3800BEE9E047F /* Pods-MessageGroupsUITests.release.xcconfig */,
 				E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */,
 				39C2FA56395FE4C8F46CEEF9 /* Pods-vk.release.xcconfig */,
+				7BC0D4DDF0651D3711FA95C6 /* Pods-Oxy Feed.debug.xcconfig */,
+				6106DB23EE85EB4A9022D83C /* Pods-Oxy Feed.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2765,6 +2780,7 @@
 				C32304122080E57300CEC487 /* CocoaLumberjack.framework */,
 				C32304132080E57300CEC487 /* JGProgressHUD.framework */,
 				C32304142080E57300CEC487 /* libxz.a */,
+				E9ED72539B8F2C65006FDA0D /* Pods_Oxy_Feed.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -3143,6 +3159,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C36CD87620B527DB002703D1 /* EulaAlertView */,
 				C334281E20B292CE00F5228A /* EulaViewController.swift */,
 				C392C49C20B0455800FF8390 /* BaseViewController */,
 				C3D4873820919A4F007EC440 /* AuthorizationViewController */,
@@ -3177,6 +3194,7 @@
 				C32304972080E57400CEC487 /* WallViewController */,
 				C323049A2080E57400CEC487 /* ChatListViewController */,
 				C32304A02080E57400CEC487 /* MenuViewController */,
+				C36CD86D20B52486002703D1 /* UIAlertController+CustomView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -4853,6 +4871,16 @@
 			path = AnswersService;
 			sourceTree = "<group>";
 		};
+		C36CD87620B527DB002703D1 /* EulaAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				C36CD87220B52722002703D1 /* EulaAlertView.xib */,
+				C36CD87420B527D6002703D1 /* EulaAlertView.swift */,
+				C33A1B1720B5300C00DD4D12 /* EulaAlertController.swift */,
+			);
+			path = EulaAlertView;
+			sourceTree = "<group>";
+		};
 		C37C0BF92086F7E60086A875 /* AvatarNode */ = {
 			isa = PBXGroup;
 			children = (
@@ -5881,6 +5909,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C36CD87320B52722002703D1 /* EulaAlertView.xib in Resources */,
 				C3B0EF04208B14E8008802BB /* loadBubble_0013_Layer-26@1x.png in Resources */,
 				C32306A22080E57500CEC487 /* retry.py in Resources */,
 				C3B0EEF6208B14E8008802BB /* loadBubble_0032_Layer-7@1x.png in Resources */,
@@ -6231,7 +6260,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-vk/Pods-vk-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Oxy Feed/Pods-Oxy Feed-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C32306EA2080E69300CEC487 /* Refresh Python Sources */ = {
@@ -6268,8 +6297,9 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-vk/Pods-vk-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Oxy Feed/Pods-Oxy Feed-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/DOCheckboxControl/DOCheckboxControl.framework",
 				"${BUILT_PRODUCTS_DIR}/LoremIpsum/LoremIpsum.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework",
@@ -6277,12 +6307,14 @@
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DOCheckboxControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoremIpsum.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MWPhotoBrowser.framework",
@@ -6290,12 +6322,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-vk/Pods-vk-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Oxy Feed/Pods-Oxy Feed-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9B43EDBD18901077B12E011 /* [CP] Check Pods Manifest.lock */ = {
@@ -6309,7 +6342,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-vk-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Oxy Feed-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6548,6 +6581,7 @@
 				C39D46A120A2CD6900C6CC99 /* BaseMessageCollectionViewCell.swift in Sources */,
 				C32305FD2080E57500CEC487 /* PostType.m in Sources */,
 				C323090F2081AEB100CEC487 /* TyphoonColorConversionUtils.m in Sources */,
+				C36CD87520B527D6002703D1 /* EulaAlertView.swift in Sources */,
 				C32309182081AEB100CEC487 /* NSInvocation+TCFCustomImplementation.m in Sources */,
 				C3A82A2D20931F8900C41CA8 /* ASInsetLayoutSpec+Utils.m in Sources */,
 				C3036C10208DE2AF005F086E /* Comment.m in Sources */,
@@ -6683,6 +6717,7 @@
 				C32306092080E57500CEC487 /* EmptyViewController.m in Sources */,
 				C3226297209082890054789B /* BookmarksServiceImpl.m in Sources */,
 				C32308C22081AEB100CEC487 /* TyphoonDefinition+Config.m in Sources */,
+				C36CD86E20B52486002703D1 /* UIAlertController+CustomView.swift in Sources */,
 				C39D46B220A2CD6900C6CC99 /* TextMessageCollectionViewCell.swift in Sources */,
 				C32305ED2080E57500CEC487 /* VKSdkManagerImpl.m in Sources */,
 				C323091A2081AEB100CEC487 /* TyphoonAssemblyAdviser.m in Sources */,
@@ -6696,6 +6731,7 @@
 				C32306242080E57500CEC487 /* Functions.m in Sources */,
 				C32308FF2081AEB100CEC487 /* TyphoonInjectionByObjectFromString.m in Sources */,
 				C3987E342099CB480047A30F /* BaseMessagesSelector.swift in Sources */,
+				C33A1B1820B5300C00DD4D12 /* EulaAlertController.swift in Sources */,
 				C3B225062085BA6800599E04 /* DialogScreenViewModelImpl.m in Sources */,
 				C39D46B120A2CD6900C6CC99 /* TextMessageCollectionViewCellDefaultStyle.swift in Sources */,
 				C39D46BA20A2CD6900C6CC99 /* UIColor+Additions.swift in Sources */,
@@ -6874,7 +6910,7 @@
 		};
 		197D8B341D64BA51004630AE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E54D50F143DE218A0BFF49C2 /* Pods-vk.debug.xcconfig */;
+			baseConfigurationReference = 7BC0D4DDF0651D3711FA95C6 /* Pods-Oxy Feed.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = vk/vk.entitlements;
@@ -6909,7 +6945,7 @@
 		};
 		197D8B351D64BA51004630AE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39C2FA56395FE4C8F46CEEF9 /* Pods-vk.release.xcconfig */;
+			baseConfigurationReference = 6106DB23EE85EB4A9022D83C /* Pods-Oxy Feed.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = vk/vk.entitlements;

@@ -8,6 +8,7 @@
 
 #import "AuthorizationViewModelImpl.h"
 #import <VK-ios-sdk/VKSdk.h>
+#import "Oxy_Feed-Swift.h"
 
 @interface AuthorizationViewModelImpl () <AuthorizationViewModel>
 @property id<PyAuthorizationViewModel> handler;
@@ -84,6 +85,7 @@
 }
 
 - (void)authorizeByApp {
+    
     [self.vkManager authorizeByApp];
 }
 
