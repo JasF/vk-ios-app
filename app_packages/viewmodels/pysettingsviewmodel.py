@@ -25,7 +25,9 @@ class PySettingsViewModel(ObjCBridgeProtocol):
             vk.setUserId(0)
             settings.write()
             managers.shared().screensManager().showAuthorizationViewController()
-        pass
+    
+    def eulaTapped(self):
+        managers.shared().screensManager().showEulaViewController()
     
     # ObjCBridgeProtocol
     def release(self):

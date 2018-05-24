@@ -12,32 +12,53 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="vaW-rd-Xe5" customClass="EulaAlertView" customModule="Oxy_Feed" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="268" height="162"/>
+            <rect key="frame" x="0.0" y="0.0" width="268" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Textdssd" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CcI-R6-uqv">
-                    <rect key="frame" x="48" y="30" width="248" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OtA-Yg-U5X" customClass="TTTAttributedLabel">
+                    <rect key="frame" x="113" y="29" width="148" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYm-FY-SNU" customClass="CheckboxControl" customModule="DOCheckboxControl">
-                    <rect key="frame" x="8" y="124" width="30" height="30"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ol-IR-Trz">
+                    <rect key="frame" x="0.0" y="52" width="268" height="28"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Textdssd" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CcI-R6-uqv">
+                            <rect key="frame" x="-4" y="49" width="248" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYm-FY-SNU" customClass="CheckboxControl" customModule="DOCheckboxControl">
+                            <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="28" id="CFV-Jl-iLb"/>
+                                <constraint firstAttribute="height" constant="28" id="Wyz-N1-Lxd"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="28" id="AAm-Jg-DvN"/>
-                        <constraint firstAttribute="height" constant="28" id="hGA-NR-4yS"/>
+                        <constraint firstItem="CcI-R6-uqv" firstAttribute="centerY" secondItem="4ol-IR-Trz" secondAttribute="centerY" id="9uK-5y-axG"/>
+                        <constraint firstItem="CcI-R6-uqv" firstAttribute="leading" secondItem="XYm-FY-SNU" secondAttribute="trailing" constant="12" id="GAk-Y4-6T0"/>
+                        <constraint firstAttribute="height" constant="28" id="KhK-On-6yd"/>
+                        <constraint firstItem="XYm-FY-SNU" firstAttribute="leading" secondItem="4ol-IR-Trz" secondAttribute="leading" id="s2d-uu-yF1"/>
+                        <constraint firstItem="XYm-FY-SNU" firstAttribute="centerY" secondItem="4ol-IR-Trz" secondAttribute="centerY" id="tbA-pQ-QDa"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="CcI-R6-uqv" firstAttribute="leading" secondItem="XYm-FY-SNU" secondAttribute="trailing" constant="12" id="5ww-AJ-jcn"/>
-                <constraint firstItem="XYm-FY-SNU" firstAttribute="leading" secondItem="vaW-rd-Xe5" secondAttribute="leading" constant="8" id="IAl-5b-IeC"/>
-                <constraint firstItem="CcI-R6-uqv" firstAttribute="bottom" secondItem="XYm-FY-SNU" secondAttribute="bottom" constant="8" id="MGQ-xS-f5k"/>
-                <constraint firstItem="XYm-FY-SNU" firstAttribute="top" secondItem="vaW-rd-Xe5" secondAttribute="top" constant="20" symbolic="YES" id="dGP-ve-Ajk"/>
-                <constraint firstItem="CcI-R6-uqv" firstAttribute="top" secondItem="XYm-FY-SNU" secondAttribute="top" id="eP6-mI-scx"/>
-                <constraint firstAttribute="bottom" secondItem="XYm-FY-SNU" secondAttribute="bottom" constant="20" symbolic="YES" id="tdC-9p-CMp"/>
+                <constraint firstItem="4ol-IR-Trz" firstAttribute="top" secondItem="OtA-Yg-U5X" secondAttribute="bottom" constant="18" id="1wE-MN-0gh"/>
+                <constraint firstItem="OtA-Yg-U5X" firstAttribute="trailing" secondItem="vaW-rd-Xe5" secondAttribute="trailing" id="SQI-Fk-TF0"/>
+                <constraint firstAttribute="bottom" secondItem="4ol-IR-Trz" secondAttribute="bottom" id="UlF-Rh-zJg"/>
+                <constraint firstItem="4ol-IR-Trz" firstAttribute="trailing" secondItem="vaW-rd-Xe5" secondAttribute="trailing" id="a5p-uN-GfN"/>
+                <constraint firstItem="4ol-IR-Trz" firstAttribute="leading" secondItem="vaW-rd-Xe5" secondAttribute="leading" id="iLA-qy-IKD"/>
+                <constraint firstItem="OtA-Yg-U5X" firstAttribute="leading" secondItem="vaW-rd-Xe5" secondAttribute="leading" id="tOC-bQ-Mmn"/>
+                <constraint firstItem="OtA-Yg-U5X" firstAttribute="top" secondItem="vaW-rd-Xe5" secondAttribute="top" id="xIi-fB-tMg"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -45,8 +66,9 @@
             <connections>
                 <outlet property="checkbox" destination="XYm-FY-SNU" id="pta-ys-H1o"/>
                 <outlet property="checkboxLabel" destination="CcI-R6-uqv" id="Hux-Gd-6GC"/>
+                <outlet property="textLabel" destination="OtA-Yg-U5X" id="wDb-cW-XA5"/>
             </connections>
-            <point key="canvasLocation" x="2" y="-340.5"/>
+            <point key="canvasLocation" x="2" y="-341"/>
         </view>
     </objects>
 </document>

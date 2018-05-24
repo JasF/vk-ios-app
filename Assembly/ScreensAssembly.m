@@ -153,7 +153,11 @@
 }
 
 - (UIViewController *)eulaViewController {
-    return [TyphoonDefinition withClass:[EulaViewController class]];
+    return [TyphoonDefinition withFactory:[self eulaStoryboard]
+                                 selector:@selector(instantiateViewControllerWithIdentifier:)
+                               parameters:^(TyphoonMethod *factoryMethod) {
+                                   [factoryMethod injectParameterWith:@"ViewController"];
+                               }];
 }
 
 - (UIViewController *)photoAlbumsViewController:(NSNumber *)ownerId {
@@ -359,6 +363,17 @@
                 }];
                  definition.scope = TyphoonScopeSingleton; //Let's make this a singleton
             }];
+}
+
+- (UIStoryboard *)eulaStoryboard {
+    return [TyphoonDefinition withClass:[TyphoonStoryboard class] configuration:^(TyphoonDefinition* definition) {
+        [definition useInitializer:@selector(storyboardWithName:factory:bundle:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:@"EulaViewController"];
+            [initializer injectParameterWith:self];
+            [initializer injectParameterWith:[NSBundle mainBundle]];
+        }];
+        definition.scope = TyphoonScopeSingleton; //Let's make this a singleton
+    }];
 }
 
 - (UIStoryboard *)storyboardWithName:(NSString *)storyboardName {

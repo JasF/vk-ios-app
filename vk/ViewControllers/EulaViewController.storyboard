@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="V67-ai-C7N">
+            <objects>
+                <navigationController id="gXh-4p-4ZI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uvA-uE-eSw">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="c1a-ro-ahF" kind="relationship" relationship="rootViewController" id="9mC-HT-EN9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D2N-H1-s4G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1094" y="-143"/>
+        </scene>
+        <!--Eula View Controller-->
+        <scene sceneID="crm-bC-OrJ">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" id="c1a-ro-ahF" customClass="EulaViewController" customModule="Oxy_Feed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FGZ-tS-itZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r0l-3I-A2a">
+                                <rect key="frame" x="11.5" y="64" width="351" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="r0l-3I-A2a" firstAttribute="bottom" secondItem="1bb-Yx-GH0" secondAttribute="bottom" id="BvV-DO-GjN"/>
+                            <constraint firstItem="r0l-3I-A2a" firstAttribute="centerX" secondItem="1bb-Yx-GH0" secondAttribute="centerX" id="Tzx-gw-xd1"/>
+                            <constraint firstItem="r0l-3I-A2a" firstAttribute="top" secondItem="1bb-Yx-GH0" secondAttribute="top" id="nc7-4f-cEA"/>
+                            <constraint firstItem="r0l-3I-A2a" firstAttribute="width" secondItem="FGZ-tS-itZ" secondAttribute="width" constant="-24" id="sm5-v4-yoG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1bb-Yx-GH0"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Wal-hp-Tir"/>
+                    <connections>
+                        <outlet property="textView" destination="r0l-3I-A2a" id="b8X-bA-C1E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qtr-xu-rfa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-250" y="-143"/>
+        </scene>
+    </scenes>
+</document>

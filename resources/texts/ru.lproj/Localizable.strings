@@ -17,7 +17,7 @@
 "bookmarks"="Закладки";
 "videos"="Видео";
 "documents"="Документы";
-"settings"="Настройки";
+"settings"="Опции";
 "exit"="Выход";
 "ok"="OK";
 "cancel"="Отмена";
@@ -56,7 +56,7 @@
 "group_you_are_send_request"="Вы подали заявку";
 "dialog_attachments"="[Вложение]";
 "title_friends"="Друзья";
-"title_settings"="Настройки";
+"title_settings"="Опции";
 "title_documents"="Документы";
 "title_videos"="Видео";
 "title_groups"="Группы";
@@ -84,8 +84,8 @@
 "error_ignore_item"="При скрытии записи произошла ошибка";
 "comment_delete"="Удалить комментарий";
 "error_delete_comment"="Не удалось удалить комментарий";
-"eula_button"="Политика конфиденциальности";
-"eula_alert_message"="Для продолжения необходимо согласиться с условиями Пользовательского соглашения";
+"eula_button"="Пользовательское соглашение";
+"eula_alert_message_begin"="Для продолжения необходимо согласиться с условиями ";
+"eula_alert_message_link"=" Пользовательского соглашения";
 "eula_accept"="Согласен";
-"eula_button_accept"="Продолжить";
-"eula_cancel"="Отмена";
+"eula_continue"="Продолжить";

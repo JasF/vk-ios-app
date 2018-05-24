@@ -23,7 +23,7 @@ static CGFloat const kPadding = 16.f;
 - (id)initWithText:(NSString *)text color:(UIColor *)color {
     if (self = [super init]) {
         _textNode = [[ASTextNode alloc] init];
-        NSMutableDictionary *attributes = [[TextStyles textNodeStyle] mutableCopy];
+        NSMutableDictionary *attributes = (color) ? [[TextStyles textNodeStyle] mutableCopy] : [[TextStyles textNodeSimpleStyle] mutableCopy];
         if (color) {
             attributes[NSForegroundColorAttributeName] = color;
         }

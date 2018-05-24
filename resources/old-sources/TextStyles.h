@@ -32,4 +32,5 @@
 + (NSDictionary *)cellControlStyle;
 + (NSDictionary *)cellControlColoredStyle;
 + (NSDictionary *)textNodeStyle;
++ (NSDictionary *)textNodeSimpleStyle;
 @end

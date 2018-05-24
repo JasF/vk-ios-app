@@ -11,7 +11,7 @@ import Foundation
 class TextStyles {
     static public func eulaTextStyle() -> [NSAttributedStringKey : Any]! {
         return [ NSAttributedStringKey.foregroundColor: UIColor.black,
-                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 24) ]
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14) ]
     }
     static public func nameStyle() -> [NSAttributedStringKey : Any]! {
         return [ NSAttributedStringKey.foregroundColor: UIColor.black,
@@ -36,20 +36,20 @@ class TextStyles {
     
     static public func authorizationButtonStyle() -> [NSAttributedStringKey : Any]! {
         return [ NSAttributedStringKey.foregroundColor: UIColor(red: 10.0/255.0, green: 43.0/255.0, blue: 57.0/255.0, alpha: 1.0),
-                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),
         ]
     }
     
     static public func eulaButtonStyle() -> [NSAttributedStringKey : Any]! {
         return [ NSAttributedStringKey.foregroundColor: UIColor.white,
-                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)
             , .underlineStyle: NSUnderlineStyle.styleSingle.rawValue
             //, NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle
         ]
     }
     static public func eulaHighlightedButtonStyle() -> [NSAttributedStringKey : Any]! {
         return [ NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.5),
-                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)
             , .underlineStyle: NSUnderlineStyle.styleSingle.rawValue
             //, NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle
         ]

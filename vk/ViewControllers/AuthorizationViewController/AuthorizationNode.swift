@@ -63,7 +63,7 @@ import AsyncDisplayKit
         for button in buttons {
             let spec = ASStackLayoutSpec.init(direction: .horizontal, spacing: 0, justifyContent: .start, alignItems: .start, children: [button])
             if button.isEqual(eulaButton) {
-                let s = ASInsetLayoutSpec(insets: UIEdgeInsetsMake(-15, 0, 0, 0), child: spec)
+                let s = ASInsetLayoutSpec(insets: UIEdgeInsetsMake(-20, 0, 0, 0), child: spec)
                 specs.append(s)
             }
             else {

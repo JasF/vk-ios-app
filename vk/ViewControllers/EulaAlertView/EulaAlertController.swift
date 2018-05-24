@@ -11,47 +11,50 @@ import Foundation
 import SDCAlertView
 
 @objcMembers class EulaAlertController : NSObject {
+    let alert:AlertController!
     override init() {
+        let style = AlertControllerStyle(rawValue:1)!
+        alert = AlertController(title: nil, message: nil, preferredStyle: style)
         super.init()
     }
-    
+    var parentViewController: UIViewController?
+    var needsShowEulaViewControllerBlock: (()->Void)?
+    var finishedBlock: ((Bool)->Void)?
     public func present(_ viewController: UIViewController) {
-        let customView = EulaAlertView.instanceFromNib()
-        customView.clipsToBounds = true
-        customView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let style = AlertControllerStyle(rawValue:1)!
-        let alert = AlertController(title: nil, message: "eula_alert_message".localized, preferredStyle: style)
-
-        
+        parentViewController = viewController
         let alertView = EulaAlertView.instanceFromNib()
+        alertView.eulaTappedBlock = { [weak self] in
+            if self?.needsShowEulaViewControllerBlock != nil {
+                self?.needsShowEulaViewControllerBlock!()
+            }
+        }
         let contentView = alert.contentView
         alertView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(alertView)
         alertView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         alertView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         alertView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        
-        alert.addAction(AlertAction(title: "OK", style: .normal))
-        alert.addAction(AlertAction(title: "Delete", style: .destructive))
-    
+        let continueAction = AlertAction(title: "eula_continue".localized, style: .preferred, handler: { [weak self] (action) in
+            if self?.finishedBlock != nil {
+                self?.finishedBlock!(alertView.checkbox!.isSelected)
+            }
+        })
+        continueAction.isEnabled = false
+        alertView.checkboxValueChangedBlock = { (selected) in
+            continueAction.isEnabled = selected
+        }
+        alert.addAction(continueAction)
+        alert.addAction(AlertAction(title: "cancel".localized, style: .normal, handler: { [weak self] (action) in
+            if self?.finishedBlock != nil {
+                self?.finishedBlock!(false)
+            }
+        }))
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[alertView]-|", options: [], metrics: nil, views: ["alertView": alertView]))
         contentView.isUserInteractionEnabled = true
-        
         alert.present()
-        /*
-        // Create the alert and show it
-        let alert = UIAlertController(title: nil,
-                                      customView: customView,
-                                      fallbackMessage: nil,
-                                      preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "eula_button_accept".localized, style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "eula_cancel".localized, style: .destructive, handler: nil))
- */
-        
-        //viewController.present(alert, animated: true, completion: nil)
     }
     
-    
+    public func dismiss(_ animated:Bool, completion: @escaping (()->Void)) {
+        alert.dismiss(animated: animated, completion: completion)
+    }
 }

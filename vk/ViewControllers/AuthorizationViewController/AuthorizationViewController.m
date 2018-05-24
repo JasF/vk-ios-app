@@ -18,9 +18,13 @@
 #import "AuthorizationViewController.h"
 #import "Oxy_Feed-Swift.h"
 
+static NSString *const kUserConfirmedPrivacyPolicy = @"kUserConfirmedPrivacyPolicy";
+
 @interface AuthorizationViewController ()
 @property id<AuthorizationViewModel> viewModel;
 @property AuthorizationNode *authorizationNode;
+@property EulaAlertController *alertController;
+@property (copy) dispatch_block_t continueAuthorizationBlock;
 @end
 
 #pragma mark - Lifecycle
@@ -37,10 +41,6 @@
     return self;
 }
 
-- (void)dealloc {
-    
-}
-    
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.viewModel.viewController = self;
@@ -48,11 +48,17 @@
     @weakify(self);
     self.authorizationNode.authorizeByAppHandler = ^{
         @strongify(self);
-        [self.viewModel authorizeByApp];
+        [self continueAuthorizationIfPossible:^{
+            @strongify(self);
+            [self.viewModel authorizeByApp];
+        }];
     };
     self.authorizationNode.authorizeByLoginHandler = ^{
         @strongify(self);
-        [self.viewModel authorizeByLogin];
+        [self continueAuthorizationIfPossible:^{
+            @strongify(self);
+            [self.viewModel authorizeByLogin];
+        }];
     };
     self.authorizationNode.eulaHandler = ^{
         @strongify(self);
@@ -63,17 +69,57 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-    
-#ifdef DEBUG
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.viewModel showEula];
-    });
-#endif
+    if (self.continueAuthorizationBlock) {
+        [self showEulaAlert];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden = NO;
 }
-    
+
+#pragma mark - Private Methods
+- (BOOL)isUserConfirmedPrivacyPolicy {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kUserConfirmedPrivacyPolicy];
+}
+
+- (void)setIsUserConfirmedPrivacyPolicy:(BOOL)isConfirmed {
+    [[NSUserDefaults standardUserDefaults] setBool:isConfirmed forKey:kUserConfirmedPrivacyPolicy];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)continueAuthorizationIfPossible:(dispatch_block_t)block {
+    if ([self isUserConfirmedPrivacyPolicy]) {
+        block();
+        return;
+    }
+    self.continueAuthorizationBlock = block;
+    [self showEulaAlert];
+}
+
+- (void)showEulaAlert {
+    _alertController = [EulaAlertController new];
+    @weakify(self);
+    _alertController.needsShowEulaViewControllerBlock = ^{
+        @strongify(self);
+        [self.alertController dismiss:YES completion:^{
+            @strongify(self);
+            self.alertController = nil;
+            [self.viewModel showEula];
+        }];
+    };
+    _alertController.finishedBlock = ^(BOOL isPrivacyPolicyConfirmed) {
+        @strongify(self);
+        if (isPrivacyPolicyConfirmed) {
+            [self setIsUserConfirmedPrivacyPolicy:YES];
+            if (self.continueAuthorizationBlock) {
+                self.continueAuthorizationBlock();
+            }
+        }
+        self.continueAuthorizationBlock = nil;
+    };
+    [_alertController present:self];
+}
+
 @end

@@ -491,6 +491,8 @@
 		C3703B5E209C4C3400E879A1 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3703B5D209C4C3400E879A1 /* utilities.swift */; };
 		C37C0BFC2086F8140086A875 /* AvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C37C0BFB2086F8140086A875 /* AvatarNode.m */; };
 		C392C49F20B0456800FF8390 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C392C49E20B0456800FF8390 /* BaseViewController.m */; };
+		C395126B20B68F7F00EE5DFB /* EulaViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C395126A20B68F7F00EE5DFB /* EulaViewController.storyboard */; };
+		C395127020B696D900EE5DFB /* CocoaLumberjack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C395126F20B696D800EE5DFB /* CocoaLumberjack.swift */; };
 		C3987DD42096F8BF0047A30F /* NSDate+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */; };
 		C3987DD620971B880047A30F /* AlignTopCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */; };
 		C3987DD8209733890047A30F /* AvatarNameDateNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3987DD7209733890047A30F /* AvatarNameDateNode.swift */; };
@@ -1814,6 +1816,8 @@
 		C37C0BFB2086F8140086A875 /* AvatarNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvatarNode.m; sourceTree = "<group>"; };
 		C392C49D20B0456800FF8390 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		C392C49E20B0456800FF8390 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		C395126A20B68F7F00EE5DFB /* EulaViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EulaViewController.storyboard; sourceTree = "<group>"; };
+		C395126F20B696D800EE5DFB /* CocoaLumberjack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaLumberjack.swift; sourceTree = "<group>"; };
 		C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Utils.swift"; sourceTree = "<group>"; };
 		C3987DD520971B880047A30F /* AlignTopCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignTopCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		C3987DD7209733890047A30F /* AvatarNameDateNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarNameDateNode.swift; sourceTree = "<group>"; };
@@ -3195,6 +3199,7 @@
 				C323049A2080E57400CEC487 /* ChatListViewController */,
 				C32304A02080E57400CEC487 /* MenuViewController */,
 				C36CD86D20B52486002703D1 /* UIAlertController+CustomView.swift */,
+				C395126A20B68F7F00EE5DFB /* EulaViewController.storyboard */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -3370,6 +3375,7 @@
 		C32304C82080E57400CEC487 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C395126F20B696D800EE5DFB /* CocoaLumberjack.swift */,
 				C3B2251220860BD300599E04 /* DeallocSubscriber */,
 				C32304C92080E57400CEC487 /* BlurbNode.m */,
 				C32304CA2080E57400CEC487 /* HandlersFactory */,
@@ -6045,6 +6051,7 @@
 				C32306592080E57500CEC487 /* __init__.py in Resources */,
 				C32306BF2080E57500CEC487 /* low_level.cpython-34.pyc in Resources */,
 				C3B0EF1B208B14E8008802BB /* loadBubble_0031_Layer-8@1x.png in Resources */,
+				C395126B20B68F7F00EE5DFB /* EulaViewController.storyboard in Resources */,
 				C32306972080E57500CEC487 /* ssl_.py in Resources */,
 				C3B0EF21208B14E8008802BB /* loadBubble_0007_Layer-32@3x.png in Resources */,
 				C32306732080E57500CEC487 /* packages.py in Resources */,
@@ -6309,6 +6316,7 @@
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -6324,6 +6332,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6476,6 +6485,7 @@
 				C32308BB2081AEB100CEC487 /* LGSideMenuSegue.m in Sources */,
 				C39D471920A2CD7600C6CC99 /* BaseChatViewController+Scrolling.swift in Sources */,
 				C39D46D820A2CD6900C6CC99 /* PhotosChatInputItem.swift in Sources */,
+				C395127020B696D900EE5DFB /* CocoaLumberjack.swift in Sources */,
 				C3A82A3F2093389F00C41CA8 /* PostsServiceImpl.m in Sources */,
 				C32309172081AEB100CEC487 /* TyphoonAssemblyBuilder+PlistProcessor.m in Sources */,
 				C39D46DF20A2CD6900C6CC99 /* PhotosInputCellProvider.swift in Sources */,

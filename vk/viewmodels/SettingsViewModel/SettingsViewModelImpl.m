@@ -58,5 +58,11 @@
     });
 }
 
+- (void)eulaTapped {
+    dispatch_python(^{
+        [self.handler eulaTapped];
+    });
+}
+
 @end
 

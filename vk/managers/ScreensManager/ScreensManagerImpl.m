@@ -134,7 +134,12 @@
 - (void)showEulaViewController {
     dispatch_async(dispatch_get_main_queue(), ^{
         EulaViewController *viewController = (EulaViewController *)[_screensAssembly eulaViewController];
-        [self.rootNavigationController pushViewController:viewController animated:YES];
+        if ([self.window.rootViewController isEqual:self.rootNavigationController]) {
+            [self.rootNavigationController pushViewController:viewController animated:YES];
+        }
+        else {
+            [self pushViewController:viewController clean:NO];
+        }
     });
 }
 

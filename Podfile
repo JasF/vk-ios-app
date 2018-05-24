@@ -15,7 +15,8 @@ target 'Oxy Feed' do
   pod 'LoremIpsum', '= 1.0.0'
   pod 'MWPhotoBrowser', :path => 'Components/MWPhotoBrowser'
   pod 'DOCheckboxControl'
-  pod 'SDCAlertView'
+  pod 'SDCAlertView', :path => 'Components/SDCAlertView'
+  pod 'TTTAttributedLabel', :path => 'Components/TTTAttributedLabel'
 end
 
 post_install do |installer|

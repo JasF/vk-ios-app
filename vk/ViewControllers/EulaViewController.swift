@@ -8,39 +8,29 @@
 
 import DOCheckboxControl
 
-@objcMembers class EulaViewController : UIViewController {
-    let textView = UITextView()
-    let kPadding = CGFloat(12.0)
-    
-    init() {
-        super.init(nibName:nil, bundle:nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        var frame = self.view.bounds
-        textView.frame = frame
-    }
-    
+@objcMembers class EulaViewController : UIViewController, UITextViewDelegate {
+    @IBOutlet var textView: UITextView?
+    var appeared = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
         self.view.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.barStyle = .blackTranslucent
-        self.view.addSubview(textView)
-        textView.contentInset = UIEdgeInsetsMake(kPadding, kPadding, kPadding, kPadding)
+        guard let textView = textView else { return }
         textView.attributedText = NSAttributedString(string: eulaString, attributes: TextStyles.eulaTextStyle())
-        textView.contentOffset = CGPoint(x: 0.0, y: 0.0)
+        textView.showsHorizontalScrollIndicator = false;
+        textView.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let controller = EulaAlertController()
-        controller.present(self)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        appeared = true
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        DDLogInfo("ds: \(scrollView.contentOffset)")
+        if appeared == false {
+            scrollView.contentOffset = CGPoint(x:0,y:0)
+        }
     }
     
     let eulaString = """

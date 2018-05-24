@@ -14,6 +14,7 @@
 
 typedef NS_ENUM(NSInteger, SettingsRow) {
     //NotificationsRow,
+    EulaRow,
     ExitRow,
     RowsCount
 };
@@ -41,6 +42,11 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self addMenuIconWithTarget:self action:@selector(menuTapped:)];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.tableNode.view.separatorColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
 }
 
 #pragma mark - Observers
@@ -91,6 +97,7 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
                 break;
             }
                  */
+            case EulaRow: return [[TextNode alloc] initWithText:L(@"eula_button")];
             case ExitRow: return [[TextNode alloc] initWithText:L(@"exit")
                                                           color:[UIColor redColor]];
             default: {
@@ -113,6 +120,10 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
 - (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
     switch (indexPath.row) {
+        case EulaRow: {
+            [_viewModel eulaTapped];
+            break;
+        }
         case ExitRow: {
             [_viewModel exitTapped];
             break;
