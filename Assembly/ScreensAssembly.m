@@ -37,6 +37,7 @@
 #import "RowsDialogImpl.h"
 #import "CreatePostViewController.h"
 #import "Oxy_Feed-Swift.h"
+#import "BlackListViewController.h"
 
 @implementation ScreensAssembly
 
@@ -158,6 +159,15 @@
                                parameters:^(TyphoonMethod *factoryMethod) {
                                    [factoryMethod injectParameterWith:@"ViewController"];
                                }];
+}
+
+- (UIViewController *)blackListViewController {
+    return [TyphoonDefinition withClass:[BlackListViewController class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithViewModel:nodeFactory:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:self.viewModelsAssembly.blackListViewModel];
+            [initializer injectParameterWith:self.nodesAssembly.nodeFactory];
+        }];
+    }];
 }
 
 - (UIViewController *)photoAlbumsViewController:(NSNumber *)ownerId {

@@ -16,6 +16,7 @@
 - (void)notificationsSettingsChanged:(NSNumber *)on;
 - (void)exitTapped;
 - (void)eulaTapped;
+- (void)blackListTapped;
 @end
 
 @interface SettingsViewModelImpl : NSObject <SettingsViewModel>

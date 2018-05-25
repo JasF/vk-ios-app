@@ -28,6 +28,7 @@
 #import "PostsService.h"
 
 @protocol CommentsService;
+@protocol BlackListService;
 
 @interface ServicesAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -45,9 +46,9 @@
 - (id<VideosService>)videosService;
 - (id<DocumentsService>)documentsService;
 - (id<SettingsService>)settingsService;
-- (id<GalleryService>)galleryService;
 - (id<DetailPhotoService>)detailPhotoService;
 - (id<DetailVideoService>)detailVideoService;
 - (id<PostsService>)postsService;
 - (id<CommentsService>)commentsService;
+- (id<BlackListService>)blackListService;
 @end

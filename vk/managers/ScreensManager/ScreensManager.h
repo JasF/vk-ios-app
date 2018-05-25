@@ -43,6 +43,7 @@
 - (void)presentAddPostViewController:(NSNumber *)ownerId;
 - (void)dismissCreatePostViewController:(NSNumber *)isPostPublished;
 - (void)showEulaViewController;
+- (void)showBlackListViewController;
 - (NSString *)getCaptchaInput:(NSDictionary *)response;
 - (NSNumber *)getValidationResponse:(NSDictionary *)response;
 - (UIViewController *)topViewController;

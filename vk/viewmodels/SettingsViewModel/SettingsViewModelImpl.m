@@ -64,5 +64,11 @@
     });
 }
 
+- (void)blackListTapped {
+    dispatch_python(^{
+        [self.handler blackListTapped];
+    });
+}
+
 @end
 

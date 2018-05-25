@@ -15,4 +15,5 @@
 - (void)notificationsSettingsChanged:(BOOL)on;
 - (void)exitTapped;
 - (void)eulaTapped;
+- (void)blackListTapped;
 @end

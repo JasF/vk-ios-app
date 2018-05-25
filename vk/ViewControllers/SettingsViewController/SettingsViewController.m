@@ -14,6 +14,7 @@
 
 typedef NS_ENUM(NSInteger, SettingsRow) {
     //NotificationsRow,
+    BannedUsersRow,
     EulaRow,
     ExitRow,
     RowsCount
@@ -47,6 +48,12 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableNode.view.separatorColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+    
+#ifdef DEBUG
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_viewModel blackListTapped];
+    });
+#endif
 }
 
 #pragma mark - Observers
@@ -97,6 +104,7 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
                 break;
             }
                  */
+            case BannedUsersRow: return [[TextNode alloc] initWithText:L(@"black_list")];
             case EulaRow: return [[TextNode alloc] initWithText:L(@"eula_button")];
             case ExitRow: return [[TextNode alloc] initWithText:L(@"exit")
                                                           color:[UIColor redColor]];
@@ -120,6 +128,10 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
 - (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableNode:tableNode didSelectRowAtIndexPath:indexPath];
     switch (indexPath.row) {
+        case BannedUsersRow: {
+            [_viewModel blackListTapped];
+            break;
+        }
         case EulaRow: {
             [_viewModel eulaTapped];
             break;

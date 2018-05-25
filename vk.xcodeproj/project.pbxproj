@@ -784,6 +784,9 @@
 		C3B2251520860BE400599E04 /* DeallocSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2251420860BE400599E04 /* DeallocSubscriber.m */; };
 		C3B2251B20861F5F00599E04 /* WallViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B2251A20861F5F00599E04 /* WallViewModelImpl.m */; };
 		C3B225212086298400599E04 /* MenuViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B225202086298400599E04 /* MenuViewModelImpl.m */; };
+		C3BA3D1F20B7DA2D00F30A7B /* BlackListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BA3D1E20B7DA2D00F30A7B /* BlackListViewController.m */; };
+		C3BA3D2120B7DA7200F30A7B /* BlackListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BA3D2020B7DA7200F30A7B /* BlackListViewModel.swift */; };
+		C3BA3D2520B7DE6F00F30A7B /* BlackListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BA3D2420B7DE6F00F30A7B /* BlackListService.swift */; };
 		C3D4873B20919A83007EC440 /* AuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D4873A20919A83007EC440 /* AuthorizationViewController.m */; };
 		C3D4873F20919BA1007EC440 /* AuthorizationViewModelImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D4873E20919BA1007EC440 /* AuthorizationViewModelImpl.m */; };
 		C3F170D22090549300C33F2C /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F170D12090549300C33F2C /* Answer.m */; };
@@ -2174,6 +2177,12 @@
 		C3B2251F2086298400599E04 /* MenuViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewModelImpl.h; sourceTree = "<group>"; };
 		C3B225202086298400599E04 /* MenuViewModelImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewModelImpl.m; sourceTree = "<group>"; };
 		C3B2252220862B7600599E04 /* pymenuviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pymenuviewmodel.py; sourceTree = "<group>"; };
+		C3BA3D1D20B7DA2D00F30A7B /* BlackListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlackListViewController.h; sourceTree = "<group>"; };
+		C3BA3D1E20B7DA2D00F30A7B /* BlackListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackListViewController.m; sourceTree = "<group>"; };
+		C3BA3D2020B7DA7200F30A7B /* BlackListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackListViewModel.swift; sourceTree = "<group>"; };
+		C3BA3D2220B7DB6E00F30A7B /* pyblacklistviewmodel.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pyblacklistviewmodel.py; sourceTree = "<group>"; };
+		C3BA3D2320B7DB9700F30A7B /* blacklistservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = blacklistservice.py; sourceTree = "<group>"; };
+		C3BA3D2420B7DE6F00F30A7B /* BlackListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackListService.swift; sourceTree = "<group>"; };
 		C3D4873920919A83007EC440 /* AuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationViewController.h; sourceTree = "<group>"; };
 		C3D4873A20919A83007EC440 /* AuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizationViewController.m; sourceTree = "<group>"; };
 		C3D4873D20919BA1007EC440 /* AuthorizationViewModelImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthorizationViewModelImpl.h; sourceTree = "<group>"; };
@@ -3163,6 +3172,7 @@
 		C32304852080E57400CEC487 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3BA3D1920B7D9E500F30A7B /* BlackListViewController */,
 				C36CD87620B527DB002703D1 /* EulaAlertView */,
 				C334281E20B292CE00F5228A /* EulaViewController.swift */,
 				C392C49C20B0455800FF8390 /* BaseViewController */,
@@ -3338,6 +3348,7 @@
 				C32304BE2080E57400CEC487 /* DialogService */,
 				C32304C22080E57400CEC487 /* ChatListService */,
 				C3987DDF20985AA80047A30F /* CommentsService.swift */,
+				C3BA3D2420B7DE6F00F30A7B /* BlackListService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -3872,6 +3883,7 @@
 				C3D487432091A561007EC440 /* detailvideoservice.py */,
 				C3987DEF209897A60047A30F /* commentsservice.py */,
 				C3987E0A20999C2C0047A30F /* createpostservice.py */,
+				C3BA3D2320B7DB9700F30A7B /* blacklistservice.py */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -5541,6 +5553,7 @@
 				C3A82A3A2093366800C41CA8 /* pypostsviewmodel.py */,
 				C3987E0920999C0A0047A30F /* pycreatepostviewmodel.py */,
 				C39C8B8B209C4E3C00CC23C3 /* pymwphotobrowserviewmodel.py */,
+				C3BA3D2220B7DB6E00F30A7B /* pyblacklistviewmodel.py */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -5722,6 +5735,7 @@
 				C3B225022085BA4A00599E04 /* DialogScreenViewModel */,
 				C3987DF32098B37D0047A30F /* CreatePostViewModel.swift */,
 				C3703B5B209C48E800E879A1 /* MWPhotoBrowserViewModel.swift */,
+				C3BA3D2020B7DA7200F30A7B /* BlackListViewModel.swift */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -5773,6 +5787,15 @@
 				C3B225202086298400599E04 /* MenuViewModelImpl.m */,
 			);
 			path = MenuViewModel;
+			sourceTree = "<group>";
+		};
+		C3BA3D1920B7D9E500F30A7B /* BlackListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3BA3D1D20B7DA2D00F30A7B /* BlackListViewController.h */,
+				C3BA3D1E20B7DA2D00F30A7B /* BlackListViewController.m */,
+			);
+			path = BlackListViewController;
 			sourceTree = "<group>";
 		};
 		C3D4873820919A4F007EC440 /* AuthorizationViewController */ = {
@@ -6462,6 +6485,7 @@
 				C32305F82080E57500CEC487 /* PostSource.m in Sources */,
 				C32309092081AEB100CEC487 /* TyphoonPrimitiveTypeConverter.m in Sources */,
 				C32309002081AEB100CEC487 /* TyphoonInjectionByFactoryReference.m in Sources */,
+				C3BA3D2120B7DA7200F30A7B /* BlackListViewModel.swift in Sources */,
 				C32308E52081AEB100CEC487 /* TyphoonStoryboardDefinition.m in Sources */,
 				C39D469D20A2CD6900C6CC99 /* BaseMessageViewModel.swift in Sources */,
 				C3137744208E303E00F568EA /* GalleryServiceImpl.m in Sources */,
@@ -6529,6 +6553,7 @@
 				C32308D32081AEB100CEC487 /* NSObject+TyphoonIntrospectionUtils.m in Sources */,
 				C32308E92081AEB100CEC487 /* TyphoonDefinition.m in Sources */,
 				C32308CE2081AEB100CEC487 /* NSArray+TyphoonManualEnumeration.m in Sources */,
+				C3BA3D1F20B7DA2D00F30A7B /* BlackListViewController.m in Sources */,
 				C39D46A420A2CD6900C6CC99 /* PhotoMessageViewModel.swift in Sources */,
 				C32308F42081AEB100CEC487 /* TyphoonBlockDefinition.m in Sources */,
 				C350782320948114000C8FB3 /* TextStyles.swift in Sources */,
@@ -6572,6 +6597,7 @@
 				C32308DF2081AEB100CEC487 /* UIViewController+TyphoonStoryboardIntegration.m in Sources */,
 				C39D46C620A2CD6900C6CC99 /* ChatInputBarAppearance.swift in Sources */,
 				C32309332081AEB100CEC487 /* CALayer+Image.m in Sources */,
+				C3BA3D2520B7DE6F00F30A7B /* BlackListService.swift in Sources */,
 				C32262C32090A49A0054789B /* DocumentsViewModelImpl.m in Sources */,
 				C3137736208E2A4200F568EA /* PhotoAlbumNode.m in Sources */,
 				C3987E372099CB480047A30F /* AddRandomMessageChatViewController.swift in Sources */,

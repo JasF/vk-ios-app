@@ -13,3 +13,9 @@ func dispatch_python(_ callback: @escaping ()->Void) {
         callback()
     }
 }
+
+func dispatch_mainthread(_ callback: @escaping ()->Void) {
+    DispatchQueue.main.async {
+        callback()
+    }
+}

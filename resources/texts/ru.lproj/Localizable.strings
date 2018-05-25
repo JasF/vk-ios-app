@@ -97,3 +97,6 @@
 "user_successfully_banned"="Пользователь успешно заблокирован";
 "group_successfully_banned"="Группа успешно заблокирована";
 "already_blacklisted"="Этот пользователь уже находится в списке заблокированных";
+"title_black_list"="Черный список";
+"black_list"="Черный список";
+

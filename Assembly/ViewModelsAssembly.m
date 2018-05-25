@@ -308,4 +308,14 @@
             }];
 }
 
+- (id<BlackListViewModel>)blackListViewModel {
+    return [TyphoonDefinition withClass:[BlackListViewModelImpl class] configuration:^(TyphoonDefinition *definition)
+            {
+                [definition useInitializer:@selector(init:service:) parameters:^(TyphoonMethod *initializer) {
+                    [initializer injectParameterWith:self.servicesAssembly.handlersFactory];
+                    [initializer injectParameterWith:self.servicesAssembly.blackListService];
+                }];
+            }];
+}
+
 @end

@@ -34,6 +34,7 @@
 @protocol PyMWPhotoBrowserViewModel;
 @protocol PyAnalytics;
 @protocol PySystemEvents;
+@protocol PyBlackListViewModel;
 
 @protocol HandlersFactory <NSObject>
 - (id<PyChatListViewModel>)chatListViewModelHandler:(id)delegate;
@@ -65,4 +66,5 @@
 - (id<PyMWPhotoBrowserViewModel>)photoBrowserViewModelHandler;
 - (id<PyAnalytics>)analyticsHandlerWithDelegate:(id)delegate;
 - (id<PySystemEvents>)systemEventsHandler;
+- (id<PyBlackListViewModel>)blackListViewModelHandler;
 @end

@@ -53,6 +53,7 @@
 - (UIViewController *)videoPlayerViewController:(Video *)video;
 - (UIViewController *)createPostViewController:(NSNumber *)ownerId;
 - (UIViewController *)eulaViewController;
+- (UIViewController *)blackListViewController;
 - (id<TextFieldDialog>)textFieldDialog;
 - (id<DialogsManager>)dialogsManager;
 - (UIWindow *)window;

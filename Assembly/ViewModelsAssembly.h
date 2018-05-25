@@ -35,6 +35,7 @@
 @protocol VideoPlayerViewModel;
 @protocol CreatePostViewModel;
 @protocol MWPhotoBrowserViewModel;
+@protocol BlackListViewModel;
 
 @interface ViewModelsAssembly : TyphoonAssembly
 @property (readonly) VKCoreComponents *coreComponents;
@@ -66,4 +67,5 @@
 - (id<VideoPlayerViewModel>)videoPlayerViewModel:(Video *)video;
 - (id<CreatePostViewModel>)createPostViewModel:(NSNumber *)ownerId;
 - (id<MWPhotoBrowserViewModel>)photoBrowserViewModel;
+- (id<BlackListViewModel>)blackListViewModel;
 @end

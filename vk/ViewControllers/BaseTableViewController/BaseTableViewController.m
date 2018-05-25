@@ -166,14 +166,12 @@ static const NSInteger kBatchSize = 20;
 
 - (void)tableNode:(ASTableNode *)tableNode willBeginBatchFetchWithContext:(ASBatchContext *)context {
     
-    DDLogInfo(@"\n\n\nPre fetching$$$\n\n\n");
     if (self.updating) {
         [context completeBatchFetching:YES];
         return;
     }
     self.updating = YES;
     [self fetchMoreItemsWithCompletion:^(BOOL finished){
-        DDLogInfo(@"\n\n\nFetching completed!$$$\n\n\n");
         [context completeBatchFetching:YES];
         self.updating = NO;
     }];

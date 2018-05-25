@@ -29,6 +29,9 @@ class PySettingsViewModel(ObjCBridgeProtocol):
     def eulaTapped(self):
         managers.shared().screensManager().showEulaViewController()
     
+    def blackListTapped(self):
+        managers.shared().screensManager().showBlackListViewController();
+    
     # ObjCBridgeProtocol
     def release(self):
         pass

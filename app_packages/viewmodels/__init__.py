@@ -21,6 +21,7 @@ from .pydetailvideoviewmodel import PyDetailVideoViewModel
 from .pypostsviewmodel import PyPostsViewModel
 from .pycreatepostviewmodel import PyCreatePostViewModel
 from .pymwphotobrowserviewmodel import PyMWPhotoBrowserViewModel
+from .pyblacklistviewmodel import PyBlackListViewModel
 
 from services.messagesservice import MessagesService
 from services.chatlistservice import ChatListService
@@ -41,6 +42,7 @@ from services.detailphotoservice import DetailPhotoService
 from services.detailvideoservice import DetailVideoService
 from services.commentsservice import CommentsService
 from services.createpostservice import CreatePostService
+from services.blacklistservice import BlackListService
 
 Subscriber().setClassAllocatorWithDelegate( PyChatListViewModel, lambda delegateId: PyChatListViewModel(delegateId, MessagesService(), ChatListService()) )
 Subscriber().setClassAllocatorWithDelegate( PyDialogScreenViewModel, lambda delegateId, parameters: PyDialogScreenViewModel(delegateId, parameters, MessagesService(), DialogService()) )
@@ -64,3 +66,4 @@ Subscriber().setClassAllocatorWithDelegate( PyDetailVideoViewModel, lambda deleg
 Subscriber().setClassAllocatorWithDelegate( PyPostsViewModel, lambda delegateId: PyPostsViewModel(WallPostService(UsersDecorator(), CommentsService()), DetailPhotoService(UsersDecorator(), CommentsService()), DetailVideoService(UsersDecorator(), CommentsService()), delegateId) )
 Subscriber().setClassAllocator( PyCreatePostViewModel, lambda parameters: PyCreatePostViewModel(CreatePostService(), parameters['ownerId']) )
 Subscriber().setClassAllocator( PyMWPhotoBrowserViewModel, lambda: PyMWPhotoBrowserViewModel() )
+Subscriber().setClassAllocator( PyBlackListViewModel, lambda: PyBlackListViewModel(BlackListService()) )

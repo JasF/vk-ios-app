@@ -30,6 +30,7 @@
 #import "SettingsViewController.h"
 #import "DetailPhotoViewController.h"
 #import "DetailVideoViewController.h"
+#import "BlackListViewController.h"
 
 @interface ScreensManagerImpl ()
 @property (strong, nonatomic) UIWindow *window;
@@ -140,6 +141,13 @@
         else {
             [self pushViewController:viewController clean:NO];
         }
+    });
+}
+
+- (void)showBlackListViewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BlackListViewController *viewController = (BlackListViewController *)[_screensAssembly blackListViewController];
+        [self pushViewController:viewController clean:NO];
     });
 }
 

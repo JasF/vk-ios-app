@@ -137,4 +137,8 @@
     return [TyphoonDefinition withClass:[CommentsServiceImpl class]];
 }
 
+- (id<BlackListService>)blackListService {
+    return [TyphoonDefinition withClass:[BlackListServiceImpl class]];
+}
+
 @end
