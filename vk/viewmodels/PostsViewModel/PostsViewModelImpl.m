@@ -17,6 +17,7 @@
 - (void)copyUrl:(NSString *)url;
 - (void)hideOptionsNode;
 - (void)commentDeleted;
+- (NSString *)localize:(NSString *)string;
 @end
 
 @interface PostsViewModelImpl () <PostsViewModel>
@@ -391,6 +392,10 @@
     });
     _optionsCellIndexPath = nil;
     _optionsParentItem = nil;
+}
+
+- (NSString *)localize:(NSString *)string {
+    return L(string);
 }
 
 - (void)optionsTappedWithPhoto:(Photo *)photo {

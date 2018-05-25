@@ -29,3 +29,7 @@ class PyDialogsManager(ObjCBridgeProtocol):
 
     def showDialogWithMessage(self, message):
         self.guiDelegate.showDialogWithMessage_(args=[message])
+
+    def showYesNoDialogWithMessage(self, message, yesButtonTitle, noButtonTitle):
+        index, cancelled = self.guiDelegate.showDialogWithMessage_yesButtonTitle_noButtonTitle_(args=[message, yesButtonTitle, noButtonTitle], withResult=True)
+        return index, cancelled

@@ -89,3 +89,11 @@
 "eula_alert_message_link"=" Пользовательского соглашения";
 "eula_accept"="Согласен";
 "eula_continue"="Продолжить";
+"are_you_sure_for_block_username"="Вы уверены, что хотите заблокировать пользователя ";
+"block_user"="Заблокировать";
+"ban_user_button"="Заблокировать";
+"error_ban_user"="Не удалось заблокировать пользователя";
+"error_ban_group"="Не удалось заблокировать группу";
+"user_successfully_banned"="Пользователь успешно заблокирован";
+"group_successfully_banned"="Группа успешно заблокирована";
+"already_blacklisted"="Этот пользователь уже находится в списке заблокированных";

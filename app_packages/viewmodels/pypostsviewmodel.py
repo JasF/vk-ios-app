@@ -8,6 +8,7 @@ import threading, traceback
 from pymanagers.pydialogsmanager import PyDialogsManager
 from constants import g_CommentsCount
 from vk import users
+from vk.exceptions import VkAPIError
 
 class PyPostsViewModelDelegate(BridgeBase):
     pass
@@ -356,14 +357,59 @@ class PyPostsViewModel(ObjCBridgeProtocol):
         try:
             dialogsManager = PyDialogsManager()
             items = []
-            items.append('report')
+            if userId > 0:
+                items.append('report')
+            items.append('block_user')
             index, cancelled = dialogsManager.showRowsDialogWithTitles(items)
             if cancelled:
                 return
-            self.report('user', userId, 0)
+            if index == 0 and userId > 0:
+                self.report('user', userId, 0)
+            else:
+                userData = users.getShortUserById(userId)
+                first_name = userData.get('first_name')
+                last_name = userData.get('last_name')
+                if userId < 0:
+                    first_name = userData.get('name')
+                userName = ""
+                if not isinstance(first_name, str) and not isinstance(last_name, str):
+                    print('name not defined for userData: ' + json.dumps(userData, indent=4))
+                    return
+                elif isinstance(first_name, str) and isinstance(last_name, str):
+                    userName = first_name + ' ' + last_name
+                elif isinstance(first_name, str):
+                    userName = first_name
+                else:
+                    userName = last_name
+                locString = self.guiDelegate.localize_(args=['are_you_sure_for_block_username'], withResult=True) + userName + '?'
+                index, cancelled = dialogsManager.showYesNoDialogWithMessage(locString, "ban_user_button", "cancel")
+                if cancelled == True:
+                    return
+                self.blockUser(userId)
         except Exception as e:
             print('optionsTappedWithUserId exception: ' + str(e))
+            print(traceback.format_exc())
 
+    def blockUser(self, userId):
+        result = 0
+        try:
+            api = vk.api()
+            result = api.account.ban(owner_id=userId)
+        except VkAPIError as e:
+            if 'already blacklisted' in e.message:
+                result = 2
+        except Exception as e:
+            print('blockUser exception: ' + str(e))
+        message = ""
+        if isinstance(result, int) and result == 2:
+            message = 'already_blacklisted'
+        elif not isinstance(result, int) or result != 1:
+            message = 'error_ban_user' if userId>0 else 'error_ban_group'
+        else:
+            message = 'user_successfully_banned' if userId>0 else 'group_successfully_banned'
+
+        dialogsManager = PyDialogsManager()
+        dialogsManager.showDialogWithMessage(message)
 
     # ObjCBridgeProtocol
     def release(self):

@@ -97,7 +97,7 @@ static CGFloat const kButtonSize = 44.f;
 
 - (void)addRightIconIfNeeded {
     User *user = self.viewModel.currentUser;
-    if (!self.navigationItem.rightBarButtonItem && user.id > 0) {
+    if (!self.navigationItem.rightBarButtonItem) {
         UIButton *button = [UIButton new];
         [button addTarget:self action:@selector(addPostTapped:) forControlEvents:UIControlEventTouchUpInside];
         [button setImage:[UIImage imageNamed:@"add_post"] forState:UIControlStateNormal];

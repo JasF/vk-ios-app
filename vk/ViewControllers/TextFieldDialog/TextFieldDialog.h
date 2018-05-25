@@ -23,4 +23,12 @@
 - (void)showTextFieldDialogWithMessage:(NSString *)message
                            placeholder:(NSString *)placeholder
                            onlyMessage:(BOOL)onlyMessage;
+
+- (void)showWithMessage:(NSString *)message
+         yesButtonTitle:(NSString *)yesButtonTitle
+          noButtonTitle:(NSString *)noButtonTitle;
+
+- (void)showDialogWithMessage:(NSString *)message
+                           placeholder:(NSString *)placeholder
+                           onlyMessage:(BOOL)onlyMessage;
 @end
