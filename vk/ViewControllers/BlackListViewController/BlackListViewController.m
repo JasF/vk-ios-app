@@ -23,7 +23,7 @@
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
-        [self setTitle:L(@"title_black_list")];
+        [self setTitle:@"groupunban_and_failure_check"];//L(@"title_black_list")];
     }
     return self;
 }
@@ -50,5 +50,21 @@
                }];
 }
 
+- (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableNode deselectRowAtIndexPath:indexPath animated:YES];
+    NSCAssert(indexPath.row < self.objectsArray.count, @"indexpath out of bounds: %@", indexPath);
+    if (indexPath.row >= self.objectsArray.count) {
+        return;
+    }
+    User *user = self.objectsArray[indexPath.row];
+    @weakify(self);
+    [_viewModel unbanUser:user completion:^(BOOL success) {
+        @strongify(self);
+        if (success) {
+            [self.objectsArray removeObjectAtIndex:indexPath.row];
+            [self.tableNode deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }];
+}
 
 @end

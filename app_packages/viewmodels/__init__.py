@@ -66,4 +66,4 @@ Subscriber().setClassAllocatorWithDelegate( PyDetailVideoViewModel, lambda deleg
 Subscriber().setClassAllocatorWithDelegate( PyPostsViewModel, lambda delegateId: PyPostsViewModel(WallPostService(UsersDecorator(), CommentsService()), DetailPhotoService(UsersDecorator(), CommentsService()), DetailVideoService(UsersDecorator(), CommentsService()), delegateId) )
 Subscriber().setClassAllocator( PyCreatePostViewModel, lambda parameters: PyCreatePostViewModel(CreatePostService(), parameters['ownerId']) )
 Subscriber().setClassAllocator( PyMWPhotoBrowserViewModel, lambda: PyMWPhotoBrowserViewModel() )
-Subscriber().setClassAllocator( PyBlackListViewModel, lambda: PyBlackListViewModel(BlackListService()) )
+Subscriber().setClassAllocatorWithDelegate( PyBlackListViewModel, lambda delegateId: PyBlackListViewModel(BlackListService(), delegateId) )

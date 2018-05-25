@@ -21,7 +21,6 @@ class BlackListService:
             ids = [d['id'] for d in l]
             usersData = users.getShortUsersByIds(set(ids))
             response['items'] = usersData
-            print('getBanned response is: ' + json.dumps(response, indent=4))
         except Exception as e:
             print('getBanned exception: ' + str(e))
             print(traceback.format_exc())

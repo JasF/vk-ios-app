@@ -195,8 +195,9 @@
     return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PySystemEvents)];
 }
 
-- (id<PyBlackListViewModel>)blackListViewModelHandler {
-    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyBlackListViewModel)];
+- (id<PyBlackListViewModel>)blackListViewModelHandler:(id)delegate {
+    return [_pythonBridge instantiateHandlerWithProtocol:@protocol(PyBlackListViewModel)
+                                                delegate:delegate];
 }
 
 @end

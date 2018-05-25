@@ -66,5 +66,5 @@
 - (id<PyMWPhotoBrowserViewModel>)photoBrowserViewModelHandler;
 - (id<PyAnalytics>)analyticsHandlerWithDelegate:(id)delegate;
 - (id<PySystemEvents>)systemEventsHandler;
-- (id<PyBlackListViewModel>)blackListViewModelHandler;
+- (id<PyBlackListViewModel>)blackListViewModelHandler:(id)delegate;
 @end

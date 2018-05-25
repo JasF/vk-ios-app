@@ -90,8 +90,11 @@
 "eula_accept"="Согласен";
 "eula_continue"="Продолжить";
 "are_you_sure_for_block_username"="Вы уверены, что хотите заблокировать пользователя ";
+"are_you_sure_for_unblock_username"="Вы уверены, что хотите удалить пользователя ";
+"are_you_sure_for_unblock_username_tile"=" из черного списка?";
 "block_user"="Заблокировать";
 "ban_user_button"="Заблокировать";
+"unban_user_button"="Разблокировать";
 "error_ban_user"="Не удалось заблокировать пользователя";
 "error_ban_group"="Не удалось заблокировать группу";
 "user_successfully_banned"="Пользователь успешно заблокирован";
@@ -99,4 +102,5 @@
 "already_blacklisted"="Этот пользователь уже находится в списке заблокированных";
 "title_black_list"="Черный список";
 "black_list"="Черный список";
-
+"error_unban_user"="Не удалось удалить пользователя из черного списка";
+"error_unban_group"="Не удалось удалить группу из черного списка";
