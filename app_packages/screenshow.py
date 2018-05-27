@@ -4,7 +4,7 @@ import vk
 def showScreenAfterAuthorization():
     #managers.shared().screensManager().showFriendsViewController_usersListType_push_(args=[vk.userId(), UsersListTypes.FRIENDS, False])
     #managers.shared().screensManager().showChatListViewController()
-    #managers.shared().screensManager().showWallViewController()
+    managers.shared().screensManager().showWallViewController()
     #managers.shared().screensManager().showWallViewController_(args=[-41315069]) # Вегетарианская сила
     #managers.shared().screensManager().showWallViewController_(args=[19649085]) # Andrei Vayavoda Second
     #managers.shared().screensManager().showWallViewController_(args=[82108968]) # Aleksandr Kruglov
@@ -18,6 +18,6 @@ def showScreenAfterAuthorization():
     #managers.shared().screensManager().showBookmarksViewController()
     #managers.shared().screensManager().showVideosViewController_push_(args=[vk.userId(), False])
     #managers.shared().screensManager().showDocumentsViewController_(args=[vk.userId()])
-    managers.shared().screensManager().showSettingsViewController()
+    #managers.shared().screensManager().showSettingsViewController()
     #managers.shared().screensManager().showBlackListViewController()
     pass

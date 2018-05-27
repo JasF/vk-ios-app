@@ -23,7 +23,7 @@
     _viewModel = viewModel;
     self = [super initWithNodeFactory:nodeFactory];
     if (self) {
-        [self setTitle:@"groupunban_and_failure_check"];//L(@"title_black_list")];
+        [self setTitle:L(@"title_black_list")];
     }
     return self;
 }
