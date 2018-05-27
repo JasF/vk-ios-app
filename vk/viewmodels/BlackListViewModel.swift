@@ -15,11 +15,13 @@ import Foundation
 @objc protocol BlackListViewModel {
     func getBanned(_ offset: Int, completion: @escaping (([Any]) -> Void))
     func unbanUser(_ user: User, completion: @escaping ((Bool) -> Void))
+    func tappedWithUser(_ user: User)
 }
 
 @objc protocol PyBlackListViewModel {
     func getBanned(_ offset: NSNumber) -> Dictionary<String, Any>?
     func unbanUser(_ userId: NSNumber) -> NSNumber
+    func tappedWithUserId(_ userId: NSNumber)
 }
 
 @objcMembers class BlackListViewModelImpl : NSObject, BlackListViewModel, PyBlackListViewModelDelegate {
@@ -57,6 +59,12 @@ import Foundation
             if let boolResult = self?.handler.unbanUser(user.id as NSNumber) {
                 result = boolResult.boolValue
             }
+        }
+    }
+    
+    func tappedWithUser(_ user: User) {
+        dispatch_python { [weak self] in
+            self?.handler.tappedWithUserId(user.id as NSNumber)
         }
     }
     

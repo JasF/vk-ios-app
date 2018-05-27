@@ -30,6 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableNode.view.editing = YES;
+    self.tableNode.allowsSelectionDuringEditing = YES;
     // Do any additional setup after loading the view.
 }
 
@@ -38,6 +40,39 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)tableNode:(ASTableNode *)tableNode performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+    
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSCAssert(indexPath.row < self.objectsArray.count, @"indexpath out of bounds: %@", indexPath);
+        if (indexPath.row >= self.objectsArray.count) {
+            return;
+        }
+        User *user = self.objectsArray[indexPath.row];
+        @weakify(self);
+        [_viewModel unbanUser:user completion:^(BOOL success) {
+            @strongify(self);
+            if (success) {
+                [self.objectsArray removeObjectAtIndex:indexPath.row];
+                [self.tableNode deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }];
+    }
+}
+/*
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+}
+ */
 
 #pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
@@ -57,14 +92,7 @@
         return;
     }
     User *user = self.objectsArray[indexPath.row];
-    @weakify(self);
-    [_viewModel unbanUser:user completion:^(BOOL success) {
-        @strongify(self);
-        if (success) {
-            [self.objectsArray removeObjectAtIndex:indexPath.row];
-            [self.tableNode deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        }
-    }];
+    [_viewModel tappedWithUser:user];
 }
 
 @end

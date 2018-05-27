@@ -5712,12 +5712,12 @@
 		C3B225012085BA4000599E04 /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
-				C3FF542D2095AF7F007275D4 /* VideoPlayerViewModel.swift */,
 				C3A82A35209334EC00C41CA8 /* PostsViewModel */,
 				C3333D412091A8B9009EBB09 /* DetailVideoViewModel */,
 				C3D4873C20919B86007EC440 /* AuthorizationViewModel */,
 				C32262FE2090CC500054789B /* DetailPhotoViewModel */,
 				C313DD63208CB1360005E29B /* WallPostViewModel */,
+				C3FF542D2095AF7F007275D4 /* VideoPlayerViewModel.swift */,
 				C32262DF2090AEC70054789B /* SettingsViewModel */,
 				C32262BF2090A4810054789B /* DocumentsViewModel */,
 				C32262A320908B940054789B /* VideosViewModel */,

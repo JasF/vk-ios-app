@@ -43,9 +43,9 @@ class PyBlackListViewModel(ObjCBridgeProtocol):
         index, cancelled = dialogsManager.showYesNoDialogWithMessage(locString, "unban_user_button", "cancel")
         if cancelled == True:
             return False
-        return self.unbanUser(userId)
+        return self.doUnbanUser(userId)
     
-    def unbanUser(self, userId):
+    def doUnbanUser(self, userId):
         result = 0
         try:
             api = vk.api()
@@ -60,6 +60,9 @@ class PyBlackListViewModel(ObjCBridgeProtocol):
             return False
         return True
 
+    def tappedWithUserId(self, userId):
+        managers.shared().screensManager().showWallViewController_push_(args=[userId, True])
+    
     # ObjCBridgeProtocol
     def release(self):
         pass
