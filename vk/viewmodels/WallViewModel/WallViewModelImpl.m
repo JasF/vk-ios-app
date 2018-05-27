@@ -7,6 +7,7 @@
 //
 
 #import "WallViewModelImpl.h"
+#import "Oxy_Feed-Swift.h"
 
 @protocol PyWallViewModelDelegate <NSObject>
 - (void)pass;
@@ -60,17 +61,18 @@
     });
 }
 
-- (void)getUserInfo:(void(^)(User *user))completion {
+- (void)getUserInfo:(void(^)(User *user, NSError *error))completion {
     dispatch_python(^{
         void (^block)(BOOL cached) = ^void(BOOL cached) {
             NSDictionary *currentUserData = (cached) ? [self.handler getUserInfoCached] : [self.handler getUserInfo];
+            NSError *error = [currentUserData utils_getError];
             User *user = [self.wallService parseUserInfo:currentUserData];
             if (user) {
                 self.currentUser = user;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (completion) {
-                    completion(user);
+                    completion(user, error);
                 }
             });
         };

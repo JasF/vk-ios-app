@@ -51,4 +51,5 @@
 - (ASDisplayNode *)avatarNameDateNode:(User *)user date:(NSNumber *)date;
 - (ASDisplayNode *)commentsPreloadNode:(CommentsPreloadModel *)model;
 - (ASDisplayNode *)stickerNode:(Sticker *)sticker;
+- (ASDisplayNode *)offlineNode;
 @end

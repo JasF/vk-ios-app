@@ -28,7 +28,7 @@ static const NSInteger kBatchSize = 20;
     _tableNode = [[ASTableNode alloc] init];
     self = [super initWithNode:_tableNode];
     if (self) {
-        _nodeFactory = nodeFactory;
+        self.nodeFactory = nodeFactory;
         _tableNode.backgroundColor = [UIColor whiteColor];
         _tableNode.accessibilityIdentifier = NSStringFromClass([self class]);
         

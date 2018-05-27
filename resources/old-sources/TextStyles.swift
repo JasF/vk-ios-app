@@ -9,6 +9,14 @@
 import Foundation
 
 class TextStyles {
+    static public func offlineTextStyle() -> [NSAttributedStringKey : Any]! {
+        return [ NSAttributedStringKey.foregroundColor: UIColor.black,
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20) ]
+    }
+    static public func eulaOnlyTextStyle() -> [NSAttributedStringKey : Any]! {
+        return [ NSAttributedStringKey.foregroundColor: UIColor.black,
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20) ]
+    }
     static public func eulaTextStyle() -> [NSAttributedStringKey : Any]! {
         return [ NSAttributedStringKey.foregroundColor: UIColor.black,
                  NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14) ]

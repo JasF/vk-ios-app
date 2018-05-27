@@ -460,6 +460,9 @@
 		C3333D4D2091BF0E009EBB09 /* Geo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D4C2091BF0E009EBB09 /* Geo.m */; };
 		C3333D512091BF1C009EBB09 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = C3333D502091BF1C009EBB09 /* Place.m */; };
 		C334281F20B292CE00F5228A /* EulaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C334281E20B292CE00F5228A /* EulaViewController.swift */; };
+		C33583BB20BA7E96008B81AB /* OfflineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33583BA20BA7E96008B81AB /* OfflineNode.swift */; };
+		C33583C020BA851F008B81AB /* NSDictionary+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33583BF20BA851F008B81AB /* NSDictionary+Utils.swift */; };
+		C33583C220BA890F008B81AB /* NSError+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33583C120BA890F008B81AB /* NSError+Utils.swift */; };
 		C338CA4F20A1BF6600F30B77 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C338CA4D20A1BF6600F30B77 /* FacebookSDKStrings.bundle */; };
 		C338CA5020A1BF6600F30B77 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C338CA4E20A1BF6600F30B77 /* FBSDKCoreKit.framework */; };
 		C338CA5220A1C05300F30B77 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338CA5120A1C05300F30B77 /* Analytics.swift */; };
@@ -1759,6 +1762,9 @@
 		C3333D4F2091BF1C009EBB09 /* Place.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		C3333D502091BF1C009EBB09 /* Place.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		C334281E20B292CE00F5228A /* EulaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulaViewController.swift; sourceTree = "<group>"; };
+		C33583BA20BA7E96008B81AB /* OfflineNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineNode.swift; sourceTree = "<group>"; };
+		C33583BF20BA851F008B81AB /* NSDictionary+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Utils.swift"; sourceTree = "<group>"; };
+		C33583C120BA890F008B81AB /* NSError+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Utils.swift"; sourceTree = "<group>"; };
 		C3372F902081D7480080DA75 /* dialogservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogservice.py; sourceTree = "<group>"; };
 		C3372F912081F68E0080DA75 /* basedatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = basedatabase.py; sourceTree = "<group>"; };
 		C3372F922081FAEA0080DA75 /* messagesdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messagesdatabase.py; sourceTree = "<group>"; };
@@ -2937,6 +2943,7 @@
 				C39C8B9C209D92A400CC23C3 /* ExtendedVideoNode.swift */,
 				C39C8BF420A1881100CC23C3 /* ImageAndLabelsNode.swift */,
 				C39D473720A429FE00C6CC99 /* StickerNode.swift */,
+				C33583BA20BA7E96008B81AB /* OfflineNode.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -5494,6 +5501,8 @@
 				C3987DD32096F8BF0047A30F /* NSDate+Utils.swift */,
 				C39D473920A44B1100C6CC99 /* UIViewController+Utils.h */,
 				C39D473A20A44B1100C6CC99 /* UIViewController+Utils.m */,
+				C33583BF20BA851F008B81AB /* NSDictionary+Utils.swift */,
+				C33583C120BA890F008B81AB /* NSError+Utils.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -6417,6 +6426,7 @@
 				C32309232081AEB100CEC487 /* NSMethodSignature+TCFUnwrapValues.m in Sources */,
 				C32308C92081AEB100CEC487 /* TyphoonPathResource.m in Sources */,
 				C39D46CA20A2CD6900C6CC99 /* TabInputButton.swift in Sources */,
+				C33583BB20BA7E96008B81AB /* OfflineNode.swift in Sources */,
 				C32308DA2081AEB100CEC487 /* TyphoonViewHelpers.m in Sources */,
 				C32309082081AEB100CEC487 /* TyphoonNSNumberTypeConverter.m in Sources */,
 				C313772C208E213B00F568EA /* PhotoAlbumsServiceImpl.m in Sources */,
@@ -6454,6 +6464,7 @@
 				C39C8BF520A1881100CC23C3 /* ImageAndLabelsNode.swift in Sources */,
 				C3226291209081060054789B /* BookmarksViewController.m in Sources */,
 				C3987E4A2099CB480047A30F /* TypingModel.swift in Sources */,
+				C33583C220BA890F008B81AB /* NSError+Utils.swift in Sources */,
 				C32308C02081AEB100CEC487 /* TyphoonOptionMatcher.m in Sources */,
 				C32308C42081AEB100CEC487 /* TyphoonPropertyStyleConfiguration.m in Sources */,
 				C39D46A920A2CD6900C6CC99 /* PhotoMessageCollectionViewCellDefaultStyle.swift in Sources */,
@@ -6665,6 +6676,7 @@
 				C32305F32080E57500CEC487 /* Likes.m in Sources */,
 				C32308F62081AEB100CEC487 /* TyphoonMethod+InstanceBuilder.m in Sources */,
 				C32308D82081AEB100CEC487 /* UIView+TyphoonOutletTransfer.m in Sources */,
+				C33583C020BA851F008B81AB /* NSDictionary+Utils.swift in Sources */,
 				C3987DD8209733890047A30F /* AvatarNameDateNode.swift in Sources */,
 				C3036C0B208DC99A005F086E /* SectionsTableViewController.m in Sources */,
 				C39D46AF20A2CD6900C6CC99 /* TextMessageModel.swift in Sources */,

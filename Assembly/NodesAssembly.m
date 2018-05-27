@@ -248,4 +248,8 @@
             }];
 }
 
+- (ASDisplayNode *)offlineNode {
+    return [TyphoonDefinition withClass:[OfflineNode class]];
+}
+
 @end

@@ -13,7 +13,6 @@
 
 @interface BaseCollectionViewController : BaseViewController <ASCollectionDelegate, ASCollectionDataSource>
 @property (weak, nonatomic) id<BaseViewControllerDataSource> dataSource;
-@property id<NodeFactory> nodeFactory;
 @property ASCollectionNode *collectionNode;
 @property (nonatomic) UICollectionViewFlowLayout *layout;
 - (NSArray *)objectsArray;

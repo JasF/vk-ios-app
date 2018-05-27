@@ -5,6 +5,7 @@ import vk, json, analytics
 from .pyfriendsviewmodel import UsersListTypes
 from pymanagers.pydialogsmanager import PyDialogsManager
 from caches.usersdatabase import UsersDatabase
+from requests.exceptions import ConnectionError
 
 g_WallPostsCount = 20
 
@@ -38,12 +39,18 @@ class PyWallViewModel(ObjCBridgeProtocol):
         return result
     
     def getUserInfo(self):
-        if self.userId < 0:
-            results = self.wallService.getUserInfo()
-            return results
-        elif self.userId > 0:
-            results = self.wallService.getBigUserInfo()
-            return results
+        try:
+            if self.userId < 0:
+                results = self.wallService.getUserInfo()
+                return results
+            elif self.userId > 0:
+                results = self.wallService.getBigUserInfo()
+                return results
+        except ConnectionError as e:
+            print('getUserInfo ConnectionError exception: ' + str(e))
+            return {'error':{'type':'connection'}}
+        except Exception as e:
+            print('getUserInfo exception: ' + str(e))
 
     def menuTapped(self):
         managers.shared().screensManager().showMenu()

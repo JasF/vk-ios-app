@@ -46,8 +46,12 @@ static CGFloat const kButtonSize = 44.f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     @weakify(self);
-    [_viewModel getUserInfo:^(User *user) {
+    [_viewModel getUserInfo:^(User *user, NSError *error) {
         @strongify(self);
+        if ([error utils_isConnectivityError]) {
+            [self showNoConnectionAlert];
+            return;
+        }
         if (!user) {
             return;
         }

@@ -26,7 +26,7 @@ static const NSInteger kBatchSize = 20;
     _collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:[self layout]];
     self = [super initWithNode:_collectionNode];
     if (self) {
-        _nodeFactory = nodeFactory;
+        self.nodeFactory = nodeFactory;
         _collectionNode.backgroundColor = [UIColor whiteColor];
         _collectionNode.accessibilityIdentifier = NSStringFromClass([self class]);
         

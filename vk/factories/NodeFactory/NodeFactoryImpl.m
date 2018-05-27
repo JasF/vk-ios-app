@@ -133,4 +133,8 @@
     return [_assembly friendsNode:array];
 }
 
+- (ASDisplayNode *)offlineNode {
+    return [_assembly offlineNode];
+}
+
 @end

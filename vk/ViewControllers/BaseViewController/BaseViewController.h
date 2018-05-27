@@ -15,11 +15,15 @@ typedef NS_ENUM(NSInteger, ScreenType) {
     ScreenDetailVideo
 };
 
+@protocol NodeFactory;
+
 @protocol BaseViewControllerDataSource <NSObject>
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset;
 @end
 
 @interface BaseViewController : ASViewController
+@property id<NodeFactory> nodeFactory;
 @property (readonly) ScreenType screenType;
+- (void)showNoConnectionAlert;
 @end
