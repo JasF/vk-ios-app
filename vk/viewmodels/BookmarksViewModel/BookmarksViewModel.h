@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @protocol BookmarksViewModel <NSObject>
-- (void)getBookmarks:(NSInteger)offset completion:(void(^)(NSArray *bookmarks))completion;
+- (void)getBookmarks:(NSInteger)offset completion:(void(^)(NSArray *bookmarks, NSError *error))completion;
 - (void)menuTapped;
 @end
