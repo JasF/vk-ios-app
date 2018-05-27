@@ -7,6 +7,7 @@
 //
 
 #import "BaseCollectionViewController.h"
+#import "Oxy_Feed-Swift.h"
 #import "LoadingNode.h"
 
 static const NSInteger kBatchSize = 20;
@@ -24,7 +25,8 @@ static const NSInteger kBatchSize = 20;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(nodeFactory);
     _collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:[self layout]];
-    self = [super initWithNode:_collectionNode];
+    self.baseNode = [[BaseNode alloc] init:_collectionNode];
+    self = [super initWithNode:self.baseNode];
     if (self) {
         self.nodeFactory = nodeFactory;
         _collectionNode.backgroundColor = [UIColor whiteColor];

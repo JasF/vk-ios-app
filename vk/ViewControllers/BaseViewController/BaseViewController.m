@@ -41,16 +41,25 @@
 }
 
 - (void)showNoConnectionAlert {
-    [self.offlineNode removeFromSupernode];
-    [self.node addSubnode:self.offlineNode];
+    [self.baseNode setOverlayNode:self.offlineNode];
 }
 
 #pragma mark - Private
 - (OfflineNode *)offlineNode {
     if (!_offlineNode) {
         _offlineNode =(OfflineNode *)[_nodeFactory offlineNode];
+        @weakify(self);
+        _offlineNode.repeatBlock = ^{
+            @strongify(self);
+            [self.baseNode setOverlayNode:nil];
+            [self repeatTapped];
+        };
     }
     return _offlineNode;
+}
+
+- (void)repeatTapped {
+    
 }
 
 @end

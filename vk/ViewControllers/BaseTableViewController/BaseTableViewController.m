@@ -7,8 +7,7 @@
 //
 
 #import "BaseTableViewController.h"
-
-#import "BaseTableViewController.h"
+#import "Oxy_Feed-Swift.h"
 #import "LoadingNode.h"
 
 static const NSInteger kBatchSize = 20;
@@ -26,7 +25,8 @@ static const NSInteger kBatchSize = 20;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(nodeFactory);
     _tableNode = [[ASTableNode alloc] init];
-    self = [super initWithNode:_tableNode];
+    self.baseNode = [[BaseNode alloc] init:_tableNode];
+    self = [super initWithNode:self.baseNode];
     if (self) {
         self.nodeFactory = nodeFactory;
         _tableNode.backgroundColor = [UIColor whiteColor];
@@ -65,6 +65,10 @@ static const NSInteger kBatchSize = 20;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self performInitialUpdate];
+}
+
+- (void)performInitialUpdate {
     if (!_initiallyUpdated) {
         _initiallyUpdated = YES;
         self.updating = YES;
@@ -198,6 +202,12 @@ static const NSInteger kBatchSize = 20;
                completion:^(BOOL finished) {
                    self.updating = NO;
                }];
+}
+
+#pragma mark - Overriden Methods - BaseViewController
+- (void)repeatTapped {
+    _initiallyUpdated = NO;
+    [self performInitialUpdate];
 }
 
 @end

@@ -463,6 +463,7 @@
 		C33583BB20BA7E96008B81AB /* OfflineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33583BA20BA7E96008B81AB /* OfflineNode.swift */; };
 		C33583C020BA851F008B81AB /* NSDictionary+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33583BF20BA851F008B81AB /* NSDictionary+Utils.swift */; };
 		C33583C220BA890F008B81AB /* NSError+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33583C120BA890F008B81AB /* NSError+Utils.swift */; };
+		C33583C420BA8FC9008B81AB /* BaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33583C320BA8FC9008B81AB /* BaseNode.swift */; };
 		C338CA4F20A1BF6600F30B77 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C338CA4D20A1BF6600F30B77 /* FacebookSDKStrings.bundle */; };
 		C338CA5020A1BF6600F30B77 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C338CA4E20A1BF6600F30B77 /* FBSDKCoreKit.framework */; };
 		C338CA5220A1C05300F30B77 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338CA5120A1C05300F30B77 /* Analytics.swift */; };
@@ -1765,6 +1766,7 @@
 		C33583BA20BA7E96008B81AB /* OfflineNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineNode.swift; sourceTree = "<group>"; };
 		C33583BF20BA851F008B81AB /* NSDictionary+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Utils.swift"; sourceTree = "<group>"; };
 		C33583C120BA890F008B81AB /* NSError+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Utils.swift"; sourceTree = "<group>"; };
+		C33583C320BA8FC9008B81AB /* BaseNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNode.swift; sourceTree = "<group>"; };
 		C3372F902081D7480080DA75 /* dialogservice.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dialogservice.py; sourceTree = "<group>"; };
 		C3372F912081F68E0080DA75 /* basedatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = basedatabase.py; sourceTree = "<group>"; };
 		C3372F922081FAEA0080DA75 /* messagesdatabase.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = messagesdatabase.py; sourceTree = "<group>"; };
@@ -2944,6 +2946,7 @@
 				C39C8BF420A1881100CC23C3 /* ImageAndLabelsNode.swift */,
 				C39D473720A429FE00C6CC99 /* StickerNode.swift */,
 				C33583BA20BA7E96008B81AB /* OfflineNode.swift */,
+				C33583C320BA8FC9008B81AB /* BaseNode.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -6417,6 +6420,7 @@
 				C39C8B9D209D92A400CC23C3 /* ExtendedVideoNode.swift in Sources */,
 				C3987E4D2099CB480047A30F /* TypingCell.swift in Sources */,
 				C32262B6209091CE0054789B /* Video.m in Sources */,
+				C33583C420BA8FC9008B81AB /* BaseNode.swift in Sources */,
 				C32306052080E57500CEC487 /* MainViewController.mm in Sources */,
 				C34A577820A57B3600DBAF4A /* UIApplication+BSMobileProvision.m in Sources */,
 				C32308BE2081AEB100CEC487 /* UIViewController+LGSideMenuController.m in Sources */,
