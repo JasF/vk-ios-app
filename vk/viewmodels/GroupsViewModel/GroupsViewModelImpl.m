@@ -7,6 +7,7 @@
 //
 
 #import "GroupsViewModelImpl.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface GroupsViewModelImpl () <GroupsViewModel>
 @property (strong) id<PyGroupsViewModel> handler;
@@ -30,13 +31,14 @@
 }
 
 #pragma mark - GroupsViewModel
-- (void)getGroups:(NSInteger)offset completion:(void(^)(NSArray *Groups))completion {
+- (void)getGroups:(NSInteger)offset completion:(void(^)(NSArray *Groups, NSError *error))completion {
     dispatch_python(^{
         NSDictionary *response = [self.handler getGroups:@(offset)];
+        NSError *error = [response utils_getError];
         NSArray *objects = [self.groupsService parse:response];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
-                completion(objects);
+                completion(objects, error);
             }
         });
     });

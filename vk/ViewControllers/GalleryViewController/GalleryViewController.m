@@ -7,6 +7,7 @@
 //
 
 #import "GalleryViewController.h"
+#import "Oxy_Feed-Swift.h"
 
 static CGFloat const kItemSpacing = 2.f;
 static NSInteger const kColumnsCount = 4;
@@ -52,10 +53,13 @@ static NSInteger const kColumnsCount = 4;
 #pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
-    [_viewModel getPhotos:offset completion:^(NSArray *photos) {
-        if (completion) {
-            completion(photos);
+    [_viewModel getPhotos:offset completion:^(NSArray *photos, NSError *error) {
+        if ([error utils_isConnectivityError]) {
+            [self showNoConnectionAlert];
+            completion(@[]);
+            return;
         }
+        completion(photos);
     }];
 }
 

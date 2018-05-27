@@ -10,7 +10,7 @@
 #import "User.h"
 
 @protocol GroupsViewModel <NSObject>
-- (void)getGroups:(NSInteger)offset completion:(void(^)(NSArray *groups))completion;
+- (void)getGroups:(NSInteger)offset completion:(void(^)(NSArray *groups, NSError *error))completion;
 - (void)menuTapped;
 - (void)tappedOnGroup:(User *)user;
 @end

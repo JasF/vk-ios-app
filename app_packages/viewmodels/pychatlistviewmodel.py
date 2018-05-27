@@ -2,6 +2,8 @@ from objcbridge import BridgeBase, ObjCBridgeProtocol
 from objc import managers
 from services.messagesservice import NewMessageProtocol
 import sched, time
+from requests.exceptions import ConnectionError
+
 
 kTypingInterval = 5
 
@@ -32,11 +34,13 @@ class PyChatListViewModel(NewMessageProtocol, ObjCBridgeProtocol):
     def getDialogs(self, offset):
         if self.dialogsCountReceived == True and offset > 0 and self.count == offset:
             return {}
-        
-        result = self.chatListService.getDialogs(offset)
+        result = {}
         try:
+            result = self.chatListService.getDialogs(offset)
             self.count = result['response']['count']
             self.dialogsCountReceived = True
+        except ConnectionError as e:
+            return {'error':{'type':'connection'}}
         except Exception as e:
             print('getDialogs exception: ' + str(e))
         return result

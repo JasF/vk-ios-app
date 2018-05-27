@@ -9,6 +9,6 @@
 #import "WallPost.h"
 
 @protocol NewsViewModel <NSObject>
-- (void)getNewsWithOffset:(NSInteger)offset completion:(void(^)(NSArray *offset))completion;
+- (void)getNewsWithOffset:(NSInteger)offset completion:(void(^)(NSArray *offset, NSError *error))completion;
 - (void)menuTapped;
 @end

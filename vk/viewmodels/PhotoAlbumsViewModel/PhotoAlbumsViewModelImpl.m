@@ -7,6 +7,7 @@
 //
 
 #import "PhotoAlbumsViewModelImpl.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface PhotoAlbumsViewModelImpl ()
 @property id<PhotoAlbumsService> photoAlbumsService;
@@ -29,13 +30,14 @@
 }
 
 - (void)getPhotoAlbums:(NSInteger)offset
-            completion:(void(^)(NSArray *albums))completion {
+            completion:(void(^)(NSArray *albums, NSError *error))completion {
     dispatch_python(^{
         NSDictionary *data = [self.handler getPhotoAlbums:@(offset)];
+        NSError *error = [data utils_getError];
         NSArray *albums = [self.photoAlbumsService parse:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
-                completion(albums);
+                completion(albums, error);
             }
         });
     });

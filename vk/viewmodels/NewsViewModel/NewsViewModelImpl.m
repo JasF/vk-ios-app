@@ -7,6 +7,7 @@
 //
 
 #import "NewsViewModelImpl.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface NewsViewModelImpl ()
 @property (strong) id<PyNewsViewModel> handler;
@@ -28,13 +29,14 @@
 }
 
 #pragma mark - NewsViewModel
-- (void)getNewsWithOffset:(NSInteger)offset completion:(void(^)(NSArray *results))completion {
+- (void)getNewsWithOffset:(NSInteger)offset completion:(void(^)(NSArray *results, NSError *error))completion {
     dispatch_python(^{
         NSDictionary *data = [self.handler getNews:@(offset)];
+        NSError *error = [data utils_getError];
         NSArray *result = [self.wallService parse:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
-                completion(result);
+                completion(result, error);
             }
         });
     });

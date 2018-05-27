@@ -1,5 +1,6 @@
 from objc import managers
 import analytics
+from requests.exceptions import ConnectionError
 
 g_count = 40
 
@@ -11,7 +12,10 @@ class PyGalleryViewModel():
         print('PyGalleryViewModel ownerId: ' + str(ownerId) + '; albumId: ' + str(albumId))
     
     def getPhotos(self, offset):
-        photosData = self.galleryService.getPhotos(self.ownerId, self.albumId, offset, count=g_count)
+        try:
+            photosData = self.galleryService.getPhotos(self.ownerId, self.albumId, offset, count=g_count)
+        except ConnectionError as e:
+            return {'error':{'type':'connection'}}
         return photosData
 
     def tappedOnPhotoWithId(self, photoId):

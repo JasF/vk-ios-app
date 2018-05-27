@@ -15,7 +15,7 @@
 @protocol FriendsViewModel <NSObject>
 - (void)menuTapped;
 - (void)getFriendsWithOffset:(NSInteger)offset
-                  completion:(void(^)(NSArray<User *> *users))completion;
+                  completion:(void(^)(NSArray<User *> *users, NSError *error))completion;
 - (void)tappedOnUserWithId:(NSInteger)userId;
 @end
 

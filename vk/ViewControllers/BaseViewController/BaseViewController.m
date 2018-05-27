@@ -7,9 +7,11 @@
 //
 
 #import "BaseViewController.h"
+#import "Oxy_Feed-Swift.h"
+#import "NodeFactory.h"
 
 @interface BaseViewController ()
-
+@property (strong, nonatomic) OfflineNode *offlineNode;
 @end
 
 @implementation BaseViewController
@@ -36,6 +38,28 @@
 - (ScreenType)screenType {
     NSCAssert(NO, @"Must be overriden");
     return ScreenUnknown;
+}
+
+- (void)showNoConnectionAlert {
+    [self.baseNode setOverlayNode:self.offlineNode];
+}
+
+#pragma mark - Private
+- (OfflineNode *)offlineNode {
+    if (!_offlineNode) {
+        _offlineNode =(OfflineNode *)[_nodeFactory offlineNode];
+        @weakify(self);
+        _offlineNode.repeatBlock = ^{
+            @strongify(self);
+            [self.baseNode setOverlayNode:nil];
+            [self repeatTapped];
+        };
+    }
+    return _offlineNode;
+}
+
+- (void)repeatTapped {
+    
 }
 
 @end

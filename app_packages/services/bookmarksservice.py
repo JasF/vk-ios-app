@@ -4,6 +4,7 @@ import traceback
 from vk import users as users
 from caches.postsdatabase import PostsDatabase
 from postproc import textpatcher
+from requests.exceptions import ConnectionError
 
 class BookmarksService:
     def __init__(self, usersDecorator):
@@ -20,15 +21,14 @@ class BookmarksService:
             response = api.fave.getPosts(offset=offset)
             textpatcher.cropTagsOnPostsResults(response)
             l = response['items']
-            
             #print('bookmarks items: ' + json.dumps(l, indent=4))
-            
             cache = PostsDatabase()
             cache.update(l)
             cache.close()
-            
             count = len(l)
             usersData = self.usersDecorator.usersDataFromPosts(l)
+        except ConnectionError as e:
+            raise e
         except Exception as e:
             print('getBookmarks exception: ' + str(e))
         return {'response': response, 'users': usersData}, count

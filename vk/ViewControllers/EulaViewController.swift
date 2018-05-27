@@ -17,7 +17,7 @@ import DOCheckboxControl
         self.view.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.barStyle = .blackTranslucent
         guard let textView = textView else { return }
-        textView.attributedText = NSAttributedString(string: eulaString, attributes: TextStyles.eulaTextStyle())
+        textView.attributedText = NSAttributedString(string: eulaString, attributes: TextStyles.eulaOnlyTextStyle())
         textView.showsHorizontalScrollIndicator = false;
         textView.delegate = self
     }
@@ -27,7 +27,6 @@ import DOCheckboxControl
         appeared = true
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        DDLogInfo("ds: \(scrollView.contentOffset)")
         if appeared == false {
             scrollView.contentOffset = CGPoint(x:0,y:0)
         }

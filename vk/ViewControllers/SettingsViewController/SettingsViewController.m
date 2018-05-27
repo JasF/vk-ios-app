@@ -48,12 +48,6 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableNode.view.separatorColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
-    
-#ifdef DEBUG
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [_viewModel blackListTapped];
-    });
-#endif
 }
 
 #pragma mark - Observers

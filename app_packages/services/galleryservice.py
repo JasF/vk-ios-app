@@ -4,6 +4,7 @@ from vk import users
 import traceback
 from caches.photosdatabase import PhotosDatabase
 from caches.messagesdatabase import MessagesDatabase
+from requests.exceptions import ConnectionError
 
 class GalleryService:
     def __init__(self):
@@ -30,6 +31,8 @@ class GalleryService:
             cache = PhotosDatabase()
             cache.update(l)
             cache.close()
+        except ConnectionError as e:
+            raise e
         except Exception as e:
             print('getPhotos exception: ' + str(e))
         return response
@@ -51,6 +54,8 @@ class GalleryService:
             
             #print('getPhotosByIds result: ' + json.dumps(results, indent=4))
             cache.close()
+        except ConnectionError as e:
+            raise e
         except Exception as e:
             print('getPhotosByIds exception: ' + str(e))
         return results

@@ -15,11 +15,18 @@ typedef NS_ENUM(NSInteger, ScreenType) {
     ScreenDetailVideo
 };
 
+@class BaseNode;
+@protocol NodeFactory;
+
 @protocol BaseViewControllerDataSource <NSObject>
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset;
 @end
 
 @interface BaseViewController : ASViewController
+@property (nonatomic) BaseNode *baseNode;
+@property id<NodeFactory> nodeFactory;
 @property (readonly) ScreenType screenType;
+- (void)showNoConnectionAlert;
+- (void)repeatTapped; // For override in superclass
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "NewsViewController.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface NewsViewController () <BaseViewControllerDataSource, PostsViewModelDelegate>
 @property id<NewsViewModel> viewModel;
@@ -41,10 +42,13 @@
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getNewsWithOffset:offset
-                       completion:^(NSArray *objects) {
-                            if (completion) {
-                                completion(objects);
-                            }
+                       completion:^(NSArray *objects, NSError *error) {
+                           if ([error utils_isConnectivityError]) {
+                               [self showNoConnectionAlert];
+                               completion(@[]);
+                               return;
+                           }
+                           completion(objects);
                         }];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "ChatListViewModelImpl.h"
+#import "Oxy_Feed-Swift.h"
 
 static CGFloat const kReloadDataDelay = 0.6f;
 
@@ -56,13 +57,14 @@ static CGFloat const kReloadDataDelay = 0.6f;
 }
 
 - (void)getDialogsWithOffset:(NSInteger)offset
-                  completion:(void(^)(NSArray<Dialog *> *dialogs))completion {
+                  completion:(void(^)(NSArray<Dialog *> *dialogs, NSError *error))completion {
     dispatch_python(^{
         NSDictionary *chatListData = [self.handler getDialogs:@(offset)];
+        NSError *error = [chatListData utils_getError];
         NSArray *dialogs = [_chatListService parse:chatListData];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
-                completion(dialogs);
+                completion(dialogs, error);
             }
         });
     });

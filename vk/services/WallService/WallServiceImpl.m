@@ -89,8 +89,12 @@
     if (![data isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
-    return [EKMapper objectFromExternalRepresentation:data
-                                          withMapping:[User objectMapping]];
+    User *user = [EKMapper objectFromExternalRepresentation:data
+                                                withMapping:[User objectMapping]];
+    if (!user.id && !user.first_name.length && !user.last_name.length) {
+        return nil;
+    }
+    return user;
 }
 
 @end

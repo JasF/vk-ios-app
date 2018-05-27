@@ -44,7 +44,7 @@
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="image" keyPath="leftViewBackgroundImage" value="Stars.png"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="leftViewBackgroundColor">
-                            <color key="value" red="0.03232060185185185" green="0.55769903737164561" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="value" red="0.27450980392156865" green="0.47058823529411764" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="rootViewCoverColorForLeftView">
                             <color key="value" red="0.070075893140767051" green="0.69926805710603579" blue="0.96156410757124111" alpha="0.14769476232394366" colorSpace="custom" customColorSpace="sRGB"/>

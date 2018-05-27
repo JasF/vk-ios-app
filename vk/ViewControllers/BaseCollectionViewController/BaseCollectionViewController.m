@@ -7,6 +7,7 @@
 //
 
 #import "BaseCollectionViewController.h"
+#import "Oxy_Feed-Swift.h"
 #import "LoadingNode.h"
 
 static const NSInteger kBatchSize = 20;
@@ -24,9 +25,10 @@ static const NSInteger kBatchSize = 20;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory {
     NSCParameterAssert(nodeFactory);
     _collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:[self layout]];
-    self = [super initWithNode:_collectionNode];
+    self.baseNode = [[BaseNode alloc] init:_collectionNode];
+    self = [super initWithNode:self.baseNode];
     if (self) {
-        _nodeFactory = nodeFactory;
+        self.nodeFactory = nodeFactory;
         _collectionNode.backgroundColor = [UIColor whiteColor];
         _collectionNode.accessibilityIdentifier = NSStringFromClass([self class]);
         
@@ -57,6 +59,10 @@ static const NSInteger kBatchSize = 20;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self performInitialUpdate];
+}
+
+- (void)performInitialUpdate {
     if (!_initiallyUpdated) {
         _initiallyUpdated = YES;
         self.updating = YES;
@@ -244,6 +250,12 @@ static const NSInteger kBatchSize = 20;
         _layout = [[UICollectionViewFlowLayout alloc] init];
     }
     return _layout;
+}
+
+#pragma mark - Overriden Methods - BaseViewController
+- (void)repeatTapped {
+    _initiallyUpdated = NO;
+    [self performInitialUpdate];
 }
 
 @end

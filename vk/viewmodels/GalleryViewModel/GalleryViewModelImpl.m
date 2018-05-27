@@ -8,6 +8,7 @@
 
 #import "GalleryViewModelImpl.h"
 #import "Photo.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface GalleryViewModelImpl ()
 @property id<PyGalleryViewModel> handler;
@@ -32,14 +33,15 @@
 }
 
 #pragma mark - GalleryViewModel
-- (void)getPhotos:(NSInteger)offset completion:(void(^)(NSArray *photos))completion {
+- (void)getPhotos:(NSInteger)offset completion:(void(^)(NSArray *photos, NSError *error))completion {
     dispatch_python(^{
         NSDictionary *data = [self.handler getPhotos:@(offset)];
+        NSError *error = [data utils_getError];
         NSArray *result = [self.galleryService parse:data];
         [result makeObjectsPerformSelector:@selector(setAsGallery:) withObject:@(YES)];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
-                completion(result);
+                completion(result, error);
             }
         });
     });

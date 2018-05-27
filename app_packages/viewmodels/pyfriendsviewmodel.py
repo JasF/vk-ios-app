@@ -2,6 +2,7 @@ from objc import managers
 from objcbridge import BridgeBase, ObjCBridgeProtocol
 from enum import IntEnum
 import analytics
+from requests.exceptions import ConnectionError
 
 class UsersListTypes(IntEnum):
     FRIENDS = 1
@@ -19,11 +20,16 @@ class PyFriendsViewModel(ObjCBridgeProtocol):
         managers.shared().screensManager().showMenu()
 
     def getFriends(self, offset):
-        if self.usersListType == UsersListTypes.SUBSCRIPTIONS:
-            return self.friendsService.getSubscriptions(self.userId, offset)
-        elif self.usersListType == UsersListTypes.FOLLOWERS:
-            return self.friendsService.getFollowers(self.userId, offset)
-        return self.friendsService.getFriends(self.userId, offset)
+        response = {}
+        try:
+            if self.usersListType == UsersListTypes.SUBSCRIPTIONS:
+                return self.friendsService.getSubscriptions(self.userId, offset)
+            elif self.usersListType == UsersListTypes.FOLLOWERS:
+                return self.friendsService.getFollowers(self.userId, offset)
+            return self.friendsService.getFriends(self.userId, offset)
+        except ConnectionError as e:
+            return {'error':{'type':'connection'}}
+        return response
 
     def tappedOnUserWithId(self, userId):
         analytics.log('Friends_segue')

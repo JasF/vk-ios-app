@@ -45,9 +45,17 @@ static CGFloat const kButtonSize = 44.f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self fetchData];
+}
+
+- (void)fetchData {
     @weakify(self);
-    [_viewModel getUserInfo:^(User *user) {
+    [_viewModel getUserInfo:^(User *user, NSError *error) {
         @strongify(self);
+        if ([error utils_isConnectivityError]) {
+            [self showNoConnectionAlert];
+            return;
+        }
         if (!user) {
             return;
         }
@@ -63,13 +71,17 @@ static CGFloat const kButtonSize = 44.f;
         [self.messageModel setUser:user];
         [self.actionsModel setUser:user];
         DDLogInfo(@"latest user friends_count: %@", @(self.viewModel.currentUser.friends_count));
-       // if (self.updating) {
+        // if (self.updating) {
         //    self.needsReload = YES;
-       // }
+        // }
         //else {
-       //     [self.tableNode reloadData];
-       // }
+        //     [self.tableNode reloadData];
+        // }
     }];
+}
+
+- (void)repeatTapped {
+    [self fetchData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

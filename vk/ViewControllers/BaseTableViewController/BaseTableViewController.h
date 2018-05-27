@@ -13,7 +13,6 @@
 
 @interface BaseTableViewController : BaseViewController <ASTableDelegate, ASTableDataSource>
 @property (weak, nonatomic) id<BaseViewControllerDataSource> dataSource;
-@property id<NodeFactory> nodeFactory;
 @property ASTableNode *tableNode;
 - (NSMutableArray *)objectsArray;
 - (id)initWithNodeFactory:(id<NodeFactory>)nodeFactory;

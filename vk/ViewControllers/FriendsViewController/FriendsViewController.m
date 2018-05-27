@@ -7,6 +7,7 @@
 //
 
 #import "FriendsViewController.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface FriendsViewController () <BaseViewControllerDataSource>
 @property (strong, nonatomic) id<FriendsViewModel> viewModel;
@@ -48,8 +49,14 @@
 #pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
-    [_viewModel getFriendsWithOffset:offset
-                          completion:completion];
+    [_viewModel getFriendsWithOffset:offset completion:^(NSArray<User *> *users, NSError *error) {
+        if ([error utils_isConnectivityError]) {
+            [self showNoConnectionAlert];
+            completion(@[]);
+            return;
+        }
+        completion(users);
+    }];
 }
 
 #pragma mark - ASCollectionNodeDelegate

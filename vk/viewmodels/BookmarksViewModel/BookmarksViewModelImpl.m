@@ -7,6 +7,7 @@
 //
 
 #import "BookmarksViewModelImpl.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface BookmarksViewModelImpl () <BookmarksViewModel>
 @property (strong) id<PyBookmarksViewModel> handler;
@@ -28,13 +29,14 @@
 }
 
 #pragma mark - BookmarksViewModel
-- (void)getBookmarks:(NSInteger)offset completion:(void(^)(NSArray *bookmarks))completion {
+- (void)getBookmarks:(NSInteger)offset completion:(void(^)(NSArray *bookmarks, NSError *error))completion {
     dispatch_python(^{
         NSDictionary *data = [self.handler getBookmarks:@(offset)];
+        NSError *error = [data utils_getError];
         NSArray* objects = [self.bookmarksService parse:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
-                completion(objects);
+                completion(objects, error);
             }
         });
     });

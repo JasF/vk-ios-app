@@ -4,6 +4,7 @@ import traceback
 from vk import users as users
 from caches.postsdatabase import PostsDatabase
 from postproc import textpatcher
+from requests.exceptions import ConnectionError
 
 class NewsService:
     def __init__(self, usersDecorator):
@@ -43,7 +44,8 @@ class NewsService:
             cache.close()
 
             usersData = self.usersDecorator.usersDataFromPosts(l)
-        
+        except ConnectionError as e:
+            raise e
         except Exception as e:
             print('newsfeed.get exception: ' + str(e))
         results = {'response':response, 'users':usersData}
