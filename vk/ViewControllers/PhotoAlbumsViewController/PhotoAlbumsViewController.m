@@ -53,10 +53,13 @@ static CGFloat const kInteritemSpacing = 12.f;
 #pragma mark - BaseCollectionViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
-    [_viewModel getPhotoAlbums:offset completion:^(NSArray *albums) {
-        if (completion) {
-            completion(albums);
+    [_viewModel getPhotoAlbums:offset completion:^(NSArray *albums, NSError *error) {
+        if ([error utils_isConnectivityError]) {
+            [self showNoConnectionAlert];
+            completion(@[]);
+            return;
         }
+        completion(albums);
     }];
 }
 

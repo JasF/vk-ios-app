@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol PhotoAlbumsViewModel <NSObject>
-- (void)getPhotoAlbums:(NSInteger)offset completion:(void(^)(NSArray *albums))completion;
+- (void)getPhotoAlbums:(NSInteger)offset completion:(void(^)(NSArray *albums, NSError *error))completion;
 - (void)clickedOnAlbumWithId:(NSInteger)albumId;
 - (void)menuTapped;
 @end

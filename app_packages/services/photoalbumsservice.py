@@ -3,6 +3,7 @@ import json
 from vk import users
 import traceback
 from caches.photoalbumsdatabase import PhotoAlbumsDatabase
+from requests.exceptions import ConnectionError
 
 g_count = 40
 
@@ -19,6 +20,8 @@ class PhotoAlbumsService:
             cache = PhotoAlbumsDatabase()
             cache.update(l)
             cache.close()
+        except ConnectionError as e:
+            raise e
         except Exception as e:
             print('getPhotoAlbums exception: ' + str(e))
         return response

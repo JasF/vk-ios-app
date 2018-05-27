@@ -59,6 +59,10 @@ static const NSInteger kBatchSize = 20;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self performInitialUpdate];
+}
+
+- (void)performInitialUpdate {
     if (!_initiallyUpdated) {
         _initiallyUpdated = YES;
         self.updating = YES;
@@ -246,6 +250,12 @@ static const NSInteger kBatchSize = 20;
         _layout = [[UICollectionViewFlowLayout alloc] init];
     }
     return _layout;
+}
+
+#pragma mark - Overriden Methods - BaseViewController
+- (void)repeatTapped {
+    _initiallyUpdated = NO;
+    [self performInitialUpdate];
 }
 
 @end
