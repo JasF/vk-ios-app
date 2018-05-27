@@ -11,6 +11,6 @@
 @class Photo;
 
 @protocol GalleryViewModel <NSObject>
-- (void)getPhotos:(NSInteger)offset completion:(void(^)(NSArray *photos))completion;
+- (void)getPhotos:(NSInteger)offset completion:(void(^)(NSArray *photos, NSError *error))completion;
 - (void)tappedOnPhoto:(Photo *)photo;
 @end
