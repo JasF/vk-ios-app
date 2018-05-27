@@ -12,6 +12,7 @@
 #import <VK-ios-sdk/VKSdk.h>
 #import "WallPost.h"
 #import "Dialog.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface ChatListViewController () <BaseViewControllerDataSource, ASCollectionDelegate, ChatListViewModelDelegate>
 @property (strong, nonatomic) id<ChatListViewModel> viewModel;
@@ -58,8 +59,14 @@
 #pragma mark - BaseViewControllerDataSource
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
-    [_viewModel getDialogsWithOffset:offset
-                               completion:completion];
+    [_viewModel getDialogsWithOffset:offset completion:^(NSArray<Dialog *> *dialogs, NSError *error) {
+        if ([error utils_isConnectivityError]) {
+            [self showNoConnectionAlert];
+            completion(@[]);
+            return;
+        }
+        completion(dialogs);
+    }];
 }
 
 #pragma mark - ASCollectionNodeDelegate
