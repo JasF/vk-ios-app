@@ -111,6 +111,10 @@ typedef NS_ENUM(NSInteger, SettingsRow) {
     };
 }
 
+- (void)tableNode:(ASTableNode *)tableNode willBeginBatchFetchWithContext:(ASBatchContext *)context {
+    [context completeBatchFetching:NO];
+}
+
 - (NSInteger)tableNode:(ASCollectionNode *)collectionNode numberOfRowsInSection:(NSInteger)section
 {
     if (!_settings) {
