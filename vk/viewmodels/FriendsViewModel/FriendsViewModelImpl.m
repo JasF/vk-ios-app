@@ -7,6 +7,7 @@
 //
 
 #import "FriendsViewModelImpl.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface FriendsViewModelImpl ()
 @property id<PyFriendsViewModel> handler;
@@ -31,13 +32,14 @@
 
 #pragma mark - FriendsViewModel
 - (void)getFriendsWithOffset:(NSInteger)offset
-                  completion:(void(^)(NSArray<User *> *users))completion {
+                  completion:(void(^)(NSArray<User *> *users, NSError *error))completion {
     dispatch_python(^{
         NSDictionary *data = [_handler getFriends:@(offset)];
+        NSError *error = [data utils_getError];
         NSArray *friends = [_friendsService parse:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
-                completion(friends);
+                completion(friends, error);
             }
         });
     });

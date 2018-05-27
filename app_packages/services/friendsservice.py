@@ -3,25 +3,37 @@ import json
 from vk import users as users
 from caches.friendsdatabase import FriendsDatabase
 from viewmodels.pyfriendsviewmodel import UsersListTypes
-
+from requests.exceptions import ConnectionError
 g_count = 40
 
 class FriendsService:
     def getFriends(self, userId, offset):
-        ids = self.getFriendsIds(userId, offset, UsersListTypes.FRIENDS)
-        usersData = users.getShortUsersByIds(ids)
+        usersData = []
+        try:
+            ids = self.getFriendsIds(userId, offset, UsersListTypes.FRIENDS)
+            usersData = users.getShortUsersByIds(ids)
+        except ConnectionError as e:
+            raise e
         #print('getFriends usersData: ' + json.dumps(usersData, indent=4))
         return {'response':usersData}
     
     def getSubscriptions(self, userId, offset):
-        ids = self.getFriendsIds(userId, offset, UsersListTypes.SUBSCRIPTIONS)
-        usersData = users.getShortUsersByIds(set(ids))
+        usersData = []
+        try:
+            ids = self.getFriendsIds(userId, offset, UsersListTypes.SUBSCRIPTIONS)
+            usersData = users.getShortUsersByIds(set(ids))
+        except ConnectionError as e:
+            raise e
         #print('getSubscriptions response: ' + str(usersData))
         return {'response':usersData}
 
     def getFollowers(self, userId, offset):
-        ids = self.getFriendsIds(userId, offset, UsersListTypes.FOLLOWERS)
-        usersData = users.getShortUsersByIds(set(ids))
+        usersData = []
+        try:
+            ids = self.getFriendsIds(userId, offset, UsersListTypes.FOLLOWERS)
+            usersData = users.getShortUsersByIds(set(ids))
+        except ConnectionError as e:
+            raise e
         #print('FOLLOWERS response: ' + str(usersData))
         return {'response':usersData}
 
@@ -64,6 +76,8 @@ class FriendsService:
 
             db.close()
             return l
+        except ConnectionError as e:
+            raise e
         except Exception as e:
             print('getFriendsIds exception: ' + str(e))
         return []

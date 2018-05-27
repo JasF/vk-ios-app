@@ -1,9 +1,10 @@
 from objc import managers
 import vk
+from viewmodels.pyfriendsviewmodel import UsersListTypes
 
 def showScreenAfterAuthorization():
-    #managers.shared().screensManager().showFriendsViewController_usersListType_push_(args=[vk.userId(), UsersListTypes.FRIENDS, False])
-    managers.shared().screensManager().showChatListViewController()
+    managers.shared().screensManager().showFriendsViewController_usersListType_push_(args=[vk.userId(), UsersListTypes.FRIENDS, False])
+    #managers.shared().screensManager().showChatListViewController()
     #managers.shared().screensManager().showWallViewController()
     #managers.shared().screensManager().showWallViewController_(args=[-41315069]) # Вегетарианская сила
     #managers.shared().screensManager().showWallViewController_(args=[19649085]) # Andrei Vayavoda Second
