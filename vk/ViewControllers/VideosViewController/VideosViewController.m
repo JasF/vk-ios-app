@@ -7,7 +7,7 @@
 //
 
 #import "VideosViewController.h"
-
+#import "Oxy_Feed-Swift.h"
 
 @interface VideosViewController () <BaseViewControllerDataSource>
 @property id<VideosViewModel> viewModel;
@@ -47,10 +47,13 @@
 - (void)getModelObjets:(void(^)(NSArray *objects))completion
                 offset:(NSInteger)offset {
     [_viewModel getVideos:offset
-               completion:^(NSArray *objects) {
-                   if (completion) {
-                       completion(objects);
+               completion:^(NSArray *objects, NSError *error) {
+                   if ([error utils_isConnectivityError]) {
+                       [self showNoConnectionAlert];
+                       completion(@[]);
+                       return;
                    }
+                   completion(objects);
                }];
 }
 

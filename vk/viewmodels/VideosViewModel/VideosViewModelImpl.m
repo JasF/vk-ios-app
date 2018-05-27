@@ -7,6 +7,7 @@
 //
 
 #import "VideosViewModelImpl.h"
+#import "Oxy_Feed-Swift.h"
 
 @interface VideosViewModelImpl () <VideosViewModel>
 @property (strong) id<PyVideosViewModel> handler;
@@ -30,13 +31,14 @@
 }
 
 #pragma mark - VideosViewModel
-- (void)getVideos:(NSInteger)offset completion:(void(^)(NSArray *videos))completion {
+- (void)getVideos:(NSInteger)offset completion:(void(^)(NSArray *videos, NSError *error))completion {
     dispatch_python(^{
         NSDictionary *response = [self.handler getVideos:@(offset)];
+        NSError *error = [response utils_getError];
         NSArray *objects = [self.videosService parse:response];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
-                completion(objects);
+                completion(objects, error);
             }
         });
     });

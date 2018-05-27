@@ -10,7 +10,7 @@
 #import "Video.h"
 
 @protocol VideosViewModel <NSObject>
-- (void)getVideos:(NSInteger)offset completion:(void(^)(NSArray *videos))completion;
+- (void)getVideos:(NSInteger)offset completion:(void(^)(NSArray *videos, NSError *error))completion;
 - (void)menuTapped;
 - (void)tappedOnVideo:(Video *)video;
 @end

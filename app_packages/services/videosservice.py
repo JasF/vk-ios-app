@@ -3,6 +3,7 @@ import json
 import traceback
 from vk import users as users
 from caches.videosdatabase import VideosDatabase
+from requests.exceptions import ConnectionError
 
 class VideosService:
     def __init__(self):
@@ -17,10 +18,11 @@ class VideosService:
             l = response['items']
             #print('videos l: ' + json.dumps(l, indent=4))
             count = len(l)
-            
             cache = VideosDatabase()
             cache.update(l)
             cache.close()
+        except ConnectionError as e:
+            raise e
         except Exception as e:
             print('getVideos exception: ' + str(e))
         return {'response': response}, count

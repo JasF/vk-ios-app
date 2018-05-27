@@ -16,8 +16,8 @@ def showScreenAfterAuthorization():
     #managers.shared().screensManager().showWallViewController_(args=[-63294313]) # Уроки Медитации [Публичная страница]
     #managers.shared().screensManager().showWallViewController_(args=[-20550925]) # Oum.Ru Здравый Образ Жизни
     #managers.shared().screensManager().showGroupsViewController_push_(args=[vk.userId(), False])
-    managers.shared().screensManager().showBookmarksViewController()
-    #managers.shared().screensManager().showVideosViewController_push_(args=[vk.userId(), False])
+    #managers.shared().screensManager().showBookmarksViewController()
+    managers.shared().screensManager().showVideosViewController_push_(args=[vk.userId(), False])
     #managers.shared().screensManager().showDocumentsViewController_(args=[vk.userId()])
     #managers.shared().screensManager().showSettingsViewController()
     #managers.shared().screensManager().showBlackListViewController()
