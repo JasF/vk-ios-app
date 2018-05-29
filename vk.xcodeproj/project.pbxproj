@@ -327,7 +327,6 @@
 		C32306E72080E64B00CEC487 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32306E62080E64B00CEC487 /* MobileCoreServices.framework */; };
 		C32306E92080E64F00CEC487 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32306E82080E64F00CEC487 /* SafariServices.framework */; };
 		C32306F12080E9D800CEC487 /* PythonManagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C32306F02080E9D800CEC487 /* PythonManagerImpl.m */; };
-		C32306F62080F1C600CEC487 /* Pods_vk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32306F52080F1C600CEC487 /* Pods_vk.framework */; };
 		C32308B92081AEB100CEC487 /* LGSideMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C323076D2081AEB000CEC487 /* LGSideMenuHelper.m */; };
 		C32308BA2081AEB100CEC487 /* LGSideMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C323076F2081AEB000CEC487 /* LGSideMenuView.m */; };
 		C32308BB2081AEB100CEC487 /* LGSideMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C32307702081AEB000CEC487 /* LGSideMenuSegue.m */; };
@@ -862,7 +861,6 @@
 		4C6D6E13E451852DB917CDA3 /* Pods-MessageGroups.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroups.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroups/Pods-MessageGroups.release.xcconfig"; sourceTree = "<group>"; };
 		6106DB23EE85EB4A9022D83C /* Pods-Oxy Feed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Oxy Feed.release.xcconfig"; path = "Pods/Target Support Files/Pods-Oxy Feed/Pods-Oxy Feed.release.xcconfig"; sourceTree = "<group>"; };
 		7BC0D4DDF0651D3711FA95C6 /* Pods-Oxy Feed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Oxy Feed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Oxy Feed/Pods-Oxy Feed.debug.xcconfig"; sourceTree = "<group>"; };
-		9BE313985D8E6E3C9E7F130B /* Pods_vk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EDB068BB4F3800BEE9E047F /* Pods-MessageGroupsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsUITests/Pods-MessageGroupsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A3EFD1DB3DB35D26BD34A97F /* Pods_MessageGroupsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageGroupsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA69975BD27688EB85F70A6A /* Pods-MessageGroupsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageGroupsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageGroupsTests/Pods-MessageGroupsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -936,6 +934,7 @@
 		C313DD6C208CBA460005E29B /* WallPostServiceImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPostServiceImpl.m; sourceTree = "<group>"; };
 		C313DD6E208CBA4D0005E29B /* WallPostService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPostService.h; sourceTree = "<group>"; };
 		C313DD6F208CD4F00005E29B /* usersdecorator.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = usersdecorator.py; sourceTree = "<group>"; };
+		C3191FDF20BD0ADA006EBDD7 /* vk-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "vk-dev.entitlements"; sourceTree = "<group>"; };
 		C322627B20905E930054789B /* AnswerNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswerNode.h; sourceTree = "<group>"; };
 		C322627C20905E930054789B /* AnswerNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswerNode.m; sourceTree = "<group>"; };
 		C322627F209074120054789B /* GroupsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
@@ -1364,7 +1363,6 @@
 		C32306EE2080E9C900CEC487 /* PythonManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PythonManager.h; sourceTree = "<group>"; };
 		C32306EF2080E9D800CEC487 /* PythonManagerImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PythonManagerImpl.h; sourceTree = "<group>"; };
 		C32306F02080E9D800CEC487 /* PythonManagerImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PythonManagerImpl.m; sourceTree = "<group>"; };
-		C32306F52080F1C600CEC487 /* Pods_vk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_vk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32306FA2080F2DE00CEC487 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C32306FE2081AEB000CEC487 /* classobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classobject.h; sourceTree = "<group>"; };
 		C32306FF2081AEB000CEC487 /* cellobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cellobject.h; sourceTree = "<group>"; };
@@ -2216,7 +2214,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C32306F62080F1C600CEC487 /* Pods_vk.framework in Frameworks */,
 				C32306E92080E64F00CEC487 /* SafariServices.framework in Frameworks */,
 				C32306E72080E64B00CEC487 /* MobileCoreServices.framework in Frameworks */,
 				C32306E52080E64400CEC487 /* libz.tbd in Frameworks */,
@@ -2286,7 +2283,6 @@
 				38AECA0C6C974586CB50DEA4 /* Pods_MessageGroups.framework */,
 				A3EFD1DB3DB35D26BD34A97F /* Pods_MessageGroupsTests.framework */,
 				B52498E6A69599165C997DF8 /* Pods_MessageGroupsUITests.framework */,
-				9BE313985D8E6E3C9E7F130B /* Pods_vk.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2786,7 +2782,6 @@
 				C39D471C20A33D5B00C6CC99 /* HockeySDK.framework */,
 				C338CA4D20A1BF6600F30B77 /* FacebookSDKStrings.bundle */,
 				C338CA4E20A1BF6600F30B77 /* FBSDKCoreKit.framework */,
-				C32306F52080F1C600CEC487 /* Pods_vk.framework */,
 				C32306E82080E64F00CEC487 /* SafariServices.framework */,
 				C32306E62080E64B00CEC487 /* MobileCoreServices.framework */,
 				C32306E42080E64400CEC487 /* libz.tbd */,
@@ -2896,6 +2891,7 @@
 		C32304292080E57400CEC487 /* vk */ = {
 			isa = PBXGroup;
 			children = (
+				C3191FDF20BD0ADA006EBDD7 /* vk-dev.entitlements */,
 				C3137718208DFAE800F568EA /* vk.entitlements */,
 				C32304B92080E57400CEC487 /* services */,
 				C3B225012085BA4000599E04 /* viewmodels */,
@@ -6965,9 +6961,9 @@
 			baseConfigurationReference = 7BC0D4DDF0651D3711FA95C6 /* Pods-Oxy Feed.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = vk/vk.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "vk/vk-dev.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5892LD7JW5;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6986,8 +6982,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = by.vk.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c88a8aa2-16a1-4708-a755-fc7452acaed4";
-				PROVISIONING_PROFILE_SPECIFIER = Oxy_Feed_dev;
+				PROVISIONING_PROFILE = "20d0eec1-44cd-4903-9bea-374e2c908540";
+				PROVISIONING_PROFILE_SPECIFIER = "OxyFeed-dev(vkapp)";
 				SWIFT_OBJC_BRIDGING_HEADER = "vk/Supporting Files/vk-Bridging-Header.h";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
 				SWIFT_VERSION = 4.0;
@@ -7021,8 +7017,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = by.vk.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b2044f0a-04d0-401d-b325-fbdb23fb05ff";
-				PROVISIONING_PROFILE_SPECIFIER = Oxy_Feed_AppStore;
+				PROVISIONING_PROFILE = "64e4f451-afd1-4e47-b879-dd1318708023";
+				PROVISIONING_PROFILE_SPECIFIER = OxyFeed_AppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = "vk/Supporting Files/vk-Bridging-Header.h";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
 				SWIFT_VERSION = 4.0;

@@ -18,7 +18,7 @@
 }
 
 - (instancetype)init {
-    return [self initWithFont:[UIFont systemFontOfSize:16.0f] placeholder:@"Type a message" tintColor:[UIColor blueColor]];
+    return [self initWithFont:[UIFont systemFontOfSize:16.0f] placeholder:L(@"type_a_message") tintColor:[UIColor blueColor]];
 }
 
 - (instancetype)initWithFont:(UIFont *)font placeholder:(NSString *)placeholder tintColor:(UIColor*)tintColor {

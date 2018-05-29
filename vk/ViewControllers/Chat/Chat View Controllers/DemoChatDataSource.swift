@@ -121,20 +121,39 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         })
     }
     
-    public func handleMessageFlagsChanged(_ message: Message!) {
+    public func handleMessageFlagsChanged(_ message: Message!, _ tableNode: ASTableNode) {
         let items = self.slidingWindow.getItems()
+        var indexPatches = [IndexPath]()
+        var nodes = [ChatBaseNodeCell]()
         for item in items as! [DemoMessageModelProtocol] {
             if item.externalId == message.identifier {
-                NSLog("found needed item \(item.externalId) text \(message.body)")
                 item.setReadState(message.read_state)
-                updateDatasource()
+                guard let viewModel = item.viewModel else { continue }
+                guard let node = viewModel.node else { continue }
+                guard let indexPath = tableNode.indexPath(for: node) else { continue }
+                indexPatches.append(indexPath)
+                nodes.append(node)
                 break
+            }
+        }
+        if indexPatches.count > 0 {
+            DispatchQueue.main.async {
+                for node in nodes {
+                    node.performUpdate()
+                }
+                tableNode .reloadRows(at: indexPatches, with: .none)
+                /*
+                DispatchQueue.global(qos: .default).async {
+                    self.delegate?.chatDataSourceDidUpdate(self)
+                }
+ */
             }
         }
     }
     
     func markAsReaded(_ messageId: Int, _ isIncoming: Bool, _ tableNode: ASTableNode) {
         var indexPatches = [IndexPath]()
+        var nodes = [ChatBaseNodeCell]()
         let items = self.slidingWindow.getItems()
         var ignoredItems = 0
         for item in items as! [DemoMessageModelProtocol] {
@@ -147,15 +166,19 @@ class DemoChatDataSource: ChatDataSourceProtocol {
                 guard let node = viewModel.node else { continue }
                 guard let indexPath = tableNode.indexPath(for: node) else { continue }
                 indexPatches.append(indexPath)
+                nodes.append(node)
             }
             else {
                 ignoredItems = ignoredItems + 1
             }
         }
         if indexPatches.count > 0 {
-            DispatchQueue.main.async(execute: { () -> Void in
+            DispatchQueue.main.async {
+                for node in nodes {
+                    node.performUpdate()
+                }
                 tableNode .reloadRows(at: indexPatches, with: .none)
-            })
+            }
         }
     }
     

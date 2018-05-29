@@ -244,7 +244,7 @@ class DialogViewController: DemoChatViewController, DialogScreenViewModelDelegat
     }
     
     func handleMessageFlagsChanged(_ message: Message!) {
-        self.mDataSource?.handleMessageFlagsChanged(message)
+        self.mDataSource?.handleMessageFlagsChanged(message, self.tableNode)
     }
     
     func handleTyping(_ userId: Int, end: Bool) {

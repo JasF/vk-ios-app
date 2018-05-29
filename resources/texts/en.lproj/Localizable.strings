@@ -105,3 +105,4 @@
 "error_unban_group"="Failed to delete group from blacklist";
 "offline_text"="Failed to load data";
 "offline_button_text"="Retry";
+"type_a_message"="Type a message";
