@@ -424,7 +424,7 @@
         return;
     }
     dispatch_python(^{
-        [self.handler optionsTappedWithPhotoId:@(video.id) ownerId:@(video.owner_id)];
+        [self.handler optionsTappedWithVideoId:@(video.id) ownerId:@(video.owner_id)];
     });
 }
 

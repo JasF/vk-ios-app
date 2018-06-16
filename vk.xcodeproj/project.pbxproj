@@ -125,7 +125,6 @@
 		C323060E2080E57500CEC487 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304A32080E57400CEC487 /* MenuViewController.m */; };
 		C323060F2080E57500CEC487 /* Common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C32304A42080E57400CEC487 /* Common.xcassets */; };
 		C32306102080E57500CEC487 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C32304A52080E57400CEC487 /* Default-568h@2x.png */; };
-		C32306122080E57500CEC487 /* app_packages.zip in Resources */ = {isa = PBXBuildFile; fileRef = C32304AA2080E57400CEC487 /* app_packages.zip */; };
 		C32306132080E57500CEC487 /* NodeFactoryImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304AE2080E57400CEC487 /* NodeFactoryImpl.m */; };
 		C32306182080E57500CEC487 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C32304B72080E57400CEC487 /* Default-667h@2x.png */; };
 		C323061A2080E57500CEC487 /* WallServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C32304BC2080E57400CEC487 /* WallServiceImpl.m */; };
@@ -1140,7 +1139,6 @@
 		C32304A52080E57400CEC487 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C32304A82080E57400CEC487 /* vk-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vk-Bridging-Header.h"; sourceTree = "<group>"; };
 		C32304A92080E57400CEC487 /* vk.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vk.pch; sourceTree = "<group>"; };
-		C32304AA2080E57400CEC487 /* app_packages.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = app_packages.zip; sourceTree = "<group>"; };
 		C32304AD2080E57400CEC487 /* NodeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeFactory.h; sourceTree = "<group>"; };
 		C32304AE2080E57400CEC487 /* NodeFactoryImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeFactoryImpl.m; sourceTree = "<group>"; };
 		C32304AF2080E57400CEC487 /* NodeFactoryImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeFactoryImpl.h; sourceTree = "<group>"; };
@@ -3311,7 +3309,6 @@
 				C3987E562099CEE20047A30F /* Chatto.podspec */,
 				C3987E552099CEE20047A30F /* ChattoAdditions.podspec */,
 				C32304A92080E57400CEC487 /* vk.pch */,
-				C32304AA2080E57400CEC487 /* app_packages.zip */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -5987,7 +5984,6 @@
 				C32306302080E57500CEC487 /* langbulgarianmodel.py in Resources */,
 				C32306B02080E57500CEC487 /* _collections.cpython-34.pyc in Resources */,
 				C3B0EEEC208B14E8008802BB /* loadBubble_0021_Layer-18@2x.png in Resources */,
-				C32306122080E57500CEC487 /* app_packages.zip in Resources */,
 				C323063C2080E57500CEC487 /* gb2312prober.py in Resources */,
 				C32306352080E57500CEC487 /* euctwfreq.py in Resources */,
 				C3B0EF2E208B14E8008802BB /* loadBubble_0033_Layer-6@3x.png in Resources */,
